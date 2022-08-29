@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from typing import Optional
-from .error import Error
+from sdk.models import shared
 
 @dataclass
 class DeleteSchemaV1PathParams:
@@ -16,7 +16,7 @@ class DeleteSchemaV1Request:
 
 @dataclass
 class DeleteSchemaV1Responses:
-    error: Optional[Error] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     raw_response: bytes = field(default=None)
     
 

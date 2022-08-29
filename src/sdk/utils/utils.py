@@ -8,25 +8,59 @@ from dataclasses_json import DataClassJsonMixin
 
 
 def configure_security_client(client: requests.Session, security: dataclass):
-    schemes: Tuple[Field, ...] = fields(security)
-    for scheme_field in schemes:
-        metadata = scheme_field.metadata.get('security')
+    sec_fields: Tuple[Field, ...] = fields(security)
+    for sec_field in sec_fields:
+        value = getattr(security, sec_field.name)
+        if value is None:
+            continue
+
+        metadata = sec_field.metadata.get('security')
         if metadata is None:
             continue
-        if metadata.get('scheme'):
-            scheme = getattr(security, scheme_field.name)
-            securityTypes: Tuple[Field, ...] = fields(scheme)
-            for security_type_field in securityTypes:
-                security_metadata = security_type_field.metadata.get(
-                    'security')
-                if security_metadata is None:
-                    continue
-                if security_metadata.get('type') == 'apiKey' and security_metadata.get('in') == 'header':
-                    headerName = security_metadata.get('field_name')
-                    if headerName is None:
-                        continue
-                    client.headers[headerName] = getattr(
-                        scheme, security_type_field.name)
+        if metadata.get('option'):
+            _parse_security_option(client, value)
+            return
+        elif metadata.get('scheme'):
+            _parse_security_scheme(client, metadata, value)
+
+
+def _parse_security_option(client: requests.Session, option: dataclass):
+    opt_fields: Tuple[Field, ...] = fields(option)
+    for opt_field in opt_fields:
+        metadata = opt_field.metadata.get('security')
+        if metadata is None or metadata.get('scheme') is None:
+            continue
+        _parse_security_scheme(client, metadata.get(
+            'scheme'), getattr(option, opt_field.name))
+
+
+def _parse_security_scheme(client: requests.Session, scheme_metadata: dict, scheme: dataclass):
+    scheme_fields: Tuple[Field, ...] = fields(scheme)
+    for scheme_field in scheme_fields:
+        metadata = scheme_field.metadata.get('security')
+        if metadata is None or metadata.get('field_name') is None:
+            continue
+
+        scheme_type = scheme_metadata.get('type')
+        header_name = metadata.get('field_name')
+        value = getattr(scheme, scheme_field.name)
+
+        if scheme_type == "apiKey":
+            if scheme_metadata.get('sub_type') == 'header':
+                client.headers[header_name] = value
+            else:
+                raise Exception('not yet implemented')
+        elif scheme_type == "openIdConnect":
+            client.headers[header_name] = value
+        elif scheme_type == 'oauth2':
+            client.headers[header_name] = value
+        elif scheme_type == 'http':
+            if scheme_metadata.get('sub_type') == 'bearer':
+                client.headers[header_name] = value
+            else:
+                raise Exception('not yet implemented')
+        else:
+            raise Exception('not yet implemented')
 
 
 def generate_url(server_url: str, path: str, path_params: dataclass) -> str:
@@ -46,32 +80,97 @@ def generate_url(server_url: str, path: str, path_params: dataclass) -> str:
 
 
 def get_query_params(query_params: dataclass) -> dict[str, List[str]]:
+    if query_params is None:
+        return {}
+
     params: dict[str, List[str]] = {}
 
     param_fields: Tuple[Field, ...] = fields(query_params)
     for f in param_fields:
-        param_metadata = f.metadata.get('query_param')
-        if not param_metadata:
+        metadata = f.metadata.get('query_param')
+        if not metadata:
             continue
-        # only the below serialization types currently supported
-        if param_metadata.get('style', 'form') != 'deepObject':
-            continue
-        obj = getattr(query_params, f.name)
-        if is_dataclass(obj):
-            obj_fields: Tuple[Field, ...] = fields(obj)
-            for obj_field in obj_fields:
-                obj_param_metadata = obj_field.metadata.get('query_param')
-                if not obj_param_metadata:
-                    continue
-                params[f'{param_metadata.get("field_name", f.name)}[{obj_param_metadata.get("field_name", obj_field.name)}]'] = [
-                    getattr(obj, obj_field.name)]
-        if isinstance(obj, dict):
-            for key, value in obj.items():
-                if isinstance(value, list):
-                    params[f'{param_metadata.get("field_name", f.name)}[{key}]'] = value
-                else:
-                    params[f'{param_metadata.get("field_name", f.name)}[{key}]'] = [
-                        value]
+
+        style = metadata.get('style', 'form')
+        if style == 'deepObject':
+            params = params | _get_deep_object_query_params(
+                metadata, f.name, getattr(query_params, f.name))
+        elif style == 'form':
+            params = params | _get_form_query_params(
+                metadata, f.name, getattr(query_params, f.name))
+        else:
+            raise Exception('not yet implemented')
+
+    return params
+
+
+def _get_deep_object_query_params(metadata: dict, field_name: str, obj: any) -> dict[str, List[str]]:
+    params: dict[str, List[str]] = {}
+
+    if is_dataclass(obj):
+        obj_fields: Tuple[Field, ...] = fields(obj)
+        for obj_field in obj_fields:
+            obj_param_metadata = obj_field.metadata.get('query_param')
+            if not obj_param_metadata:
+                continue
+            params[f'{metadata.get("field_name", field_name)}[{obj_param_metadata.get("field_name", obj_field.name)}]'] = [
+                getattr(obj, obj_field.name)]
+    elif isinstance(obj, dict):
+        for key, value in obj.items():
+            if isinstance(value, list):
+                params[f'{metadata.get("field_name", field_name)}[{key}]'] = value
+            else:
+                params[f'{metadata.get("field_name", field_name)}[{key}]'] = [
+                    value]
+    return params
+
+
+def _get_form_query_params(metadata: dict, field_name: str, obj: any) -> dict[str, List[str]]:
+    params: dict[str, List[str]] = {}
+
+    if is_dataclass(obj):
+        items = []
+
+        obj_fields: Tuple[Field, ...] = fields(obj)
+        for obj_field in obj_fields:
+            obj_param_metadata = obj_field.metadata.get('query_param')
+            if not obj_param_metadata:
+                continue
+
+            if metadata.get("explode"):
+                params[{obj_param_metadata.get("field_name", obj_field.name)}] = [getattr(
+                    obj, obj_field.name)]
+            else:
+                items.append(
+                    f'{obj_param_metadata.get("field_name", obj_field.name)},{getattr(obj, obj_field.name)}')
+
+        if items.count() > 0:
+            params[metadata.get("field_name", field_name)] = [','.join(items)]
+    elif isinstance(obj, dict):
+        items = []
+
+        for key, value in obj.items():
+            if metadata.get("explode"):
+                params[{obj_param_metadata.get(
+                    "field_name", obj_field.name)}] = value
+            else:
+                items.append(f'{key},{value}')
+
+        if items.count() > 0:
+            params[metadata.get("field_name", field_name)] = [','.join(items)]
+    elif isinstance(obj, list):
+        items = []
+
+        for value in obj:
+            if metadata.get("explode"):
+                params[metadata.get("field_name", field_name)] = value
+            else:
+                items.append(value)
+
+        if items.count() > 0:
+            params[metadata.get("field_name", field_name)] = [','.join(items)]
+    else:
+        params[metadata.get("field_name", field_name)] = obj
 
     return params
 

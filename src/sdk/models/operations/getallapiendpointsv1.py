@@ -1,7 +1,6 @@
 from dataclasses import dataclass, field
 from typing import List,Optional
-from .apiendpoint import APIEndpoint
-from .error import Error
+from sdk.models import shared
 
 @dataclass
 class GetAllAPIEndpointsV1PathParams:
@@ -15,8 +14,8 @@ class GetAllAPIEndpointsV1Request:
 
 @dataclass
 class GetAllAPIEndpointsV1Responses:
-    api_endpoint: Optional[List[APIEndpoint]] = field(default=None)
-    error: Optional[Error] = field(default=None)
+    api_endpoint: Optional[List[shared.APIEndpoint]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     raw_response: bytes = field(default=None)
     
 

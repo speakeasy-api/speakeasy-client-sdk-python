@@ -1,8 +1,6 @@
 from dataclasses import dataclass, field
 from typing import Optional
-from .versionmetadata import VersionMetadata
-from .error import Error
-from .versionmetadata import VersionMetadata
+from sdk.models import shared
 
 @dataclass
 class InsertVersionMetadataV1PathParams:
@@ -13,14 +11,14 @@ class InsertVersionMetadataV1PathParams:
 @dataclass
 class InsertVersionMetadataV1Request:
     path_params: InsertVersionMetadataV1PathParams = field(default=None)
-    request: VersionMetadata = field(default=None, metadata={'request': { 'media_type': 'application/json' }})
+    request: shared.VersionMetadata = field(default=None, metadata={'request': { 'media_type': 'application/json' }})
     
 
 @dataclass
 class InsertVersionMetadataV1Responses:
-    error: Optional[Error] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     raw_response: bytes = field(default=None)
-    version_metadata: Optional[VersionMetadata] = field(default=None)
+    version_metadata: Optional[shared.VersionMetadata] = field(default=None)
     
 
 @dataclass

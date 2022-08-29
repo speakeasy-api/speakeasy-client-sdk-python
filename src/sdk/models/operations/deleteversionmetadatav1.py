@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from typing import Optional
-from .error import Error
+from sdk.models import shared
 
 @dataclass
 class DeleteVersionMetadataV1PathParams:
@@ -17,7 +17,7 @@ class DeleteVersionMetadataV1Request:
 
 @dataclass
 class DeleteVersionMetadataV1Responses:
-    error: Optional[Error] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     raw_response: bytes = field(default=None)
     
 

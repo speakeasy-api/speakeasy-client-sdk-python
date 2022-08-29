@@ -1,8 +1,6 @@
 from dataclasses import dataclass, field
 from typing import Optional
-from .api import API
-from .api import API
-from .error import Error
+from sdk.models import shared
 
 @dataclass
 class UpsertAPIV1PathParams:
@@ -12,13 +10,13 @@ class UpsertAPIV1PathParams:
 @dataclass
 class UpsertAPIV1Request:
     path_params: UpsertAPIV1PathParams = field(default=None)
-    request: API = field(default=None, metadata={'request': { 'media_type': 'application/json' }})
+    request: shared.API = field(default=None, metadata={'request': { 'media_type': 'application/json' }})
     
 
 @dataclass
 class UpsertAPIV1Responses:
-    api: Optional[API] = field(default=None)
-    error: Optional[Error] = field(default=None)
+    api: Optional[shared.API] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     raw_response: bytes = field(default=None)
     
 

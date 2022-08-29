@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from typing import Optional
-from .error import Error
+from sdk.models import shared
 
 @dataclass
 class RegisterSchemaV1PathParams:
@@ -27,7 +27,7 @@ class RegisterSchemaV1Request:
 
 @dataclass
 class RegisterSchemaV1Responses:
-    error: Optional[Error] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     raw_response: bytes = field(default=None)
     
 

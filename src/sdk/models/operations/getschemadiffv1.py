@@ -1,7 +1,6 @@
 from dataclasses import dataclass, field
 from typing import Optional
-from .error import Error
-from .schemadiff import SchemaDiff
+from sdk.models import shared
 
 @dataclass
 class GetSchemaDiffV1PathParams:
@@ -18,9 +17,9 @@ class GetSchemaDiffV1Request:
 
 @dataclass
 class GetSchemaDiffV1Responses:
-    error: Optional[Error] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     raw_response: bytes = field(default=None)
-    schema_diff: Optional[SchemaDiff] = field(default=None)
+    schema_diff: Optional[shared.SchemaDiff] = field(default=None)
     
 
 @dataclass

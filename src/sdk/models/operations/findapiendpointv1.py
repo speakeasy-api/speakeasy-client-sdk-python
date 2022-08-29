@@ -1,7 +1,6 @@
 from dataclasses import dataclass, field
 from typing import Optional
-from .apiendpoint import APIEndpoint
-from .error import Error
+from sdk.models import shared
 
 @dataclass
 class FindAPIEndpointV1PathParams:
@@ -17,8 +16,8 @@ class FindAPIEndpointV1Request:
 
 @dataclass
 class FindAPIEndpointV1Responses:
-    api_endpoint: Optional[APIEndpoint] = field(default=None)
-    error: Optional[Error] = field(default=None)
+    api_endpoint: Optional[shared.APIEndpoint] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     raw_response: bytes = field(default=None)
     
 

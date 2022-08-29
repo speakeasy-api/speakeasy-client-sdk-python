@@ -4,10 +4,10 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="speakeasy-client-sdk-python",  # TODO: replace
-    version="0.0.2",  # TODO replace
-    author="Speakeasy",  # TODO replace
-    description="Speakeasy API Client SDK for Python",  # TODO replace
+    name="speakeasy-client-sdk-python",
+    version="0.0.4",
+    author="Speakeasy",
+    description="Speakeasy API Client SDK for Python",
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=setuptools.find_packages(where="src"),

@@ -1,7 +1,6 @@
 from dataclasses import dataclass, field
 from typing import List,Optional
-from .api import API
-from .error import Error
+from sdk.models import shared
 
 @dataclass
 class GetAllAPIVersionsV1PathParams:
@@ -27,8 +26,8 @@ class GetAllAPIVersionsV1Request:
 
 @dataclass
 class GetAllAPIVersionsV1Responses:
-    api: Optional[List[API]] = field(default=None)
-    error: Optional[Error] = field(default=None)
+    api: Optional[List[shared.API]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     raw_response: bytes = field(default=None)
     
 

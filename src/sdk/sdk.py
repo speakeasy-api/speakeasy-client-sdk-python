@@ -10,11 +10,9 @@ from . import utils
 SERVER_URL = "http://api.prod.speakeasyapi.dev"
 
 class SDK:
-    client: requests.Session = requests.Session()
-
-    
+    client = requests.Session()
     def config_security(self, security: shared.Security):
-        utils.configure_security_client(self.client, security)
+        self.client = utils.configure_security_client(security)
 
     
     def delete_api_endpoint_v1(self, request: operations.DeleteAPIEndpointV1Request) -> operations.DeleteAPIEndpointV1Response:

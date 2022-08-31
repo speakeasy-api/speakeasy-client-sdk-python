@@ -7,7 +7,20 @@ import requests
 from dataclasses_json import DataClassJsonMixin
 
 
-def configure_security_client(client: requests.Session, security: dataclass):
+class SecurityClient:
+    client: requests.Session = requests.Session()
+    query_params: dict[str, str] = {}
+
+    def request(self, method, url, **kwargs):
+        params = kwargs.get('params', {})
+        kwargs["params"] = self.query_params | params
+
+        return self.client.request(method, url, **kwargs)
+
+
+def configure_security_client(security: dataclass):
+    client = SecurityClient()
+
     sec_fields: Tuple[Field, ...] = fields(security)
     for sec_field in sec_fields:
         value = getattr(security, sec_field.name)
@@ -23,8 +36,10 @@ def configure_security_client(client: requests.Session, security: dataclass):
         elif metadata.get('scheme'):
             _parse_security_scheme(client, metadata, value)
 
+    return client
 
-def _parse_security_option(client: requests.Session, option: dataclass):
+
+def _parse_security_option(client: SecurityClient, option: dataclass):
     opt_fields: Tuple[Field, ...] = fields(option)
     for opt_field in opt_fields:
         metadata = opt_field.metadata.get('security')
@@ -34,7 +49,7 @@ def _parse_security_option(client: requests.Session, option: dataclass):
             'scheme'), getattr(option, opt_field.name))
 
 
-def _parse_security_scheme(client: requests.Session, scheme_metadata: dict, scheme: dataclass):
+def _parse_security_scheme(client: SecurityClient, scheme_metadata: dict, scheme: dataclass):
     scheme_fields: Tuple[Field, ...] = fields(scheme)
     for scheme_field in scheme_fields:
         metadata = scheme_field.metadata.get('security')
@@ -47,20 +62,24 @@ def _parse_security_scheme(client: requests.Session, scheme_metadata: dict, sche
 
         if scheme_type == "apiKey":
             if scheme_metadata.get('sub_type') == 'header':
-                client.headers[header_name] = value
+                client.client.headers[header_name] = value
+            elif scheme_metadata.get('sub_type') == 'query':
+                client.query_params[header_name] = value
+            elif scheme_metadata.get('sub_type') == 'cookie':
+                client.client.cookies[header_name] = value
             else:
-                raise Exception('not yet implemented')
+                raise Exception('not supported')
         elif scheme_type == "openIdConnect":
-            client.headers[header_name] = value
+            client.client.headers[header_name] = value
         elif scheme_type == 'oauth2':
-            client.headers[header_name] = value
+            client.client.headers[header_name] = value
         elif scheme_type == 'http':
-            if scheme_metadata.get('sub_type') == 'bearer':
-                client.headers[header_name] = value
+            if scheme_metadata.get('sub_type') == 'bearer' or scheme_metadata.get('sub_type') == 'basic':
+                client.client.headers[header_name] = value
             else:
-                raise Exception('not yet implemented')
+                raise Exception('not supported')
         else:
-            raise Exception('not yet implemented')
+            raise Exception('not supported')
 
 
 def generate_url(server_url: str, path: str, path_params: dataclass) -> str:

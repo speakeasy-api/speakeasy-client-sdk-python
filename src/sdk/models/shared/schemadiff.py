@@ -4,7 +4,7 @@ from dataclasses_json import dataclass_json
 
 @dataclass_json
 @dataclass
-class SchemaDiffValueChange:
+class SchemaDiffModificationsValueChange:
     from_: str = field(default=None, metadata={'dataclasses_json': { 'field_name': 'From' }})
     to: str = field(default=None, metadata={'dataclasses_json': { 'field_name': 'To' }})
     
@@ -14,5 +14,5 @@ class SchemaDiffValueChange:
 class SchemaDiff:
     additions: List[str] = field(default=None, metadata={'dataclasses_json': { 'field_name': 'additions' }})
     deletions: List[str] = field(default=None, metadata={'dataclasses_json': { 'field_name': 'deletions' }})
-    modifications: dict[str, SchemaDiffValueChange] = field(default=None, metadata={'dataclasses_json': { 'field_name': 'modifications' }})
+    modifications: dict[str, SchemaDiffModificationsValueChange] = field(default=None, metadata={'dataclasses_json': { 'field_name': 'modifications' }})
     

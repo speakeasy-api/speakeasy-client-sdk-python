@@ -1,9 +1,7 @@
 import cgi
 import warnings
-from typing import List, Optional
-
 import requests
-
+from typing import List,Optional
 from sdk.models import operations, shared
 from . import utils
 
@@ -492,7 +490,7 @@ class SDK:
         
         req_content_type, data, form = utils.serialize_request_body(request)
         headers = {}
-        if req_content_type != "multipart/form-data":
+        if req_content_type != "multipart/form-data" and req_content_type != "multipart/mixed":
             headers = {"content-type": req_content_type}
         if data is None and form is None:
            raise Exception('request body is required')
@@ -528,7 +526,7 @@ class SDK:
         
         req_content_type, data, form = utils.serialize_request_body(request)
         headers = {}
-        if req_content_type != "multipart/form-data":
+        if req_content_type != "multipart/form-data" and req_content_type != "multipart/mixed":
             headers = {"content-type": req_content_type}
         if data is None and form is None:
            raise Exception('request body is required')
@@ -560,7 +558,7 @@ class SDK:
         
         req_content_type, data, form = utils.serialize_request_body(request)
         headers = {}
-        if req_content_type != "multipart/form-data":
+        if req_content_type != "multipart/form-data" and req_content_type != "multipart/mixed":
             headers = {"content-type": req_content_type}
         if data is None and form is None:
            raise Exception('request body is required')
@@ -596,7 +594,7 @@ class SDK:
         
         req_content_type, data, form = utils.serialize_request_body(request)
         headers = {}
-        if req_content_type != "multipart/form-data":
+        if req_content_type != "multipart/form-data" and req_content_type != "multipart/mixed":
             headers = {"content-type": req_content_type}
         if data is None and form is None:
            raise Exception('request body is required')

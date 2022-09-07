@@ -233,7 +233,7 @@ def serialize_content_type(metadata, request: dataclass) -> Tuple[str, any, any]
 
     if media_type == 'application/json':
         return media_type, marshal_json(request).encode(), None
-    elif media_type == 'multipart/form-data':
+    elif media_type == 'multipart/form-data' or media_type == 'multipart/mixed':
         form: List[List[any]] = []
         request_fields: Tuple[Field, ...] = fields(request)
         for f in request_fields:
@@ -262,9 +262,26 @@ def serialize_content_type(metadata, request: dataclass) -> Tuple[str, any, any]
                     raise Exception('invalid multipart/form-data file')
 
                 form.append([field_name, [file_name, content]])
-            else:
+            elif field_metadata.get("json") is True:
                 form.append([field_metadata.get("field_name", f.name), [
-                            None, getattr(request, f.name)]])
+                            None, marshal_json(getattr(request, f.name)), "application/json"]])
+            else:
+                val = getattr(request, f.name)
+                field_name = field_metadata.get("field_name", f.name)
+
+                if isinstance(val, list):
+                    items = []
+
+                    for value in val:
+                        if metadata.get("explode"):
+                            form.append([field_name+"[]", [None, value]])
+                        else:
+                            items.append(value)
+
+                    if items.count() > 0:
+                        form.append([field_name+"[]", [None, ','.join(items)]])
+                else:
+                    form.append([field_name, [None, val]])
         return media_type, None, form
     else:
         if isinstance(request, (bytes, bytearray)):

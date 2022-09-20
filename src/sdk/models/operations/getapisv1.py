@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from typing import List,Optional
 from sdk.models import shared
 
+
 @dataclass
 class GetApisV1Op:
     and_: bool = field(default=None, metadata={'query_param': { 'field_name': 'and' }})

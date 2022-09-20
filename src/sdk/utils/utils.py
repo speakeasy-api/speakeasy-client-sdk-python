@@ -90,12 +90,17 @@ def generate_url(server_url: str, path: str, path_params: dataclass) -> str:
             continue
         if param_metadata.get('style', 'simple') == 'simple':
             param = getattr(path_params, f.name)
-            # only the below types currently supported
-            if isinstance(param, (str, int, float, bool)):
-                path = path.replace(
-                    '{' + param_metadata.get('field_name', f.name) + '}', str(param), 1)
+            path = path.replace('{' + param_metadata.get('field_name', f.name) + '}', str(param), 1)
 
     return server_url.removesuffix("/") + path
+
+
+def replace_parameters(string_with_params: str, params: dict[str, str]) -> str:
+    for key, value in params.items():
+        string_with_params = string_with_params.replace(
+            '{' + key + '}', value)
+
+    return string_with_params
 
 
 def get_query_params(query_params: dataclass) -> dict[str, List[str]]:
@@ -231,7 +236,7 @@ def serialize_request_body(request: dataclass) -> Tuple[str, any, any]:
 def serialize_content_type(metadata, request: dataclass) -> Tuple[str, any, any]:
     media_type = metadata.get('media_type', 'application/octet-stream')
 
-    if media_type == 'application/json':
+    if media_type == 'application/json' or media_type == 'text/json':
         return media_type, marshal_json(request).encode(), None
     elif media_type == 'multipart/form-data' or media_type == 'multipart/mixed':
         form: List[List[any]] = []

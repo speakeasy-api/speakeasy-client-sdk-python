@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from typing import Optional
 from sdk.models import shared
 
+
 @dataclass
 class DeleteAPIV1PathParams:
     api_id: str = field(default=None, metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})

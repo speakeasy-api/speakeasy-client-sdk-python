@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from typing import Optional
 from sdk.models import shared
 
+
 @dataclass
 class UpsertAPIEndpointV1PathParams:
     api_endpoint_id: str = field(default=None, metadata={'path_param': { 'field_name': 'apiEndpointID', 'style': 'simple', 'explode': False }})

@@ -2,6 +2,7 @@ from dataclasses import dataclass, field
 from typing import List,Optional
 from sdk.models import shared
 
+
 @dataclass
 class GetAllAPIEndpointsV1PathParams:
     api_id: str = field(default=None, metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})

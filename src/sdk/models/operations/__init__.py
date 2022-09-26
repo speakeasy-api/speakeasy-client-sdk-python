@@ -14,6 +14,7 @@ from .getschemadiffv1 import *
 from .getschemarevisionv1 import *
 from .getschemasv1 import *
 from .getschemav1 import *
+from .getusagemetricsv1 import *
 from .getversionmetadatav1 import *
 from .insertversionmetadatav1 import *
 from .registerschemav1 import *

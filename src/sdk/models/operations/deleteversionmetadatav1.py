@@ -19,7 +19,6 @@ class DeleteVersionMetadataV1Request:
 @dataclass
 class DeleteVersionMetadataV1Responses:
     error: Optional[shared.Error] = field(default=None)
-    raw_response: bytes = field(default=None)
     
 
 @dataclass

@@ -17,7 +17,6 @@ class GetVersionMetadataV1Request:
 @dataclass
 class GetVersionMetadataV1Responses:
     error: Optional[shared.Error] = field(default=None)
-    raw_response: bytes = field(default=None)
     version_metadata: Optional[List[shared.VersionMetadata]] = field(default=None)
     
 

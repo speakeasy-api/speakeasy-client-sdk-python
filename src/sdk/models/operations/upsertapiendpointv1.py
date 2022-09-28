@@ -20,7 +20,6 @@ class UpsertAPIEndpointV1Request:
 class UpsertAPIEndpointV1Responses:
     api_endpoint: Optional[shared.APIEndpoint] = field(default=None)
     error: Optional[shared.Error] = field(default=None)
-    raw_response: bytes = field(default=None)
     
 
 @dataclass

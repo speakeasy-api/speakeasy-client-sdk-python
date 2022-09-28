@@ -18,7 +18,6 @@ class InsertVersionMetadataV1Request:
 @dataclass
 class InsertVersionMetadataV1Responses:
     error: Optional[shared.Error] = field(default=None)
-    raw_response: bytes = field(default=None)
     version_metadata: Optional[shared.VersionMetadata] = field(default=None)
     
 

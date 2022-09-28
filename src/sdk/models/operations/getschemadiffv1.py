@@ -19,7 +19,6 @@ class GetSchemaDiffV1Request:
 @dataclass
 class GetSchemaDiffV1Responses:
     error: Optional[shared.Error] = field(default=None)
-    raw_response: bytes = field(default=None)
     schema_diff: Optional[shared.SchemaDiff] = field(default=None)
     
 

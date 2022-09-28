@@ -27,9 +27,8 @@ class GetAllAPIVersionsV1Request:
 
 @dataclass
 class GetAllAPIVersionsV1Responses:
-    api: Optional[List[shared.API]] = field(default=None)
+    apis: Optional[List[shared.API]] = field(default=None)
     error: Optional[shared.Error] = field(default=None)
-    raw_response: bytes = field(default=None)
     
 
 @dataclass

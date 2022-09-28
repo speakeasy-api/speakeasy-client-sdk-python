@@ -18,7 +18,6 @@ class DeleteSchemaV1Request:
 @dataclass
 class DeleteSchemaV1Responses:
     error: Optional[shared.Error] = field(default=None)
-    raw_response: bytes = field(default=None)
     
 
 @dataclass

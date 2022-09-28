@@ -16,9 +16,8 @@ class GetAllForVersionAPIEndpointsV1Request:
 
 @dataclass
 class GetAllForVersionAPIEndpointsV1Responses:
-    api_endpoint: Optional[List[shared.APIEndpoint]] = field(default=None)
+    api_endpoints: Optional[List[shared.APIEndpoint]] = field(default=None)
     error: Optional[shared.Error] = field(default=None)
-    raw_response: bytes = field(default=None)
     
 
 @dataclass

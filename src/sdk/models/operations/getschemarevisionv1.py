@@ -18,7 +18,6 @@ class GetSchemaRevisionV1Request:
 @dataclass
 class GetSchemaRevisionV1Responses:
     error: Optional[shared.Error] = field(default=None)
-    raw_response: bytes = field(default=None)
     schema: Optional[shared.Schema] = field(default=None)
     
 

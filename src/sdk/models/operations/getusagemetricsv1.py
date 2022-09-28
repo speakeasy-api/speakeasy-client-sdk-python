@@ -22,8 +22,7 @@ class GetUsageMetricsV1Request:
 @dataclass
 class GetUsageMetricsV1Responses:
     error: Optional[shared.Error] = field(default=None)
-    raw_response: bytes = field(default=None)
-    usage_metric: Optional[List[shared.UsageMetric]] = field(default=None)
+    usage_metrics: Optional[List[shared.UsageMetric]] = field(default=None)
     
 
 @dataclass

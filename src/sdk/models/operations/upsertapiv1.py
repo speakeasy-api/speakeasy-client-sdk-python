@@ -18,7 +18,6 @@ class UpsertAPIV1Request:
 class UpsertAPIV1Responses:
     api: Optional[shared.API] = field(default=None)
     error: Optional[shared.Error] = field(default=None)
-    raw_response: bytes = field(default=None)
     
 
 @dataclass

@@ -40,7 +40,7 @@ class SDK:
         if r.status_code == 200:
             pass
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.DeleteAPIEndpointV1Responses(error=out)
 
@@ -62,7 +62,7 @@ class SDK:
         if r.status_code == 200:
             pass
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.DeleteAPIV1Responses(error=out)
 
@@ -84,7 +84,7 @@ class SDK:
         if r.status_code == 200:
             pass
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.DeleteSchemaV1Responses(error=out)
 
@@ -106,7 +106,7 @@ class SDK:
         if r.status_code == 200:
             pass
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.DeleteVersionMetadataV1Responses(error=out)
 
@@ -128,7 +128,7 @@ class SDK:
         if r.status_code == 302:
             res.headers = r.headers
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.DownloadSchemaRevisionV1Responses(error=out)
 
@@ -150,7 +150,7 @@ class SDK:
         if r.status_code == 302:
             res.headers = r.headers
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.DownloadSchemaV1Responses(error=out)
 
@@ -170,11 +170,11 @@ class SDK:
 
         res = operations.FindAPIEndpointV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.APIEndpoint])
                 res.responses[r.status_code][content_type] = operations.FindAPIEndpointV1Responses(api_endpoint=out)
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.FindAPIEndpointV1Responses(error=out)
 
@@ -194,11 +194,11 @@ class SDK:
 
         res = operations.GetAllAPIEndpointsV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[List[shared.APIEndpoint]])
                 res.responses[r.status_code][content_type] = operations.GetAllAPIEndpointsV1Responses(api_endpoints=out)
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.GetAllAPIEndpointsV1Responses(error=out)
 
@@ -219,11 +219,11 @@ class SDK:
 
         res = operations.GetAllAPIVersionsV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[List[shared.API]])
                 res.responses[r.status_code][content_type] = operations.GetAllAPIVersionsV1Responses(apis=out)
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.GetAllAPIVersionsV1Responses(error=out)
 
@@ -243,11 +243,11 @@ class SDK:
 
         res = operations.GetAllForVersionAPIEndpointsV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[List[shared.APIEndpoint]])
                 res.responses[r.status_code][content_type] = operations.GetAllForVersionAPIEndpointsV1Responses(api_endpoints=out)
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.GetAllForVersionAPIEndpointsV1Responses(error=out)
 
@@ -267,11 +267,11 @@ class SDK:
 
         res = operations.GetAPIEndpointV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.APIEndpoint])
                 res.responses[r.status_code][content_type] = operations.GetAPIEndpointV1Responses(api_endpoint=out)
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.GetAPIEndpointV1Responses(error=out)
 
@@ -292,11 +292,11 @@ class SDK:
 
         res = operations.GetApisV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[List[shared.API]])
                 res.responses[r.status_code][content_type] = operations.GetApisV1Responses(apis=out)
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.GetApisV1Responses(error=out)
 
@@ -316,11 +316,11 @@ class SDK:
 
         res = operations.GetSchemaDiffV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.SchemaDiff])
                 res.responses[r.status_code][content_type] = operations.GetSchemaDiffV1Responses(schema_diff=out)
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.GetSchemaDiffV1Responses(error=out)
 
@@ -340,11 +340,11 @@ class SDK:
 
         res = operations.GetSchemaRevisionV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Schema])
                 res.responses[r.status_code][content_type] = operations.GetSchemaRevisionV1Responses(schema=out)
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.GetSchemaRevisionV1Responses(error=out)
 
@@ -364,11 +364,11 @@ class SDK:
 
         res = operations.GetSchemaV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Schema])
                 res.responses[r.status_code][content_type] = operations.GetSchemaV1Responses(schema=out)
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.GetSchemaV1Responses(error=out)
 
@@ -388,11 +388,11 @@ class SDK:
 
         res = operations.GetSchemasV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[List[shared.Schema]])
                 res.responses[r.status_code][content_type] = operations.GetSchemasV1Responses(schemata=out)
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.GetSchemasV1Responses(error=out)
 
@@ -413,11 +413,11 @@ class SDK:
 
         res = operations.GetUsageMetricsV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[List[shared.UsageMetric]])
                 res.responses[r.status_code][content_type] = operations.GetUsageMetricsV1Responses(usage_metrics=out)
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.GetUsageMetricsV1Responses(error=out)
 
@@ -437,11 +437,11 @@ class SDK:
 
         res = operations.GetVersionMetadataV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[List[shared.VersionMetadata]])
                 res.responses[r.status_code][content_type] = operations.GetVersionMetadataV1Responses(version_metadata=out)
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.GetVersionMetadataV1Responses(error=out)
 
@@ -468,11 +468,11 @@ class SDK:
 
         res = operations.InsertVersionMetadataV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.VersionMetadata])
                 res.responses[r.status_code][content_type] = operations.InsertVersionMetadataV1Responses(version_metadata=out)
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.InsertVersionMetadataV1Responses(error=out)
 
@@ -501,7 +501,7 @@ class SDK:
         if r.status_code == 200:
             pass
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.RegisterSchemaV1Responses(error=out)
 
@@ -528,11 +528,11 @@ class SDK:
 
         res = operations.UpsertAPIEndpointV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.APIEndpoint])
                 res.responses[r.status_code][content_type] = operations.UpsertAPIEndpointV1Responses(api_endpoint=out)
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.UpsertAPIEndpointV1Responses(error=out)
 
@@ -559,11 +559,11 @@ class SDK:
 
         res = operations.UpsertAPIV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.API])
                 res.responses[r.status_code][content_type] = operations.UpsertAPIV1Responses(api=out)
         else:
-            if content_type == "application/json":
+            if content_type == "application/json; charset=UTF-8":
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
                 res.responses[r.status_code][content_type] = operations.UpsertAPIV1Responses(error=out)
 

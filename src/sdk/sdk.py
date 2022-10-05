@@ -25,29 +25,7 @@ class SDK:
         self.client = utils.configure_security_client(security)
 
     
-    def delete_api_endpoint_v1(self, request: operations.DeleteAPIEndpointV1Request) -> operations.DeleteAPIEndpointV1Response:
-        warnings.simplefilter("ignore")
-
-        base_url = self.server_url
-        url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}", request.path_params)
-        
-        client = self.client
-
-        r = client.request("DELETE", url)
-        content_type = r.headers.get("Content-Type")
-
-        res = operations.DeleteAPIEndpointV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
-        if r.status_code == 200:
-            pass
-        else:
-            if content_type == "application/json; charset=UTF-8":
-                out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.DeleteAPIEndpointV1Responses(error=out)
-
-        return res
-
-    
-    def delete_api_v1(self, request: operations.DeleteAPIV1Request) -> operations.DeleteAPIV1Response:
+    def delete_api(self, request: operations.DeleteAPIRequest) -> operations.DeleteAPIResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
@@ -58,18 +36,40 @@ class SDK:
         r = client.request("DELETE", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.DeleteAPIV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.DeleteAPIResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
             pass
         else:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.DeleteAPIV1Responses(error=out)
+                res.responses[r.status_code][content_type] = operations.DeleteAPIResponses(error=out)
 
         return res
 
     
-    def delete_schema_v1(self, request: operations.DeleteSchemaV1Request) -> operations.DeleteSchemaV1Response:
+    def delete_api_endpoint(self, request: operations.DeleteAPIEndpointRequest) -> operations.DeleteAPIEndpointResponse:
+        warnings.simplefilter("ignore")
+
+        base_url = self.server_url
+        url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}", request.path_params)
+        
+        client = self.client
+
+        r = client.request("DELETE", url)
+        content_type = r.headers.get("Content-Type")
+
+        res = operations.DeleteAPIEndpointResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        if r.status_code == 200:
+            pass
+        else:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.Error])
+                res.responses[r.status_code][content_type] = operations.DeleteAPIEndpointResponses(error=out)
+
+        return res
+
+    
+    def delete_schema(self, request: operations.DeleteSchemaRequest) -> operations.DeleteSchemaResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
@@ -80,62 +80,40 @@ class SDK:
         r = client.request("DELETE", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.DeleteSchemaV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.DeleteSchemaResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
             pass
         else:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.DeleteSchemaV1Responses(error=out)
+                res.responses[r.status_code][content_type] = operations.DeleteSchemaResponses(error=out)
 
         return res
 
     
-    def delete_version_metadata_v1(self, request: operations.DeleteVersionMetadataV1Request) -> operations.DeleteVersionMetadataV1Response:
+    def delete_version_metadata(self, request: operations.DeleteVersionMetadataRequest) -> operations.DeleteVersionMetadataResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
-        url = utils.generate_url(base_url, "/v1/apis/{apiID}/versions/{versionID}/metadata/{metaKey}/{metaValue}", request.path_params)
+        url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/metadata/{metaKey}/{metaValue}", request.path_params)
         
         client = self.client
 
         r = client.request("DELETE", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.DeleteVersionMetadataV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.DeleteVersionMetadataResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
             pass
         else:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.DeleteVersionMetadataV1Responses(error=out)
+                res.responses[r.status_code][content_type] = operations.DeleteVersionMetadataResponses(error=out)
 
         return res
 
     
-    def download_schema_revision_v1(self, request: operations.DownloadSchemaRevisionV1Request) -> operations.DownloadSchemaRevisionV1Response:
-        warnings.simplefilter("ignore")
-
-        base_url = self.server_url
-        url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}/download", request.path_params)
-        
-        client = self.client
-
-        r = client.request("GET", url)
-        content_type = r.headers.get("Content-Type")
-
-        res = operations.DownloadSchemaRevisionV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
-        if r.status_code == 302:
-            res.headers = r.headers
-        else:
-            if content_type == "application/json; charset=UTF-8":
-                out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.DownloadSchemaRevisionV1Responses(error=out)
-
-        return res
-
-    
-    def download_schema_v1(self, request: operations.DownloadSchemaV1Request) -> operations.DownloadSchemaV1Response:
+    def download_schema(self, request: operations.DownloadSchemaRequest) -> operations.DownloadSchemaResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
@@ -146,18 +124,48 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.DownloadSchemaV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
-        if r.status_code == 302:
-            res.headers = r.headers
+        res = operations.DownloadSchemaResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        if r.status_code == 200:
+            if utils.match_content_type(content_type, "application/x-yaml"):
+                res.responses[r.status_code][content_type] = operations.DownloadSchemaResponses(schema=r.content)
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[bytes])
+                res.responses[r.status_code][content_type] = operations.DownloadSchemaResponses(schema=out)
         else:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.DownloadSchemaV1Responses(error=out)
+                res.responses[r.status_code][content_type] = operations.DownloadSchemaResponses(error=out)
 
         return res
 
     
-    def find_api_endpoint_v1(self, request: operations.FindAPIEndpointV1Request) -> operations.FindAPIEndpointV1Response:
+    def download_schema_revision(self, request: operations.DownloadSchemaRevisionRequest) -> operations.DownloadSchemaRevisionResponse:
+        warnings.simplefilter("ignore")
+
+        base_url = self.server_url
+        url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}/download", request.path_params)
+        
+        client = self.client
+
+        r = client.request("GET", url)
+        content_type = r.headers.get("Content-Type")
+
+        res = operations.DownloadSchemaRevisionResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        if r.status_code == 200:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[bytes])
+                res.responses[r.status_code][content_type] = operations.DownloadSchemaRevisionResponses(schema=out)
+            if utils.match_content_type(content_type, "application/x-yaml"):
+                res.responses[r.status_code][content_type] = operations.DownloadSchemaRevisionResponses(schema=r.content)
+        else:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.Error])
+                res.responses[r.status_code][content_type] = operations.DownloadSchemaRevisionResponses(error=out)
+
+        return res
+
+    
+    def find_api_endpoint(self, request: operations.FindAPIEndpointRequest) -> operations.FindAPIEndpointResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
@@ -168,20 +176,140 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.FindAPIEndpointV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.FindAPIEndpointResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.APIEndpoint])
-                res.responses[r.status_code][content_type] = operations.FindAPIEndpointV1Responses(api_endpoint=out)
+                res.responses[r.status_code][content_type] = operations.FindAPIEndpointResponses(api_endpoint=out)
         else:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.FindAPIEndpointV1Responses(error=out)
+                res.responses[r.status_code][content_type] = operations.FindAPIEndpointResponses(error=out)
 
         return res
 
     
-    def get_all_api_endpoints_v1(self, request: operations.GetAllAPIEndpointsV1Request) -> operations.GetAllAPIEndpointsV1Response:
+    def generate_open_api_spec(self, request: operations.GenerateOpenAPISpecRequest) -> operations.GenerateOpenAPISpecResponse:
+        warnings.simplefilter("ignore")
+
+        base_url = self.server_url
+        url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/generate/openapi", request.path_params)
+        
+        client = self.client
+
+        r = client.request("GET", url)
+        content_type = r.headers.get("Content-Type")
+
+        res = operations.GenerateOpenAPISpecResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        if r.status_code == 200:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.GenerateOpenAPISpecDiff])
+                res.responses[r.status_code][content_type] = operations.GenerateOpenAPISpecResponses(generate_open_api_spec_diff=out)
+        else:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.Error])
+                res.responses[r.status_code][content_type] = operations.GenerateOpenAPISpecResponses(error=out)
+
+        return res
+
+    
+    def generate_open_api_spec_for_api_endpoint(self, request: operations.GenerateOpenAPISpecForAPIEndpointRequest) -> operations.GenerateOpenAPISpecForAPIEndpointResponse:
+        warnings.simplefilter("ignore")
+
+        base_url = self.server_url
+        url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/openapi", request.path_params)
+        
+        client = self.client
+
+        r = client.request("GET", url)
+        content_type = r.headers.get("Content-Type")
+
+        res = operations.GenerateOpenAPISpecForAPIEndpointResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        if r.status_code == 200:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.GenerateOpenAPISpecDiff])
+                res.responses[r.status_code][content_type] = operations.GenerateOpenAPISpecForAPIEndpointResponses(generate_open_api_spec_diff=out)
+        else:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.Error])
+                res.responses[r.status_code][content_type] = operations.GenerateOpenAPISpecForAPIEndpointResponses(error=out)
+
+        return res
+
+    
+    def generate_postman_collection(self, request: operations.GeneratePostmanCollectionRequest) -> operations.GeneratePostmanCollectionResponse:
+        warnings.simplefilter("ignore")
+
+        base_url = self.server_url
+        url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/generate/postman", request.path_params)
+        
+        client = self.client
+
+        r = client.request("GET", url)
+        content_type = r.headers.get("Content-Type")
+
+        res = operations.GeneratePostmanCollectionResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        if r.status_code == 200:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[bytes])
+                res.responses[r.status_code][content_type] = operations.GeneratePostmanCollectionResponses(postman_collection=out)
+        else:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.Error])
+                res.responses[r.status_code][content_type] = operations.GeneratePostmanCollectionResponses(error=out)
+
+        return res
+
+    
+    def generate_postman_collection_for_api_endpoint(self, request: operations.GeneratePostmanCollectionForAPIEndpointRequest) -> operations.GeneratePostmanCollectionForAPIEndpointResponse:
+        warnings.simplefilter("ignore")
+
+        base_url = self.server_url
+        url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/postman", request.path_params)
+        
+        client = self.client
+
+        r = client.request("GET", url)
+        content_type = r.headers.get("Content-Type")
+
+        res = operations.GeneratePostmanCollectionForAPIEndpointResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        if r.status_code == 200:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[bytes])
+                res.responses[r.status_code][content_type] = operations.GeneratePostmanCollectionForAPIEndpointResponses(postman_collection=out)
+        else:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.Error])
+                res.responses[r.status_code][content_type] = operations.GeneratePostmanCollectionForAPIEndpointResponses(error=out)
+
+        return res
+
+    
+    def generate_request_postman_collection(self, request: operations.GenerateRequestPostmanCollectionRequest) -> operations.GenerateRequestPostmanCollectionResponse:
+        warnings.simplefilter("ignore")
+
+        base_url = self.server_url
+        url = utils.generate_url(base_url, "/v1/eventlog/{requestID}/generate/postman", request.path_params)
+        
+        client = self.client
+
+        r = client.request("GET", url)
+        content_type = r.headers.get("Content-Type")
+
+        res = operations.GenerateRequestPostmanCollectionResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        if r.status_code == 200:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[bytes])
+                res.responses[r.status_code][content_type] = operations.GenerateRequestPostmanCollectionResponses(postman_collection=out)
+        else:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.Error])
+                res.responses[r.status_code][content_type] = operations.GenerateRequestPostmanCollectionResponses(error=out)
+
+        return res
+
+    
+    def get_all_api_endpoints(self, request: operations.GetAllAPIEndpointsRequest) -> operations.GetAllAPIEndpointsResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
@@ -192,20 +320,20 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetAllAPIEndpointsV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetAllAPIEndpointsResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[List[shared.APIEndpoint]])
-                res.responses[r.status_code][content_type] = operations.GetAllAPIEndpointsV1Responses(api_endpoints=out)
+                res.responses[r.status_code][content_type] = operations.GetAllAPIEndpointsResponses(api_endpoints=out)
         else:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetAllAPIEndpointsV1Responses(error=out)
+                res.responses[r.status_code][content_type] = operations.GetAllAPIEndpointsResponses(error=out)
 
         return res
 
     
-    def get_all_api_versions_v1(self, request: operations.GetAllAPIVersionsV1Request) -> operations.GetAllAPIVersionsV1Response:
+    def get_all_api_versions(self, request: operations.GetAllAPIVersionsRequest) -> operations.GetAllAPIVersionsResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
@@ -217,20 +345,20 @@ class SDK:
         r = client.request("GET", url, params=query_params)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetAllAPIVersionsV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetAllAPIVersionsResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[List[shared.API]])
-                res.responses[r.status_code][content_type] = operations.GetAllAPIVersionsV1Responses(apis=out)
+                res.responses[r.status_code][content_type] = operations.GetAllAPIVersionsResponses(apis=out)
         else:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetAllAPIVersionsV1Responses(error=out)
+                res.responses[r.status_code][content_type] = operations.GetAllAPIVersionsResponses(error=out)
 
         return res
 
     
-    def get_all_for_version_api_endpoints_v1(self, request: operations.GetAllForVersionAPIEndpointsV1Request) -> operations.GetAllForVersionAPIEndpointsV1Response:
+    def get_all_for_version_api_endpoints(self, request: operations.GetAllForVersionAPIEndpointsRequest) -> operations.GetAllForVersionAPIEndpointsResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
@@ -241,20 +369,20 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetAllForVersionAPIEndpointsV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetAllForVersionAPIEndpointsResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[List[shared.APIEndpoint]])
-                res.responses[r.status_code][content_type] = operations.GetAllForVersionAPIEndpointsV1Responses(api_endpoints=out)
+                res.responses[r.status_code][content_type] = operations.GetAllForVersionAPIEndpointsResponses(api_endpoints=out)
         else:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetAllForVersionAPIEndpointsV1Responses(error=out)
+                res.responses[r.status_code][content_type] = operations.GetAllForVersionAPIEndpointsResponses(error=out)
 
         return res
 
     
-    def get_api_endpoint_v1(self, request: operations.GetAPIEndpointV1Request) -> operations.GetAPIEndpointV1Response:
+    def get_api_endpoint(self, request: operations.GetAPIEndpointRequest) -> operations.GetAPIEndpointResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
@@ -265,20 +393,20 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetAPIEndpointV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetAPIEndpointResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.APIEndpoint])
-                res.responses[r.status_code][content_type] = operations.GetAPIEndpointV1Responses(api_endpoint=out)
+                res.responses[r.status_code][content_type] = operations.GetAPIEndpointResponses(api_endpoint=out)
         else:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetAPIEndpointV1Responses(error=out)
+                res.responses[r.status_code][content_type] = operations.GetAPIEndpointResponses(error=out)
 
         return res
 
     
-    def get_apis_v1(self, request: operations.GetApisV1Request) -> operations.GetApisV1Response:
+    def get_apis(self, request: operations.GetApisRequest) -> operations.GetApisResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
@@ -290,20 +418,93 @@ class SDK:
         r = client.request("GET", url, params=query_params)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetApisV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetApisResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[List[shared.API]])
-                res.responses[r.status_code][content_type] = operations.GetApisV1Responses(apis=out)
+                res.responses[r.status_code][content_type] = operations.GetApisResponses(apis=out)
         else:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetApisV1Responses(error=out)
+                res.responses[r.status_code][content_type] = operations.GetApisResponses(error=out)
 
         return res
 
     
-    def get_schema_diff_v1(self, request: operations.GetSchemaDiffV1Request) -> operations.GetSchemaDiffV1Response:
+    def get_embed_access_token(self, request: operations.GetEmbedAccessTokenRequest) -> operations.GetEmbedAccessTokenResponse:
+        warnings.simplefilter("ignore")
+
+        base_url = self.server_url
+        url = base_url.removesuffix("/") + "/v1/apis"
+        
+        query_params = utils.get_query_params(request.query_params)
+        client = self.client
+
+        r = client.request("GET", url, params=query_params)
+        content_type = r.headers.get("Content-Type")
+
+        res = operations.GetEmbedAccessTokenResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        if r.status_code == 200:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.EmbedAccessTokenResponse])
+                res.responses[r.status_code][content_type] = operations.GetEmbedAccessTokenResponses(embed_access_token_response=out)
+        else:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.Error])
+                res.responses[r.status_code][content_type] = operations.GetEmbedAccessTokenResponses(error=out)
+
+        return res
+
+    
+    def get_request_from_event_log(self, request: operations.GetRequestFromEventLogRequest) -> operations.GetRequestFromEventLogResponse:
+        warnings.simplefilter("ignore")
+
+        base_url = self.server_url
+        url = utils.generate_url(base_url, "/v1/eventlog/{requestID}", request.path_params)
+        
+        client = self.client
+
+        r = client.request("GET", url)
+        content_type = r.headers.get("Content-Type")
+
+        res = operations.GetRequestFromEventLogResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        if r.status_code == 200:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.UnboundedRequest])
+                res.responses[r.status_code][content_type] = operations.GetRequestFromEventLogResponses(unbounded_request=out)
+        else:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.Error])
+                res.responses[r.status_code][content_type] = operations.GetRequestFromEventLogResponses(error=out)
+
+        return res
+
+    
+    def get_schema(self, request: operations.GetSchemaRequest) -> operations.GetSchemaResponse:
+        warnings.simplefilter("ignore")
+
+        base_url = self.server_url
+        url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/schema", request.path_params)
+        
+        client = self.client
+
+        r = client.request("GET", url)
+        content_type = r.headers.get("Content-Type")
+
+        res = operations.GetSchemaResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        if r.status_code == 200:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.Schema])
+                res.responses[r.status_code][content_type] = operations.GetSchemaResponses(schema=out)
+        else:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.Error])
+                res.responses[r.status_code][content_type] = operations.GetSchemaResponses(error=out)
+
+        return res
+
+    
+    def get_schema_diff(self, request: operations.GetSchemaDiffRequest) -> operations.GetSchemaDiffResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
@@ -314,20 +515,20 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetSchemaDiffV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetSchemaDiffResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.SchemaDiff])
-                res.responses[r.status_code][content_type] = operations.GetSchemaDiffV1Responses(schema_diff=out)
+                res.responses[r.status_code][content_type] = operations.GetSchemaDiffResponses(schema_diff=out)
         else:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetSchemaDiffV1Responses(error=out)
+                res.responses[r.status_code][content_type] = operations.GetSchemaDiffResponses(error=out)
 
         return res
 
     
-    def get_schema_revision_v1(self, request: operations.GetSchemaRevisionV1Request) -> operations.GetSchemaRevisionV1Response:
+    def get_schema_revision(self, request: operations.GetSchemaRevisionRequest) -> operations.GetSchemaRevisionResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
@@ -338,44 +539,20 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetSchemaRevisionV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetSchemaRevisionResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Schema])
-                res.responses[r.status_code][content_type] = operations.GetSchemaRevisionV1Responses(schema=out)
+                res.responses[r.status_code][content_type] = operations.GetSchemaRevisionResponses(schema=out)
         else:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetSchemaRevisionV1Responses(error=out)
+                res.responses[r.status_code][content_type] = operations.GetSchemaRevisionResponses(error=out)
 
         return res
 
     
-    def get_schema_v1(self, request: operations.GetSchemaV1Request) -> operations.GetSchemaV1Response:
-        warnings.simplefilter("ignore")
-
-        base_url = self.server_url
-        url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/schema", request.path_params)
-        
-        client = self.client
-
-        r = client.request("GET", url)
-        content_type = r.headers.get("Content-Type")
-
-        res = operations.GetSchemaV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
-        if r.status_code == 200:
-            if content_type == "application/json; charset=UTF-8":
-                out = utils.unmarshal_json(r.text, Optional[shared.Schema])
-                res.responses[r.status_code][content_type] = operations.GetSchemaV1Responses(schema=out)
-        else:
-            if content_type == "application/json; charset=UTF-8":
-                out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetSchemaV1Responses(error=out)
-
-        return res
-
-    
-    def get_schemas_v1(self, request: operations.GetSchemasV1Request) -> operations.GetSchemasV1Response:
+    def get_schemas(self, request: operations.GetSchemasRequest) -> operations.GetSchemasResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
@@ -386,73 +563,72 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetSchemasV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetSchemasResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[List[shared.Schema]])
-                res.responses[r.status_code][content_type] = operations.GetSchemasV1Responses(schemata=out)
+                res.responses[r.status_code][content_type] = operations.GetSchemasResponses(schemata=out)
         else:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetSchemasV1Responses(error=out)
+                res.responses[r.status_code][content_type] = operations.GetSchemasResponses(error=out)
 
         return res
 
     
-    def get_usage_metrics_v1(self, request: operations.GetUsageMetricsV1Request) -> operations.GetUsageMetricsV1Response:
+    def get_valid_embed_access_tokens(self) -> operations.GetValidEmbedAccessTokensResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
-        url = utils.generate_url(base_url, "/v1/workspace/{workspaceID}/metrics", request.path_params)
-        
-        query_params = utils.get_query_params(request.query_params)
-        client = self.client
-
-        r = client.request("GET", url, params=query_params)
-        content_type = r.headers.get("Content-Type")
-
-        res = operations.GetUsageMetricsV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
-        if r.status_code == 200:
-            if content_type == "application/json; charset=UTF-8":
-                out = utils.unmarshal_json(r.text, Optional[List[shared.UsageMetric]])
-                res.responses[r.status_code][content_type] = operations.GetUsageMetricsV1Responses(usage_metrics=out)
-        else:
-            if content_type == "application/json; charset=UTF-8":
-                out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetUsageMetricsV1Responses(error=out)
-
-        return res
-
-    
-    def get_version_metadata_v1(self, request: operations.GetVersionMetadataV1Request) -> operations.GetVersionMetadataV1Response:
-        warnings.simplefilter("ignore")
-
-        base_url = self.server_url
-        url = utils.generate_url(base_url, "/v1/apis/{apiID}/versions/{versionID}/metadata", request.path_params)
+        url = base_url.removesuffix("/") + "/v1/apis"
         
         client = self.client
 
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetVersionMetadataV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetValidEmbedAccessTokensResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json; charset=UTF-8":
-                out = utils.unmarshal_json(r.text, Optional[List[shared.VersionMetadata]])
-                res.responses[r.status_code][content_type] = operations.GetVersionMetadataV1Responses(version_metadata=out)
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[List[shared.EmbedToken]])
+                res.responses[r.status_code][content_type] = operations.GetValidEmbedAccessTokensResponses(embed_tokens=out)
         else:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetVersionMetadataV1Responses(error=out)
+                res.responses[r.status_code][content_type] = operations.GetValidEmbedAccessTokensResponses(error=out)
 
         return res
 
     
-    def insert_version_metadata_v1(self, request: operations.InsertVersionMetadataV1Request) -> operations.InsertVersionMetadataV1Response:
+    def get_version_metadata(self, request: operations.GetVersionMetadataRequest) -> operations.GetVersionMetadataResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
-        url = utils.generate_url(base_url, "/v1/apis/{apiID}/versions/{versionID}/metadata", request.path_params)
+        url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/metadata", request.path_params)
+        
+        client = self.client
+
+        r = client.request("GET", url)
+        content_type = r.headers.get("Content-Type")
+
+        res = operations.GetVersionMetadataResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        if r.status_code == 200:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[List[shared.VersionMetadata]])
+                res.responses[r.status_code][content_type] = operations.GetVersionMetadataResponses(version_metadata=out)
+        else:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.Error])
+                res.responses[r.status_code][content_type] = operations.GetVersionMetadataResponses(error=out)
+
+        return res
+
+    
+    def insert_version_metadata(self, request: operations.InsertVersionMetadataRequest) -> operations.InsertVersionMetadataResponse:
+        warnings.simplefilter("ignore")
+
+        base_url = self.server_url
+        url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/metadata", request.path_params)
         
         req_content_type, data, form = utils.serialize_request_body(request)
         headers = {}
@@ -466,20 +642,45 @@ class SDK:
         r = client.request("POST", url, data=data, files=form, headers=headers)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.InsertVersionMetadataV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.InsertVersionMetadataResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.VersionMetadata])
-                res.responses[r.status_code][content_type] = operations.InsertVersionMetadataV1Responses(version_metadata=out)
+                res.responses[r.status_code][content_type] = operations.InsertVersionMetadataResponses(version_metadata=out)
         else:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.InsertVersionMetadataV1Responses(error=out)
+                res.responses[r.status_code][content_type] = operations.InsertVersionMetadataResponses(error=out)
 
         return res
 
     
-    def register_schema_v1(self, request: operations.RegisterSchemaV1Request) -> operations.RegisterSchemaV1Response:
+    def query_event_log(self, request: operations.QueryEventLogRequest) -> operations.QueryEventLogResponse:
+        warnings.simplefilter("ignore")
+
+        base_url = self.server_url
+        url = base_url.removesuffix("/") + "/v1/apis"
+        
+        query_params = utils.get_query_params(request.query_params)
+        client = self.client
+
+        r = client.request("GET", url, params=query_params)
+        content_type = r.headers.get("Content-Type")
+
+        res = operations.QueryEventLogResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        if r.status_code == 200:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[List[shared.BoundedRequest]])
+                res.responses[r.status_code][content_type] = operations.QueryEventLogResponses(bounded_requests=out)
+        else:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.Error])
+                res.responses[r.status_code][content_type] = operations.QueryEventLogResponses(error=out)
+
+        return res
+
+    
+    def register_schema(self, request: operations.RegisterSchemaRequest) -> operations.RegisterSchemaResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
@@ -497,49 +698,40 @@ class SDK:
         r = client.request("POST", url, data=data, files=form, headers=headers)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.RegisterSchemaV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.RegisterSchemaResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
             pass
         else:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.RegisterSchemaV1Responses(error=out)
+                res.responses[r.status_code][content_type] = operations.RegisterSchemaResponses(error=out)
 
         return res
 
     
-    def upsert_api_endpoint_v1(self, request: operations.UpsertAPIEndpointV1Request) -> operations.UpsertAPIEndpointV1Response:
+    def revoke_embed_access_token(self, request: operations.RevokeEmbedAccessTokenRequest) -> operations.RevokeEmbedAccessTokenResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
-        url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}", request.path_params)
-        
-        req_content_type, data, form = utils.serialize_request_body(request)
-        headers = {}
-        if req_content_type != "multipart/form-data" and req_content_type != "multipart/mixed":
-            headers = {"content-type": req_content_type}
-        if data is None and form is None:
-           raise Exception('request body is required')
+        url = utils.generate_url(base_url, "/v1/workspace/embed-access-tokens/{tokenID}", request.path_params)
         
         client = self.client
 
-        r = client.request("PUT", url, data=data, files=form, headers=headers)
+        r = client.request("DELETE", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.UpsertAPIEndpointV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.RevokeEmbedAccessTokenResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json; charset=UTF-8":
-                out = utils.unmarshal_json(r.text, Optional[shared.APIEndpoint])
-                res.responses[r.status_code][content_type] = operations.UpsertAPIEndpointV1Responses(api_endpoint=out)
+            pass
         else:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.UpsertAPIEndpointV1Responses(error=out)
+                res.responses[r.status_code][content_type] = operations.RevokeEmbedAccessTokenResponses(error=out)
 
         return res
 
     
-    def upsert_api_v1(self, request: operations.UpsertAPIV1Request) -> operations.UpsertAPIV1Response:
+    def upsert_api(self, request: operations.UpsertAPIRequest) -> operations.UpsertAPIResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
@@ -557,15 +749,46 @@ class SDK:
         r = client.request("PUT", url, data=data, files=form, headers=headers)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.UpsertAPIV1Response(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.UpsertAPIResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
         if r.status_code == 200:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.API])
-                res.responses[r.status_code][content_type] = operations.UpsertAPIV1Responses(api=out)
+                res.responses[r.status_code][content_type] = operations.UpsertAPIResponses(api=out)
         else:
-            if content_type == "application/json; charset=UTF-8":
+            if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.UpsertAPIV1Responses(error=out)
+                res.responses[r.status_code][content_type] = operations.UpsertAPIResponses(error=out)
+
+        return res
+
+    
+    def upsert_api_endpoint(self, request: operations.UpsertAPIEndpointRequest) -> operations.UpsertAPIEndpointResponse:
+        warnings.simplefilter("ignore")
+
+        base_url = self.server_url
+        url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}", request.path_params)
+        
+        req_content_type, data, form = utils.serialize_request_body(request)
+        headers = {}
+        if req_content_type != "multipart/form-data" and req_content_type != "multipart/mixed":
+            headers = {"content-type": req_content_type}
+        if data is None and form is None:
+           raise Exception('request body is required')
+        
+        client = self.client
+
+        r = client.request("PUT", url, data=data, files=form, headers=headers)
+        content_type = r.headers.get("Content-Type")
+
+        res = operations.UpsertAPIEndpointResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        if r.status_code == 200:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.APIEndpoint])
+                res.responses[r.status_code][content_type] = operations.UpsertAPIEndpointResponses(api_endpoint=out)
+        else:
+            if utils.match_content_type(content_type, "application/json"):
+                out = utils.unmarshal_json(r.text, Optional[shared.Error])
+                res.responses[r.status_code][content_type] = operations.UpsertAPIEndpointResponses(error=out)
 
         return res
 

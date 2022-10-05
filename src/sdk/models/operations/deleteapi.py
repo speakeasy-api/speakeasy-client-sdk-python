@@ -4,25 +4,24 @@ from sdk.models import shared
 
 
 @dataclass
-class UpsertAPIV1PathParams:
+class DeleteAPIPathParams:
     api_id: str = field(default=None, metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
+    version_id: str = field(default=None, metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
     
 
 @dataclass
-class UpsertAPIV1Request:
-    path_params: UpsertAPIV1PathParams = field(default=None)
-    request: shared.API = field(default=None, metadata={'request': { 'media_type': 'application/json' }})
+class DeleteAPIRequest:
+    path_params: DeleteAPIPathParams = field(default=None)
     
 
 @dataclass
-class UpsertAPIV1Responses:
-    api: Optional[shared.API] = field(default=None)
+class DeleteAPIResponses:
     error: Optional[shared.Error] = field(default=None)
     
 
 @dataclass
-class UpsertAPIV1Response:
+class DeleteAPIResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, UpsertAPIV1Responses]] = field(default=None)
+    responses: dict[int, dict[str, DeleteAPIResponses]] = field(default=None)
     status_code: int = field(default=None)
     

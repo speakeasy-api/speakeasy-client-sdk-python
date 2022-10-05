@@ -4,24 +4,24 @@ from sdk.models import shared
 
 
 @dataclass
-class GetAllAPIEndpointsV1PathParams:
+class GetAllAPIEndpointsPathParams:
     api_id: str = field(default=None, metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
     
 
 @dataclass
-class GetAllAPIEndpointsV1Request:
-    path_params: GetAllAPIEndpointsV1PathParams = field(default=None)
+class GetAllAPIEndpointsRequest:
+    path_params: GetAllAPIEndpointsPathParams = field(default=None)
     
 
 @dataclass
-class GetAllAPIEndpointsV1Responses:
+class GetAllAPIEndpointsResponses:
     api_endpoints: Optional[List[shared.APIEndpoint]] = field(default=None)
     error: Optional[shared.Error] = field(default=None)
     
 
 @dataclass
-class GetAllAPIEndpointsV1Response:
+class GetAllAPIEndpointsResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, GetAllAPIEndpointsV1Responses]] = field(default=None)
+    responses: dict[int, dict[str, GetAllAPIEndpointsResponses]] = field(default=None)
     status_code: int = field(default=None)
     

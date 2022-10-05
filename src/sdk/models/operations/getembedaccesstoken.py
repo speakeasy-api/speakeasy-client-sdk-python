@@ -1,0 +1,29 @@
+from dataclasses import dataclass, field
+from typing import Optional
+from sdk.models import shared
+
+
+@dataclass
+class GetEmbedAccessTokenQueryParams:
+    description: Optional[str] = field(default=None, metadata={'query_param': { 'field_name': 'description', 'style': 'form', 'explode': True }})
+    duration: Optional[int] = field(default=None, metadata={'query_param': { 'field_name': 'duration', 'style': 'form', 'explode': True }})
+    filters: Optional[shared.Filters] = field(default=None, metadata={'query_param': { 'field_name': 'filters', 'serialization': 'json' }})
+    
+
+@dataclass
+class GetEmbedAccessTokenRequest:
+    query_params: GetEmbedAccessTokenQueryParams = field(default=None)
+    
+
+@dataclass
+class GetEmbedAccessTokenResponses:
+    embed_access_token_response: Optional[shared.EmbedAccessTokenResponse] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
+    
+
+@dataclass
+class GetEmbedAccessTokenResponse:
+    content_type: str = field(default=None)
+    responses: dict[int, dict[str, GetEmbedAccessTokenResponses]] = field(default=None)
+    status_code: int = field(default=None)
+    

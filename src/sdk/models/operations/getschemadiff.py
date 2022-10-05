@@ -4,7 +4,7 @@ from sdk.models import shared
 
 
 @dataclass
-class GetSchemaDiffV1PathParams:
+class GetSchemaDiffPathParams:
     api_id: str = field(default=None, metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
     base_revision_id: str = field(default=None, metadata={'path_param': { 'field_name': 'baseRevisionID', 'style': 'simple', 'explode': False }})
     target_revision_id: str = field(default=None, metadata={'path_param': { 'field_name': 'targetRevisionID', 'style': 'simple', 'explode': False }})
@@ -12,19 +12,19 @@ class GetSchemaDiffV1PathParams:
     
 
 @dataclass
-class GetSchemaDiffV1Request:
-    path_params: GetSchemaDiffV1PathParams = field(default=None)
+class GetSchemaDiffRequest:
+    path_params: GetSchemaDiffPathParams = field(default=None)
     
 
 @dataclass
-class GetSchemaDiffV1Responses:
+class GetSchemaDiffResponses:
     error: Optional[shared.Error] = field(default=None)
     schema_diff: Optional[shared.SchemaDiff] = field(default=None)
     
 
 @dataclass
-class GetSchemaDiffV1Response:
+class GetSchemaDiffResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, GetSchemaDiffV1Responses]] = field(default=None)
+    responses: dict[int, dict[str, GetSchemaDiffResponses]] = field(default=None)
     status_code: int = field(default=None)
     

@@ -1,29 +1,29 @@
 from dataclasses import dataclass, field
-from typing import List,Optional
+from typing import Optional
 from sdk.models import shared
 
 
 @dataclass
-class DownloadSchemaRevisionV1PathParams:
+class DownloadSchemaRevisionPathParams:
     api_id: str = field(default=None, metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
     revision_id: str = field(default=None, metadata={'path_param': { 'field_name': 'revisionID', 'style': 'simple', 'explode': False }})
     version_id: str = field(default=None, metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
     
 
 @dataclass
-class DownloadSchemaRevisionV1Request:
-    path_params: DownloadSchemaRevisionV1PathParams = field(default=None)
+class DownloadSchemaRevisionRequest:
+    path_params: DownloadSchemaRevisionPathParams = field(default=None)
     
 
 @dataclass
-class DownloadSchemaRevisionV1Responses:
+class DownloadSchemaRevisionResponses:
     error: Optional[shared.Error] = field(default=None)
+    schema: Optional[bytes] = field(default=None)
     
 
 @dataclass
-class DownloadSchemaRevisionV1Response:
+class DownloadSchemaRevisionResponse:
     content_type: str = field(default=None)
-    headers: dict[str, List[str]] = field(default=None)
-    responses: dict[int, dict[str, DownloadSchemaRevisionV1Responses]] = field(default=None)
+    responses: dict[int, dict[str, DownloadSchemaRevisionResponses]] = field(default=None)
     status_code: int = field(default=None)
     

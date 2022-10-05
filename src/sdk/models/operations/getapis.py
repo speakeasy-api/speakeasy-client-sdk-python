@@ -4,30 +4,30 @@ from sdk.models import shared
 
 
 @dataclass
-class GetApisV1Op:
+class GetApisOp:
     and_: bool = field(default=None, metadata={'query_param': { 'field_name': 'and' }})
     
 
 @dataclass
-class GetApisV1QueryParams:
+class GetApisQueryParams:
     metadata: Optional[dict[str, List[str]]] = field(default=None, metadata={'query_param': { 'field_name': 'metadata', 'style': 'deepObject', 'explode': True }})
-    op: Optional[GetApisV1Op] = field(default=None, metadata={'query_param': { 'field_name': 'op', 'style': 'deepObject', 'explode': True }})
+    op: Optional[GetApisOp] = field(default=None, metadata={'query_param': { 'field_name': 'op', 'style': 'deepObject', 'explode': True }})
     
 
 @dataclass
-class GetApisV1Request:
-    query_params: GetApisV1QueryParams = field(default=None)
+class GetApisRequest:
+    query_params: GetApisQueryParams = field(default=None)
     
 
 @dataclass
-class GetApisV1Responses:
+class GetApisResponses:
     apis: Optional[List[shared.API]] = field(default=None)
     error: Optional[shared.Error] = field(default=None)
     
 
 @dataclass
-class GetApisV1Response:
+class GetApisResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, GetApisV1Responses]] = field(default=None)
+    responses: dict[int, dict[str, GetApisResponses]] = field(default=None)
     status_code: int = field(default=None)
     

@@ -1,7 +1,9 @@
+import cgi
 import json
 from dataclasses import (Field, dataclass, field, fields, is_dataclass,
                          make_dataclass)
 from typing import List, Tuple
+from xmlrpc.client import boolean
 
 import requests
 from dataclasses_json import DataClassJsonMixin
@@ -90,7 +92,8 @@ def generate_url(server_url: str, path: str, path_params: dataclass) -> str:
             continue
         if param_metadata.get('style', 'simple') == 'simple':
             param = getattr(path_params, f.name)
-            path = path.replace('{' + param_metadata.get('field_name', f.name) + '}', str(param), 1)
+            path = path.replace(
+                '{' + param_metadata.get('field_name', f.name) + '}', str(param), 1)
 
     return server_url.removesuffix("/") + path
 
@@ -115,15 +118,31 @@ def get_query_params(query_params: dataclass) -> dict[str, List[str]]:
         if not metadata:
             continue
 
-        style = metadata.get('style', 'form')
-        if style == 'deepObject':
-            params = params | _get_deep_object_query_params(
-                metadata, f.name, getattr(query_params, f.name))
-        elif style == 'form':
-            params = params | _get_form_query_params(
+        serialization = metadata.get('serialization', '')
+        if serialization != '':
+            params = params | _get_serialized_query_params(
                 metadata, f.name, getattr(query_params, f.name))
         else:
-            raise Exception('not yet implemented')
+            style = metadata.get('style', 'form')
+            if style == 'deepObject':
+                params = params | _get_deep_object_query_params(
+                    metadata, f.name, getattr(query_params, f.name))
+            elif style == 'form':
+                params = params | _get_form_query_params(
+                    metadata, f.name, getattr(query_params, f.name))
+            else:
+                raise Exception('not yet implemented')
+
+    return params
+
+
+def _get_serialized_query_params(metadata: dict, field_name: str, obj: any) -> dict[str, List[str]]:
+    params: dict[str, List[str]] = {}
+
+    serialization = metadata.get('serialization', '')
+
+    if serialization == 'json':
+        params[metadata.get("field_name", field_name)] = marshal_json(obj)
 
     return params
 
@@ -310,3 +329,20 @@ def marshal_json(c):
     m = Marshal(res=c)
     d = m.to_dict()
     return json.dumps(d["res"])
+
+
+def match_content_type(content_type: str, pattern: str) -> boolean:
+    if content_type == pattern or pattern == "*" or pattern == "*/*":
+        return True
+
+    media_type, _ = cgi.parse_header(content_type)
+
+    if media_type == pattern:
+        return True
+
+    parts = media_type.split("/")
+    if len(parts) == 2:
+        if f'{parts[0]}/*' == pattern or f'*/{parts[1]}' == pattern:
+            return True
+
+    return False

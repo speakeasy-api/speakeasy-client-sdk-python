@@ -4,7 +4,7 @@ from sdk.models import shared
 
 
 @dataclass
-class DeleteVersionMetadataV1PathParams:
+class DeleteVersionMetadataPathParams:
     api_id: str = field(default=None, metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
     meta_key: str = field(default=None, metadata={'path_param': { 'field_name': 'metaKey', 'style': 'simple', 'explode': False }})
     meta_value: str = field(default=None, metadata={'path_param': { 'field_name': 'metaValue', 'style': 'simple', 'explode': False }})
@@ -12,18 +12,18 @@ class DeleteVersionMetadataV1PathParams:
     
 
 @dataclass
-class DeleteVersionMetadataV1Request:
-    path_params: DeleteVersionMetadataV1PathParams = field(default=None)
+class DeleteVersionMetadataRequest:
+    path_params: DeleteVersionMetadataPathParams = field(default=None)
     
 
 @dataclass
-class DeleteVersionMetadataV1Responses:
+class DeleteVersionMetadataResponses:
     error: Optional[shared.Error] = field(default=None)
     
 
 @dataclass
-class DeleteVersionMetadataV1Response:
+class DeleteVersionMetadataResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, DeleteVersionMetadataV1Responses]] = field(default=None)
+    responses: dict[int, dict[str, DeleteVersionMetadataResponses]] = field(default=None)
     status_code: int = field(default=None)
     

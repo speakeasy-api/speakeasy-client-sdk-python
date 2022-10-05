@@ -1,28 +1,28 @@
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import List,Optional
 from sdk.models import shared
 
 
 @dataclass
-class GetSchemaV1PathParams:
+class GetSchemasPathParams:
     api_id: str = field(default=None, metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
     version_id: str = field(default=None, metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
     
 
 @dataclass
-class GetSchemaV1Request:
-    path_params: GetSchemaV1PathParams = field(default=None)
+class GetSchemasRequest:
+    path_params: GetSchemasPathParams = field(default=None)
     
 
 @dataclass
-class GetSchemaV1Responses:
+class GetSchemasResponses:
     error: Optional[shared.Error] = field(default=None)
-    schema: Optional[shared.Schema] = field(default=None)
+    schemata: Optional[List[shared.Schema]] = field(default=None)
     
 
 @dataclass
-class GetSchemaV1Response:
+class GetSchemasResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, GetSchemaV1Responses]] = field(default=None)
+    responses: dict[int, dict[str, GetSchemasResponses]] = field(default=None)
     status_code: int = field(default=None)
     

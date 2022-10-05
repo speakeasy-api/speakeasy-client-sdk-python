@@ -4,36 +4,36 @@ from sdk.models import shared
 
 
 @dataclass
-class GetAllAPIVersionsV1PathParams:
+class GetAllAPIVersionsPathParams:
     api_id: str = field(default=None, metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
     
 
 @dataclass
-class GetAllAPIVersionsV1Op:
+class GetAllAPIVersionsOp:
     and_: bool = field(default=None, metadata={'query_param': { 'field_name': 'and' }})
     
 
 @dataclass
-class GetAllAPIVersionsV1QueryParams:
+class GetAllAPIVersionsQueryParams:
     metadata: Optional[dict[str, List[str]]] = field(default=None, metadata={'query_param': { 'field_name': 'metadata', 'style': 'deepObject', 'explode': True }})
-    op: Optional[GetAllAPIVersionsV1Op] = field(default=None, metadata={'query_param': { 'field_name': 'op', 'style': 'deepObject', 'explode': True }})
+    op: Optional[GetAllAPIVersionsOp] = field(default=None, metadata={'query_param': { 'field_name': 'op', 'style': 'deepObject', 'explode': True }})
     
 
 @dataclass
-class GetAllAPIVersionsV1Request:
-    path_params: GetAllAPIVersionsV1PathParams = field(default=None)
-    query_params: GetAllAPIVersionsV1QueryParams = field(default=None)
+class GetAllAPIVersionsRequest:
+    path_params: GetAllAPIVersionsPathParams = field(default=None)
+    query_params: GetAllAPIVersionsQueryParams = field(default=None)
     
 
 @dataclass
-class GetAllAPIVersionsV1Responses:
+class GetAllAPIVersionsResponses:
     apis: Optional[List[shared.API]] = field(default=None)
     error: Optional[shared.Error] = field(default=None)
     
 
 @dataclass
-class GetAllAPIVersionsV1Response:
+class GetAllAPIVersionsResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, GetAllAPIVersionsV1Responses]] = field(default=None)
+    responses: dict[int, dict[str, GetAllAPIVersionsResponses]] = field(default=None)
     status_code: int = field(default=None)
     

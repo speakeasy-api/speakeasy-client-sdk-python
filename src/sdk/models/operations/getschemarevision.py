@@ -1,28 +1,29 @@
 from dataclasses import dataclass, field
-from typing import List,Optional
+from typing import Optional
 from sdk.models import shared
 
 
 @dataclass
-class GetVersionMetadataV1PathParams:
+class GetSchemaRevisionPathParams:
     api_id: str = field(default=None, metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
+    revision_id: str = field(default=None, metadata={'path_param': { 'field_name': 'revisionID', 'style': 'simple', 'explode': False }})
     version_id: str = field(default=None, metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
     
 
 @dataclass
-class GetVersionMetadataV1Request:
-    path_params: GetVersionMetadataV1PathParams = field(default=None)
+class GetSchemaRevisionRequest:
+    path_params: GetSchemaRevisionPathParams = field(default=None)
     
 
 @dataclass
-class GetVersionMetadataV1Responses:
+class GetSchemaRevisionResponses:
     error: Optional[shared.Error] = field(default=None)
-    version_metadata: Optional[List[shared.VersionMetadata]] = field(default=None)
+    schema: Optional[shared.Schema] = field(default=None)
     
 
 @dataclass
-class GetVersionMetadataV1Response:
+class GetSchemaRevisionResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, GetVersionMetadataV1Responses]] = field(default=None)
+    responses: dict[int, dict[str, GetSchemaRevisionResponses]] = field(default=None)
     status_code: int = field(default=None)
     

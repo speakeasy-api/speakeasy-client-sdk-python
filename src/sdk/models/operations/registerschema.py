@@ -4,36 +4,36 @@ from sdk.models import shared
 
 
 @dataclass
-class RegisterSchemaV1PathParams:
+class RegisterSchemaPathParams:
     api_id: str = field(default=None, metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
     version_id: str = field(default=None, metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
     
 
 @dataclass
-class RegisterSchemaV1RequestBodyFile:
+class RegisterSchemaRequestBodyFile:
     content: bytes = field(default=None, metadata={'multipart_form': { 'content': True }})
     file: str = field(default=None, metadata={'multipart_form': { 'field_name': 'file' }})
     
 
 @dataclass
-class RegisterSchemaV1RequestBody:
-    file: RegisterSchemaV1RequestBodyFile = field(default=None, metadata={'multipart_form': { 'file': True }})
+class RegisterSchemaRequestBody:
+    file: RegisterSchemaRequestBodyFile = field(default=None, metadata={'multipart_form': { 'file': True }})
     
 
 @dataclass
-class RegisterSchemaV1Request:
-    path_params: RegisterSchemaV1PathParams = field(default=None)
-    request: RegisterSchemaV1RequestBody = field(default=None, metadata={'request': { 'media_type': 'multipart/form-data' }})
+class RegisterSchemaRequest:
+    path_params: RegisterSchemaPathParams = field(default=None)
+    request: RegisterSchemaRequestBody = field(default=None, metadata={'request': { 'media_type': 'multipart/form-data' }})
     
 
 @dataclass
-class RegisterSchemaV1Responses:
+class RegisterSchemaResponses:
     error: Optional[shared.Error] = field(default=None)
     
 
 @dataclass
-class RegisterSchemaV1Response:
+class RegisterSchemaResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, RegisterSchemaV1Responses]] = field(default=None)
+    responses: dict[int, dict[str, RegisterSchemaResponses]] = field(default=None)
     status_code: int = field(default=None)
     

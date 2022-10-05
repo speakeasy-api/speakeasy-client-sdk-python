@@ -4,26 +4,25 @@ from sdk.models import shared
 
 
 @dataclass
-class FindAPIEndpointV1PathParams:
+class DeleteAPIEndpointPathParams:
+    api_endpoint_id: str = field(default=None, metadata={'path_param': { 'field_name': 'apiEndpointID', 'style': 'simple', 'explode': False }})
     api_id: str = field(default=None, metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
-    display_name: str = field(default=None, metadata={'path_param': { 'field_name': 'displayName', 'style': 'simple', 'explode': False }})
     version_id: str = field(default=None, metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
     
 
 @dataclass
-class FindAPIEndpointV1Request:
-    path_params: FindAPIEndpointV1PathParams = field(default=None)
+class DeleteAPIEndpointRequest:
+    path_params: DeleteAPIEndpointPathParams = field(default=None)
     
 
 @dataclass
-class FindAPIEndpointV1Responses:
-    api_endpoint: Optional[shared.APIEndpoint] = field(default=None)
+class DeleteAPIEndpointResponses:
     error: Optional[shared.Error] = field(default=None)
     
 
 @dataclass
-class FindAPIEndpointV1Response:
+class DeleteAPIEndpointResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, FindAPIEndpointV1Responses]] = field(default=None)
+    responses: dict[int, dict[str, DeleteAPIEndpointResponses]] = field(default=None)
     status_code: int = field(default=None)
     

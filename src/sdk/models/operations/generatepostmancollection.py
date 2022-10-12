@@ -15,14 +15,9 @@ class GeneratePostmanCollectionRequest:
     
 
 @dataclass
-class GeneratePostmanCollectionResponses:
-    error: Optional[shared.Error] = field(default=None)
-    postman_collection: Optional[bytes] = field(default=None)
-    
-
-@dataclass
 class GeneratePostmanCollectionResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, GeneratePostmanCollectionResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
+    postman_collection: Optional[bytes] = field(default=None)
     status_code: int = field(default=None)
     

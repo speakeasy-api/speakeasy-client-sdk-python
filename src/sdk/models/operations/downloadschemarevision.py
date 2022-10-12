@@ -16,14 +16,9 @@ class DownloadSchemaRevisionRequest:
     
 
 @dataclass
-class DownloadSchemaRevisionResponses:
-    error: Optional[shared.Error] = field(default=None)
-    schema: Optional[bytes] = field(default=None)
-    
-
-@dataclass
 class DownloadSchemaRevisionResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, DownloadSchemaRevisionResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
+    schema: Optional[bytes] = field(default=None)
     status_code: int = field(default=None)
     

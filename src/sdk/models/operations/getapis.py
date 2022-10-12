@@ -20,14 +20,9 @@ class GetApisRequest:
     
 
 @dataclass
-class GetApisResponses:
-    apis: Optional[List[shared.API]] = field(default=None)
-    error: Optional[shared.Error] = field(default=None)
-    
-
-@dataclass
 class GetApisResponse:
+    apis: Optional[List[shared.API]] = field(default=None)
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, GetApisResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     status_code: int = field(default=None)
     

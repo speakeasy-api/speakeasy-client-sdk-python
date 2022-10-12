@@ -14,14 +14,9 @@ class GetAllAPIEndpointsRequest:
     
 
 @dataclass
-class GetAllAPIEndpointsResponses:
-    api_endpoints: Optional[List[shared.APIEndpoint]] = field(default=None)
-    error: Optional[shared.Error] = field(default=None)
-    
-
-@dataclass
 class GetAllAPIEndpointsResponse:
+    api_endpoints: Optional[List[shared.APIEndpoint]] = field(default=None)
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, GetAllAPIEndpointsResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     status_code: int = field(default=None)
     

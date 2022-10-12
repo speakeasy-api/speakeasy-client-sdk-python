@@ -16,13 +16,8 @@ class DeleteSchemaRequest:
     
 
 @dataclass
-class DeleteSchemaResponses:
-    error: Optional[shared.Error] = field(default=None)
-    
-
-@dataclass
 class DeleteSchemaResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, DeleteSchemaResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     status_code: int = field(default=None)
     

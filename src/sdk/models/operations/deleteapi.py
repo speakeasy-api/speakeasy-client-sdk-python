@@ -15,13 +15,8 @@ class DeleteAPIRequest:
     
 
 @dataclass
-class DeleteAPIResponses:
-    error: Optional[shared.Error] = field(default=None)
-    
-
-@dataclass
 class DeleteAPIResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, DeleteAPIResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     status_code: int = field(default=None)
     

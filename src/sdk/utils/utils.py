@@ -1,8 +1,8 @@
 import cgi
 import json
-from dataclasses import (Field, dataclass, field, fields, is_dataclass,
-                         make_dataclass)
-from typing import List, Tuple
+import re
+from dataclasses import Field, dataclass, fields, is_dataclass, make_dataclass
+from typing import Callable, List, Tuple
 from xmlrpc.client import boolean
 
 import requests
@@ -168,54 +168,17 @@ def _get_deep_object_query_params(metadata: dict, field_name: str, obj: any) -> 
     return params
 
 
+def _get_query_param_field_name(obj_field: Field) -> str:
+    obj_param_metadata = obj_field.metadata.get('query_param')
+
+    if not obj_param_metadata:
+        return ""
+
+    return obj_param_metadata.get("field_name", obj_field.name)
+
+
 def _get_form_query_params(metadata: dict, field_name: str, obj: any) -> dict[str, List[str]]:
-    params: dict[str, List[str]] = {}
-
-    if is_dataclass(obj):
-        items = []
-
-        obj_fields: Tuple[Field, ...] = fields(obj)
-        for obj_field in obj_fields:
-            obj_param_metadata = obj_field.metadata.get('query_param')
-            if not obj_param_metadata:
-                continue
-
-            if metadata.get("explode"):
-                params[{obj_param_metadata.get("field_name", obj_field.name)}] = [getattr(
-                    obj, obj_field.name)]
-            else:
-                items.append(
-                    f'{obj_param_metadata.get("field_name", obj_field.name)},{getattr(obj, obj_field.name)}')
-
-        if items.count() > 0:
-            params[metadata.get("field_name", field_name)] = [','.join(items)]
-    elif isinstance(obj, dict):
-        items = []
-
-        for key, value in obj.items():
-            if metadata.get("explode"):
-                params[{obj_param_metadata.get(
-                    "field_name", obj_field.name)}] = value
-            else:
-                items.append(f'{key},{value}')
-
-        if items.count() > 0:
-            params[metadata.get("field_name", field_name)] = [','.join(items)]
-    elif isinstance(obj, list):
-        items = []
-
-        for value in obj:
-            if metadata.get("explode"):
-                params[metadata.get("field_name", field_name)] = value
-            else:
-                items.append(value)
-
-        if items.count() > 0:
-            params[metadata.get("field_name", field_name)] = [','.join(items)]
-    else:
-        params[metadata.get("field_name", field_name)] = obj
-
-    return params
+    return _populate_form(field_name, metadata.get("explode", True), obj, _get_query_param_field_name)
 
 
 def serialize_request_body(request: dataclass) -> Tuple[str, any, any]:
@@ -236,7 +199,7 @@ def serialize_request_body(request: dataclass) -> Tuple[str, any, any]:
 
     if not request_metadata is None:
         # single request
-        return serialize_content_type(request_metadata, request_val)
+        return serialize_content_type("request", request_metadata, request_val)
 
     request_fields: Tuple[Field, ...] = fields(request_val)
     for f in request_fields:
@@ -249,70 +212,178 @@ def serialize_request_body(request: dataclass) -> Tuple[str, any, any]:
             raise Exception(
                 f'missing request tag on request body field {f.name}')
 
-        return serialize_content_type(request_metadata, req)
+        return serialize_content_type(f.name, request_metadata, req)
 
 
-def serialize_content_type(metadata, request: dataclass) -> Tuple[str, any, any]:
+def serialize_content_type(request_field_name: str, metadata, request: dataclass) -> Tuple[str, any, List[List[any]]]:
     media_type = metadata.get('media_type', 'application/octet-stream')
 
-    if media_type == 'application/json' or media_type == 'text/json':
+    if re.match(r'(application|text)\/.*?\+*json.*', media_type) != None:
         return media_type, marshal_json(request).encode(), None
-    elif media_type == 'multipart/form-data' or media_type == 'multipart/mixed':
-        form: List[List[any]] = []
-        request_fields: Tuple[Field, ...] = fields(request)
-        for f in request_fields:
-            field_metadata = f.metadata.get('multipart_form')
-            if field_metadata is None:
-                continue
-            if field_metadata.get("file") is True:
-                file = getattr(request, f.name)
-                file_fields = fields(file)
-
-                file_name = ""
-                field_name = ""
-                content = bytes()
-
-                for file_field in file_fields:
-                    file_metadata = file_field.metadata.get('multipart_form')
-                    if file_metadata is None:
-                        continue
-                    if file_metadata.get("content") is True:
-                        content = getattr(file, file_field.name)
-                    else:
-                        field_name = file_metadata.get(
-                            "field_name", file_field.name)
-                        file_name = getattr(file, file_field.name)
-                if field_name == "" or file_name == "" or content == bytes():
-                    raise Exception('invalid multipart/form-data file')
-
-                form.append([field_name, [file_name, content]])
-            elif field_metadata.get("json") is True:
-                form.append([field_metadata.get("field_name", f.name), [
-                            None, marshal_json(getattr(request, f.name)), "application/json"]])
-            else:
-                val = getattr(request, f.name)
-                field_name = field_metadata.get("field_name", f.name)
-
-                if isinstance(val, list):
-                    items = []
-
-                    for value in val:
-                        if metadata.get("explode"):
-                            form.append([field_name+"[]", [None, value]])
-                        else:
-                            items.append(value)
-
-                    if items.count() > 0:
-                        form.append([field_name+"[]", [None, ','.join(items)]])
-                else:
-                    form.append([field_name, [None, val]])
-        return media_type, None, form
+    elif re.match(r'`multipart\/.*', media_type) != None:
+        return serialize_multipart_form(media_type, request)
+    elif re.match(r'application\/x-www-form-urlencoded.*', media_type) != None:
+        return media_type, serialize_form(request_field_name, request), None
     else:
         if isinstance(request, (bytes, bytearray)):
             return media_type, request, None
         else:
             raise Exception(
                 f"invalid request body type {type(request)} for mediaType {metadata['media_type']}")
+
+
+def serialize_multipart_form(media_type: str, request: dataclass) -> Tuple[str, any, List[List[any]]]:
+    form: List[List[any]] = []
+    request_fields: Tuple[Field, ...] = fields(request)
+    for f in request_fields:
+        field_metadata = f.metadata.get('multipart_form')
+        if field_metadata is None:
+            continue
+        if field_metadata.get("file") is True:
+            file = getattr(request, f.name)
+            file_fields = fields(file)
+
+            file_name = ""
+            field_name = ""
+            content = bytes()
+
+            for file_field in file_fields:
+                file_metadata = file_field.metadata.get('multipart_form')
+                if file_metadata is None:
+                    continue
+                if file_metadata.get("content") is True:
+                    content = getattr(file, file_field.name)
+                else:
+                    field_name = file_metadata.get(
+                        "field_name", file_field.name)
+                    file_name = getattr(file, file_field.name)
+            if field_name == "" or file_name == "" or content == bytes():
+                raise Exception('invalid multipart/form-data file')
+
+            form.append([field_name, [file_name, content]])
+        elif field_metadata.get("json") is True:
+            form.append([field_metadata.get("field_name", f.name), [
+                        None, marshal_json(getattr(request, f.name)), "application/json"]])
+        else:
+            val = getattr(request, f.name)
+            field_name = field_metadata.get("field_name", f.name)
+
+            if isinstance(val, list):
+                for value in val:
+                    form.append([field_name+"[]", [None, value]])
+            else:
+                form.append([field_name, [None, val]])
+    return media_type, None, form
+
+
+def _get_form_field_name(obj_field: Field) -> str:
+    obj_param_metadata = obj_field.metadata.get('form')
+
+    if not obj_param_metadata:
+        return ""
+
+    return obj_param_metadata.get("field_name", obj_field.name)
+
+
+def serialize_form(request_field_name: str, request: any) -> dict[str, any]:
+    form: dict[str, List[str]] = {}
+
+    if is_dataclass(request):
+        request_fields: Tuple[Field, ...] = fields(request)
+        for f in request_fields:
+            field_metadata = f.metadata.get('form')
+
+            if field_metadata is None:
+                continue
+
+            if field_metadata.get("json") is True:
+                form[field_metadata.get("field_name", f.name)] = [
+                    marshal_json(getattr(request, f.name))]
+            else:
+                if field_metadata.get("style", "form") == "form":
+                    values = _populate_form(field_metadata.get("field_name", f.name), field_metadata.get(
+                        "explode", True), getattr(request, f.name), _get_form_field_name)
+
+                    for key, value in values.items():
+                        for v in value:
+                            if not key in form:
+                                form[key] = []
+
+                            form[key].append(v)
+    elif isinstance(request, dict):
+        for key, value in request.items():
+            if isinstance(value, list):
+                for v in value:
+                    if not key in form:
+                        form[key] = []
+                    form[key].append(v)
+            else:
+                if not key in form:
+                    form[key] = []
+                form[key].append(value)
+    elif isinstance(request, list):
+        for value in request:
+            if isinstance(value, list):
+                for v in value:
+                    if not key in form:
+                        form[request_field_name] = []
+                    form[request_field_name].append(v)
+            else:
+                if not key in form:
+                    form[request_field_name] = []
+                form[request_field_name].append(value)
+
+    return form
+
+
+def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_func: Callable) -> dict[str, List[str]]:
+    params: dict[str, List[str]] = {}
+
+    if is_dataclass(obj):
+        items = []
+
+        obj_fields: Tuple[Field, ...] = fields(obj)
+        for obj_field in obj_fields:
+            obj_field_name = get_field_name_func(obj_field)
+            if obj_field_name == "":
+                continue
+
+            if explode:
+                params[obj_field_name] = [getattr(obj, obj_field.name)]
+            else:
+                items.append(
+                    f'{obj_field_name},{getattr(obj, obj_field.name)}')
+
+        if len(items) > 0:
+            params[field_name] = [','.join(items)]
+    elif isinstance(obj, dict):
+        items = []
+
+        for key, value in obj.items():
+            if explode:
+                params[key] = value
+            else:
+                items.append(f'{key},{value}')
+
+        if len(items) > 0:
+            params[field_name] = [','.join(items)]
+    elif isinstance(obj, list):
+        items = []
+
+        for value in obj:
+            if explode:
+                if not field_name in params:
+                    params[field_name] = []
+                params[field_name].append(value)
+            else:
+                items.append(value)
+
+        if len(items) > 0:
+            params[field_name] = [','.join(items)]
+    else:
+        params[field_name] = obj
+
+    return params
 
 
 def unmarshal_json(data, t):

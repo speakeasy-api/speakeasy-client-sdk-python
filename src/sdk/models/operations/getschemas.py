@@ -15,14 +15,9 @@ class GetSchemasRequest:
     
 
 @dataclass
-class GetSchemasResponses:
-    error: Optional[shared.Error] = field(default=None)
-    schemata: Optional[List[shared.Schema]] = field(default=None)
-    
-
-@dataclass
 class GetSchemasResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, GetSchemasResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
+    schemata: Optional[List[shared.Schema]] = field(default=None)
     status_code: int = field(default=None)
     

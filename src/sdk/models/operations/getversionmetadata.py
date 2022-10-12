@@ -15,14 +15,9 @@ class GetVersionMetadataRequest:
     
 
 @dataclass
-class GetVersionMetadataResponses:
-    error: Optional[shared.Error] = field(default=None)
-    version_metadata: Optional[List[shared.VersionMetadata]] = field(default=None)
-    
-
-@dataclass
 class GetVersionMetadataResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, GetVersionMetadataResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     status_code: int = field(default=None)
+    version_metadata: Optional[List[shared.VersionMetadata]] = field(default=None)
     

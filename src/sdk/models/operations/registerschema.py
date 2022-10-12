@@ -27,13 +27,8 @@ class RegisterSchemaRequest:
     
 
 @dataclass
-class RegisterSchemaResponses:
-    error: Optional[shared.Error] = field(default=None)
-    
-
-@dataclass
 class RegisterSchemaResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, RegisterSchemaResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     status_code: int = field(default=None)
     

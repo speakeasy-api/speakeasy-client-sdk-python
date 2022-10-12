@@ -26,14 +26,9 @@ class GetAllAPIVersionsRequest:
     
 
 @dataclass
-class GetAllAPIVersionsResponses:
-    apis: Optional[List[shared.API]] = field(default=None)
-    error: Optional[shared.Error] = field(default=None)
-    
-
-@dataclass
 class GetAllAPIVersionsResponse:
+    apis: Optional[List[shared.API]] = field(default=None)
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, GetAllAPIVersionsResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     status_code: int = field(default=None)
     

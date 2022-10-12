@@ -16,14 +16,9 @@ class GenerateOpenAPISpecForAPIEndpointRequest:
     
 
 @dataclass
-class GenerateOpenAPISpecForAPIEndpointResponses:
-    error: Optional[shared.Error] = field(default=None)
-    generate_open_api_spec_diff: Optional[shared.GenerateOpenAPISpecDiff] = field(default=None)
-    
-
-@dataclass
 class GenerateOpenAPISpecForAPIEndpointResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, GenerateOpenAPISpecForAPIEndpointResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
+    generate_open_api_spec_diff: Optional[shared.GenerateOpenAPISpecDiff] = field(default=None)
     status_code: int = field(default=None)
     

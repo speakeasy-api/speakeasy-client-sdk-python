@@ -17,13 +17,8 @@ class DeleteVersionMetadataRequest:
     
 
 @dataclass
-class DeleteVersionMetadataResponses:
-    error: Optional[shared.Error] = field(default=None)
-    
-
-@dataclass
 class DeleteVersionMetadataResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, DeleteVersionMetadataResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     status_code: int = field(default=None)
     

@@ -16,14 +16,9 @@ class GeneratePostmanCollectionForAPIEndpointRequest:
     
 
 @dataclass
-class GeneratePostmanCollectionForAPIEndpointResponses:
-    error: Optional[shared.Error] = field(default=None)
-    postman_collection: Optional[bytes] = field(default=None)
-    
-
-@dataclass
 class GeneratePostmanCollectionForAPIEndpointResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, GeneratePostmanCollectionForAPIEndpointResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
+    postman_collection: Optional[bytes] = field(default=None)
     status_code: int = field(default=None)
     

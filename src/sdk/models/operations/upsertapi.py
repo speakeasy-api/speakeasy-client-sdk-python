@@ -15,14 +15,9 @@ class UpsertAPIRequest:
     
 
 @dataclass
-class UpsertAPIResponses:
-    api: Optional[shared.API] = field(default=None)
-    error: Optional[shared.Error] = field(default=None)
-    
-
-@dataclass
 class UpsertAPIResponse:
+    api: Optional[shared.API] = field(default=None)
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, UpsertAPIResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     status_code: int = field(default=None)
     

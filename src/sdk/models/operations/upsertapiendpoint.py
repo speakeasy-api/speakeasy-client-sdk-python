@@ -17,14 +17,9 @@ class UpsertAPIEndpointRequest:
     
 
 @dataclass
-class UpsertAPIEndpointResponses:
-    api_endpoint: Optional[shared.APIEndpoint] = field(default=None)
-    error: Optional[shared.Error] = field(default=None)
-    
-
-@dataclass
 class UpsertAPIEndpointResponse:
+    api_endpoint: Optional[shared.APIEndpoint] = field(default=None)
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, UpsertAPIEndpointResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     status_code: int = field(default=None)
     

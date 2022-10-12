@@ -16,14 +16,9 @@ class FindAPIEndpointRequest:
     
 
 @dataclass
-class FindAPIEndpointResponses:
-    api_endpoint: Optional[shared.APIEndpoint] = field(default=None)
-    error: Optional[shared.Error] = field(default=None)
-    
-
-@dataclass
 class FindAPIEndpointResponse:
+    api_endpoint: Optional[shared.APIEndpoint] = field(default=None)
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, FindAPIEndpointResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     status_code: int = field(default=None)
     

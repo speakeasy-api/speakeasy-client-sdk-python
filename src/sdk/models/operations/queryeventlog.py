@@ -14,14 +14,9 @@ class QueryEventLogRequest:
     
 
 @dataclass
-class QueryEventLogResponses:
-    bounded_requests: Optional[List[shared.BoundedRequest]] = field(default=None)
-    error: Optional[shared.Error] = field(default=None)
-    
-
-@dataclass
 class QueryEventLogResponse:
+    bounded_requests: Optional[List[shared.BoundedRequest]] = field(default=None)
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, QueryEventLogResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     status_code: int = field(default=None)
     

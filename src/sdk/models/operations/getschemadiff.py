@@ -17,14 +17,9 @@ class GetSchemaDiffRequest:
     
 
 @dataclass
-class GetSchemaDiffResponses:
-    error: Optional[shared.Error] = field(default=None)
-    schema_diff: Optional[shared.SchemaDiff] = field(default=None)
-    
-
-@dataclass
 class GetSchemaDiffResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, GetSchemaDiffResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
+    schema_diff: Optional[shared.SchemaDiff] = field(default=None)
     status_code: int = field(default=None)
     

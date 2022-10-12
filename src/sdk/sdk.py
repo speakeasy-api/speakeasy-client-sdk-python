@@ -9,6 +9,7 @@ SERVERS = [
 	"http://api.prod.speakeasyapi.dev",
 ]
 
+
 class SDK:
     client = requests.Session()
     server_url = SERVERS[0]
@@ -18,12 +19,9 @@ class SDK:
             self.server_url = utils.replace_parameters(server_url, params)
         else:
             self.server_url = server_url
-
-
     
     def config_security(self, security: shared.Security):
         self.client = utils.configure_security_client(security)
-
     
     def delete_api(self, request: operations.DeleteAPIRequest) -> operations.DeleteAPIResponse:
         warnings.simplefilter("ignore")
@@ -36,16 +34,17 @@ class SDK:
         r = client.request("DELETE", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.DeleteAPIResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.DeleteAPIResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             pass
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.DeleteAPIResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def delete_api_endpoint(self, request: operations.DeleteAPIEndpointRequest) -> operations.DeleteAPIEndpointResponse:
         warnings.simplefilter("ignore")
@@ -58,16 +57,17 @@ class SDK:
         r = client.request("DELETE", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.DeleteAPIEndpointResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.DeleteAPIEndpointResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             pass
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.DeleteAPIEndpointResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def delete_schema(self, request: operations.DeleteSchemaRequest) -> operations.DeleteSchemaResponse:
         warnings.simplefilter("ignore")
@@ -80,16 +80,17 @@ class SDK:
         r = client.request("DELETE", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.DeleteSchemaResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.DeleteSchemaResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             pass
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.DeleteSchemaResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def delete_version_metadata(self, request: operations.DeleteVersionMetadataRequest) -> operations.DeleteVersionMetadataResponse:
         warnings.simplefilter("ignore")
@@ -102,16 +103,17 @@ class SDK:
         r = client.request("DELETE", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.DeleteVersionMetadataResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.DeleteVersionMetadataResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             pass
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.DeleteVersionMetadataResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def download_schema(self, request: operations.DownloadSchemaRequest) -> operations.DownloadSchemaResponse:
         warnings.simplefilter("ignore")
@@ -124,20 +126,21 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.DownloadSchemaResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.DownloadSchemaResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
-            if utils.match_content_type(content_type, "application/x-yaml"):
-                res.responses[r.status_code][content_type] = operations.DownloadSchemaResponses(schema=r.content)
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[bytes])
-                res.responses[r.status_code][content_type] = operations.DownloadSchemaResponses(schema=out)
+                res.schema = out
+            if utils.match_content_type(content_type, "application/x-yaml"):
+                res.schema = r.content
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.DownloadSchemaResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def download_schema_revision(self, request: operations.DownloadSchemaRevisionRequest) -> operations.DownloadSchemaRevisionResponse:
         warnings.simplefilter("ignore")
@@ -150,20 +153,21 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.DownloadSchemaRevisionResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.DownloadSchemaRevisionResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[bytes])
-                res.responses[r.status_code][content_type] = operations.DownloadSchemaRevisionResponses(schema=out)
+                res.schema = out
             if utils.match_content_type(content_type, "application/x-yaml"):
-                res.responses[r.status_code][content_type] = operations.DownloadSchemaRevisionResponses(schema=r.content)
+                res.schema = r.content
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.DownloadSchemaRevisionResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def find_api_endpoint(self, request: operations.FindAPIEndpointRequest) -> operations.FindAPIEndpointResponse:
         warnings.simplefilter("ignore")
@@ -176,18 +180,19 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.FindAPIEndpointResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.FindAPIEndpointResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.APIEndpoint])
-                res.responses[r.status_code][content_type] = operations.FindAPIEndpointResponses(api_endpoint=out)
+                res.api_endpoint = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.FindAPIEndpointResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def generate_open_api_spec(self, request: operations.GenerateOpenAPISpecRequest) -> operations.GenerateOpenAPISpecResponse:
         warnings.simplefilter("ignore")
@@ -200,18 +205,19 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GenerateOpenAPISpecResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GenerateOpenAPISpecResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.GenerateOpenAPISpecDiff])
-                res.responses[r.status_code][content_type] = operations.GenerateOpenAPISpecResponses(generate_open_api_spec_diff=out)
+                res.generate_open_api_spec_diff = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GenerateOpenAPISpecResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def generate_open_api_spec_for_api_endpoint(self, request: operations.GenerateOpenAPISpecForAPIEndpointRequest) -> operations.GenerateOpenAPISpecForAPIEndpointResponse:
         warnings.simplefilter("ignore")
@@ -224,18 +230,19 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GenerateOpenAPISpecForAPIEndpointResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GenerateOpenAPISpecForAPIEndpointResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.GenerateOpenAPISpecDiff])
-                res.responses[r.status_code][content_type] = operations.GenerateOpenAPISpecForAPIEndpointResponses(generate_open_api_spec_diff=out)
+                res.generate_open_api_spec_diff = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GenerateOpenAPISpecForAPIEndpointResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def generate_postman_collection(self, request: operations.GeneratePostmanCollectionRequest) -> operations.GeneratePostmanCollectionResponse:
         warnings.simplefilter("ignore")
@@ -248,18 +255,19 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GeneratePostmanCollectionResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GeneratePostmanCollectionResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[bytes])
-                res.responses[r.status_code][content_type] = operations.GeneratePostmanCollectionResponses(postman_collection=out)
+                res.postman_collection = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GeneratePostmanCollectionResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def generate_postman_collection_for_api_endpoint(self, request: operations.GeneratePostmanCollectionForAPIEndpointRequest) -> operations.GeneratePostmanCollectionForAPIEndpointResponse:
         warnings.simplefilter("ignore")
@@ -272,18 +280,19 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GeneratePostmanCollectionForAPIEndpointResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GeneratePostmanCollectionForAPIEndpointResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[bytes])
-                res.responses[r.status_code][content_type] = operations.GeneratePostmanCollectionForAPIEndpointResponses(postman_collection=out)
+                res.postman_collection = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GeneratePostmanCollectionForAPIEndpointResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def generate_request_postman_collection(self, request: operations.GenerateRequestPostmanCollectionRequest) -> operations.GenerateRequestPostmanCollectionResponse:
         warnings.simplefilter("ignore")
@@ -296,18 +305,19 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GenerateRequestPostmanCollectionResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GenerateRequestPostmanCollectionResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[bytes])
-                res.responses[r.status_code][content_type] = operations.GenerateRequestPostmanCollectionResponses(postman_collection=out)
+                res.postman_collection = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GenerateRequestPostmanCollectionResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def get_all_api_endpoints(self, request: operations.GetAllAPIEndpointsRequest) -> operations.GetAllAPIEndpointsResponse:
         warnings.simplefilter("ignore")
@@ -320,18 +330,19 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetAllAPIEndpointsResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetAllAPIEndpointsResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[List[shared.APIEndpoint]])
-                res.responses[r.status_code][content_type] = operations.GetAllAPIEndpointsResponses(api_endpoints=out)
+                res.api_endpoints = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetAllAPIEndpointsResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def get_all_api_versions(self, request: operations.GetAllAPIVersionsRequest) -> operations.GetAllAPIVersionsResponse:
         warnings.simplefilter("ignore")
@@ -345,18 +356,19 @@ class SDK:
         r = client.request("GET", url, params=query_params)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetAllAPIVersionsResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetAllAPIVersionsResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[List[shared.API]])
-                res.responses[r.status_code][content_type] = operations.GetAllAPIVersionsResponses(apis=out)
+                res.apis = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetAllAPIVersionsResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def get_all_for_version_api_endpoints(self, request: operations.GetAllForVersionAPIEndpointsRequest) -> operations.GetAllForVersionAPIEndpointsResponse:
         warnings.simplefilter("ignore")
@@ -369,18 +381,19 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetAllForVersionAPIEndpointsResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetAllForVersionAPIEndpointsResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[List[shared.APIEndpoint]])
-                res.responses[r.status_code][content_type] = operations.GetAllForVersionAPIEndpointsResponses(api_endpoints=out)
+                res.api_endpoints = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetAllForVersionAPIEndpointsResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def get_api_endpoint(self, request: operations.GetAPIEndpointRequest) -> operations.GetAPIEndpointResponse:
         warnings.simplefilter("ignore")
@@ -393,18 +406,19 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetAPIEndpointResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetAPIEndpointResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.APIEndpoint])
-                res.responses[r.status_code][content_type] = operations.GetAPIEndpointResponses(api_endpoint=out)
+                res.api_endpoint = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetAPIEndpointResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def get_apis(self, request: operations.GetApisRequest) -> operations.GetApisResponse:
         warnings.simplefilter("ignore")
@@ -418,24 +432,25 @@ class SDK:
         r = client.request("GET", url, params=query_params)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetApisResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetApisResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[List[shared.API]])
-                res.responses[r.status_code][content_type] = operations.GetApisResponses(apis=out)
+                res.apis = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetApisResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def get_embed_access_token(self, request: operations.GetEmbedAccessTokenRequest) -> operations.GetEmbedAccessTokenResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
-        url = base_url.removesuffix("/") + "/v1/apis"
+        url = base_url.removesuffix("/") + "/v1/workspace/embed-access-token"
         
         query_params = utils.get_query_params(request.query_params)
         client = self.client
@@ -443,18 +458,19 @@ class SDK:
         r = client.request("GET", url, params=query_params)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetEmbedAccessTokenResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetEmbedAccessTokenResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.EmbedAccessTokenResponse])
-                res.responses[r.status_code][content_type] = operations.GetEmbedAccessTokenResponses(embed_access_token_response=out)
+                res.embed_access_token_response = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetEmbedAccessTokenResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def get_request_from_event_log(self, request: operations.GetRequestFromEventLogRequest) -> operations.GetRequestFromEventLogResponse:
         warnings.simplefilter("ignore")
@@ -467,18 +483,19 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetRequestFromEventLogResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetRequestFromEventLogResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.UnboundedRequest])
-                res.responses[r.status_code][content_type] = operations.GetRequestFromEventLogResponses(unbounded_request=out)
+                res.unbounded_request = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetRequestFromEventLogResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def get_schema(self, request: operations.GetSchemaRequest) -> operations.GetSchemaResponse:
         warnings.simplefilter("ignore")
@@ -491,18 +508,19 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetSchemaResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetSchemaResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Schema])
-                res.responses[r.status_code][content_type] = operations.GetSchemaResponses(schema=out)
+                res.schema = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetSchemaResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def get_schema_diff(self, request: operations.GetSchemaDiffRequest) -> operations.GetSchemaDiffResponse:
         warnings.simplefilter("ignore")
@@ -515,18 +533,19 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetSchemaDiffResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetSchemaDiffResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.SchemaDiff])
-                res.responses[r.status_code][content_type] = operations.GetSchemaDiffResponses(schema_diff=out)
+                res.schema_diff = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetSchemaDiffResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def get_schema_revision(self, request: operations.GetSchemaRevisionRequest) -> operations.GetSchemaRevisionResponse:
         warnings.simplefilter("ignore")
@@ -539,18 +558,19 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetSchemaRevisionResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetSchemaRevisionResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Schema])
-                res.responses[r.status_code][content_type] = operations.GetSchemaRevisionResponses(schema=out)
+                res.schema = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetSchemaRevisionResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def get_schemas(self, request: operations.GetSchemasRequest) -> operations.GetSchemasResponse:
         warnings.simplefilter("ignore")
@@ -563,42 +583,44 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetSchemasResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetSchemasResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[List[shared.Schema]])
-                res.responses[r.status_code][content_type] = operations.GetSchemasResponses(schemata=out)
+                res.schemata = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetSchemasResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def get_valid_embed_access_tokens(self) -> operations.GetValidEmbedAccessTokensResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
-        url = base_url.removesuffix("/") + "/v1/apis"
+        url = base_url.removesuffix("/") + "/v1/workspace/embed-access-tokens/valid"
         
         client = self.client
 
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetValidEmbedAccessTokensResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetValidEmbedAccessTokensResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[List[shared.EmbedToken]])
-                res.responses[r.status_code][content_type] = operations.GetValidEmbedAccessTokensResponses(embed_tokens=out)
+                res.embed_tokens = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetValidEmbedAccessTokensResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def get_version_metadata(self, request: operations.GetVersionMetadataRequest) -> operations.GetVersionMetadataResponse:
         warnings.simplefilter("ignore")
@@ -611,18 +633,19 @@ class SDK:
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.GetVersionMetadataResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.GetVersionMetadataResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[List[shared.VersionMetadata]])
-                res.responses[r.status_code][content_type] = operations.GetVersionMetadataResponses(version_metadata=out)
+                res.version_metadata = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.GetVersionMetadataResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def insert_version_metadata(self, request: operations.InsertVersionMetadataRequest) -> operations.InsertVersionMetadataResponse:
         warnings.simplefilter("ignore")
@@ -642,24 +665,25 @@ class SDK:
         r = client.request("POST", url, data=data, files=form, headers=headers)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.InsertVersionMetadataResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.InsertVersionMetadataResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.VersionMetadata])
-                res.responses[r.status_code][content_type] = operations.InsertVersionMetadataResponses(version_metadata=out)
+                res.version_metadata = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.InsertVersionMetadataResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def query_event_log(self, request: operations.QueryEventLogRequest) -> operations.QueryEventLogResponse:
         warnings.simplefilter("ignore")
 
         base_url = self.server_url
-        url = base_url.removesuffix("/") + "/v1/apis"
+        url = base_url.removesuffix("/") + "/v1/eventlog/query"
         
         query_params = utils.get_query_params(request.query_params)
         client = self.client
@@ -667,18 +691,19 @@ class SDK:
         r = client.request("GET", url, params=query_params)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.QueryEventLogResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.QueryEventLogResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[List[shared.BoundedRequest]])
-                res.responses[r.status_code][content_type] = operations.QueryEventLogResponses(bounded_requests=out)
+                res.bounded_requests = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.QueryEventLogResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def register_schema(self, request: operations.RegisterSchemaRequest) -> operations.RegisterSchemaResponse:
         warnings.simplefilter("ignore")
@@ -698,16 +723,17 @@ class SDK:
         r = client.request("POST", url, data=data, files=form, headers=headers)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.RegisterSchemaResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.RegisterSchemaResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             pass
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.RegisterSchemaResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def revoke_embed_access_token(self, request: operations.RevokeEmbedAccessTokenRequest) -> operations.RevokeEmbedAccessTokenResponse:
         warnings.simplefilter("ignore")
@@ -720,16 +746,17 @@ class SDK:
         r = client.request("DELETE", url)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.RevokeEmbedAccessTokenResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.RevokeEmbedAccessTokenResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             pass
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.RevokeEmbedAccessTokenResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def upsert_api(self, request: operations.UpsertAPIRequest) -> operations.UpsertAPIResponse:
         warnings.simplefilter("ignore")
@@ -749,18 +776,19 @@ class SDK:
         r = client.request("PUT", url, data=data, files=form, headers=headers)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.UpsertAPIResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.UpsertAPIResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.API])
-                res.responses[r.status_code][content_type] = operations.UpsertAPIResponses(api=out)
+                res.api = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.UpsertAPIResponses(error=out)
+                res.error = out
 
         return res
 
+    
     
     def upsert_api_endpoint(self, request: operations.UpsertAPIEndpointRequest) -> operations.UpsertAPIEndpointResponse:
         warnings.simplefilter("ignore")
@@ -780,15 +808,15 @@ class SDK:
         r = client.request("PUT", url, data=data, files=form, headers=headers)
         content_type = r.headers.get("Content-Type")
 
-        res = operations.UpsertAPIEndpointResponse(status_code=r.status_code, content_type=content_type, responses={r.status_code: {content_type: {}}})
+        res = operations.UpsertAPIEndpointResponse(status_code=r.status_code, content_type=content_type)
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.APIEndpoint])
-                res.responses[r.status_code][content_type] = operations.UpsertAPIEndpointResponses(api_endpoint=out)
+                res.api_endpoint = out
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])
-                res.responses[r.status_code][content_type] = operations.UpsertAPIEndpointResponses(error=out)
+                res.error = out
 
         return res
 

@@ -16,14 +16,9 @@ class InsertVersionMetadataRequest:
     
 
 @dataclass
-class InsertVersionMetadataResponses:
-    error: Optional[shared.Error] = field(default=None)
-    version_metadata: Optional[shared.VersionMetadata] = field(default=None)
-    
-
-@dataclass
 class InsertVersionMetadataResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, InsertVersionMetadataResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     status_code: int = field(default=None)
+    version_metadata: Optional[shared.VersionMetadata] = field(default=None)
     

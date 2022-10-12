@@ -16,14 +16,9 @@ class GetSchemaRevisionRequest:
     
 
 @dataclass
-class GetSchemaRevisionResponses:
-    error: Optional[shared.Error] = field(default=None)
-    schema: Optional[shared.Schema] = field(default=None)
-    
-
-@dataclass
 class GetSchemaRevisionResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, GetSchemaRevisionResponses]] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
+    schema: Optional[shared.Schema] = field(default=None)
     status_code: int = field(default=None)
     

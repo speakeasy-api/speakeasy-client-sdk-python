@@ -12,7 +12,7 @@ class EmbedToken:
     created_at: datetime = field(default=None, metadata={'dataclasses_json': { 'field_name': 'created_at', 'encoder': datetime.isoformat, 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     created_by: str = field(default=None, metadata={'dataclasses_json': { 'field_name': 'created_by' }})
     description: str = field(default=None, metadata={'dataclasses_json': { 'field_name': 'description' }})
-    expires_at: str = field(default=None, metadata={'dataclasses_json': { 'field_name': 'expires_at' }})
+    expires_at: datetime = field(default=None, metadata={'dataclasses_json': { 'field_name': 'expires_at', 'encoder': datetime.isoformat, 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
     filters: str = field(default=None, metadata={'dataclasses_json': { 'field_name': 'filters' }})
     id: str = field(default=None, metadata={'dataclasses_json': { 'field_name': 'id' }})
     last_used: Optional[datetime] = field(default=None, metadata={'dataclasses_json': { 'field_name': 'last_used', 'encoder': datetime.isoformat, 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})

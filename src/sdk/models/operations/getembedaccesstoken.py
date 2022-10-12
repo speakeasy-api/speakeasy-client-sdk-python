@@ -16,14 +16,9 @@ class GetEmbedAccessTokenRequest:
     
 
 @dataclass
-class GetEmbedAccessTokenResponses:
-    embed_access_token_response: Optional[shared.EmbedAccessTokenResponse] = field(default=None)
-    error: Optional[shared.Error] = field(default=None)
-    
-
-@dataclass
 class GetEmbedAccessTokenResponse:
     content_type: str = field(default=None)
-    responses: dict[int, dict[str, GetEmbedAccessTokenResponses]] = field(default=None)
+    embed_access_token_response: Optional[shared.EmbedAccessTokenResponse] = field(default=None)
+    error: Optional[shared.Error] = field(default=None)
     status_code: int = field(default=None)
     

@@ -6,7 +6,7 @@ from . import utils
 
 
 SERVERS = [
-	"http://api.prod.speakeasyapi.dev",
+	"https://api.prod.speakeasyapi.dev",
 ]
 
 

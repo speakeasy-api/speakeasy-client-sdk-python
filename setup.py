@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="speakeasy-client-sdk-python",
-    version="0.2.0",
+    version="0.2.2",
     author="Speakeasy",
     description="Speakeasy API Client SDK for Python",
     long_description=long_description,

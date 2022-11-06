@@ -9,6 +9,9 @@ from dataclasses_json import dataclass_json
 @dataclass_json
 @dataclass
 class APIEndpoint:
+    r"""APIEndpoint
+    An ApiEndpoint is a description of an Endpoint for an API.
+    """
     api_endpoint_id: str = field(default=None, metadata={'dataclasses_json': { 'field_name': 'api_endpoint_id' }})
     api_id: str = field(default=None, metadata={'dataclasses_json': { 'field_name': 'api_id' }})
     created_at: datetime = field(default=None, metadata={'dataclasses_json': { 'field_name': 'created_at', 'encoder': datetime.isoformat, 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})

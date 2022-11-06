@@ -1,8 +1,9 @@
 import cgi
+import dataclasses
 import json
 import re
 from dataclasses import Field, dataclass, fields, is_dataclass, make_dataclass
-from typing import Callable, List, Tuple
+from typing import Callable, List, Tuple, Union, get_origin, get_args
 from xmlrpc.client import boolean
 
 import requests
@@ -92,10 +93,52 @@ def generate_url(server_url: str, path: str, path_params: dataclass) -> str:
             continue
         if param_metadata.get('style', 'simple') == 'simple':
             param = getattr(path_params, f.name)
-            path = path.replace(
-                '{' + param_metadata.get('field_name', f.name) + '}', str(param), 1)
+            if type(param) is list:
+                pp_vals: list[str] = []
+                for pp_val in param:
+                    pp_vals.append(str(pp_val))
+                path = path.replace(
+                    '{' + param_metadata.get('field_name', f.name) + '}', ",".join(pp_vals), 1)
+            elif type(param) is map:
+                pp_vals: list[str] = []
+                for pp_key in param:
+                    if param_metadata.get('explode'):
+                        pp_vals.append(f"{pp_key}={param[pp_key]}")
+                    else:
+                        pp_vals.append(f"{pp_key},{param[pp_key]}")
+                path = path.replace(
+                    '{' + param_metadata.get('field_name', f.name) + '}', ",".join(pp_vals), 1)
+            elif not isinstance(param, (str, int, float, complex, bool)):
+                pp_vals: list[str] = []
+                attrs: list[str] = [p for p in dir(param) if not p.startswith('__') and not callable(getattr(param, p))]
+                for attr in attrs:
+                    field: Field = _get_field_from_attr(param, attr)
+                    param_field_val = getattr(param, attr)
+                    if field is not None and is_optional(field) and param_field_val is None:
+                        continue
+                    elif param_metadata.get('explode'):
+                        pp_vals.append(f"{attr}={param_field_val}")
+                    else:
+                        pp_vals.append(f"{attr},{param_field_val}")
+                path = path.replace(
+                    '{' + param_metadata.get('field_name', f.name) + '}', ",".join(pp_vals), 1)
+            else:
+                path = path.replace(
+                    '{' + param_metadata.get('field_name', f.name) + '}', str(param), 1)
 
     return server_url.removesuffix("/") + path
+
+
+def _get_field_from_attr(obj, attr: str) -> Field:
+    pp_fields: Tuple[Field, ...] = fields(obj)
+    for pp_field in pp_fields:
+        if pp_field.name == attr:
+            return pp_field
+    return None
+
+
+def is_optional(field):
+    return get_origin(field) is Union and type(None) in get_args(field)
 
 
 def replace_parameters(string_with_params: str, params: dict[str, str]) -> str:
@@ -176,7 +219,8 @@ def _get_deep_object_query_params(metadata: dict, field_name: str, obj: any) -> 
             obj_param_metadata = obj_field.metadata.get('query_param')
             if not obj_param_metadata:
                 continue
-            params[f'{metadata.get("field_name", field_name)}[{obj_param_metadata.get("field_name", obj_field.name)}]'] = [
+            params[
+                f'{metadata.get("field_name", field_name)}[{obj_param_metadata.get("field_name", obj_field.name)}]'] = [
                 getattr(obj, obj_field.name)]
     elif isinstance(obj, dict):
         for key, value in obj.items():
@@ -285,14 +329,14 @@ def serialize_multipart_form(media_type: str, request: dataclass) -> Tuple[str, 
             form.append([field_name, [file_name, content]])
         elif field_metadata.get("json") is True:
             form.append([field_metadata.get("field_name", f.name), [
-                        None, marshal_json(getattr(request, f.name)), "application/json"]])
+                None, marshal_json(getattr(request, f.name)), "application/json"]])
         else:
             val = getattr(request, f.name)
             field_name = field_metadata.get("field_name", f.name)
 
             if isinstance(val, list):
                 for value in val:
-                    form.append([field_name+"[]", [None, value]])
+                    form.append([field_name + "[]", [None, value]])
             else:
                 form.append([field_name, [None, val]])
     return media_type, None, form

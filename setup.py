@@ -1,7 +1,10 @@
 import setuptools
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+try:
+    with open("README.md", "r") as fh:
+        long_description = fh.read()
+except FileNotFoundError:
+    long_description = ""
 
 setuptools.setup(
     name="speakeasy-client-sdk-python",
@@ -29,5 +32,5 @@ setuptools.setup(
         "urllib3==1.26.12",
     ],
     package_dir={'': 'src'},
-    python_requires='>=3.10'
+    python_requires='>=3.9'
 )

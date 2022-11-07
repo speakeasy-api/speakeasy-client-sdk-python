@@ -13,6 +13,6 @@ jobs:
       openapi_doc_location: https://docs.speakeasyapi.dev/openapi.yaml
       languages: |-
         - python
-      secrets:
-        github_access_token: ${{ secrets.GITHUB_TOKEN }}
-        pypi_token: ${{ secrets.PYPI_TOKEN }}
+    secrets:
+      github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      pypi_token: ${{ secrets.PYPI_TOKEN }}

@@ -7,13 +7,12 @@ on:
 
 jobs:
   generate:
-    name: Generate SDK
-    runs-on: ubuntu-latest
-    steps:
-      - uses: speakeasy-api/sdk-generation-action@v1.4
-        with:
-          speakeasy_version: latest
-          openapi_doc_location: https://docs.speakeasyapi.dev/openapi.yaml
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
-          languages: |-
-            - python
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v2
+    with:
+      speakeasy_version: latest
+      openapi_doc_location: https://docs.speakeasyapi.dev/openapi.yaml
+      languages: |-
+        - python
+      secrets:
+        github_access_token: ${{ secrets.GITHUB_TOKEN }}
+        pypi_token: ${{ secrets.PYPI_TOKEN }}

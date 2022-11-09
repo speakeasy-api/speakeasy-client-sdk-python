@@ -12,18 +12,31 @@ SERVERS = [
 
 class SDK:
     r"""SDK Documentation: https://docs.speakeasyapi.dev - The Speakeasy Platform Documentation"""
-    client = requests.Session()
+    client: requests.Session
+    security_client: requests.Session
+    security: shared.Security
     server_url = SERVERS[0]
+
+    def __init__(self) -> None:
+        self.client = requests.Session()
+        self.security_client = requests.Session()
 
     def config_server_url(self, server_url: str, params: dict[str, str]):
         if not params is None:
             self.server_url = utils.replace_parameters(server_url, params)
         else:
             self.server_url = server_url
+
+    def config_client(self, client: requests.Session):
+        self.client = client
+        
+        if self.security is not None:
+            self.security_client = utils.configure_security_client(self.client, self.security)
             
     
     def config_security(self, security: shared.Security):
-        self.client = utils.configure_security_client(security)
+        self.security = security
+        self.security_client = utils.configure_security_client(self.client, security)
 
     
     def delete_api(self, request: operations.DeleteAPIRequest) -> operations.DeleteAPIResponse:
@@ -36,7 +49,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("DELETE", url)
         content_type = r.headers.get("Content-Type")
@@ -63,7 +76,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("DELETE", url)
         content_type = r.headers.get("Content-Type")
@@ -89,7 +102,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("DELETE", url)
         content_type = r.headers.get("Content-Type")
@@ -115,7 +128,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/metadata/{metaKey}/{metaValue}", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("DELETE", url)
         content_type = r.headers.get("Content-Type")
@@ -141,7 +154,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/schema/download", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
@@ -171,7 +184,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}/download", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
@@ -203,7 +216,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/api_endpoints/find/{displayName}", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
@@ -233,7 +246,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/generate/openapi", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
@@ -263,7 +276,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/openapi", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
@@ -292,7 +305,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/generate/postman", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
@@ -321,7 +334,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/postman", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
@@ -351,7 +364,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/eventlog/{requestID}/generate/postman", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
@@ -379,7 +392,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/api_endpoints", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
@@ -410,7 +423,7 @@ class SDK:
         
         query_params = utils.get_query_params(request.query_params)
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url, params=query_params)
         content_type = r.headers.get("Content-Type")
@@ -438,7 +451,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/api_endpoints", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
@@ -466,7 +479,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
@@ -497,7 +510,7 @@ class SDK:
         
         query_params = utils.get_query_params(request.query_params)
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url, params=query_params)
         content_type = r.headers.get("Content-Type")
@@ -528,7 +541,7 @@ class SDK:
         
         query_params = utils.get_query_params(request.query_params)
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url, params=query_params)
         content_type = r.headers.get("Content-Type")
@@ -556,7 +569,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/eventlog/{requestID}", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
@@ -586,7 +599,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/schema", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
@@ -614,7 +627,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/schema/{baseRevisionID}/diff/{targetRevisionID}", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
@@ -644,7 +657,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
@@ -674,7 +687,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/schemas", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
@@ -702,7 +715,7 @@ class SDK:
         url = base_url.removesuffix("/") + "/v1/workspace/embed-access-tokens/valid"
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
@@ -730,7 +743,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/metadata", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url)
         content_type = r.headers.get("Content-Type")
@@ -764,7 +777,7 @@ class SDK:
         if data is None and form is None:
            raise Exception('request body is required')
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("POST", url, data=data, files=form, headers=headers)
         content_type = r.headers.get("Content-Type")
@@ -795,7 +808,7 @@ class SDK:
         
         query_params = utils.get_query_params(request.query_params)
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("GET", url, params=query_params)
         content_type = r.headers.get("Content-Type")
@@ -831,7 +844,7 @@ class SDK:
         if data is None and form is None:
            raise Exception('request body is required')
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("POST", url, data=data, files=form, headers=headers)
         content_type = r.headers.get("Content-Type")
@@ -857,7 +870,7 @@ class SDK:
         url = utils.generate_url(base_url, "/v1/workspace/embed-access-tokens/{tokenID}", request.path_params)
         
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("DELETE", url)
         content_type = r.headers.get("Content-Type")
@@ -891,7 +904,7 @@ class SDK:
         if data is None and form is None:
            raise Exception('request body is required')
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("PUT", url, data=data, files=form, headers=headers)
         content_type = r.headers.get("Content-Type")
@@ -926,7 +939,7 @@ class SDK:
         if data is None and form is None:
            raise Exception('request body is required')
         
-        client = self.client
+        client = self.security_client
         
         r = client.request("PUT", url, data=data, files=form, headers=headers)
         content_type = r.headers.get("Content-Type")

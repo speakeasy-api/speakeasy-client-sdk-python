@@ -3,7 +3,7 @@ import dataclasses
 import json
 import re
 from dataclasses import Field, dataclass, fields, is_dataclass, make_dataclass
-from typing import Callable, List, Tuple, Union, get_origin, get_args
+from typing import Callable, List, Tuple, Union, get_args, get_origin
 from xmlrpc.client import boolean
 
 import requests
@@ -11,8 +11,11 @@ from dataclasses_json import DataClassJsonMixin
 
 
 class SecurityClient:
-    client: requests.Session = requests.Session()
+    client: requests.Session
     query_params: dict[str, str] = {}
+
+    def __init__(self, client: requests.Session):
+        self.client = client
 
     def request(self, method, url, **kwargs):
         params = kwargs.get('params', {})
@@ -21,8 +24,8 @@ class SecurityClient:
         return self.client.request(method, url, **kwargs)
 
 
-def configure_security_client(security: dataclass):
-    client = SecurityClient()
+def configure_security_client(client: requests.Session, security: dataclass):
+    client = SecurityClient(client)
 
     sec_fields: Tuple[Field, ...] = fields(security)
     for sec_field in sec_fields:
@@ -110,7 +113,8 @@ def generate_url(server_url: str, path: str, path_params: dataclass) -> str:
                     '{' + param_metadata.get('field_name', f.name) + '}', ",".join(pp_vals), 1)
             elif not isinstance(param, (str, int, float, complex, bool)):
                 pp_vals: list[str] = []
-                attrs: list[str] = [p for p in dir(param) if not p.startswith('__') and not callable(getattr(param, p))]
+                attrs: list[str] = [p for p in dir(param) if not p.startswith(
+                    '__') and not callable(getattr(param, p))]
                 for attr in attrs:
                     field: Field = _get_field_from_attr(param, attr)
                     param_field_val = getattr(param, attr)

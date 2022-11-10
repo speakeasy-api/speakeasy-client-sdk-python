@@ -4,16 +4,19 @@ from sdk.models import shared
 
 
 @dataclass
-class DeleteAPIPathParams:api_id: str = field(default=None, metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
-    version_id: str = field(default=None, metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
+class DeleteAPIPathParams:
+    api_id: str = field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
+    version_id: str = field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
     
 
 @dataclass
-class DeleteAPIRequest:path_params: DeleteAPIPathParams = field(default=None)
+class DeleteAPIRequest:
+    path_params: DeleteAPIPathParams = field()
     
 
 @dataclass
-class DeleteAPIResponse:content_type: str = field(default=None)
+class DeleteAPIResponse:
+    content_type: str = field()
+    status_code: int = field()
     error: Optional[shared.Error] = field(default=None)
-    status_code: int = field(default=None)
     

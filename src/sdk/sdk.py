@@ -21,23 +21,25 @@ class SDK:
         self.client = requests.Session()
         self.security_client = requests.Session()
 
+
     def config_server_url(self, server_url: str, params: dict[str, str]):
         if not params is None:
             self.server_url = utils.replace_parameters(server_url, params)
         else:
             self.server_url = server_url
 
+
     def config_client(self, client: requests.Session):
         self.client = client
         
         if self.security is not None:
             self.security_client = utils.configure_security_client(self.client, self.security)
-            
-    
+        
+
     def config_security(self, security: shared.Security):
         self.security = security
         self.security_client = utils.configure_security_client(self.client, security)
-
+    
     
     def delete_api(self, request: operations.DeleteAPIRequest) -> operations.DeleteAPIResponse:
         r"""Delete an Api.

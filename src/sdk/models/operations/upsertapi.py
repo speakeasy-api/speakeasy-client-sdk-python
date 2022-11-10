@@ -4,17 +4,20 @@ from sdk.models import shared
 
 
 @dataclass
-class UpsertAPIPathParams:api_id: str = field(default=None, metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
+class UpsertAPIPathParams:
+    api_id: str = field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
     
 
 @dataclass
-class UpsertAPIRequest:path_params: UpsertAPIPathParams = field(default=None)
-    request: shared.API = field(default=None, metadata={'request': { 'media_type': 'application/json' }})
+class UpsertAPIRequest:
+    path_params: UpsertAPIPathParams = field()
+    request: shared.APIInput = field(metadata={'request': { 'media_type': 'application/json' }})
     
 
 @dataclass
-class UpsertAPIResponse:api: Optional[shared.API] = field(default=None)
-    content_type: str = field(default=None)
+class UpsertAPIResponse:
+    content_type: str = field()
+    status_code: int = field()
+    api: Optional[shared.API] = field(default=None)
     error: Optional[shared.Error] = field(default=None)
-    status_code: int = field(default=None)
     

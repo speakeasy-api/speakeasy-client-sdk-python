@@ -4,8 +4,9 @@ from sdk.models import shared
 
 
 @dataclass
-class GetValidEmbedAccessTokensResponse:content_type: str = field(default=None)
+class GetValidEmbedAccessTokensResponse:
+    content_type: str = field()
+    status_code: int = field()
     embed_tokens: Optional[list[shared.EmbedToken]] = field(default=None)
     error: Optional[shared.Error] = field(default=None)
-    status_code: int = field(default=None)
     

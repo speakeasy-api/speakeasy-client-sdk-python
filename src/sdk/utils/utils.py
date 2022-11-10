@@ -1,8 +1,8 @@
 import cgi
-import dataclasses
 import json
 import re
 from dataclasses import Field, dataclass, fields, is_dataclass, make_dataclass
+from datetime import date, datetime
 from typing import Callable, List, Tuple, Union, get_args, get_origin
 from xmlrpc.client import boolean
 
@@ -530,3 +530,21 @@ def match_content_type(content_type: str, pattern: str) -> boolean:
             return True
 
     return False
+
+
+def datetimeisoformat(optional: bool):
+    def isoformatoptional(v):
+        if optional and v is None:
+            return None
+        return datetime.isoformat(v)
+
+    return isoformatoptional
+
+
+def dateisoformat(optional: bool):
+    def isoformatoptional(v):
+        if optional and v is None:
+            return None
+        return date.isoformat(v)
+
+    return isoformatoptional

@@ -4,16 +4,19 @@ from sdk.models import shared
 
 
 @dataclass
-class GenerateRequestPostmanCollectionPathParams:request_id: str = field(default=None, metadata={'path_param': { 'field_name': 'requestID', 'style': 'simple', 'explode': False }})
+class GenerateRequestPostmanCollectionPathParams:
+    request_id: str = field(metadata={'path_param': { 'field_name': 'requestID', 'style': 'simple', 'explode': False }})
     
 
 @dataclass
-class GenerateRequestPostmanCollectionRequest:path_params: GenerateRequestPostmanCollectionPathParams = field(default=None)
+class GenerateRequestPostmanCollectionRequest:
+    path_params: GenerateRequestPostmanCollectionPathParams = field()
     
 
 @dataclass
-class GenerateRequestPostmanCollectionResponse:content_type: str = field(default=None)
+class GenerateRequestPostmanCollectionResponse:
+    content_type: str = field()
+    status_code: int = field()
     error: Optional[shared.Error] = field(default=None)
     postman_collection: Optional[bytes] = field(default=None)
-    status_code: int = field(default=None)
     

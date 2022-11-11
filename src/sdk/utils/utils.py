@@ -548,3 +548,9 @@ def dateisoformat(optional: bool):
         return date.isoformat(v)
 
     return isoformatoptional
+
+
+def field_name(name):
+    def override(_, _field_name=name):
+        return _field_name
+    return override

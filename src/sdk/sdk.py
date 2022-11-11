@@ -27,7 +27,7 @@ class SDK:
             self.server_url = utils.replace_parameters(server_url, params)
         else:
             self.server_url = server_url
-
+    
 
     def config_client(self, client: requests.Session):
         self.client = client

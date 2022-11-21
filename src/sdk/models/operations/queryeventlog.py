@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import List,Optional
 from sdk.models import shared
 
 
@@ -17,6 +17,6 @@ class QueryEventLogRequest:
 class QueryEventLogResponse:
     content_type: str = field()
     status_code: int = field()
-    bounded_requests: Optional[list[shared.BoundedRequest]] = field(default=None)
+    bounded_requests: Optional[List[shared.BoundedRequest]] = field(default=None)
     error: Optional[shared.Error] = field(default=None)
     

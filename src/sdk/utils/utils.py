@@ -1,3 +1,4 @@
+import base64
 import cgi
 import json
 import re
@@ -56,22 +57,28 @@ def _parse_security_option(client: SecurityClient, option: dataclass):
 
 
 def _parse_security_scheme(client: SecurityClient, scheme_metadata: dict, scheme: dataclass):
+    scheme_type = scheme_metadata.get('type')
+    sub_type = scheme_metadata.get('sub_type')
+
+    if scheme_type == 'http' and sub_type == 'basic':
+        _parse_basic_auth_scheme(client, scheme)
+        return
+
     scheme_fields: Tuple[Field, ...] = fields(scheme)
     for scheme_field in scheme_fields:
         metadata = scheme_field.metadata.get('security')
         if metadata is None or metadata.get('field_name') is None:
             continue
 
-        scheme_type = scheme_metadata.get('type')
         header_name = metadata.get('field_name')
         value = getattr(scheme, scheme_field.name)
 
         if scheme_type == "apiKey":
-            if scheme_metadata.get('sub_type') == 'header':
+            if sub_type == 'header':
                 client.client.headers[header_name] = value
-            elif scheme_metadata.get('sub_type') == 'query':
+            elif sub_type == 'query':
                 client.query_params[header_name] = value
-            elif scheme_metadata.get('sub_type') == 'cookie':
+            elif sub_type == 'cookie':
                 client.client.cookies[header_name] = value
             else:
                 raise Exception('not supported')
@@ -80,12 +87,33 @@ def _parse_security_scheme(client: SecurityClient, scheme_metadata: dict, scheme
         elif scheme_type == 'oauth2':
             client.client.headers[header_name] = value
         elif scheme_type == 'http':
-            if scheme_metadata.get('sub_type') == 'bearer' or scheme_metadata.get('sub_type') == 'basic':
+            if sub_type == 'bearer':
                 client.client.headers[header_name] = value
             else:
                 raise Exception('not supported')
         else:
             raise Exception('not supported')
+
+
+def _parse_basic_auth_scheme(client: SecurityClient, scheme: dataclass):
+    username, password = ""
+
+    scheme_fields: Tuple[Field, ...] = fields(scheme)
+    for scheme_field in scheme_fields:
+        metadata = scheme_field.metadata.get('security')
+        if metadata is None or metadata.get('field_name') is None:
+            continue
+
+        field_name = metadata.get('field_name')
+        value = getattr(scheme, scheme_field.name)
+
+        if field_name == 'username':
+            username = value
+        if field_name == 'password':
+            password = value
+
+    data = f'{username}:{password}'.encode()
+    client.client.headers['Authorization'] = f'Basic {base64.b64encode(data)}'
 
 
 def generate_url(server_url: str, path: str, path_params: dataclass) -> str:
@@ -265,7 +293,7 @@ def serialize_request_body(request: dataclass) -> Tuple[str, any, any]:
             request_metadata = f.metadata.get('request')
             break
 
-    if not request_metadata is None:
+    if request_metadata is not None:
         # single request
         return serialize_content_type("request", request_metadata, request_val)
 

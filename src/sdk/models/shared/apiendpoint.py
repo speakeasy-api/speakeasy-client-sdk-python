@@ -9,6 +9,21 @@ from sdk import utils
 
 @dataclass_json
 @dataclass
+class APIEndpointInput:
+    r"""APIEndpointInput
+    An ApiEndpoint is a description of an Endpoint for an API.
+    """
+    
+    api_endpoint_id: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('api_endpoint_id') }})
+    description: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('description') }})
+    display_name: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('display_name') }})
+    method: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('method') }})
+    path: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('path') }})
+    version_id: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('version_id') }})
+    
+
+@dataclass_json
+@dataclass
 class APIEndpoint:
     r"""APIEndpoint
     An ApiEndpoint is a description of an Endpoint for an API.
@@ -25,19 +40,4 @@ class APIEndpoint:
     version_id: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('version_id') }})
     workspace_id: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('workspace_id') }})
     matched: Optional[bool] = field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('matched') }})
-    
-
-@dataclass_json
-@dataclass
-class APIEndpointInput:
-    r"""APIEndpointInput
-    An ApiEndpoint is a description of an Endpoint for an API.
-    """
-    
-    api_endpoint_id: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('api_endpoint_id') }})
-    description: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('description') }})
-    display_name: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('display_name') }})
-    method: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('method') }})
-    path: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('path') }})
-    version_id: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('version_id') }})
     

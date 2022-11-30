@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import List,Optional
+from typing import Optional
 from sdk.models import shared
 
 
@@ -19,5 +19,5 @@ class GetSchemasResponse:
     content_type: str = field()
     status_code: int = field()
     error: Optional[shared.Error] = field(default=None)
-    schemata: Optional[List[shared.Schema]] = field(default=None)
+    schemata: Optional[list[shared.Schema]] = field(default=None)
     

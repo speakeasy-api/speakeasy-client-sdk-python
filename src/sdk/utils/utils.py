@@ -4,7 +4,7 @@ import json
 import re
 from dataclasses import Field, dataclass, fields, is_dataclass, make_dataclass
 from datetime import date, datetime
-from typing import Callable, List, Tuple, Union, get_args, get_origin
+from typing import Callable, Tuple, Union, get_args, get_origin
 from xmlrpc.client import boolean
 
 import requests
@@ -181,11 +181,11 @@ def replace_parameters(string_with_params: str, params: dict[str, str]) -> str:
     return string_with_params
 
 
-def get_query_params(query_params: dataclass) -> dict[str, List[str]]:
+def get_query_params(query_params: dataclass) -> dict[str, list[str]]:
     if query_params is None:
         return {}
 
-    params: dict[str, List[str]] = {}
+    params: dict[str, list[str]] = {}
 
     param_fields: Tuple[Field, ...] = fields(query_params)
     for f in param_fields:
@@ -231,8 +231,8 @@ def get_headers(headers_params: dataclass) -> dict[str, str]:
     return headers
 
 
-def _get_serialized_query_params(metadata: dict, field_name: str, obj: any) -> dict[str, List[str]]:
-    params: dict[str, List[str]] = {}
+def _get_serialized_query_params(metadata: dict, field_name: str, obj: any) -> dict[str, list[str]]:
+    params: dict[str, list[str]] = {}
 
     serialization = metadata.get('serialization', '')
 
@@ -242,8 +242,8 @@ def _get_serialized_query_params(metadata: dict, field_name: str, obj: any) -> d
     return params
 
 
-def _get_deep_object_query_params(metadata: dict, field_name: str, obj: any) -> dict[str, List[str]]:
-    params: dict[str, List[str]] = {}
+def _get_deep_object_query_params(metadata: dict, field_name: str, obj: any) -> dict[str, list[str]]:
+    params: dict[str, list[str]] = {}
 
     if is_dataclass(obj):
         obj_fields: Tuple[Field, ...] = fields(obj)
@@ -273,7 +273,7 @@ def _get_query_param_field_name(obj_field: Field) -> str:
     return obj_param_metadata.get("field_name", obj_field.name)
 
 
-def _get_form_query_params(metadata: dict, field_name: str, obj: any) -> dict[str, List[str]]:
+def _get_form_query_params(metadata: dict, field_name: str, obj: any) -> dict[str, list[str]]:
     return _populate_form(field_name, metadata.get("explode", True), obj, _get_query_param_field_name)
 
 
@@ -311,7 +311,7 @@ def serialize_request_body(request: dataclass) -> Tuple[str, any, any]:
         return serialize_content_type(f.name, request_metadata, req)
 
 
-def serialize_content_type(request_field_name: str, metadata, request: dataclass) -> Tuple[str, any, List[List[any]]]:
+def serialize_content_type(request_field_name: str, metadata, request: dataclass) -> Tuple[str, any, list[list[any]]]:
     media_type = metadata.get('media_type', 'application/octet-stream')
 
     if re.match(r'(application|text)\/.*?\+*json.*', media_type) != None:
@@ -330,8 +330,8 @@ def serialize_content_type(request_field_name: str, metadata, request: dataclass
                 f"invalid request body type {type(request)} for mediaType {metadata['media_type']}")
 
 
-def serialize_multipart_form(media_type: str, request: dataclass) -> Tuple[str, any, List[List[any]]]:
-    form: List[List[any]] = []
+def serialize_multipart_form(media_type: str, request: dataclass) -> Tuple[str, any, list[list[any]]]:
+    form: list[list[any]] = []
     request_fields: Tuple[Field, ...] = fields(request)
     for f in request_fields:
         field_metadata = f.metadata.get('multipart_form')
@@ -384,7 +384,7 @@ def _get_form_field_name(obj_field: Field) -> str:
 
 
 def serialize_form(request_field_name: str, request: any) -> dict[str, any]:
-    form: dict[str, List[str]] = {}
+    form: dict[str, list[str]] = {}
 
     if is_dataclass(request):
         request_fields: Tuple[Field, ...] = fields(request)
@@ -434,8 +434,8 @@ def serialize_form(request_field_name: str, request: any) -> dict[str, any]:
     return form
 
 
-def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_func: Callable) -> dict[str, List[str]]:
-    params: dict[str, List[str]] = {}
+def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_func: Callable) -> dict[str, list[str]]:
+    params: dict[str, list[str]] = {}
 
     if is_dataclass(obj):
         items = []

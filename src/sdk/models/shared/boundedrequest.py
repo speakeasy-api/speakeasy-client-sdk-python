@@ -2,7 +2,7 @@ from dataclasses import dataclass, field
 from datetime import date, datetime
 from marshmallow import fields
 import dateutil.parser
-from typing import List,Optional
+from typing import Optional
 from dataclasses_json import dataclass_json
 from sdk import utils
 
@@ -27,5 +27,5 @@ class BoundedRequest:
     status: int = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('status') }})
     version_id: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('version_id') }})
     workspace_id: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('workspace_id') }})
-    metadata: Optional[dict[str, List[str]]] = field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('metadata') }})
+    metadata: Optional[dict[str, list[str]]] = field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('metadata') }})
     

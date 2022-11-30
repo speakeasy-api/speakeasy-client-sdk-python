@@ -31,7 +31,7 @@ class SDK:
     _security: shared.Security
     _server_url: str = SERVERS[0]
     _language: str = "python"
-    _sdk_version: str = "0.5.3"
+    _sdk_version: str = "0.5.4"
     _gen_version: str = "internal"
 
     def __init__(self) -> None:

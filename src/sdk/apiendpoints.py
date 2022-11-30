@@ -1,5 +1,5 @@
 import requests
-from typing import List,Optional
+from typing import Optional
 from sdk.models import shared, operations
 from . import utils
 
@@ -154,7 +154,7 @@ class APIEndpoints:
         
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
-                out = utils.unmarshal_json(r.text, Optional[List[shared.APIEndpoint]])
+                out = utils.unmarshal_json(r.text, Optional[list[shared.APIEndpoint]])
                 res.api_endpoints = out
         else:
             if utils.match_content_type(content_type, "application/json"):
@@ -182,7 +182,7 @@ class APIEndpoints:
         
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
-                out = utils.unmarshal_json(r.text, Optional[List[shared.APIEndpoint]])
+                out = utils.unmarshal_json(r.text, Optional[list[shared.APIEndpoint]])
                 res.api_endpoints = out
         else:
             if utils.match_content_type(content_type, "application/json"):

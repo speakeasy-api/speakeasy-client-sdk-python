@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import List,Optional
+from typing import Optional
 from sdk.models import shared
 
 
@@ -17,6 +17,6 @@ class GetAllAPIEndpointsRequest:
 class GetAllAPIEndpointsResponse:
     content_type: str = field()
     status_code: int = field()
-    api_endpoints: Optional[List[shared.APIEndpoint]] = field(default=None)
+    api_endpoints: Optional[list[shared.APIEndpoint]] = field(default=None)
     error: Optional[shared.Error] = field(default=None)
     

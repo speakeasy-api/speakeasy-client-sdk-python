@@ -1,5 +1,5 @@
 import requests
-from typing import List,Optional
+from typing import Optional
 from sdk.models import shared, operations
 from . import utils
 
@@ -64,7 +64,7 @@ class Metadata:
         
         if r.status_code == 200:
             if utils.match_content_type(content_type, "application/json"):
-                out = utils.unmarshal_json(r.text, Optional[List[shared.VersionMetadata]])
+                out = utils.unmarshal_json(r.text, Optional[list[shared.VersionMetadata]])
                 res.version_metadata = out
         else:
             if utils.match_content_type(content_type, "application/json"):

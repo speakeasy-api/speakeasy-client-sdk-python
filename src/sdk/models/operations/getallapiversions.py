@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import List,Optional
+from typing import Optional
 from sdk.models import shared
 
 
@@ -15,7 +15,7 @@ class GetAllAPIVersionsOp:
 
 @dataclass
 class GetAllAPIVersionsQueryParams:
-    metadata: Optional[dict[str, List[str]]] = field(default=None, metadata={'query_param': { 'field_name': 'metadata', 'style': 'deepObject', 'explode': True }})
+    metadata: Optional[dict[str, list[str]]] = field(default=None, metadata={'query_param': { 'field_name': 'metadata', 'style': 'deepObject', 'explode': True }})
     op: Optional[GetAllAPIVersionsOp] = field(default=None, metadata={'query_param': { 'field_name': 'op', 'style': 'deepObject', 'explode': True }})
     
 
@@ -29,6 +29,6 @@ class GetAllAPIVersionsRequest:
 class GetAllAPIVersionsResponse:
     content_type: str = field()
     status_code: int = field()
-    apis: Optional[List[shared.API]] = field(default=None)
+    apis: Optional[list[shared.API]] = field(default=None)
     error: Optional[shared.Error] = field(default=None)
     

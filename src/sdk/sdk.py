@@ -12,9 +12,11 @@ from .requests import Requests
 from .schemas import Schemas
 
 
-SERVERS = [
-	"https://api.prod.speakeasyapi.dev",
-]
+SERVER_PROD = "prod"
+
+SERVERS = {
+	SERVER_PROD: "https://api.prod.speakeasyapi.dev",
+}
 
 
 class SDK:
@@ -29,9 +31,9 @@ class SDK:
     _client: requests.Session
     _security_client: requests.Session
     _security: shared.Security
-    _server_url: str = SERVERS[0]
+    _server_url: str = SERVERS[SERVER_PROD]
     _language: str = "python"
-    _sdk_version: str = "0.5.4"
+    _sdk_version: str = "0.6.0"
     _gen_version: str = "internal"
 
     def __init__(self) -> None:
@@ -46,6 +48,12 @@ class SDK:
         else:
             self._server_url = server_url
 
+        self._init_sdks()
+    
+    def config_server(self, server: str, params: dict[str, str]):
+        if not server in SERVERS:
+            raise ValueError("Invalid server")
+        self.config_server_url(SERVERS[server], params)
         self._init_sdks()
     
 

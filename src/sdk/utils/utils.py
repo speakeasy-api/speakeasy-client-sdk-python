@@ -145,13 +145,20 @@ def generate_url(server_url: str, path: str, path_params: dataclass) -> str:
                     '__') and not callable(getattr(param, p))]
                 for attr in attrs:
                     field: Field = _get_field_from_attr(param, attr)
+
+                    param_value_metadata = field.metadata.get('path_param')
+                    if not param_value_metadata:
+                        continue
+
+                    parm_name = param_value_metadata.get('field_name', f.name)
+
                     param_field_val = getattr(param, attr)
                     if field is not None and is_optional(field) and param_field_val is None:
                         continue
                     elif param_metadata.get('explode'):
-                        pp_vals.append(f"{attr}={param_field_val}")
+                        pp_vals.append(f"{parm_name}={param_field_val}")
                     else:
-                        pp_vals.append(f"{attr},{param_field_val}")
+                        pp_vals.append(f"{parm_name},{param_field_val}")
                 path = path.replace(
                     '{' + param_metadata.get('field_name', f.name) + '}', ",".join(pp_vals), 1)
             else:

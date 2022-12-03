@@ -1,10 +1,10 @@
 management:
     openapi-checksum: eb72fa251c1471dd090eb0b974395d58
     openapi-version: 0.1.0
-    speakeasy-version: 0.14.2
+    speakeasy-version: 0.15.0
 python:
     author: Speakeasy
     description: Speakeasy API Client SDK for Python
     packagename: speakeasy-client-sdk-python
-    version: 0.6.0
+    version: 0.7.0
 telemetryenabled: null

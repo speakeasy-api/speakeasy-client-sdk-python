@@ -33,7 +33,7 @@ class SDK:
     _security: shared.Security
     _server_url: str = SERVERS[SERVER_PROD]
     _language: str = "python"
-    _sdk_version: str = "0.7.1"
+    _sdk_version: str = "0.7.2"
     _gen_version: str = ""
 
     def __init__(self) -> None:

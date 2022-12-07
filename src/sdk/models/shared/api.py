@@ -9,19 +9,6 @@ from sdk import utils
 
 @dataclass_json
 @dataclass
-class APIInput:
-    r"""APIInput
-    An Api is representation of a API (a collection of API Endpoints) within the Speakeasy Platform.
-    """
-    
-    api_id: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('api_id') }})
-    description: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('description') }})
-    version_id: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('version_id') }})
-    meta_data: Optional[dict[str, list[str]]] = field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('meta_data') }})
-    
-
-@dataclass_json
-@dataclass
 class API:
     r"""API
     An Api is representation of a API (a collection of API Endpoints) within the Speakeasy Platform.
@@ -34,5 +21,18 @@ class API:
     version_id: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('version_id') }})
     workspace_id: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('workspace_id') }})
     matched: Optional[bool] = field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('matched') }})
+    meta_data: Optional[dict[str, list[str]]] = field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('meta_data') }})
+    
+
+@dataclass_json
+@dataclass
+class APIInput:
+    r"""APIInput
+    An Api is representation of a API (a collection of API Endpoints) within the Speakeasy Platform.
+    """
+    
+    api_id: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('api_id') }})
+    description: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('description') }})
+    version_id: str = field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('version_id') }})
     meta_data: Optional[dict[str, list[str]]] = field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('meta_data') }})
     

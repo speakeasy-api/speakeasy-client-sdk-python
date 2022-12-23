@@ -1,7 +1,6 @@
 from dataclasses import dataclass, field
 from typing import Optional
-from sdk.models import shared
-from sdk.models import shared
+from .. import shared
 
 
 @dataclass

@@ -4,10 +4,11 @@ import json
 import re
 from dataclasses import Field, dataclass, fields, is_dataclass, make_dataclass
 from datetime import date, datetime
-from typing import Callable, Tuple, Union, get_args, get_origin
+from typing import Callable, Tuple, Union, get_args, get_origin, Optional
 from xmlrpc.client import boolean
 
 import requests
+from dacite import from_dict
 from dataclasses_json import DataClassJsonMixin
 
 
@@ -130,7 +131,7 @@ def generate_url(server_url: str, path: str, path_params: dataclass) -> str:
                     pp_vals.append(str(pp_val))
                 path = path.replace(
                     '{' + param_metadata.get('field_name', f.name) + '}', ",".join(pp_vals), 1)
-            elif type(param) is map:
+            elif type(param) is dict:
                 pp_vals: list[str] = []
                 for pp_key in param:
                     if param_metadata.get('explode'):
@@ -200,21 +201,23 @@ def get_query_params(query_params: dataclass) -> dict[str, list[str]]:
         if not metadata:
             continue
 
+        param_name = f.name
+        f_name = metadata.get("field_name")
+
         serialization = metadata.get('serialization', '')
         if serialization != '':
             params = params | _get_serialized_query_params(
-                metadata, f.name, getattr(query_params, f.name))
+                metadata, f_name, getattr(query_params, param_name))
         else:
             style = metadata.get('style', 'form')
             if style == 'deepObject':
                 params = params | _get_deep_object_query_params(
-                    metadata, f.name, getattr(query_params, f.name))
+                    metadata, f_name, getattr(query_params, param_name))
             elif style == 'form':
                 params = params | _get_form_query_params(
-                    metadata, f.name, getattr(query_params, f.name))
+                    metadata, f_name, getattr(query_params, param_name))
             else:
                 raise Exception('not yet implemented')
-
     return params
 
 
@@ -226,12 +229,13 @@ def get_headers(headers_params: dataclass) -> dict[str, str]:
 
     param_fields: Tuple[Field, ...] = fields(headers_params)
     for f in param_fields:
-        metadata = f.metadata.get('header_param')
+        metadata = f.metadata.get('header')
         if not metadata:
             continue
 
         value = _serialize_header(metadata.get(
             'explode', False), getattr(headers_params, f.name))
+
         if value != '':
             headers[metadata.get('field_name', f.name)] = value
 
@@ -286,7 +290,7 @@ def _get_form_query_params(metadata: dict, field_name: str, obj: any) -> dict[st
 
 def serialize_request_body(request: dataclass) -> Tuple[str, any, any]:
     if request is None:
-        return None, None, None
+        return None, None, None, None
 
     request_val = getattr(request, "request")
     if request_val is None:
@@ -302,7 +306,7 @@ def serialize_request_body(request: dataclass) -> Tuple[str, any, any]:
 
     if request_metadata is not None:
         # single request
-        return serialize_content_type("request", request_metadata, request_val)
+        return serialize_content_type(request_metadata, request_val)
 
     request_fields: Tuple[Field, ...] = fields(request_val)
     for f in request_fields:
@@ -315,70 +319,154 @@ def serialize_request_body(request: dataclass) -> Tuple[str, any, any]:
             raise Exception(
                 f'missing request tag on request body field {f.name}')
 
-        return serialize_content_type(f.name, request_metadata, req)
+        return serialize_content_type(request_metadata, request_val)
 
 
-def serialize_content_type(request_field_name: str, metadata, request: dataclass) -> Tuple[str, any, list[list[any]]]:
+def serialize_content_type(metadata, request: dataclass) -> Tuple[str, any, list[list[any]]]:
     media_type = metadata.get('media_type', 'application/octet-stream')
-
+    if re.match(r'text/plain', media_type) != None:
+        return media_type, serialize_text(request), None, None
     if re.match(r'(application|text)\/.*?\+*json.*', media_type) != None:
-        return media_type, marshal_json(request).encode(), None
-    elif re.match(r'`multipart\/.*', media_type) != None:
+        return media_type, None, serialize_json(request), None
+    if re.match(r'multipart\/.*', media_type) != None:
         return serialize_multipart_form(media_type, request)
-    elif re.match(r'application\/x-www-form-urlencoded.*', media_type) != None:
-        return media_type, serialize_form(request_field_name, request), None
-    else:
-        if isinstance(request, (bytes, bytearray)):
-            return media_type, request, None
-        if isinstance(request, str):
-            return media_type, request, None
+    if re.match(r'application\/x-www-form-urlencoded.*', media_type) != None:
+        return media_type, serialize_form(request, 'request'), None, None
+    if isinstance(request, (bytes, bytearray)):
+        return media_type, request, None, None
+    if isinstance(request, str):
+        return media_type, request, None, None
+
+    raise Exception(
+        f"invalid request body type {type(request)} for mediaType {metadata['media_type']}")
+
+
+def serialize_text(request: dataclass) -> str:
+    request_fields: Tuple[Field, ...] = fields(request)
+    for f in request_fields:
+        field_metadata = f.metadata.get('request')
+        if field_metadata is None:
+            continue
+
+        field_value = getattr(request, f.name)
+        if field_value is None or not isinstance(field_value, str):
+            continue
+        return field_value
+    return None
+
+
+def serialize_json(request: dataclass) -> str:
+    request_fields: Tuple[Field, ...] = fields(request)
+    for f in request_fields:
+        field_metadata = f.metadata.get('request')
+        if field_metadata is None:
+            continue
+
+        field_value = getattr(request, f.name)
+        if field_value is None:
+            continue
+
+        return json.dumps(field_value)
+
+
+def dict_to_dataclass(orig: dict[str, any], dataclass_type: str):
+    cast_type = str(dataclass_type).replace("typing.Optional[", "").replace("]", "")
+    cast_module = cast_type.split(".")[:-1]
+    module = None
+    for m in cast_module:
+        if not module:
+            module = __import__(m)
         else:
-            raise Exception(
-                f"invalid request body type {type(request)} for mediaType {metadata['media_type']}")
+            module = getattr(module, m)
+
+    cast_type = cast_type.split(".")[-1:][0]
+    cast_class = getattr(module, cast_type)
+    data_class = from_dict(cast_class, orig)
+    data_fields = fields(data_class)
+    for f in data_fields:
+        name = f.name
+        for meta_key, meta_value in f.metadata.items():
+            try:
+                name = meta_value["field_name"]
+                break
+            except KeyError:
+                continue
+
+        try:
+            original_value = orig[f.name]
+        except KeyError:
+            original_value = orig[name]
+
+        setattr(data_class, f.name, original_value)
+    return data_class
+
+
+def parse_field(field: Field, data_class: dataclass, metadata_string: str):
+    field_metadata = field.metadata.get(metadata_string)
+    if field_metadata is None:
+        return None
+
+    field_value = getattr(data_class, field.name)
+    if field_value is None:
+        return None
+    try:
+        return dict_to_dataclass(field_value, field.type)
+    except Exception:
+        return field_value
 
 
 def serialize_multipart_form(media_type: str, request: dataclass) -> Tuple[str, any, list[list[any]]]:
     form: list[list[any]] = []
     request_fields: Tuple[Field, ...] = fields(request)
     for f in request_fields:
-        field_metadata = f.metadata.get('multipart_form')
-        if field_metadata is None:
+        field_value = parse_field(f, request, 'request')
+        if not field_value:
             continue
-        if field_metadata.get("file") is True:
-            file = getattr(request, f.name)
-            file_fields = fields(file)
 
-            file_name = ""
-            field_name = ""
-            content = bytes()
+        if is_dataclass(field_value):
+            value_request_fields = fields(field_value)
 
-            for file_field in file_fields:
-                file_metadata = file_field.metadata.get('multipart_form')
-                if file_metadata is None:
+            for field_value_f in value_request_fields:
+                field_metadata = field_value_f.metadata.get('multipart_form')
+
+                if not field_metadata:
                     continue
-                if file_metadata.get("content") is True:
-                    content = getattr(file, file_field.name)
+                if field_metadata.get("file") is True:
+                    file = getattr(field_value, field_value_f.name)
+                    file = dict_to_dataclass(file, field_value_f.type)
+                    file_fields = fields(file)
+
+                    file_name = ""
+                    field_name = ""
+                    content = bytes()
+
+                    for file_field in file_fields:
+                        file_metadata = file_field.metadata.get('multipart_form')
+                        if file_metadata is None:
+                            continue
+                        if file_metadata.get("content") is True:
+                            content = getattr(file, file_field.name)
+                        else:
+                            field_name = file_metadata.get(
+                                "field_name", file_field.name)
+                            file_name = getattr(file, file_field.name)
+                    if field_name == "" or file_name == "" or content == bytes():
+                        raise Exception('invalid multipart/form-data file')
+
+                    form.append([field_name, [file_name, content]])
+                elif field_metadata.get("json") is True:
+                    to_append = [field_metadata.get("field_name", field_value_f.name), [
+                        None, marshal_json(getattr(field_value, field_value_f.name)), "application/json"]]
+                    form.append(to_append)
                 else:
-                    field_name = file_metadata.get(
-                        "field_name", file_field.name)
-                    file_name = getattr(file, file_field.name)
-            if field_name == "" or file_name == "" or content == bytes():
-                raise Exception('invalid multipart/form-data file')
-
-            form.append([field_name, [file_name, content]])
-        elif field_metadata.get("json") is True:
-            form.append([field_metadata.get("field_name", f.name), [
-                None, marshal_json(getattr(request, f.name)), "application/json"]])
-        else:
-            val = getattr(request, f.name)
-            field_name = field_metadata.get("field_name", f.name)
-
-            if isinstance(val, list):
-                for value in val:
-                    form.append([field_name + "[]", [None, value]])
-            else:
-                form.append([field_name, [None, val]])
-    return media_type, None, form
+                    val = getattr(field_value, field_value_f.name)
+                    field_name = field_metadata.get("field_name", field_value_f.name)
+                    if isinstance(val, list):
+                        for value in val:
+                            form.append([field_name + "[]", [None, value]])
+                    else:
+                        form.append([field_name, [None, val]])
+    return media_type, None, None, form
 
 
 def _get_form_field_name(obj_field: Field) -> str:
@@ -390,54 +478,95 @@ def _get_form_field_name(obj_field: Field) -> str:
     return obj_param_metadata.get("field_name", obj_field.name)
 
 
-def serialize_form(request_field_name: str, request: any) -> dict[str, any]:
+def serialize_dict(original: dict, explode: bool, field_name, existing: Optional[dict[str, list[str]]]) -> dict[
+    str, list[str]]:
+    if existing is None:
+        existing = []
+
+    if explode is True:
+        for k, v in original.items():
+            if k not in existing:
+                existing[k] = []
+            existing[k].append(v)
+    else:
+        temp = []
+        for k, v in original.items():
+            temp.append(str(k))
+            temp.append(str(v))
+        if field_name not in existing:
+            existing[field_name] = []
+        existing[field_name].append(",".join(temp))
+    return existing
+
+
+def serialize_form(data: dataclass, meta_string: str) -> dict[str, any]:
     form: dict[str, list[str]] = {}
+    request_fields: Tuple[Field, ...] = fields(data)
 
-    if is_dataclass(request):
-        request_fields: Tuple[Field, ...] = fields(request)
-        for f in request_fields:
-            field_metadata = f.metadata.get('form')
+    for f in request_fields:
+        field_value = parse_field(f, data, meta_string)
+        if not field_value:
+            continue
 
-            if field_metadata is None:
-                continue
+        if is_dataclass(field_value):
+            value_fields = fields(field_value)
+            for value_f in value_fields:
+                value = parse_field(value_f, field_value, 'form')
+                if not value:
+                    continue
+                metadata = value_f.metadata.get('form')
+                if metadata is None:
+                    continue
 
-            if field_metadata.get("json") is True:
-                form[field_metadata.get("field_name", f.name)] = [
-                    marshal_json(getattr(request, f.name))]
-            else:
-                if field_metadata.get("style", "form") == "form":
-                    values = _populate_form(field_metadata.get("field_name", f.name), field_metadata.get(
-                        "explode", True), getattr(request, f.name), _get_form_field_name)
+                f_name = metadata["field_name"]
+                if is_dataclass(value):
+                    print(f_name)
+                    if "style" not in metadata or ("json" in metadata and metadata["json"] is True):
+                        if f_name not in form:
+                            form[f_name] = []
+                        form[f_name].append(json.dumps(getattr(field_value, f_name)))
+                    else:
+                        if "style" in metadata and metadata["style"] == "form":
+                            form = form | serialize_form(value, "form")
 
-                    for key, value in values.items():
-                        for v in value:
-                            if not key in form:
-                                form[key] = []
-
-                            form[key].append(v)
-    elif isinstance(request, dict):
-        for key, value in request.items():
-            if isinstance(value, list):
-                for v in value:
+                elif isinstance(value, dict):
+                    serialize_dict(value, metadata["explode"], f_name, form)
+                elif isinstance(value, list):
+                    if metadata["explode"] is True:
+                        if f_name not in form:
+                            form[f_name] = []
+                        for item in value:
+                            form[f_name].append(item)
+                    else:
+                        if value_f.name not in form:
+                            form[f_name] = []
+                        form[f_name].append(",".join(value))
+                else:
+                    if value_f.name not in form:
+                        form[f_name] = []
+                    form[f_name].append(str(value))
+        elif isinstance(data, dict):
+            for key, value in data.items():
+                if isinstance(value, list):
+                    for v in value:
+                        if not key in form:
+                            form[key] = []
+                        form[key].append(v)
+                else:
                     if not key in form:
                         form[key] = []
-                    form[key].append(v)
-            else:
-                if not key in form:
-                    form[key] = []
-                form[key].append(value)
-    elif isinstance(request, list):
-        for value in request:
-            if isinstance(value, list):
-                for v in value:
+                    form[key].append(value)
+        elif isinstance(data, list):
+            for value in data:
+                if isinstance(value, list):
+                    for v in value:
+                        if not key in form:
+                            form[meta_string] = []
+                        form[meta_string].append(v)
+                else:
                     if not key in form:
-                        form[request_field_name] = []
-                    form[request_field_name].append(v)
-            else:
-                if not key in form:
-                    form[request_field_name] = []
-                form[request_field_name].append(value)
-
+                        form[meta_string] = []
+                    form[meta_string].append(value)
     return form
 
 
@@ -463,7 +592,6 @@ def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_f
             params[field_name] = [','.join(items)]
     elif isinstance(obj, dict):
         items = []
-
         for key, value in obj.items():
             if explode:
                 params[key] = value
@@ -484,7 +612,7 @@ def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_f
                 items.append(value)
 
         if len(items) > 0:
-            params[field_name] = [','.join(items)]
+            params[field_name] = [','.join([str(item) for item in items])]
     else:
         params[field_name] = obj
 
@@ -494,10 +622,9 @@ def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_f
 def _serialize_header(explode: boolean, obj: any) -> str:
     if is_dataclass(obj):
         items = []
-
         obj_fields: Tuple[Field, ...] = fields(obj)
         for obj_field in obj_fields:
-            obj_param_metadata = obj_field.metadata.get('header_param')
+            obj_param_metadata = obj_field.metadata.get('header')
 
             if not obj_param_metadata:
                 continue
@@ -527,9 +654,9 @@ def _serialize_header(explode: boolean, obj: any) -> str:
                 items.append(value)
 
         if len(items) > 0:
-            return [','.join(items)]
+            return ','.join([str(item) for item in items])
     elif isinstance(obj, list):
-        return [','.join(obj)]
+        return ','.join(obj)
     else:
         return f'{obj}'
 
@@ -588,4 +715,5 @@ def dateisoformat(optional: bool):
 def field_name(name):
     def override(_, _field_name=name):
         return _field_name
+
     return override

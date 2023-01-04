@@ -1,22 +1,23 @@
-from dataclasses import dataclass, field
+import dataclasses
 from typing import Optional
-from .. import shared
+from ..shared import apiendpoint as shared_apiendpoint
+from ..shared import error as shared_error
 
 
-@dataclass
+@dataclasses.dataclass
 class GetAllAPIEndpointsPathParams:
-    api_id: str = field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
+    api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
     
 
-@dataclass
+@dataclasses.dataclass
 class GetAllAPIEndpointsRequest:
-    path_params: GetAllAPIEndpointsPathParams = field()
+    path_params: GetAllAPIEndpointsPathParams = dataclasses.field()
     
 
-@dataclass
+@dataclasses.dataclass
 class GetAllAPIEndpointsResponse:
-    content_type: str = field()
-    status_code: int = field()
-    api_endpoints: Optional[list[shared.APIEndpoint]] = field(default=None)
-    error: Optional[shared.Error] = field(default=None)
+    content_type: str = dataclasses.field()
+    status_code: int = dataclasses.field()
+    api_endpoints: Optional[list[shared_apiendpoint.APIEndpoint]] = dataclasses.field(default=None)
+    error: Optional[shared_error.Error] = dataclasses.field(default=None)
     

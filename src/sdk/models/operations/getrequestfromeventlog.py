@@ -1,22 +1,23 @@
-from dataclasses import dataclass, field
+import dataclasses
 from typing import Optional
-from .. import shared
+from ..shared import error as shared_error
+from ..shared import unboundedrequest as shared_unboundedrequest
 
 
-@dataclass
+@dataclasses.dataclass
 class GetRequestFromEventLogPathParams:
-    request_id: str = field(metadata={'path_param': { 'field_name': 'requestID', 'style': 'simple', 'explode': False }})
+    request_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'requestID', 'style': 'simple', 'explode': False }})
     
 
-@dataclass
+@dataclasses.dataclass
 class GetRequestFromEventLogRequest:
-    path_params: GetRequestFromEventLogPathParams = field()
+    path_params: GetRequestFromEventLogPathParams = dataclasses.field()
     
 
-@dataclass
+@dataclasses.dataclass
 class GetRequestFromEventLogResponse:
-    content_type: str = field()
-    status_code: int = field()
-    error: Optional[shared.Error] = field(default=None)
-    unbounded_request: Optional[shared.UnboundedRequest] = field(default=None)
+    content_type: str = dataclasses.field()
+    status_code: int = dataclasses.field()
+    error: Optional[shared_error.Error] = dataclasses.field(default=None)
+    unbounded_request: Optional[shared_unboundedrequest.UnboundedRequest] = dataclasses.field(default=None)
     

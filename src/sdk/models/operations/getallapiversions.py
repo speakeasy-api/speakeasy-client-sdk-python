@@ -1,34 +1,35 @@
-from dataclasses import dataclass, field
+import dataclasses
 from typing import Optional
-from .. import shared
+from ..shared import api as shared_api
+from ..shared import error as shared_error
 
 
-@dataclass
+@dataclasses.dataclass
 class GetAllAPIVersionsPathParams:
-    api_id: str = field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
+    api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
     
 
-@dataclass
+@dataclasses.dataclass
 class GetAllAPIVersionsOp:
-    and_: bool = field(metadata={'query_param': { 'field_name': 'and' }})
+    and_: bool = dataclasses.field(metadata={'query_param': { 'field_name': 'and' }})
     
 
-@dataclass
+@dataclasses.dataclass
 class GetAllAPIVersionsQueryParams:
-    metadata: Optional[dict[str, list[str]]] = field(default=None, metadata={'query_param': { 'field_name': 'metadata', 'style': 'deepObject', 'explode': True }})
-    op: Optional[GetAllAPIVersionsOp] = field(default=None, metadata={'query_param': { 'field_name': 'op', 'style': 'deepObject', 'explode': True }})
+    metadata: Optional[dict[str, list[str]]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'metadata', 'style': 'deepObject', 'explode': True }})
+    op: Optional[GetAllAPIVersionsOp] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'op', 'style': 'deepObject', 'explode': True }})
     
 
-@dataclass
+@dataclasses.dataclass
 class GetAllAPIVersionsRequest:
-    path_params: GetAllAPIVersionsPathParams = field()
-    query_params: GetAllAPIVersionsQueryParams = field()
+    path_params: GetAllAPIVersionsPathParams = dataclasses.field()
+    query_params: GetAllAPIVersionsQueryParams = dataclasses.field()
     
 
-@dataclass
+@dataclasses.dataclass
 class GetAllAPIVersionsResponse:
-    content_type: str = field()
-    status_code: int = field()
-    apis: Optional[list[shared.API]] = field(default=None)
-    error: Optional[shared.Error] = field(default=None)
+    content_type: str = dataclasses.field()
+    status_code: int = dataclasses.field()
+    apis: Optional[list[shared_api.API]] = dataclasses.field(default=None)
+    error: Optional[shared_error.Error] = dataclasses.field(default=None)
     

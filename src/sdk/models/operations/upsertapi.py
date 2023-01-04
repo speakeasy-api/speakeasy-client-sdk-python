@@ -1,23 +1,25 @@
-from dataclasses import dataclass, field
+import dataclasses
 from typing import Optional
-from .. import shared
+from ..shared import api as shared_api
+from ..shared import api as shared_api
+from ..shared import error as shared_error
 
 
-@dataclass
+@dataclasses.dataclass
 class UpsertAPIPathParams:
-    api_id: str = field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
+    api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
     
 
-@dataclass
+@dataclasses.dataclass
 class UpsertAPIRequest:
-    path_params: UpsertAPIPathParams = field()
-    request: shared.APIInput = field(metadata={'request': { 'media_type': 'application/json' }})
+    path_params: UpsertAPIPathParams = dataclasses.field()
+    request: shared_api.APIInput = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     
 
-@dataclass
+@dataclasses.dataclass
 class UpsertAPIResponse:
-    content_type: str = field()
-    status_code: int = field()
-    api: Optional[shared.API] = field(default=None)
-    error: Optional[shared.Error] = field(default=None)
+    content_type: str = dataclasses.field()
+    status_code: int = dataclasses.field()
+    api: Optional[shared_api.API] = dataclasses.field(default=None)
+    error: Optional[shared_error.Error] = dataclasses.field(default=None)
     

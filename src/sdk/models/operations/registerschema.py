@@ -1,34 +1,34 @@
-from dataclasses import dataclass, field
+import dataclasses
 from typing import Optional
-from .. import shared
+from ..shared import error as shared_error
 
 
-@dataclass
+@dataclasses.dataclass
 class RegisterSchemaPathParams:
-    api_id: str = field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
-    version_id: str = field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
+    api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
+    version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
     
 
-@dataclass
+@dataclasses.dataclass
 class RegisterSchemaRequestBodyFile:
-    content: bytes = field(metadata={'multipart_form': { 'content': True }})
-    file: str = field(metadata={'multipart_form': { 'field_name': 'file' }})
+    content: bytes = dataclasses.field(metadata={'multipart_form': { 'content': True }})
+    file: str = dataclasses.field(metadata={'multipart_form': { 'field_name': 'file' }})
     
 
-@dataclass
+@dataclasses.dataclass
 class RegisterSchemaRequestBody:
-    file: RegisterSchemaRequestBodyFile = field(metadata={'multipart_form': { 'file': True }})
+    file: RegisterSchemaRequestBodyFile = dataclasses.field(metadata={'multipart_form': { 'file': True }})
     
 
-@dataclass
+@dataclasses.dataclass
 class RegisterSchemaRequest:
-    path_params: RegisterSchemaPathParams = field()
-    request: RegisterSchemaRequestBody = field(metadata={'request': { 'media_type': 'multipart/form-data' }})
+    path_params: RegisterSchemaPathParams = dataclasses.field()
+    request: RegisterSchemaRequestBody = dataclasses.field(metadata={'request': { 'media_type': 'multipart/form-data' }})
     
 
-@dataclass
+@dataclasses.dataclass
 class RegisterSchemaResponse:
-    content_type: str = field()
-    status_code: int = field()
-    error: Optional[shared.Error] = field(default=None)
+    content_type: str = dataclasses.field()
+    status_code: int = dataclasses.field()
+    error: Optional[shared_error.Error] = dataclasses.field(default=None)
     

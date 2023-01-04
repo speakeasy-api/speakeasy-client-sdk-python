@@ -1,24 +1,24 @@
-from dataclasses import dataclass, field
+import dataclasses
 from typing import Optional
-from .. import shared
+from ..shared import error as shared_error
 
 
-@dataclass
+@dataclasses.dataclass
 class GeneratePostmanCollectionForAPIEndpointPathParams:
-    api_endpoint_id: str = field(metadata={'path_param': { 'field_name': 'apiEndpointID', 'style': 'simple', 'explode': False }})
-    api_id: str = field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
-    version_id: str = field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
+    api_endpoint_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiEndpointID', 'style': 'simple', 'explode': False }})
+    api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
+    version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
     
 
-@dataclass
+@dataclasses.dataclass
 class GeneratePostmanCollectionForAPIEndpointRequest:
-    path_params: GeneratePostmanCollectionForAPIEndpointPathParams = field()
+    path_params: GeneratePostmanCollectionForAPIEndpointPathParams = dataclasses.field()
     
 
-@dataclass
+@dataclasses.dataclass
 class GeneratePostmanCollectionForAPIEndpointResponse:
-    content_type: str = field()
-    status_code: int = field()
-    error: Optional[shared.Error] = field(default=None)
-    postman_collection: Optional[bytes] = field(default=None)
+    content_type: str = dataclasses.field()
+    status_code: int = dataclasses.field()
+    error: Optional[shared_error.Error] = dataclasses.field(default=None)
+    postman_collection: Optional[bytes] = dataclasses.field(default=None)
     

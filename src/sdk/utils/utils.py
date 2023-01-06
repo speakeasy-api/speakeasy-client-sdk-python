@@ -203,7 +203,6 @@ def get_query_params(query_params: dataclass) -> dict[str, list[str]]:
 
         param_name = f.name
         f_name = metadata.get("field_name")
-
         serialization = metadata.get('serialization', '')
         if serialization != '':
             params = params | _get_serialized_query_params(
@@ -246,7 +245,6 @@ def _get_serialized_query_params(metadata: dict, field_name: str, obj: any) -> d
     params: dict[str, list[str]] = {}
 
     serialization = metadata.get('serialization', '')
-
     if serialization == 'json':
         params[metadata.get("field_name", field_name)] = marshal_json(obj)
 
@@ -520,7 +518,6 @@ def serialize_form(data: dataclass, meta_string: str) -> dict[str, any]:
 
                 f_name = metadata["field_name"]
                 if is_dataclass(value):
-                    print(f_name)
                     if "style" not in metadata or ("json" in metadata and metadata["json"] is True):
                         if f_name not in form:
                             form[f_name] = []
@@ -530,9 +527,15 @@ def serialize_form(data: dataclass, meta_string: str) -> dict[str, any]:
                             form = form | serialize_form(value, "form")
 
                 elif isinstance(value, dict):
-                    serialize_dict(value, metadata["explode"], f_name, form)
+                    if "json" in metadata and metadata["json"] is True:
+                        if f_name not in form:
+                            form[f_name] = []
+                        form[f_name].append(json.dumps(value))
+                    else:
+                        explode = "explode" in metadata and metadata["explode"] is True
+                        serialize_dict(value, explode, f_name, form)
                 elif isinstance(value, list):
-                    if metadata["explode"] is True:
+                    if "explode" in metadata and metadata["explode"] is True:
                         if f_name not in form:
                             form[f_name] = []
                         for item in value:
@@ -594,7 +597,12 @@ def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_f
         items = []
         for key, value in obj.items():
             if explode:
-                params[key] = value
+                # Python uses True and False instead of true and false for booleans;
+                # This json encodes the values _only_ if the value is a boolean.
+                if value is True or value is False:
+                    params[key] = json.dumps(value)
+                else:
+                    params[key] = value
             else:
                 items.append(f'{key},{value}')
 

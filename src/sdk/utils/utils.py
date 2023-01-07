@@ -4,7 +4,7 @@ import json
 import re
 from dataclasses import Field, dataclass, fields, is_dataclass, make_dataclass
 from datetime import date, datetime
-from typing import Callable, Tuple, Union, get_args, get_origin, Optional
+from typing import Callable, Optional, Tuple, Union, get_args, get_origin
 from xmlrpc.client import boolean
 
 import requests
@@ -368,7 +368,8 @@ def serialize_json(request: dataclass) -> str:
 
 
 def dict_to_dataclass(orig: dict[str, any], dataclass_type: str):
-    cast_type = str(dataclass_type).replace("typing.Optional[", "").replace("]", "")
+    cast_type = str(dataclass_type).replace(
+        "typing.Optional[", "").replace("]", "")
     cast_module = cast_type.split(".")[:-1]
     module = None
     for m in cast_module:
@@ -439,7 +440,8 @@ def serialize_multipart_form(media_type: str, request: dataclass) -> Tuple[str, 
                     content = bytes()
 
                     for file_field in file_fields:
-                        file_metadata = file_field.metadata.get('multipart_form')
+                        file_metadata = file_field.metadata.get(
+                            'multipart_form')
                         if file_metadata is None:
                             continue
                         if file_metadata.get("content") is True:
@@ -458,7 +460,8 @@ def serialize_multipart_form(media_type: str, request: dataclass) -> Tuple[str, 
                     form.append(to_append)
                 else:
                     val = getattr(field_value, field_value_f.name)
-                    field_name = field_metadata.get("field_name", field_value_f.name)
+                    field_name = field_metadata.get(
+                        "field_name", field_value_f.name)
                     if isinstance(val, list):
                         for value in val:
                             form.append([field_name + "[]", [None, value]])
@@ -477,7 +480,7 @@ def _get_form_field_name(obj_field: Field) -> str:
 
 
 def serialize_dict(original: dict, explode: bool, field_name, existing: Optional[dict[str, list[str]]]) -> dict[
-    str, list[str]]:
+        str, list[str]]:
     if existing is None:
         existing = []
 
@@ -521,7 +524,8 @@ def serialize_form(data: dataclass, meta_string: str) -> dict[str, any]:
                     if "style" not in metadata or ("json" in metadata and metadata["json"] is True):
                         if f_name not in form:
                             form[f_name] = []
-                        form[f_name].append(json.dumps(getattr(field_value, f_name)))
+                        form[f_name].append(json.dumps(
+                            getattr(field_value, f_name)))
                     else:
                         if "style" in metadata and metadata["style"] == "form":
                             form = form | serialize_form(value, "form")

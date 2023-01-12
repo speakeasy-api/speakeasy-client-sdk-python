@@ -365,6 +365,7 @@ def serialize_json(request: dataclass) -> str:
             continue
 
         return json.dumps(field_value)
+    return marshal_json(request)
 
 
 def dict_to_dataclass(orig: dict[str, any], dataclass_type: str):
@@ -480,7 +481,7 @@ def _get_form_field_name(obj_field: Field) -> str:
 
 
 def serialize_dict(original: dict, explode: bool, field_name, existing: Optional[dict[str, list[str]]]) -> dict[
-        str, list[str]]:
+    str, list[str]]:
     if existing is None:
         existing = []
 

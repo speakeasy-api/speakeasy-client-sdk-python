@@ -233,7 +233,7 @@ class APIEndpoints:
         req_content_type, data, json, files = utils.serialize_request_body(request)
         if req_content_type != "multipart/form-data" and req_content_type != "multipart/mixed":
             headers["content-type"] = req_content_type
-        if data is None and form is None:
+        if data is None and json is None:
            raise Exception('request body is required')
         
         client = self._security_client

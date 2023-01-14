@@ -46,6 +46,10 @@ else:
 <!-- Start SDK Available Operations -->
 ## SDK Available Operations
 
+### SDK SDK
+
+* `validate_api_key` - Validate the current api key.
+
 ### ApiEndpoints
 
 * `delete_api_endpoint` - Delete an ApiEndpoint.

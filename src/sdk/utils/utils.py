@@ -371,9 +371,14 @@ def serialize_json(request: dataclass) -> str:
 def dict_to_dataclass(orig: dict[str, any], dataclass_type: str):
     cast_type = str(dataclass_type).replace(
         "typing.Optional[", "").replace("]", "")
-    cast_module = cast_type.split(".")[:-1]
+
+    cast_modules = cast_type.split(".")[:-1]
+    if cast_modules[0] == "typing":
+        # This is a built-in type, not a data_class
+        return orig
+
     module = None
-    for m in cast_module:
+    for m in cast_modules:
         if not module:
             module = __import__(m)
         else:
@@ -579,7 +584,7 @@ def serialize_form(data: dataclass, meta_string: str) -> dict[str, any]:
 
 
 def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_func: Callable) -> dict[str, list[str]]:
-    params: dict[str, list[str]] = {}
+    params: dict[str, str | list[str]] = {}
 
     if is_dataclass(obj):
         items = []
@@ -602,12 +607,7 @@ def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_f
         items = []
         for key, value in obj.items():
             if explode:
-                # Python uses True and False instead of true and false for booleans;
-                # This json encodes the values _only_ if the value is a boolean.
-                if value is True or value is False:
-                    params[key] = json.dumps(value)
-                else:
-                    params[key] = value
+                _populate_simple_param(params, key, value)
             else:
                 items.append(f'{key},{value}')
 
@@ -627,9 +627,18 @@ def _populate_form(field_name: str, explode: boolean, obj: any, get_field_name_f
         if len(items) > 0:
             params[field_name] = [','.join([str(item) for item in items])]
     else:
-        params[field_name] = obj
+        _populate_simple_param(params, field_name, obj)
 
     return params
+
+
+def _populate_simple_param(params: dict[str, str | list[str]], field_name: str, value: any):
+    # Python uses True and False instead of true and false for booleans;
+    # This json encodes the values _only_ if the value is a boolean.
+    if value is True or value is False:
+        params[field_name] = json.dumps(value)
+    else:
+        params[field_name] = value
 
 
 def _serialize_header(explode: boolean, obj: any) -> str:
@@ -675,11 +684,8 @@ def _serialize_header(explode: boolean, obj: any) -> str:
 
 
 def unmarshal_json(data, t):
-    Unmarhsal = make_dataclass('Unmarhsal', [('res', t)],
-                               bases=(DataClassJsonMixin,))
     d = json.loads(data)
-    out = Unmarhsal.from_dict({"res": d})
-    return out.res
+    return dict_to_dataclass(d, t)
 
 
 def marshal_json(c):

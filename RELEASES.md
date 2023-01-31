@@ -1,9 +1,9 @@
 
 
-## Version 0.13.0
+## Version 0.13.1
 ### Changes
 Based on:
 - OpenAPI Doc 0.2.0 https://docs.speakeasyapi.dev/openapi.yaml
-- Speakeasy CLI 0.21.0 https://github.com/speakeasy-api/speakeasy
+- Speakeasy CLI 0.21.1 https://github.com/speakeasy-api/speakeasy
 ### Releases
-- [PyPI v0.13.0] https://pypi.org/project/speakeasy-client-sdk-python/0.13.0 - .
+- [PyPI v0.13.1] https://pypi.org/project/speakeasy-client-sdk-python/0.13.1 - .

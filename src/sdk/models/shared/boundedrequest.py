@@ -5,6 +5,7 @@ import dateutil.parser
 from typing import Optional
 from dataclasses_json import dataclass_json
 from sdk import utils
+from ..shared import requestmetadata as shared_requestmetadata
 
 
 @dataclass_json
@@ -27,5 +28,5 @@ class BoundedRequest:
     status: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('status') }})
     version_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('version_id') }})
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('workspace_id') }})
-    metadata: Optional[dict[str, list[str]]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('metadata') }})
+    metadata: Optional[list[shared_requestmetadata.RequestMetadata]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('metadata') }})
     

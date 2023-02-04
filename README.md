@@ -82,6 +82,12 @@ else:
 * `get_version_metadata` - Get all metadata for a particular apiID and versionID.
 * `insert_version_metadata` - Insert metadata for a particular apiID and versionID.
 
+### Plugins
+
+* `get_plugins` - Get all plugins for the current workspace.
+* `run_plugin` - Run a plugin
+* `upsert_plugin` - Upsert a plugin
+
 ### Requests
 
 * `generate_request_postman_collection` - Generate a Postman collection for a particular request.

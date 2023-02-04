@@ -7,10 +7,12 @@ from .error import *
 from .filter import *
 from .filters import *
 from .generateopenapispecdiff import *
+from .plugin import *
+from .requestmetadata import *
 from .schema import *
 from .schemadiff import *
 from .security import *
 from .unboundedrequest import *
 from .versionmetadata import *
 
-__all__ = ["API","APIInput","APIEndpoint","APIEndpointInput","BoundedRequest","EmbedAccessTokenResponse","EmbedToken","Error","Filter","Filters","GenerateOpenAPISpecDiff","Schema","SchemaDiffValueChange","SchemaDiff","SchemeAPIKey","Security","UnboundedRequest","VersionMetadata","VersionMetadataInput"]
+__all__ = ["API","APIInput","APIEndpoint","APIEndpointInput","BoundedRequest","EmbedAccessTokenResponse","EmbedToken","Error","Filter","Filters","GenerateOpenAPISpecDiff","Plugin","RequestMetadata","Schema","SchemaDiffValueChange","SchemaDiff","SchemeAPIKey","Security","UnboundedRequest","VersionMetadata","VersionMetadataInput"]

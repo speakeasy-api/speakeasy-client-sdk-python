@@ -1,8 +1,8 @@
 import dataclasses
-from typing import Optional
-from ..shared import filters as shared_filters
 from ..shared import boundedrequest as shared_boundedrequest
 from ..shared import error as shared_error
+from ..shared import filters as shared_filters
+from typing import Optional
 
 
 @dataclasses.dataclass

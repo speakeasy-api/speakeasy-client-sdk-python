@@ -1,7 +1,7 @@
 import dataclasses
+from ..shared import filter as shared_filter
 from dataclasses_json import dataclass_json
 from sdk import utils
-from ..shared import filter as shared_filter
 
 
 @dataclass_json

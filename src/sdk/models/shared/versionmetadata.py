@@ -1,10 +1,21 @@
 import dataclasses
-from datetime import date, datetime
-from marshmallow import fields
 import dateutil.parser
 from dataclasses_json import dataclass_json
+from datetime import datetime
+from marshmallow import fields
 from sdk import utils
 
+
+@dataclass_json
+@dataclasses.dataclass
+class VersionMetadataInput:
+    r"""VersionMetadataInput
+    A set of keys and associated values, attached to a particular version of an Api.
+    """
+    
+    meta_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('meta_key') }})
+    meta_value: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('meta_value') }})
+    
 
 @dataclass_json
 @dataclasses.dataclass
@@ -19,15 +30,4 @@ class VersionMetadata:
     meta_value: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('meta_value') }})
     version_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('version_id') }})
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('workspace_id') }})
-    
-
-@dataclass_json
-@dataclasses.dataclass
-class VersionMetadataInput:
-    r"""VersionMetadataInput
-    A set of keys and associated values, attached to a particular version of an Api.
-    """
-    
-    meta_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('meta_key') }})
-    meta_value: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('meta_value') }})
     

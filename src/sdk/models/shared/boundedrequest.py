@@ -1,11 +1,11 @@
 import dataclasses
-from datetime import date, datetime
-from marshmallow import fields
 import dateutil.parser
-from typing import Optional
-from dataclasses_json import dataclass_json
-from sdk import utils
 from ..shared import requestmetadata as shared_requestmetadata
+from dataclasses_json import dataclass_json
+from datetime import datetime
+from marshmallow import fields
+from sdk import utils
+from typing import Optional
 
 
 @dataclass_json

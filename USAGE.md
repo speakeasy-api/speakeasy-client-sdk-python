@@ -11,13 +11,24 @@ s.config_security(
         ),
     )
 )
-    
+   
 req = operations.GetApisRequest(
     query_params=operations.GetApisQueryParams(
         metadata={
-            "voluptas": [
-                "expedita",
-                "consequuntur",
+            "deserunt": [
+                "nulla",
+                "id",
+                "vero",
+            ],
+            "perspiciatis": [
+                "nihil",
+                "fuga",
+                "facilis",
+                "eum",
+            ],
+            "iusto": [
+                "saepe",
+                "inventore",
             ],
         },
         op=operations.GetApisOp(

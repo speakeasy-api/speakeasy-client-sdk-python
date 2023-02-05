@@ -1,8 +1,7 @@
 import dataclasses
-from typing import Optional
-from ..shared import versionmetadata as shared_versionmetadata
 from ..shared import error as shared_error
 from ..shared import versionmetadata as shared_versionmetadata
+from typing import Optional
 
 
 @dataclasses.dataclass

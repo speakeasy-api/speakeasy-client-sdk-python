@@ -1,7 +1,7 @@
 import dataclasses
-from typing import Optional
 from ..shared import error as shared_error
 from ..shared import unboundedrequest as shared_unboundedrequest
+from typing import Optional
 
 
 @dataclasses.dataclass

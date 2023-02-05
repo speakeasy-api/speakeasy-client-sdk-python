@@ -1,9 +1,6 @@
 import dataclasses
-from datetime import date, datetime
-from marshmallow import fields
-import dateutil.parser
-from typing import Optional
 from ..shared import error as shared_error
+from typing import Optional
 
 
 @dataclasses.dataclass

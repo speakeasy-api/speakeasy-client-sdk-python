@@ -1,6 +1,6 @@
 import dataclasses
-from typing import Optional
 from ..shared import error as shared_error
+from typing import Optional
 
 
 @dataclasses.dataclass

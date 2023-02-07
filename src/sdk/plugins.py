@@ -54,7 +54,7 @@ class Plugins:
         
         base_url = self._server_url
         
-        url = utils.generate_url(base_url, "/v1/plugin/{pluginID}", request.path_params)
+        url = utils.generate_url(base_url, "/v1/plugins/{pluginID}", request.path_params)
         
         query_params = utils.get_query_params(request.query_params)
         
@@ -83,7 +83,7 @@ class Plugins:
         
         base_url = self._server_url
         
-        url = base_url.removesuffix("/") + "/v1/plugin"
+        url = base_url.removesuffix("/") + "/v1/plugins"
         
         headers = {}
         req_content_type, data, json, files = utils.serialize_request_body(request)

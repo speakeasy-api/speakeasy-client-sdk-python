@@ -125,9 +125,8 @@ class APIEndpoints:
         res = operations.GeneratePostmanCollectionForAPIEndpointResponse(status_code=r.status_code, content_type=content_type)
         
         if r.status_code == 200:
-            if utils.match_content_type(content_type, "application/json"):
-                out = utils.unmarshal_json(r.text, Optional[bytes])
-                res.postman_collection = out
+            if utils.match_content_type(content_type, "application/octet-stream"):
+                res.postman_collection = r.content
         else:
             if utils.match_content_type(content_type, "application/json"):
                 out = utils.unmarshal_json(r.text, Optional[shared.Error])

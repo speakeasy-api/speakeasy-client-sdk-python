@@ -32,8 +32,8 @@ class SDK:
     _security: shared.Security
     _server_url: str = SERVERS[SERVER_PROD]
     _language: str = "python"
-    _sdk_version: str = "1.2.0"
-    _gen_version: str = "1.2.0"
+    _sdk_version: str = "1.3.0"
+    _gen_version: str = "1.3.1"
 
     def __init__(self) -> None:
         self._client = requests.Session()
@@ -143,10 +143,12 @@ class SDK:
         
         url = base_url.removesuffix("/") + "/v1/auth/validate"
         
+        headers = {}
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         
-        r = client.request("GET", url)
+        r = client.request("GET", url, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.ValidateAPIKeyResponse(status_code=r.status_code, content_type=content_type)

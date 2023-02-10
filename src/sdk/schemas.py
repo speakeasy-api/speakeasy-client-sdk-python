@@ -28,10 +28,12 @@ class Schemas:
         
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}", request.path_params)
         
+        headers = {}
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         
-        r = client.request("DELETE", url)
+        r = client.request("DELETE", url, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.DeleteSchemaResponse(status_code=r.status_code, content_type=content_type)
@@ -54,10 +56,12 @@ class Schemas:
         
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/schema/download", request.path_params)
         
+        headers = {}
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         
-        r = client.request("GET", url)
+        r = client.request("GET", url, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.DownloadSchemaResponse(status_code=r.status_code, content_type=content_type)
@@ -84,10 +88,12 @@ class Schemas:
         
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}/download", request.path_params)
         
+        headers = {}
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         
-        r = client.request("GET", url)
+        r = client.request("GET", url, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.DownloadSchemaRevisionResponse(status_code=r.status_code, content_type=content_type)
@@ -116,10 +122,12 @@ class Schemas:
         
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/schema", request.path_params)
         
+        headers = {}
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         
-        r = client.request("GET", url)
+        r = client.request("GET", url, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.GetSchemaResponse(status_code=r.status_code, content_type=content_type)
@@ -144,10 +152,12 @@ class Schemas:
         
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/schema/{baseRevisionID}/diff/{targetRevisionID}", request.path_params)
         
+        headers = {}
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         
-        r = client.request("GET", url)
+        r = client.request("GET", url, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.GetSchemaDiffResponse(status_code=r.status_code, content_type=content_type)
@@ -174,10 +184,12 @@ class Schemas:
         
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}", request.path_params)
         
+        headers = {}
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         
-        r = client.request("GET", url)
+        r = client.request("GET", url, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.GetSchemaRevisionResponse(status_code=r.status_code, content_type=content_type)
@@ -204,10 +216,12 @@ class Schemas:
         
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/schemas", request.path_params)
         
+        headers = {}
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         
-        r = client.request("GET", url)
+        r = client.request("GET", url, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.GetSchemasResponse(status_code=r.status_code, content_type=content_type)
@@ -240,6 +254,7 @@ class Schemas:
             headers["content-type"] = req_content_type
         if data is None and json is None:
            raise Exception('request body is required')
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         

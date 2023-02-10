@@ -30,11 +30,13 @@ class Embeds:
         
         url = base_url.removesuffix("/") + "/v1/workspace/embed-access-token"
         
+        headers = {}
         query_params = utils.get_query_params(request.query_params)
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         
-        r = client.request("GET", url, params=query_params)
+        r = client.request("GET", url, params=query_params, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.GetEmbedAccessTokenResponse(status_code=r.status_code, content_type=content_type)
@@ -59,10 +61,12 @@ class Embeds:
         
         url = base_url.removesuffix("/") + "/v1/workspace/embed-access-tokens/valid"
         
+        headers = {}
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         
-        r = client.request("GET", url)
+        r = client.request("GET", url, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.GetValidEmbedAccessTokensResponse(status_code=r.status_code, content_type=content_type)
@@ -87,10 +91,12 @@ class Embeds:
         
         url = utils.generate_url(base_url, "/v1/workspace/embed-access-tokens/{tokenID}", request.path_params)
         
+        headers = {}
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         
-        r = client.request("DELETE", url)
+        r = client.request("DELETE", url, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.RevokeEmbedAccessTokenResponse(status_code=r.status_code, content_type=content_type)

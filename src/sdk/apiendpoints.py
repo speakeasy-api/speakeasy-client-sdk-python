@@ -29,10 +29,12 @@ class APIEndpoints:
         
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}", request.path_params)
         
+        headers = {}
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         
-        r = client.request("DELETE", url)
+        r = client.request("DELETE", url, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.DeleteAPIEndpointResponse(status_code=r.status_code, content_type=content_type)
@@ -57,10 +59,12 @@ class APIEndpoints:
         
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/api_endpoints/find/{displayName}", request.path_params)
         
+        headers = {}
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         
-        r = client.request("GET", url)
+        r = client.request("GET", url, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.FindAPIEndpointResponse(status_code=r.status_code, content_type=content_type)
@@ -87,10 +91,12 @@ class APIEndpoints:
         
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/openapi", request.path_params)
         
+        headers = {}
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         
-        r = client.request("GET", url)
+        r = client.request("GET", url, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.GenerateOpenAPISpecForAPIEndpointResponse(status_code=r.status_code, content_type=content_type)
@@ -116,10 +122,12 @@ class APIEndpoints:
         
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/postman", request.path_params)
         
+        headers = {}
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         
-        r = client.request("GET", url)
+        r = client.request("GET", url, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.GeneratePostmanCollectionForAPIEndpointResponse(status_code=r.status_code, content_type=content_type)
@@ -143,10 +151,12 @@ class APIEndpoints:
         
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/api_endpoints", request.path_params)
         
+        headers = {}
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         
-        r = client.request("GET", url)
+        r = client.request("GET", url, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.GetAllAPIEndpointsResponse(status_code=r.status_code, content_type=content_type)
@@ -171,10 +181,12 @@ class APIEndpoints:
         
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/api_endpoints", request.path_params)
         
+        headers = {}
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         
-        r = client.request("GET", url)
+        r = client.request("GET", url, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.GetAllForVersionAPIEndpointsResponse(status_code=r.status_code, content_type=content_type)
@@ -199,10 +211,12 @@ class APIEndpoints:
         
         url = utils.generate_url(base_url, "/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}", request.path_params)
         
+        headers = {}
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         
-        r = client.request("GET", url)
+        r = client.request("GET", url, headers=headers)
         content_type = r.headers.get("Content-Type")
 
         res = operations.GetAPIEndpointResponse(status_code=r.status_code, content_type=content_type)
@@ -234,6 +248,7 @@ class APIEndpoints:
             headers["content-type"] = req_content_type
         if data is None and json is None:
            raise Exception('request body is required')
+        headers["user-agent"] = f"speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}"
         
         client = self._security_client
         

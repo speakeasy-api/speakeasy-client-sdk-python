@@ -1,19 +1,25 @@
 name: Generate
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Force the generation of the SDKs"
+        type: boolean
+        default: false
   schedule:
     - cron: 0 0 * * *
 
 jobs:
   generate:
-    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v9
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v10
     with:
       speakeasy_version: latest
       openapi_doc_location: https://docs.speakeasyapi.dev/openapi.yaml
       languages: |-
         - python
       publish_python: true
+      force: ${{ github.event.inputs.force }}
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       pypi_token: ${{ secrets.PYPI_TOKEN }}

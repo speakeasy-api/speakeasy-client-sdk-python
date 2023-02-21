@@ -1,9 +1,5 @@
 # speakeasy-client-sdk-python
 
-This is the Speakeasy API Client SDK for Python. It is generated from our OpenAPI spec found at https://docs.speakeasyapi.dev/openapi.yaml and used for interacting with the [Speakeasy API](https://docs.speakeasyapi.dev/docs/speakeasy-api/speakeasy-api).
-
-This SDK was generated using Speakeasy's SDK Generator. For more information on how to use the generator to generate your own SDKs, please see the [Speakeasy Client SDK Generator Docs](https://docs.speakeasyapi.dev/docs/using-speakeasy/client-sdks).
-
 <!-- Start SDK Installation -->
 ## SDK Installation
 
@@ -12,7 +8,8 @@ pip install speakeasy-client-sdk-python
 ```
 <!-- End SDK Installation -->
 
-## Example usage
+## SDK Example Usage
+<!-- Start SDK Example Usage -->
 ```python
 import sdk
 from sdk.models import operations, shared
@@ -21,27 +18,42 @@ s = sdk.SDK()
 s.config_security(
     security=shared.Security(
         api_key=shared.SchemeAPIKey(
-            api_key="YOUR_API_KEY" # Replace with your API key from your Speakeasy Workspace
-        )
+            api_key="YOUR_API_KEY_HERE",
+        ),
     )
 )
-
+   
 req = operations.GetApisRequest(
     query_params=operations.GetApisQueryParams(
-        metadata={'label': ['1']},
-        op=operations.GetApisOp(and_=True)
-    )
+        metadata={
+            "deserunt": [
+                "nulla",
+                "id",
+                "vero",
+            ],
+            "perspiciatis": [
+                "nihil",
+                "fuga",
+                "facilis",
+                "eum",
+            ],
+            "iusto": [
+                "saepe",
+                "inventore",
+            ],
+        },
+        op=operations.GetApisOp(
+            and_=False,
+        ),
+    ),
 )
-
+    
 res = s.apis.get_apis(req)
 
-if res.status_code == 200:
-    print(res.apis)
-else:
-    print(res.error)
-
+if res.apis is not None:
+    # handle response
 ```
-
+<!-- End SDK Example Usage -->
 
 <!-- Start SDK Available Operations -->
 ## SDK Available Operations

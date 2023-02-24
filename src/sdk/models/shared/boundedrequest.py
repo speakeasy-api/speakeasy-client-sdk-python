@@ -1,14 +1,15 @@
+from __future__ import annotations
 import dataclasses
 import dateutil.parser
 from ..shared import requestmetadata as shared_requestmetadata
-from dataclasses_json import dataclass_json
+from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from marshmallow import fields
 from sdk import utils
 from typing import Optional
 
 
-@dataclass_json
+@dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class BoundedRequest:
     r"""BoundedRequest
@@ -28,5 +29,5 @@ class BoundedRequest:
     status: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('status') }})
     version_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('version_id') }})
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('workspace_id') }})
-    metadata: Optional[list[shared_requestmetadata.RequestMetadata]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('metadata') }})
+    metadata: Optional[list[shared_requestmetadata.RequestMetadata]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.field_name('metadata'), 'exclude': lambda f: f is None }})
     

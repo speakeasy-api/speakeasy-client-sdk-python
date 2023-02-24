@@ -1,12 +1,13 @@
+from __future__ import annotations
 import dataclasses
 import dateutil.parser
-from dataclasses_json import dataclass_json
+from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from marshmallow import fields
 from sdk import utils
 
 
-@dataclass_json
+@dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class VersionMetadataInput:
     r"""VersionMetadataInput
@@ -17,7 +18,7 @@ class VersionMetadataInput:
     meta_value: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.field_name('meta_value') }})
     
 
-@dataclass_json
+@dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class VersionMetadata:
     r"""VersionMetadata

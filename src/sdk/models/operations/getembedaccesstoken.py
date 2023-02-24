@@ -1,3 +1,4 @@
+from __future__ import annotations
 import dataclasses
 from ..shared import embedaccesstokenresponse as shared_embedaccesstokenresponse
 from ..shared import error as shared_error

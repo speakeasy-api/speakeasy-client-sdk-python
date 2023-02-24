@@ -1,3 +1,4 @@
+from __future__ import annotations
 import dataclasses
 from ..shared import boundedrequest as shared_boundedrequest
 from ..shared import error as shared_error

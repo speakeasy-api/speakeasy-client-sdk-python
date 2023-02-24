@@ -1,10 +1,11 @@
+from __future__ import annotations
 import dataclasses
 from ..shared import filter as shared_filter
-from dataclasses_json import dataclass_json
+from dataclasses_json import Undefined, dataclass_json
 from sdk import utils
 
 
-@dataclass_json
+@dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class Filters:
     r"""Filters

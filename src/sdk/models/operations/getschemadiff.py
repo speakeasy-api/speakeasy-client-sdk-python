@@ -1,3 +1,4 @@
+from __future__ import annotations
 import dataclasses
 from ..shared import error as shared_error
 from ..shared import schemadiff as shared_schemadiff

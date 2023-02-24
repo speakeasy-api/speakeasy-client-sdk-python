@@ -1,3 +1,4 @@
+from __future__ import annotations
 import dataclasses
 from ..shared import apiendpoint as shared_apiendpoint
 from ..shared import error as shared_error

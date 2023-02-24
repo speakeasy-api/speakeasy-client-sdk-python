@@ -32,8 +32,8 @@ class SDK:
     _security: shared.Security
     _server_url: str = SERVERS[SERVER_PROD]
     _language: str = "python"
-    _sdk_version: str = "1.5.0"
-    _gen_version: str = "1.5.0"
+    _sdk_version: str = "1.5.1"
+    _gen_version: str = "1.5.2"
 
     def __init__(self) -> None:
         self._client = requests.Session()

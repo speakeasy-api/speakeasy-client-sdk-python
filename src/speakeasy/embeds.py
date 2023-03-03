@@ -50,6 +50,7 @@ class Embeds:
                 res.error = out
 
         return res
+
     def get_valid_embed_access_tokens(self) -> operations.GetValidEmbedAccessTokensResponse:
         r"""Get all valid embed access tokens for the current workspace.
         """
@@ -78,6 +79,7 @@ class Embeds:
                 res.error = out
 
         return res
+
     def revoke_embed_access_token(self, request: operations.RevokeEmbedAccessTokenRequest) -> operations.RevokeEmbedAccessTokenResponse:
         r"""Revoke an embed access EmbedToken.
         """
@@ -104,4 +106,5 @@ class Embeds:
                 res.error = out
 
         return res
+
     

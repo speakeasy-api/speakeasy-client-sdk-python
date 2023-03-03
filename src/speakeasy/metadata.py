@@ -45,6 +45,7 @@ class Metadata:
                 res.error = out
 
         return res
+
     def get_version_metadata(self, request: operations.GetVersionMetadataRequest) -> operations.GetVersionMetadataResponse:
         r"""Get all metadata for a particular apiID and versionID.
         """
@@ -73,6 +74,7 @@ class Metadata:
                 res.error = out
 
         return res
+
     def insert_version_metadata(self, request: operations.InsertVersionMetadataRequest) -> operations.InsertVersionMetadataResponse:
         r"""Insert metadata for a particular apiID and versionID.
         """
@@ -106,4 +108,5 @@ class Metadata:
                 res.error = out
 
         return res
+
     

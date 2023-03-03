@@ -46,6 +46,7 @@ class APIEndpoints:
                 res.error = out
 
         return res
+
     def find_api_endpoint(self, request: operations.FindAPIEndpointRequest) -> operations.FindAPIEndpointResponse:
         r"""Find an ApiEndpoint via its displayName.
         Find an ApiEndpoint via its displayName (set by operationId from a registered OpenAPI schema).
@@ -76,6 +77,7 @@ class APIEndpoints:
                 res.error = out
 
         return res
+
     def generate_open_api_spec_for_api_endpoint(self, request: operations.GenerateOpenAPISpecForAPIEndpointRequest) -> operations.GenerateOpenAPISpecForAPIEndpointResponse:
         r"""Generate an OpenAPI specification for a particular ApiEndpoint.
         This endpoint will generate a new operation in any registered OpenAPI document if the operation does not already exist in the document.
@@ -106,6 +108,7 @@ class APIEndpoints:
                 res.error = out
 
         return res
+
     def generate_postman_collection_for_api_endpoint(self, request: operations.GeneratePostmanCollectionForAPIEndpointRequest) -> operations.GeneratePostmanCollectionForAPIEndpointResponse:
         r"""Generate a Postman collection for a particular ApiEndpoint.
         Generates a postman collection that allows the endpoint to be called from postman variables produced for any path/query/header parameters included in the OpenAPI document.
@@ -134,6 +137,7 @@ class APIEndpoints:
                 res.error = out
 
         return res
+
     def get_all_api_endpoints(self, request: operations.GetAllAPIEndpointsRequest) -> operations.GetAllAPIEndpointsResponse:
         r"""Get all Api endpoints for a particular apiID.
         """
@@ -162,6 +166,7 @@ class APIEndpoints:
                 res.error = out
 
         return res
+
     def get_all_for_version_api_endpoints(self, request: operations.GetAllForVersionAPIEndpointsRequest) -> operations.GetAllForVersionAPIEndpointsResponse:
         r"""Get all ApiEndpoints for a particular apiID and versionID.
         """
@@ -190,6 +195,7 @@ class APIEndpoints:
                 res.error = out
 
         return res
+
     def get_api_endpoint(self, request: operations.GetAPIEndpointRequest) -> operations.GetAPIEndpointResponse:
         r"""Get an ApiEndpoint.
         """
@@ -218,6 +224,7 @@ class APIEndpoints:
                 res.error = out
 
         return res
+
     def upsert_api_endpoint(self, request: operations.UpsertAPIEndpointRequest) -> operations.UpsertAPIEndpointResponse:
         r"""Upsert an ApiEndpoint.
         Upsert an ApiEndpoint. If the ApiEndpoint does not exist it will be created, otherwise it will be updated.
@@ -252,4 +259,5 @@ class APIEndpoints:
                 res.error = out
 
         return res
+
     

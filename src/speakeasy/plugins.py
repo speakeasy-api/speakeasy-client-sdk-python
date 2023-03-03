@@ -47,6 +47,7 @@ class Plugins:
                 res.error = out
 
         return res
+
     def run_plugin(self, request: operations.RunPluginRequest) -> operations.RunPluginResponse:
         r"""Run a plugin
         """
@@ -76,6 +77,7 @@ class Plugins:
                 res.error = out
 
         return res
+
     def upsert_plugin(self, request: operations.UpsertPluginRequest) -> operations.UpsertPluginResponse:
         r"""Upsert a plugin
         """
@@ -109,4 +111,5 @@ class Plugins:
                 res.error = out
 
         return res
+
     

@@ -46,6 +46,7 @@ class Apis:
                 res.error = out
 
         return res
+
     def generate_open_api_spec(self, request: operations.GenerateOpenAPISpecRequest) -> operations.GenerateOpenAPISpecResponse:
         r"""Generate an OpenAPI specification for a particular Api.
         This endpoint will generate any missing operations in any registered OpenAPI document if the operation does not already exist in the document.
@@ -76,6 +77,7 @@ class Apis:
                 res.error = out
 
         return res
+
     def generate_postman_collection(self, request: operations.GeneratePostmanCollectionRequest) -> operations.GeneratePostmanCollectionResponse:
         r"""Generate a Postman collection for a particular Api.
         Generates a postman collection containing all endpoints for a particular API. Includes variables produced for any path/query/header parameters included in the OpenAPI document.
@@ -104,6 +106,7 @@ class Apis:
                 res.error = out
 
         return res
+
     def get_all_api_versions(self, request: operations.GetAllAPIVersionsRequest) -> operations.GetAllAPIVersionsResponse:
         r"""Get all Api versions for a particular ApiEndpoint.
         Get all Api versions for a particular ApiEndpoint.
@@ -135,6 +138,7 @@ class Apis:
                 res.error = out
 
         return res
+
     def get_apis(self, request: operations.GetApisRequest) -> operations.GetApisResponse:
         r"""Get a list of Apis for a given workspace
         Get a list of all Apis and their versions for a given workspace.
@@ -166,6 +170,7 @@ class Apis:
                 res.error = out
 
         return res
+
     def upsert_api(self, request: operations.UpsertAPIRequest) -> operations.UpsertAPIResponse:
         r"""Upsert an Api
         Upsert an Api. If the Api does not exist, it will be created.
@@ -201,4 +206,5 @@ class Apis:
                 res.error = out
 
         return res
+
     

@@ -11,15 +11,13 @@ pip install speakeasy-client-sdk-python
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
 ```python
-import sdk
-from sdk.models import operations, shared
+import speakeasy
+from speakeasy.models import operations, shared
 
-s = sdk.SDK()
+s = speakeasy.Speakeasy()
 s.config_security(
     security=shared.Security(
-        api_key=shared.SchemeAPIKey(
-            api_key="YOUR_API_KEY_HERE",
-        ),
+        api_key="YOUR_API_KEY_HERE",
     )
 )
    
@@ -58,7 +56,7 @@ if res.apis is not None:
 <!-- Start SDK Available Operations -->
 ## SDK Available Operations
 
-### SDK SDK
+### Speakeasy SDK
 
 * `validate_api_key` - Validate the current api key.
 

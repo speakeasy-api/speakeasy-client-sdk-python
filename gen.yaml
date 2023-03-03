@@ -5,8 +5,8 @@ management:
   speakeasyVersion: 1.7.1
 generation:
   telemetryEnabled: true
-  sdkClassName: SDK
-  sdkFlattening: false
+  sdkClassName: speakeasy
+  sdkFlattening: true
 python:
   version: 1.7.0
   author: Speakeasy

@@ -1,6 +1,6 @@
 from __future__ import annotations
 import dataclasses
-import requests
+import requests as requests_http
 from ..shared import api as shared_api
 from ..shared import error as shared_error
 from typing import Optional
@@ -34,5 +34,5 @@ class GetAllAPIVersionsResponse:
     status_code: int = dataclasses.field()
     apis: Optional[list[shared_api.API]] = dataclasses.field(default=None)
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
-    raw_response: Optional[requests.Response] = dataclasses.field(default=None)
+    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     

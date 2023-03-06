@@ -1,6 +1,6 @@
 from __future__ import annotations
 import dataclasses
-import requests
+import requests as requests_http
 from ..shared import boundedrequest as shared_boundedrequest
 from ..shared import error as shared_error
 from ..shared import filters as shared_filters
@@ -23,5 +23,5 @@ class QueryEventLogResponse:
     status_code: int = dataclasses.field()
     bounded_requests: Optional[list[shared_boundedrequest.BoundedRequest]] = dataclasses.field(default=None)
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
-    raw_response: Optional[requests.Response] = dataclasses.field(default=None)
+    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     

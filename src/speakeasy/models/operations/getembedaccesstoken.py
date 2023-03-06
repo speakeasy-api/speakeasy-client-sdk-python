@@ -1,6 +1,6 @@
 from __future__ import annotations
 import dataclasses
-import requests
+import requests as requests_http
 from ..shared import embedaccesstokenresponse as shared_embedaccesstokenresponse
 from ..shared import error as shared_error
 from ..shared import filters as shared_filters
@@ -25,5 +25,5 @@ class GetEmbedAccessTokenResponse:
     status_code: int = dataclasses.field()
     embed_access_token_response: Optional[shared_embedaccesstokenresponse.EmbedAccessTokenResponse] = dataclasses.field(default=None)
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
-    raw_response: Optional[requests.Response] = dataclasses.field(default=None)
+    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     

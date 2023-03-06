@@ -1,6 +1,6 @@
 __doc__ = """ SDK Documentation: The Speakeasy API allows teams to manage common operations with their APIs
 https://docs.speakeasyapi.dev - The Speakeasy Platform Documentation"""
-import requests
+import requests as requests_http
 from . import utils
 from .apiendpoints import APIEndpoints
 from .apis import Apis
@@ -28,17 +28,17 @@ class Speakeasy:
     requests: Requests
     schemas: Schemas
     
-    _client: requests.Session
-    _security_client: requests.Session
+    _client: requests_http.Session
+    _security_client: requests_http.Session
     _security: shared.Security
     _server_url: str = SERVERS[SERVER_PROD]
     _language: str = "python"
-    _sdk_version: str = "1.8.2"
-    _gen_version: str = "1.8.4"
+    _sdk_version: str = "1.8.3"
+    _gen_version: str = "1.8.5"
 
     def __init__(self) -> None:
-        self._client = requests.Session()
-        self._security_client = requests.Session()
+        self._client = requests_http.Session()
+        self._security_client = requests_http.Session()
         self._init_sdks()
 
     def config_server_url(self, server_url: str, params: dict[str, str] = None):
@@ -55,7 +55,7 @@ class Speakeasy:
         self.config_server_url(SERVERS[server], params)
         self._init_sdks()
 
-    def config_client(self, client: requests.Session):
+    def config_client(self, client: requests_http.Session):
         self._client = client
         
         if self._security is not None:

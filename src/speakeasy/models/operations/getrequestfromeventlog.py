@@ -7,13 +7,8 @@ from typing import Optional
 
 
 @dataclasses.dataclass
-class GetRequestFromEventLogPathParams:
-    request_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'requestID', 'style': 'simple', 'explode': False }})
-    
-
-@dataclasses.dataclass
 class GetRequestFromEventLogRequest:
-    path_params: GetRequestFromEventLogPathParams = dataclasses.field()
+    request_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'requestID', 'style': 'simple', 'explode': False }})
     
 
 @dataclasses.dataclass

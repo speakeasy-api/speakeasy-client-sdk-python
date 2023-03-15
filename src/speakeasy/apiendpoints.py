@@ -26,7 +26,7 @@ class APIEndpoints:
         
         base_url = self._server_url
         
-        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}', request.path_params)
+        url = utils.generate_url(operations.DeleteAPIEndpointRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}', request)
         
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
@@ -55,7 +55,7 @@ class APIEndpoints:
         
         base_url = self._server_url
         
-        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/find/{displayName}', request.path_params)
+        url = utils.generate_url(operations.FindAPIEndpointRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/find/{displayName}', request)
         
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
@@ -86,7 +86,7 @@ class APIEndpoints:
         
         base_url = self._server_url
         
-        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/openapi', request.path_params)
+        url = utils.generate_url(operations.GenerateOpenAPISpecForAPIEndpointRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/openapi', request)
         
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
@@ -116,7 +116,7 @@ class APIEndpoints:
         
         base_url = self._server_url
         
-        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/postman', request.path_params)
+        url = utils.generate_url(operations.GeneratePostmanCollectionForAPIEndpointRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/postman', request)
         
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
@@ -144,7 +144,7 @@ class APIEndpoints:
         
         base_url = self._server_url
         
-        url = utils.generate_url(base_url, '/v1/apis/{apiID}/api_endpoints', request.path_params)
+        url = utils.generate_url(operations.GetAllAPIEndpointsRequest, base_url, '/v1/apis/{apiID}/api_endpoints', request)
         
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
@@ -173,7 +173,7 @@ class APIEndpoints:
         
         base_url = self._server_url
         
-        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints', request.path_params)
+        url = utils.generate_url(operations.GetAllForVersionAPIEndpointsRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints', request)
         
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
@@ -202,7 +202,7 @@ class APIEndpoints:
         
         base_url = self._server_url
         
-        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}', request.path_params)
+        url = utils.generate_url(operations.GetAPIEndpointRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}', request)
         
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
@@ -232,10 +232,10 @@ class APIEndpoints:
         
         base_url = self._server_url
         
-        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}', request.path_params)
+        url = utils.generate_url(operations.UpsertAPIEndpointRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}', request)
         
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request)
+        req_content_type, data, form = utils.serialize_request_body(request, "api_endpoint_input", 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:

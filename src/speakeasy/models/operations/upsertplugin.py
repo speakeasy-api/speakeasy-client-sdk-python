@@ -7,11 +7,6 @@ from typing import Optional
 
 
 @dataclasses.dataclass
-class UpsertPluginRequest:
-    request: shared_plugin.Plugin = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
-    
-
-@dataclasses.dataclass
 class UpsertPluginResponse:
     content_type: str = dataclasses.field()
     status_code: int = dataclasses.field()

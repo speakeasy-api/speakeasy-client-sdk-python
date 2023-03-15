@@ -6,12 +6,6 @@ from typing import Optional
 
 
 @dataclasses.dataclass
-class RegisterSchemaPathParams:
-    api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
-    version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
-    
-
-@dataclasses.dataclass
 class RegisterSchemaRequestBodyFile:
     content: bytes = dataclasses.field(metadata={'multipart_form': { 'content': True }})
     file: str = dataclasses.field(metadata={'multipart_form': { 'field_name': 'file' }})
@@ -24,8 +18,9 @@ class RegisterSchemaRequestBody:
 
 @dataclasses.dataclass
 class RegisterSchemaRequest:
-    path_params: RegisterSchemaPathParams = dataclasses.field()
-    request: RegisterSchemaRequestBody = dataclasses.field(metadata={'request': { 'media_type': 'multipart/form-data' }})
+    api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
+    request_body: RegisterSchemaRequestBody = dataclasses.field(metadata={'request': { 'media_type': 'multipart/form-data' }})
+    version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
     
 
 @dataclasses.dataclass

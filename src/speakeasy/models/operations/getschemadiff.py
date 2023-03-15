@@ -7,16 +7,11 @@ from typing import Optional
 
 
 @dataclasses.dataclass
-class GetSchemaDiffPathParams:
+class GetSchemaDiffRequest:
     api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
     base_revision_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'baseRevisionID', 'style': 'simple', 'explode': False }})
     target_revision_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'targetRevisionID', 'style': 'simple', 'explode': False }})
     version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
-    
-
-@dataclasses.dataclass
-class GetSchemaDiffRequest:
-    path_params: GetSchemaDiffPathParams = dataclasses.field()
     
 
 @dataclasses.dataclass

@@ -8,15 +8,10 @@ from typing import Optional
 
 
 @dataclasses.dataclass
-class GetEmbedAccessTokenQueryParams:
+class GetEmbedAccessTokenRequest:
     description: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'description', 'style': 'form', 'explode': True }})
     duration: Optional[int] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'duration', 'style': 'form', 'explode': True }})
     filters: Optional[shared_filters.Filters] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'filters', 'serialization': 'json' }})
-    
-
-@dataclasses.dataclass
-class GetEmbedAccessTokenRequest:
-    query_params: GetEmbedAccessTokenQueryParams = dataclasses.field()
     
 
 @dataclasses.dataclass

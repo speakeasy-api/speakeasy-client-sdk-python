@@ -14,35 +14,33 @@ pip install speakeasy-client-sdk-python
 import speakeasy
 from speakeasy.models import operations, shared
 
-s = speakeasy.Speakeasy()
-s.config_security(
+s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="YOUR_API_KEY_HERE",
-    )
+    ),
 )
-   
+
+
 req = operations.GetApisRequest(
-    query_params=operations.GetApisQueryParams(
-        metadata={
-            "deserunt": [
-                "nulla",
-                "id",
-                "vero",
-            ],
-            "perspiciatis": [
-                "nihil",
-                "fuga",
-                "facilis",
-                "eum",
-            ],
-            "iusto": [
-                "saepe",
-                "inventore",
-            ],
-        },
-        op=operations.GetApisOp(
-            and_=False,
-        ),
+    metadata={
+        "deserunt": [
+            "nulla",
+            "id",
+            "vero",
+        ],
+        "perspiciatis": [
+            "nihil",
+            "fuga",
+            "facilis",
+            "eum",
+        ],
+        "iusto": [
+            "saepe",
+            "inventore",
+        ],
+    },
+    op=operations.GetApisOp(
+        and_=False,
     ),
 )
     

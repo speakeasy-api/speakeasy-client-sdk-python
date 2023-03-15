@@ -8,13 +8,8 @@ from typing import Optional
 
 
 @dataclasses.dataclass
-class QueryEventLogQueryParams:
-    filters: Optional[shared_filters.Filters] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'filters', 'serialization': 'json' }})
-    
-
-@dataclasses.dataclass
 class QueryEventLogRequest:
-    query_params: QueryEventLogQueryParams = dataclasses.field()
+    filters: Optional[shared_filters.Filters] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'filters', 'serialization': 'json' }})
     
 
 @dataclasses.dataclass

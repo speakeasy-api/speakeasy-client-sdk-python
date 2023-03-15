@@ -6,13 +6,8 @@ from typing import Optional
 
 
 @dataclasses.dataclass
-class RevokeEmbedAccessTokenPathParams:
-    token_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'tokenID', 'style': 'simple', 'explode': False }})
-    
-
-@dataclasses.dataclass
 class RevokeEmbedAccessTokenRequest:
-    path_params: RevokeEmbedAccessTokenPathParams = dataclasses.field()
+    token_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'tokenID', 'style': 'simple', 'explode': False }})
     
 
 @dataclasses.dataclass

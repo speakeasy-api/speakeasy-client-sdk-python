@@ -6,14 +6,9 @@ from typing import Optional
 
 
 @dataclasses.dataclass
-class DownloadSchemaPathParams:
+class DownloadSchemaRequest:
     api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
     version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
-    
-
-@dataclasses.dataclass
-class DownloadSchemaRequest:
-    path_params: DownloadSchemaPathParams = dataclasses.field()
     
 
 @dataclasses.dataclass

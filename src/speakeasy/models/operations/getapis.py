@@ -12,14 +12,9 @@ class GetApisOp:
     
 
 @dataclasses.dataclass
-class GetApisQueryParams:
+class GetApisRequest:
     metadata: Optional[dict[str, list[str]]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'metadata', 'style': 'deepObject', 'explode': True }})
     op: Optional[GetApisOp] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'op', 'style': 'deepObject', 'explode': True }})
-    
-
-@dataclasses.dataclass
-class GetApisRequest:
-    query_params: GetApisQueryParams = dataclasses.field()
     
 
 @dataclasses.dataclass

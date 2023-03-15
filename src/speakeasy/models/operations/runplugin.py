@@ -8,19 +8,9 @@ from typing import Optional
 
 
 @dataclasses.dataclass
-class RunPluginPathParams:
-    plugin_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'pluginID', 'style': 'simple', 'explode': False }})
-    
-
-@dataclasses.dataclass
-class RunPluginQueryParams:
-    filters: Optional[shared_filters.Filters] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'filters', 'serialization': 'json' }})
-    
-
-@dataclasses.dataclass
 class RunPluginRequest:
-    path_params: RunPluginPathParams = dataclasses.field()
-    query_params: RunPluginQueryParams = dataclasses.field()
+    plugin_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'pluginID', 'style': 'simple', 'explode': False }})
+    filters: Optional[shared_filters.Filters] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'filters', 'serialization': 'json' }})
     
 
 @dataclasses.dataclass

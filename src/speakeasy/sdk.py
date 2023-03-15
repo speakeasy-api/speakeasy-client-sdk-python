@@ -30,41 +30,36 @@ class Speakeasy:
     
     _client: requests_http.Session
     _security_client: requests_http.Session
-    _security: shared.Security
     _server_url: str = SERVERS[SERVER_PROD]
     _language: str = "python"
-    _sdk_version: str = "1.9.1"
-    _gen_version: str = "1.9.2"
+    _sdk_version: str = "1.10.0"
+    _gen_version: str = "1.11.0"
 
-    def __init__(self) -> None:
+    def __init__(self,
+                 security: shared.Security = None,
+                 server: str = None,
+                 server_url: str = None,
+                 url_params: dict[str, str] = None,
+                 client: requests_http.Session = None
+                 ) -> None:
         self._client = requests_http.Session()
-        self._security_client = requests_http.Session()
-        self._init_sdks()
-
-    def config_server_url(self, server_url: str, params: dict[str, str] = None):
-        if params is not None:
-            self._server_url = utils.template_url(server_url, params)
-        else:
-            self._server_url = server_url
-
-        self._init_sdks()
-    
-    def config_server(self, server: str, params: dict[str, str] = None):
-        if not server in SERVERS:
-            raise ValueError("Invalid server")
-        self.config_server_url(SERVERS[server], params)
-        self._init_sdks()
-
-    def config_client(self, client: requests_http.Session):
-        self._client = client
         
-        if self._security is not None:
-            self._security_client = utils.configure_security_client(self._client, self._security)
-        self._init_sdks()
-    
-    def config_security(self, security: shared.Security):
-        self._security = security
+        
+        if server is not None:
+            server_url = SERVERS[server]
+        
+        if server_url is not None:
+            if url_params is not None:
+                self._server_url = utils.template_url(server_url, url_params)
+            else:
+                self._server_url = server_url
+
+        if client is not None:
+            self._client = client
+        
         self._security_client = utils.configure_security_client(self._client, security)
+        
+
         self._init_sdks()
     
     def _init_sdks(self):

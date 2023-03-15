@@ -6,13 +6,8 @@ from typing import Optional
 
 
 @dataclasses.dataclass
-class GenerateRequestPostmanCollectionPathParams:
-    request_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'requestID', 'style': 'simple', 'explode': False }})
-    
-
-@dataclasses.dataclass
 class GenerateRequestPostmanCollectionRequest:
-    path_params: GenerateRequestPostmanCollectionPathParams = dataclasses.field()
+    request_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'requestID', 'style': 'simple', 'explode': False }})
     
 
 @dataclasses.dataclass

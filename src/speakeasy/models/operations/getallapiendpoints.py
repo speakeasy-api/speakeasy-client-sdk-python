@@ -7,13 +7,8 @@ from typing import Optional
 
 
 @dataclasses.dataclass
-class GetAllAPIEndpointsPathParams:
-    api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
-    
-
-@dataclasses.dataclass
 class GetAllAPIEndpointsRequest:
-    path_params: GetAllAPIEndpointsPathParams = dataclasses.field()
+    api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
     
 
 @dataclasses.dataclass

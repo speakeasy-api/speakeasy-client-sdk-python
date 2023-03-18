@@ -8,6 +8,10 @@ from typing import Optional
 
 @dataclasses.dataclass
 class GetApisOp:
+    r"""GetApisOp
+    Configuration for filter operations
+    """
+    
     and_: bool = dataclasses.field(metadata={'query_param': { 'field_name': 'and' }})
     
 

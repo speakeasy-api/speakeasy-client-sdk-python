@@ -65,8 +65,7 @@ class Schemas:
         
         if http_res.status_code == 200:
             if utils.match_content_type(content_type, 'application/json'):
-                out = utils.unmarshal_json(http_res.text, Optional[bytes])
-                res.schema = out
+                res.schema = http_res.content
             if utils.match_content_type(content_type, 'application/x-yaml'):
                 res.schema = http_res.content
         else:
@@ -94,8 +93,7 @@ class Schemas:
         
         if http_res.status_code == 200:
             if utils.match_content_type(content_type, 'application/json'):
-                out = utils.unmarshal_json(http_res.text, Optional[bytes])
-                res.schema = out
+                res.schema = http_res.content
             if utils.match_content_type(content_type, 'application/x-yaml'):
                 res.schema = http_res.content
         else:

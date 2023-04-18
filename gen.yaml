@@ -2,15 +2,14 @@ configVersion: 1.0.0
 management:
   docChecksum: 2bba3b8f9d211b02569b3f9aff0d34b4
   docVersion: 0.3.0
-  speakeasyVersion: 1.20.0
-  generationVersion: 2.18.0
+  speakeasyVersion: 1.20.1
+  generationVersion: 2.18.1
 generation:
   telemetryEnabled: true
   sdkClassName: speakeasy
-  sdkFlattening: false
   singleTagPerOp: false
 python:
-  version: 1.16.0
+  version: 1.16.1
   author: Speakeasy
   description: Speakeasy API Client SDK for Python
   packageName: speakeasy-client-sdk-python

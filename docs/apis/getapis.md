@@ -1,4 +1,10 @@
-<!-- Start SDK Example Usage -->
+# get_apis
+Available in: `apis`
+
+Get a list of all Apis and their versions for a given workspace.
+Supports filtering the APIs based on metadata attributes.
+
+## Example Usage
 ```python
 import speakeasy
 from speakeasy.models import operations
@@ -12,20 +18,14 @@ s = speakeasy.Speakeasy(
 
 req = operations.GetApisRequest(
     metadata={
-        "provident": [
-            "quibusdam",
-            "unde",
-            "nulla",
+        "esse": [
+            "excepturi",
         ],
-        "corrupti": [
-            "vel",
-            "error",
-            "deserunt",
-            "suscipit",
+        "aspernatur": [
+            "ad",
         ],
-        "iure": [
-            "debitis",
-            "ipsa",
+        "natus": [
+            "iste",
         ],
     },
     op=operations.GetApisOp(
@@ -38,4 +38,3 @@ res = s.apis.get_apis(req)
 if res.apis is not None:
     # handle response
 ```
-<!-- End SDK Example Usage -->

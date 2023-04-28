@@ -12,19 +12,26 @@ from typing import Optional
 class GetVersionMetadataRequest:
     
     api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
-    r"""The ID of the Api to retrieve metadata for."""  
+
+    r"""The ID of the Api to retrieve metadata for."""
     version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
-    r"""The version ID of the Api to retrieve metadata for."""  
+
+    r"""The version ID of the Api to retrieve metadata for."""
     
 
 @dataclasses.dataclass
 class GetVersionMetadataResponse:
     
-    content_type: str = dataclasses.field()  
-    status_code: int = dataclasses.field()  
+    content_type: str = dataclasses.field()
+
+    status_code: int = dataclasses.field()
+
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
-    r"""Default error response"""  
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)  
+
+    r"""Default error response"""
+    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+
     version_metadata: Optional[list[shared_versionmetadata.VersionMetadata]] = dataclasses.field(default=None)
-    r"""OK"""  
+
+    r"""OK"""
     

@@ -12,19 +12,26 @@ from typing import Optional
 class GenerateOpenAPISpecRequest:
     
     api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
-    r"""The ID of the Api to generate an OpenAPI specification for."""  
+
+    r"""The ID of the Api to generate an OpenAPI specification for."""
     version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
-    r"""The version ID of the Api to generate an OpenAPI specification for."""  
+
+    r"""The version ID of the Api to generate an OpenAPI specification for."""
     
 
 @dataclasses.dataclass
 class GenerateOpenAPISpecResponse:
     
-    content_type: str = dataclasses.field()  
-    status_code: int = dataclasses.field()  
+    content_type: str = dataclasses.field()
+
+    status_code: int = dataclasses.field()
+
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
-    r"""Default error response"""  
+
+    r"""Default error response"""
     generate_open_api_spec_diff: Optional[shared_generateopenapispecdiff.GenerateOpenAPISpecDiff] = dataclasses.field(default=None)
-    r"""OK"""  
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)  
+
+    r"""OK"""
+    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+
     

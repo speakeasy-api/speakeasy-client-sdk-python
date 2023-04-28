@@ -16,13 +16,17 @@ class APIInput:
     r"""An Api is representation of a API (a collection of API Endpoints) within the Speakeasy Platform."""
     
     api_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_id') }})
-    r"""The ID of this Api. This is a human-readable name (subject to change)."""  
+
+    r"""The ID of this Api. This is a human-readable name (subject to change)."""
     description: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('description') }})
-    r"""A detailed description of the Api."""  
+
+    r"""A detailed description of the Api."""
     version_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('version_id') }})
-    r"""The version ID of this Api. This is semantic version identifier."""  
+
+    r"""The version ID of this Api. This is semantic version identifier."""
     meta_data: Optional[dict[str, list[str]]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('meta_data'), 'exclude': lambda f: f is None }})
-    r"""A set of values associated with a meta_data key. This field is only set on get requests."""  
+
+    r"""A set of values associated with a meta_data key. This field is only set on get requests."""
     
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -31,19 +35,27 @@ class API:
     r"""An Api is representation of a API (a collection of API Endpoints) within the Speakeasy Platform."""
     
     api_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_id') }})
-    r"""The ID of this Api. This is a human-readable name (subject to change)."""  
+
+    r"""The ID of this Api. This is a human-readable name (subject to change)."""
     created_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('created_at'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
-    r"""Creation timestamp."""  
+
+    r"""Creation timestamp."""
     description: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('description') }})
-    r"""A detailed description of the Api."""  
+
+    r"""A detailed description of the Api."""
     updated_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('updated_at'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
-    r"""Last update timestamp."""  
+
+    r"""Last update timestamp."""
     version_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('version_id') }})
-    r"""The version ID of this Api. This is semantic version identifier."""  
+
+    r"""The version ID of this Api. This is semantic version identifier."""
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspace_id') }})
-    r"""The workspace ID this Api belongs to."""  
+
+    r"""The workspace ID this Api belongs to."""
     matched: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('matched'), 'exclude': lambda f: f is None }})
-    r"""Determines if all the endpoints within the Api are found in the OpenAPI spec associated with the Api."""  
+
+    r"""Determines if all the endpoints within the Api are found in the OpenAPI spec associated with the Api."""
     meta_data: Optional[dict[str, list[str]]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('meta_data'), 'exclude': lambda f: f is None }})
-    r"""A set of values associated with a meta_data key. This field is only set on get requests."""  
+
+    r"""A set of values associated with a meta_data key. This field is only set on get requests."""
     

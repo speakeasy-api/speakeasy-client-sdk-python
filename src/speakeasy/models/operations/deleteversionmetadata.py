@@ -11,21 +11,29 @@ from typing import Optional
 class DeleteVersionMetadataRequest:
     
     api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
-    r"""The ID of the Api to delete metadata for."""  
+
+    r"""The ID of the Api to delete metadata for."""
     meta_key: str = dataclasses.field(metadata={'path_param': { 'field_name': 'metaKey', 'style': 'simple', 'explode': False }})
-    r"""The key of the metadata to delete."""  
+
+    r"""The key of the metadata to delete."""
     meta_value: str = dataclasses.field(metadata={'path_param': { 'field_name': 'metaValue', 'style': 'simple', 'explode': False }})
-    r"""The value of the metadata to delete."""  
+
+    r"""The value of the metadata to delete."""
     version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
-    r"""The version ID of the Api to delete metadata for."""  
+
+    r"""The version ID of the Api to delete metadata for."""
     
 
 @dataclasses.dataclass
 class DeleteVersionMetadataResponse:
     
-    content_type: str = dataclasses.field()  
-    status_code: int = dataclasses.field()  
+    content_type: str = dataclasses.field()
+
+    status_code: int = dataclasses.field()
+
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
-    r"""Default error response"""  
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)  
+
+    r"""Default error response"""
+    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+
     

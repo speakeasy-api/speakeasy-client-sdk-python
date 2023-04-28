@@ -11,9 +11,11 @@ from speakeasy import utils
 class SchemaDiffValueChange:
     
     from_: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('From') }})
-    r"""Represents the previous value of the element."""  
+
+    r"""Represents the previous value of the element."""
     to: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('To') }})
-    r"""Represents the current value of the element."""  
+
+    r"""Represents the current value of the element."""
     
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -22,9 +24,12 @@ class SchemaDiff:
     r"""A SchemaDiff represents a diff of two Schemas."""
     
     additions: list[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('additions') }})
-    r"""Holds every addition change in the diff."""  
+
+    r"""Holds every addition change in the diff."""
     deletions: list[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletions') }})
-    r"""Holds every deletion change in the diff."""  
+
+    r"""Holds every deletion change in the diff."""
     modifications: dict[str, SchemaDiffValueChange] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('modifications') }})
-    r"""Holds every modification change in the diff."""  
+
+    r"""Holds every modification change in the diff."""
     

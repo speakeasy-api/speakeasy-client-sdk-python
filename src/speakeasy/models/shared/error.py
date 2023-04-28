@@ -12,7 +12,9 @@ class Error:
     r"""The `Status` type defines a logical error model"""
     
     message: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('message') }})
-    r"""A developer-facing error message."""  
+
+    r"""A developer-facing error message."""
     status_code: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('status_code') }})
-    r"""The HTTP status code"""  
+
+    r"""The HTTP status code"""
     

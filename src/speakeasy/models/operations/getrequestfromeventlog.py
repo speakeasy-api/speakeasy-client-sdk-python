@@ -12,17 +12,23 @@ from typing import Optional
 class GetRequestFromEventLogRequest:
     
     request_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'requestID', 'style': 'simple', 'explode': False }})
-    r"""The ID of the request to retrieve."""  
+
+    r"""The ID of the request to retrieve."""
     
 
 @dataclasses.dataclass
 class GetRequestFromEventLogResponse:
     
-    content_type: str = dataclasses.field()  
-    status_code: int = dataclasses.field()  
+    content_type: str = dataclasses.field()
+
+    status_code: int = dataclasses.field()
+
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
-    r"""Default error response"""  
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)  
+
+    r"""Default error response"""
+    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+
     unbounded_request: Optional[shared_unboundedrequest.UnboundedRequest] = dataclasses.field(default=None)
-    r"""OK"""  
+
+    r"""OK"""
     

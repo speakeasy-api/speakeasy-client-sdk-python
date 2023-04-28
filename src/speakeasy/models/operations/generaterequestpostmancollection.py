@@ -11,17 +11,23 @@ from typing import Optional
 class GenerateRequestPostmanCollectionRequest:
     
     request_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'requestID', 'style': 'simple', 'explode': False }})
-    r"""The ID of the request to retrieve."""  
+
+    r"""The ID of the request to retrieve."""
     
 
 @dataclasses.dataclass
 class GenerateRequestPostmanCollectionResponse:
     
-    content_type: str = dataclasses.field()  
-    status_code: int = dataclasses.field()  
+    content_type: str = dataclasses.field()
+
+    status_code: int = dataclasses.field()
+
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
-    r"""Default error response"""  
+
+    r"""Default error response"""
     postman_collection: Optional[bytes] = dataclasses.field(default=None)
-    r"""OK"""  
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)  
+
+    r"""OK"""
+    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+
     

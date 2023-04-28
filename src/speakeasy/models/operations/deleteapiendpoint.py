@@ -11,19 +11,26 @@ from typing import Optional
 class DeleteAPIEndpointRequest:
     
     api_endpoint_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiEndpointID', 'style': 'simple', 'explode': False }})
-    r"""The ID of the ApiEndpoint to delete."""  
+
+    r"""The ID of the ApiEndpoint to delete."""
     api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
-    r"""The ID of the Api the ApiEndpoint belongs to."""  
+
+    r"""The ID of the Api the ApiEndpoint belongs to."""
     version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
-    r"""The version ID of the Api the ApiEndpoint belongs to."""  
+
+    r"""The version ID of the Api the ApiEndpoint belongs to."""
     
 
 @dataclasses.dataclass
 class DeleteAPIEndpointResponse:
     
-    content_type: str = dataclasses.field()  
-    status_code: int = dataclasses.field()  
+    content_type: str = dataclasses.field()
+
+    status_code: int = dataclasses.field()
+
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
-    r"""Default error response"""  
-    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)  
+
+    r"""Default error response"""
+    raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+
     

@@ -12,10 +12,8 @@ from typing import Optional
 class UpsertAPIRequest:
     
     api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
-
     r"""The ID of the Api to upsert."""
     api_input: shared_api.APIInput = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
-
     r"""A JSON representation of the Api to upsert"""
     
 
@@ -23,15 +21,10 @@ class UpsertAPIRequest:
 class UpsertAPIResponse:
     
     content_type: str = dataclasses.field()
-
     status_code: int = dataclasses.field()
-
     api: Optional[shared_api.API] = dataclasses.field(default=None)
-
     r"""OK"""
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
-
     r"""Default error response"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-
     

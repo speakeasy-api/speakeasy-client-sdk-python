@@ -13,15 +13,11 @@ class Filters:
     r"""Filters are used to query requests."""
     
     filters: list[shared_filter.Filter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filters') }})
-
     r"""A list of filters to apply to the query."""
     limit: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('limit') }})
-
     r"""The maximum number of results to return."""
     offset: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('offset') }})
-
     r"""The offset to start the query from."""
     operator: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('operator') }})
-
     r"""The operator to use when combining filters."""
     

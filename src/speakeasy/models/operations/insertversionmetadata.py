@@ -12,13 +12,10 @@ from typing import Optional
 class InsertVersionMetadataRequest:
     
     api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
-
     r"""The ID of the Api to insert metadata for."""
     version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
-
     r"""The version ID of the Api to insert metadata for."""
     version_metadata_input: shared_versionmetadata.VersionMetadataInput = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
-
     r"""A JSON representation of the metadata to insert."""
     
 
@@ -26,15 +23,10 @@ class InsertVersionMetadataRequest:
 class InsertVersionMetadataResponse:
     
     content_type: str = dataclasses.field()
-
     status_code: int = dataclasses.field()
-
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
-
     r"""Default error response"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-
     version_metadata: Optional[shared_versionmetadata.VersionMetadata] = dataclasses.field(default=None)
-
     r"""OK"""
     

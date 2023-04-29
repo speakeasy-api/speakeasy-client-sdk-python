@@ -13,10 +13,8 @@ from typing import Optional
 class RunPluginRequest:
     
     plugin_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'pluginID', 'style': 'simple', 'explode': False }})
-
     r"""The ID of the plugin to run."""
     filters: Optional[shared_filters.Filters] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'filters', 'serialization': 'json' }})
-
     r"""The filter to apply to the query."""
     
 
@@ -24,15 +22,10 @@ class RunPluginRequest:
 class RunPluginResponse:
     
     content_type: str = dataclasses.field()
-
     status_code: int = dataclasses.field()
-
     bounded_requests: Optional[list[shared_boundedrequest.BoundedRequest]] = dataclasses.field(default=None)
-
     r"""OK"""
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
-
     r"""Default error response"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-
     

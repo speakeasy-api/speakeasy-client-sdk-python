@@ -16,22 +16,16 @@ class APIEndpointInput:
     r"""An ApiEndpoint is a description of an Endpoint for an API."""
     
     api_endpoint_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_endpoint_id') }})
-
     r"""The ID of this ApiEndpoint. This is a hash of the method and path."""
     description: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('description') }})
-
     r"""A detailed description of the ApiEndpoint."""
     display_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('display_name') }})
-
     r"""A human-readable name for the ApiEndpoint."""
     method: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
-
     r"""HTTP verb."""
     path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('path') }})
-
     r"""Path that handles this Api."""
     version_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('version_id') }})
-
     r"""The version ID of the Api this ApiEndpoint belongs to."""
     
 
@@ -41,36 +35,25 @@ class APIEndpoint:
     r"""An ApiEndpoint is a description of an Endpoint for an API."""
     
     api_endpoint_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_endpoint_id') }})
-
     r"""The ID of this ApiEndpoint. This is a hash of the method and path."""
     api_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_id') }})
-
     r"""The ID of the Api this ApiEndpoint belongs to."""
     created_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('created_at'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
-
     r"""Creation timestamp."""
     description: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('description') }})
-
     r"""A detailed description of the ApiEndpoint."""
     display_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('display_name') }})
-
     r"""A human-readable name for the ApiEndpoint."""
     method: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('method') }})
-
     r"""HTTP verb."""
     path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('path') }})
-
     r"""Path that handles this Api."""
     updated_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('updated_at'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
-
     r"""Last update timestamp."""
     version_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('version_id') }})
-
     r"""The version ID of the Api this ApiEndpoint belongs to."""
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspace_id') }})
-
     r"""The workspace ID this ApiEndpoint belongs to."""
     matched: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('matched'), 'exclude': lambda f: f is None }})
-
     r"""Determines if the endpoint was found in the OpenAPI spec associated with the parent Api."""
     

@@ -11,10 +11,8 @@ from typing import Optional
 class DownloadSchemaRequest:
     
     api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
-
     r"""The ID of the Api to download the schema for."""
     version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
-
     r"""The version ID of the Api to delete metadata for."""
     
 
@@ -22,15 +20,10 @@ class DownloadSchemaRequest:
 class DownloadSchemaResponse:
     
     content_type: str = dataclasses.field()
-
     status_code: int = dataclasses.field()
-
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
-
     r"""Default error response"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-
     schema: Optional[bytes] = dataclasses.field(default=None)
-
     r"""OK"""
     

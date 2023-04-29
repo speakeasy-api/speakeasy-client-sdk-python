@@ -11,9 +11,7 @@ from typing import Optional
 class RegisterSchemaRequestBodyFile:
     
     content: bytes = dataclasses.field(metadata={'multipart_form': { 'content': True }})
-
     file: str = dataclasses.field(metadata={'multipart_form': { 'field_name': 'file' }})
-
     
 
 @dataclasses.dataclass
@@ -21,20 +19,16 @@ class RegisterSchemaRequestBody:
     r"""The schema file to upload provided as a multipart/form-data file segment."""
     
     file: RegisterSchemaRequestBodyFile = dataclasses.field(metadata={'multipart_form': { 'file': True }})
-
     
 
 @dataclasses.dataclass
 class RegisterSchemaRequest:
     
     api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
-
     r"""The ID of the Api to get the schema for."""
     request_body: RegisterSchemaRequestBody = dataclasses.field(metadata={'request': { 'media_type': 'multipart/form-data' }})
-
     r"""The schema file to upload provided as a multipart/form-data file segment."""
     version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
-
     r"""The version ID of the Api to delete metadata for."""
     
 
@@ -42,12 +36,8 @@ class RegisterSchemaRequest:
 class RegisterSchemaResponse:
     
     content_type: str = dataclasses.field()
-
     status_code: int = dataclasses.field()
-
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
-
     r"""Default error response"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-
     

@@ -11,7 +11,6 @@ from typing import Optional
 class RevokeEmbedAccessTokenRequest:
     
     token_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'tokenID', 'style': 'simple', 'explode': False }})
-
     r"""The ID of the EmbedToken to revoke."""
     
 
@@ -19,12 +18,8 @@ class RevokeEmbedAccessTokenRequest:
 class RevokeEmbedAccessTokenResponse:
     
     content_type: str = dataclasses.field()
-
     status_code: int = dataclasses.field()
-
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
-
     r"""Default error response"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
-
     

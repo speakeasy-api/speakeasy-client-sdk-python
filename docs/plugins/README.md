@@ -54,16 +54,16 @@ req = operations.RunPluginRequest(
     filters=shared.Filters(
         filters=[
             shared.Filter(
-                key="repellat",
-                operator="mollitia",
-                value="occaecati",
+                key='repellat',
+                operator='mollitia',
+                value='occaecati',
             ),
         ],
         limit=253291,
         offset=414369,
-        operator="quam",
+        operator='quam',
     ),
-    plugin_id="molestiae",
+    plugin_id='molestiae',
 )
 
 res = s.plugins.run_plugin(req)
@@ -91,13 +91,13 @@ s = speakeasy.Speakeasy(
 
 
 req = shared.Plugin(
-    code="velit",
+    code='velit',
     created_at=dateutil.parser.isoparse('2022-09-06T22:51:09.401Z'),
-    eval_hash="quis",
-    plugin_id="vitae",
-    title="Miss",
+    eval_hash='quis',
+    plugin_id='vitae',
+    title='Miss',
     updated_at=dateutil.parser.isoparse('2022-05-14T10:37:30.872Z'),
-    workspace_id="odit",
+    workspace_id='odit',
 )
 
 res = s.plugins.upsert_plugin(req)

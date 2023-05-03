@@ -33,9 +33,9 @@ s = speakeasy.Speakeasy(
 
 
 req = operations.DeleteAPIEndpointRequest(
-    api_endpoint_id="delectus",
-    api_id="tempora",
-    version_id="suscipit",
+    api_endpoint_id='delectus',
+    api_id='tempora',
+    version_id='suscipit',
 )
 
 res = s.api_endpoints.delete_api_endpoint(req)
@@ -63,9 +63,9 @@ s = speakeasy.Speakeasy(
 
 
 req = operations.FindAPIEndpointRequest(
-    api_id="molestiae",
-    display_name="minus",
-    version_id="placeat",
+    api_id='molestiae',
+    display_name='minus',
+    version_id='placeat',
 )
 
 res = s.api_endpoints.find_api_endpoint(req)
@@ -93,9 +93,9 @@ s = speakeasy.Speakeasy(
 
 
 req = operations.GenerateOpenAPISpecForAPIEndpointRequest(
-    api_endpoint_id="voluptatum",
-    api_id="iusto",
-    version_id="excepturi",
+    api_endpoint_id='voluptatum',
+    api_id='iusto',
+    version_id='excepturi',
 )
 
 res = s.api_endpoints.generate_open_api_spec_for_api_endpoint(req)
@@ -122,9 +122,9 @@ s = speakeasy.Speakeasy(
 
 
 req = operations.GeneratePostmanCollectionForAPIEndpointRequest(
-    api_endpoint_id="nisi",
-    api_id="recusandae",
-    version_id="temporibus",
+    api_endpoint_id='nisi',
+    api_id='recusandae',
+    version_id='temporibus',
 )
 
 res = s.api_endpoints.generate_postman_collection_for_api_endpoint(req)
@@ -151,7 +151,7 @@ s = speakeasy.Speakeasy(
 
 
 req = operations.GetAllAPIEndpointsRequest(
-    api_id="ab",
+    api_id='ab',
 )
 
 res = s.api_endpoints.get_all_api_endpoints(req)
@@ -178,8 +178,8 @@ s = speakeasy.Speakeasy(
 
 
 req = operations.GetAllForVersionAPIEndpointsRequest(
-    api_id="quis",
-    version_id="veritatis",
+    api_id='quis',
+    version_id='veritatis',
 )
 
 res = s.api_endpoints.get_all_for_version_api_endpoints(req)
@@ -206,9 +206,9 @@ s = speakeasy.Speakeasy(
 
 
 req = operations.GetAPIEndpointRequest(
-    api_endpoint_id="deserunt",
-    api_id="perferendis",
-    version_id="ipsam",
+    api_endpoint_id='deserunt',
+    api_id='perferendis',
+    version_id='ipsam',
 )
 
 res = s.api_endpoints.get_api_endpoint(req)
@@ -236,16 +236,16 @@ s = speakeasy.Speakeasy(
 
 req = operations.UpsertAPIEndpointRequest(
     api_endpoint_input=shared.APIEndpointInput(
-        api_endpoint_id="repellendus",
-        description="sapiente",
-        display_name="quo",
-        method="odit",
-        path="at",
-        version_id="at",
+        api_endpoint_id='repellendus',
+        description='sapiente',
+        display_name='quo',
+        method='odit',
+        path='at',
+        version_id='at',
     ),
-    api_endpoint_id="maiores",
-    api_id="molestiae",
-    version_id="quod",
+    api_endpoint_id='maiores',
+    api_id='molestiae',
+    version_id='quod',
 )
 
 res = s.api_endpoints.upsert_api_endpoint(req)

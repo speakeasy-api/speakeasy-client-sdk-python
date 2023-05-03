@@ -29,19 +29,19 @@ s = speakeasy.Speakeasy(
 
 
 req = operations.GetEmbedAccessTokenRequest(
-    description="laborum",
+    description='laborum',
     duration=170909,
     filters=shared.Filters(
         filters=[
             shared.Filter(
-                key="corporis",
-                operator="explicabo",
-                value="nobis",
+                key='corporis',
+                operator='explicabo',
+                value='nobis',
             ),
         ],
         limit=315428,
         offset=607831,
-        operator="nemo",
+        operator='nemo',
     ),
 )
 
@@ -92,7 +92,7 @@ s = speakeasy.Speakeasy(
 
 
 req = operations.RevokeEmbedAccessTokenRequest(
-    token_id="minima",
+    token_id='minima',
 )
 
 res = s.embeds.revoke_embed_access_token(req)

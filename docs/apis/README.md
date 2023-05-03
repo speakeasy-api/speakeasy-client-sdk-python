@@ -31,8 +31,8 @@ s = speakeasy.Speakeasy(
 
 
 req = operations.DeleteAPIRequest(
-    api_id="quod",
-    version_id="esse",
+    api_id='quod',
+    version_id='esse',
 )
 
 res = s.apis.delete_api(req)
@@ -60,8 +60,8 @@ s = speakeasy.Speakeasy(
 
 
 req = operations.GenerateOpenAPISpecRequest(
-    api_id="totam",
-    version_id="porro",
+    api_id='totam',
+    version_id='porro',
 )
 
 res = s.apis.generate_open_api_spec(req)
@@ -88,8 +88,8 @@ s = speakeasy.Speakeasy(
 
 
 req = operations.GeneratePostmanCollectionRequest(
-    api_id="dolorum",
-    version_id="dicta",
+    api_id='dolorum',
+    version_id='dicta',
 )
 
 res = s.apis.generate_postman_collection(req)
@@ -117,19 +117,19 @@ s = speakeasy.Speakeasy(
 
 
 req = operations.GetAllAPIVersionsRequest(
-    api_id="nam",
+    api_id='nam',
     metadata={
         "occaecati": [
-            "deleniti",
+            'deleniti',
         ],
         "hic": [
-            "totam",
-            "beatae",
-            "commodi",
-            "molestiae",
+            'totam',
+            'beatae',
+            'commodi',
+            'molestiae',
         ],
         "modi": [
-            "impedit",
+            'impedit',
         ],
     },
     op=operations.GetAllAPIVersionsOp(
@@ -164,13 +164,13 @@ s = speakeasy.Speakeasy(
 req = operations.GetApisRequest(
     metadata={
         "esse": [
-            "excepturi",
+            'excepturi',
         ],
         "aspernatur": [
-            "ad",
+            'ad',
         ],
         "natus": [
-            "iste",
+            'iste',
         ],
     },
     op=operations.GetApisOp(
@@ -204,25 +204,25 @@ s = speakeasy.Speakeasy(
 
 req = operations.UpsertAPIRequest(
     api_input=shared.APIInput(
-        api_id="dolor",
-        description="natus",
+        api_id='dolor',
+        description='natus',
         meta_data={
             "hic": [
-                "fuga",
-                "in",
-                "corporis",
-                "iste",
+                'fuga',
+                'in',
+                'corporis',
+                'iste',
             ],
             "iure": [
-                "quidem",
-                "architecto",
-                "ipsa",
-                "reiciendis",
+                'quidem',
+                'architecto',
+                'ipsa',
+                'reiciendis',
             ],
         },
-        version_id="est",
+        version_id='est',
     ),
-    api_id="mollitia",
+    api_id='mollitia',
 )
 
 res = s.apis.upsert_api(req)

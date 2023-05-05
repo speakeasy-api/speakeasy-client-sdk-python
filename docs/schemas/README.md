@@ -31,7 +31,6 @@ s = speakeasy.Speakeasy(
     ),
 )
 
-
 req = operations.DeleteSchemaRequest(
     api_id='ipsa',
     revision_id='omnis',
@@ -60,7 +59,6 @@ s = speakeasy.Speakeasy(
     ),
 )
 
-
 req = operations.DownloadSchemaRequest(
     api_id='cum',
     version_id='perferendis',
@@ -87,7 +85,6 @@ s = speakeasy.Speakeasy(
         api_key="YOUR_API_KEY_HERE",
     ),
 )
-
 
 req = operations.DownloadSchemaRevisionRequest(
     api_id='doloremque',
@@ -118,7 +115,6 @@ s = speakeasy.Speakeasy(
     ),
 )
 
-
 req = operations.GetSchemaRequest(
     api_id='maiores',
     version_id='dicta',
@@ -145,7 +141,6 @@ s = speakeasy.Speakeasy(
         api_key="YOUR_API_KEY_HERE",
     ),
 )
-
 
 req = operations.GetSchemaDiffRequest(
     api_id='corporis',
@@ -177,7 +172,6 @@ s = speakeasy.Speakeasy(
     ),
 )
 
-
 req = operations.GetSchemaRevisionRequest(
     api_id='harum',
     revision_id='enim',
@@ -207,7 +201,6 @@ s = speakeasy.Speakeasy(
     ),
 )
 
-
 req = operations.GetSchemasRequest(
     api_id='commodi',
     version_id='repudiandae',
@@ -235,7 +228,6 @@ s = speakeasy.Speakeasy(
         api_key="YOUR_API_KEY_HERE",
     ),
 )
-
 
 req = operations.RegisterSchemaRequest(
     request_body=operations.RegisterSchemaRequestBody(

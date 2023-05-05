@@ -22,6 +22,7 @@ class Metadata:
         self._sdk_version = sdk_version
         self._gen_version = gen_version
         
+    
     def delete_version_metadata(self, request: operations.DeleteVersionMetadataRequest) -> operations.DeleteVersionMetadataResponse:
         r"""Delete metadata for a particular apiID and versionID."""
         base_url = self._server_url
@@ -47,6 +48,7 @@ class Metadata:
 
         return res
 
+    
     def get_version_metadata(self, request: operations.GetVersionMetadataRequest) -> operations.GetVersionMetadataResponse:
         r"""Get all metadata for a particular apiID and versionID."""
         base_url = self._server_url
@@ -74,6 +76,7 @@ class Metadata:
 
         return res
 
+    
     def insert_version_metadata(self, request: operations.InsertVersionMetadataRequest) -> operations.InsertVersionMetadataResponse:
         r"""Insert metadata for a particular apiID and versionID."""
         base_url = self._server_url

@@ -22,6 +22,7 @@ class Plugins:
         self._sdk_version = sdk_version
         self._gen_version = gen_version
         
+    
     def get_plugins(self) -> operations.GetPluginsResponse:
         r"""Get all plugins for the current workspace."""
         base_url = self._server_url
@@ -49,6 +50,7 @@ class Plugins:
 
         return res
 
+    
     def run_plugin(self, request: operations.RunPluginRequest) -> operations.RunPluginResponse:
         r"""Run a plugin"""
         base_url = self._server_url
@@ -77,6 +79,7 @@ class Plugins:
 
         return res
 
+    
     def upsert_plugin(self, request: shared.Plugin) -> operations.UpsertPluginResponse:
         r"""Upsert a plugin"""
         base_url = self._server_url

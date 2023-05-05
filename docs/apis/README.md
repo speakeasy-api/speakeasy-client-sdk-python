@@ -29,7 +29,6 @@ s = speakeasy.Speakeasy(
     ),
 )
 
-
 req = operations.DeleteAPIRequest(
     api_id='quod',
     version_id='esse',
@@ -58,7 +57,6 @@ s = speakeasy.Speakeasy(
     ),
 )
 
-
 req = operations.GenerateOpenAPISpecRequest(
     api_id='totam',
     version_id='porro',
@@ -85,7 +83,6 @@ s = speakeasy.Speakeasy(
         api_key="YOUR_API_KEY_HERE",
     ),
 )
-
 
 req = operations.GeneratePostmanCollectionRequest(
     api_id='dolorum',
@@ -114,7 +111,6 @@ s = speakeasy.Speakeasy(
         api_key="YOUR_API_KEY_HERE",
     ),
 )
-
 
 req = operations.GetAllAPIVersionsRequest(
     api_id='nam',
@@ -160,7 +156,6 @@ s = speakeasy.Speakeasy(
     ),
 )
 
-
 req = operations.GetApisRequest(
     metadata={
         "esse": [
@@ -200,7 +195,6 @@ s = speakeasy.Speakeasy(
         api_key="YOUR_API_KEY_HERE",
     ),
 )
-
 
 req = operations.UpsertAPIRequest(
     api_input=shared.APIInput(

@@ -27,7 +27,6 @@ s = speakeasy.Speakeasy(
     ),
 )
 
-
 req = operations.GenerateRequestPostmanCollectionRequest(
     request_id='quo',
 )
@@ -53,7 +52,6 @@ s = speakeasy.Speakeasy(
         api_key="YOUR_API_KEY_HERE",
     ),
 )
-
 
 req = operations.GetRequestFromEventLogRequest(
     request_id='sequi',
@@ -81,7 +79,6 @@ s = speakeasy.Speakeasy(
         api_key="YOUR_API_KEY_HERE",
     ),
 )
-
 
 req = operations.QueryEventLogRequest(
     filters=shared.Filters(

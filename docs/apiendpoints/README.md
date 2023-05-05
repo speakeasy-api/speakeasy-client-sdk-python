@@ -31,7 +31,6 @@ s = speakeasy.Speakeasy(
     ),
 )
 
-
 req = operations.DeleteAPIEndpointRequest(
     api_endpoint_id='delectus',
     api_id='tempora',
@@ -60,7 +59,6 @@ s = speakeasy.Speakeasy(
         api_key="YOUR_API_KEY_HERE",
     ),
 )
-
 
 req = operations.FindAPIEndpointRequest(
     api_id='molestiae',
@@ -91,7 +89,6 @@ s = speakeasy.Speakeasy(
     ),
 )
 
-
 req = operations.GenerateOpenAPISpecForAPIEndpointRequest(
     api_endpoint_id='voluptatum',
     api_id='iusto',
@@ -119,7 +116,6 @@ s = speakeasy.Speakeasy(
         api_key="YOUR_API_KEY_HERE",
     ),
 )
-
 
 req = operations.GeneratePostmanCollectionForAPIEndpointRequest(
     api_endpoint_id='nisi',
@@ -149,7 +145,6 @@ s = speakeasy.Speakeasy(
     ),
 )
 
-
 req = operations.GetAllAPIEndpointsRequest(
     api_id='ab',
 )
@@ -175,7 +170,6 @@ s = speakeasy.Speakeasy(
         api_key="YOUR_API_KEY_HERE",
     ),
 )
-
 
 req = operations.GetAllForVersionAPIEndpointsRequest(
     api_id='quis',
@@ -204,7 +198,6 @@ s = speakeasy.Speakeasy(
     ),
 )
 
-
 req = operations.GetAPIEndpointRequest(
     api_endpoint_id='deserunt',
     api_id='perferendis',
@@ -232,7 +225,6 @@ s = speakeasy.Speakeasy(
         api_key="YOUR_API_KEY_HERE",
     ),
 )
-
 
 req = operations.UpsertAPIEndpointRequest(
     api_endpoint_input=shared.APIEndpointInput(

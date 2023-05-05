@@ -22,6 +22,7 @@ class Schemas:
         self._sdk_version = sdk_version
         self._gen_version = gen_version
         
+    
     def delete_schema(self, request: operations.DeleteSchemaRequest) -> operations.DeleteSchemaResponse:
         r"""Delete a particular schema revision for an Api."""
         base_url = self._server_url
@@ -47,6 +48,7 @@ class Schemas:
 
         return res
 
+    
     def download_schema(self, request: operations.DownloadSchemaRequest) -> operations.DownloadSchemaResponse:
         r"""Download the latest schema for a particular apiID."""
         base_url = self._server_url
@@ -75,6 +77,7 @@ class Schemas:
 
         return res
 
+    
     def download_schema_revision(self, request: operations.DownloadSchemaRevisionRequest) -> operations.DownloadSchemaRevisionResponse:
         r"""Download a particular schema revision for an Api."""
         base_url = self._server_url
@@ -103,6 +106,7 @@ class Schemas:
 
         return res
 
+    
     def get_schema(self, request: operations.GetSchemaRequest) -> operations.GetSchemaResponse:
         r"""Get information about the latest schema.
         Returns information about the last uploaded schema for a particular API version. 
@@ -133,6 +137,7 @@ class Schemas:
 
         return res
 
+    
     def get_schema_diff(self, request: operations.GetSchemaDiffRequest) -> operations.GetSchemaDiffResponse:
         r"""Get a diff of two schema revisions for an Api."""
         base_url = self._server_url
@@ -160,6 +165,7 @@ class Schemas:
 
         return res
 
+    
     def get_schema_revision(self, request: operations.GetSchemaRevisionRequest) -> operations.GetSchemaRevisionResponse:
         r"""Get information about a particular schema revision for an Api.
         Returns information about the last uploaded schema for a particular schema revision. 
@@ -190,6 +196,7 @@ class Schemas:
 
         return res
 
+    
     def get_schemas(self, request: operations.GetSchemasRequest) -> operations.GetSchemasResponse:
         r"""Get information about all schemas associated with a particular apiID.
         Returns information the schemas associated with a particular apiID. 
@@ -220,6 +227,7 @@ class Schemas:
 
         return res
 
+    
     def register_schema(self, request: operations.RegisterSchemaRequest) -> operations.RegisterSchemaResponse:
         r"""Register a schema.
         Allows uploading a schema for a particular API version.

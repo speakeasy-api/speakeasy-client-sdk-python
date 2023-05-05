@@ -26,7 +26,6 @@ s = speakeasy.Speakeasy(
     ),
 )
 
-
 req = operations.DeleteVersionMetadataRequest(
     api_id='excepturi',
     meta_key='accusantium',
@@ -56,7 +55,6 @@ s = speakeasy.Speakeasy(
     ),
 )
 
-
 req = operations.GetVersionMetadataRequest(
     api_id='doloribus',
     version_id='sapiente',
@@ -83,7 +81,6 @@ s = speakeasy.Speakeasy(
         api_key="YOUR_API_KEY_HERE",
     ),
 )
-
 
 req = operations.InsertVersionMetadataRequest(
     version_metadata_input=shared.VersionMetadataInput(

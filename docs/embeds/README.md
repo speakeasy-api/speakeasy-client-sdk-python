@@ -27,7 +27,6 @@ s = speakeasy.Speakeasy(
     ),
 )
 
-
 req = operations.GetEmbedAccessTokenRequest(
     description='laborum',
     duration=170909,
@@ -89,7 +88,6 @@ s = speakeasy.Speakeasy(
         api_key="YOUR_API_KEY_HERE",
     ),
 )
-
 
 req = operations.RevokeEmbedAccessTokenRequest(
     token_id='minima',

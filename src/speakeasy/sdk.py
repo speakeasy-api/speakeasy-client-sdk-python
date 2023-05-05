@@ -41,8 +41,8 @@ class Speakeasy:
     _security_client: requests_http.Session
     _server_url: str = SERVERS[SERVER_PROD]
     _language: str = "python"
-    _sdk_version: str = "1.22.0"
-    _gen_version: str = "2.24.0"
+    _sdk_version: str = "1.23.0"
+    _gen_version: str = "2.26.0"
 
     def __init__(self,
                  security: shared.Security = None,
@@ -148,6 +148,7 @@ class Speakeasy:
             self._gen_version
         )
         
+    
     def validate_api_key(self) -> operations.ValidateAPIKeyResponse:
         r"""Validate the current api key."""
         base_url = self._server_url

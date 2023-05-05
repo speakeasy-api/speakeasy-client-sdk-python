@@ -22,6 +22,7 @@ class Embeds:
         self._sdk_version = sdk_version
         self._gen_version = gen_version
         
+    
     def get_embed_access_token(self, request: operations.GetEmbedAccessTokenRequest) -> operations.GetEmbedAccessTokenResponse:
         r"""Get an embed access token for the current workspace.
         Returns an embed access token for the current workspace. This can be used to authenticate access to externally embedded content.
@@ -53,6 +54,7 @@ class Embeds:
 
         return res
 
+    
     def get_valid_embed_access_tokens(self) -> operations.GetValidEmbedAccessTokensResponse:
         r"""Get all valid embed access tokens for the current workspace."""
         base_url = self._server_url
@@ -80,6 +82,7 @@ class Embeds:
 
         return res
 
+    
     def revoke_embed_access_token(self, request: operations.RevokeEmbedAccessTokenRequest) -> operations.RevokeEmbedAccessTokenResponse:
         r"""Revoke an embed access EmbedToken."""
         base_url = self._server_url

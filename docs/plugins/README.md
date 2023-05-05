@@ -49,7 +49,6 @@ s = speakeasy.Speakeasy(
     ),
 )
 
-
 req = operations.RunPluginRequest(
     filters=shared.Filters(
         filters=[
@@ -88,7 +87,6 @@ s = speakeasy.Speakeasy(
         api_key="YOUR_API_KEY_HERE",
     ),
 )
-
 
 req = shared.Plugin(
     code='velit',

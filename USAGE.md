@@ -9,7 +9,6 @@ s = speakeasy.Speakeasy(
     ),
 )
 
-
 req = operations.GetApisRequest(
     metadata={
         "provident": [

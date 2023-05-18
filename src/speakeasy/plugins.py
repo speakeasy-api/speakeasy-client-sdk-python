@@ -28,7 +28,6 @@ class Plugins:
         base_url = self._server_url
         
         url = base_url.removesuffix('/') + '/v1/plugins'
-        
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
@@ -56,7 +55,6 @@ class Plugins:
         base_url = self._server_url
         
         url = utils.generate_url(operations.RunPluginRequest, base_url, '/v1/plugins/{pluginID}', request)
-        
         headers = {}
         query_params = utils.get_query_params(operations.RunPluginRequest, request)
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
@@ -85,7 +83,6 @@ class Plugins:
         base_url = self._server_url
         
         url = base_url.removesuffix('/') + '/v1/plugins'
-        
         headers = {}
         req_content_type, data, form = utils.serialize_request_body(request, "request", 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):

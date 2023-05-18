@@ -30,7 +30,6 @@ class Apis:
         base_url = self._server_url
         
         url = utils.generate_url(operations.DeleteAPIRequest, base_url, '/v1/apis/{apiID}/version/{versionID}', request)
-        
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
@@ -59,7 +58,6 @@ class Apis:
         base_url = self._server_url
         
         url = utils.generate_url(operations.GenerateOpenAPISpecRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/generate/openapi', request)
-        
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
@@ -89,7 +87,6 @@ class Apis:
         base_url = self._server_url
         
         url = utils.generate_url(operations.GeneratePostmanCollectionRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/generate/postman', request)
-        
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
@@ -119,7 +116,6 @@ class Apis:
         base_url = self._server_url
         
         url = utils.generate_url(operations.GetAllAPIVersionsRequest, base_url, '/v1/apis/{apiID}', request)
-        
         headers = {}
         query_params = utils.get_query_params(operations.GetAllAPIVersionsRequest, request)
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
@@ -151,7 +147,6 @@ class Apis:
         base_url = self._server_url
         
         url = base_url.removesuffix('/') + '/v1/apis'
-        
         headers = {}
         query_params = utils.get_query_params(operations.GetApisRequest, request)
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
@@ -183,7 +178,6 @@ class Apis:
         base_url = self._server_url
         
         url = utils.generate_url(operations.UpsertAPIRequest, base_url, '/v1/apis/{apiID}', request)
-        
         headers = {}
         req_content_type, data, form = utils.serialize_request_body(request, "api_input", 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):

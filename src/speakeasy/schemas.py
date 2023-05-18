@@ -28,7 +28,6 @@ class Schemas:
         base_url = self._server_url
         
         url = utils.generate_url(operations.DeleteSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}', request)
-        
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
@@ -54,7 +53,6 @@ class Schemas:
         base_url = self._server_url
         
         url = utils.generate_url(operations.DownloadSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/download', request)
-        
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
@@ -83,7 +81,6 @@ class Schemas:
         base_url = self._server_url
         
         url = utils.generate_url(operations.DownloadSchemaRevisionRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}/download', request)
-        
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
@@ -115,7 +112,6 @@ class Schemas:
         base_url = self._server_url
         
         url = utils.generate_url(operations.GetSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema', request)
-        
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
@@ -143,7 +139,6 @@ class Schemas:
         base_url = self._server_url
         
         url = utils.generate_url(operations.GetSchemaDiffRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{baseRevisionID}/diff/{targetRevisionID}', request)
-        
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
@@ -174,7 +169,6 @@ class Schemas:
         base_url = self._server_url
         
         url = utils.generate_url(operations.GetSchemaRevisionRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}', request)
-        
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
@@ -205,7 +199,6 @@ class Schemas:
         base_url = self._server_url
         
         url = utils.generate_url(operations.GetSchemasRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schemas', request)
-        
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
@@ -236,7 +229,6 @@ class Schemas:
         base_url = self._server_url
         
         url = utils.generate_url(operations.RegisterSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema', request)
-        
         headers = {}
         req_content_type, data, form = utils.serialize_request_body(request, "request_body", 'multipart')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):

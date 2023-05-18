@@ -28,7 +28,6 @@ class Metadata:
         base_url = self._server_url
         
         url = utils.generate_url(operations.DeleteVersionMetadataRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/metadata/{metaKey}/{metaValue}', request)
-        
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
@@ -54,7 +53,6 @@ class Metadata:
         base_url = self._server_url
         
         url = utils.generate_url(operations.GetVersionMetadataRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/metadata', request)
-        
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
@@ -82,7 +80,6 @@ class Metadata:
         base_url = self._server_url
         
         url = utils.generate_url(operations.InsertVersionMetadataRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/metadata', request)
-        
         headers = {}
         req_content_type, data, form = utils.serialize_request_body(request, "version_metadata_input", 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):

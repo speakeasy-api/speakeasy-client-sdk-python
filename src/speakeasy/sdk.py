@@ -41,8 +41,8 @@ class Speakeasy:
     _security_client: requests_http.Session
     _server_url: str = SERVERS[SERVER_PROD]
     _language: str = "python"
-    _sdk_version: str = "1.26.0"
-    _gen_version: str = "2.29.0"
+    _sdk_version: str = "1.27.0"
+    _gen_version: str = "2.30.0"
 
     def __init__(self,
                  security: shared.Security = None,
@@ -154,7 +154,6 @@ class Speakeasy:
         base_url = self._server_url
         
         url = base_url.removesuffix('/') + '/v1/auth/validate'
-        
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         

@@ -31,7 +31,6 @@ class Embeds:
         base_url = self._server_url
         
         url = base_url.removesuffix('/') + '/v1/workspace/embed-access-token'
-        
         headers = {}
         query_params = utils.get_query_params(operations.GetEmbedAccessTokenRequest, request)
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
@@ -60,7 +59,6 @@ class Embeds:
         base_url = self._server_url
         
         url = base_url.removesuffix('/') + '/v1/workspace/embed-access-tokens/valid'
-        
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
@@ -88,7 +86,6 @@ class Embeds:
         base_url = self._server_url
         
         url = utils.generate_url(operations.RevokeEmbedAccessTokenRequest, base_url, '/v1/workspace/embed-access-tokens/{tokenID}', request)
-        
         headers = {}
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         

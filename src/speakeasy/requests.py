@@ -32,6 +32,7 @@ class Requests:
         
         url = utils.generate_url(operations.GenerateRequestPostmanCollectionRequest, base_url, '/v1/eventlog/{requestID}/generate/postman', request)
         headers = {}
+        headers['Accept'] = 'application/json;q=1, application/octet-stream;q=0'
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
@@ -58,6 +59,7 @@ class Requests:
         
         url = utils.generate_url(operations.GetRequestFromEventLogRequest, base_url, '/v1/eventlog/{requestID}', request)
         headers = {}
+        headers['Accept'] = 'application/json;q=1, application/json;q=0'
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client
@@ -89,6 +91,7 @@ class Requests:
         url = base_url.removesuffix('/') + '/v1/eventlog/query'
         headers = {}
         query_params = utils.get_query_params(operations.QueryEventLogRequest, request)
+        headers['Accept'] = 'application/json;q=1, application/json;q=0'
         headers['user-agent'] = f'speakeasy-sdk/{self._language} {self._sdk_version} {self._gen_version}'
         
         client = self._security_client

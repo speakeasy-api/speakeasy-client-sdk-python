@@ -9,7 +9,7 @@ generation:
   singleTagPerOp: false
   telemetryEnabled: true
 python:
-  version: 1.29.2
+  version: 1.29.3
   author: Speakeasy
   description: Speakeasy API Client SDK for Python
   maxMethodParams: 0

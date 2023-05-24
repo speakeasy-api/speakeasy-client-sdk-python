@@ -2,14 +2,14 @@ configVersion: 1.0.0
 management:
   docChecksum: 2bba3b8f9d211b02569b3f9aff0d34b4
   docVersion: 0.3.0
-  speakeasyVersion: 1.37.5
+  speakeasyVersion: 1.37.11
   generationVersion: 2.32.2
 generation:
   sdkClassName: speakeasy
   singleTagPerOp: false
   telemetryEnabled: true
 python:
-  version: 1.29.0
+  version: 1.29.1
   author: Speakeasy
   description: Speakeasy API Client SDK for Python
   maxMethodParams: 0

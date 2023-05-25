@@ -41,7 +41,7 @@ class Speakeasy:
     _security_client: requests_http.Session
     _server_url: str = SERVERS[SERVER_PROD]
     _language: str = "python"
-    _sdk_version: str = "1.29.6"
+    _sdk_version: str = "1.29.7"
     _gen_version: str = "2.32.2"
 
     def __init__(self,

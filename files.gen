@@ -1,3 +1,4 @@
+src/speakeasy/sdkconfiguration.py
 src/speakeasy/apiendpoints.py
 src/speakeasy/apis.py
 src/speakeasy/embeds.py

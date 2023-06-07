@@ -14,7 +14,7 @@ from speakeasy.models import operations, shared
 from typing import Optional
 
 class Speakeasy:
-    r"""The Speakeasy API allows teams to manage common operations with their APIs
+    r"""Speakeasy API: The Speakeasy API allows teams to manage common operations with their APIs
     https://docs.speakeasyapi.dev - The Speakeasy Platform Documentation
     """
     api_endpoints: APIEndpoints

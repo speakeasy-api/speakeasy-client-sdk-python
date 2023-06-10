@@ -8,9 +8,9 @@ from ..shared import error as shared_error
 from typing import Optional
 
 
+
 @dataclasses.dataclass
 class UpsertAPIEndpointRequest:
-    
     api_endpoint_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiEndpointID', 'style': 'simple', 'explode': False }})
     r"""The ID of the ApiEndpoint to upsert."""
     api_endpoint_input: shared_apiendpoint.APIEndpointInput = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
@@ -21,9 +21,11 @@ class UpsertAPIEndpointRequest:
     r"""The version ID of the Api the ApiEndpoint belongs to."""
     
 
+
+
+
 @dataclasses.dataclass
 class UpsertAPIEndpointResponse:
-    
     content_type: str = dataclasses.field()
     status_code: int = dataclasses.field()
     api_endpoint: Optional[shared_apiendpoint.APIEndpoint] = dataclasses.field(default=None)
@@ -32,3 +34,4 @@ class UpsertAPIEndpointResponse:
     r"""Default error response"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     
+

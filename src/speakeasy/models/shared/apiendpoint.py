@@ -11,10 +11,10 @@ from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class APIEndpointInput:
     r"""An ApiEndpoint is a description of an Endpoint for an API."""
-    
     api_endpoint_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_endpoint_id') }})
     r"""The ID of this ApiEndpoint. This is a hash of the method and path."""
     description: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('description') }})
@@ -29,11 +29,13 @@ class APIEndpointInput:
     r"""The version ID of the Api this ApiEndpoint belongs to."""
     
 
+
+
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class APIEndpoint:
     r"""An ApiEndpoint is a description of an Endpoint for an API."""
-    
     api_endpoint_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_endpoint_id') }})
     r"""The ID of this ApiEndpoint. This is a hash of the method and path."""
     api_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_id') }})
@@ -57,3 +59,4 @@ class APIEndpoint:
     matched: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('matched'), 'exclude': lambda f: f is None }})
     r"""Determines if the endpoint was found in the OpenAPI spec associated with the parent Api."""
     
+

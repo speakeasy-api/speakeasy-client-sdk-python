@@ -1,0 +1,23 @@
+# BoundedRequest
+
+A BoundedRequest is a request that has been logged by the Speakeasy without the contents of the request.
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `api_endpoint_id`                                                    | *str*                                                                | :heavy_check_mark:                                                   | The ID of the ApiEndpoint this request was made to.                  |
+| `api_id`                                                             | *str*                                                                | :heavy_check_mark:                                                   | The ID of the Api this request was made to.                          |
+| `created_at`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | Creation timestamp.                                                  |
+| `customer_id`                                                        | *str*                                                                | :heavy_check_mark:                                                   | The ID of the customer that made this request.                       |
+| `latency`                                                            | *int*                                                                | :heavy_check_mark:                                                   | The latency of the request.                                          |
+| `metadata`                                                           | list[[RequestMetadata](../../models/shared/requestmetadata.md)]      | :heavy_minus_sign:                                                   | Metadata associated with this request                                |
+| `method`                                                             | *str*                                                                | :heavy_check_mark:                                                   | HTTP verb.                                                           |
+| `path`                                                               | *str*                                                                | :heavy_check_mark:                                                   | The path of the request.                                             |
+| `request_finish_time`                                                | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | The time the request finished.                                       |
+| `request_id`                                                         | *str*                                                                | :heavy_check_mark:                                                   | The ID of this request.                                              |
+| `request_start_time`                                                 | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | The time the request was made.                                       |
+| `status`                                                             | *int*                                                                | :heavy_check_mark:                                                   | The status code of the request.                                      |
+| `version_id`                                                         | *str*                                                                | :heavy_check_mark:                                                   | The version ID of the Api this request was made to.                  |
+| `workspace_id`                                                       | *str*                                                                | :heavy_check_mark:                                                   | The workspace ID this request was made to.                           |

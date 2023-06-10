@@ -12,10 +12,10 @@ from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class BoundedRequest:
     r"""A BoundedRequest is a request that has been logged by the Speakeasy without the contents of the request."""
-    
     api_endpoint_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_endpoint_id') }})
     r"""The ID of the ApiEndpoint this request was made to."""
     api_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_id') }})
@@ -45,3 +45,4 @@ class BoundedRequest:
     metadata: Optional[list[shared_requestmetadata.RequestMetadata]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata'), 'exclude': lambda f: f is None }})
     r"""Metadata associated with this request"""
     
+

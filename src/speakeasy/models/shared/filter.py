@@ -7,10 +7,10 @@ from speakeasy import utils
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class Filter:
     r"""A filter is a key-value pair that can be used to filter a list of requests."""
-    
     key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('key') }})
     r"""The key of the filter."""
     operator: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('operator') }})
@@ -18,3 +18,4 @@ class Filter:
     value: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('value') }})
     r"""The value of the filter."""
     
+

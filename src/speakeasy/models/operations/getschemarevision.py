@@ -8,9 +8,9 @@ from ..shared import schema as shared_schema
 from typing import Optional
 
 
+
 @dataclasses.dataclass
 class GetSchemaRevisionRequest:
-    
     api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
     r"""The ID of the Api to retrieve schemas for."""
     revision_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'revisionID', 'style': 'simple', 'explode': False }})
@@ -19,9 +19,11 @@ class GetSchemaRevisionRequest:
     r"""The version ID of the Api to delete metadata for."""
     
 
+
+
+
 @dataclasses.dataclass
 class GetSchemaRevisionResponse:
-    
     content_type: str = dataclasses.field()
     status_code: int = dataclasses.field()
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
@@ -30,3 +32,4 @@ class GetSchemaRevisionResponse:
     schema: Optional[shared_schema.Schema] = dataclasses.field(default=None)
     r"""OK"""
     
+

@@ -8,10 +8,10 @@ from speakeasy import utils
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class Filters:
     r"""Filters are used to query requests."""
-    
     filters: list[shared_filter.Filter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filters') }})
     r"""A list of filters to apply to the query."""
     limit: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('limit') }})
@@ -21,3 +21,4 @@ class Filters:
     operator: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('operator') }})
     r"""The operator to use when combining filters."""
     
+

@@ -8,9 +8,9 @@ from ..shared import versionmetadata as shared_versionmetadata
 from typing import Optional
 
 
+
 @dataclasses.dataclass
 class InsertVersionMetadataRequest:
-    
     api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
     r"""The ID of the Api to insert metadata for."""
     version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
@@ -19,9 +19,11 @@ class InsertVersionMetadataRequest:
     r"""A JSON representation of the metadata to insert."""
     
 
+
+
+
 @dataclasses.dataclass
 class InsertVersionMetadataResponse:
-    
     content_type: str = dataclasses.field()
     status_code: int = dataclasses.field()
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
@@ -30,3 +32,4 @@ class InsertVersionMetadataResponse:
     version_metadata: Optional[shared_versionmetadata.VersionMetadata] = dataclasses.field(default=None)
     r"""OK"""
     
+

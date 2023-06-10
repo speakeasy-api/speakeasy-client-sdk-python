@@ -7,10 +7,11 @@ from speakeasy import utils
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class GenerateOpenAPISpecDiff:
     r"""OK"""
-    
     current_schema: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('current_schema') }})
     new_schema: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('new_schema') }})
     
+

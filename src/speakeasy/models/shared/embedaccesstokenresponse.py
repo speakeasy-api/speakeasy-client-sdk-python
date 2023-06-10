@@ -7,9 +7,10 @@ from speakeasy import utils
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
 class EmbedAccessTokenResponse:
     r"""An EmbedAccessTokenResponse contains a token that can be used to embed a Speakeasy dashboard."""
-    
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     
+

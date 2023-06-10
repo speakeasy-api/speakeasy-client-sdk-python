@@ -8,26 +8,30 @@ from ..shared import error as shared_error
 from typing import Optional
 
 
+
 @dataclasses.dataclass
 class GetApisOp:
     r"""Configuration for filter operations"""
-    
     and_: bool = dataclasses.field(metadata={'query_param': { 'field_name': 'and' }})
     r"""Whether to AND or OR the filters"""
     
 
+
+
+
 @dataclasses.dataclass
 class GetApisRequest:
-    
     metadata: Optional[dict[str, list[str]]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'metadata', 'style': 'deepObject', 'explode': True }})
     r"""Metadata to filter Apis on"""
     op: Optional[GetApisOp] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'op', 'style': 'deepObject', 'explode': True }})
     r"""Configuration for filter operations"""
     
 
+
+
+
 @dataclasses.dataclass
 class GetApisResponse:
-    
     content_type: str = dataclasses.field()
     status_code: int = dataclasses.field()
     apis: Optional[list[shared_api.API]] = dataclasses.field(default=None)
@@ -36,3 +40,4 @@ class GetApisResponse:
     r"""Default error response"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     
+

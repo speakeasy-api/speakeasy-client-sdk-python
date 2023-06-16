@@ -7,7 +7,6 @@ src/speakeasy/plugins.py
 src/speakeasy/requests.py
 src/speakeasy/schemas.py
 src/speakeasy/sdk.py
-.gitignore
 pylintrc
 setup.py
 src/speakeasy/__init__.py

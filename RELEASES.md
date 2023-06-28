@@ -615,3 +615,11 @@ Based on:
 - Speakeasy CLI 1.51.1 (2.50.2) https://github.com/speakeasy-api/speakeasy
 ### Releases
 - [PyPI v1.37.0] https://pypi.org/project/speakeasy-client-sdk-python/1.37.0 - .
+
+## 2023-06-28 00:12:17
+### Changes
+Based on:
+- OpenAPI Doc 0.3.0 https://docs.speakeasyapi.dev/openapi.yaml
+- Speakeasy CLI 1.51.1 (2.50.2) https://github.com/speakeasy-api/speakeasy
+### Releases
+- [PyPI v1.37.1] https://pypi.org/project/speakeasy-client-sdk-python/1.37.1 - .

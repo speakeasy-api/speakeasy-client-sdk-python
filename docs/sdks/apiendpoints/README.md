@@ -23,7 +23,7 @@ Delete an ApiEndpoint. This will also delete all associated Request Logs (if usi
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -64,7 +64,7 @@ This is useful for finding the ID of an ApiEndpoint to use in the /v1/apis/{apiI
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -105,7 +105,7 @@ Returns the original document and the newly generated document allowing a diff t
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -145,7 +145,7 @@ Generates a postman collection that allows the endpoint to be called from postma
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -185,7 +185,7 @@ Get all Api endpoints for a particular apiID.
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -223,7 +223,7 @@ Get all ApiEndpoints for a particular apiID and versionID.
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -262,7 +262,7 @@ Get an ApiEndpoint.
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(

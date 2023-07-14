@@ -18,7 +18,7 @@ Delete metadata for a particular apiID and versionID.
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -59,7 +59,7 @@ Get all metadata for a particular apiID and versionID.
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(

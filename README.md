@@ -10,9 +10,11 @@ pip install speakeasy-client-sdk-python
 
 ## SDK Example Usage
 <!-- Start SDK Example Usage -->
+
+
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(

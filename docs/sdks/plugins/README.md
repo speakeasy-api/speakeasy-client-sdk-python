@@ -18,7 +18,7 @@ Get all plugins for the current workspace.
 
 ```python
 import speakeasy
-
+from speakeasy.models import shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(

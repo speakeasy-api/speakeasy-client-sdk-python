@@ -23,7 +23,7 @@ Delete a particular schema revision for an Api.
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -63,7 +63,7 @@ Download the latest schema for a particular apiID.
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -102,7 +102,7 @@ Download a particular schema revision for an Api.
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -143,7 +143,7 @@ This won't include the schema itself, that can be retrieved via the downloadSche
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -182,7 +182,7 @@ Get a diff of two schema revisions for an Api.
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -224,7 +224,7 @@ This won't include the schema itself, that can be retrieved via the downloadSche
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -265,7 +265,7 @@ This won't include the schemas themselves, they can be retrieved via the downloa
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -305,7 +305,7 @@ This will be used to populate ApiEndpoints and used as a base for any schema gen
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(

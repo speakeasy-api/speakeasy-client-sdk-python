@@ -21,7 +21,7 @@ Delete a particular version of an Api. The will also delete all associated ApiEn
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -61,7 +61,7 @@ Returns the original document and the newly generated document allowing a diff t
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -100,7 +100,7 @@ Generates a postman collection containing all endpoints for a particular API. In
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -140,7 +140,7 @@ Supports filtering the versions based on metadata attributes.
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -196,7 +196,7 @@ Supports filtering the APIs based on metadata attributes.
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(

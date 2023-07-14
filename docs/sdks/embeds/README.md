@@ -70,7 +70,7 @@ Get all valid embed access tokens for the current workspace.
 
 ```python
 import speakeasy
-
+from speakeasy.models import shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -99,7 +99,7 @@ Revoke an embed access EmbedToken.
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(

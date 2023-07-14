@@ -19,7 +19,7 @@ Allowing it to be replayed with the same inputs that were captured by the SDK.
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -57,7 +57,7 @@ Get information about a particular request.
 
 ```python
 import speakeasy
-from speakeasy.models import operations
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(

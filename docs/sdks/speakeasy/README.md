@@ -18,7 +18,7 @@ Validate the current api key.
 
 ```python
 import speakeasy
-
+from speakeasy.models import shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(

@@ -11,6 +11,7 @@ pylintrc
 setup.py
 src/speakeasy/__init__.py
 src/speakeasy/models/__init__.py
+src/speakeasy/models/errors/sdkerror.py
 src/speakeasy/utils/__init__.py
 src/speakeasy/utils/retries.py
 src/speakeasy/utils/utils.py
@@ -67,6 +68,7 @@ src/speakeasy/models/shared/schema.py
 src/speakeasy/models/shared/schemadiff.py
 src/speakeasy/models/shared/security.py
 src/speakeasy/models/shared/__init__.py
+src/speakeasy/models/errors/__init__.py
 docs/sdks/speakeasy/README.md
 docs/sdks/apiendpoints/README.md
 docs/sdks/apis/README.md

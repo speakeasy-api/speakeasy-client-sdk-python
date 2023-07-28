@@ -52,7 +52,7 @@ class APIEndpoints:
         
         url = utils.generate_url(operations.FindAPIEndpointRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/find/{displayName}', request)
         headers = {}
-        headers['Accept'] = 'application/json;q=1, application/json;q=0'
+        headers['Accept'] = 'application/json'
         headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
         
         client = self.sdk_configuration.security_client
@@ -87,7 +87,7 @@ class APIEndpoints:
         
         url = utils.generate_url(operations.GenerateOpenAPISpecForAPIEndpointRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/openapi', request)
         headers = {}
-        headers['Accept'] = 'application/json;q=1, application/json;q=0'
+        headers['Accept'] = 'application/json'
         headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
         
         client = self.sdk_configuration.security_client
@@ -152,7 +152,7 @@ class APIEndpoints:
         
         url = utils.generate_url(operations.GetAllAPIEndpointsRequest, base_url, '/v1/apis/{apiID}/api_endpoints', request)
         headers = {}
-        headers['Accept'] = 'application/json;q=1, application/json;q=0'
+        headers['Accept'] = 'application/json'
         headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
         
         client = self.sdk_configuration.security_client
@@ -184,7 +184,7 @@ class APIEndpoints:
         
         url = utils.generate_url(operations.GetAllForVersionAPIEndpointsRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints', request)
         headers = {}
-        headers['Accept'] = 'application/json;q=1, application/json;q=0'
+        headers['Accept'] = 'application/json'
         headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
         
         client = self.sdk_configuration.security_client
@@ -216,7 +216,7 @@ class APIEndpoints:
         
         url = utils.generate_url(operations.GetAPIEndpointRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}', request)
         headers = {}
-        headers['Accept'] = 'application/json;q=1, application/json;q=0'
+        headers['Accept'] = 'application/json'
         headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
         
         client = self.sdk_configuration.security_client
@@ -255,7 +255,7 @@ class APIEndpoints:
             headers['content-type'] = req_content_type
         if data is None and form is None:
             raise Exception('request body is required')
-        headers['Accept'] = 'application/json;q=1, application/json;q=0'
+        headers['Accept'] = 'application/json'
         headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
         
         client = self.sdk_configuration.security_client

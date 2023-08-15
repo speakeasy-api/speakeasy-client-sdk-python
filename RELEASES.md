@@ -777,3 +777,13 @@ Based on:
 - [python v1.51.0] .
 ### Releases
 - [PyPI v1.51.0] https://pypi.org/project/speakeasy-client-sdk-python/1.51.0 - .
+
+## 2023-08-15 00:09:30
+### Changes
+Based on:
+- OpenAPI Doc 0.3.0 https://docs.speakeasyapi.dev/openapi.yaml
+- Speakeasy CLI 1.72.0 (2.84.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v1.52.0] .
+### Releases
+- [PyPI v1.52.0] https://pypi.org/project/speakeasy-client-sdk-python/1.52.0 - .

@@ -30,8 +30,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DeleteAPIRequest(
-    api_id='quod',
-    version_id='esse',
+    api_id='quis',
+    version_id='veritatis',
 )
 
 res = s.apis.delete_api(req)
@@ -70,8 +70,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GenerateOpenAPISpecRequest(
-    api_id='totam',
-    version_id='porro',
+    api_id='deserunt',
+    version_id='perferendis',
 )
 
 res = s.apis.generate_open_api_spec(req)
@@ -109,8 +109,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GeneratePostmanCollectionRequest(
-    api_id='dolorum',
-    version_id='dicta',
+    api_id='ipsam',
+    version_id='repellendus',
 )
 
 res = s.apis.generate_postman_collection(req)
@@ -149,19 +149,10 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetAllAPIVersionsRequest(
-    api_id='nam',
+    api_id='sapiente',
     metadata={
-        "occaecati": [
-            'deleniti',
-        ],
-        "hic": [
-            'totam',
-            'beatae',
-            'commodi',
-            'molestiae',
-        ],
-        "modi": [
-            'impedit',
+        "quo": [
+            'odit',
         ],
     },
     op=operations.GetAllAPIVersionsOp(
@@ -206,14 +197,8 @@ s = speakeasy.Speakeasy(
 
 req = operations.GetApisRequest(
     metadata={
-        "esse": [
-            'excepturi',
-        ],
-        "aspernatur": [
-            'ad',
-        ],
-        "natus": [
-            'iste',
+        "at": [
+            'at',
         ],
     },
     op=operations.GetApisOp(
@@ -258,25 +243,16 @@ s = speakeasy.Speakeasy(
 
 req = operations.UpsertAPIRequest(
     api_input=shared.APIInput(
-        api_id='dolor',
-        description='natus',
+        api_id='maiores',
+        description='molestiae',
         meta_data={
-            "hic": [
-                'fuga',
-                'in',
-                'corporis',
-                'iste',
-            ],
-            "iure": [
-                'quidem',
-                'architecto',
-                'ipsa',
-                'reiciendis',
+            "quod": [
+                'quod',
             ],
         },
-        version_id='est',
+        version_id='esse',
     ),
-    api_id='mollitia',
+    api_id='totam',
 )
 
 res = s.apis.upsert_api(req)

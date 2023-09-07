@@ -24,20 +24,8 @@ s = speakeasy.Speakeasy(
 
 req = operations.GetApisRequest(
     metadata={
-        "provident": [
-            'quibusdam',
-            'unde',
-            'nulla',
-        ],
         "corrupti": [
-            'vel',
-            'error',
-            'deserunt',
-            'suscipit',
-        ],
-        "iure": [
-            'debitis',
-            'ipsa',
+            'provident',
         ],
     },
     op=operations.GetApisOp(

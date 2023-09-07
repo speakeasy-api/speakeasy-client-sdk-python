@@ -28,7 +28,7 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GenerateRequestPostmanCollectionRequest(
-    request_id='quo',
+    request_id='iste',
 )
 
 res = s.requests.generate_request_postman_collection(req)
@@ -66,7 +66,7 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetRequestFromEventLogRequest(
-    request_id='sequi',
+    request_id='iure',
 )
 
 res = s.requests.get_request_from_event_log(req)
@@ -108,29 +108,14 @@ req = operations.QueryEventLogRequest(
     filters=shared.Filters(
         filters=[
             shared.Filter(
-                key='ipsam',
-                operator='id',
-                value='possimus',
-            ),
-            shared.Filter(
-                key='aut',
-                operator='quasi',
-                value='error',
-            ),
-            shared.Filter(
-                key='temporibus',
-                operator='laborum',
-                value='quasi',
-            ),
-            shared.Filter(
-                key='reiciendis',
-                operator='voluptatibus',
-                value='vero',
+                key='saepe',
+                operator='quidem',
+                value='architecto',
             ),
         ],
-        limit=468651,
-        offset=509624,
-        operator='voluptatibus',
+        limit=60225,
+        offset=969810,
+        operator='est',
     ),
 )
 

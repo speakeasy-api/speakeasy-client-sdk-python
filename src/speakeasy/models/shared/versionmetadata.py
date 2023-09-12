@@ -5,7 +5,6 @@ import dataclasses
 import dateutil.parser
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
-from marshmallow import fields
 from speakeasy import utils
 
 
@@ -29,7 +28,7 @@ class VersionMetadata:
     r"""A set of keys and associated values, attached to a particular version of an Api."""
     api_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_id') }})
     r"""The ID of the Api this Metadata belongs to."""
-    created_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('created_at'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
+    created_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('created_at'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""Creation timestamp."""
     meta_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('meta_key') }})
     r"""The key for this metadata."""

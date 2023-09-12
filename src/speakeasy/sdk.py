@@ -39,7 +39,8 @@ class Speakeasy:
                  server: str = None,
                  server_url: str = None,
                  url_params: dict[str, str] = None,
-                 client: requests_http.Session = None
+                 client: requests_http.Session = None,
+                 retry_config: utils.RetryConfig = None
                  ) -> None:
         """Instantiates the SDK configuring it with the provided parameters.
         
@@ -52,7 +53,9 @@ class Speakeasy:
         :param url_params: Parameters to optionally template the server URL with
         :type url_params: dict[str, str]
         :param client: The requests.Session HTTP client to use for all operations
-        :type client: requests_http.Session        
+        :type client: requests_http.Session
+        :param retry_config: The utils.RetryConfig to use globally
+        :type retry_config: utils.RetryConfig
         """
         if client is None:
             client = requests_http.Session()
@@ -63,7 +66,7 @@ class Speakeasy:
             if url_params is not None:
                 server_url = utils.template_url(server_url, url_params)
 
-        self.sdk_configuration = SDKConfiguration(client, security_client, server_url, server)
+        self.sdk_configuration = SDKConfiguration(client, security_client, server_url, server, retry_config=retry_config)
        
         self._init_sdks()
     

@@ -5,7 +5,6 @@ import dataclasses
 import dateutil.parser
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
-from marshmallow import fields
 from speakeasy import utils
 
 
@@ -14,7 +13,7 @@ from speakeasy import utils
 @dataclasses.dataclass
 class UnboundedRequest:
     r"""An UnboundedRequest represents the HAR content capture by Speakeasy when logging a request."""
-    created_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('created_at'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse, 'mm_field': fields.DateTime(format='iso') }})
+    created_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('created_at'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     r"""Creation timestamp."""
     har: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('har') }})
     r"""The HAR content of the request."""

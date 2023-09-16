@@ -10,7 +10,7 @@ except FileNotFoundError:
 
 setuptools.setup(
     name="speakeasy-client-sdk-python",
-    version="1.55.4",
+    version="1.55.5",
     author="Speakeasy",
     description="Speakeasy API Client SDK for Python",
     long_description=long_description,

@@ -1,4 +1,4 @@
-# embeds
+# Embeds
 
 ## Overview
 

@@ -28,19 +28,19 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetEmbedAccessTokenRequest(
-    description='porro',
-    duration=678880,
+    description='dicta',
+    duration=720633,
     filters=shared.Filters(
         filters=[
             shared.Filter(
-                key='dicta',
-                operator='nam',
-                value='officia',
+                key='officia',
+                operator='occaecati',
+                value='fugit',
             ),
         ],
-        limit=582020,
-        offset=143353,
-        operator='deleniti',
+        limit=537373,
+        offset=944669,
+        operator='optio',
     ),
 )
 
@@ -108,7 +108,7 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.RevokeEmbedAccessTokenRequest(
-    token_id='hic',
+    token_id='totam',
 )
 
 res = s.embeds.revoke_embed_access_token(req)

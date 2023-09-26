@@ -27,10 +27,10 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DeleteVersionMetadataRequest(
-    api_id='optio',
-    meta_key='totam',
-    meta_value='beatae',
-    version_id='commodi',
+    api_id='beatae',
+    meta_key='commodi',
+    meta_value='molestiae',
+    version_id='modi',
 )
 
 res = s.metadata.delete_version_metadata(req)
@@ -68,8 +68,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetVersionMetadataRequest(
-    api_id='molestiae',
-    version_id='modi',
+    api_id='qui',
+    version_id='impedit',
 )
 
 res = s.metadata.get_version_metadata(req)
@@ -108,11 +108,11 @@ s = speakeasy.Speakeasy(
 
 req = operations.InsertVersionMetadataRequest(
     version_metadata_input=shared.VersionMetadataInput(
-        meta_key='qui',
-        meta_value='impedit',
+        meta_key='cum',
+        meta_value='esse',
     ),
-    api_id='cum',
-    version_id='esse',
+    api_id='ipsum',
+    version_id='excepturi',
 )
 
 res = s.metadata.insert_version_metadata(req)

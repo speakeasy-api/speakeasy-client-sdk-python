@@ -32,9 +32,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DeleteSchemaRequest(
-    api_id='mollitia',
-    revision_id='laborum',
-    version_id='dolores',
+    api_id='dolores',
+    revision_id='dolorem',
+    version_id='corporis',
 )
 
 res = s.schemas.delete_schema(req)
@@ -72,8 +72,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DownloadSchemaRequest(
-    api_id='dolorem',
-    version_id='corporis',
+    api_id='explicabo',
+    version_id='nobis',
 )
 
 res = s.schemas.download_schema(req)
@@ -111,9 +111,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DownloadSchemaRevisionRequest(
-    api_id='explicabo',
-    revision_id='nobis',
-    version_id='enim',
+    api_id='enim',
+    revision_id='omnis',
+    version_id='nemo',
 )
 
 res = s.schemas.download_schema_revision(req)
@@ -152,8 +152,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetSchemaRequest(
-    api_id='omnis',
-    version_id='nemo',
+    api_id='minima',
+    version_id='excepturi',
 )
 
 res = s.schemas.get_schema(req)
@@ -191,10 +191,10 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetSchemaDiffRequest(
-    api_id='minima',
-    base_revision_id='excepturi',
-    target_revision_id='accusantium',
-    version_id='iure',
+    api_id='accusantium',
+    base_revision_id='iure',
+    target_revision_id='culpa',
+    version_id='doloribus',
 )
 
 res = s.schemas.get_schema_diff(req)
@@ -233,9 +233,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetSchemaRevisionRequest(
-    api_id='culpa',
-    revision_id='doloribus',
-    version_id='sapiente',
+    api_id='sapiente',
+    revision_id='architecto',
+    version_id='mollitia',
 )
 
 res = s.schemas.get_schema_revision(req)
@@ -274,8 +274,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetSchemasRequest(
-    api_id='architecto',
-    version_id='mollitia',
+    api_id='dolorem',
+    version_id='culpa',
 )
 
 res = s.schemas.get_schemas(req)
@@ -316,12 +316,12 @@ s = speakeasy.Speakeasy(
 req = operations.RegisterSchemaRequest(
     request_body=operations.RegisterSchemaRequestBody(
         file=operations.RegisterSchemaRequestBodyFile(
-            content='dolorem'.encode(),
-            file='culpa',
+            content='consequuntur'.encode(),
+            file='repellat',
         ),
     ),
-    api_id='consequuntur',
-    version_id='repellat',
+    api_id='mollitia',
+    version_id='occaecati',
 )
 
 res = s.schemas.register_schema(req)

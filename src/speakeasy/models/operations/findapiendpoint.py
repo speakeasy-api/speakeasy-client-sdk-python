@@ -25,11 +25,14 @@ class FindAPIEndpointRequest:
 @dataclasses.dataclass
 class FindAPIEndpointResponse:
     content_type: str = dataclasses.field()
+    r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
+    r"""HTTP response status code for this operation"""
     api_endpoint: Optional[shared_apiendpoint.APIEndpoint] = dataclasses.field(default=None)
     r"""OK"""
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
     r"""Default error response"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
+    r"""Raw HTTP response; suitable for custom response parsing"""
     
 

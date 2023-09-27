@@ -45,7 +45,7 @@ if res.apis is not None:
 
 * [validate_api_key](docs/sdks/speakeasy/README.md#validate_api_key) - Validate the current api key.
 
-### [APIEndpoints](docs/sdks/apiendpoints/README.md)
+### [api_endpoints](docs/sdks/apiendpoints/README.md)
 
 * [delete_api_endpoint](docs/sdks/apiendpoints/README.md#delete_api_endpoint) - Delete an ApiEndpoint.
 * [find_api_endpoint](docs/sdks/apiendpoints/README.md#find_api_endpoint) - Find an ApiEndpoint via its displayName.
@@ -56,7 +56,7 @@ if res.apis is not None:
 * [get_api_endpoint](docs/sdks/apiendpoints/README.md#get_api_endpoint) - Get an ApiEndpoint.
 * [upsert_api_endpoint](docs/sdks/apiendpoints/README.md#upsert_api_endpoint) - Upsert an ApiEndpoint.
 
-### [Apis](docs/sdks/apis/README.md)
+### [apis](docs/sdks/apis/README.md)
 
 * [delete_api](docs/sdks/apis/README.md#delete_api) - Delete an Api.
 * [generate_open_api_spec](docs/sdks/apis/README.md#generate_open_api_spec) - Generate an OpenAPI specification for a particular Api.
@@ -65,31 +65,31 @@ if res.apis is not None:
 * [get_apis](docs/sdks/apis/README.md#get_apis) - Get a list of Apis for a given workspace
 * [upsert_api](docs/sdks/apis/README.md#upsert_api) - Upsert an Api
 
-### [Embeds](docs/sdks/embeds/README.md)
+### [embeds](docs/sdks/embeds/README.md)
 
 * [get_embed_access_token](docs/sdks/embeds/README.md#get_embed_access_token) - Get an embed access token for the current workspace.
 * [get_valid_embed_access_tokens](docs/sdks/embeds/README.md#get_valid_embed_access_tokens) - Get all valid embed access tokens for the current workspace.
 * [revoke_embed_access_token](docs/sdks/embeds/README.md#revoke_embed_access_token) - Revoke an embed access EmbedToken.
 
-### [Metadata](docs/sdks/metadata/README.md)
+### [metadata](docs/sdks/metadata/README.md)
 
 * [delete_version_metadata](docs/sdks/metadata/README.md#delete_version_metadata) - Delete metadata for a particular apiID and versionID.
 * [get_version_metadata](docs/sdks/metadata/README.md#get_version_metadata) - Get all metadata for a particular apiID and versionID.
 * [insert_version_metadata](docs/sdks/metadata/README.md#insert_version_metadata) - Insert metadata for a particular apiID and versionID.
 
-### [Plugins](docs/sdks/plugins/README.md)
+### [plugins](docs/sdks/plugins/README.md)
 
 * [get_plugins](docs/sdks/plugins/README.md#get_plugins) - Get all plugins for the current workspace.
 * [run_plugin](docs/sdks/plugins/README.md#run_plugin) - Run a plugin
 * [upsert_plugin](docs/sdks/plugins/README.md#upsert_plugin) - Upsert a plugin
 
-### [Requests](docs/sdks/requests/README.md)
+### [requests](docs/sdks/requests/README.md)
 
 * [generate_request_postman_collection](docs/sdks/requests/README.md#generate_request_postman_collection) - Generate a Postman collection for a particular request.
 * [get_request_from_event_log](docs/sdks/requests/README.md#get_request_from_event_log) - Get information about a particular request.
 * [query_event_log](docs/sdks/requests/README.md#query_event_log) - Query the event log to retrieve a list of requests.
 
-### [Schemas](docs/sdks/schemas/README.md)
+### [schemas](docs/sdks/schemas/README.md)
 
 * [delete_schema](docs/sdks/schemas/README.md#delete_schema) - Delete a particular schema revision for an Api.
 * [download_schema](docs/sdks/schemas/README.md#download_schema) - Download the latest schema for a particular apiID.
@@ -105,8 +105,6 @@ if res.apis is not None:
 
 <!-- Start Dev Containers -->
 
-
-
 <!-- End Dev Containers -->
 
 
@@ -119,8 +117,6 @@ returned response object will have a `Next` method that can be called to pull do
 return value of `Next` is `None`, then there are no more pages to be fetched.
 
 Here's an example of one such pagination call:
-
-
 <!-- End Pagination -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->

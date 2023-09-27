@@ -1,4 +1,5 @@
 # Plugins
+(*plugins*)
 
 ## Overview
 

@@ -33,9 +33,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DeleteAPIEndpointRequest(
-    api_endpoint_id='unde',
-    api_id='nulla',
-    version_id='corrupti',
+    api_endpoint_id='bus Gasoline Southwest',
+    api_id='candela',
+    version_id='indexing maxime bypassing',
 )
 
 res = s.api_endpoints.delete_api_endpoint(req)
@@ -74,9 +74,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.FindAPIEndpointRequest(
-    api_id='illum',
-    display_name='vel',
-    version_id='error',
+    api_id='insignificant',
+    display_name='payment',
+    version_id='Highland North Awesome',
 )
 
 res = s.api_endpoints.find_api_endpoint(req)
@@ -115,9 +115,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GenerateOpenAPISpecForAPIEndpointRequest(
-    api_endpoint_id='deserunt',
-    api_id='suscipit',
-    version_id='iure',
+    api_endpoint_id='Tactics ew explicabo',
+    api_id='gray act',
+    version_id='bah',
 )
 
 res = s.api_endpoints.generate_open_api_spec_for_api_endpoint(req)
@@ -155,9 +155,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GeneratePostmanCollectionForAPIEndpointRequest(
-    api_endpoint_id='magnam',
-    api_id='debitis',
-    version_id='ipsa',
+    api_endpoint_id='silver Bronze Outdoors',
+    api_id='Virtual admirable Southeast',
+    version_id='Northeast Bicycle mark',
 )
 
 res = s.api_endpoints.generate_postman_collection_for_api_endpoint(req)
@@ -195,7 +195,7 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetAllAPIEndpointsRequest(
-    api_id='delectus',
+    api_id='Director JSON candela',
 )
 
 res = s.api_endpoints.get_all_api_endpoints(req)
@@ -233,8 +233,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetAllForVersionAPIEndpointsRequest(
-    api_id='tempora',
-    version_id='suscipit',
+    api_id='THX Tuna sparkling',
+    version_id='Assurance',
 )
 
 res = s.api_endpoints.get_all_for_version_api_endpoints(req)
@@ -272,9 +272,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetAPIEndpointRequest(
-    api_endpoint_id='molestiae',
-    api_id='minus',
-    version_id='placeat',
+    api_endpoint_id='Optimized male SSD',
+    api_id='Soul Land',
+    version_id='Androgyne Hydrogen',
 )
 
 res = s.api_endpoints.get_api_endpoint(req)
@@ -313,16 +313,16 @@ s = speakeasy.Speakeasy(
 
 req = operations.UpsertAPIEndpointRequest(
     api_endpoint_input=shared.APIEndpointInput(
-        api_endpoint_id='voluptatum',
-        description='iusto',
-        display_name='excepturi',
-        method='nisi',
-        path='recusandae',
-        version_id='temporibus',
+        api_endpoint_id='Convertible Turner Cotton',
+        description='Triple-buffered optimal methodology',
+        display_name='Langosh Northwest Mabelle',
+        method='South',
+        path='/rescue',
+        version_id='East Land viral',
     ),
-    api_endpoint_id='ab',
-    api_id='quis',
-    version_id='veritatis',
+    api_endpoint_id='Electric Operations systems',
+    api_id='Operations East Unbranded',
+    version_id='parsing Convertible',
 )
 
 res = s.api_endpoints.upsert_api_endpoint(req)

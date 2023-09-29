@@ -31,8 +31,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DeleteAPIRequest(
-    api_id='deserunt',
-    version_id='perferendis',
+    api_id='Applications Mercedes fuchsia',
+    version_id='Conroe',
 )
 
 res = s.apis.delete_api(req)
@@ -71,8 +71,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GenerateOpenAPISpecRequest(
-    api_id='ipsam',
-    version_id='repellendus',
+    api_id='frictionless District South',
+    version_id='West Global',
 )
 
 res = s.apis.generate_open_api_spec(req)
@@ -110,8 +110,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GeneratePostmanCollectionRequest(
-    api_id='sapiente',
-    version_id='quo',
+    api_id='extend Security',
+    version_id='reconfirm',
 )
 
 res = s.apis.generate_postman_collection(req)
@@ -150,10 +150,10 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetAllAPIVersionsRequest(
-    api_id='odit',
+    api_id='yum Rustic Berkshire',
     metadata={
-        "at": [
-            'at',
+        "assumenda": [
+            'Fresh',
         ],
     },
     op=operations.GetAllAPIVersionsOp(
@@ -198,8 +198,8 @@ s = speakeasy.Speakeasy(
 
 req = operations.GetApisRequest(
     metadata={
-        "maiores": [
-            'molestiae',
+        "aut": [
+            'bypassing',
         ],
     },
     op=operations.GetApisOp(
@@ -244,16 +244,16 @@ s = speakeasy.Speakeasy(
 
 req = operations.UpsertAPIRequest(
     api_input=shared.APIInput(
-        api_id='quod',
-        description='quod',
+        api_id='Martinique redefine Garland',
+        description='Balanced 24/7 utilisation',
         meta_data={
-            "esse": [
-                'totam',
+            "deleniti": [
+                'male',
             ],
         },
-        version_id='porro',
+        version_id='Forward',
     ),
-    api_id='dolorum',
+    api_id='Facilitator',
 )
 
 res = s.apis.upsert_api(req)

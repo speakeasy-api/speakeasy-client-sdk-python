@@ -13,8 +13,8 @@ s = speakeasy.Speakeasy(
 
 req = operations.GetApisRequest(
     metadata={
-        "corrupti": [
-            'provident',
+        "aut": [
+            'bypassing',
         ],
     },
     op=operations.GetApisOp(

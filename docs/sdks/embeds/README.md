@@ -29,19 +29,19 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetEmbedAccessTokenRequest(
-    description='dicta',
-    duration=720633,
+    description='Versatile asynchronous leverage',
+    duration=554373,
     filters=shared.Filters(
         filters=[
             shared.Filter(
-                key='officia',
-                operator='occaecati',
-                value='fugit',
+                key='<key>',
+                operator='Account',
+                value='unless to frame',
             ),
         ],
-        limit=537373,
-        offset=944669,
-        operator='optio',
+        limit=792058,
+        offset=425010,
+        operator='kilogram innovative Virginia',
     ),
 )
 
@@ -109,7 +109,7 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.RevokeEmbedAccessTokenRequest(
-    token_id='totam',
+    token_id='Small',
 )
 
 res = s.embeds.revoke_embed_access_token(req)

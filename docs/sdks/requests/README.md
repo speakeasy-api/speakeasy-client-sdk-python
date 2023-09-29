@@ -29,7 +29,7 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GenerateRequestPostmanCollectionRequest(
-    request_id='saepe',
+    request_id='payment male Rustic',
 )
 
 res = s.requests.generate_request_postman_collection(req)
@@ -67,7 +67,7 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetRequestFromEventLogRequest(
-    request_id='quidem',
+    request_id='Tuna Concrete North',
 )
 
 res = s.requests.get_request_from_event_log(req)
@@ -109,14 +109,14 @@ req = operations.QueryEventLogRequest(
     filters=shared.Filters(
         filters=[
             shared.Filter(
-                key='architecto',
-                operator='ipsa',
-                value='reiciendis',
+                key='<key>',
+                operator='payment',
+                value='West Practical port',
             ),
         ],
-        limit=666767,
-        offset=653140,
-        operator='laborum',
+        limit=736151,
+        offset=477827,
+        operator='Burg',
     ),
 )
 

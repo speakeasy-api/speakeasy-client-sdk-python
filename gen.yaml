@@ -2,22 +2,23 @@ configVersion: 1.0.0
 management:
   docChecksum: 8c4f3932e054e1b349a9a34f12cf7e8c
   docVersion: 0.3.0
-  speakeasyVersion: 1.91.2
-  generationVersion: 2.131.1
+  speakeasyVersion: 1.91.3
+  generationVersion: 2.139.1
 generation:
   sdkClassName: speakeasy
   singleTagPerOp: false
   telemetryEnabled: true
 features:
   python:
-    core: 2.86.1
+    core: 2.87.0
+    downloadStreams: 0.0.1
     examples: 2.81.2
     globalSecurity: 2.81.1
     globalServerURLs: 2.82.0
     inputOutputModels: 2.81.1
     serverIDs: 2.81.1
 python:
-  version: 1.56.1
+  version: 1.57.0
   author: Speakeasy
   description: Speakeasy API Client SDK for Python
   maxMethodParams: 0

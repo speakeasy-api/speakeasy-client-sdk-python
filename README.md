@@ -22,8 +22,8 @@ s = speakeasy.Speakeasy(
 
 req = operations.GetApisRequest(
     metadata={
-        "distinctio": [
-            'quibusdam',
+        "aut": [
+            'bypassing',
         ],
     },
     op=operations.GetApisOp(

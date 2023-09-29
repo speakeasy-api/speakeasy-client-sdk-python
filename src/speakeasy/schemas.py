@@ -29,7 +29,7 @@ class Schemas:
         url = utils.generate_url(operations.DeleteSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}', request)
         headers = {}
         headers['Accept'] = 'application/json'
-        headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
+        headers['user-agent'] = self.sdk_configuration.user_agent
         
         client = self.sdk_configuration.security_client
         
@@ -60,7 +60,7 @@ class Schemas:
             headers['Accept'] = accept_header_override.value
         else:
             headers['Accept'] = 'application/json;q=1, application/x-yaml;q=0'
-        headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
+        headers['user-agent'] = self.sdk_configuration.user_agent
         
         client = self.sdk_configuration.security_client
         
@@ -71,9 +71,9 @@ class Schemas:
         
         if http_res.status_code == 200:
             if utils.match_content_type(content_type, 'application/json'):
-                res.schema = http_res.content
+                res.schema = http_res
             elif utils.match_content_type(content_type, 'application/x-yaml'):
-                res.schema = http_res.content
+                res.schema = http_res
             else:
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         else:
@@ -96,7 +96,7 @@ class Schemas:
             headers['Accept'] = accept_header_override.value
         else:
             headers['Accept'] = 'application/json;q=1, application/x-yaml;q=0'
-        headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
+        headers['user-agent'] = self.sdk_configuration.user_agent
         
         client = self.sdk_configuration.security_client
         
@@ -107,9 +107,9 @@ class Schemas:
         
         if http_res.status_code == 200:
             if utils.match_content_type(content_type, 'application/json'):
-                res.schema = http_res.content
+                res.schema = http_res
             elif utils.match_content_type(content_type, 'application/x-yaml'):
-                res.schema = http_res.content
+                res.schema = http_res
             else:
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         else:
@@ -132,7 +132,7 @@ class Schemas:
         url = utils.generate_url(operations.GetSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema', request)
         headers = {}
         headers['Accept'] = 'application/json'
-        headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
+        headers['user-agent'] = self.sdk_configuration.user_agent
         
         client = self.sdk_configuration.security_client
         
@@ -164,7 +164,7 @@ class Schemas:
         url = utils.generate_url(operations.GetSchemaDiffRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{baseRevisionID}/diff/{targetRevisionID}', request)
         headers = {}
         headers['Accept'] = 'application/json'
-        headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
+        headers['user-agent'] = self.sdk_configuration.user_agent
         
         client = self.sdk_configuration.security_client
         
@@ -199,7 +199,7 @@ class Schemas:
         url = utils.generate_url(operations.GetSchemaRevisionRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}', request)
         headers = {}
         headers['Accept'] = 'application/json'
-        headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
+        headers['user-agent'] = self.sdk_configuration.user_agent
         
         client = self.sdk_configuration.security_client
         
@@ -234,7 +234,7 @@ class Schemas:
         url = utils.generate_url(operations.GetSchemasRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schemas', request)
         headers = {}
         headers['Accept'] = 'application/json'
-        headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
+        headers['user-agent'] = self.sdk_configuration.user_agent
         
         client = self.sdk_configuration.security_client
         
@@ -268,13 +268,13 @@ class Schemas:
         
         url = utils.generate_url(operations.RegisterSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "request_body", 'multipart')
+        req_content_type, data, form = utils.serialize_request_body(request, "request_body", False, False, 'multipart')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
             raise Exception('request body is required')
         headers['Accept'] = 'application/json'
-        headers['user-agent'] = f'speakeasy-sdk/{self.sdk_configuration.language} {self.sdk_configuration.sdk_version} {self.sdk_configuration.gen_version} {self.sdk_configuration.openapi_doc_version}'
+        headers['user-agent'] = self.sdk_configuration.user_agent
         
         client = self.sdk_configuration.security_client
         

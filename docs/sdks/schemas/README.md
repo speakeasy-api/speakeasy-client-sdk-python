@@ -33,9 +33,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DeleteSchemaRequest(
-    api_id='dolores',
-    revision_id='dolorem',
-    version_id='corporis',
+    api_id='Hybrid',
+    revision_id='Funk Garden Specialist',
+    version_id='male',
 )
 
 res = s.schemas.delete_schema(req)
@@ -73,8 +73,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DownloadSchemaRequest(
-    api_id='explicabo',
-    version_id='nobis',
+    api_id='Specialist correctly',
+    version_id='customer Exclusive oof',
 )
 
 res = s.schemas.download_schema(req)
@@ -112,9 +112,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DownloadSchemaRevisionRequest(
-    api_id='enim',
-    revision_id='omnis',
-    version_id='nemo',
+    api_id='Belarus hacking firewall',
+    revision_id='Coupe affidavit Cheese',
+    version_id='pink deposit',
 )
 
 res = s.schemas.download_schema_revision(req)
@@ -153,8 +153,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetSchemaRequest(
-    api_id='minima',
-    version_id='excepturi',
+    api_id='Assistant',
+    version_id='banter Cotton withdrawal',
 )
 
 res = s.schemas.get_schema(req)
@@ -192,10 +192,10 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetSchemaDiffRequest(
-    api_id='accusantium',
-    base_revision_id='iure',
-    target_revision_id='culpa',
-    version_id='doloribus',
+    api_id='Tuna',
+    base_revision_id='South Van',
+    target_revision_id='whoever',
+    version_id='henry Tulare',
 )
 
 res = s.schemas.get_schema_diff(req)
@@ -234,9 +234,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetSchemaRevisionRequest(
-    api_id='sapiente',
-    revision_id='architecto',
-    version_id='mollitia',
+    api_id='Mauritius',
+    revision_id='West Rustic Plastic',
+    version_id='Yttrium Loan',
 )
 
 res = s.schemas.get_schema_revision(req)
@@ -275,8 +275,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetSchemasRequest(
-    api_id='dolorem',
-    version_id='culpa',
+    api_id='white',
+    version_id='optical round',
 )
 
 res = s.schemas.get_schemas(req)
@@ -317,12 +317,12 @@ s = speakeasy.Speakeasy(
 req = operations.RegisterSchemaRequest(
     request_body=operations.RegisterSchemaRequestBody(
         file=operations.RegisterSchemaRequestBodyFile(
-            content='consequuntur'.encode(),
-            file='repellat',
+            content='mg|mf".]!\'.encode(),
+            file='Bronze Table Blues',
         ),
     ),
-    api_id='mollitia',
-    version_id='occaecati',
+    api_id='Oganesson',
+    version_id='matrix Pennsylvania Southeast',
 )
 
 res = s.schemas.register_schema(req)

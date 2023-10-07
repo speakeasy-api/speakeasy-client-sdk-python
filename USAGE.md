@@ -13,8 +13,8 @@ s = speakeasy.Speakeasy(
 
 req = operations.GetApisRequest(
     metadata={
-        "aut": [
-            'bypassing',
+        "South": [
+            'Southwest',
         ],
     },
     op=operations.GetApisOp(

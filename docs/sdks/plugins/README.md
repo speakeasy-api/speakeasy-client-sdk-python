@@ -109,12 +109,9 @@ s = speakeasy.Speakeasy(
 
 req = shared.Plugin(
     code='drafty',
-    created_at=dateutil.parser.isoparse('2023-03-17T19:17:52.123Z'),
-    eval_hash='Benin Berkshire',
-    plugin_id='Soul Kuna',
-    title='Plastic siemens navigate',
-    updated_at=dateutil.parser.isoparse('2022-12-27T19:05:38.030Z'),
-    workspace_id='owlishly JSON till',
+    plugin_id='Rock North exuding',
+    title='navigating schemas',
+    workspace_id='Plastic siemens navigate',
 )
 
 res = s.plugins.upsert_plugin(req)

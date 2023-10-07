@@ -29,13 +29,11 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetEmbedAccessTokenRequest(
-    description='Versatile asynchronous leverage',
-    duration=554373,
     filters=shared.Filters(
         filters=[
             shared.Filter(
                 key='<key>',
-                operator='Account',
+                operator='Northeast compress Account',
                 value='unless to frame',
             ),
         ],

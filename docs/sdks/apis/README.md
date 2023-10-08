@@ -152,8 +152,8 @@ s = speakeasy.Speakeasy(
 req = operations.GetAllAPIVersionsRequest(
     api_id='yum Rustic Berkshire',
     metadata={
-        "assumenda": [
-            'Fresh',
+        "Dodge": [
+            'Salad',
         ],
     },
     op=operations.GetAllAPIVersionsOp(
@@ -198,8 +198,8 @@ s = speakeasy.Speakeasy(
 
 req = operations.GetApisRequest(
     metadata={
-        "aut": [
-            'bypassing',
+        "South": [
+            'Southwest',
         ],
     },
     op=operations.GetApisOp(
@@ -247,8 +247,8 @@ req = operations.UpsertAPIRequest(
         api_id='Martinique redefine Garland',
         description='Balanced 24/7 utilisation',
         meta_data={
-            "deleniti": [
-                'male',
+            "pixel": [
+                'Buckinghamshire',
             ],
         },
         version_id='Forward',

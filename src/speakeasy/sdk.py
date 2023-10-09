@@ -35,7 +35,7 @@ class Speakeasy:
     sdk_configuration: SDKConfiguration
 
     def __init__(self,
-                 security: shared.Security = None,
+                 api_key: str,
                  server: str = None,
                  server_url: str = None,
                  url_params: dict[str, str] = None,
@@ -44,8 +44,8 @@ class Speakeasy:
                  ) -> None:
         """Instantiates the SDK configuring it with the provided parameters.
         
-        :param security: The security details required for authentication
-        :type security: shared.Security
+        :param api_key: The api_key required for authentication
+        :type api_key: str
         :param server: The server by name to use for all operations
         :type server: str
         :param server_url: The server URL to use for all operations
@@ -60,7 +60,9 @@ class Speakeasy:
         if client is None:
             client = requests_http.Session()
         
+        
         security_client = utils.configure_security_client(client, security)
+        
         
         if server_url is not None:
             if url_params is not None:

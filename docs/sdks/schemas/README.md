@@ -42,6 +42,7 @@ res = s.schemas.delete_schema(req)
 
 if res.status_code == 200:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -81,6 +82,7 @@ res = s.schemas.download_schema(req)
 
 if res.schema is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -121,6 +123,7 @@ res = s.schemas.download_schema_revision(req)
 
 if res.schema is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -161,6 +164,7 @@ res = s.schemas.get_schema(req)
 
 if res.schema is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -202,6 +206,7 @@ res = s.schemas.get_schema_diff(req)
 
 if res.schema_diff is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -243,6 +248,7 @@ res = s.schemas.get_schema_revision(req)
 
 if res.schema is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -283,6 +289,7 @@ res = s.schemas.get_schemas(req)
 
 if res.schemata is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -329,6 +336,7 @@ res = s.schemas.register_schema(req)
 
 if res.status_code == 200:
     # handle response
+    pass
 ```
 
 ### Parameters

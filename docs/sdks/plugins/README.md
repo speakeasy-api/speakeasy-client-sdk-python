@@ -32,6 +32,7 @@ res = s.plugins.get_plugins()
 
 if res.plugins is not None:
     # handle response
+    pass
 ```
 
 
@@ -76,6 +77,7 @@ res = s.plugins.run_plugin(req)
 
 if res.bounded_requests is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -118,6 +120,7 @@ res = s.plugins.upsert_plugin(req)
 
 if res.plugin is not None:
     # handle response
+    pass
 ```
 
 ### Parameters

@@ -36,6 +36,7 @@ res = s.requests.generate_request_postman_collection(req)
 
 if res.postman_collection is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -74,6 +75,7 @@ res = s.requests.get_request_from_event_log(req)
 
 if res.unbounded_request is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -124,6 +126,7 @@ res = s.requests.query_event_log(req)
 
 if res.bounded_requests is not None:
     # handle response
+    pass
 ```
 
 ### Parameters

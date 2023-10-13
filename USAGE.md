@@ -26,5 +26,6 @@ res = s.apis.get_apis(req)
 
 if res.apis is not None:
     # handle response
+    pass
 ```
 <!-- End SDK Example Usage -->

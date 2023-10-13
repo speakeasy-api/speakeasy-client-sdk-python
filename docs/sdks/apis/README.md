@@ -39,6 +39,7 @@ res = s.apis.delete_api(req)
 
 if res.status_code == 200:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -79,6 +80,7 @@ res = s.apis.generate_open_api_spec(req)
 
 if res.generate_open_api_spec_diff is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -118,6 +120,7 @@ res = s.apis.generate_postman_collection(req)
 
 if res.postman_collection is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -165,6 +168,7 @@ res = s.apis.get_all_api_versions(req)
 
 if res.apis is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -211,6 +215,7 @@ res = s.apis.get_apis(req)
 
 if res.apis is not None:
     # handle response
+    pass
 ```
 
 ### Parameters
@@ -260,6 +265,7 @@ res = s.apis.upsert_api(req)
 
 if res.api is not None:
     # handle response
+    pass
 ```
 
 ### Parameters

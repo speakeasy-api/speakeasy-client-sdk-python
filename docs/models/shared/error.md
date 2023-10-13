@@ -7,5 +7,5 @@ The `Status` type defines a logical error model
 
 | Field                             | Type                              | Required                          | Description                       |
 | --------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- |
-| `message`                         | *Optional[str]*                   | :heavy_check_mark:                | A developer-facing error message. |
-| `status_code`                     | *Optional[int]*                   | :heavy_check_mark:                | The HTTP status code              |
+| `message`                         | *str*                             | :heavy_check_mark:                | A developer-facing error message. |
+| `status_code`                     | *int*                             | :heavy_check_mark:                | The HTTP status code              |

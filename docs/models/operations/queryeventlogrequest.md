@@ -3,6 +3,6 @@
 
 ## Fields
 
-| Field                                                          | Type                                                           | Required                                                       | Description                                                    |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `filters`                                                      | [Optional[shared.Filters]](undefined/models/shared/filters.md) | :heavy_minus_sign:                                             | The filter to apply to the query.                              |
+| Field                                                      | Type                                                       | Required                                                   | Description                                                |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| `filters`                                                  | [Optional[shared.Filters]](../../models/shared/filters.md) | :heavy_minus_sign:                                         | The filter to apply to the query.                          |

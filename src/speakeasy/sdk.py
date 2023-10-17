@@ -15,7 +15,7 @@ from typing import Optional
 
 class Speakeasy:
     r"""Speakeasy API: The Speakeasy API allows teams to manage common operations with their APIs
-    https://speakeasyapi.dev/docs/ - The Speakeasy Platform Documentation
+    /docs - The Speakeasy Platform Documentation
     """
     api_endpoints: APIEndpoints
     r"""REST APIs for managing ApiEndpoint entities"""

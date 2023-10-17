@@ -987,3 +987,13 @@ Based on:
 - [python v1.59.1] .
 ### Releases
 - [PyPI v1.59.1] https://pypi.org/project/speakeasy-client-sdk-python/1.59.1 - .
+
+## 2023-10-17 00:10:13
+### Changes
+Based on:
+- OpenAPI Doc 0.3.0 https://docs.speakeasyapi.dev/openapi.yaml
+- Speakeasy CLI 1.99.2 (2.155.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v1.59.2] .
+### Releases
+- [PyPI v1.59.2] https://pypi.org/project/speakeasy-client-sdk-python/1.59.2 - .

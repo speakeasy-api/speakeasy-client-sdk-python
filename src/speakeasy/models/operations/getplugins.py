@@ -5,8 +5,7 @@ import dataclasses
 import requests as requests_http
 from ..shared import error as shared_error
 from ..shared import plugin as shared_plugin
-from typing import Optional
-
+from typing import List, Optional
 
 
 @dataclasses.dataclass
@@ -17,7 +16,7 @@ class GetPluginsResponse:
     r"""HTTP response status code for this operation"""
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
     r"""Default error response"""
-    plugins: Optional[list[shared_plugin.Plugin]] = dataclasses.field(default=None)
+    plugins: Optional[List[shared_plugin.Plugin]] = dataclasses.field(default=None)
     r"""OK"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     r"""Raw HTTP response; suitable for custom response parsing"""

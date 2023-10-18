@@ -7,7 +7,6 @@ from speakeasy import utils
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class GenerateOpenAPISpecDiff:
     current_schema: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('current_schema') }})

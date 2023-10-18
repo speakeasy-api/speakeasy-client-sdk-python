@@ -7,7 +7,6 @@ from ..shared import error as shared_error
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class RegisterSchemaRequestBodyFile:
     content: bytes = dataclasses.field(metadata={'multipart_form': { 'content': True }})
@@ -16,13 +15,11 @@ class RegisterSchemaRequestBodyFile:
 
 
 
-
 @dataclasses.dataclass
 class RegisterSchemaRequestBody:
     r"""The schema file to upload provided as a multipart/form-data file segment."""
     file: RegisterSchemaRequestBodyFile = dataclasses.field(metadata={'multipart_form': { 'file': True }})
     
-
 
 
 
@@ -35,7 +32,6 @@ class RegisterSchemaRequest:
     version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
     r"""The version ID of the Api to delete metadata for."""
     
-
 
 
 

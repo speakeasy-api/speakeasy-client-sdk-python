@@ -7,13 +7,11 @@ from ..shared import error as shared_error
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class GenerateRequestPostmanCollectionRequest:
     request_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'requestID', 'style': 'simple', 'explode': False }})
     r"""The ID of the request to retrieve."""
     
-
 
 
 

@@ -28,10 +28,10 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DeleteVersionMetadataRequest(
-    api_id='East static North',
-    meta_key='veniam',
-    meta_value='cocoa',
-    version_id='deposit',
+    api_id='Hydrogen',
+    meta_key='Cargo',
+    meta_value='Minnetonka',
+    version_id='communities',
 )
 
 res = s.metadata.delete_version_metadata(req)
@@ -70,8 +70,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetVersionMetadataRequest(
-    api_id='Games',
-    version_id='Centralized cyan',
+    api_id='Bronze',
+    version_id='Buckinghamshire',
 )
 
 res = s.metadata.get_version_metadata(req)
@@ -111,11 +111,11 @@ s = speakeasy.Speakeasy(
 
 req = operations.InsertVersionMetadataRequest(
     version_metadata_input=shared.VersionMetadataInput(
-        meta_key='calculating',
-        meta_value='Bedfordshire',
+        meta_key='Borders',
+        meta_value='Potassium',
     ),
-    api_id='West Northeast',
-    version_id='candela',
+    api_id='Bedfordshire',
+    version_id='Dram',
 )
 
 res = s.metadata.insert_version_metadata(req)

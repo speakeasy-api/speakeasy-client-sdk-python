@@ -8,7 +8,6 @@ from ..shared import schema as shared_schema
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class GetSchemaRevisionRequest:
     api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
@@ -18,7 +17,6 @@ class GetSchemaRevisionRequest:
     version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
     r"""The version ID of the Api to delete metadata for."""
     
-
 
 
 

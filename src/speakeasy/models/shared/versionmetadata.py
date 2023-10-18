@@ -9,7 +9,6 @@ from speakeasy import utils
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class VersionMetadataInput:
     r"""A set of keys and associated values, attached to a particular version of an Api."""
@@ -22,7 +21,6 @@ class VersionMetadataInput:
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class VersionMetadata:
     r"""A set of keys and associated values, attached to a particular version of an Api."""

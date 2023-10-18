@@ -5,14 +5,14 @@ import dataclasses
 from ..shared import filter as shared_filter
 from dataclasses_json import Undefined, dataclass_json
 from speakeasy import utils
+from typing import List
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class Filters:
     r"""Filters are used to query requests."""
-    filters: list[shared_filter.Filter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filters') }})
+    filters: List[shared_filter.Filter] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('filters') }})
     r"""A list of filters to apply to the query."""
     limit: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('limit') }})
     r"""The maximum number of results to return."""

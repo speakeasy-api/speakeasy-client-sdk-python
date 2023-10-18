@@ -8,7 +8,6 @@ from ..shared import generateopenapispecdiff as shared_generateopenapispecdiff
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class GenerateOpenAPISpecForAPIEndpointRequest:
     api_endpoint_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiEndpointID', 'style': 'simple', 'explode': False }})
@@ -18,7 +17,6 @@ class GenerateOpenAPISpecForAPIEndpointRequest:
     version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
     r"""The version ID of the Api to generate an OpenAPI specification for."""
     
-
 
 
 

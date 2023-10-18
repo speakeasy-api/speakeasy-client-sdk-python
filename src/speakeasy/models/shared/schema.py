@@ -9,7 +9,6 @@ from speakeasy import utils
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class Schema:
     r"""A Schema represents an API schema for a particular Api and Version."""

@@ -7,7 +7,6 @@ from ..shared import error as shared_error
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class ValidateAPIKeyResponse:
     content_type: str = dataclasses.field()

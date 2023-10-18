@@ -8,7 +8,6 @@ from ..shared import versionmetadata as shared_versionmetadata
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class InsertVersionMetadataRequest:
     api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
@@ -18,7 +17,6 @@ class InsertVersionMetadataRequest:
     version_metadata_input: shared_versionmetadata.VersionMetadataInput = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     r"""A JSON representation of the metadata to insert."""
     
-
 
 
 

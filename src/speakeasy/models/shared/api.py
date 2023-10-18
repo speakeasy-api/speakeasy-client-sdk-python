@@ -6,11 +6,10 @@ import dateutil.parser
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from speakeasy import utils
-from typing import Optional
+from typing import Dict, List, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class APIInput:
     r"""An Api is representation of a API (a collection of API Endpoints) within the Speakeasy Platform."""
@@ -20,14 +19,13 @@ class APIInput:
     r"""A detailed description of the Api."""
     version_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('version_id') }})
     r"""The version ID of this Api. This is semantic version identifier."""
-    meta_data: Optional[dict[str, list[str]]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('meta_data'), 'exclude': lambda f: f is None }})
+    meta_data: Optional[Dict[str, List[str]]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('meta_data'), 'exclude': lambda f: f is None }})
     r"""A set of values associated with a meta_data key. This field is only set on get requests."""
     
 
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class API:
     r"""An Api is representation of a API (a collection of API Endpoints) within the Speakeasy Platform."""
@@ -45,7 +43,7 @@ class API:
     r"""The workspace ID this Api belongs to."""
     matched: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('matched'), 'exclude': lambda f: f is None }})
     r"""Determines if all the endpoints within the Api are found in the OpenAPI spec associated with the Api."""
-    meta_data: Optional[dict[str, list[str]]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('meta_data'), 'exclude': lambda f: f is None }})
+    meta_data: Optional[Dict[str, List[str]]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('meta_data'), 'exclude': lambda f: f is None }})
     r"""A set of values associated with a meta_data key. This field is only set on get requests."""
     
 

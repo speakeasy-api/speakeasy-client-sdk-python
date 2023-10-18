@@ -5,8 +5,7 @@ import dataclasses
 import requests as requests_http
 from ..shared import apiendpoint as shared_apiendpoint
 from ..shared import error as shared_error
-from typing import Optional
-
+from typing import List, Optional
 
 
 @dataclasses.dataclass
@@ -19,14 +18,13 @@ class GetAllForVersionAPIEndpointsRequest:
 
 
 
-
 @dataclasses.dataclass
 class GetAllForVersionAPIEndpointsResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    api_endpoints: Optional[list[shared_apiendpoint.APIEndpoint]] = dataclasses.field(default=None)
+    api_endpoints: Optional[List[shared_apiendpoint.APIEndpoint]] = dataclasses.field(default=None)
     r"""OK"""
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
     r"""Default error response"""

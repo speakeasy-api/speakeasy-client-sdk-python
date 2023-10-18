@@ -5,8 +5,7 @@ import dataclasses
 import requests as requests_http
 from ..shared import error as shared_error
 from ..shared import schema as shared_schema
-from typing import Optional
-
+from typing import List, Optional
 
 
 @dataclasses.dataclass
@@ -16,7 +15,6 @@ class GetSchemasRequest:
     version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
     r"""The version ID of the Api to delete metadata for."""
     
-
 
 
 
@@ -30,7 +28,7 @@ class GetSchemasResponse:
     r"""Default error response"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     r"""Raw HTTP response; suitable for custom response parsing"""
-    schemata: Optional[list[shared_schema.Schema]] = dataclasses.field(default=None)
+    schemata: Optional[List[shared_schema.Schema]] = dataclasses.field(default=None)
     r"""OK"""
     
 

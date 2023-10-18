@@ -62,15 +62,15 @@ req = operations.RunPluginRequest(
         filters=[
             shared.Filter(
                 key='<key>',
-                operator='West parse Pickup',
-                value='purple Pants',
+                operator='Designer',
+                value='Pickup',
             ),
         ],
-        limit=996936,
-        offset=273299,
-        operator='Bedfordshire meaningfully',
+        limit=455139,
+        offset=173644,
+        operator='Indiana',
     ),
-    plugin_id='Botswana Metal',
+    plugin_id='Chrysler',
 )
 
 res = s.plugins.run_plugin(req)
@@ -110,10 +110,10 @@ s = speakeasy.Speakeasy(
 )
 
 req = shared.Plugin(
-    code='drafty',
-    plugin_id='Rock North exuding',
-    title='navigating schemas',
-    workspace_id='Plastic siemens navigate',
+    code='Fish',
+    plugin_id='Rock',
+    title='North',
+    workspace_id='exuding',
 )
 
 res = s.plugins.upsert_plugin(req)

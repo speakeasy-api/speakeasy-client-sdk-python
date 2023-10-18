@@ -8,7 +8,6 @@ from ..shared import error as shared_error
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class UpsertAPIRequest:
     api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
@@ -16,7 +15,6 @@ class UpsertAPIRequest:
     api_input: shared_api.APIInput = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     r"""A JSON representation of the Api to upsert"""
     
-
 
 
 

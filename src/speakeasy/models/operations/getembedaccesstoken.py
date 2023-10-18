@@ -9,7 +9,6 @@ from ..shared import filters as shared_filters
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class GetEmbedAccessTokenRequest:
     description: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'description', 'style': 'form', 'explode': True }})
@@ -19,7 +18,6 @@ class GetEmbedAccessTokenRequest:
     filters: Optional[shared_filters.Filters] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'filters', 'serialization': 'json' }})
     r"""The filter to apply to the query."""
     
-
 
 
 

@@ -33,9 +33,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DeleteSchemaRequest(
-    api_id='Hybrid',
-    revision_id='Funk Garden Specialist',
-    version_id='male',
+    api_id='West',
+    revision_id='Tricycle',
+    version_id='Funk',
 )
 
 res = s.schemas.delete_schema(req)
@@ -74,8 +74,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DownloadSchemaRequest(
-    api_id='Specialist correctly',
-    version_id='customer Exclusive oof',
+    api_id='SMTP',
+    version_id='North',
 )
 
 res = s.schemas.download_schema(req)
@@ -114,9 +114,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DownloadSchemaRevisionRequest(
-    api_id='Belarus hacking firewall',
-    revision_id='Coupe affidavit Cheese',
-    version_id='pink deposit',
+    api_id='Cargo',
+    revision_id='hacking',
+    version_id='firewall',
 )
 
 res = s.schemas.download_schema_revision(req)
@@ -156,8 +156,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetSchemaRequest(
-    api_id='Assistant',
-    version_id='banter Cotton withdrawal',
+    api_id='Handcrafted',
+    version_id='Hybrid',
 )
 
 res = s.schemas.get_schema(req)
@@ -196,10 +196,10 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetSchemaDiffRequest(
-    api_id='Tuna',
-    base_revision_id='South Van',
-    target_revision_id='whoever',
-    version_id='henry Tulare',
+    api_id='North',
+    base_revision_id='Central',
+    target_revision_id='South',
+    version_id='Van',
 )
 
 res = s.schemas.get_schema_diff(req)
@@ -239,9 +239,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetSchemaRevisionRequest(
-    api_id='Mauritius',
-    revision_id='West Rustic Plastic',
-    version_id='Yttrium Loan',
+    api_id='City',
+    revision_id='web',
+    version_id='sternly',
 )
 
 res = s.schemas.get_schema_revision(req)
@@ -281,8 +281,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetSchemasRequest(
-    api_id='white',
-    version_id='optical round',
+    api_id='indigo',
+    version_id='Fantastic',
 )
 
 res = s.schemas.get_schemas(req)
@@ -325,11 +325,11 @@ req = operations.RegisterSchemaRequest(
     request_body=operations.RegisterSchemaRequestBody(
         file=operations.RegisterSchemaRequestBodyFile(
             content='mg|mf".]!\'.encode(),
-            file='Bronze Table Blues',
+            file='Avon',
         ),
     ),
-    api_id='Oganesson',
-    version_id='matrix Pennsylvania Southeast',
+    api_id='Pants',
+    version_id='Table',
 )
 
 res = s.schemas.register_schema(req)

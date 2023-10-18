@@ -7,7 +7,6 @@ from speakeasy import utils
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class Error:
     r"""The `Status` type defines a logical error model"""

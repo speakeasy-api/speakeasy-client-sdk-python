@@ -8,7 +8,6 @@ from ..shared import plugin as shared_plugin
 from typing import Optional
 
 
-
 @dataclasses.dataclass
 class UpsertPluginResponse:
     content_type: str = dataclasses.field()

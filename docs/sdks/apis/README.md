@@ -31,8 +31,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DeleteAPIRequest(
-    api_id='Applications Mercedes fuchsia',
-    version_id='Conroe',
+    api_id='plaintive',
+    version_id='THX',
 )
 
 res = s.apis.delete_api(req)
@@ -72,8 +72,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GenerateOpenAPISpecRequest(
-    api_id='frictionless District South',
-    version_id='West Global',
+    api_id='fixed',
+    version_id='bandwidth',
 )
 
 res = s.apis.generate_open_api_spec(req)
@@ -112,8 +112,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GeneratePostmanCollectionRequest(
-    api_id='extend Security',
-    version_id='reconfirm',
+    api_id='Paradigm',
+    version_id='olive',
 )
 
 res = s.apis.generate_postman_collection(req)
@@ -153,10 +153,10 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetAllAPIVersionsRequest(
-    api_id='yum Rustic Berkshire',
+    api_id='azure',
     metadata={
-        "Dodge": [
-            'Salad',
+        "enhance": [
+            'Garrison',
         ],
     },
     op=operations.GetAllAPIVersionsOp(
@@ -249,16 +249,16 @@ s = speakeasy.Speakeasy(
 
 req = operations.UpsertAPIRequest(
     api_input=shared.APIInput(
-        api_id='Martinique redefine Garland',
-        description='Balanced 24/7 utilisation',
+        api_id='Van',
+        description='Front-line zero defect algorithm',
         meta_data={
-            "pixel": [
-                'Buckinghamshire',
+            "Balanced": [
+                'West',
             ],
         },
-        version_id='Forward',
+        version_id='pixel',
     ),
-    api_id='Facilitator',
+    api_id='Buckinghamshire',
 )
 
 res = s.apis.upsert_api(req)

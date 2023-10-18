@@ -9,7 +9,6 @@ from speakeasy import utils
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class UnboundedRequest:
     r"""An UnboundedRequest represents the HAR content capture by Speakeasy when logging a request."""

@@ -7,11 +7,10 @@ from ..shared import requestmetadata as shared_requestmetadata
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from speakeasy import utils
-from typing import Optional
+from typing import List, Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class BoundedRequest:
     r"""A BoundedRequest is a request that has been logged by the Speakeasy without the contents of the request."""
@@ -41,7 +40,7 @@ class BoundedRequest:
     r"""The version ID of the Api this request was made to."""
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspace_id') }})
     r"""The workspace ID this request was made to."""
-    metadata: Optional[list[shared_requestmetadata.RequestMetadata]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata'), 'exclude': lambda f: f is None }})
+    metadata: Optional[List[shared_requestmetadata.RequestMetadata]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata'), 'exclude': lambda f: f is None }})
     r"""Metadata associated with this request"""
     
 

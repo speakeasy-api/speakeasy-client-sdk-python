@@ -6,8 +6,7 @@ import requests as requests_http
 from ..shared import boundedrequest as shared_boundedrequest
 from ..shared import error as shared_error
 from ..shared import filters as shared_filters
-from typing import Optional
-
+from typing import List, Optional
 
 
 @dataclasses.dataclass
@@ -20,14 +19,13 @@ class RunPluginRequest:
 
 
 
-
 @dataclasses.dataclass
 class RunPluginResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    bounded_requests: Optional[list[shared_boundedrequest.BoundedRequest]] = dataclasses.field(default=None)
+    bounded_requests: Optional[List[shared_boundedrequest.BoundedRequest]] = dataclasses.field(default=None)
     r"""OK"""
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
     r"""Default error response"""

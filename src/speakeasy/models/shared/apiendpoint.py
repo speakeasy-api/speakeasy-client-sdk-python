@@ -10,7 +10,6 @@ from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class APIEndpointInput:
     r"""An ApiEndpoint is a description of an Endpoint for an API."""
@@ -31,7 +30,6 @@ class APIEndpointInput:
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class APIEndpoint:
     r"""An ApiEndpoint is a description of an Endpoint for an API."""

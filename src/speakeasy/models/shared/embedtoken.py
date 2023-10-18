@@ -10,7 +10,6 @@ from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class EmbedToken:
     r"""A representation of an embed token granted for working with Speakeasy components."""

@@ -5,8 +5,7 @@ import dataclasses
 import requests as requests_http
 from ..shared import error as shared_error
 from ..shared import versionmetadata as shared_versionmetadata
-from typing import Optional
-
+from typing import List, Optional
 
 
 @dataclasses.dataclass
@@ -16,7 +15,6 @@ class GetVersionMetadataRequest:
     version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
     r"""The version ID of the Api to retrieve metadata for."""
     
-
 
 
 
@@ -30,7 +28,7 @@ class GetVersionMetadataResponse:
     r"""Default error response"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     r"""Raw HTTP response; suitable for custom response parsing"""
-    version_metadata: Optional[list[shared_versionmetadata.VersionMetadata]] = dataclasses.field(default=None)
+    version_metadata: Optional[List[shared_versionmetadata.VersionMetadata]] = dataclasses.field(default=None)
     r"""OK"""
     
 

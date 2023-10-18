@@ -8,7 +8,6 @@ from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class RequestMetadata:
     r"""Key-Value pairs associated with a request"""

@@ -7,7 +7,6 @@ from speakeasy import utils
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
-
 @dataclasses.dataclass
 class EmbedAccessTokenResponse:
     r"""An EmbedAccessTokenResponse contains a token that can be used to embed a Speakeasy dashboard."""

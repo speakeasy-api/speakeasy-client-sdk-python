@@ -33,9 +33,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DeleteAPIEndpointRequest(
-    api_endpoint_id='blue',
-    api_id='Gasoline',
-    version_id='Southwest',
+    api_endpoint_id='string',
+    api_id='string',
+    version_id='string',
 )
 
 res = s.api_endpoints.delete_api_endpoint(req)
@@ -75,9 +75,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.FindAPIEndpointRequest(
-    api_id='Cotton',
-    display_name='Chief',
-    version_id='Wooden',
+    api_id='string',
+    display_name='string',
+    version_id='string',
 )
 
 res = s.api_endpoints.find_api_endpoint(req)
@@ -117,9 +117,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GenerateOpenAPISpecForAPIEndpointRequest(
-    api_endpoint_id='Mazda',
-    api_id='web',
-    version_id='explicabo',
+    api_endpoint_id='string',
+    api_id='string',
+    version_id='string',
 )
 
 res = s.api_endpoints.generate_open_api_spec_for_api_endpoint(req)
@@ -158,9 +158,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GeneratePostmanCollectionForAPIEndpointRequest(
-    api_endpoint_id='indigo',
-    api_id='barring',
-    version_id='Senior',
+    api_endpoint_id='string',
+    api_id='string',
+    version_id='string',
 )
 
 res = s.api_endpoints.generate_postman_collection_for_api_endpoint(req)
@@ -199,7 +199,7 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetAllAPIEndpointsRequest(
-    api_id='unless',
+    api_id='string',
 )
 
 res = s.api_endpoints.get_all_api_endpoints(req)
@@ -238,8 +238,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetAllForVersionAPIEndpointsRequest(
-    api_id='now',
-    version_id='Diesel',
+    api_id='string',
+    version_id='string',
 )
 
 res = s.api_endpoints.get_all_for_version_api_endpoints(req)
@@ -278,9 +278,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetAPIEndpointRequest(
-    api_endpoint_id='flog',
-    api_id='synthesize',
-    version_id='Barium',
+    api_endpoint_id='string',
+    api_id='string',
+    version_id='string',
 )
 
 res = s.api_endpoints.get_api_endpoint(req)
@@ -320,16 +320,16 @@ s = speakeasy.Speakeasy(
 
 req = operations.UpsertAPIEndpointRequest(
     api_endpoint_input=shared.APIEndpointInput(
-        api_endpoint_id='Facilitator',
-        description='Cross-group bottom-line productivity',
-        display_name='nor',
-        method='Northwest',
-        path='/private',
-        version_id='what',
+        api_endpoint_id='string',
+        description='Public-key systematic attitude',
+        display_name='string',
+        method='string',
+        path='/etc/periodic',
+        version_id='string',
     ),
-    api_endpoint_id='Trans',
-    api_id='Kia',
-    version_id='Electronic',
+    api_endpoint_id='string',
+    api_id='string',
+    version_id='string',
 )
 
 res = s.api_endpoints.upsert_api_endpoint(req)

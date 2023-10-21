@@ -62,15 +62,15 @@ req = operations.RunPluginRequest(
         filters=[
             shared.Filter(
                 key='<key>',
-                operator='Designer',
-                value='Pickup',
+                operator='string',
+                value='string',
             ),
         ],
-        limit=455139,
-        offset=173644,
-        operator='Indiana',
+        limit=669298,
+        offset=94585,
+        operator='string',
     ),
-    plugin_id='Chrysler',
+    plugin_id='string',
 )
 
 res = s.plugins.run_plugin(req)
@@ -110,10 +110,10 @@ s = speakeasy.Speakeasy(
 )
 
 req = shared.Plugin(
-    code='Fish',
-    plugin_id='Rock',
-    title='North',
-    workspace_id='exuding',
+    code='string',
+    plugin_id='string',
+    title='string',
+    workspace_id='string',
 )
 
 res = s.plugins.upsert_plugin(req)

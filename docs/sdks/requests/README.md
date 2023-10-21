@@ -29,7 +29,7 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GenerateRequestPostmanCollectionRequest(
-    request_id='Architect',
+    request_id='string',
 )
 
 res = s.requests.generate_request_postman_collection(req)
@@ -68,7 +68,7 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetRequestFromEventLogRequest(
-    request_id='Chevrolet',
+    request_id='string',
 )
 
 res = s.requests.get_request_from_event_log(req)
@@ -112,13 +112,13 @@ req = operations.QueryEventLogRequest(
         filters=[
             shared.Filter(
                 key='<key>',
-                operator='Cotton',
-                value='Interactions',
+                operator='string',
+                value='string',
             ),
         ],
-        limit=6323,
-        offset=788512,
-        operator='Practical',
+        limit=241978,
+        offset=451388,
+        operator='string',
     ),
 )
 

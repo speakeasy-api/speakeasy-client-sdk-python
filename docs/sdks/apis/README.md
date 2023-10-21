@@ -31,8 +31,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DeleteAPIRequest(
-    api_id='plaintive',
-    version_id='THX',
+    api_id='string',
+    version_id='string',
 )
 
 res = s.apis.delete_api(req)
@@ -72,8 +72,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GenerateOpenAPISpecRequest(
-    api_id='fixed',
-    version_id='bandwidth',
+    api_id='string',
+    version_id='string',
 )
 
 res = s.apis.generate_open_api_spec(req)
@@ -112,8 +112,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GeneratePostmanCollectionRequest(
-    api_id='Paradigm',
-    version_id='olive',
+    api_id='string',
+    version_id='string',
 )
 
 res = s.apis.generate_postman_collection(req)
@@ -153,10 +153,10 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetAllAPIVersionsRequest(
-    api_id='azure',
+    api_id='string',
     metadata={
-        "enhance": [
-            'Garrison',
+        "key": [
+            'string',
         ],
     },
     op=operations.GetAllAPIVersionsOp(
@@ -202,8 +202,8 @@ s = speakeasy.Speakeasy(
 
 req = operations.GetApisRequest(
     metadata={
-        "South": [
-            'Southwest',
+        "key": [
+            'string',
         ],
     },
     op=operations.GetApisOp(
@@ -249,16 +249,16 @@ s = speakeasy.Speakeasy(
 
 req = operations.UpsertAPIRequest(
     api_input=shared.APIInput(
-        api_id='Van',
-        description='Front-line zero defect algorithm',
+        api_id='string',
+        description='Synchronised 5th generation knowledge user',
         meta_data={
-            "Balanced": [
-                'West',
+            "key": [
+                'string',
             ],
         },
-        version_id='pixel',
+        version_id='string',
     ),
-    api_id='Buckinghamshire',
+    api_id='string',
 )
 
 res = s.apis.upsert_api(req)

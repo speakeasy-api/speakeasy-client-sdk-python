@@ -33,9 +33,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DeleteSchemaRequest(
-    api_id='West',
-    revision_id='Tricycle',
-    version_id='Funk',
+    api_id='string',
+    revision_id='string',
+    version_id='string',
 )
 
 res = s.schemas.delete_schema(req)
@@ -74,8 +74,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DownloadSchemaRequest(
-    api_id='SMTP',
-    version_id='North',
+    api_id='string',
+    version_id='string',
 )
 
 res = s.schemas.download_schema(req)
@@ -114,9 +114,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.DownloadSchemaRevisionRequest(
-    api_id='Cargo',
-    revision_id='hacking',
-    version_id='firewall',
+    api_id='string',
+    revision_id='string',
+    version_id='string',
 )
 
 res = s.schemas.download_schema_revision(req)
@@ -156,8 +156,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetSchemaRequest(
-    api_id='Handcrafted',
-    version_id='Hybrid',
+    api_id='string',
+    version_id='string',
 )
 
 res = s.schemas.get_schema(req)
@@ -196,10 +196,10 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetSchemaDiffRequest(
-    api_id='North',
-    base_revision_id='Central',
-    target_revision_id='South',
-    version_id='Van',
+    api_id='string',
+    base_revision_id='string',
+    target_revision_id='string',
+    version_id='string',
 )
 
 res = s.schemas.get_schema_diff(req)
@@ -239,9 +239,9 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetSchemaRevisionRequest(
-    api_id='City',
-    revision_id='web',
-    version_id='sternly',
+    api_id='string',
+    revision_id='string',
+    version_id='string',
 )
 
 res = s.schemas.get_schema_revision(req)
@@ -281,8 +281,8 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.GetSchemasRequest(
-    api_id='indigo',
-    version_id='Fantastic',
+    api_id='string',
+    version_id='string',
 )
 
 res = s.schemas.get_schemas(req)
@@ -325,11 +325,11 @@ req = operations.RegisterSchemaRequest(
     request_body=operations.RegisterSchemaRequestBody(
         file=operations.RegisterSchemaRequestBodyFile(
             content='mg|mf".]!\'.encode(),
-            file='Avon',
+            file='string',
         ),
     ),
-    api_id='Pants',
-    version_id='Table',
+    api_id='string',
+    version_id='string',
 )
 
 res = s.schemas.register_schema(req)

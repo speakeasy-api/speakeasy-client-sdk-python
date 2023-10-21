@@ -33,13 +33,13 @@ req = operations.GetEmbedAccessTokenRequest(
         filters=[
             shared.Filter(
                 key='<key>',
-                operator='along',
-                value='quos',
+                operator='string',
+                value='string',
             ),
         ],
-        limit=263313,
-        offset=411277,
-        operator='male',
+        limit=964408,
+        offset=95617,
+        operator='string',
     ),
 )
 
@@ -109,7 +109,7 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.RevokeEmbedAccessTokenRequest(
-    token_id='Ball',
+    token_id='string',
 )
 
 res = s.embeds.revoke_embed_access_token(req)

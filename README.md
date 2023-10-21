@@ -22,8 +22,8 @@ s = speakeasy.Speakeasy(
 
 req = operations.GetApisRequest(
     metadata={
-        "South": [
-            'Southwest',
+        "key": [
+            'string',
         ],
     },
     op=operations.GetApisOp(

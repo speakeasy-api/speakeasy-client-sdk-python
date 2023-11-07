@@ -26,14 +26,14 @@ req = operations.GetApisRequest(
             'string',
         ],
     },
-    op=operations.GetApisOp(
+    op=operations.QueryParamOp(
         and_=False,
     ),
 )
 
 res = s.apis.get_apis(req)
 
-if res.apis is not None:
+if res.classes is not None:
     # handle response
     pass
 ```
@@ -46,7 +46,16 @@ if res.apis is not None:
 
 * [validate_api_key](docs/sdks/speakeasy/README.md#validate_api_key) - Validate the current api key.
 
-### [api_endpoints](docs/sdks/apiendpoints/README.md)
+### [.apis](docs/sdks/apis/README.md)
+
+* [delete_api](docs/sdks/apis/README.md#delete_api) - Delete an Api.
+* [generate_open_api_spec](docs/sdks/apis/README.md#generate_open_api_spec) - Generate an OpenAPI specification for a particular Api.
+* [generate_postman_collection](docs/sdks/apis/README.md#generate_postman_collection) - Generate a Postman collection for a particular Api.
+* [get_all_api_versions](docs/sdks/apis/README.md#get_all_api_versions) - Get all Api versions for a particular ApiEndpoint.
+* [get_apis](docs/sdks/apis/README.md#get_apis) - Get a list of Apis for a given workspace
+* [upsert_api](docs/sdks/apis/README.md#upsert_api) - Upsert an Api
+
+### [.api_endpoints](docs/sdks/apiendpoints/README.md)
 
 * [delete_api_endpoint](docs/sdks/apiendpoints/README.md#delete_api_endpoint) - Delete an ApiEndpoint.
 * [find_api_endpoint](docs/sdks/apiendpoints/README.md#find_api_endpoint) - Find an ApiEndpoint via its displayName.
@@ -57,40 +66,13 @@ if res.apis is not None:
 * [get_api_endpoint](docs/sdks/apiendpoints/README.md#get_api_endpoint) - Get an ApiEndpoint.
 * [upsert_api_endpoint](docs/sdks/apiendpoints/README.md#upsert_api_endpoint) - Upsert an ApiEndpoint.
 
-### [apis](docs/sdks/apis/README.md)
-
-* [delete_api](docs/sdks/apis/README.md#delete_api) - Delete an Api.
-* [generate_open_api_spec](docs/sdks/apis/README.md#generate_open_api_spec) - Generate an OpenAPI specification for a particular Api.
-* [generate_postman_collection](docs/sdks/apis/README.md#generate_postman_collection) - Generate a Postman collection for a particular Api.
-* [get_all_api_versions](docs/sdks/apis/README.md#get_all_api_versions) - Get all Api versions for a particular ApiEndpoint.
-* [get_apis](docs/sdks/apis/README.md#get_apis) - Get a list of Apis for a given workspace
-* [upsert_api](docs/sdks/apis/README.md#upsert_api) - Upsert an Api
-
-### [embeds](docs/sdks/embeds/README.md)
-
-* [get_embed_access_token](docs/sdks/embeds/README.md#get_embed_access_token) - Get an embed access token for the current workspace.
-* [get_valid_embed_access_tokens](docs/sdks/embeds/README.md#get_valid_embed_access_tokens) - Get all valid embed access tokens for the current workspace.
-* [revoke_embed_access_token](docs/sdks/embeds/README.md#revoke_embed_access_token) - Revoke an embed access EmbedToken.
-
-### [metadata](docs/sdks/metadata/README.md)
+### [.metadata](docs/sdks/metadata/README.md)
 
 * [delete_version_metadata](docs/sdks/metadata/README.md#delete_version_metadata) - Delete metadata for a particular apiID and versionID.
 * [get_version_metadata](docs/sdks/metadata/README.md#get_version_metadata) - Get all metadata for a particular apiID and versionID.
 * [insert_version_metadata](docs/sdks/metadata/README.md#insert_version_metadata) - Insert metadata for a particular apiID and versionID.
 
-### [plugins](docs/sdks/plugins/README.md)
-
-* [get_plugins](docs/sdks/plugins/README.md#get_plugins) - Get all plugins for the current workspace.
-* [run_plugin](docs/sdks/plugins/README.md#run_plugin) - Run a plugin
-* [upsert_plugin](docs/sdks/plugins/README.md#upsert_plugin) - Upsert a plugin
-
-### [requests](docs/sdks/requests/README.md)
-
-* [generate_request_postman_collection](docs/sdks/requests/README.md#generate_request_postman_collection) - Generate a Postman collection for a particular request.
-* [get_request_from_event_log](docs/sdks/requests/README.md#get_request_from_event_log) - Get information about a particular request.
-* [query_event_log](docs/sdks/requests/README.md#query_event_log) - Query the event log to retrieve a list of requests.
-
-### [schemas](docs/sdks/schemas/README.md)
+### [.schemas](docs/sdks/schemas/README.md)
 
 * [delete_schema](docs/sdks/schemas/README.md#delete_schema) - Delete a particular schema revision for an Api.
 * [download_schema](docs/sdks/schemas/README.md#download_schema) - Download the latest schema for a particular apiID.
@@ -100,6 +82,24 @@ if res.apis is not None:
 * [get_schema_revision](docs/sdks/schemas/README.md#get_schema_revision) - Get information about a particular schema revision for an Api.
 * [get_schemas](docs/sdks/schemas/README.md#get_schemas) - Get information about all schemas associated with a particular apiID.
 * [register_schema](docs/sdks/schemas/README.md#register_schema) - Register a schema.
+
+### [.requests](docs/sdks/requests/README.md)
+
+* [generate_request_postman_collection](docs/sdks/requests/README.md#generate_request_postman_collection) - Generate a Postman collection for a particular request.
+* [get_request_from_event_log](docs/sdks/requests/README.md#get_request_from_event_log) - Get information about a particular request.
+* [query_event_log](docs/sdks/requests/README.md#query_event_log) - Query the event log to retrieve a list of requests.
+
+### [.plugins](docs/sdks/plugins/README.md)
+
+* [get_plugins](docs/sdks/plugins/README.md#get_plugins) - Get all plugins for the current workspace.
+* [run_plugin](docs/sdks/plugins/README.md#run_plugin) - Run a plugin
+* [upsert_plugin](docs/sdks/plugins/README.md#upsert_plugin) - Upsert a plugin
+
+### [.embeds](docs/sdks/embeds/README.md)
+
+* [get_embed_access_token](docs/sdks/embeds/README.md#get_embed_access_token) - Get an embed access token for the current workspace.
+* [get_valid_embed_access_tokens](docs/sdks/embeds/README.md#get_valid_embed_access_tokens) - Get all valid embed access tokens for the current workspace.
+* [revoke_embed_access_token](docs/sdks/embeds/README.md#revoke_embed_access_token) - Revoke an embed access EmbedToken.
 <!-- End SDK Available Operations -->
 
 
@@ -126,8 +126,6 @@ Here's an example of one such pagination call:
 # Error Handling
 
 Handling errors in your SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate Error type.
-
-
 <!-- End Error Handling -->
 
 
@@ -145,20 +143,19 @@ You can override the default server globally by passing a server name to the `se
 
 For example:
 
-
 ```python
 import speakeasy
 from speakeasy.models import shared
 
 s = speakeasy.Speakeasy(
+    server="prod",
     security=shared.Security(
         api_key="",
     ),
-    server="prod"
 )
 
 
-res = s.speakeasy.validate_api_key()
+res = s.validate_api_key()
 
 if res.status_code == 200:
     # handle response
@@ -170,20 +167,19 @@ if res.status_code == 200:
 
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 
-
 ```python
 import speakeasy
 from speakeasy.models import shared
 
 s = speakeasy.Speakeasy(
+    server_url="https://api.prod.speakeasyapi.dev",
     security=shared.Security(
         api_key="",
     ),
-    server_url="https://api.prod.speakeasyapi.dev"
 )
 
 
-res = s.speakeasy.validate_api_key()
+res = s.validate_api_key()
 
 if res.status_code == 200:
     # handle response
@@ -209,9 +205,42 @@ http_client = requests.Session()
 http_client.headers.update({'x-custom-header': 'someValue'})
 s = speakeasy.Speakeasy(client: http_client)
 ```
-
-
 <!-- End Custom HTTP Client -->
+
+
+
+<!-- Start Authentication -->
+
+# Authentication
+
+## Per-Client Security Schemes
+
+Your SDK supports the following security scheme globally:
+
+| Name      | Type      | Scheme    |
+| --------- | --------- | --------- |
+| `api_key` | apiKey    | API key   |
+
+You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
+
+```python
+import speakeasy
+from speakeasy.models import shared
+
+s = speakeasy.Speakeasy(
+    security=shared.Security(
+        api_key="",
+    ),
+)
+
+
+res = s.validate_api_key()
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+<!-- End Authentication -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

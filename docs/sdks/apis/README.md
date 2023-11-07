@@ -1,5 +1,5 @@
 # Apis
-(*apis*)
+(*.apis*)
 
 ## Overview
 
@@ -159,14 +159,14 @@ req = operations.GetAllAPIVersionsRequest(
             'string',
         ],
     },
-    op=operations.GetAllAPIVersionsOp(
+    op=operations.Op(
         and_=False,
     ),
 )
 
 res = s.apis.get_all_api_versions(req)
 
-if res.apis is not None:
+if res.classes is not None:
     # handle response
     pass
 ```
@@ -206,14 +206,14 @@ req = operations.GetApisRequest(
             'string',
         ],
     },
-    op=operations.GetApisOp(
+    op=operations.QueryParamOp(
         and_=False,
     ),
 )
 
 res = s.apis.get_apis(req)
 
-if res.apis is not None:
+if res.classes is not None:
     # handle response
     pass
 ```
@@ -248,7 +248,7 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.UpsertAPIRequest(
-    api_input=shared.APIInput(
+    api=shared.APIInput(
         api_id='string',
         description='Synchronised 5th generation knowledge user',
         meta_data={

@@ -1,5 +1,5 @@
 # Schemas
-(*schemas*)
+(*.schemas*)
 
 ## Overview
 
@@ -80,7 +80,7 @@ req = operations.DownloadSchemaRequest(
 
 res = s.schemas.download_schema(req)
 
-if res.schema is not None:
+if res.two_hundred_application_json_schema is not None:
     # handle response
     pass
 ```
@@ -121,7 +121,7 @@ req = operations.DownloadSchemaRevisionRequest(
 
 res = s.schemas.download_schema_revision(req)
 
-if res.schema is not None:
+if res.two_hundred_application_json_schema is not None:
     # handle response
     pass
 ```
@@ -287,7 +287,7 @@ req = operations.GetSchemasRequest(
 
 res = s.schemas.get_schemas(req)
 
-if res.schemata is not None:
+if res.classes is not None:
     # handle response
     pass
 ```
@@ -323,9 +323,9 @@ s = speakeasy.Speakeasy(
 
 req = operations.RegisterSchemaRequest(
     request_body=operations.RegisterSchemaRequestBody(
-        file=operations.RegisterSchemaRequestBodyFile(
-            content='mg|mf".]!\'.encode(),
-            file='string',
+        file=operations.File(
+            content='0xCAFCA03e0e'.encode(),
+            file_name='bronze_table_blues.m2a',
         ),
     ),
     api_id='string',

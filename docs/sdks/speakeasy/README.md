@@ -28,7 +28,7 @@ s = speakeasy.Speakeasy(
 )
 
 
-res = s.speakeasy.validate_api_key()
+res = s.validate_api_key()
 
 if res.status_code == 200:
     # handle response

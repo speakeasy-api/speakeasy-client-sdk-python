@@ -3,14 +3,14 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import error as shared_error
+from ...models.shared import error as shared_error
 from typing import Optional
 
 
 @dataclasses.dataclass
-class RegisterSchemaRequestBodyFile:
+class File:
     content: bytes = dataclasses.field(metadata={'multipart_form': { 'content': True }})
-    file: str = dataclasses.field(metadata={'multipart_form': { 'field_name': 'file' }})
+    file_name: str = dataclasses.field(metadata={'multipart_form': { 'field_name': 'file' }})
     
 
 
@@ -18,7 +18,7 @@ class RegisterSchemaRequestBodyFile:
 @dataclasses.dataclass
 class RegisterSchemaRequestBody:
     r"""The schema file to upload provided as a multipart/form-data file segment."""
-    file: RegisterSchemaRequestBodyFile = dataclasses.field(metadata={'multipart_form': { 'file': True }})
+    file: File = dataclasses.field(metadata={'multipart_form': { 'file': True }})
     
 
 

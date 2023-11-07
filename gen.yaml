@@ -2,16 +2,15 @@ configVersion: 1.0.0
 management:
   docChecksum: ba638b2ad28966c596e28321a2003686
   docVersion: 0.3.0
-  speakeasyVersion: 1.109.0
-  generationVersion: 2.173.0
+  speakeasyVersion: 1.114.1
+  generationVersion: 2.181.1
 generation:
-  repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
+  comments: {}
   sdkClassName: speakeasy
-  singleTagPerOp: false
-  telemetryEnabled: true
+  repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
 features:
   python:
-    core: 3.3.1
+    core: 4.1.0
     downloadStreams: 0.0.2
     examples: 2.81.3
     globalSecurity: 2.82.0
@@ -19,10 +18,19 @@ features:
     inputOutputModels: 2.81.1
     serverIDs: 2.81.1
 python:
-  version: 2.1.1
+  version: 3.0.0
   author: Speakeasy
+  clientServerStatusCodesAsErrors: true
   description: Speakeasy API Client SDK for Python
   flattenGlobalSecurity: false
+  imports:
+    option: openapi
+    paths:
+      callbacks: models/callbacks
+      errors: models/errors
+      operations: models/operations
+      shared: models/shared
+      webhooks: models/webhooks
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   maxMethodParams: 0
   packageName: speakeasy-client-sdk-python

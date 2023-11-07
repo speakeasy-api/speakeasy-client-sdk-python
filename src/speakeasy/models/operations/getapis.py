@@ -3,13 +3,13 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import api as shared_api
-from ..shared import error as shared_error
+from ...models.shared import api as shared_api
+from ...models.shared import error as shared_error
 from typing import Dict, List, Optional
 
 
 @dataclasses.dataclass
-class GetApisOp:
+class QueryParamOp:
     r"""Configuration for filter operations"""
     and_: bool = dataclasses.field(metadata={'query_param': { 'field_name': 'and' }})
     r"""Whether to AND or OR the filters"""
@@ -21,7 +21,7 @@ class GetApisOp:
 class GetApisRequest:
     metadata: Optional[Dict[str, List[str]]] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'metadata', 'style': 'deepObject', 'explode': True }})
     r"""Metadata to filter Apis on"""
-    op: Optional[GetApisOp] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'op', 'style': 'deepObject', 'explode': True }})
+    op: Optional[QueryParamOp] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'op', 'style': 'deepObject', 'explode': True }})
     r"""Configuration for filter operations"""
     
 
@@ -33,7 +33,7 @@ class GetApisResponse:
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    apis: Optional[List[shared_api.API]] = dataclasses.field(default=None)
+    classes: Optional[List[shared_api.API]] = dataclasses.field(default=None)
     r"""OK"""
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
     r"""Default error response"""

@@ -1,5 +1,5 @@
 # Metadata
-(*metadata*)
+(*.metadata*)
 
 ## Overview
 
@@ -76,7 +76,7 @@ req = operations.GetVersionMetadataRequest(
 
 res = s.metadata.get_version_metadata(req)
 
-if res.version_metadata is not None:
+if res.classes is not None:
     # handle response
     pass
 ```
@@ -110,7 +110,7 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.InsertVersionMetadataRequest(
-    version_metadata_input=shared.VersionMetadataInput(
+    version_metadata=shared.VersionMetadataInput(
         meta_key='string',
         meta_value='string',
     ),

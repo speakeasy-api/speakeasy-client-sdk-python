@@ -3,8 +3,8 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import error as shared_error
-from ..shared import schemadiff as shared_schemadiff
+from ...models.shared import error as shared_error
+from ...models.shared import schemadiff as shared_schemadiff
 from typing import Optional
 
 

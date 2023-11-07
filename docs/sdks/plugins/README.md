@@ -1,5 +1,5 @@
 # Plugins
-(*plugins*)
+(*.plugins*)
 
 ## Overview
 
@@ -30,7 +30,7 @@ s = speakeasy.Speakeasy(
 
 res = s.plugins.get_plugins()
 
-if res.plugins is not None:
+if res.classes is not None:
     # handle response
     pass
 ```
@@ -75,7 +75,7 @@ req = operations.RunPluginRequest(
 
 res = s.plugins.run_plugin(req)
 
-if res.bounded_requests is not None:
+if res.classes is not None:
     # handle response
     pass
 ```
@@ -99,8 +99,8 @@ Upsert a plugin
 ### Example Usage
 
 ```python
-import speakeasy
 import dateutil.parser
+import speakeasy
 from speakeasy.models import shared
 
 s = speakeasy.Speakeasy(

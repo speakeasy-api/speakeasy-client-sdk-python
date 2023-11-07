@@ -1,4 +1,4 @@
-# GetAllAPIVersionsOp
+# QueryParamOp
 
 Configuration for filter operations
 

@@ -1,5 +1,5 @@
 # Embeds
-(*embeds*)
+(*.embeds*)
 
 ## Overview
 
@@ -81,7 +81,7 @@ s = speakeasy.Speakeasy(
 
 res = s.embeds.get_valid_embed_access_tokens()
 
-if res.embed_tokens is not None:
+if res.classes is not None:
     # handle response
     pass
 ```

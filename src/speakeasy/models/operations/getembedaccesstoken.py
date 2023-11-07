@@ -3,9 +3,9 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import embedaccesstokenresponse as shared_embedaccesstokenresponse
-from ..shared import error as shared_error
-from ..shared import filters as shared_filters
+from ...models.shared import embedaccesstokenresponse as shared_embedaccesstokenresponse
+from ...models.shared import error as shared_error
+from ...models.shared import filters as shared_filters
 from typing import Optional
 
 

@@ -9,7 +9,7 @@ from typing import Dict, List
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class SchemaDiffValueChange:
+class ValueChange:
     from_: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('From') }})
     r"""Represents the previous value of the element."""
     to: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('To') }})
@@ -26,7 +26,7 @@ class SchemaDiff:
     r"""Holds every addition change in the diff."""
     deletions: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('deletions') }})
     r"""Holds every deletion change in the diff."""
-    modifications: Dict[str, SchemaDiffValueChange] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('modifications') }})
+    modifications: Dict[str, ValueChange] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('modifications') }})
     r"""Holds every modification change in the diff."""
     
 

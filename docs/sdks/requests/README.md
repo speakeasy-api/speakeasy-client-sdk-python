@@ -1,5 +1,5 @@
 # Requests
-(*requests*)
+(*.requests*)
 
 ## Overview
 
@@ -124,7 +124,7 @@ req = operations.QueryEventLogRequest(
 
 res = s.requests.query_event_log(req)
 
-if res.bounded_requests is not None:
+if res.classes is not None:
     # handle response
     pass
 ```

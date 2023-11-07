@@ -3,8 +3,8 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import error as shared_error
-from ..shared import versionmetadata as shared_versionmetadata
+from ...models.shared import error as shared_error
+from ...models.shared import versionmetadata as shared_versionmetadata
 from typing import Optional
 
 
@@ -14,7 +14,7 @@ class InsertVersionMetadataRequest:
     r"""The ID of the Api to insert metadata for."""
     version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
     r"""The version ID of the Api to insert metadata for."""
-    version_metadata_input: shared_versionmetadata.VersionMetadataInput = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
+    version_metadata: shared_versionmetadata.VersionMetadataInput = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     r"""A JSON representation of the metadata to insert."""
     
 

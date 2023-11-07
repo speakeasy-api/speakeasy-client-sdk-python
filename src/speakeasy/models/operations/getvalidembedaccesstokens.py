@@ -3,8 +3,8 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import embedtoken as shared_embedtoken
-from ..shared import error as shared_error
+from ...models.shared import embedtoken as shared_embedtoken
+from ...models.shared import error as shared_error
 from typing import List, Optional
 
 
@@ -14,7 +14,7 @@ class GetValidEmbedAccessTokensResponse:
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    embed_tokens: Optional[List[shared_embedtoken.EmbedToken]] = dataclasses.field(default=None)
+    classes: Optional[List[shared_embedtoken.EmbedToken]] = dataclasses.field(default=None)
     r"""OK"""
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
     r"""Default error response"""

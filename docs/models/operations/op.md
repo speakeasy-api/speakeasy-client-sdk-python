@@ -1,4 +1,4 @@
-# GetApisOp
+# Op
 
 Configuration for filter operations
 

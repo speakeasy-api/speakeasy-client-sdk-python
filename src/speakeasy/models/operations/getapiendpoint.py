@@ -3,8 +3,8 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import apiendpoint as shared_apiendpoint
-from ..shared import error as shared_error
+from ...models.shared import apiendpoint as shared_apiendpoint
+from ...models.shared import error as shared_error
 from typing import Optional
 
 

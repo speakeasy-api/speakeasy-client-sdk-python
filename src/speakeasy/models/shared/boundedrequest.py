@@ -3,7 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import dateutil.parser
-from ..shared import requestmetadata as shared_requestmetadata
+from .requestmetadata import RequestMetadata
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from speakeasy import utils
@@ -40,7 +40,7 @@ class BoundedRequest:
     r"""The version ID of the Api this request was made to."""
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspace_id') }})
     r"""The workspace ID this request was made to."""
-    metadata: Optional[List[shared_requestmetadata.RequestMetadata]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata'), 'exclude': lambda f: f is None }})
+    metadata: Optional[List[RequestMetadata]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadata'), 'exclude': lambda f: f is None }})
     r"""Metadata associated with this request"""
     
 

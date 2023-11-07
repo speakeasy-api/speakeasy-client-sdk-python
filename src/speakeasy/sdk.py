@@ -17,20 +17,20 @@ class Speakeasy:
     r"""Speakeasy API: The Speakeasy API allows teams to manage common operations with their APIs
     /docs - The Speakeasy Platform Documentation
     """
-    api_endpoints: APIEndpoints
-    r"""REST APIs for managing ApiEndpoint entities"""
     apis: Apis
     r"""REST APIs for managing Api entities"""
-    embeds: Embeds
-    r"""REST APIs for managing embeds"""
+    api_endpoints: APIEndpoints
+    r"""REST APIs for managing ApiEndpoint entities"""
     metadata: Metadata
     r"""REST APIs for managing Version Metadata entities"""
-    plugins: Plugins
-    r"""REST APIs for managing and running plugins"""
-    requests: Requests
-    r"""REST APIs for retrieving request information"""
     schemas: Schemas
     r"""REST APIs for managing Schema entities"""
+    requests: Requests
+    r"""REST APIs for retrieving request information"""
+    plugins: Plugins
+    r"""REST APIs for managing and running plugins"""
+    embeds: Embeds
+    r"""REST APIs for managing embeds"""
 
     sdk_configuration: SDKConfiguration
 
@@ -73,13 +73,13 @@ class Speakeasy:
         self._init_sdks()
     
     def _init_sdks(self):
-        self.api_endpoints = APIEndpoints(self.sdk_configuration)
         self.apis = Apis(self.sdk_configuration)
-        self.embeds = Embeds(self.sdk_configuration)
+        self.api_endpoints = APIEndpoints(self.sdk_configuration)
         self.metadata = Metadata(self.sdk_configuration)
-        self.plugins = Plugins(self.sdk_configuration)
-        self.requests = Requests(self.sdk_configuration)
         self.schemas = Schemas(self.sdk_configuration)
+        self.requests = Requests(self.sdk_configuration)
+        self.plugins = Plugins(self.sdk_configuration)
+        self.embeds = Embeds(self.sdk_configuration)
     
     def validate_api_key(self) -> operations.ValidateAPIKeyResponse:
         r"""Validate the current api key."""
@@ -99,6 +99,8 @@ class Speakeasy:
         
         if http_res.status_code == 200:
             pass
+        elif http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
             if utils.match_content_type(content_type, 'application/json'):
                 out = utils.unmarshal_json(http_res.text, Optional[shared.Error])

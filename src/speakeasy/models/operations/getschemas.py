@@ -3,8 +3,8 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ..shared import error as shared_error
-from ..shared import schema as shared_schema
+from ...models.shared import error as shared_error
+from ...models.shared import schema as shared_schema
 from typing import List, Optional
 
 
@@ -24,11 +24,11 @@ class GetSchemasResponse:
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    classes: Optional[List[shared_schema.Schema]] = dataclasses.field(default=None)
+    r"""OK"""
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
     r"""Default error response"""
     raw_response: Optional[requests_http.Response] = dataclasses.field(default=None)
     r"""Raw HTTP response; suitable for custom response parsing"""
-    schemata: Optional[List[shared_schema.Schema]] = dataclasses.field(default=None)
-    r"""OK"""
     
 

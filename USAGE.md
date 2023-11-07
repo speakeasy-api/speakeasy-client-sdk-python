@@ -17,14 +17,14 @@ req = operations.GetApisRequest(
             'string',
         ],
     },
-    op=operations.GetApisOp(
+    op=operations.QueryParamOp(
         and_=False,
     ),
 )
 
 res = s.apis.get_apis(req)
 
-if res.apis is not None:
+if res.classes is not None:
     # handle response
     pass
 ```

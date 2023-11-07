@@ -1,5 +1,5 @@
 # APIEndpoints
-(*api_endpoints*)
+(*.api_endpoints*)
 
 ## Overview
 
@@ -204,7 +204,7 @@ req = operations.GetAllAPIEndpointsRequest(
 
 res = s.api_endpoints.get_all_api_endpoints(req)
 
-if res.api_endpoints is not None:
+if res.classes is not None:
     # handle response
     pass
 ```
@@ -244,7 +244,7 @@ req = operations.GetAllForVersionAPIEndpointsRequest(
 
 res = s.api_endpoints.get_all_for_version_api_endpoints(req)
 
-if res.api_endpoints is not None:
+if res.classes is not None:
     # handle response
     pass
 ```
@@ -319,7 +319,7 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.UpsertAPIEndpointRequest(
-    api_endpoint_input=shared.APIEndpointInput(
+    api_endpoint=shared.APIEndpointInput(
         api_endpoint_id='string',
         description='Public-key systematic attitude',
         display_name='string',

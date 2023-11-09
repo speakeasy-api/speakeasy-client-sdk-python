@@ -4,13 +4,14 @@ from __future__ import annotations
 import dataclasses
 import requests as requests_http
 from ...models.shared import apiendpoint as shared_apiendpoint
+from ...models.shared import apiendpoint_input as shared_apiendpoint_input
 from ...models.shared import error as shared_error
 from typing import Optional
 
 
 @dataclasses.dataclass
 class UpsertAPIEndpointRequest:
-    api_endpoint: shared_apiendpoint.APIEndpointInput = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
+    api_endpoint: shared_apiendpoint_input.APIEndpointInput = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     r"""A JSON representation of the ApiEndpoint to upsert."""
     api_endpoint_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiEndpointID', 'style': 'simple', 'explode': False }})
     r"""The ID of the ApiEndpoint to upsert."""

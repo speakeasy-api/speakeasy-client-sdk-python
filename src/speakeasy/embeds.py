@@ -13,6 +13,7 @@ class Embeds:
         self.sdk_configuration = sdk_config
         
     
+    
     def get_embed_access_token(self, request: operations.GetEmbedAccessTokenRequest) -> operations.GetEmbedAccessTokenResponse:
         r"""Get an embed access token for the current workspace.
         Returns an embed access token for the current workspace. This can be used to authenticate access to externally embedded content.
@@ -26,7 +27,10 @@ class Embeds:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -51,6 +55,7 @@ class Embeds:
         return res
 
     
+    
     def get_valid_embed_access_tokens(self) -> operations.GetValidEmbedAccessTokensResponse:
         r"""Get all valid embed access tokens for the current workspace."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -60,7 +65,10 @@ class Embeds:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -85,6 +93,7 @@ class Embeds:
         return res
 
     
+    
     def revoke_embed_access_token(self, request: operations.RevokeEmbedAccessTokenRequest) -> operations.RevokeEmbedAccessTokenResponse:
         r"""Revoke an embed access EmbedToken."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -94,7 +103,10 @@ class Embeds:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('DELETE', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')

@@ -4,13 +4,14 @@ from __future__ import annotations
 import dataclasses
 import requests as requests_http
 from ...models.shared import api as shared_api
+from ...models.shared import api_input as shared_api_input
 from ...models.shared import error as shared_error
 from typing import Optional
 
 
 @dataclasses.dataclass
 class UpsertAPIRequest:
-    api: shared_api.APIInput = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
+    api: shared_api_input.APIInput = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     r"""A JSON representation of the Api to upsert"""
     api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
     r"""The ID of the Api to upsert."""

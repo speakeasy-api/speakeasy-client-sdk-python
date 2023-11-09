@@ -22,6 +22,7 @@ class Schemas:
         self.sdk_configuration = sdk_config
         
     
+    
     def delete_schema(self, request: operations.DeleteSchemaRequest) -> operations.DeleteSchemaResponse:
         r"""Delete a particular schema revision for an Api."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -31,7 +32,10 @@ class Schemas:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('DELETE', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -52,6 +56,7 @@ class Schemas:
         return res
 
     
+    
     def download_schema(self, request: operations.DownloadSchemaRequest, accept_header_override: Optional[DownloadSchemaAcceptEnum] = None) -> operations.DownloadSchemaResponse:
         r"""Download the latest schema for a particular apiID."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -64,7 +69,10 @@ class Schemas:
             headers['Accept'] = 'application/json;q=1, application/x-yaml;q=0'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -90,6 +98,7 @@ class Schemas:
         return res
 
     
+    
     def download_schema_revision(self, request: operations.DownloadSchemaRevisionRequest, accept_header_override: Optional[DownloadSchemaRevisionAcceptEnum] = None) -> operations.DownloadSchemaRevisionResponse:
         r"""Download a particular schema revision for an Api."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -102,7 +111,10 @@ class Schemas:
             headers['Accept'] = 'application/json;q=1, application/x-yaml;q=0'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -128,6 +140,7 @@ class Schemas:
         return res
 
     
+    
     def get_schema(self, request: operations.GetSchemaRequest) -> operations.GetSchemaResponse:
         r"""Get information about the latest schema.
         Returns information about the last uploaded schema for a particular API version. 
@@ -140,7 +153,10 @@ class Schemas:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -165,6 +181,7 @@ class Schemas:
         return res
 
     
+    
     def get_schema_diff(self, request: operations.GetSchemaDiffRequest) -> operations.GetSchemaDiffResponse:
         r"""Get a diff of two schema revisions for an Api."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -174,7 +191,10 @@ class Schemas:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -199,6 +219,7 @@ class Schemas:
         return res
 
     
+    
     def get_schema_revision(self, request: operations.GetSchemaRevisionRequest) -> operations.GetSchemaRevisionResponse:
         r"""Get information about a particular schema revision for an Api.
         Returns information about the last uploaded schema for a particular schema revision. 
@@ -211,7 +232,10 @@ class Schemas:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -236,6 +260,7 @@ class Schemas:
         return res
 
     
+    
     def get_schemas(self, request: operations.GetSchemasRequest) -> operations.GetSchemasResponse:
         r"""Get information about all schemas associated with a particular apiID.
         Returns information the schemas associated with a particular apiID. 
@@ -248,7 +273,10 @@ class Schemas:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -273,6 +301,7 @@ class Schemas:
         return res
 
     
+    
     def register_schema(self, request: operations.RegisterSchemaRequest) -> operations.RegisterSchemaResponse:
         r"""Register a schema.
         Allows uploading a schema for a particular API version.
@@ -290,7 +319,10 @@ class Schemas:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')

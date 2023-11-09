@@ -18,6 +18,7 @@ class Apis:
         self.sdk_configuration = sdk_config
         
     
+    
     def delete_api(self, request: operations.DeleteAPIRequest) -> operations.DeleteAPIResponse:
         r"""Delete an Api.
         Delete a particular version of an Api. The will also delete all associated ApiEndpoints, Metadata, Schemas & Request Logs (if using a Postgres datastore).
@@ -29,7 +30,10 @@ class Apis:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('DELETE', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -50,6 +54,7 @@ class Apis:
         return res
 
     
+    
     def generate_open_api_spec(self, request: operations.GenerateOpenAPISpecRequest) -> operations.GenerateOpenAPISpecResponse:
         r"""Generate an OpenAPI specification for a particular Api.
         This endpoint will generate any missing operations in any registered OpenAPI document if the operation does not already exist in the document.
@@ -62,7 +67,10 @@ class Apis:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -87,6 +95,7 @@ class Apis:
         return res
 
     
+    
     def generate_postman_collection(self, request: operations.GeneratePostmanCollectionRequest, accept_header_override: Optional[GeneratePostmanCollectionAcceptEnum] = None) -> operations.GeneratePostmanCollectionResponse:
         r"""Generate a Postman collection for a particular Api.
         Generates a postman collection containing all endpoints for a particular API. Includes variables produced for any path/query/header parameters included in the OpenAPI document.
@@ -101,7 +110,10 @@ class Apis:
             headers['Accept'] = 'application/json;q=1, application/octet-stream;q=0'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -125,6 +137,7 @@ class Apis:
         return res
 
     
+    
     def get_all_api_versions(self, request: operations.GetAllAPIVersionsRequest) -> operations.GetAllAPIVersionsResponse:
         r"""Get all Api versions for a particular ApiEndpoint.
         Get all Api versions for a particular ApiEndpoint.
@@ -138,7 +151,10 @@ class Apis:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -163,6 +179,7 @@ class Apis:
         return res
 
     
+    
     def get_apis(self, request: operations.GetApisRequest) -> operations.GetApisResponse:
         r"""Get a list of Apis for a given workspace
         Get a list of all Apis and their versions for a given workspace.
@@ -176,7 +193,10 @@ class Apis:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -201,6 +221,7 @@ class Apis:
         return res
 
     
+    
     def upsert_api(self, request: operations.UpsertAPIRequest) -> operations.UpsertAPIResponse:
         r"""Upsert an Api
         Upsert an Api. If the Api does not exist, it will be created.
@@ -218,7 +239,10 @@ class Apis:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('PUT', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')

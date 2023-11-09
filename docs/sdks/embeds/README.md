@@ -1,5 +1,5 @@
 # Embeds
-(*.embeds*)
+(*embeds*)
 
 ## Overview
 
@@ -60,7 +60,11 @@ if res.embed_access_token_response is not None:
 ### Response
 
 **[operations.GetEmbedAccessTokenResponse](../../models/operations/getembedaccesstokenresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_valid_embed_access_tokens
 
@@ -90,7 +94,11 @@ if res.classes is not None:
 ### Response
 
 **[operations.GetValidEmbedAccessTokensResponse](../../models/operations/getvalidembedaccesstokensresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## revoke_embed_access_token
 
@@ -129,4 +137,8 @@ if res.status_code == 200:
 ### Response
 
 **[operations.RevokeEmbedAccessTokenResponse](../../models/operations/revokeembedaccesstokenresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

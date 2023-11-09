@@ -2,23 +2,16 @@
 
 from __future__ import annotations
 import dataclasses
-import dateutil.parser
 from dataclasses_json import Undefined, dataclass_json
-from datetime import datetime
 from speakeasy import utils
-from typing import Optional
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class APIEndpoint:
+class APIEndpointInput:
     r"""An ApiEndpoint is a description of an Endpoint for an API."""
     api_endpoint_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_endpoint_id') }})
     r"""The ID of this ApiEndpoint. This is a hash of the method and path."""
-    api_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_id') }})
-    r"""The ID of the Api this ApiEndpoint belongs to."""
-    created_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('created_at'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
-    r"""Creation timestamp."""
     description: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('description') }})
     r"""A detailed description of the ApiEndpoint."""
     display_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('display_name') }})
@@ -27,13 +20,7 @@ class APIEndpoint:
     r"""HTTP verb."""
     path: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('path') }})
     r"""Path that handles this Api."""
-    updated_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('updated_at'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
-    r"""Last update timestamp."""
     version_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('version_id') }})
     r"""The version ID of the Api this ApiEndpoint belongs to."""
-    workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspace_id') }})
-    r"""The workspace ID this ApiEndpoint belongs to."""
-    matched: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('matched'), 'exclude': lambda f: f is None }})
-    r"""Determines if the endpoint was found in the OpenAPI spec associated with the parent Api."""
     
 

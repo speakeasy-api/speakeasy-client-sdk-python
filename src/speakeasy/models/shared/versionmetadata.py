@@ -10,18 +10,6 @@ from speakeasy import utils
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class VersionMetadataInput:
-    r"""A set of keys and associated values, attached to a particular version of an Api."""
-    meta_key: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('meta_key') }})
-    r"""The key for this metadata."""
-    meta_value: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('meta_value') }})
-    r"""One of the values for this metadata."""
-    
-
-
-
-@dataclass_json(undefined=Undefined.EXCLUDE)
-@dataclasses.dataclass
 class VersionMetadata:
     r"""A set of keys and associated values, attached to a particular version of an Api."""
     api_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('api_id') }})

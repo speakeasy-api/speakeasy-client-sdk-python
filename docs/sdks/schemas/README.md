@@ -1,5 +1,5 @@
 # Schemas
-(*.schemas*)
+(*schemas*)
 
 ## Overview
 
@@ -55,7 +55,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeleteSchemaResponse](../../models/operations/deleteschemaresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## download_schema
 
@@ -95,7 +99,11 @@ if res.two_hundred_application_json_schema is not None:
 ### Response
 
 **[operations.DownloadSchemaResponse](../../models/operations/downloadschemaresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## download_schema_revision
 
@@ -136,7 +144,11 @@ if res.two_hundred_application_json_schema is not None:
 ### Response
 
 **[operations.DownloadSchemaRevisionResponse](../../models/operations/downloadschemarevisionresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_schema
 
@@ -177,7 +189,11 @@ if res.schema is not None:
 ### Response
 
 **[operations.GetSchemaResponse](../../models/operations/getschemaresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_schema_diff
 
@@ -219,7 +235,11 @@ if res.schema_diff is not None:
 ### Response
 
 **[operations.GetSchemaDiffResponse](../../models/operations/getschemadiffresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_schema_revision
 
@@ -261,7 +281,11 @@ if res.schema is not None:
 ### Response
 
 **[operations.GetSchemaRevisionResponse](../../models/operations/getschemarevisionresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_schemas
 
@@ -302,7 +326,11 @@ if res.classes is not None:
 ### Response
 
 **[operations.GetSchemasResponse](../../models/operations/getschemasresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## register_schema
 
@@ -349,4 +377,8 @@ if res.status_code == 200:
 ### Response
 
 **[operations.RegisterSchemaResponse](../../models/operations/registerschemaresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

@@ -18,6 +18,7 @@ class Requests:
         self.sdk_configuration = sdk_config
         
     
+    
     def generate_request_postman_collection(self, request: operations.GenerateRequestPostmanCollectionRequest, accept_header_override: Optional[GenerateRequestPostmanCollectionAcceptEnum] = None) -> operations.GenerateRequestPostmanCollectionResponse:
         r"""Generate a Postman collection for a particular request.
         Generates a Postman collection for a particular request. 
@@ -33,7 +34,10 @@ class Requests:
             headers['Accept'] = 'application/json;q=1, application/octet-stream;q=0'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -57,6 +61,7 @@ class Requests:
         return res
 
     
+    
     def get_request_from_event_log(self, request: operations.GetRequestFromEventLogRequest) -> operations.GetRequestFromEventLogResponse:
         r"""Get information about a particular request."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -66,7 +71,10 @@ class Requests:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -91,6 +99,7 @@ class Requests:
         return res
 
     
+    
     def query_event_log(self, request: operations.QueryEventLogRequest) -> operations.QueryEventLogResponse:
         r"""Query the event log to retrieve a list of requests.
         Supports retrieving a list of request captured by the SDK for this workspace.
@@ -104,7 +113,10 @@ class Requests:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')

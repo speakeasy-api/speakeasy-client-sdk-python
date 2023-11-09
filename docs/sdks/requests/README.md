@@ -1,5 +1,5 @@
 # Requests
-(*.requests*)
+(*requests*)
 
 ## Overview
 
@@ -49,7 +49,11 @@ if res.postman_collection is not None:
 ### Response
 
 **[operations.GenerateRequestPostmanCollectionResponse](../../models/operations/generaterequestpostmancollectionresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_request_from_event_log
 
@@ -88,7 +92,11 @@ if res.unbounded_request is not None:
 ### Response
 
 **[operations.GetRequestFromEventLogResponse](../../models/operations/getrequestfromeventlogresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## query_event_log
 
@@ -139,4 +147,8 @@ if res.classes is not None:
 ### Response
 
 **[operations.QueryEventLogResponse](../../models/operations/queryeventlogresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

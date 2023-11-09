@@ -1,5 +1,5 @@
 # APIEndpoints
-(*.api_endpoints*)
+(*api_endpoints*)
 
 ## Overview
 
@@ -55,7 +55,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeleteAPIEndpointResponse](../../models/operations/deleteapiendpointresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## find_api_endpoint
 
@@ -97,7 +101,11 @@ if res.api_endpoint is not None:
 ### Response
 
 **[operations.FindAPIEndpointResponse](../../models/operations/findapiendpointresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## generate_open_api_spec_for_api_endpoint
 
@@ -139,7 +147,11 @@ if res.generate_open_api_spec_diff is not None:
 ### Response
 
 **[operations.GenerateOpenAPISpecForAPIEndpointResponse](../../models/operations/generateopenapispecforapiendpointresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## generate_postman_collection_for_api_endpoint
 
@@ -180,7 +192,11 @@ if res.postman_collection is not None:
 ### Response
 
 **[operations.GeneratePostmanCollectionForAPIEndpointResponse](../../models/operations/generatepostmancollectionforapiendpointresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_all_api_endpoints
 
@@ -219,7 +235,11 @@ if res.classes is not None:
 ### Response
 
 **[operations.GetAllAPIEndpointsResponse](../../models/operations/getallapiendpointsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_all_for_version_api_endpoints
 
@@ -259,7 +279,11 @@ if res.classes is not None:
 ### Response
 
 **[operations.GetAllForVersionAPIEndpointsResponse](../../models/operations/getallforversionapiendpointsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_api_endpoint
 
@@ -300,7 +324,11 @@ if res.api_endpoint is not None:
 ### Response
 
 **[operations.GetAPIEndpointResponse](../../models/operations/getapiendpointresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## upsert_api_endpoint
 
@@ -349,4 +377,8 @@ if res.api_endpoint is not None:
 ### Response
 
 **[operations.UpsertAPIEndpointResponse](../../models/operations/upsertapiendpointresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

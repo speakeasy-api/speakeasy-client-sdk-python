@@ -39,4 +39,8 @@ if res.status_code == 200:
 ### Response
 
 **[operations.ValidateAPIKeyResponse](../../models/operations/validateapikeyresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

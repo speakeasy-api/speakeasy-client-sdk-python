@@ -1,5 +1,5 @@
 # Plugins
-(*.plugins*)
+(*plugins*)
 
 ## Overview
 
@@ -39,7 +39,11 @@ if res.classes is not None:
 ### Response
 
 **[operations.GetPluginsResponse](../../models/operations/getpluginsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## run_plugin
 
@@ -90,7 +94,11 @@ if res.classes is not None:
 ### Response
 
 **[operations.RunPluginResponse](../../models/operations/runpluginresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## upsert_plugin
 
@@ -133,4 +141,8 @@ if res.plugin is not None:
 ### Response
 
 **[operations.UpsertPluginResponse](../../models/operations/upsertpluginresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

@@ -18,6 +18,7 @@ class APIEndpoints:
         self.sdk_configuration = sdk_config
         
     
+    
     def delete_api_endpoint(self, request: operations.DeleteAPIEndpointRequest) -> operations.DeleteAPIEndpointResponse:
         r"""Delete an ApiEndpoint.
         Delete an ApiEndpoint. This will also delete all associated Request Logs (if using a Postgres datastore).
@@ -29,7 +30,10 @@ class APIEndpoints:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('DELETE', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -50,6 +54,7 @@ class APIEndpoints:
         return res
 
     
+    
     def find_api_endpoint(self, request: operations.FindAPIEndpointRequest) -> operations.FindAPIEndpointResponse:
         r"""Find an ApiEndpoint via its displayName.
         Find an ApiEndpoint via its displayName (set by operationId from a registered OpenAPI schema).
@@ -62,7 +67,10 @@ class APIEndpoints:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -87,6 +95,7 @@ class APIEndpoints:
         return res
 
     
+    
     def generate_open_api_spec_for_api_endpoint(self, request: operations.GenerateOpenAPISpecForAPIEndpointRequest) -> operations.GenerateOpenAPISpecForAPIEndpointResponse:
         r"""Generate an OpenAPI specification for a particular ApiEndpoint.
         This endpoint will generate a new operation in any registered OpenAPI document if the operation does not already exist in the document.
@@ -99,7 +108,10 @@ class APIEndpoints:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -124,6 +136,7 @@ class APIEndpoints:
         return res
 
     
+    
     def generate_postman_collection_for_api_endpoint(self, request: operations.GeneratePostmanCollectionForAPIEndpointRequest, accept_header_override: Optional[GeneratePostmanCollectionForApiEndpointAcceptEnum] = None) -> operations.GeneratePostmanCollectionForAPIEndpointResponse:
         r"""Generate a Postman collection for a particular ApiEndpoint.
         Generates a postman collection that allows the endpoint to be called from postman variables produced for any path/query/header parameters included in the OpenAPI document.
@@ -138,7 +151,10 @@ class APIEndpoints:
             headers['Accept'] = 'application/json;q=1, application/octet-stream;q=0'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -162,6 +178,7 @@ class APIEndpoints:
         return res
 
     
+    
     def get_all_api_endpoints(self, request: operations.GetAllAPIEndpointsRequest) -> operations.GetAllAPIEndpointsResponse:
         r"""Get all Api endpoints for a particular apiID."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -171,7 +188,10 @@ class APIEndpoints:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -196,6 +216,7 @@ class APIEndpoints:
         return res
 
     
+    
     def get_all_for_version_api_endpoints(self, request: operations.GetAllForVersionAPIEndpointsRequest) -> operations.GetAllForVersionAPIEndpointsResponse:
         r"""Get all ApiEndpoints for a particular apiID and versionID."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -205,7 +226,10 @@ class APIEndpoints:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -230,6 +254,7 @@ class APIEndpoints:
         return res
 
     
+    
     def get_api_endpoint(self, request: operations.GetAPIEndpointRequest) -> operations.GetAPIEndpointResponse:
         r"""Get an ApiEndpoint."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -239,7 +264,10 @@ class APIEndpoints:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -264,6 +292,7 @@ class APIEndpoints:
         return res
 
     
+    
     def upsert_api_endpoint(self, request: operations.UpsertAPIEndpointRequest) -> operations.UpsertAPIEndpointResponse:
         r"""Upsert an ApiEndpoint.
         Upsert an ApiEndpoint. If the ApiEndpoint does not exist it will be created, otherwise it will be updated.
@@ -280,7 +309,10 @@ class APIEndpoints:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('PUT', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')

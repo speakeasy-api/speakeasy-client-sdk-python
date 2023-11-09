@@ -13,6 +13,7 @@ class Plugins:
         self.sdk_configuration = sdk_config
         
     
+    
     def get_plugins(self) -> operations.GetPluginsResponse:
         r"""Get all plugins for the current workspace."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -22,7 +23,10 @@ class Plugins:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -47,6 +51,7 @@ class Plugins:
         return res
 
     
+    
     def run_plugin(self, request: operations.RunPluginRequest) -> operations.RunPluginResponse:
         r"""Run a plugin"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -57,7 +62,10 @@ class Plugins:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('POST', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
@@ -82,6 +90,7 @@ class Plugins:
         return res
 
     
+    
     def upsert_plugin(self, request: shared.Plugin) -> operations.UpsertPluginResponse:
         r"""Upsert a plugin"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -96,7 +105,10 @@ class Plugins:
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
-        client = self.sdk_configuration.security_client
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
         http_res = client.request('PUT', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')

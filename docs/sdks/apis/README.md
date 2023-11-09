@@ -1,5 +1,5 @@
 # Apis
-(*.apis*)
+(*apis*)
 
 ## Overview
 
@@ -52,7 +52,11 @@ if res.status_code == 200:
 ### Response
 
 **[operations.DeleteAPIResponse](../../models/operations/deleteapiresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## generate_open_api_spec
 
@@ -93,7 +97,11 @@ if res.generate_open_api_spec_diff is not None:
 ### Response
 
 **[operations.GenerateOpenAPISpecResponse](../../models/operations/generateopenapispecresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## generate_postman_collection
 
@@ -133,7 +141,11 @@ if res.postman_collection is not None:
 ### Response
 
 **[operations.GeneratePostmanCollectionResponse](../../models/operations/generatepostmancollectionresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_all_api_versions
 
@@ -181,7 +193,11 @@ if res.classes is not None:
 ### Response
 
 **[operations.GetAllAPIVersionsResponse](../../models/operations/getallapiversionsresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## get_apis
 
@@ -228,7 +244,11 @@ if res.classes is not None:
 ### Response
 
 **[operations.GetApisResponse](../../models/operations/getapisresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |
 
 ## upsert_api
 
@@ -278,4 +298,8 @@ if res.api is not None:
 ### Response
 
 **[operations.UpsertAPIResponse](../../models/operations/upsertapiresponse.md)**
+### Errors
 
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 400-600         | */*             |

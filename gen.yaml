@@ -2,15 +2,17 @@ configVersion: 1.0.0
 management:
   docChecksum: ba638b2ad28966c596e28321a2003686
   docVersion: 0.3.0
-  speakeasyVersion: 1.116.0
-  generationVersion: 2.185.0
+  speakeasyVersion: 1.120.3
+  generationVersion: 2.192.1
 generation:
   comments: {}
   sdkClassName: speakeasy
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
+  usageSnippets:
+    optionalPropertyRendering: withExample
 features:
   python:
-    core: 4.1.2
+    core: 4.1.4
     downloadStreams: 0.0.2
     examples: 2.81.3
     globalSecurity: 2.83.0
@@ -18,7 +20,7 @@ features:
     inputOutputModels: 2.82.0
     serverIDs: 2.81.1
 python:
-  version: 3.1.0
+  version: 3.1.1
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
   description: Speakeasy API Client SDK for Python

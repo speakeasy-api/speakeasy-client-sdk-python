@@ -1,6 +1,4 @@
 <!-- Start SDK Example Usage -->
-
-
 ```python
 import speakeasy
 from speakeasy.models import operations, shared

@@ -14,6 +14,7 @@ src/speakeasy/utils/__init__.py
 src/speakeasy/utils/retries.py
 src/speakeasy/utils/utils.py
 src/speakeasy/models/errors/sdkerror.py
+tests/helpers.py
 src/speakeasy/models/operations/validateapikey.py
 src/speakeasy/models/operations/deleteapi.py
 src/speakeasy/models/operations/generateopenapispec.py

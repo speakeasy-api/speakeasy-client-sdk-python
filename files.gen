@@ -64,7 +64,7 @@ src/speakeasy/models/shared/unboundedrequest.py
 src/speakeasy/models/shared/boundedrequest.py
 src/speakeasy/models/shared/requestmetadata.py
 src/speakeasy/models/shared/filters.py
-src/speakeasy/models/shared/filter.py
+src/speakeasy/models/shared/filter_.py
 src/speakeasy/models/shared/plugin.py
 src/speakeasy/models/shared/embedaccesstokenresponse.py
 src/speakeasy/models/shared/embedtoken.py
@@ -73,7 +73,6 @@ src/speakeasy/models/__init__.py
 src/speakeasy/models/errors/__init__.py
 src/speakeasy/models/operations/__init__.py
 src/speakeasy/models/shared/__init__.py
-USAGE.md
 docs/models/operations/validateapikeyresponse.md
 docs/models/operations/deleteapirequest.md
 docs/models/operations/deleteapiresponse.md
@@ -159,7 +158,7 @@ docs/models/shared/unboundedrequest.md
 docs/models/shared/boundedrequest.md
 docs/models/shared/requestmetadata.md
 docs/models/shared/filters.md
-docs/models/shared/filter.md
+docs/models/shared/filter_.md
 docs/models/shared/plugin.md
 docs/models/shared/embedaccesstokenresponse.md
 docs/models/shared/embedtoken.md
@@ -172,4 +171,5 @@ docs/sdks/schemas/README.md
 docs/sdks/requests/README.md
 docs/sdks/plugins/README.md
 docs/sdks/embeds/README.md
+USAGE.md
 .gitattributes

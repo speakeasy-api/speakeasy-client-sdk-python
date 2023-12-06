@@ -8,7 +8,7 @@ from .boundedrequest import *
 from .embedaccesstokenresponse import *
 from .embedtoken import *
 from .error import *
-from .filter import *
+from .filter_ import *
 from .filters import *
 from .generateopenapispecdiff import *
 from .plugin import *

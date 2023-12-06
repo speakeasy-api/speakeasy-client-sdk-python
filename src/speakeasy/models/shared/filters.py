@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 import dataclasses
-from .filter import Filter
+from .filter_ import Filter
 from dataclasses_json import Undefined, dataclass_json
 from speakeasy import utils
 from typing import List

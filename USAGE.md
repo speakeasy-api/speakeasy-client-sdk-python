@@ -1,4 +1,4 @@
-<!-- Start SDK Example Usage -->
+<!-- Start SDK Example Usage [usage] -->
 ```python
 import speakeasy
 from speakeasy.models import operations, shared
@@ -11,7 +11,7 @@ s = speakeasy.Speakeasy(
 
 req = operations.GetApisRequest(
     metadata={
-        "key": [
+        'key': [
             'string',
         ],
     },
@@ -26,4 +26,4 @@ if res.classes is not None:
     # handle response
     pass
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->

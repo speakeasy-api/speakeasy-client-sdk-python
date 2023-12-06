@@ -2,8 +2,8 @@ configVersion: 1.0.0
 management:
   docChecksum: ba638b2ad28966c596e28321a2003686
   docVersion: 0.3.0
-  speakeasyVersion: 1.121.3
-  generationVersion: 2.195.2
+  speakeasyVersion: 1.125.2
+  generationVersion: 2.210.6
 generation:
   comments: {}
   sdkClassName: speakeasy
@@ -12,7 +12,7 @@ generation:
     optionalPropertyRendering: withExample
 features:
   python:
-    core: 4.1.5
+    core: 4.1.6
     downloadStreams: 0.0.2
     examples: 2.81.3
     globalSecurity: 2.83.0
@@ -20,7 +20,7 @@ features:
     inputOutputModels: 2.82.0
     serverIDs: 2.81.1
 python:
-  version: 3.1.3
+  version: 3.1.4
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
   description: Speakeasy API Client SDK for Python

@@ -19,7 +19,7 @@ from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
-        api_key="",
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -128,7 +128,7 @@ from speakeasy.models import shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
-        api_key="",
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -168,7 +168,7 @@ from speakeasy.models import shared
 s = speakeasy.Speakeasy(
     server="prod",
     security=shared.Security(
-        api_key="",
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -191,7 +191,7 @@ from speakeasy.models import shared
 s = speakeasy.Speakeasy(
     server_url="https://api.prod.speakeasyapi.dev",
     security=shared.Security(
-        api_key="",
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -242,7 +242,7 @@ from speakeasy.models import shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
-        api_key="",
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 

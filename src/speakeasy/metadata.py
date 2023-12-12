@@ -92,7 +92,7 @@ class Metadata:
         
         url = utils.generate_url(operations.InsertVersionMetadataRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/metadata', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "version_metadata", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.InsertVersionMetadataRequest, "version_metadata", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:

@@ -231,7 +231,7 @@ class Apis:
         
         url = utils.generate_url(operations.UpsertAPIRequest, base_url, '/v1/apis/{apiID}', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "api", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.UpsertAPIRequest, "api", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:

@@ -301,7 +301,7 @@ class APIEndpoints:
         
         url = utils.generate_url(operations.UpsertAPIEndpointRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}', request)
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, "api_endpoint", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, operations.UpsertAPIEndpointRequest, "api_endpoint", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:

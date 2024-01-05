@@ -1107,3 +1107,13 @@ Based on:
 - [python v3.3.0] .
 ### Releases
 - [PyPI v3.3.0] https://pypi.org/project/speakeasy-client-sdk-python/3.3.0 - .
+
+## 2024-01-05 00:10:58
+### Changes
+Based on:
+- OpenAPI Doc 0.3.0 https://docs.speakeasyapi.dev/openapi.yaml
+- Speakeasy CLI 1.130.1 (2.225.2) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v3.3.0] .
+### Releases
+- [PyPI v3.3.0] https://pypi.org/project/speakeasy-client-sdk-python/3.3.0 - .

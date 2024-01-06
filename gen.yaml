@@ -6,7 +6,7 @@ generation:
   fixes:
     nameResolutionDec2023: false
 python:
-  version: 3.3.0
+  version: 3.3.1
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
   description: Speakeasy API Client SDK for Python

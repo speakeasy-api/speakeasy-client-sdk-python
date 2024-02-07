@@ -271,12 +271,12 @@ req = operations.UpsertAPIRequest(
     api=shared.APIInput(
         api_id='string',
         description='Synchronised 5th generation knowledge user',
+        version_id='string',
         meta_data={
             'key': [
                 'string',
             ],
         },
-        version_id='string',
     ),
     api_id='string',
 )

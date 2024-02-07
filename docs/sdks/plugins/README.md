@@ -62,6 +62,7 @@ s = speakeasy.Speakeasy(
 )
 
 req = operations.RunPluginRequest(
+    plugin_id='string',
     filters=shared.Filters(
         filters=[
             shared.Filter(
@@ -74,7 +75,6 @@ req = operations.RunPluginRequest(
         offset=94585,
         operator='string',
     ),
-    plugin_id='string',
 )
 
 res = s.plugins.run_plugin(req)

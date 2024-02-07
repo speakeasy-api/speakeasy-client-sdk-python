@@ -25,10 +25,10 @@ class RegisterSchemaRequestBody:
 
 @dataclasses.dataclass
 class RegisterSchemaRequest:
-    api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
-    r"""The ID of the Api to get the schema for."""
     request_body: RegisterSchemaRequestBody = dataclasses.field(metadata={'request': { 'media_type': 'multipart/form-data' }})
     r"""The schema file to upload provided as a multipart/form-data file segment."""
+    api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
+    r"""The ID of the Api to get the schema for."""
     version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
     r"""The version ID of the Api to delete metadata for."""
     
@@ -39,10 +39,10 @@ class RegisterSchemaRequest:
 class RegisterSchemaResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
     r"""Default error response"""
     

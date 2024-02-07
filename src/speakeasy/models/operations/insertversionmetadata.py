@@ -11,12 +11,12 @@ from typing import Optional
 
 @dataclasses.dataclass
 class InsertVersionMetadataRequest:
+    version_metadata: shared_versionmetadata_input.VersionMetadataInput = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
+    r"""A JSON representation of the metadata to insert."""
     api_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'apiID', 'style': 'simple', 'explode': False }})
     r"""The ID of the Api to insert metadata for."""
     version_id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'versionID', 'style': 'simple', 'explode': False }})
     r"""The version ID of the Api to insert metadata for."""
-    version_metadata: shared_versionmetadata_input.VersionMetadataInput = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
-    r"""A JSON representation of the metadata to insert."""
     
 
 
@@ -25,10 +25,10 @@ class InsertVersionMetadataRequest:
 class InsertVersionMetadataResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
     r"""Default error response"""
     version_metadata: Optional[shared_versionmetadata.VersionMetadata] = dataclasses.field(default=None)

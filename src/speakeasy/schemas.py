@@ -27,7 +27,7 @@ class Schemas:
         r"""Delete a particular schema revision for an Api."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.DeleteSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}', request)
+        url = utils.generate_url(operations.DeleteSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}', request, self.sdk_configuration.globals)
         headers = {}
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
@@ -61,7 +61,7 @@ class Schemas:
         r"""Download the latest schema for a particular apiID."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.DownloadSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/download', request)
+        url = utils.generate_url(operations.DownloadSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/download', request, self.sdk_configuration.globals)
         headers = {}
         if accept_header_override is not None:
             headers['Accept'] = accept_header_override.value
@@ -103,7 +103,7 @@ class Schemas:
         r"""Download a particular schema revision for an Api."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.DownloadSchemaRevisionRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}/download', request)
+        url = utils.generate_url(operations.DownloadSchemaRevisionRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}/download', request, self.sdk_configuration.globals)
         headers = {}
         if accept_header_override is not None:
             headers['Accept'] = accept_header_override.value
@@ -148,7 +148,7 @@ class Schemas:
         """
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema', request)
+        url = utils.generate_url(operations.GetSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema', request, self.sdk_configuration.globals)
         headers = {}
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
@@ -186,7 +186,7 @@ class Schemas:
         r"""Get a diff of two schema revisions for an Api."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetSchemaDiffRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{baseRevisionID}/diff/{targetRevisionID}', request)
+        url = utils.generate_url(operations.GetSchemaDiffRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{baseRevisionID}/diff/{targetRevisionID}', request, self.sdk_configuration.globals)
         headers = {}
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
@@ -227,7 +227,7 @@ class Schemas:
         """
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetSchemaRevisionRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}', request)
+        url = utils.generate_url(operations.GetSchemaRevisionRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}', request, self.sdk_configuration.globals)
         headers = {}
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
@@ -268,7 +268,7 @@ class Schemas:
         """
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetSchemasRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schemas', request)
+        url = utils.generate_url(operations.GetSchemasRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schemas', request, self.sdk_configuration.globals)
         headers = {}
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
@@ -309,7 +309,7 @@ class Schemas:
         """
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.RegisterSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema', request)
+        url = utils.generate_url(operations.RegisterSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema', request, self.sdk_configuration.globals)
         headers = {}
         req_content_type, data, form = utils.serialize_request_body(request, operations.RegisterSchemaRequest, "request_body", False, False, 'multipart')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):

@@ -3,22 +3,26 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.shared import error as shared_error
-from ...models.shared import plugin as shared_plugin
+from ...models.shared import clievent as shared_clievent
 from typing import List, Optional
 
 
 @dataclasses.dataclass
-class GetPluginsResponse:
+class PostWorkspaceEventsRequest:
+    request_body: List[shared_clievent.CliEvent] = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
+    workspace_id: Optional[str] = dataclasses.field(default=None, metadata={'path_param': { 'field_name': 'workspaceID', 'style': 'simple', 'explode': False }})
+    r"""Unique identifier of the workspace."""
+    
+
+
+
+@dataclasses.dataclass
+class PostWorkspaceEventsResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    error: Optional[shared_error.Error] = dataclasses.field(default=None)
-    r"""Default error response"""
-    classes: Optional[List[shared_plugin.Plugin]] = dataclasses.field(default=None)
-    r"""OK"""
     
 

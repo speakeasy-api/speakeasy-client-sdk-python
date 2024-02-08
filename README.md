@@ -21,6 +21,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.GetApisRequest(
@@ -36,7 +37,7 @@ req = operations.GetApisRequest(
 
 res = s.apis.get_apis(req)
 
-if res.classes is not None:
+if res.apis is not None:
     # handle response
     pass
 ```
@@ -44,10 +45,6 @@ if res.classes is not None:
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
-
-### [Speakeasy SDK](docs/sdks/speakeasy/README.md)
-
-* [validate_api_key](docs/sdks/speakeasy/README.md#validate_api_key) - Validate the current api key.
 
 ### [apis](docs/sdks/apis/README.md)
 
@@ -86,23 +83,25 @@ if res.classes is not None:
 * [get_schemas](docs/sdks/schemas/README.md#get_schemas) - Get information about all schemas associated with a particular apiID.
 * [register_schema](docs/sdks/schemas/README.md#register_schema) - Register a schema.
 
+### [auth](docs/sdks/auth/README.md)
+
+* [validate_api_key](docs/sdks/auth/README.md#validate_api_key) - Validate the current api key.
+
 ### [requests](docs/sdks/requests/README.md)
 
 * [generate_request_postman_collection](docs/sdks/requests/README.md#generate_request_postman_collection) - Generate a Postman collection for a particular request.
 * [get_request_from_event_log](docs/sdks/requests/README.md#get_request_from_event_log) - Get information about a particular request.
 * [query_event_log](docs/sdks/requests/README.md#query_event_log) - Query the event log to retrieve a list of requests.
 
-### [plugins](docs/sdks/plugins/README.md)
-
-* [get_plugins](docs/sdks/plugins/README.md#get_plugins) - Get all plugins for the current workspace.
-* [run_plugin](docs/sdks/plugins/README.md#run_plugin) - Run a plugin
-* [upsert_plugin](docs/sdks/plugins/README.md#upsert_plugin) - Upsert a plugin
-
 ### [embeds](docs/sdks/embeds/README.md)
 
 * [get_embed_access_token](docs/sdks/embeds/README.md#get_embed_access_token) - Get an embed access token for the current workspace.
 * [get_valid_embed_access_tokens](docs/sdks/embeds/README.md#get_valid_embed_access_tokens) - Get all valid embed access tokens for the current workspace.
 * [revoke_embed_access_token](docs/sdks/embeds/README.md#revoke_embed_access_token) - Revoke an embed access EmbedToken.
+
+### [events](docs/sdks/events/README.md)
+
+* [post_workspace_events](docs/sdks/events/README.md#post_workspace_events) - Post events for a specific workspace
 <!-- End Available Resources and Operations [operations] -->
 
 
@@ -124,18 +123,23 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 ```python
 import speakeasy
-from speakeasy.models import shared
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
+req = operations.DeleteAPIRequest(
+    api_id='string',
+    version_id='string',
+)
 
 res = None
 try:
-    res = s.validate_api_key()
+    res = s.apis.delete_api(req)
 except errors.SDKError as e:
     print(e)  # handle exception
     raise(e)
@@ -163,17 +167,22 @@ You can override the default server globally by passing a server name to the `se
 
 ```python
 import speakeasy
-from speakeasy.models import shared
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     server="prod",
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
+req = operations.DeleteAPIRequest(
+    api_id='string',
+    version_id='string',
+)
 
-res = s.validate_api_key()
+res = s.apis.delete_api(req)
 
 if res.status_code == 200:
     # handle response
@@ -186,17 +195,22 @@ if res.status_code == 200:
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
 import speakeasy
-from speakeasy.models import shared
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     server_url="https://api.prod.speakeasyapi.dev",
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
+req = operations.DeleteAPIRequest(
+    api_id='string',
+    version_id='string',
+)
 
-res = s.validate_api_key()
+res = s.apis.delete_api(req)
 
 if res.status_code == 200:
     # handle response
@@ -238,22 +252,82 @@ This SDK supports the following security scheme globally:
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```python
 import speakeasy
-from speakeasy.models import shared
+from speakeasy.models import operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
+req = operations.DeleteAPIRequest(
+    api_id='string',
+    version_id='string',
+)
 
-res = s.validate_api_key()
+res = s.apis.delete_api(req)
 
 if res.status_code == 200:
     # handle response
     pass
 ```
 <!-- End Authentication [security] -->
+
+<!-- Start Global Parameters [global-parameters] -->
+## Global Parameters
+
+A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
+
+For example, you can set `workspaceID` to `'string'` at SDK initialization and then you do not have to pass the same value on calls to operations like `post_workspace_events`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+
+
+### Available Globals
+
+The following global parameter is available.
+
+| Name | Type | Required | Description |
+| ---- | ---- |:--------:| ----------- |
+| workspace_id | str |  | The workspace_id parameter. |
+
+
+### Example
+
+```python
+import dateutil.parser
+import speakeasy
+from speakeasy.models import operations, shared
+
+s = speakeasy.Speakeasy(
+    security=shared.Security(
+        api_key="<YOUR_API_KEY_HERE>",
+    ),
+    workspace_id='string',
+)
+
+req = operations.PostWorkspaceEventsRequest(
+    request_body=[
+        shared.CliEvent(
+            created_at=dateutil.parser.isoparse('2024-11-21T06:58:42.120Z'),
+            execution_id='string',
+            id='<ID>',
+            interaction_type=shared.InteractionType.CLI_EXEC,
+            local_started_at=dateutil.parser.isoparse('2024-05-07T12:35:47.182Z'),
+            speakeasy_api_key_name='string',
+            speakeasy_version='string',
+            success=False,
+            workspace_id='string',
+        ),
+    ],
+)
+
+res = s.events.post_workspace_events(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+<!-- End Global Parameters [global-parameters] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

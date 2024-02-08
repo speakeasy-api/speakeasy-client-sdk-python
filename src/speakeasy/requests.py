@@ -26,7 +26,7 @@ class Requests:
         """
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GenerateRequestPostmanCollectionRequest, base_url, '/v1/eventlog/{requestID}/generate/postman', request)
+        url = utils.generate_url(operations.GenerateRequestPostmanCollectionRequest, base_url, '/v1/eventlog/{requestID}/generate/postman', request, self.sdk_configuration.globals)
         headers = {}
         if accept_header_override is not None:
             headers['Accept'] = accept_header_override.value
@@ -66,7 +66,7 @@ class Requests:
         r"""Get information about a particular request."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetRequestFromEventLogRequest, base_url, '/v1/eventlog/{requestID}', request)
+        url = utils.generate_url(operations.GetRequestFromEventLogRequest, base_url, '/v1/eventlog/{requestID}', request, self.sdk_configuration.globals)
         headers = {}
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
@@ -109,7 +109,7 @@ class Requests:
         
         url = base_url + '/v1/eventlog/query'
         headers = {}
-        query_params = utils.get_query_params(operations.QueryEventLogRequest, request)
+        query_params = utils.get_query_params(operations.QueryEventLogRequest, request, self.sdk_configuration.globals)
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
@@ -126,7 +126,7 @@ class Requests:
         if http_res.status_code == 200:
             if utils.match_content_type(content_type, 'application/json'):
                 out = utils.unmarshal_json(http_res.text, Optional[List[shared.BoundedRequest]])
-                res.classes = out
+                res.bounded_requests = out
             else:
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: ba638b2ad28966c596e28321a2003686
-  docVersion: 0.3.0
+  docChecksum: dff663dce4f21ddf3fc2332b7d7be92b
+  docVersion: 0.4.0
   speakeasyVersion: internal
-  generationVersion: 2.250.12
-  releaseVersion: 5.0.0
-  configChecksum: cd8bb4065d3f66420412fdee00510406
+  generationVersion: 2.250.16
+  releaseVersion: 5.1.0
+  configChecksum: e8aa5833a2494c942488ff20935dee69
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -18,6 +18,7 @@ features:
     examples: 2.81.3
     globalSecurity: 2.83.2
     globalServerURLs: 2.82.1
+    globals: 2.81.1
     inputOutputModels: 2.83.0
     serverIDs: 2.81.1
 generatedFiles:
@@ -26,9 +27,10 @@ generatedFiles:
   - src/speakeasy/apiendpoints.py
   - src/speakeasy/metadata.py
   - src/speakeasy/schemas.py
+  - src/speakeasy/auth.py
   - src/speakeasy/requests.py
-  - src/speakeasy/plugins.py
   - src/speakeasy/embeds.py
+  - src/speakeasy/events.py
   - src/speakeasy/sdk.py
   - pylintrc
   - setup.py
@@ -38,7 +40,6 @@ generatedFiles:
   - src/speakeasy/utils/utils.py
   - src/speakeasy/models/errors/sdkerror.py
   - tests/helpers.py
-  - src/speakeasy/models/operations/validateapikey.py
   - src/speakeasy/models/operations/deleteapi.py
   - src/speakeasy/models/operations/generateopenapispec.py
   - src/speakeasy/models/operations/generatepostmancollection.py
@@ -64,15 +65,14 @@ generatedFiles:
   - src/speakeasy/models/operations/getschemarevision.py
   - src/speakeasy/models/operations/getschemas.py
   - src/speakeasy/models/operations/registerschema.py
+  - src/speakeasy/models/operations/validateapikey.py
   - src/speakeasy/models/operations/generaterequestpostmancollection.py
   - src/speakeasy/models/operations/getrequestfromeventlog.py
   - src/speakeasy/models/operations/queryeventlog.py
-  - src/speakeasy/models/operations/getplugins.py
-  - src/speakeasy/models/operations/runplugin.py
-  - src/speakeasy/models/operations/upsertplugin.py
   - src/speakeasy/models/operations/getembedaccesstoken.py
   - src/speakeasy/models/operations/getvalidembedaccesstokens.py
   - src/speakeasy/models/operations/revokeembedaccesstoken.py
+  - src/speakeasy/models/operations/postworkspaceevents.py
   - src/speakeasy/models/shared/error.py
   - src/speakeasy/models/shared/generateopenapispecdiff.py
   - src/speakeasy/models/shared/api.py
@@ -83,20 +83,20 @@ generatedFiles:
   - src/speakeasy/models/shared/versionmetadata_input.py
   - src/speakeasy/models/shared/schema.py
   - src/speakeasy/models/shared/schemadiff.py
+  - src/speakeasy/models/shared/apikeydetails.py
   - src/speakeasy/models/shared/unboundedrequest.py
   - src/speakeasy/models/shared/boundedrequest.py
   - src/speakeasy/models/shared/requestmetadata.py
   - src/speakeasy/models/shared/filters.py
   - src/speakeasy/models/shared/filter_.py
-  - src/speakeasy/models/shared/plugin.py
   - src/speakeasy/models/shared/embedaccesstokenresponse.py
   - src/speakeasy/models/shared/embedtoken.py
+  - src/speakeasy/models/shared/clievent.py
   - src/speakeasy/models/shared/security.py
   - src/speakeasy/models/__init__.py
   - src/speakeasy/models/errors/__init__.py
   - src/speakeasy/models/operations/__init__.py
   - src/speakeasy/models/shared/__init__.py
-  - docs/models/operations/validateapikeyresponse.md
   - docs/models/operations/deleteapirequest.md
   - docs/models/operations/deleteapiresponse.md
   - docs/models/operations/generateopenapispecrequest.md
@@ -151,21 +151,20 @@ generatedFiles:
   - docs/models/operations/registerschemarequestbody.md
   - docs/models/operations/registerschemarequest.md
   - docs/models/operations/registerschemaresponse.md
+  - docs/models/operations/validateapikeyresponse.md
   - docs/models/operations/generaterequestpostmancollectionrequest.md
   - docs/models/operations/generaterequestpostmancollectionresponse.md
   - docs/models/operations/getrequestfromeventlogrequest.md
   - docs/models/operations/getrequestfromeventlogresponse.md
   - docs/models/operations/queryeventlogrequest.md
   - docs/models/operations/queryeventlogresponse.md
-  - docs/models/operations/getpluginsresponse.md
-  - docs/models/operations/runpluginrequest.md
-  - docs/models/operations/runpluginresponse.md
-  - docs/models/operations/upsertpluginresponse.md
   - docs/models/operations/getembedaccesstokenrequest.md
   - docs/models/operations/getembedaccesstokenresponse.md
   - docs/models/operations/getvalidembedaccesstokensresponse.md
   - docs/models/operations/revokeembedaccesstokenrequest.md
   - docs/models/operations/revokeembedaccesstokenresponse.md
+  - docs/models/operations/postworkspaceeventsrequest.md
+  - docs/models/operations/postworkspaceeventsresponse.md
   - docs/models/shared/error.md
   - docs/models/shared/generateopenapispecdiff.md
   - docs/models/shared/api.md
@@ -177,22 +176,26 @@ generatedFiles:
   - docs/models/shared/schema.md
   - docs/models/shared/valuechange.md
   - docs/models/shared/schemadiff.md
+  - docs/models/shared/apikeydetails.md
   - docs/models/shared/unboundedrequest.md
   - docs/models/shared/boundedrequest.md
   - docs/models/shared/requestmetadata.md
   - docs/models/shared/filters.md
   - docs/models/shared/filter_.md
-  - docs/models/shared/plugin.md
   - docs/models/shared/embedaccesstokenresponse.md
   - docs/models/shared/embedtoken.md
+  - docs/models/shared/generatebumptype.md
+  - docs/models/shared/interactiontype.md
+  - docs/models/shared/clievent.md
   - docs/models/shared/security.md
   - docs/sdks/speakeasy/README.md
   - docs/sdks/apis/README.md
   - docs/sdks/apiendpoints/README.md
   - docs/sdks/metadata/README.md
   - docs/sdks/schemas/README.md
+  - docs/sdks/auth/README.md
   - docs/sdks/requests/README.md
-  - docs/sdks/plugins/README.md
   - docs/sdks/embeds/README.md
+  - docs/sdks/events/README.md
   - USAGE.md
   - .gitattributes

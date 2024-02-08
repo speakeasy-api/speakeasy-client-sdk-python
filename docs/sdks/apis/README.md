@@ -28,6 +28,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.DeleteAPIRequest(
@@ -73,6 +74,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.GenerateOpenAPISpecRequest(
@@ -117,6 +119,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.GeneratePostmanCollectionRequest(
@@ -162,6 +165,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.GetAllAPIVersionsRequest(
@@ -178,7 +182,7 @@ req = operations.GetAllAPIVersionsRequest(
 
 res = s.apis.get_all_api_versions(req)
 
-if res.classes is not None:
+if res.apis is not None:
     # handle response
     pass
 ```
@@ -214,6 +218,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.GetApisRequest(
@@ -229,7 +234,7 @@ req = operations.GetApisRequest(
 
 res = s.apis.get_apis(req)
 
-if res.classes is not None:
+if res.apis is not None:
     # handle response
     pass
 ```
@@ -265,6 +270,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.UpsertAPIRequest(

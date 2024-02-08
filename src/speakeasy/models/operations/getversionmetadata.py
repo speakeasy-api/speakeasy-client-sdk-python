@@ -28,7 +28,7 @@ class GetVersionMetadataResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     error: Optional[shared_error.Error] = dataclasses.field(default=None)
     r"""Default error response"""
-    classes: Optional[List[shared_versionmetadata.VersionMetadata]] = dataclasses.field(default=None)
+    version_metadata: Optional[List[shared_versionmetadata.VersionMetadata]] = dataclasses.field(default=None)
     r"""OK"""
     
 

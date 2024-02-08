@@ -25,6 +25,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.DeleteVersionMetadataRequest(
@@ -71,6 +72,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.GetVersionMetadataRequest(
@@ -80,7 +82,7 @@ req = operations.GetVersionMetadataRequest(
 
 res = s.metadata.get_version_metadata(req)
 
-if res.classes is not None:
+if res.version_metadata is not None:
     # handle response
     pass
 ```
@@ -115,6 +117,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.InsertVersionMetadataRequest(

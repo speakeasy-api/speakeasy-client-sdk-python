@@ -30,6 +30,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.DeleteSchemaRequest(
@@ -75,6 +76,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.DownloadSchemaRequest(
@@ -119,6 +121,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.DownloadSchemaRevisionRequest(
@@ -165,6 +168,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.GetSchemaRequest(
@@ -209,6 +213,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.GetSchemaDiffRequest(
@@ -256,6 +261,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.GetSchemaRevisionRequest(
@@ -302,6 +308,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.GetSchemasRequest(
@@ -347,6 +354,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.RegisterSchemaRequest(

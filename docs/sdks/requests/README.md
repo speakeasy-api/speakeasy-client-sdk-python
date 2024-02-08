@@ -26,6 +26,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.GenerateRequestPostmanCollectionRequest(
@@ -69,6 +70,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.GetRequestFromEventLogRequest(
@@ -113,6 +115,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.QueryEventLogRequest(
@@ -132,7 +135,7 @@ req = operations.QueryEventLogRequest(
 
 res = s.requests.query_event_log(req)
 
-if res.classes is not None:
+if res.bounded_requests is not None:
     # handle response
     pass
 ```

@@ -30,6 +30,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.DeleteAPIEndpointRequest(
@@ -76,6 +77,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.FindAPIEndpointRequest(
@@ -122,6 +124,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.GenerateOpenAPISpecForAPIEndpointRequest(
@@ -167,6 +170,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.GeneratePostmanCollectionForAPIEndpointRequest(
@@ -212,6 +216,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.GetAllAPIEndpointsRequest(
@@ -220,7 +225,7 @@ req = operations.GetAllAPIEndpointsRequest(
 
 res = s.api_endpoints.get_all_api_endpoints(req)
 
-if res.classes is not None:
+if res.api_endpoints is not None:
     # handle response
     pass
 ```
@@ -255,6 +260,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.GetAllForVersionAPIEndpointsRequest(
@@ -264,7 +270,7 @@ req = operations.GetAllForVersionAPIEndpointsRequest(
 
 res = s.api_endpoints.get_all_for_version_api_endpoints(req)
 
-if res.classes is not None:
+if res.api_endpoints is not None:
     # handle response
     pass
 ```
@@ -299,6 +305,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.GetAPIEndpointRequest(
@@ -344,6 +351,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
+    workspace_id='string',
 )
 
 req = operations.UpsertAPIEndpointRequest(

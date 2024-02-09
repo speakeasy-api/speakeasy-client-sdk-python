@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: dff663dce4f21ddf3fc2332b7d7be92b
+  docChecksum: 557634d4bb5964b949ae70f79f40d856
   docVersion: 0.4.0
   speakeasyVersion: internal
-  generationVersion: 2.250.16
-  releaseVersion: 5.1.0
-  configChecksum: e8aa5833a2494c942488ff20935dee69
+  generationVersion: 2.250.22
+  releaseVersion: 5.2.0
+  configChecksum: d1c2bec8a16d1c1fedb94c617e5344dc
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -20,6 +20,7 @@ features:
     globalServerURLs: 2.82.1
     globals: 2.81.1
     inputOutputModels: 2.83.0
+    retries: 2.82.1
     serverIDs: 2.81.1
 generatedFiles:
   - src/speakeasy/sdkconfiguration.py
@@ -73,7 +74,7 @@ generatedFiles:
   - src/speakeasy/models/operations/getvalidembedaccesstokens.py
   - src/speakeasy/models/operations/revokeembedaccesstoken.py
   - src/speakeasy/models/operations/postworkspaceevents.py
-  - src/speakeasy/models/shared/error.py
+  - src/speakeasy/models/errors/error.py
   - src/speakeasy/models/shared/generateopenapispecdiff.py
   - src/speakeasy/models/shared/api.py
   - src/speakeasy/models/shared/api_input.py
@@ -165,7 +166,7 @@ generatedFiles:
   - docs/models/operations/revokeembedaccesstokenresponse.md
   - docs/models/operations/postworkspaceeventsrequest.md
   - docs/models/operations/postworkspaceeventsresponse.md
-  - docs/models/shared/error.md
+  - docs/models/errors/error.md
   - docs/models/shared/generateopenapispecdiff.md
   - docs/models/shared/api.md
   - docs/models/shared/apiinput.md
@@ -196,6 +197,7 @@ generatedFiles:
   - docs/sdks/auth/README.md
   - docs/sdks/requests/README.md
   - docs/sdks/embeds/README.md
+  - docs/models/utils/retryconfig.md
   - docs/sdks/events/README.md
   - USAGE.md
   - .gitattributes

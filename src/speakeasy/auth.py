@@ -43,7 +43,7 @@ class Auth:
             raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         else:
             if utils.match_content_type(content_type, 'application/json'):
-                out = utils.unmarshal_json(http_res.text, Optional[shared.Error])
+                out = utils.unmarshal_json(http_res.text, Optional[errors.Error])
                 res.error = out
             else:
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)

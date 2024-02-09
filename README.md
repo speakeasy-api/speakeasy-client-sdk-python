@@ -115,13 +115,15 @@ if res.apis is not None:
 
 Handling errors in this SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate Error type.
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 5XX              | application/json |
+| errors.SDKError  | 4x-5xx           | */*              |
 
 ### Example
 
 ```python
+import dateutil.parser
 import speakeasy
 from speakeasy.models import operations, shared
 
@@ -132,14 +134,28 @@ s = speakeasy.Speakeasy(
     workspace_id='string',
 )
 
-req = operations.DeleteAPIRequest(
-    api_id='string',
-    version_id='string',
+req = operations.PostWorkspaceEventsRequest(
+    request_body=[
+        shared.CliEvent(
+            created_at=dateutil.parser.isoparse('2024-11-21T06:58:42.120Z'),
+            execution_id='string',
+            id='<ID>',
+            interaction_type=shared.InteractionType.CLI_EXEC,
+            local_started_at=dateutil.parser.isoparse('2024-05-07T12:35:47.182Z'),
+            speakeasy_api_key_name='string',
+            speakeasy_version='string',
+            success=False,
+            workspace_id='string',
+        ),
+    ],
 )
 
 res = None
 try:
-    res = s.apis.delete_api(req)
+    res = s.events.post_workspace_events(req)
+except errors.Error as e:
+    print(e)  # handle exception
+    raise(e)
 except errors.SDKError as e:
     print(e)  # handle exception
     raise(e)
@@ -328,6 +344,88 @@ if res.status_code == 200:
     pass
 ```
 <!-- End Global Parameters [global-parameters] -->
+
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call:
+```python
+import dateutil.parser
+import speakeasy
+from speakeasy.models import operations, shared
+from speakeasy.utils import BackoffStrategy, RetryConfig
+
+s = speakeasy.Speakeasy(
+    security=shared.Security(
+        api_key="<YOUR_API_KEY_HERE>",
+    ),
+    workspace_id='string',
+)
+
+req = operations.PostWorkspaceEventsRequest(
+    request_body=[
+        shared.CliEvent(
+            created_at=dateutil.parser.isoparse('2024-11-21T06:58:42.120Z'),
+            execution_id='string',
+            id='<ID>',
+            interaction_type=shared.InteractionType.CLI_EXEC,
+            local_started_at=dateutil.parser.isoparse('2024-05-07T12:35:47.182Z'),
+            speakeasy_api_key_name='string',
+            speakeasy_version='string',
+            success=False,
+            workspace_id='string',
+        ),
+    ],
+)
+
+res = s.events.post_workspace_events(req,
+    RetryConfig('backoff', BackoffStrategy(1, 50, 1.1, 100), False))
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can use the `retry_config` optional parameter when initializing the SDK:
+```python
+import dateutil.parser
+import speakeasy
+from speakeasy.models import operations, shared
+from speakeasy.utils import BackoffStrategy, RetryConfig
+
+s = speakeasy.Speakeasy(
+    retry_config=RetryConfig('backoff', BackoffStrategy(1, 50, 1.1, 100), False)
+    security=shared.Security(
+        api_key="<YOUR_API_KEY_HERE>",
+    ),
+    workspace_id='string',
+)
+
+req = operations.PostWorkspaceEventsRequest(
+    request_body=[
+        shared.CliEvent(
+            created_at=dateutil.parser.isoparse('2024-11-21T06:58:42.120Z'),
+            execution_id='string',
+            id='<ID>',
+            interaction_type=shared.InteractionType.CLI_EXEC,
+            local_started_at=dateutil.parser.isoparse('2024-05-07T12:35:47.182Z'),
+            speakeasy_api_key_name='string',
+            speakeasy_version='string',
+            success=False,
+            workspace_id='string',
+        ),
+    ],
+)
+
+res = s.events.post_workspace_events(req)
+
+if res.status_code == 200:
+    # handle response
+    pass
+```
+<!-- End Retries [retries] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

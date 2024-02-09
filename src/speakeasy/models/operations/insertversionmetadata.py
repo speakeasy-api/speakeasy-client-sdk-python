@@ -3,7 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.shared import error as shared_error
+from ...models.errors import error as errors_error
 from ...models.shared import versionmetadata as shared_versionmetadata
 from ...models.shared import versionmetadata_input as shared_versionmetadata_input
 from typing import Optional
@@ -29,7 +29,7 @@ class InsertVersionMetadataResponse:
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    error: Optional[shared_error.Error] = dataclasses.field(default=None)
+    error: Optional[errors_error.Error] = dataclasses.field(default=None)
     r"""Default error response"""
     version_metadata: Optional[shared_versionmetadata.VersionMetadata] = dataclasses.field(default=None)
     r"""OK"""

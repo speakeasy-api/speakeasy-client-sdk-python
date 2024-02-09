@@ -3,7 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.shared import error as shared_error
+from ...models.errors import error as errors_error
 from typing import Optional
 
 
@@ -31,7 +31,7 @@ class DownloadSchemaRevisionResponse:
     r"""OK"""
     two_hundred_application_x_yaml_schema: Optional[requests_http.Response] = dataclasses.field(default=None)
     r"""OK"""
-    error: Optional[shared_error.Error] = dataclasses.field(default=None)
+    error: Optional[errors_error.Error] = dataclasses.field(default=None)
     r"""Default error response"""
     
 

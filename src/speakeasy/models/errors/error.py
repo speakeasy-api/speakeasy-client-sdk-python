@@ -7,8 +7,9 @@ from speakeasy import utils
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
+
 @dataclasses.dataclass
-class Error:
+class Error(Exception):
     r"""The `Status` type defines a logical error model"""
     message: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('message') }})
     r"""A developer-facing error message."""
@@ -16,3 +17,5 @@ class Error:
     r"""The HTTP status code"""
     
 
+    def __str__(self) -> str:
+        return utils.marshal_json(self, type(self))

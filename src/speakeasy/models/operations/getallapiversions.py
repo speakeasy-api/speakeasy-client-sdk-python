@@ -3,8 +3,8 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
+from ...models.errors import error as errors_error
 from ...models.shared import api as shared_api
-from ...models.shared import error as shared_error
 from typing import Dict, List, Optional
 
 
@@ -39,7 +39,7 @@ class GetAllAPIVersionsResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     apis: Optional[List[shared_api.API]] = dataclasses.field(default=None)
     r"""OK"""
-    error: Optional[shared_error.Error] = dataclasses.field(default=None)
+    error: Optional[errors_error.Error] = dataclasses.field(default=None)
     r"""Default error response"""
     
 

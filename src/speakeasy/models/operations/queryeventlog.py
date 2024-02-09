@@ -3,8 +3,8 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
+from ...models.errors import error as errors_error
 from ...models.shared import boundedrequest as shared_boundedrequest
-from ...models.shared import error as shared_error
 from ...models.shared import filters as shared_filters
 from typing import List, Optional
 
@@ -27,7 +27,7 @@ class QueryEventLogResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     bounded_requests: Optional[List[shared_boundedrequest.BoundedRequest]] = dataclasses.field(default=None)
     r"""OK"""
-    error: Optional[shared_error.Error] = dataclasses.field(default=None)
+    error: Optional[errors_error.Error] = dataclasses.field(default=None)
     r"""Default error response"""
     
 

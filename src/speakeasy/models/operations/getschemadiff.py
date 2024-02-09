@@ -3,7 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.shared import error as shared_error
+from ...models.errors import error as errors_error
 from ...models.shared import schemadiff as shared_schemadiff
 from typing import Optional
 
@@ -30,7 +30,7 @@ class GetSchemaDiffResponse:
     r"""HTTP response status code for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
-    error: Optional[shared_error.Error] = dataclasses.field(default=None)
+    error: Optional[errors_error.Error] = dataclasses.field(default=None)
     r"""Default error response"""
     schema_diff: Optional[shared_schemadiff.SchemaDiff] = dataclasses.field(default=None)
     r"""OK"""

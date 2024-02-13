@@ -29,20 +29,7 @@ s = speakeasy.Speakeasy(
     workspace_id='string',
 )
 
-req = operations.GetEmbedAccessTokenRequest(
-    filters=shared.Filters(
-        filters=[
-            shared.Filter(
-                key='<key>',
-                operator='string',
-                value='string',
-            ),
-        ],
-        limit=964408,
-        offset=95617,
-        operator='string',
-    ),
-)
+req = operations.GetEmbedAccessTokenRequest()
 
 res = s.embeds.get_embed_access_token(req)
 

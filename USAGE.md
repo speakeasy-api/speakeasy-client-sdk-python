@@ -10,16 +10,7 @@ s = speakeasy.Speakeasy(
     workspace_id='string',
 )
 
-req = operations.GetApisRequest(
-    metadata={
-        'key': [
-            'string',
-        ],
-    },
-    op=operations.QueryParamOp(
-        and_=False,
-    ),
-)
+req = operations.GetApisRequest()
 
 res = s.apis.get_apis(req)
 

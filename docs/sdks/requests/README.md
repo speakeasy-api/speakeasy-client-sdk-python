@@ -118,20 +118,7 @@ s = speakeasy.Speakeasy(
     workspace_id='string',
 )
 
-req = operations.QueryEventLogRequest(
-    filters=shared.Filters(
-        filters=[
-            shared.Filter(
-                key='<key>',
-                operator='string',
-                value='string',
-            ),
-        ],
-        limit=241978,
-        offset=451388,
-        operator='string',
-    ),
-)
+req = operations.QueryEventLogRequest()
 
 res = s.requests.query_event_log(req)
 

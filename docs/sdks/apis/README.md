@@ -170,14 +170,6 @@ s = speakeasy.Speakeasy(
 
 req = operations.GetAllAPIVersionsRequest(
     api_id='string',
-    metadata={
-        'key': [
-            'string',
-        ],
-    },
-    op=operations.Op(
-        and_=False,
-    ),
 )
 
 res = s.apis.get_all_api_versions(req)
@@ -221,16 +213,7 @@ s = speakeasy.Speakeasy(
     workspace_id='string',
 )
 
-req = operations.GetApisRequest(
-    metadata={
-        'key': [
-            'string',
-        ],
-    },
-    op=operations.QueryParamOp(
-        and_=False,
-    ),
-)
+req = operations.GetApisRequest()
 
 res = s.apis.get_apis(req)
 
@@ -278,11 +261,6 @@ req = operations.UpsertAPIRequest(
         api_id='string',
         description='Synchronised 5th generation knowledge user',
         version_id='string',
-        meta_data={
-            'key': [
-                'string',
-            ],
-        },
     ),
     api_id='string',
 )

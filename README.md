@@ -24,16 +24,7 @@ s = speakeasy.Speakeasy(
     workspace_id='string',
 )
 
-req = operations.GetApisRequest(
-    metadata={
-        'key': [
-            'string',
-        ],
-    },
-    op=operations.QueryParamOp(
-        and_=False,
-    ),
-)
+req = operations.GetApisRequest()
 
 res = s.apis.get_apis(req)
 
@@ -125,7 +116,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 ```python
 import dateutil.parser
 import speakeasy
-from speakeasy.models import operations, shared
+from speakeasy.models import errors, operations, shared
 
 s = speakeasy.Speakeasy(
     security=shared.Security(
@@ -154,10 +145,10 @@ res = None
 try:
     res = s.events.post_workspace_events(req)
 except errors.Error as e:
-    print(e)  # handle exception
+    # handle exception
     raise(e)
 except errors.SDKError as e:
-    print(e)  # handle exception
+    # handle exception
     raise(e)
 
 if res.status_code == 200:

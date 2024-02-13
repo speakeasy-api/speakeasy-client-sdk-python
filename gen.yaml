@@ -8,7 +8,7 @@ generation:
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
 python:
-  version: 5.2.0
+  version: 5.2.1
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
   description: Speakeasy API Client SDK for Python

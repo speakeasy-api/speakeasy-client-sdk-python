@@ -28,12 +28,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.DeleteAPIRequest(
-    api_id='string',
-    version_id='string',
+    api_id='<value>',
+    version_id='<value>',
 )
 
 res = s.apis.delete_api(req)
@@ -74,12 +74,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.GenerateOpenAPISpecRequest(
-    api_id='string',
-    version_id='string',
+    api_id='<value>',
+    version_id='<value>',
 )
 
 res = s.apis.generate_open_api_spec(req)
@@ -119,12 +119,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.GeneratePostmanCollectionRequest(
-    api_id='string',
-    version_id='string',
+    api_id='<value>',
+    version_id='<value>',
 )
 
 res = s.apis.generate_postman_collection(req)
@@ -165,11 +165,11 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.GetAllAPIVersionsRequest(
-    api_id='string',
+    api_id='<value>',
 )
 
 res = s.apis.get_all_api_versions(req)
@@ -210,7 +210,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.GetApisRequest()
@@ -253,16 +253,16 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.UpsertAPIRequest(
     api=shared.APIInput(
-        api_id='string',
+        api_id='<value>',
         description='Synchronised 5th generation knowledge user',
-        version_id='string',
+        version_id='<value>',
     ),
-    api_id='string',
+    api_id='<value>',
 )
 
 res = s.apis.upsert_api(req)

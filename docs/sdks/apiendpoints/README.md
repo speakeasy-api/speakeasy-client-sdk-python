@@ -30,13 +30,13 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.DeleteAPIEndpointRequest(
-    api_endpoint_id='string',
-    api_id='string',
-    version_id='string',
+    api_endpoint_id='<value>',
+    api_id='<value>',
+    version_id='<value>',
 )
 
 res = s.api_endpoints.delete_api_endpoint(req)
@@ -77,13 +77,13 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.FindAPIEndpointRequest(
-    api_id='string',
-    display_name='string',
-    version_id='string',
+    api_id='<value>',
+    display_name='Don.Strosin',
+    version_id='<value>',
 )
 
 res = s.api_endpoints.find_api_endpoint(req)
@@ -124,13 +124,13 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.GenerateOpenAPISpecForAPIEndpointRequest(
-    api_endpoint_id='string',
-    api_id='string',
-    version_id='string',
+    api_endpoint_id='<value>',
+    api_id='<value>',
+    version_id='<value>',
 )
 
 res = s.api_endpoints.generate_open_api_spec_for_api_endpoint(req)
@@ -170,13 +170,13 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.GeneratePostmanCollectionForAPIEndpointRequest(
-    api_endpoint_id='string',
-    api_id='string',
-    version_id='string',
+    api_endpoint_id='<value>',
+    api_id='<value>',
+    version_id='<value>',
 )
 
 res = s.api_endpoints.generate_postman_collection_for_api_endpoint(req)
@@ -216,11 +216,11 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.GetAllAPIEndpointsRequest(
-    api_id='string',
+    api_id='<value>',
 )
 
 res = s.api_endpoints.get_all_api_endpoints(req)
@@ -260,12 +260,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.GetAllForVersionAPIEndpointsRequest(
-    api_id='string',
-    version_id='string',
+    api_id='<value>',
+    version_id='<value>',
 )
 
 res = s.api_endpoints.get_all_for_version_api_endpoints(req)
@@ -305,13 +305,13 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.GetAPIEndpointRequest(
-    api_endpoint_id='string',
-    api_id='string',
-    version_id='string',
+    api_endpoint_id='<value>',
+    api_id='<value>',
+    version_id='<value>',
 )
 
 res = s.api_endpoints.get_api_endpoint(req)
@@ -351,21 +351,21 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.UpsertAPIEndpointRequest(
     api_endpoint=shared.APIEndpointInput(
-        api_endpoint_id='string',
+        api_endpoint_id='<value>',
         description='Public-key systematic attitude',
-        display_name='string',
-        method='string',
-        path='/etc/periodic',
-        version_id='string',
+        display_name='Camille.Schaefer11',
+        method='<value>',
+        path='/Library',
+        version_id='<value>',
     ),
-    api_endpoint_id='string',
-    api_id='string',
-    version_id='string',
+    api_endpoint_id='<value>',
+    api_id='<value>',
+    version_id='<value>',
 )
 
 res = s.api_endpoints.upsert_api_endpoint(req)

@@ -25,14 +25,14 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.DeleteVersionMetadataRequest(
-    api_id='string',
-    meta_key='string',
-    meta_value='string',
-    version_id='string',
+    api_id='<value>',
+    meta_key='<value>',
+    meta_value='<value>',
+    version_id='<value>',
 )
 
 res = s.metadata.delete_version_metadata(req)
@@ -72,12 +72,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.GetVersionMetadataRequest(
-    api_id='string',
-    version_id='string',
+    api_id='<value>',
+    version_id='<value>',
 )
 
 res = s.metadata.get_version_metadata(req)
@@ -117,16 +117,16 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.InsertVersionMetadataRequest(
     version_metadata=shared.VersionMetadataInput(
-        meta_key='string',
-        meta_value='string',
+        meta_key='<value>',
+        meta_value='<value>',
     ),
-    api_id='string',
-    version_id='string',
+    api_id='<value>',
+    version_id='<value>',
 )
 
 res = s.metadata.insert_version_metadata(req)

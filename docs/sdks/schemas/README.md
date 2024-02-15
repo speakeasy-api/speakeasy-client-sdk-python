@@ -30,13 +30,13 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.DeleteSchemaRequest(
-    api_id='string',
-    revision_id='string',
-    version_id='string',
+    api_id='<value>',
+    revision_id='<value>',
+    version_id='<value>',
 )
 
 res = s.schemas.delete_schema(req)
@@ -76,12 +76,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.DownloadSchemaRequest(
-    api_id='string',
-    version_id='string',
+    api_id='<value>',
+    version_id='<value>',
 )
 
 res = s.schemas.download_schema(req)
@@ -121,13 +121,13 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.DownloadSchemaRevisionRequest(
-    api_id='string',
-    revision_id='string',
-    version_id='string',
+    api_id='<value>',
+    revision_id='<value>',
+    version_id='<value>',
 )
 
 res = s.schemas.download_schema_revision(req)
@@ -168,12 +168,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.GetSchemaRequest(
-    api_id='string',
-    version_id='string',
+    api_id='<value>',
+    version_id='<value>',
 )
 
 res = s.schemas.get_schema(req)
@@ -213,14 +213,14 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.GetSchemaDiffRequest(
-    api_id='string',
-    base_revision_id='string',
-    target_revision_id='string',
-    version_id='string',
+    api_id='<value>',
+    base_revision_id='<value>',
+    target_revision_id='<value>',
+    version_id='<value>',
 )
 
 res = s.schemas.get_schema_diff(req)
@@ -261,13 +261,13 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.GetSchemaRevisionRequest(
-    api_id='string',
-    revision_id='string',
-    version_id='string',
+    api_id='<value>',
+    revision_id='<value>',
+    version_id='<value>',
 )
 
 res = s.schemas.get_schema_revision(req)
@@ -308,12 +308,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.GetSchemasRequest(
-    api_id='string',
-    version_id='string',
+    api_id='<value>',
+    version_id='<value>',
 )
 
 res = s.schemas.get_schemas(req)
@@ -354,7 +354,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.RegisterSchemaRequest(
@@ -364,8 +364,8 @@ req = operations.RegisterSchemaRequest(
             file_name='bronze_table_blues.m2a',
         ),
     ),
-    api_id='string',
-    version_id='string',
+    api_id='<value>',
+    version_id='<value>',
 )
 
 res = s.schemas.register_schema(req)

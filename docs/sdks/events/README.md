@@ -24,21 +24,21 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.PostWorkspaceEventsRequest(
     request_body=[
         shared.CliEvent(
             created_at=dateutil.parser.isoparse('2024-11-21T06:58:42.120Z'),
-            execution_id='string',
-            id='<ID>',
+            execution_id='<value>',
+            id='<id>',
             interaction_type=shared.InteractionType.CLI_EXEC,
             local_started_at=dateutil.parser.isoparse('2024-05-07T12:35:47.182Z'),
-            speakeasy_api_key_name='string',
-            speakeasy_version='string',
+            speakeasy_api_key_name='<value>',
+            speakeasy_version='<value>',
             success=False,
-            workspace_id='string',
+            workspace_id='<value>',
         ),
     ],
 )

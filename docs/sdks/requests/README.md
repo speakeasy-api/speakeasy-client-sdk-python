@@ -26,11 +26,11 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.GenerateRequestPostmanCollectionRequest(
-    request_id='string',
+    request_id='<value>',
 )
 
 res = s.requests.generate_request_postman_collection(req)
@@ -70,11 +70,11 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.GetRequestFromEventLogRequest(
-    request_id='string',
+    request_id='<value>',
 )
 
 res = s.requests.get_request_from_event_log(req)
@@ -115,7 +115,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='string',
+    workspace_id='<value>',
 )
 
 req = operations.QueryEventLogRequest()

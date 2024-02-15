@@ -14,6 +14,64 @@ class Auth:
         
     
     
+    def get_workspace_access(self, request: operations.GetWorkspaceAccessRequest, retries: Optional[utils.RetryConfig] = None) -> operations.GetWorkspaceAccessResponse:
+        r"""Get access allowances for a particular workspace
+        Checks if generation is permitted for a particular run of the CLI
+        """
+        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
+        
+        url = base_url + '/v1/workspace/access'
+        headers = {}
+        query_params = utils.get_query_params(operations.GetWorkspaceAccessRequest, request, self.sdk_configuration.globals)
+        headers['Accept'] = 'application/json'
+        headers['user-agent'] = self.sdk_configuration.user_agent
+        
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
+        
+        global_retry_config = self.sdk_configuration.retry_config
+        retry_config = retries
+        if retry_config is None:
+            if global_retry_config:
+                retry_config = global_retry_config
+            else:
+                retry_config = utils.RetryConfig('backoff', utils.BackoffStrategy(100, 2000, 1.5, 30000), True)
+
+        def do_request():
+            return client.request('GET', url, params=query_params, headers=headers)
+
+        http_res = utils.retry(do_request, utils.Retries(retry_config, [
+            '408',
+            '500',
+            '502',
+            '503'
+        ]))
+        content_type = http_res.headers.get('Content-Type')
+        
+        res = operations.GetWorkspaceAccessResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        
+        if http_res.status_code == 200:
+            if utils.match_content_type(content_type, 'application/json'):
+                out = utils.unmarshal_json(http_res.text, Optional[shared.AccessDetails])
+                res.access_details = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+        elif http_res.status_code >= 400 and http_res.status_code < 500:
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+        elif http_res.status_code >= 500 and http_res.status_code < 600:
+            if utils.match_content_type(content_type, 'application/json'):
+                out = utils.unmarshal_json(http_res.text, errors.Error)
+                out.raw_response = http_res
+                raise out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+
+        return res
+
+    
+    
     def validate_api_key(self) -> operations.ValidateAPIKeyResponse:
         r"""Validate the current api key."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())

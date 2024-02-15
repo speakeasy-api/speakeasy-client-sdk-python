@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: 557634d4bb5964b949ae70f79f40d856
+  docChecksum: c81aa4e807522359d28c09ee16d252ba
   docVersion: 0.4.0
   speakeasyVersion: internal
-  generationVersion: 2.253.0
-  releaseVersion: 5.2.1
-  configChecksum: c7cf88f22624c91877992d2516e05c24
+  generationVersion: 2.258.0
+  releaseVersion: 5.2.2
+  configChecksum: 45a62d301fb93165c7d0110e1b0f78fa
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   published: true
 features:
   python:
-    core: 4.4.5
+    core: 4.4.6
     downloadStreams: 0.0.2
     examples: 2.81.3
     globalSecurity: 2.83.2
@@ -66,6 +66,7 @@ generatedFiles:
   - src/speakeasy/models/operations/getschemarevision.py
   - src/speakeasy/models/operations/getschemas.py
   - src/speakeasy/models/operations/registerschema.py
+  - src/speakeasy/models/operations/getworkspaceaccess.py
   - src/speakeasy/models/operations/validateapikey.py
   - src/speakeasy/models/operations/generaterequestpostmancollection.py
   - src/speakeasy/models/operations/getrequestfromeventlog.py
@@ -84,6 +85,7 @@ generatedFiles:
   - src/speakeasy/models/shared/versionmetadata_input.py
   - src/speakeasy/models/shared/schema.py
   - src/speakeasy/models/shared/schemadiff.py
+  - src/speakeasy/models/shared/accessdetails.py
   - src/speakeasy/models/shared/apikeydetails.py
   - src/speakeasy/models/shared/unboundedrequest.py
   - src/speakeasy/models/shared/boundedrequest.py
@@ -152,6 +154,8 @@ generatedFiles:
   - docs/models/operations/registerschemarequestbody.md
   - docs/models/operations/registerschemarequest.md
   - docs/models/operations/registerschemaresponse.md
+  - docs/models/operations/getworkspaceaccessrequest.md
+  - docs/models/operations/getworkspaceaccessresponse.md
   - docs/models/operations/validateapikeyresponse.md
   - docs/models/operations/generaterequestpostmancollectionrequest.md
   - docs/models/operations/generaterequestpostmancollectionresponse.md
@@ -177,6 +181,7 @@ generatedFiles:
   - docs/models/shared/schema.md
   - docs/models/shared/valuechange.md
   - docs/models/shared/schemadiff.md
+  - docs/models/shared/accessdetails.md
   - docs/models/shared/apikeydetails.md
   - docs/models/shared/unboundedrequest.md
   - docs/models/shared/boundedrequest.md
@@ -194,10 +199,10 @@ generatedFiles:
   - docs/sdks/apiendpoints/README.md
   - docs/sdks/metadata/README.md
   - docs/sdks/schemas/README.md
+  - docs/models/utils/retryconfig.md
   - docs/sdks/auth/README.md
   - docs/sdks/requests/README.md
   - docs/sdks/embeds/README.md
-  - docs/models/utils/retryconfig.md
   - docs/sdks/events/README.md
   - USAGE.md
   - .gitattributes

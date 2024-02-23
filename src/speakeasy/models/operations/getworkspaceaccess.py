@@ -11,6 +11,10 @@ from typing import Optional
 class GetWorkspaceAccessRequest:
     gen_lock_id: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'genLockId', 'style': 'form', 'explode': True }})
     r"""Unique identifier of the generation target."""
+    passive: Optional[bool] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'passive', 'style': 'form', 'explode': True }})
+    r"""Skip side-effects like incrementing metrics."""
+    target_type: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'targetType', 'style': 'form', 'explode': True }})
+    r"""The type of the generated target."""
     
 
 

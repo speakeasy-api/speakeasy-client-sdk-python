@@ -1,22 +1,22 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: 10893fff3e9a4e77b8628de48190cd77
+  docChecksum: 1e1fbb7b85b19b149be8f6b8a6916f76
   docVersion: 0.4.0
   speakeasyVersion: internal
-  generationVersion: 2.269.0
-  releaseVersion: 5.2.5
-  configChecksum: 5fd79df4352833b4f341c2b7935cdca0
+  generationVersion: 2.272.4
+  releaseVersion: 5.2.6
+  configChecksum: 2dc1bbd1d3acd05910347da339cd3b92
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   published: true
 features:
   python:
-    core: 4.4.6
+    core: 4.4.7
     downloadStreams: 0.0.2
     examples: 2.81.3
-    globalSecurity: 2.83.2
+    globalSecurity: 2.83.3
     globalServerURLs: 2.82.1
     globals: 2.81.1
     inputOutputModels: 2.83.1
@@ -74,6 +74,8 @@ generatedFiles:
   - src/speakeasy/models/operations/getembedaccesstoken.py
   - src/speakeasy/models/operations/getvalidembedaccesstokens.py
   - src/speakeasy/models/operations/revokeembedaccesstoken.py
+  - src/speakeasy/models/operations/getworkspaceevents.py
+  - src/speakeasy/models/operations/getworkspacetargets.py
   - src/speakeasy/models/operations/postworkspaceevents.py
   - src/speakeasy/models/errors/error.py
   - src/speakeasy/models/shared/generateopenapispecdiff.py
@@ -95,6 +97,7 @@ generatedFiles:
   - src/speakeasy/models/shared/embedaccesstokenresponse.py
   - src/speakeasy/models/shared/embedtoken.py
   - src/speakeasy/models/shared/clievent.py
+  - src/speakeasy/models/shared/targetsdk.py
   - src/speakeasy/models/shared/security.py
   - src/speakeasy/models/__init__.py
   - src/speakeasy/models/errors/__init__.py
@@ -168,6 +171,10 @@ generatedFiles:
   - docs/models/operations/getvalidembedaccesstokensresponse.md
   - docs/models/operations/revokeembedaccesstokenrequest.md
   - docs/models/operations/revokeembedaccesstokenresponse.md
+  - docs/models/operations/getworkspaceeventsrequest.md
+  - docs/models/operations/getworkspaceeventsresponse.md
+  - docs/models/operations/getworkspacetargetsrequest.md
+  - docs/models/operations/getworkspacetargetsresponse.md
   - docs/models/operations/postworkspaceeventsrequest.md
   - docs/models/operations/postworkspaceeventsresponse.md
   - docs/models/errors/error.md
@@ -194,6 +201,7 @@ generatedFiles:
   - docs/models/shared/generatebumptype.md
   - docs/models/shared/interactiontype.md
   - docs/models/shared/clievent.md
+  - docs/models/shared/targetsdk.md
   - docs/models/shared/security.md
   - docs/sdks/speakeasy/README.md
   - docs/sdks/apis/README.md

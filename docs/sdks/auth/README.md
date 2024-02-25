@@ -49,10 +49,9 @@ if res.access_details is not None:
 **[operations.GetWorkspaceAccessResponse](../../models/operations/getworkspaceaccessresponse.md)**
 ### Errors
 
-| Error Object     | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | 5XX              | application/json |
-| errors.SDKError  | 4x-5xx           | */*              |
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## validate_api_key
 

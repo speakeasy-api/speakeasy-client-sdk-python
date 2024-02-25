@@ -21,6 +21,11 @@ class InteractionType(str, Enum):
     r"""Type of interaction."""
     CLI_EXEC = 'CLI_EXEC'
     TARGET_GENERATE = 'TARGET_GENERATE'
+    AUTHENTICATE = 'AUTHENTICATE'
+    QUICKSTART = 'QUICKSTART'
+    RUN = 'RUN'
+    CONFIGURE = 'CONFIGURE'
+    PUBLISH = 'PUBLISH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -55,13 +60,13 @@ class CliEvent:
     generate_config_post_raw: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_config_post_raw'), 'exclude': lambda f: f is None }})
     r"""Rendered configuration file (post generation)"""
     generate_config_post_version: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_config_post_version'), 'exclude': lambda f: f is None }})
-    r"""Version of the generated target (post generation)"""
+    r"""The version of the customer's SDK that we just generated"""
     generate_config_pre_checksum: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_config_pre_checksum'), 'exclude': lambda f: f is None }})
     r"""Checksum of the configuration file (prior to generation)"""
     generate_config_pre_raw: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_config_pre_raw'), 'exclude': lambda f: f is None }})
     r"""Rendered configuration file (prior to generation)"""
     generate_config_pre_version: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_config_pre_version'), 'exclude': lambda f: f is None }})
-    r"""Version of the generated target (prior to generation)"""
+    r"""The version of the customer's SDK before we generated"""
     generate_gen_lock_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_gen_lock_id'), 'exclude': lambda f: f is None }})
     r"""gen.lock ID (expected to be a uuid)."""
     generate_gen_lock_post_features: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_gen_lock_post_features'), 'exclude': lambda f: f is None }})
@@ -112,6 +117,14 @@ class CliEvent:
     r"""Checksum of the currently Rendered OpenAPI document."""
     management_doc_version: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('management_doc_version'), 'exclude': lambda f: f is None }})
     r"""Version taken from info.version field of the Rendered OpenAPI document."""
+    publish_package_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('publish_package_name'), 'exclude': lambda f: f is None }})
+    r"""Name of the published package."""
+    publish_package_registry_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('publish_package_registry_name'), 'exclude': lambda f: f is None }})
+    r"""Name of the registry where the package was published."""
+    publish_package_url: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('publish_package_url'), 'exclude': lambda f: f is None }})
+    r"""URL of the published package."""
+    publish_package_version: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('publish_package_version'), 'exclude': lambda f: f is None }})
+    r"""Version of the published package."""
     raw_command: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('raw_command'), 'exclude': lambda f: f is None }})
     r"""Full CLI command."""
     repo_label: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('repo_label'), 'exclude': lambda f: f is None }})

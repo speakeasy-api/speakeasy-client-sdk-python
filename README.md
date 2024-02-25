@@ -93,6 +93,8 @@ if res.apis is not None:
 
 ### [events](docs/sdks/events/README.md)
 
+* [get_workspace_events](docs/sdks/events/README.md#get_workspace_events) - Load recent events for a particular workspace
+* [get_workspace_targets](docs/sdks/events/README.md#get_workspace_targets) - Load targets for a particular workspace
 * [post_workspace_events](docs/sdks/events/README.md#post_workspace_events) - Post events for a specific workspace
 <!-- End Available Resources and Operations [operations] -->
 
@@ -125,11 +127,11 @@ s = speakeasy.Speakeasy(
     workspace_id='<value>',
 )
 
-req = operations.GetWorkspaceAccessRequest()
+req = operations.GetWorkspaceEventsRequest()
 
 res = None
 try:
-    res = s.auth.get_workspace_access(req)
+    res = s.events.get_workspace_events(req)
 except errors.Error as e:
     # handle exception
     raise(e)
@@ -137,7 +139,7 @@ except errors.SDKError as e:
     # handle exception
     raise(e)
 
-if res.access_details is not None:
+if res.cli_event_batch is not None:
     # handle response
     pass
 ```
@@ -236,13 +238,14 @@ s = speakeasy.Speakeasy(client: http_client)
 
 ### Per-Client Security Schemes
 
-This SDK supports the following security scheme globally:
+This SDK supports the following security schemes globally:
 
-| Name      | Type      | Scheme    |
-| --------- | --------- | --------- |
-| `api_key` | apiKey    | API key   |
+| Name        | Type        | Scheme      |
+| ----------- | ----------- | ----------- |
+| `api_key`   | apiKey      | API key     |
+| `bearer`    | http        | HTTP Bearer |
 
-You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
+You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```python
 import speakeasy
 from speakeasy.models import operations, shared
@@ -272,7 +275,7 @@ if res.status_code == 200:
 
 A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `workspaceID` to `'<value>'` at SDK initialization and then you do not have to pass the same value on calls to operations like `post_workspace_events`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `workspaceID` to `'<value>'` at SDK initialization and then you do not have to pass the same value on calls to operations like `get_workspace_events`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
@@ -287,7 +290,6 @@ The following global parameter is available.
 ### Example
 
 ```python
-import dateutil.parser
 import speakeasy
 from speakeasy.models import operations, shared
 
@@ -298,25 +300,11 @@ s = speakeasy.Speakeasy(
     workspace_id='<value>',
 )
 
-req = operations.PostWorkspaceEventsRequest(
-    request_body=[
-        shared.CliEvent(
-            created_at=dateutil.parser.isoparse('2024-11-21T06:58:42.120Z'),
-            execution_id='<value>',
-            id='<id>',
-            interaction_type=shared.InteractionType.CLI_EXEC,
-            local_started_at=dateutil.parser.isoparse('2024-05-07T12:35:47.182Z'),
-            speakeasy_api_key_name='<value>',
-            speakeasy_version='<value>',
-            success=False,
-            workspace_id='<value>',
-        ),
-    ],
-)
+req = operations.GetWorkspaceEventsRequest()
 
-res = s.events.post_workspace_events(req)
+res = s.events.get_workspace_events(req)
 
-if res.status_code == 200:
+if res.cli_event_batch is not None:
     # handle response
     pass
 ```

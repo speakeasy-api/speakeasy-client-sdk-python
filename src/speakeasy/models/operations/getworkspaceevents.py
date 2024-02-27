@@ -4,13 +4,16 @@ from __future__ import annotations
 import dataclasses
 import requests as requests_http
 from ...models.shared import clievent as shared_clievent
+from datetime import datetime
 from typing import List, Optional
 
 
 @dataclasses.dataclass
 class GetWorkspaceEventsRequest:
+    after_created_at: Optional[datetime] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'after_created_at', 'style': 'form', 'explode': True }})
+    r"""Filter to only return events created after this timestamp"""
     generate_gen_lock_id: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'generate_gen_lock_id', 'style': 'form', 'explode': True }})
-    r"""Filter to only return events corresponding to a particular gen_lock_id"""
+    r"""Filter to only return events corresponding to a particular gen_lock_id (gen_lock_id uniquely identifies a target)"""
     workspace_id: Optional[str] = dataclasses.field(default=None, metadata={'path_param': { 'field_name': 'workspaceID', 'style': 'simple', 'explode': False }})
     r"""Unique identifier of the workspace."""
     

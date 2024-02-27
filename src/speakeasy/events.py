@@ -60,6 +60,7 @@ class Events:
         
         url = utils.generate_url(operations.GetWorkspaceTargetsRequest, base_url, '/v1/workspace/{workspaceID}/events/targets', request, self.sdk_configuration.globals)
         headers = {}
+        query_params = utils.get_query_params(operations.GetWorkspaceTargetsRequest, request, self.sdk_configuration.globals)
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
@@ -68,7 +69,7 @@ class Events:
         else:
             client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
-        http_res = client.request('GET', url, headers=headers)
+        http_res = client.request('GET', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
         
         res = operations.GetWorkspaceTargetsResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)

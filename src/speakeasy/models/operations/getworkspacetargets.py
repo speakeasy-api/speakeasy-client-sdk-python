@@ -4,11 +4,14 @@ from __future__ import annotations
 import dataclasses
 import requests as requests_http
 from ...models.shared import targetsdk as shared_targetsdk
+from datetime import datetime
 from typing import List, Optional
 
 
 @dataclasses.dataclass
 class GetWorkspaceTargetsRequest:
+    after_last_event_created_at: Optional[datetime] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'after_last_event_created_at', 'style': 'form', 'explode': True }})
+    r"""Filter to only return targets with events created after this timestamp"""
     workspace_id: Optional[str] = dataclasses.field(default=None, metadata={'path_param': { 'field_name': 'workspaceID', 'style': 'simple', 'explode': False }})
     r"""Unique identifier of the workspace."""
     

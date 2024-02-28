@@ -15,7 +15,7 @@ class TargetSDK:
     generate_gen_lock_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_gen_lock_id') }})
     r"""gen.lock ID (expected to be a uuid). The same as `id`. A unique identifier for the target."""
     generate_target: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_target') }})
-    r"""The target of the event."""
+    r"""eg `typescript`, `terraform`, `python`"""
     id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('id') }})
     r"""Unique identifier of the target the same as `generate_gen_lock_id`"""
     last_event_created_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('last_event_created_at'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
@@ -28,6 +28,8 @@ class TargetSDK:
     r"""Version of the generated target (post generation)"""
     generate_published: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_published'), 'exclude': lambda f: f is None }})
     r"""Indicates whether the target was considered published."""
+    generate_target_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_target_name'), 'exclude': lambda f: f is None }})
+    r"""The name of the target as defined by the user."""
     generate_target_version: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_target_version'), 'exclude': lambda f: f is None }})
     r"""The version of the Speakeasy generator for this target eg v2 of the typescript generator."""
     gh_action_organization: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gh_action_organization'), 'exclude': lambda f: f is None }})

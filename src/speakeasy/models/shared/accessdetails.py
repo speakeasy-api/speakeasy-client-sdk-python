@@ -10,5 +10,6 @@ from speakeasy import utils
 @dataclasses.dataclass
 class AccessDetails:
     generation_allowed: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generation_allowed') }})
+    message: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('message') }})
     
 

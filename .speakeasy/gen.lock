@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: e7803aa801c8a80e23dbe21edbf4e9c5
+  docChecksum: 9e766720141ee71ea97dae02c573b883
   docVersion: 0.4.0
   speakeasyVersion: internal
-  generationVersion: 2.272.7
-  releaseVersion: 5.2.8
-  configChecksum: 2153cf881203d9f64e713f949a098799
+  generationVersion: 2.275.4
+  releaseVersion: 5.3.0
+  configChecksum: 0d0e7964adcd5a451c9741b79154fa4e
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   published: true
 features:
   python:
-    core: 4.4.7
+    core: 4.5.0
     downloadStreams: 0.0.2
     examples: 2.81.3
     globalSecurity: 2.83.4
@@ -66,6 +66,7 @@ generatedFiles:
   - src/speakeasy/models/operations/getschemarevision.py
   - src/speakeasy/models/operations/getschemas.py
   - src/speakeasy/models/operations/registerschema.py
+  - src/speakeasy/models/operations/getaccesstoken.py
   - src/speakeasy/models/operations/getworkspaceaccess.py
   - src/speakeasy/models/operations/validateapikey.py
   - src/speakeasy/models/operations/generaterequestpostmancollection.py
@@ -87,6 +88,7 @@ generatedFiles:
   - src/speakeasy/models/shared/versionmetadata_input.py
   - src/speakeasy/models/shared/schema.py
   - src/speakeasy/models/shared/schemadiff.py
+  - src/speakeasy/models/shared/accesstoken.py
   - src/speakeasy/models/shared/accessdetails.py
   - src/speakeasy/models/shared/apikeydetails.py
   - src/speakeasy/models/shared/unboundedrequest.py
@@ -157,6 +159,8 @@ generatedFiles:
   - docs/models/operations/registerschemarequestbody.md
   - docs/models/operations/registerschemarequest.md
   - docs/models/operations/registerschemaresponse.md
+  - docs/models/operations/getaccesstokenrequest.md
+  - docs/models/operations/getaccesstokenresponse.md
   - docs/models/operations/getworkspaceaccessrequest.md
   - docs/models/operations/getworkspaceaccessresponse.md
   - docs/models/operations/validateapikeyresponse.md
@@ -188,6 +192,10 @@ generatedFiles:
   - docs/models/shared/schema.md
   - docs/models/shared/valuechange.md
   - docs/models/shared/schemadiff.md
+  - docs/models/shared/claims.md
+  - docs/models/shared/user.md
+  - docs/models/shared/workspaces.md
+  - docs/models/shared/accesstoken.md
   - docs/models/shared/accessdetails.md
   - docs/models/shared/accounttype.md
   - docs/models/shared/apikeydetails.md
@@ -215,3 +223,7 @@ generatedFiles:
   - docs/sdks/events/README.md
   - USAGE.md
   - .gitattributes
+  - src/speakeasy/_hooks/registration.py
+  - src/speakeasy/_hooks/sdkhooks.py
+  - src/speakeasy/_hooks/types.py
+  - src/speakeasy/_hooks/__init__.py

@@ -76,6 +76,7 @@ if res.apis is not None:
 
 ### [auth](docs/sdks/auth/README.md)
 
+* [get_access_token](docs/sdks/auth/README.md#get_access_token) - Get or refresh an access token for the current workspace.
 * [get_workspace_access](docs/sdks/auth/README.md#get_workspace_access) - Get access allowances for a particular workspace
 * [validate_api_key](docs/sdks/auth/README.md#validate_api_key) - Validate the current api key.
 

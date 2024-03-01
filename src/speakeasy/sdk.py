@@ -11,6 +11,7 @@ from .requests import Requests
 from .schemas import Schemas
 from .sdkconfiguration import SDKConfiguration
 from speakeasy import utils
+from speakeasy._hooks import SDKHooks
 from speakeasy.models import shared
 from typing import Callable, Dict, Union
 
@@ -79,6 +80,16 @@ class Speakeasy:
                 },
             },
         }, retry_config=retry_config)
+
+        hooks = SDKHooks()
+
+        current_server_url, *_ = self.sdk_configuration.get_server_details()
+        server_url, self.sdk_configuration.client = hooks.sdk_init(current_server_url, self.sdk_configuration.client)
+        if current_server_url != server_url:
+            self.sdk_configuration.server_url = server_url
+
+        # pylint: disable=protected-access
+        self.sdk_configuration._hooks=hooks
        
         self._init_sdks()
     

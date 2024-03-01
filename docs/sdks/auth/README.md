@@ -7,8 +7,50 @@ REST APIs for managing Authentication
 
 ### Available Operations
 
+* [get_access_token](#get_access_token) - Get or refresh an access token for the current workspace.
 * [get_workspace_access](#get_workspace_access) - Get access allowances for a particular workspace
 * [validate_api_key](#validate_api_key) - Validate the current api key.
+
+## get_access_token
+
+Get or refresh an access token for the current workspace.
+
+### Example Usage
+
+```python
+import speakeasy
+from speakeasy.models import operations
+
+s = speakeasy.Speakeasy(
+    workspace_id='<value>',
+)
+
+req = operations.GetAccessTokenRequest(
+    workspace_id='<value>',
+)
+
+res = s.auth.get_access_token(req)
+
+if res.access_token is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `request`                                                                            | [operations.GetAccessTokenRequest](../../models/operations/getaccesstokenrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+
+
+### Response
+
+**[operations.GetAccessTokenResponse](../../models/operations/getaccesstokenresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
 
 ## get_workspace_access
 

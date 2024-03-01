@@ -1287,3 +1287,13 @@ Based on:
 - [python v5.2.8] .
 ### Releases
 - [PyPI v5.2.8] https://pypi.org/project/speakeasy-client-sdk-python/5.2.8 - .
+
+## 2024-03-01 00:11:49
+### Changes
+Based on:
+- OpenAPI Doc 0.4.0 https://docs.speakeasyapi.dev/openapi.yaml
+- Speakeasy CLI 1.198.1 (2.275.4) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v5.3.0] .
+### Releases
+- [PyPI v5.3.0] https://pypi.org/project/speakeasy-client-sdk-python/5.3.0 - .

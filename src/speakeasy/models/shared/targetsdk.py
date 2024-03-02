@@ -22,6 +22,8 @@ class TargetSDK:
     r"""Timestamp when the event was created in the database."""
     last_event_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('last_event_id') }})
     r"""Unique identifier of the last event for the target"""
+    total_events: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('total_events') }})
+    r"""Total number of events for the target"""
     commit_head: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('commit_head'), 'exclude': lambda f: f is None }})
     r"""Remote commit ID."""
     generate_config_post_version: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_config_post_version'), 'exclude': lambda f: f is None }})

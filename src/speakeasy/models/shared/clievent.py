@@ -51,6 +51,8 @@ class CliEvent:
     r"""Identifier of the workspace."""
     commit_head: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('commit_head'), 'exclude': lambda f: f is None }})
     r"""Remote commit ID."""
+    continuous_integration_environment: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('continuous_integration_environment'), 'exclude': lambda f: f is None }})
+    r"""Name of the CI environment."""
     duration_ms: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('duration_ms'), 'exclude': lambda f: f is None }})
     r"""Duration of the event in milliseconds."""
     generate_bump_type: Optional[GenerateBumpType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_bump_type'), 'exclude': lambda f: f is None }})

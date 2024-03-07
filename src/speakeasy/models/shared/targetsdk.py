@@ -22,12 +22,16 @@ class TargetSDK:
     r"""Timestamp when the event was created in the database."""
     last_event_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('last_event_id') }})
     r"""Unique identifier of the last event for the target"""
-    total_events: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('total_events') }})
-    r"""Total number of events for the target"""
     commit_head: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('commit_head'), 'exclude': lambda f: f is None }})
     r"""Remote commit ID."""
+    continuous_integration_environment: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('continuous_integration_environment'), 'exclude': lambda f: f is None }})
+    r"""Name of the CI environment."""
     generate_config_post_version: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_config_post_version'), 'exclude': lambda f: f is None }})
     r"""Version of the generated target (post generation)"""
+    generate_gen_lock_pre_features: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_gen_lock_pre_features'), 'exclude': lambda f: f is None }})
+    r"""Features prior to generation"""
+    generate_gen_lock_pre_version: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_gen_lock_pre_version'), 'exclude': lambda f: f is None }})
+    r"""Artifact version for the Previous Generation"""
     generate_published: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_published'), 'exclude': lambda f: f is None }})
     r"""Indicates whether the target was considered published."""
     generate_target_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_target_name'), 'exclude': lambda f: f is None }})

@@ -41,9 +41,10 @@ req = operations.DeleteSchemaRequest(
 
 res = s.schemas.delete_schema(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -89,6 +90,7 @@ res = s.schemas.download_schema(req)
 if res.two_hundred_application_json_schema is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -135,6 +137,7 @@ res = s.schemas.download_schema_revision(req)
 if res.two_hundred_application_json_schema is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -181,6 +184,7 @@ res = s.schemas.get_schema(req)
 if res.schema is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -228,6 +232,7 @@ res = s.schemas.get_schema_diff(req)
 if res.schema_diff is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -275,6 +280,7 @@ res = s.schemas.get_schema_revision(req)
 if res.schema is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -321,6 +327,7 @@ res = s.schemas.get_schemas(req)
 if res.classes is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -370,9 +377,10 @@ req = operations.RegisterSchemaRequest(
 
 res = s.schemas.register_schema(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

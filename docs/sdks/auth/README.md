@@ -34,6 +34,7 @@ res = s.auth.get_access_token(req)
 if res.access_token is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -76,6 +77,7 @@ res = s.auth.get_workspace_access(req)
 if res.access_details is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -118,6 +120,7 @@ res = s.auth.validate_api_key()
 if res.api_key_details is not None:
     # handle response
     pass
+
 ```
 
 

@@ -31,6 +31,7 @@ res = s.apis.get_apis(req)
 if res.apis is not None:
     # handle response
     pass
+
 ```
 <!-- End SDK Example Usage [usage] -->
 
@@ -143,6 +144,7 @@ except errors.SDKError as e:
 if res.cli_event_batch is not None:
     # handle response
     pass
+
 ```
 <!-- End Error Handling [errors] -->
 
@@ -180,9 +182,10 @@ req = operations.DeleteAPIRequest(
 
 res = s.apis.delete_api(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 
@@ -208,9 +211,10 @@ req = operations.DeleteAPIRequest(
 
 res = s.apis.delete_api(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 <!-- End Server Selection [server] -->
 
@@ -265,9 +269,10 @@ req = operations.DeleteAPIRequest(
 
 res = s.apis.delete_api(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 <!-- End Authentication [security] -->
 
@@ -308,6 +313,7 @@ res = s.events.get_workspace_events(req)
 if res.cli_event_batch is not None:
     # handle response
     pass
+
 ```
 <!-- End Global Parameters [global-parameters] -->
 
@@ -337,6 +343,7 @@ res = s.auth.get_workspace_access(req,
 if res.access_details is not None:
     # handle response
     pass
+
 ```
 
 If you'd like to override the default retry strategy for all operations that support retries, you can use the `retry_config` optional parameter when initializing the SDK:
@@ -360,6 +367,7 @@ res = s.auth.get_workspace_access(req)
 if res.access_details is not None:
     # handle response
     pass
+
 ```
 <!-- End Retries [retries] -->
 

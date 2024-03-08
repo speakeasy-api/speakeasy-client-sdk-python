@@ -14,6 +14,7 @@ from .embedtoken import *
 from .filter_ import *
 from .filters import *
 from .generateopenapispecdiff import *
+from .interactiontype import *
 from .requestmetadata import *
 from .schema import *
 from .schemadiff import *

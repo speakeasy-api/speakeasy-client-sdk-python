@@ -37,9 +37,10 @@ req = operations.DeleteVersionMetadataRequest(
 
 res = s.metadata.delete_version_metadata(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -85,6 +86,7 @@ res = s.metadata.get_version_metadata(req)
 if res.version_metadata is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -134,6 +136,7 @@ res = s.metadata.insert_version_metadata(req)
 if res.version_metadata is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

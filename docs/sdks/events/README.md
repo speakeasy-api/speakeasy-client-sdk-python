@@ -35,6 +35,7 @@ res = s.events.get_workspace_events(req)
 if res.cli_event_batch is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -78,6 +79,7 @@ res = s.events.get_workspace_targets(req)
 if res.target_sdk_list is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -133,9 +135,10 @@ req = operations.PostWorkspaceEventsRequest(
 
 res = s.events.post_workspace_events(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

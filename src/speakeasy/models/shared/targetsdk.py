@@ -3,6 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import dateutil.parser
+from .interactiontype import InteractionType
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from speakeasy import utils
@@ -22,6 +23,8 @@ class TargetSDK:
     r"""Timestamp when the event was created in the database."""
     last_event_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('last_event_id') }})
     r"""Unique identifier of the last event for the target"""
+    last_event_interaction_type: InteractionType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('last_event_interaction_type') }})
+    r"""Type of interaction."""
     commit_head: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('commit_head'), 'exclude': lambda f: f is None }})
     r"""Remote commit ID."""
     continuous_integration_environment: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('continuous_integration_environment'), 'exclude': lambda f: f is None }})

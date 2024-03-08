@@ -41,9 +41,10 @@ req = operations.DeleteAPIEndpointRequest(
 
 res = s.api_endpoints.delete_api_endpoint(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -91,6 +92,7 @@ res = s.api_endpoints.find_api_endpoint(req)
 if res.api_endpoint is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -138,6 +140,7 @@ res = s.api_endpoints.generate_open_api_spec_for_api_endpoint(req)
 if res.generate_open_api_spec_diff is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -184,6 +187,7 @@ res = s.api_endpoints.generate_postman_collection_for_api_endpoint(req)
 if res.postman_collection is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -228,6 +232,7 @@ res = s.api_endpoints.get_all_api_endpoints(req)
 if res.api_endpoints is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -273,6 +278,7 @@ res = s.api_endpoints.get_all_for_version_api_endpoints(req)
 if res.api_endpoints is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -319,6 +325,7 @@ res = s.api_endpoints.get_api_endpoint(req)
 if res.api_endpoint is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -373,6 +380,7 @@ res = s.api_endpoints.upsert_api_endpoint(req)
 if res.api_endpoint is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

@@ -3,6 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import dateutil.parser
+from .interactiontype import InteractionType
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
@@ -16,16 +17,6 @@ class GenerateBumpType(str, Enum):
     PATCH = 'patch'
     CUSTOM = 'custom'
     NONE = 'none'
-
-class InteractionType(str, Enum):
-    r"""Type of interaction."""
-    CLI_EXEC = 'CLI_EXEC'
-    TARGET_GENERATE = 'TARGET_GENERATE'
-    AUTHENTICATE = 'AUTHENTICATE'
-    QUICKSTART = 'QUICKSTART'
-    RUN = 'RUN'
-    CONFIGURE = 'CONFIGURE'
-    PUBLISH = 'PUBLISH'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)

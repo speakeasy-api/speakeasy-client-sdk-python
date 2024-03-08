@@ -36,6 +36,7 @@ res = s.embeds.get_embed_access_token(req)
 if res.embed_access_token_response is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -77,6 +78,7 @@ res = s.embeds.get_valid_embed_access_tokens()
 if res.embed_tokens is not None:
     # handle response
     pass
+
 ```
 
 
@@ -112,9 +114,10 @@ req = operations.RevokeEmbedAccessTokenRequest(
 
 res = s.embeds.revoke_embed_access_token(req)
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

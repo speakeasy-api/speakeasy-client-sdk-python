@@ -87,6 +87,10 @@ if res.apis is not None:
 * [get_request_from_event_log](docs/sdks/requests/README.md#get_request_from_event_log) - Get information about a particular request.
 * [query_event_log](docs/sdks/requests/README.md#query_event_log) - Query the event log to retrieve a list of requests.
 
+### [organizations](docs/sdks/organizations/README.md)
+
+* [get_organizations](docs/sdks/organizations/README.md#get_organizations) - Get organizations for a user
+
 ### [embeds](docs/sdks/embeds/README.md)
 
 * [get_embed_access_token](docs/sdks/embeds/README.md#get_embed_access_token) - Get an embed access token for the current workspace.

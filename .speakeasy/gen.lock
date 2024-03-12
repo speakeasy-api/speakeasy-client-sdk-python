@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: 64b423d1904e6c12d31973957d033247
+  docChecksum: 3d1ffb0cc7307a0362c5389c0fa1fdb5
   docVersion: 0.4.0
-  speakeasyVersion: 1.204.1
+  speakeasyVersion: 1.205.2
   generationVersion: 2.279.1
-  releaseVersion: 5.4.0
-  configChecksum: b7b3a76dd38b581e75d3bacbb60538ec
+  releaseVersion: 5.4.1
+  configChecksum: 9cbfe1a8a286349bca006f3be62f3681
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -31,6 +31,7 @@ generatedFiles:
   - src/speakeasy/schemas.py
   - src/speakeasy/auth.py
   - src/speakeasy/requests.py
+  - src/speakeasy/organizations.py
   - src/speakeasy/embeds.py
   - src/speakeasy/events.py
   - src/speakeasy/sdk.py
@@ -74,6 +75,7 @@ generatedFiles:
   - src/speakeasy/models/operations/generaterequestpostmancollection.py
   - src/speakeasy/models/operations/getrequestfromeventlog.py
   - src/speakeasy/models/operations/queryeventlog.py
+  - src/speakeasy/models/operations/getorganizations.py
   - src/speakeasy/models/operations/getembedaccesstoken.py
   - src/speakeasy/models/operations/getvalidembedaccesstokens.py
   - src/speakeasy/models/operations/revokeembedaccesstoken.py
@@ -98,6 +100,7 @@ generatedFiles:
   - src/speakeasy/models/shared/requestmetadata.py
   - src/speakeasy/models/shared/filters.py
   - src/speakeasy/models/shared/filter_.py
+  - src/speakeasy/models/shared/organization.py
   - src/speakeasy/models/shared/embedaccesstokenresponse.py
   - src/speakeasy/models/shared/embedtoken.py
   - src/speakeasy/models/shared/clievent.py
@@ -173,6 +176,7 @@ generatedFiles:
   - docs/models/operations/getrequestfromeventlogresponse.md
   - docs/models/operations/queryeventlogrequest.md
   - docs/models/operations/queryeventlogresponse.md
+  - docs/models/operations/getorganizationsresponse.md
   - docs/models/operations/getembedaccesstokenrequest.md
   - docs/models/operations/getembedaccesstokenresponse.md
   - docs/models/operations/getvalidembedaccesstokensresponse.md
@@ -199,6 +203,7 @@ generatedFiles:
   - docs/models/shared/user.md
   - docs/models/shared/workspaces.md
   - docs/models/shared/accesstoken.md
+  - docs/models/shared/level.md
   - docs/models/shared/accessdetails.md
   - docs/models/shared/accounttype.md
   - docs/models/shared/apikeydetails.md
@@ -207,6 +212,8 @@ generatedFiles:
   - docs/models/shared/requestmetadata.md
   - docs/models/shared/filters.md
   - docs/models/shared/filter_.md
+  - docs/models/shared/organizationaccounttype.md
+  - docs/models/shared/organization.md
   - docs/models/shared/embedaccesstokenresponse.md
   - docs/models/shared/embedtoken.md
   - docs/models/shared/generatebumptype.md
@@ -222,6 +229,7 @@ generatedFiles:
   - docs/models/utils/retryconfig.md
   - docs/sdks/auth/README.md
   - docs/sdks/requests/README.md
+  - docs/sdks/organizations/README.md
   - docs/sdks/embeds/README.md
   - docs/sdks/events/README.md
   - USAGE.md

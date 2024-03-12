@@ -7,6 +7,7 @@ from .auth import Auth
 from .embeds import Embeds
 from .events import Events
 from .metadata import Metadata
+from .organizations import Organizations
 from .requests import Requests
 from .schemas import Schemas
 from .sdkconfiguration import SDKConfiguration
@@ -31,6 +32,7 @@ class Speakeasy:
     r"""REST APIs for managing Authentication"""
     requests: Requests
     r"""REST APIs for retrieving request information"""
+    organizations: Organizations
     embeds: Embeds
     r"""REST APIs for managing embeds"""
     events: Events
@@ -100,6 +102,7 @@ class Speakeasy:
         self.schemas = Schemas(self.sdk_configuration)
         self.auth = Auth(self.sdk_configuration)
         self.requests = Requests(self.sdk_configuration)
+        self.organizations = Organizations(self.sdk_configuration)
         self.embeds = Embeds(self.sdk_configuration)
         self.events = Events(self.sdk_configuration)
     

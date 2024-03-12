@@ -3,7 +3,14 @@
 from __future__ import annotations
 import dataclasses
 from dataclasses_json import Undefined, dataclass_json
+from enum import Enum
 from speakeasy import utils
+from typing import Optional
+
+class Level(str, Enum):
+    ALLOWED = 'allowed'
+    WARNING = 'warning'
+    BLOCKED = 'blocked'
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
@@ -11,5 +18,6 @@ from speakeasy import utils
 class AccessDetails:
     generation_allowed: bool = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generation_allowed') }})
     message: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('message') }})
+    level: Optional[Level] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('level'), 'exclude': lambda f: f is None }})
     
 

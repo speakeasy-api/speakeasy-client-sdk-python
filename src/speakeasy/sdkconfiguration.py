@@ -26,9 +26,9 @@ class SDKConfiguration:
     globals: Dict[str, Dict[str, Dict[str, Any]]] = field(default_factory=Dict)
     language: str = 'python'
     openapi_doc_version: str = '0.4.0'
-    sdk_version: str = '5.4.1'
-    gen_version: str = '2.279.1'
-    user_agent: str = 'speakeasy-sdk/python 5.4.1 2.279.1 0.4.0 speakeasy-client-sdk-python'
+    sdk_version: str = '5.4.2'
+    gen_version: str = '2.280.6'
+    user_agent: str = 'speakeasy-sdk/python 5.4.2 2.280.6 0.4.0 speakeasy-client-sdk-python'
     retry_config: RetryConfig = None
     _hooks: SDKHooks = None
 
@@ -37,6 +37,9 @@ class SDKConfiguration:
             return utils.remove_suffix(self.server_url, '/'), {}
         if not self.server:
             self.server = SERVER_PROD
+
+        if not self.server in SERVERS:
+            raise ValueError(f"Invalid server \"{self.server}\"")
 
         return SERVERS[self.server], {}
 

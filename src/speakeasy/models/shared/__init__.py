@@ -22,7 +22,8 @@ from .schemadiff import *
 from .security import *
 from .targetsdk import *
 from .unboundedrequest import *
+from .user import *
 from .versionmetadata import *
 from .versionmetadata_input import *
 
-__all__ = ["API","APIEndpoint","APIEndpointInput","APIInput","APIKeyDetails","AccessDetails","AccessToken","AccountType","BoundedRequest","Claims","CliEvent","EmbedAccessTokenResponse","EmbedToken","Filter","Filters","GenerateBumpType","GenerateOpenAPISpecDiff","InteractionType","Level","Organization","OrganizationAccountType","RequestMetadata","Schema","SchemaDiff","Security","TargetSDK","UnboundedRequest","User","ValueChange","VersionMetadata","VersionMetadataInput","Workspaces"]
+__all__ = ["API","APIEndpoint","APIEndpointInput","APIInput","APIKeyDetails","AccessDetails","AccessToken","AccessTokenUser","AccountType","BoundedRequest","Claims","CliEvent","EmbedAccessTokenResponse","EmbedToken","Filter","Filters","GenerateBumpType","GenerateOpenAPISpecDiff","InteractionType","Level","Organization","OrganizationAccountType","RequestMetadata","Schema","SchemaDiff","Security","TargetSDK","UnboundedRequest","User","ValueChange","VersionMetadata","VersionMetadataInput","Workspaces"]

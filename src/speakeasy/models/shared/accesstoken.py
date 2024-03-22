@@ -16,7 +16,7 @@ class Claims:
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class User:
+class AccessTokenUser:
     admin: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('admin'), 'exclude': lambda f: f is None }})
     created_at: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('created_at'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     display_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('display_name'), 'exclude': lambda f: f is None }})
@@ -38,7 +38,7 @@ class AccessToken:
     r"""An AccessToken is a token that can be used to authenticate with the Speakeasy API."""
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     claims: Claims = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('claims') }})
-    user: User = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user') }})
+    user: AccessTokenUser = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user') }})
     workspaces: Optional[List[Workspaces]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspaces'), 'exclude': lambda f: f is None }})
     
 

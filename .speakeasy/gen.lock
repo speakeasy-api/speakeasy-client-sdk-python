@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: 3d1ffb0cc7307a0362c5389c0fa1fdb5
+  docChecksum: 17e2e733dfd588a7103c3c70e91b24b5
   docVersion: 0.4.0
-  speakeasyVersion: 1.207.1
-  generationVersion: 2.280.6
-  releaseVersion: 5.4.2
-  configChecksum: a976d8241daf5ce93ba1c8e2be1c6b4f
+  speakeasyVersion: 1.219.2
+  generationVersion: 2.286.7
+  releaseVersion: 5.4.3
+  configChecksum: 7fe27121cad4ded73012364cf3d6e9fd
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -16,7 +16,7 @@ features:
     core: 4.5.1
     downloadStreams: 0.0.2
     examples: 2.81.3
-    globalSecurity: 2.83.4
+    globalSecurity: 2.83.5
     globalServerURLs: 2.82.2
     globals: 2.81.1
     inputOutputModels: 2.83.1
@@ -70,6 +70,7 @@ generatedFiles:
   - src/speakeasy/models/operations/getschemas.py
   - src/speakeasy/models/operations/registerschema.py
   - src/speakeasy/models/operations/getaccesstoken.py
+  - src/speakeasy/models/operations/getuser.py
   - src/speakeasy/models/operations/getworkspaceaccess.py
   - src/speakeasy/models/operations/validateapikey.py
   - src/speakeasy/models/operations/generaterequestpostmancollection.py
@@ -93,6 +94,7 @@ generatedFiles:
   - src/speakeasy/models/shared/schema.py
   - src/speakeasy/models/shared/schemadiff.py
   - src/speakeasy/models/shared/accesstoken.py
+  - src/speakeasy/models/shared/user.py
   - src/speakeasy/models/shared/accessdetails.py
   - src/speakeasy/models/shared/apikeydetails.py
   - src/speakeasy/models/shared/unboundedrequest.py
@@ -167,6 +169,7 @@ generatedFiles:
   - docs/models/operations/registerschemaresponse.md
   - docs/models/operations/getaccesstokenrequest.md
   - docs/models/operations/getaccesstokenresponse.md
+  - docs/models/operations/getuserresponse.md
   - docs/models/operations/getworkspaceaccessrequest.md
   - docs/models/operations/getworkspaceaccessresponse.md
   - docs/models/operations/validateapikeyresponse.md
@@ -200,9 +203,10 @@ generatedFiles:
   - docs/models/shared/valuechange.md
   - docs/models/shared/schemadiff.md
   - docs/models/shared/claims.md
-  - docs/models/shared/user.md
+  - docs/models/shared/accesstokenuser.md
   - docs/models/shared/workspaces.md
   - docs/models/shared/accesstoken.md
+  - docs/models/shared/user.md
   - docs/models/shared/level.md
   - docs/models/shared/accessdetails.md
   - docs/models/shared/accounttype.md

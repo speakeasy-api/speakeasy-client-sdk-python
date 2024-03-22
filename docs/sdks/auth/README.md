@@ -8,6 +8,7 @@ REST APIs for managing Authentication
 ### Available Operations
 
 * [get_access_token](#get_access_token) - Get or refresh an access token for the current workspace.
+* [get_user](#get_user) - Get information about the current user.
 * [get_workspace_access](#get_workspace_access) - Get access allowances for a particular workspace
 * [validate_api_key](#validate_api_key) - Validate the current api key.
 
@@ -47,6 +48,42 @@ if res.access_token is not None:
 ### Response
 
 **[operations.GetAccessTokenResponse](../../models/operations/getaccesstokenresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
+
+## get_user
+
+Get information about the current user.
+
+### Example Usage
+
+```python
+import speakeasy
+from speakeasy.models import shared
+
+s = speakeasy.Speakeasy(
+    security=shared.Security(
+        api_key="<YOUR_API_KEY_HERE>",
+    ),
+    workspace_id='<value>',
+)
+
+
+res = s.auth.get_user()
+
+if res.user is not None:
+    # handle response
+    pass
+
+```
+
+
+### Response
+
+**[operations.GetUserResponse](../../models/operations/getuserresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

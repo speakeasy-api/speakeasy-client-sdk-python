@@ -79,6 +79,8 @@ class Speakeasy:
                 'pathParam': {
                     'workspace_id': workspace_id,
                 },
+                'header': {
+                },
             },
         }
 

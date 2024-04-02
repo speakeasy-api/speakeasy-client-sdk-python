@@ -53,7 +53,7 @@ if res.cli_event_batch is not None:
 | Error Object     | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.Error     | 5XX              | application/json |
-| errors.SDKError  | 4x-5xx           | */*              |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## get_workspace_targets
 
@@ -97,7 +97,7 @@ if res.target_sdk_list is not None:
 | Error Object     | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.Error     | 5XX              | application/json |
-| errors.SDKError  | 4x-5xx           | */*              |
+| errors.SDKError  | 4xx-5xx          | */*              |
 
 ## post_workspace_events
 
@@ -157,4 +157,4 @@ if res is not None:
 | Error Object     | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.Error     | 5XX              | application/json |
-| errors.SDKError  | 4x-5xx           | */*              |
+| errors.SDKError  | 4xx-5xx          | */*              |

@@ -11,6 +11,7 @@ from .organizations import Organizations
 from .requests import Requests
 from .schemas import Schemas
 from .sdkconfiguration import SDKConfiguration
+from .utils.retries import RetryConfig
 from speakeasy import utils
 from speakeasy._hooks import SDKHooks
 from speakeasy.models import shared
@@ -47,7 +48,7 @@ class Speakeasy:
                  server_url: Optional[str] = None,
                  url_params: Optional[Dict[str, str]] = None,
                  client: Optional[requests_http.Session] = None,
-                 retry_config: Optional[utils.RetryConfig] = None
+                 retry_config: Optional[RetryConfig] = None
                  ) -> None:
         """Instantiates the SDK configuring it with the provided parameters.
 
@@ -64,7 +65,7 @@ class Speakeasy:
         :param client: The requests.Session HTTP client to use for all operations
         :type client: requests_http.Session
         :param retry_config: The utils.RetryConfig to use globally
-        :type retry_config: utils.RetryConfig
+        :type retry_config: RetryConfig
         """
         if client is None:
             client = requests_http.Session()

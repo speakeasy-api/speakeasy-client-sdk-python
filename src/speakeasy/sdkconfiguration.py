@@ -7,7 +7,7 @@ from .utils import utils
 from .utils.retries import RetryConfig
 from dataclasses import dataclass, field
 from speakeasy.models import shared
-from typing import Any, Callable, Dict, Tuple, Union
+from typing import Any, Callable, Dict, Optional, Tuple, Union
 
 
 SERVER_PROD = 'prod'
@@ -21,24 +21,24 @@ SERVERS = {
 class SDKConfiguration:
     client: requests_http.Session
     security: Union[shared.Security,Callable[[], shared.Security]] = None
-    server_url: str = ''
-    server: str = ''
+    server_url: Optional[str] = ''
+    server: Optional[str] = ''
     globals: Dict[str, Dict[str, Dict[str, Any]]] = field(default_factory=Dict)
     language: str = 'python'
     openapi_doc_version: str = '0.4.0'
-    sdk_version: str = '5.5.1'
-    gen_version: str = '2.295.1'
-    user_agent: str = 'speakeasy-sdk/python 5.5.1 2.295.1 0.4.0 speakeasy-client-sdk-python'
-    retry_config: RetryConfig = None
-    _hooks: SDKHooks = None
+    sdk_version: str = '5.6.0'
+    gen_version: str = '2.296.1'
+    user_agent: str = 'speakeasy-sdk/python 5.6.0 2.296.1 0.4.0 speakeasy-client-sdk-python'
+    retry_config: Optional[RetryConfig] = None
+    _hooks: Optional[SDKHooks] = None
 
     def get_server_details(self) -> Tuple[str, Dict[str, str]]:
-        if self.server_url:
+        if self.server_url is not None and self.server_url != '':
             return utils.remove_suffix(self.server_url, '/'), {}
         if not self.server:
             self.server = SERVER_PROD
 
-        if not self.server in SERVERS:
+        if self.server not in SERVERS:
             raise ValueError(f"Invalid server \"{self.server}\"")
 
         return SERVERS[self.server], {}

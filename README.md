@@ -237,7 +237,7 @@ import requests
 
 http_client = requests.Session()
 http_client.headers.update({'x-custom-header': 'someValue'})
-s = speakeasy.Speakeasy(client: http_client)
+s = speakeasy.Speakeasy(client=http_client)
 ```
 <!-- End Custom HTTP Client [http-client] -->
 

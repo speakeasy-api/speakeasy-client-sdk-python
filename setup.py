@@ -7,6 +7,7 @@ try:
     with open('README.md', 'r') as fh:
         long_description = fh.read()
         GITHUB_URL = 'https://github.com/speakeasy-api/speakeasy-client-sdk-python.git'
+        GITHUB_URL = GITHUB_URL[: -len('.git')] if GITHUB_URL.endswith('.git') else GITHUB_URL
         # links on PyPI should have absolute URLs
         long_description = re.sub(
             r'(\[[^\]]+\]\()((?!https?:)[^\)]+)(\))',
@@ -18,7 +19,7 @@ except FileNotFoundError:
 
 setuptools.setup(
     name='speakeasy-client-sdk-python',
-    version='5.6.1',
+    version='5.6.2',
     author='Speakeasy',
     description='Speakeasy API Client SDK for Python',
     url='https://github.com/speakeasy-api/speakeasy-client-sdk-python.git',

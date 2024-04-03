@@ -3,17 +3,17 @@ id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
   docChecksum: 17e2e733dfd588a7103c3c70e91b24b5
   docVersion: 0.4.0
-  speakeasyVersion: 1.235.1
-  generationVersion: 2.298.1
-  releaseVersion: 5.6.1
-  configChecksum: 1f3df38ca829db6d00494bdf350f7dc2
+  speakeasyVersion: 1.235.2
+  generationVersion: 2.298.2
+  releaseVersion: 5.6.2
+  configChecksum: f07422f6ccc40506bbd893d599c84096
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   published: true
 features:
   python:
-    core: 4.6.1
+    core: 4.6.2
     downloadStreams: 0.0.2
     examples: 2.81.3
     globalSecurity: 2.83.5

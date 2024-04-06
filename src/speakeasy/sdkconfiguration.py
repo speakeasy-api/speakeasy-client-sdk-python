@@ -26,9 +26,9 @@ class SDKConfiguration:
     globals: Dict[str, Dict[str, Dict[str, Any]]] = field(default_factory=Dict)
     language: str = 'python'
     openapi_doc_version: str = '0.4.0'
-    sdk_version: str = '5.6.2'
-    gen_version: str = '2.298.2'
-    user_agent: str = 'speakeasy-sdk/python 5.6.2 2.298.2 0.4.0 speakeasy-client-sdk-python'
+    sdk_version: str = '5.6.3'
+    gen_version: str = '2.300.0'
+    user_agent: str = 'speakeasy-sdk/python 5.6.3 2.300.0 0.4.0 speakeasy-client-sdk-python'
     retry_config: Optional[RetryConfig] = None
     _hooks: Optional[SDKHooks] = None
 

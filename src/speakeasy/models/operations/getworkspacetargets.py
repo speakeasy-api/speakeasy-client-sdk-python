@@ -9,6 +9,13 @@ from typing import List, Optional
 
 
 @dataclasses.dataclass
+class GetWorkspaceTargetsGlobals:
+    workspace_id: Optional[str] = dataclasses.field(default=None, metadata={'path_param': { 'field_name': 'workspaceID', 'style': 'simple', 'explode': False }})
+    
+
+
+
+@dataclasses.dataclass
 class GetWorkspaceTargetsRequest:
     after_last_event_created_at: Optional[datetime] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'after_last_event_created_at', 'style': 'form', 'explode': True }})
     r"""Filter to only return targets with events created after this timestamp"""

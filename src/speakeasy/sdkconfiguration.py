@@ -5,9 +5,9 @@ import requests as requests_http
 from ._hooks import SDKHooks
 from .utils import utils
 from .utils.retries import RetryConfig
-from dataclasses import dataclass, field
-from speakeasy.models import shared
-from typing import Any, Callable, Dict, Optional, Tuple, Union
+from dataclasses import dataclass
+from speakeasy.models import internal, shared
+from typing import Callable, Dict, Optional, Tuple, Union
 
 
 SERVER_PROD = 'prod'
@@ -20,17 +20,19 @@ SERVERS = {
 @dataclass
 class SDKConfiguration:
     client: requests_http.Session
+    globals: internal.Globals
     security: Union[shared.Security,Callable[[], shared.Security]] = None
     server_url: Optional[str] = ''
     server: Optional[str] = ''
-    globals: Dict[str, Dict[str, Dict[str, Any]]] = field(default_factory=Dict)
     language: str = 'python'
     openapi_doc_version: str = '0.4.0'
-    sdk_version: str = '5.6.3'
-    gen_version: str = '2.300.0'
-    user_agent: str = 'speakeasy-sdk/python 5.6.3 2.300.0 0.4.0 speakeasy-client-sdk-python'
+    sdk_version: str = '5.6.4'
+    gen_version: str = '2.301.0'
+    user_agent: str = 'speakeasy-sdk/python 5.6.4 2.301.0 0.4.0 speakeasy-client-sdk-python'
     retry_config: Optional[RetryConfig] = None
-    _hooks: Optional[SDKHooks] = None
+
+    def __post_init__(self):
+        self._hooks = SDKHooks()
 
     def get_server_details(self) -> Tuple[str, Dict[str, str]]:
         if self.server_url is not None and self.server_url != '':

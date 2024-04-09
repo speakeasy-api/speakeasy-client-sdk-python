@@ -28,7 +28,7 @@ class APIEndpoints:
         hook_ctx = HookContext(operation_id='deleteApiEndpoint', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.DeleteAPIEndpointRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -85,7 +85,7 @@ class APIEndpoints:
         hook_ctx = HookContext(operation_id='findApiEndpoint', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.FindAPIEndpointRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/find/{displayName}', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/find/{displayName}', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -147,7 +147,7 @@ class APIEndpoints:
         hook_ctx = HookContext(operation_id='generateOpenApiSpecForApiEndpoint', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GenerateOpenAPISpecForAPIEndpointRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/openapi', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/openapi', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -208,7 +208,7 @@ class APIEndpoints:
         hook_ctx = HookContext(operation_id='generatePostmanCollectionForApiEndpoint', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GeneratePostmanCollectionForAPIEndpointRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/postman', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/postman', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -269,7 +269,7 @@ class APIEndpoints:
         hook_ctx = HookContext(operation_id='getAllApiEndpoints', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetAllAPIEndpointsRequest, base_url, '/v1/apis/{apiID}/api_endpoints', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/api_endpoints', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -328,7 +328,7 @@ class APIEndpoints:
         hook_ctx = HookContext(operation_id='getAllForVersionApiEndpoints', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetAllForVersionAPIEndpointsRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -387,7 +387,7 @@ class APIEndpoints:
         hook_ctx = HookContext(operation_id='getApiEndpoint', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetAPIEndpointRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -448,7 +448,7 @@ class APIEndpoints:
         hook_ctx = HookContext(operation_id='upsertApiEndpoint', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.UpsertAPIEndpointRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())

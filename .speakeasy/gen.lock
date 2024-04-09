@@ -3,17 +3,17 @@ id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
   docChecksum: 17e2e733dfd588a7103c3c70e91b24b5
   docVersion: 0.4.0
-  speakeasyVersion: 1.241.0
-  generationVersion: 2.300.0
-  releaseVersion: 5.6.3
-  configChecksum: b013e62f5b00cff5d7dd98179c7e04aa
+  speakeasyVersion: 1.244.0
+  generationVersion: 2.301.0
+  releaseVersion: 5.6.4
+  configChecksum: 0fe25622f36d9a64240ebf5fa2f1effe
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   published: true
 features:
   python:
-    core: 4.6.3
+    core: 4.6.4
     downloadStreams: 0.0.2
     examples: 2.81.3
     globalSecurity: 2.83.5
@@ -109,10 +109,12 @@ generatedFiles:
   - src/speakeasy/models/shared/interactiontype.py
   - src/speakeasy/models/shared/targetsdk.py
   - src/speakeasy/models/shared/security.py
+  - src/speakeasy/models/internal/globals.py
   - src/speakeasy/models/__init__.py
   - src/speakeasy/models/errors/__init__.py
   - src/speakeasy/models/operations/__init__.py
   - src/speakeasy/models/shared/__init__.py
+  - src/speakeasy/models/internal/__init__.py
   - docs/models/operations/deleteapirequest.md
   - docs/models/operations/deleteapiresponse.md
   - docs/models/operations/generateopenapispecrequest.md
@@ -185,10 +187,13 @@ generatedFiles:
   - docs/models/operations/getvalidembedaccesstokensresponse.md
   - docs/models/operations/revokeembedaccesstokenrequest.md
   - docs/models/operations/revokeembedaccesstokenresponse.md
+  - docs/models/operations/getworkspaceeventsglobals.md
   - docs/models/operations/getworkspaceeventsrequest.md
   - docs/models/operations/getworkspaceeventsresponse.md
+  - docs/models/operations/getworkspacetargetsglobals.md
   - docs/models/operations/getworkspacetargetsrequest.md
   - docs/models/operations/getworkspacetargetsresponse.md
+  - docs/models/operations/postworkspaceeventsglobals.md
   - docs/models/operations/postworkspaceeventsrequest.md
   - docs/models/operations/postworkspaceeventsresponse.md
   - docs/models/errors/error.md
@@ -225,6 +230,7 @@ generatedFiles:
   - docs/models/shared/interactiontype.md
   - docs/models/shared/targetsdk.md
   - docs/models/shared/security.md
+  - docs/models/internal/globals.md
   - docs/sdks/speakeasy/README.md
   - docs/sdks/apis/README.md
   - docs/sdks/apiendpoints/README.md

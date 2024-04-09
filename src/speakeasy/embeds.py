@@ -31,7 +31,7 @@ class Embeds:
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
-        query_params = { **utils.get_query_params(operations.GetEmbedAccessTokenRequest, request, self.sdk_configuration.globals), **query_params }
+        query_params = { **utils.get_query_params(request), **query_params }
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
@@ -143,7 +143,7 @@ class Embeds:
         hook_ctx = HookContext(operation_id='revokeEmbedAccessToken', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.RevokeEmbedAccessTokenRequest, base_url, '/v1/workspace/embed-access-tokens/{tokenID}', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/workspace/embed-access-tokens/{tokenID}', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())

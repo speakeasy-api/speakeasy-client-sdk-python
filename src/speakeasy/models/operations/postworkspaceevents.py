@@ -8,6 +8,13 @@ from typing import List, Optional
 
 
 @dataclasses.dataclass
+class PostWorkspaceEventsGlobals:
+    workspace_id: Optional[str] = dataclasses.field(default=None, metadata={'path_param': { 'field_name': 'workspaceID', 'style': 'simple', 'explode': False }})
+    
+
+
+
+@dataclasses.dataclass
 class PostWorkspaceEventsRequest:
     request_body: List[shared_clievent.CliEvent] = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     workspace_id: Optional[str] = dataclasses.field(default=None, metadata={'path_param': { 'field_name': 'workspaceID', 'style': 'simple', 'explode': False }})

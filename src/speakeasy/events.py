@@ -19,16 +19,21 @@ class Events:
     def get_workspace_events(self, request: operations.GetWorkspaceEventsRequest) -> operations.GetWorkspaceEventsResponse:
         r"""Load recent events for a particular workspace"""
         hook_ctx = HookContext(operation_id='getWorkspaceEvents', oauth2_scopes=[], security_source=self.sdk_configuration.security)
+        _globals = operations.GetWorkspaceEventsGlobals(
+            workspace_id=self.sdk_configuration.globals.workspace_id,
+        )
+        
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetWorkspaceEventsRequest, base_url, '/v1/workspace/{workspaceID}/events', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/workspace/{workspaceID}/events', request, _globals)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
-        query_params = { **utils.get_query_params(operations.GetWorkspaceEventsRequest, request, self.sdk_configuration.globals), **query_params }
+        headers = { **utils.get_headers(request, _globals), **headers }
+        query_params = { **utils.get_query_params(request, _globals), **query_params }
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
@@ -81,16 +86,21 @@ class Events:
     def get_workspace_targets(self, request: operations.GetWorkspaceTargetsRequest) -> operations.GetWorkspaceTargetsResponse:
         r"""Load targets for a particular workspace"""
         hook_ctx = HookContext(operation_id='getWorkspaceTargets', oauth2_scopes=[], security_source=self.sdk_configuration.security)
+        _globals = operations.GetWorkspaceTargetsGlobals(
+            workspace_id=self.sdk_configuration.globals.workspace_id,
+        )
+        
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetWorkspaceTargetsRequest, base_url, '/v1/workspace/{workspaceID}/events/targets', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/workspace/{workspaceID}/events/targets', request, _globals)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
-        query_params = { **utils.get_query_params(operations.GetWorkspaceTargetsRequest, request, self.sdk_configuration.globals), **query_params }
+        headers = { **utils.get_headers(request, _globals), **headers }
+        query_params = { **utils.get_query_params(request, _globals), **query_params }
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
@@ -145,20 +155,26 @@ class Events:
         Sends an array of events to be stored for a particular workspace.
         """
         hook_ctx = HookContext(operation_id='postWorkspaceEvents', oauth2_scopes=[], security_source=self.sdk_configuration.security)
+        _globals = operations.PostWorkspaceEventsGlobals(
+            workspace_id=self.sdk_configuration.globals.workspace_id,
+        )
+        
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.PostWorkspaceEventsRequest, base_url, '/v1/workspace/{workspaceID}/events', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/workspace/{workspaceID}/events', request, _globals)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
+        headers = { **utils.get_headers(request, _globals), **headers }
         req_content_type, data, form = utils.serialize_request_body(request, operations.PostWorkspaceEventsRequest, "request_body", False, False, 'json')
         if req_content_type is not None and req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
             raise Exception('request body is required')
+        query_params = { **utils.get_query_params(request, _globals), **query_params }
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client

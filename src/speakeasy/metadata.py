@@ -21,7 +21,7 @@ class Metadata:
         hook_ctx = HookContext(operation_id='deleteVersionMetadata', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.DeleteVersionMetadataRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/metadata/{metaKey}/{metaValue}', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/metadata/{metaKey}/{metaValue}', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -75,7 +75,7 @@ class Metadata:
         hook_ctx = HookContext(operation_id='getVersionMetadata', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetVersionMetadataRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/metadata', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/metadata', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -134,7 +134,7 @@ class Metadata:
         hook_ctx = HookContext(operation_id='insertVersionMetadata', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.InsertVersionMetadataRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/metadata', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/metadata', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())

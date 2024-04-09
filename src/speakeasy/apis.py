@@ -28,7 +28,7 @@ class Apis:
         hook_ctx = HookContext(operation_id='deleteApi', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.DeleteAPIRequest, base_url, '/v1/apis/{apiID}/version/{versionID}', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -85,7 +85,7 @@ class Apis:
         hook_ctx = HookContext(operation_id='generateOpenApiSpec', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GenerateOpenAPISpecRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/generate/openapi', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/generate/openapi', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -146,7 +146,7 @@ class Apis:
         hook_ctx = HookContext(operation_id='generatePostmanCollection', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GeneratePostmanCollectionRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/generate/postman', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/generate/postman', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -210,14 +210,14 @@ class Apis:
         hook_ctx = HookContext(operation_id='getAllApiVersions', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetAllAPIVersionsRequest, base_url, '/v1/apis/{apiID}', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
-        query_params = { **utils.get_query_params(operations.GetAllAPIVersionsRequest, request, self.sdk_configuration.globals), **query_params }
+        query_params = { **utils.get_query_params(request), **query_params }
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
@@ -280,7 +280,7 @@ class Apis:
         else:
             headers, query_params = utils.get_security(self.sdk_configuration.security)
         
-        query_params = { **utils.get_query_params(operations.GetApisRequest, request, self.sdk_configuration.globals), **query_params }
+        query_params = { **utils.get_query_params(request), **query_params }
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         client = self.sdk_configuration.client
@@ -336,7 +336,7 @@ class Apis:
         hook_ctx = HookContext(operation_id='upsertApi', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.UpsertAPIRequest, base_url, '/v1/apis/{apiID}', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())

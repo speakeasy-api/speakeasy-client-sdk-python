@@ -30,7 +30,7 @@ class Schemas:
         hook_ctx = HookContext(operation_id='deleteSchema', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.DeleteSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -84,7 +84,7 @@ class Schemas:
         hook_ctx = HookContext(operation_id='downloadSchema', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.DownloadSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/download', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/schema/download', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -147,7 +147,7 @@ class Schemas:
         hook_ctx = HookContext(operation_id='downloadSchemaRevision', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.DownloadSchemaRevisionRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}/download', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}/download', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -213,7 +213,7 @@ class Schemas:
         hook_ctx = HookContext(operation_id='getSchema', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/schema', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -272,7 +272,7 @@ class Schemas:
         hook_ctx = HookContext(operation_id='getSchemaDiff', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetSchemaDiffRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{baseRevisionID}/diff/{targetRevisionID}', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{baseRevisionID}/diff/{targetRevisionID}', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -334,7 +334,7 @@ class Schemas:
         hook_ctx = HookContext(operation_id='getSchemaRevision', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetSchemaRevisionRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -396,7 +396,7 @@ class Schemas:
         hook_ctx = HookContext(operation_id='getSchemas', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetSchemasRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schemas', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/schemas', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -458,7 +458,7 @@ class Schemas:
         hook_ctx = HookContext(operation_id='registerSchema', oauth2_scopes=[], security_source=self.sdk_configuration.security)
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.RegisterSchemaRequest, base_url, '/v1/apis/{apiID}/version/{versionID}/schema', request, self.sdk_configuration.globals)
+        url = utils.generate_url(base_url, '/v1/apis/{apiID}/version/{versionID}/schema', request)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())

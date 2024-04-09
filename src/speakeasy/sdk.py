@@ -14,7 +14,7 @@ from .sdkconfiguration import SDKConfiguration
 from .utils.retries import RetryConfig
 from speakeasy import utils
 from speakeasy._hooks import SDKHooks
-from speakeasy.models import shared
+from speakeasy.models import internal, shared
 from typing import Callable, Dict, Optional, Union
 
 class Speakeasy:
@@ -73,24 +73,17 @@ class Speakeasy:
         if server_url is not None:
             if url_params is not None:
                 server_url = utils.template_url(server_url, url_params)
-        global_params = {
-            'parameters': {
-                'queryParam': {
-                },
-                'pathParam': {
-                    'workspace_id': workspace_id,
-                },
-                'header': {
-                },
-            },
-        }
+    
+        _globals = internal.Globals(
+            workspace_id=workspace_id,
+        )
 
         self.sdk_configuration = SDKConfiguration(
             client,
+            _globals,
             security,
             server_url,
             server,
-            global_params,
             retry_config=retry_config
         )
 
@@ -102,7 +95,7 @@ class Speakeasy:
             self.sdk_configuration.server_url = server_url
 
         # pylint: disable=protected-access
-        self.sdk_configuration._hooks = hooks
+        self.sdk_configuration.__dict__['_hooks'] = hooks
 
         self._init_sdks()
 

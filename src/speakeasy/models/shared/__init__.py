@@ -14,9 +14,14 @@ from .embedtoken import *
 from .filter_ import *
 from .filters import *
 from .generateopenapispecdiff import *
+from .getnamespacesresponse import *
+from .getrevisionsresponse import *
 from .interactiontype import *
+from .namespace import *
 from .organization import *
+from .preflighttoken import *
 from .requestmetadata import *
+from .revision import *
 from .schema import *
 from .schemadiff import *
 from .security import *
@@ -26,4 +31,4 @@ from .user import *
 from .versionmetadata import *
 from .versionmetadata_input import *
 
-__all__ = ["API","APIEndpoint","APIEndpointInput","APIInput","APIKeyDetails","AccessDetails","AccessToken","AccessTokenUser","AccountType","BoundedRequest","Claims","CliEvent","EmbedAccessTokenResponse","EmbedToken","Filter","Filters","GenerateBumpType","GenerateOpenAPISpecDiff","InteractionType","Level","Organization","OrganizationAccountType","RequestMetadata","Schema","SchemaDiff","Security","TargetSDK","UnboundedRequest","User","ValueChange","VersionMetadata","VersionMetadataInput","Workspaces"]
+__all__ = ["API","APIEndpoint","APIEndpointInput","APIInput","APIKeyDetails","AccessDetails","AccessToken","AccessTokenUser","AccountType","BoundedRequest","Claims","CliEvent","EmbedAccessTokenResponse","EmbedToken","Filter","Filters","GenerateBumpType","GenerateOpenAPISpecDiff","GetNamespacesResponse","GetRevisionsResponse","InteractionType","Level","Namespace","Organization","OrganizationAccountType","PreflightToken","RequestMetadata","Revision","Schema","SchemaDiff","Security","TargetSDK","UnboundedRequest","User","ValueChange","VersionMetadata","VersionMetadataInput","Workspaces"]

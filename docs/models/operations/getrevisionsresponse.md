@@ -1,0 +1,12 @@
+# GetRevisionsResponse
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `content_type`                                                                        | *str*                                                                                 | :heavy_check_mark:                                                                    | HTTP response content type for this operation                                         |
+| `status_code`                                                                         | *int*                                                                                 | :heavy_check_mark:                                                                    | HTTP response status code for this operation                                          |
+| `raw_response`                                                                        | [requests.Response](https://requests.readthedocs.io/en/latest/api/#requests.Response) | :heavy_check_mark:                                                                    | Raw HTTP response; suitable for custom response parsing                               |
+| `error`                                                                               | *Optional[errors.Error]*                                                              | :heavy_minus_sign:                                                                    | Default error response                                                                |
+| `get_revisions_response`                                                              | [Optional[shared.GetRevisionsResponse]](../../models/shared/getrevisionsresponse.md)  | :heavy_minus_sign:                                                                    | OK                                                                                    |

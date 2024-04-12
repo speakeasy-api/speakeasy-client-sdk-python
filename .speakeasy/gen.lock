@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: 17e2e733dfd588a7103c3c70e91b24b5
+  docChecksum: 5cec61dd888a82ca19ee8faa021b6fcf
   docVersion: 0.4.0
-  speakeasyVersion: 1.244.0
-  generationVersion: 2.301.0
-  releaseVersion: 5.6.4
-  configChecksum: 0fe25622f36d9a64240ebf5fa2f1effe
+  speakeasyVersion: 1.250.0
+  generationVersion: 2.304.1
+  releaseVersion: 5.6.5
+  configChecksum: e82e28df8899c213fc22351b536f034a
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -29,6 +29,7 @@ generatedFiles:
   - src/speakeasy/apiendpoints.py
   - src/speakeasy/metadata.py
   - src/speakeasy/schemas.py
+  - src/speakeasy/artifacts.py
   - src/speakeasy/auth.py
   - src/speakeasy/requests.py
   - src/speakeasy/organizations.py
@@ -69,6 +70,9 @@ generatedFiles:
   - src/speakeasy/models/operations/getschemarevision.py
   - src/speakeasy/models/operations/getschemas.py
   - src/speakeasy/models/operations/registerschema.py
+  - src/speakeasy/models/operations/getnamespaces.py
+  - src/speakeasy/models/operations/getrevisions.py
+  - src/speakeasy/models/operations/preflight.py
   - src/speakeasy/models/operations/getaccesstoken.py
   - src/speakeasy/models/operations/getuser.py
   - src/speakeasy/models/operations/getworkspaceaccess.py
@@ -93,6 +97,11 @@ generatedFiles:
   - src/speakeasy/models/shared/versionmetadata_input.py
   - src/speakeasy/models/shared/schema.py
   - src/speakeasy/models/shared/schemadiff.py
+  - src/speakeasy/models/shared/getnamespacesresponse.py
+  - src/speakeasy/models/shared/namespace.py
+  - src/speakeasy/models/shared/getrevisionsresponse.py
+  - src/speakeasy/models/shared/revision.py
+  - src/speakeasy/models/shared/preflighttoken.py
   - src/speakeasy/models/shared/accesstoken.py
   - src/speakeasy/models/shared/user.py
   - src/speakeasy/models/shared/accessdetails.py
@@ -169,6 +178,10 @@ generatedFiles:
   - docs/models/operations/registerschemarequestbody.md
   - docs/models/operations/registerschemarequest.md
   - docs/models/operations/registerschemaresponse.md
+  - docs/models/operations/getnamespacesresponse.md
+  - docs/models/operations/getrevisionsrequest.md
+  - docs/models/operations/getrevisionsresponse.md
+  - docs/models/operations/preflightresponse.md
   - docs/models/operations/getaccesstokenrequest.md
   - docs/models/operations/getaccesstokenresponse.md
   - docs/models/operations/getuserresponse.md
@@ -207,6 +220,11 @@ generatedFiles:
   - docs/models/shared/schema.md
   - docs/models/shared/valuechange.md
   - docs/models/shared/schemadiff.md
+  - docs/models/shared/getnamespacesresponse.md
+  - docs/models/shared/namespace.md
+  - docs/models/shared/getrevisionsresponse.md
+  - docs/models/shared/revision.md
+  - docs/models/shared/preflighttoken.md
   - docs/models/shared/claims.md
   - docs/models/shared/accesstokenuser.md
   - docs/models/shared/workspaces.md
@@ -236,6 +254,7 @@ generatedFiles:
   - docs/sdks/apiendpoints/README.md
   - docs/sdks/metadata/README.md
   - docs/sdks/schemas/README.md
+  - docs/sdks/artifacts/README.md
   - docs/models/utils/retryconfig.md
   - docs/sdks/auth/README.md
   - docs/sdks/requests/README.md

@@ -3,6 +3,7 @@
 import requests as requests_http
 from .apiendpoints import APIEndpoints
 from .apis import Apis
+from .artifacts import Artifacts
 from .auth import Auth
 from .embeds import Embeds
 from .events import Events
@@ -29,6 +30,7 @@ class Speakeasy:
     r"""REST APIs for managing Version Metadata entities"""
     schemas: Schemas
     r"""REST APIs for managing Schema entities"""
+    artifacts: Artifacts
     auth: Auth
     r"""REST APIs for managing Authentication"""
     requests: Requests
@@ -105,6 +107,7 @@ class Speakeasy:
         self.api_endpoints = APIEndpoints(self.sdk_configuration)
         self.metadata = Metadata(self.sdk_configuration)
         self.schemas = Schemas(self.sdk_configuration)
+        self.artifacts = Artifacts(self.sdk_configuration)
         self.auth = Auth(self.sdk_configuration)
         self.requests = Requests(self.sdk_configuration)
         self.organizations = Organizations(self.sdk_configuration)

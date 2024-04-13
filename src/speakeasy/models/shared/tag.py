@@ -10,13 +10,12 @@ from speakeasy import utils
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
-class Namespace:
-    r"""A namespace contains many revisions."""
+class Tag:
     created_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('created_at'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('id') }})
-    r"""{organization_slug}/{workspace_slug}/{namespace_name}"""
-    name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
-    r"""A human-readable name for the namespace."""
+    r"""Human readable tag name"""
+    namespace_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('namespace_name') }})
+    revision_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('revision_id') }})
     updated_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('updated_at'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
     
 

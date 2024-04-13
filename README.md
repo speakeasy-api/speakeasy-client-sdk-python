@@ -77,8 +77,11 @@ if res.apis is not None:
 
 ### [artifacts](docs/sdks/artifacts/README.md)
 
+* [get_blob](docs/sdks/artifacts/README.md#get_blob) - Get blob for a particular digest
+* [get_manifest](docs/sdks/artifacts/README.md#get_manifest) - Get manifest for a particular reference
 * [get_namespaces](docs/sdks/artifacts/README.md#get_namespaces) - Each namespace contains many revisions.
 * [get_revisions](docs/sdks/artifacts/README.md#get_revisions)
+* [get_tags](docs/sdks/artifacts/README.md#get_tags)
 * [preflight](docs/sdks/artifacts/README.md#preflight) - Get access token for communicating with OCI distribution endpoints
 
 ### [auth](docs/sdks/auth/README.md)
@@ -364,7 +367,7 @@ from speakeasy.models import operations, shared
 from speakeasy.utils import BackoffStrategy, RetryConfig
 
 s = speakeasy.Speakeasy(
-    retry_config=RetryConfig('backoff', BackoffStrategy(1, 50, 1.1, 100), False)
+    retry_config=RetryConfig('backoff', BackoffStrategy(1, 50, 1.1, 100), False),
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),

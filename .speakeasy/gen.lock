@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: 5cec61dd888a82ca19ee8faa021b6fcf
+  docChecksum: 1867bd7891d65aa46bdee0032e33c25a
   docVersion: 0.4.0
-  speakeasyVersion: 1.250.0
-  generationVersion: 2.304.1
-  releaseVersion: 5.6.5
-  configChecksum: e82e28df8899c213fc22351b536f034a
+  speakeasyVersion: 1.252.0
+  generationVersion: 2.306.0
+  releaseVersion: 5.6.6
+  configChecksum: 7e129e293f71ce7563cf7ce2bfe44e6b
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -21,7 +21,7 @@ features:
     globals: 2.82.1
     inputOutputModels: 2.83.1
     responseFormat: 0.1.0
-    retries: 2.82.1
+    retries: 2.82.2
     serverIDs: 2.81.1
 generatedFiles:
   - src/speakeasy/sdkconfiguration.py
@@ -70,8 +70,11 @@ generatedFiles:
   - src/speakeasy/models/operations/getschemarevision.py
   - src/speakeasy/models/operations/getschemas.py
   - src/speakeasy/models/operations/registerschema.py
+  - src/speakeasy/models/operations/getblob.py
+  - src/speakeasy/models/operations/getmanifest.py
   - src/speakeasy/models/operations/getnamespaces.py
   - src/speakeasy/models/operations/getrevisions.py
+  - src/speakeasy/models/operations/gettags.py
   - src/speakeasy/models/operations/preflight.py
   - src/speakeasy/models/operations/getaccesstoken.py
   - src/speakeasy/models/operations/getuser.py
@@ -97,11 +100,17 @@ generatedFiles:
   - src/speakeasy/models/shared/versionmetadata_input.py
   - src/speakeasy/models/shared/schema.py
   - src/speakeasy/models/shared/schemadiff.py
+  - src/speakeasy/models/shared/manifest.py
+  - src/speakeasy/models/shared/v2descriptor.py
+  - src/speakeasy/models/shared/annotations.py
   - src/speakeasy/models/shared/getnamespacesresponse.py
   - src/speakeasy/models/shared/namespace.py
   - src/speakeasy/models/shared/getrevisionsresponse.py
   - src/speakeasy/models/shared/revision.py
+  - src/speakeasy/models/shared/gettagsresponse.py
+  - src/speakeasy/models/shared/tag.py
   - src/speakeasy/models/shared/preflighttoken.py
+  - src/speakeasy/models/shared/preflightrequest.py
   - src/speakeasy/models/shared/accesstoken.py
   - src/speakeasy/models/shared/user.py
   - src/speakeasy/models/shared/accessdetails.py
@@ -178,9 +187,15 @@ generatedFiles:
   - docs/models/operations/registerschemarequestbody.md
   - docs/models/operations/registerschemarequest.md
   - docs/models/operations/registerschemaresponse.md
+  - docs/models/operations/getblobrequest.md
+  - docs/models/operations/getblobresponse.md
+  - docs/models/operations/getmanifestrequest.md
+  - docs/models/operations/getmanifestresponse.md
   - docs/models/operations/getnamespacesresponse.md
   - docs/models/operations/getrevisionsrequest.md
   - docs/models/operations/getrevisionsresponse.md
+  - docs/models/operations/gettagsrequest.md
+  - docs/models/operations/gettagsresponse.md
   - docs/models/operations/preflightresponse.md
   - docs/models/operations/getaccesstokenrequest.md
   - docs/models/operations/getaccesstokenresponse.md
@@ -220,11 +235,17 @@ generatedFiles:
   - docs/models/shared/schema.md
   - docs/models/shared/valuechange.md
   - docs/models/shared/schemadiff.md
+  - docs/models/shared/manifest.md
+  - docs/models/shared/v2descriptor.md
+  - docs/models/shared/annotations.md
   - docs/models/shared/getnamespacesresponse.md
   - docs/models/shared/namespace.md
   - docs/models/shared/getrevisionsresponse.md
   - docs/models/shared/revision.md
+  - docs/models/shared/gettagsresponse.md
+  - docs/models/shared/tag.md
   - docs/models/shared/preflighttoken.md
+  - docs/models/shared/preflightrequest.md
   - docs/models/shared/claims.md
   - docs/models/shared/accesstokenuser.md
   - docs/models/shared/workspaces.md

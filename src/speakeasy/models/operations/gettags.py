@@ -4,21 +4,19 @@ from __future__ import annotations
 import dataclasses
 import requests as requests_http
 from ...models.errors import error as errors_error
-from ...models.shared import getrevisionsresponse as shared_getrevisionsresponse
+from ...models.shared import gettagsresponse as shared_gettagsresponse
 from typing import Optional
 
 
 @dataclasses.dataclass
-class GetRevisionsRequest:
+class GetTagsRequest:
     namespace_name: str = dataclasses.field(metadata={'path_param': { 'field_name': 'namespace_name', 'style': 'simple', 'explode': False }})
-    next_page_token: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'next_page_token', 'style': 'form', 'explode': True }})
-    r"""Token to retrieve the next page of results"""
     
 
 
 
 @dataclasses.dataclass
-class GetRevisionsResponse:
+class GetTagsResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
@@ -27,7 +25,7 @@ class GetRevisionsResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     error: Optional[errors_error.Error] = dataclasses.field(default=None)
     r"""Default error response"""
-    get_revisions_response: Optional[shared_getrevisionsresponse.GetRevisionsResponse] = dataclasses.field(default=None)
+    get_tags_response: Optional[shared_gettagsresponse.GetTagsResponse] = dataclasses.field(default=None)
     r"""OK"""
     
 

@@ -4,21 +4,22 @@ from __future__ import annotations
 import dataclasses
 import requests as requests_http
 from ...models.errors import error as errors_error
-from ...models.shared import getrevisionsresponse as shared_getrevisionsresponse
+from ...models.shared import manifest as shared_manifest
 from typing import Optional
 
 
 @dataclasses.dataclass
-class GetRevisionsRequest:
+class GetManifestRequest:
     namespace_name: str = dataclasses.field(metadata={'path_param': { 'field_name': 'namespace_name', 'style': 'simple', 'explode': False }})
-    next_page_token: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'next_page_token', 'style': 'form', 'explode': True }})
-    r"""Token to retrieve the next page of results"""
+    organization_slug: str = dataclasses.field(metadata={'path_param': { 'field_name': 'organization_slug', 'style': 'simple', 'explode': False }})
+    revision_reference: str = dataclasses.field(metadata={'path_param': { 'field_name': 'revision_reference', 'style': 'simple', 'explode': False }})
+    workspace_slug: str = dataclasses.field(metadata={'path_param': { 'field_name': 'workspace_slug', 'style': 'simple', 'explode': False }})
     
 
 
 
 @dataclasses.dataclass
-class GetRevisionsResponse:
+class GetManifestResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()
@@ -27,7 +28,7 @@ class GetRevisionsResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     error: Optional[errors_error.Error] = dataclasses.field(default=None)
     r"""Default error response"""
-    get_revisions_response: Optional[shared_getrevisionsresponse.GetRevisionsResponse] = dataclasses.field(default=None)
+    manifest: Optional[shared_manifest.Manifest] = dataclasses.field(default=None)
     r"""OK"""
     
 

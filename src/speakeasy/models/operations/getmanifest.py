@@ -13,6 +13,7 @@ class GetManifestRequest:
     namespace_name: str = dataclasses.field(metadata={'path_param': { 'field_name': 'namespace_name', 'style': 'simple', 'explode': False }})
     organization_slug: str = dataclasses.field(metadata={'path_param': { 'field_name': 'organization_slug', 'style': 'simple', 'explode': False }})
     revision_reference: str = dataclasses.field(metadata={'path_param': { 'field_name': 'revision_reference', 'style': 'simple', 'explode': False }})
+    r"""Tag or digest"""
     workspace_slug: str = dataclasses.field(metadata={'path_param': { 'field_name': 'workspace_slug', 'style': 'simple', 'explode': False }})
     
 

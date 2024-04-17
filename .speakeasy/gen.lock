@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: 1867bd7891d65aa46bdee0032e33c25a
+  docChecksum: fb8d80dde775dc830ade2c3c3fe88d18
   docVersion: 0.4.0
-  speakeasyVersion: 1.252.0
-  generationVersion: 2.306.0
-  releaseVersion: 5.6.6
-  configChecksum: 7e129e293f71ce7563cf7ce2bfe44e6b
+  speakeasyVersion: 1.253.3
+  generationVersion: 2.306.3
+  releaseVersion: 5.6.7
+  configChecksum: 07c1104d9a89045f0101cd18069bf3ab
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -33,6 +33,7 @@ generatedFiles:
   - src/speakeasy/auth.py
   - src/speakeasy/requests.py
   - src/speakeasy/organizations.py
+  - src/speakeasy/reports.py
   - src/speakeasy/embeds.py
   - src/speakeasy/events.py
   - src/speakeasy/sdk.py
@@ -84,6 +85,8 @@ generatedFiles:
   - src/speakeasy/models/operations/getrequestfromeventlog.py
   - src/speakeasy/models/operations/queryeventlog.py
   - src/speakeasy/models/operations/getorganizations.py
+  - src/speakeasy/models/operations/getlintingreportsignedurl.py
+  - src/speakeasy/models/operations/uploadreport.py
   - src/speakeasy/models/operations/getembedaccesstoken.py
   - src/speakeasy/models/operations/getvalidembedaccesstokens.py
   - src/speakeasy/models/operations/revokeembedaccesstoken.py
@@ -121,6 +124,7 @@ generatedFiles:
   - src/speakeasy/models/shared/filters.py
   - src/speakeasy/models/shared/filter_.py
   - src/speakeasy/models/shared/organization.py
+  - src/speakeasy/models/shared/report.py
   - src/speakeasy/models/shared/embedaccesstokenresponse.py
   - src/speakeasy/models/shared/embedtoken.py
   - src/speakeasy/models/shared/clievent.py
@@ -183,7 +187,7 @@ generatedFiles:
   - docs/models/operations/getschemarevisionresponse.md
   - docs/models/operations/getschemasrequest.md
   - docs/models/operations/getschemasresponse.md
-  - docs/models/operations/file.md
+  - docs/models/operations/registerschemafile.md
   - docs/models/operations/registerschemarequestbody.md
   - docs/models/operations/registerschemarequest.md
   - docs/models/operations/registerschemaresponse.md
@@ -210,6 +214,13 @@ generatedFiles:
   - docs/models/operations/queryeventlogrequest.md
   - docs/models/operations/queryeventlogresponse.md
   - docs/models/operations/getorganizationsresponse.md
+  - docs/models/operations/getlintingreportsignedurlrequest.md
+  - docs/models/operations/getlintingreportsignedurlsignedaccess.md
+  - docs/models/operations/getlintingreportsignedurlresponse.md
+  - docs/models/operations/file.md
+  - docs/models/operations/uploadreportrequestbody.md
+  - docs/models/operations/uploadreportuploadedreport.md
+  - docs/models/operations/uploadreportresponse.md
   - docs/models/operations/getembedaccesstokenrequest.md
   - docs/models/operations/getembedaccesstokenresponse.md
   - docs/models/operations/getvalidembedaccesstokensresponse.md
@@ -248,12 +259,14 @@ generatedFiles:
   - docs/models/shared/preflightrequest.md
   - docs/models/shared/claims.md
   - docs/models/shared/accesstokenuser.md
+  - docs/models/shared/accesstokenaccounttype.md
   - docs/models/shared/workspaces.md
   - docs/models/shared/accesstoken.md
   - docs/models/shared/user.md
   - docs/models/shared/level.md
   - docs/models/shared/accessdetails.md
   - docs/models/shared/accounttype.md
+  - docs/models/shared/featureflags.md
   - docs/models/shared/apikeydetails.md
   - docs/models/shared/unboundedrequest.md
   - docs/models/shared/boundedrequest.md
@@ -262,6 +275,8 @@ generatedFiles:
   - docs/models/shared/filter_.md
   - docs/models/shared/organizationaccounttype.md
   - docs/models/shared/organization.md
+  - docs/models/shared/type.md
+  - docs/models/shared/report.md
   - docs/models/shared/embedaccesstokenresponse.md
   - docs/models/shared/embedtoken.md
   - docs/models/shared/generatebumptype.md
@@ -280,6 +295,7 @@ generatedFiles:
   - docs/sdks/auth/README.md
   - docs/sdks/requests/README.md
   - docs/sdks/organizations/README.md
+  - docs/sdks/reports/README.md
   - docs/sdks/embeds/README.md
   - docs/sdks/events/README.md
   - USAGE.md

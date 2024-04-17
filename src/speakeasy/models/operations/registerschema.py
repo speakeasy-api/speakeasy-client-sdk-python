@@ -8,7 +8,7 @@ from typing import Optional
 
 
 @dataclasses.dataclass
-class File:
+class RegisterSchemaFile:
     content: bytes = dataclasses.field(metadata={'multipart_form': { 'content': True }})
     file_name: str = dataclasses.field(metadata={'multipart_form': { 'field_name': 'file' }})
     
@@ -18,7 +18,7 @@ class File:
 @dataclasses.dataclass
 class RegisterSchemaRequestBody:
     r"""The schema file to upload provided as a multipart/form-data file segment."""
-    file: File = dataclasses.field(metadata={'multipart_form': { 'file': True }})
+    file: RegisterSchemaFile = dataclasses.field(metadata={'multipart_form': { 'file': True }})
     
 
 

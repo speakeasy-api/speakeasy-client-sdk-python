@@ -3,10 +3,9 @@
 
 ## Fields
 
-| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `created_at`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | N/A                                                                  |
-| `id`                                                                 | *str*                                                                | :heavy_check_mark:                                                   | Human readable tag name                                              |
-| `namespace_name`                                                     | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
-| `revision_id`                                                        | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
-| `updated_at`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | N/A                                                                  |
+| Field                       | Type                        | Required                    | Description                 |
+| --------------------------- | --------------------------- | --------------------------- | --------------------------- |
+| `id`                        | *str*                       | :heavy_check_mark:          | Format {namespace_id}/{tag} |
+| `name`                      | *str*                       | :heavy_check_mark:          | Human readable tag name     |
+| `namespace_name`            | *str*                       | :heavy_check_mark:          | N/A                         |
+| `revision_digest`           | *str*                       | :heavy_check_mark:          | N/A                         |

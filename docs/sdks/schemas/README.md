@@ -366,7 +366,7 @@ s = speakeasy.Speakeasy(
 
 req = operations.RegisterSchemaRequest(
     request_body=operations.RegisterSchemaRequestBody(
-        file=operations.File(
+        file=operations.RegisterSchemaFile(
             content='0xCAFCA03e0e'.encode(),
             file_name='bronze_table_blues.m2a',
         ),

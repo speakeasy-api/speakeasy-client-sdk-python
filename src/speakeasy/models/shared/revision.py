@@ -13,8 +13,9 @@ from typing import List
 @dataclasses.dataclass
 class Revision:
     created_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('created_at'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})
+    digest: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('digest') }})
     id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('id') }})
-    r"""aka digest"""
+    r"""Format {namespace_id}/{revision_digest}"""
     namespace_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('namespace_name') }})
     tags: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('tags') }})
     updated_at: datetime = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('updated_at'), 'encoder': utils.datetimeisoformat(False), 'decoder': dateutil.parser.isoparse }})

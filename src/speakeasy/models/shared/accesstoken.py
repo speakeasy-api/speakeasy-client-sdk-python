@@ -5,6 +5,7 @@ import dataclasses
 import dateutil.parser
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
+from enum import Enum
 from speakeasy import utils
 from typing import List, Optional
 
@@ -26,10 +27,21 @@ class AccessTokenUser:
     
 
 
+class AccessTokenAccountType(str, Enum):
+    FREE = 'free'
+    SCALE_UP = 'scale-up'
+    ENTERPRISE = 'enterprise'
 
+
+@dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class Workspaces:
-    pass
+    account_type: Optional[AccessTokenAccountType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_type'), 'exclude': lambda f: f is None }})
+    id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('id'), 'exclude': lambda f: f is None }})
+    name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name'), 'exclude': lambda f: f is None }})
+    updated_at: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('updated_at'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
+    
+
 
 
 @dataclass_json(undefined=Undefined.EXCLUDE)

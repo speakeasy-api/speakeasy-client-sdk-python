@@ -5,18 +5,22 @@ import dataclasses
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from speakeasy import utils
-from typing import Optional
+from typing import List, Optional
 
 class AccountType(str, Enum):
     FREE = 'free'
     SCALE_UP = 'scale-up'
     ENTERPRISE = 'enterprise'
 
+class FeatureFlags(str, Enum):
+    SCHEMA_REGISTRY = 'schema_registry'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class APIKeyDetails:
     account_type: AccountType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_type') }})
+    feature_flags: List[FeatureFlags] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('feature_flags') }})
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspace_id') }})
     generation_access_unlimited: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generation_access_unlimited'), 'exclude': lambda f: f is None }})
     

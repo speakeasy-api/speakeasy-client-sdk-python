@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: fb8d80dde775dc830ade2c3c3fe88d18
+  docChecksum: 2b280a7f12ab57c144a654766cc34af2
   docVersion: 0.4.0
-  speakeasyVersion: 1.253.3
-  generationVersion: 2.306.3
-  releaseVersion: 5.6.7
-  configChecksum: 07c1104d9a89045f0101cd18069bf3ab
+  speakeasyVersion: 1.257.1
+  generationVersion: 2.308.2
+  releaseVersion: 5.6.8
+  configChecksum: 1e037a4dc92ae586cfd752020044ad26
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -85,6 +85,7 @@ generatedFiles:
   - src/speakeasy/models/operations/getrequestfromeventlog.py
   - src/speakeasy/models/operations/queryeventlog.py
   - src/speakeasy/models/operations/getorganizations.py
+  - src/speakeasy/models/operations/getchangesreportsignedurl.py
   - src/speakeasy/models/operations/getlintingreportsignedurl.py
   - src/speakeasy/models/operations/uploadreport.py
   - src/speakeasy/models/operations/getembedaccesstoken.py
@@ -214,6 +215,9 @@ generatedFiles:
   - docs/models/operations/queryeventlogrequest.md
   - docs/models/operations/queryeventlogresponse.md
   - docs/models/operations/getorganizationsresponse.md
+  - docs/models/operations/getchangesreportsignedurlrequest.md
+  - docs/models/operations/getchangesreportsignedurlsignedaccess.md
+  - docs/models/operations/getchangesreportsignedurlresponse.md
   - docs/models/operations/getlintingreportsignedurlrequest.md
   - docs/models/operations/getlintingreportsignedurlsignedaccess.md
   - docs/models/operations/getlintingreportsignedurlresponse.md

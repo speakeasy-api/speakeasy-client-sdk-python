@@ -7,8 +7,54 @@ REST APIs for managing reports
 
 ### Available Operations
 
+* [get_changes_report_signed_url](#get_changes_report_signed_url) - Get the signed access url for the change reports for a particular document.
 * [get_linting_report_signed_url](#get_linting_report_signed_url) - Get the signed access url for the linting reports for a particular document.
 * [upload_report](#upload_report) - Upload a report.
+
+## get_changes_report_signed_url
+
+Get the signed access url for the change reports for a particular document.
+
+### Example Usage
+
+```python
+import speakeasy
+from speakeasy.models import operations, shared
+
+s = speakeasy.Speakeasy(
+    security=shared.Security(
+        api_key="<YOUR_API_KEY_HERE>",
+    ),
+    workspace_id='<value>',
+)
+
+req = operations.GetChangesReportSignedURLRequest(
+    document_checksum='<value>',
+)
+
+res = s.reports.get_changes_report_signed_url(req)
+
+if res.signed_access is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                  | [operations.GetChangesReportSignedURLRequest](../../models/operations/getchangesreportsignedurlrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
+
+
+### Response
+
+**[operations.GetChangesReportSignedURLResponse](../../models/operations/getchangesreportsignedurlresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
 
 ## get_linting_report_signed_url
 

@@ -9,6 +9,8 @@ Type of interaction.
 | ----------------- | ----------------- |
 | `CI_EXEC`         | CI_EXEC           |
 | `CLI_EXEC`        | CLI_EXEC          |
+| `LINT`            | LINT              |
+| `OPENAPI_DIFF`    | OPENAPI_DIFF      |
 | `TARGET_GENERATE` | TARGET_GENERATE   |
 | `TOMBSTONE`       | TOMBSTONE         |
 | `AUTHENTICATE`    | AUTHENTICATE      |

@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: 2b280a7f12ab57c144a654766cc34af2
+  docChecksum: 95815a9501527c69c4aab613380685a5
   docVersion: 0.4.0
-  speakeasyVersion: 1.257.1
-  generationVersion: 2.308.2
-  releaseVersion: 5.6.8
-  configChecksum: 1e037a4dc92ae586cfd752020044ad26
+  speakeasyVersion: 1.260.6
+  generationVersion: 2.311.1
+  releaseVersion: 5.6.9
+  configChecksum: e897e408ee0a017bcd67fa33922a9377
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   published: true
 features:
   python:
-    core: 4.6.4
+    core: 4.6.5
     downloadStreams: 0.0.2
     examples: 2.81.3
     globalSecurity: 2.83.5
@@ -284,6 +284,7 @@ generatedFiles:
   - docs/models/shared/embedaccesstokenresponse.md
   - docs/models/shared/embedtoken.md
   - docs/models/shared/generatebumptype.md
+  - docs/models/shared/openapidiffbumptype.md
   - docs/models/shared/clievent.md
   - docs/models/shared/interactiontype.md
   - docs/models/shared/targetsdk.md

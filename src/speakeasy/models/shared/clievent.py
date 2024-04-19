@@ -18,6 +18,13 @@ class GenerateBumpType(str, Enum):
     CUSTOM = 'custom'
     NONE = 'none'
 
+class OpenapiDiffBumpType(str, Enum):
+    r"""Bump type of the lock file (calculated semver delta, or a custom change (manual release))"""
+    MAJOR = 'major'
+    MINOR = 'minor'
+    PATCH = 'patch'
+    NONE = 'none'
+
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
@@ -64,12 +71,18 @@ class CliEvent:
     r"""gen.lock ID (expected to be a uuid)."""
     generate_gen_lock_post_features: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_gen_lock_post_features'), 'exclude': lambda f: f is None }})
     r"""Features post generation"""
+    generate_gen_lock_pre_blob_digest: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_gen_lock_pre_blob_digest'), 'exclude': lambda f: f is None }})
+    r"""Blob digest of the Previous Generation"""
     generate_gen_lock_pre_doc_checksum: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_gen_lock_pre_doc_checksum'), 'exclude': lambda f: f is None }})
     r"""Checksum of the Previous Rendered OpenAPI document (prior to generation, via gen lock)"""
     generate_gen_lock_pre_doc_version: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_gen_lock_pre_doc_version'), 'exclude': lambda f: f is None }})
     r"""info.Version of the Previous Rendered OpenAPI document (prior to generation, via gen lock)"""
     generate_gen_lock_pre_features: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_gen_lock_pre_features'), 'exclude': lambda f: f is None }})
     r"""Features prior to generation"""
+    generate_gen_lock_pre_namespace_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_gen_lock_pre_namespace_name'), 'exclude': lambda f: f is None }})
+    r"""Namespace name of the Previous Generation"""
+    generate_gen_lock_pre_revision_digest: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_gen_lock_pre_revision_digest'), 'exclude': lambda f: f is None }})
+    r"""Revision digest of the Previous Generation"""
     generate_gen_lock_pre_version: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_gen_lock_pre_version'), 'exclude': lambda f: f is None }})
     r"""Artifact version for the Previous Generation"""
     generate_output_tests: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_output_tests'), 'exclude': lambda f: f is None }})
@@ -104,12 +117,32 @@ class CliEvent:
     r"""User's name from git configuration. (not GitHub username)"""
     hostname: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('hostname'), 'exclude': lambda f: f is None }})
     r"""Remote hostname."""
+    lint_report_digest: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lint_report_digest'), 'exclude': lambda f: f is None }})
+    r"""The checksum of the lint report."""
+    lint_report_error_count: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lint_report_error_count'), 'exclude': lambda f: f is None }})
+    r"""The number of errors in the lint report."""
+    lint_report_info_count: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lint_report_info_count'), 'exclude': lambda f: f is None }})
+    r"""The number of info messages in the lint report."""
+    lint_report_warning_count: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lint_report_warning_count'), 'exclude': lambda f: f is None }})
+    r"""The number of warnings in the lint report."""
     local_completed_at: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('local_completed_at'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }})
     r"""Timestamp when the event completed, in local time."""
     management_doc_checksum: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('management_doc_checksum'), 'exclude': lambda f: f is None }})
     r"""Checksum of the currently Rendered OpenAPI document."""
     management_doc_version: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('management_doc_version'), 'exclude': lambda f: f is None }})
     r"""Version taken from info.version field of the Rendered OpenAPI document."""
+    openapi_diff_base_source_blob_digest: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openapi_diff_base_source_blob_digest'), 'exclude': lambda f: f is None }})
+    r"""The blob digest of the base source."""
+    openapi_diff_base_source_namespace_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openapi_diff_base_source_namespace_name'), 'exclude': lambda f: f is None }})
+    r"""The namespace name of the base source."""
+    openapi_diff_base_source_revision_digest: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openapi_diff_base_source_revision_digest'), 'exclude': lambda f: f is None }})
+    r"""The revision digest of the base source."""
+    openapi_diff_breaking_changes_count: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openapi_diff_breaking_changes_count'), 'exclude': lambda f: f is None }})
+    r"""The number of breaking changes in the openapi diff report."""
+    openapi_diff_bump_type: Optional[OpenapiDiffBumpType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openapi_diff_bump_type'), 'exclude': lambda f: f is None }})
+    r"""Bump type of the lock file (calculated semver delta, or a custom change (manual release))"""
+    openapi_diff_report_digest: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openapi_diff_report_digest'), 'exclude': lambda f: f is None }})
+    r"""The checksum of the openapi diff report."""
     publish_package_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('publish_package_name'), 'exclude': lambda f: f is None }})
     r"""Name of the published package."""
     publish_package_registry_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('publish_package_registry_name'), 'exclude': lambda f: f is None }})
@@ -122,5 +155,11 @@ class CliEvent:
     r"""Full CLI command."""
     repo_label: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('repo_label'), 'exclude': lambda f: f is None }})
     r"""Label of the git repository."""
+    source_blob_digest: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('source_blob_digest'), 'exclude': lambda f: f is None }})
+    r"""The blob digest of the source."""
+    source_namespace_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('source_namespace_name'), 'exclude': lambda f: f is None }})
+    r"""The namespace name of the source."""
+    source_revision_digest: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('source_revision_digest'), 'exclude': lambda f: f is None }})
+    r"""The revision digest of the source."""
     
 

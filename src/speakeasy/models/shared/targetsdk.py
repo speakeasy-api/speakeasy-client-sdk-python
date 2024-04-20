@@ -63,6 +63,12 @@ class TargetSDK:
     r"""Remote hostname."""
     repo_label: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('repo_label'), 'exclude': lambda f: f is None }})
     r"""Label of the git repository."""
+    source_blob_digest: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('source_blob_digest'), 'exclude': lambda f: f is None }})
+    r"""The blob digest of the source."""
+    source_namespace_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('source_namespace_name'), 'exclude': lambda f: f is None }})
+    r"""The namespace name of the source."""
+    source_revision_digest: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('source_revision_digest'), 'exclude': lambda f: f is None }})
+    r"""The revision digest of the source."""
     success: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('success'), 'exclude': lambda f: f is None }})
     r"""Indicates whether the event was successful."""
     

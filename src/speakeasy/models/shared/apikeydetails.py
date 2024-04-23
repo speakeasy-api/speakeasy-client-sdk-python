@@ -21,7 +21,9 @@ class FeatureFlags(str, Enum):
 class APIKeyDetails:
     account_type: AccountType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_type') }})
     feature_flags: List[FeatureFlags] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('feature_flags') }})
+    org_slug: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('org_slug') }})
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspace_id') }})
+    workspace_slug: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspace_slug') }})
     generation_access_unlimited: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generation_access_unlimited'), 'exclude': lambda f: f is None }})
     
 

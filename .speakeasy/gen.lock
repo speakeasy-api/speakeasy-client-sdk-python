@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: 141a9989778e09b7c6bb43e496b49905
-  docVersion: 0.4.0
-  speakeasyVersion: 1.267.0
-  generationVersion: 2.312.0
-  releaseVersion: 5.6.10
-  configChecksum: ca30bf8280c17f0b2d6fade804dc4733
+  docChecksum: 0df832386c1fcd5f74fb87fea6d0e2b7
+  docVersion: 0.4.0 .
+  speakeasyVersion: 1.269.1
+  generationVersion: 2.312.1
+  releaseVersion: 5.6.11
+  configChecksum: 0f63b6d40acff557a7ff2dc25c263d7b
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -92,6 +92,7 @@ generatedFiles:
   - src/speakeasy/models/operations/getvalidembedaccesstokens.py
   - src/speakeasy/models/operations/revokeembedaccesstoken.py
   - src/speakeasy/models/operations/getworkspaceevents.py
+  - src/speakeasy/models/operations/getworkspaceeventsbysourcerevisiondigest.py
   - src/speakeasy/models/operations/getworkspacetargets.py
   - src/speakeasy/models/operations/postworkspaceevents.py
   - src/speakeasy/models/errors/error.py
@@ -233,6 +234,9 @@ generatedFiles:
   - docs/models/operations/getworkspaceeventsglobals.md
   - docs/models/operations/getworkspaceeventsrequest.md
   - docs/models/operations/getworkspaceeventsresponse.md
+  - docs/models/operations/getworkspaceeventsbysourcerevisiondigestglobals.md
+  - docs/models/operations/getworkspaceeventsbysourcerevisiondigestrequest.md
+  - docs/models/operations/getworkspaceeventsbysourcerevisiondigestresponse.md
   - docs/models/operations/getworkspacetargetsglobals.md
   - docs/models/operations/getworkspacetargetsrequest.md
   - docs/models/operations/getworkspacetargetsresponse.md

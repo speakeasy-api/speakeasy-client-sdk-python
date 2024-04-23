@@ -116,6 +116,7 @@ if res.apis is not None:
 ### [events](docs/sdks/events/README.md)
 
 * [get_workspace_events](docs/sdks/events/README.md#get_workspace_events) - Load recent events for a particular workspace
+* [get_workspace_events_by_source_revision_digest](docs/sdks/events/README.md#get_workspace_events_by_source_revision_digest) - Load events for a particular workspace and source revision digest
 * [get_workspace_targets](docs/sdks/events/README.md#get_workspace_targets) - Load targets for a particular workspace
 * [post_workspace_events](docs/sdks/events/README.md#post_workspace_events) - Post events for a specific workspace
 <!-- End Available Resources and Operations [operations] -->

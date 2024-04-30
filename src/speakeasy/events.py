@@ -16,16 +16,16 @@ class Events:
         
     
     
-    def get_workspace_events(self, request: operations.GetWorkspaceEventsRequest) -> operations.GetWorkspaceEventsResponse:
+    def get_workspace_events_by_target(self, request: operations.GetWorkspaceEventsByTargetRequest) -> operations.GetWorkspaceEventsByTargetResponse:
         r"""Load recent events for a particular workspace"""
-        hook_ctx = HookContext(operation_id='getWorkspaceEvents', oauth2_scopes=[], security_source=self.sdk_configuration.security)
-        _globals = operations.GetWorkspaceEventsGlobals(
+        hook_ctx = HookContext(operation_id='getWorkspaceEventsByTarget', oauth2_scopes=[], security_source=self.sdk_configuration.security)
+        _globals = operations.GetWorkspaceEventsByTargetGlobals(
             workspace_id=self.sdk_configuration.globals.workspace_id,
         )
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(base_url, '/v1/workspace/{workspaceID}/events', request, _globals)
+        url = utils.generate_url(base_url, '/v1/workspace/{workspaceID}/events/targets/{targetID}/events', request, _globals)
         
         if callable(self.sdk_configuration.security):
             headers, query_params = utils.get_security(self.sdk_configuration.security())
@@ -58,74 +58,7 @@ class Events:
             
         
         
-        res = operations.GetWorkspaceEventsResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
-        
-        if http_res.status_code == 200:
-            if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
-                out = utils.unmarshal_json(http_res.text, Optional[List[shared.CliEvent]])
-                res.cli_event_batch = out
-            else:
-                content_type = http_res.headers.get('Content-Type')
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-        elif http_res.status_code >= 400 and http_res.status_code < 500:
-            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
-        elif http_res.status_code >= 500 and http_res.status_code < 600:
-            if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
-                out = utils.unmarshal_json(http_res.text, errors.Error)
-                raise out
-            else:
-                content_type = http_res.headers.get('Content-Type')
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-        else:
-            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
-
-        return res
-
-    
-    
-    def get_workspace_events_by_source_revision_digest(self, request: operations.GetWorkspaceEventsBySourceRevisionDigestRequest) -> operations.GetWorkspaceEventsBySourceRevisionDigestResponse:
-        r"""Load events for a particular workspace and source revision digest"""
-        hook_ctx = HookContext(operation_id='getWorkspaceEventsBySourceRevisionDigest', oauth2_scopes=[], security_source=self.sdk_configuration.security)
-        _globals = operations.GetWorkspaceEventsBySourceRevisionDigestGlobals(
-            workspace_id=self.sdk_configuration.globals.workspace_id,
-        )
-        
-        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
-        
-        url = utils.generate_url(base_url, '/v1/workspace/{workspaceID}/events/source_revision_digest/{sourceRevisionDigest}', request, _globals)
-        
-        if callable(self.sdk_configuration.security):
-            headers, query_params = utils.get_security(self.sdk_configuration.security())
-        else:
-            headers, query_params = utils.get_security(self.sdk_configuration.security)
-        
-        headers = { **utils.get_headers(request, _globals), **headers }
-        query_params = { **utils.get_query_params(request, _globals), **query_params }
-        headers['Accept'] = 'application/json'
-        headers['user-agent'] = self.sdk_configuration.user_agent
-        client = self.sdk_configuration.client
-        
-        try:
-            req = client.prepare_request(requests_http.Request('GET', url, params=query_params, headers=headers))
-            req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
-            http_res = client.send(req)
-        except Exception as e:
-            _, e = self.sdk_configuration.get_hooks().after_error(AfterErrorContext(hook_ctx), None, e)
-            if e is not None:
-                raise e
-
-        if utils.match_status_codes(['4XX','5XX'], http_res.status_code):
-            result, e = self.sdk_configuration.get_hooks().after_error(AfterErrorContext(hook_ctx), http_res, None)
-            if e is not None:
-                raise e
-            if result is not None:
-                http_res = result
-        else:
-            http_res = self.sdk_configuration.get_hooks().after_success(AfterSuccessContext(hook_ctx), http_res)
-            
-        
-        
-        res = operations.GetWorkspaceEventsBySourceRevisionDigestResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        res = operations.GetWorkspaceEventsByTargetResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
@@ -289,6 +222,73 @@ class Events:
         
         if http_res.status_code >= 200 and http_res.status_code < 300:
             pass
+        elif http_res.status_code >= 400 and http_res.status_code < 500:
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+        elif http_res.status_code >= 500 and http_res.status_code < 600:
+            if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
+                out = utils.unmarshal_json(http_res.text, errors.Error)
+                raise out
+            else:
+                content_type = http_res.headers.get('Content-Type')
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+        else:
+            raise errors.SDKError('unknown status code received', http_res.status_code, http_res.text, http_res)
+
+        return res
+
+    
+    
+    def search_workspace_events(self, request: operations.SearchWorkspaceEventsRequest) -> operations.SearchWorkspaceEventsResponse:
+        r"""Search events for a particular workspace by any field"""
+        hook_ctx = HookContext(operation_id='searchWorkspaceEvents', oauth2_scopes=[], security_source=self.sdk_configuration.security)
+        _globals = operations.SearchWorkspaceEventsGlobals(
+            workspace_id=self.sdk_configuration.globals.workspace_id,
+        )
+        
+        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
+        
+        url = utils.generate_url(base_url, '/v1/workspace/{workspaceID}/events', request, _globals)
+        
+        if callable(self.sdk_configuration.security):
+            headers, query_params = utils.get_security(self.sdk_configuration.security())
+        else:
+            headers, query_params = utils.get_security(self.sdk_configuration.security)
+        
+        headers = { **utils.get_headers(request, _globals), **headers }
+        query_params = { **utils.get_query_params(request, _globals), **query_params }
+        headers['Accept'] = 'application/json'
+        headers['user-agent'] = self.sdk_configuration.user_agent
+        client = self.sdk_configuration.client
+        
+        try:
+            req = client.prepare_request(requests_http.Request('GET', url, params=query_params, headers=headers))
+            req = self.sdk_configuration.get_hooks().before_request(BeforeRequestContext(hook_ctx), req)
+            http_res = client.send(req)
+        except Exception as e:
+            _, e = self.sdk_configuration.get_hooks().after_error(AfterErrorContext(hook_ctx), None, e)
+            if e is not None:
+                raise e
+
+        if utils.match_status_codes(['4XX','5XX'], http_res.status_code):
+            result, e = self.sdk_configuration.get_hooks().after_error(AfterErrorContext(hook_ctx), http_res, None)
+            if e is not None:
+                raise e
+            if result is not None:
+                http_res = result
+        else:
+            http_res = self.sdk_configuration.get_hooks().after_success(AfterSuccessContext(hook_ctx), http_res)
+            
+        
+        
+        res = operations.SearchWorkspaceEventsResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
+        
+        if http_res.status_code == 200:
+            if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
+                out = utils.unmarshal_json(http_res.text, Optional[List[shared.CliEvent]])
+                res.cli_event_batch = out
+            else:
+                content_type = http_res.headers.get('Content-Type')
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code >= 400 and http_res.status_code < 500:
             raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code >= 500 and http_res.status_code < 600:

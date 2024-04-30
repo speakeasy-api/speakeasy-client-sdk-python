@@ -4,23 +4,24 @@ from __future__ import annotations
 import dataclasses
 import requests as requests_http
 from ...models.shared import clievent as shared_clievent
-from datetime import datetime
 from typing import List, Optional
 
 
 @dataclasses.dataclass
-class GetWorkspaceEventsGlobals:
+class SearchWorkspaceEventsGlobals:
     workspace_id: Optional[str] = dataclasses.field(default=None, metadata={'path_param': { 'field_name': 'workspaceID', 'style': 'simple', 'explode': False }})
     
 
 
 
 @dataclasses.dataclass
-class GetWorkspaceEventsRequest:
-    after_created_at: Optional[datetime] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'after_created_at', 'style': 'form', 'explode': True }})
-    r"""Filter to only return events created after this timestamp"""
-    generate_gen_lock_id: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'generate_gen_lock_id', 'style': 'form', 'explode': True }})
-    r"""Filter to only return events corresponding to a particular gen_lock_id (gen_lock_id uniquely identifies a target)"""
+class SearchWorkspaceEventsRequest:
+    lint_report_digest: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'lint_report_digest', 'style': 'form', 'explode': True }})
+    r"""Unique identifier of the lint report digest."""
+    openapi_diff_report_digest: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'openapi_diff_report_digest', 'style': 'form', 'explode': True }})
+    r"""Unique identifier of the openapi diff report digest."""
+    source_revision_digest: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'source_revision_digest', 'style': 'form', 'explode': True }})
+    r"""Unique identifier of the source revision digest."""
     workspace_id: Optional[str] = dataclasses.field(default=None, metadata={'path_param': { 'field_name': 'workspaceID', 'style': 'simple', 'explode': False }})
     r"""Unique identifier of the workspace."""
     
@@ -28,7 +29,7 @@ class GetWorkspaceEventsRequest:
 
 
 @dataclasses.dataclass
-class GetWorkspaceEventsResponse:
+class SearchWorkspaceEventsResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
     status_code: int = dataclasses.field()

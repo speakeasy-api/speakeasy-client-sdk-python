@@ -7,12 +7,12 @@ REST APIs for capturing event data
 
 ### Available Operations
 
-* [get_workspace_events](#get_workspace_events) - Load recent events for a particular workspace
-* [get_workspace_events_by_source_revision_digest](#get_workspace_events_by_source_revision_digest) - Load events for a particular workspace and source revision digest
+* [get_workspace_events_by_target](#get_workspace_events_by_target) - Load recent events for a particular workspace
 * [get_workspace_targets](#get_workspace_targets) - Load targets for a particular workspace
 * [post_workspace_events](#post_workspace_events) - Post events for a specific workspace
+* [search_workspace_events](#search_workspace_events) - Search events for a particular workspace by any field
 
-## get_workspace_events
+## get_workspace_events_by_target
 
 Load recent events for a particular workspace
 
@@ -29,9 +29,11 @@ s = speakeasy.Speakeasy(
     workspace_id='<value>',
 )
 
-req = operations.GetWorkspaceEventsRequest()
+req = operations.GetWorkspaceEventsByTargetRequest(
+    target_id='<value>',
+)
 
-res = s.events.get_workspace_events(req)
+res = s.events.get_workspace_events_by_target(req)
 
 if res.cli_event_batch is not None:
     # handle response
@@ -41,60 +43,14 @@ if res.cli_event_batch is not None:
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `request`                                                                                    | [operations.GetWorkspaceEventsRequest](../../models/operations/getworkspaceeventsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                                    | [operations.GetWorkspaceEventsByTargetRequest](../../models/operations/getworkspaceeventsbytargetrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
 
 
 ### Response
 
-**[operations.GetWorkspaceEventsResponse](../../models/operations/getworkspaceeventsresponse.md)**
-### Errors
-
-| Error Object     | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | 5XX              | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
-
-## get_workspace_events_by_source_revision_digest
-
-Load events for a particular workspace and source revision digest
-
-### Example Usage
-
-```python
-import speakeasy
-from speakeasy.models import operations, shared
-
-s = speakeasy.Speakeasy(
-    security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
-    ),
-    workspace_id='<value>',
-)
-
-req = operations.GetWorkspaceEventsBySourceRevisionDigestRequest(
-    source_revision_digest='<value>',
-)
-
-res = s.events.get_workspace_events_by_source_revision_digest(req)
-
-if res.cli_event_batch is not None:
-    # handle response
-    pass
-
-```
-
-### Parameters
-
-| Parameter                                                                                                                                | Type                                                                                                                                     | Required                                                                                                                                 | Description                                                                                                                              |
-| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                                | [operations.GetWorkspaceEventsBySourceRevisionDigestRequest](../../models/operations/getworkspaceeventsbysourcerevisiondigestrequest.md) | :heavy_check_mark:                                                                                                                       | The request object to use for the request.                                                                                               |
-
-
-### Response
-
-**[operations.GetWorkspaceEventsBySourceRevisionDigestResponse](../../models/operations/getworkspaceeventsbysourcerevisiondigestresponse.md)**
+**[operations.GetWorkspaceEventsByTargetResponse](../../models/operations/getworkspaceeventsbytargetresponse.md)**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
@@ -199,6 +155,50 @@ if res is not None:
 ### Response
 
 **[operations.PostWorkspaceEventsResponse](../../models/operations/postworkspaceeventsresponse.md)**
+### Errors
+
+| Error Object     | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 5XX              | application/json |
+| errors.SDKError  | 4xx-5xx          | */*              |
+
+## search_workspace_events
+
+Search events for a particular workspace by any field
+
+### Example Usage
+
+```python
+import speakeasy
+from speakeasy.models import operations, shared
+
+s = speakeasy.Speakeasy(
+    security=shared.Security(
+        api_key="<YOUR_API_KEY_HERE>",
+    ),
+    workspace_id='<value>',
+)
+
+req = operations.SearchWorkspaceEventsRequest()
+
+res = s.events.search_workspace_events(req)
+
+if res.cli_event_batch is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `request`                                                                                          | [operations.SearchWorkspaceEventsRequest](../../models/operations/searchworkspaceeventsrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+
+
+### Response
+
+**[operations.SearchWorkspaceEventsResponse](../../models/operations/searchworkspaceeventsresponse.md)**
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |

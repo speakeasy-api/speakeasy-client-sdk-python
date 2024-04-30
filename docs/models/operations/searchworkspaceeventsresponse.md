@@ -1,4 +1,4 @@
-# GetWorkspaceEventsResponse
+# SearchWorkspaceEventsResponse
 
 
 ## Fields

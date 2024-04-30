@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: 0df832386c1fcd5f74fb87fea6d0e2b7
+  docChecksum: e87f7661ef116d09df25c842b1032981
   docVersion: 0.4.0 .
-  speakeasyVersion: 1.269.1
-  generationVersion: 2.312.1
-  releaseVersion: 5.6.11
-  configChecksum: 0f63b6d40acff557a7ff2dc25c263d7b
+  speakeasyVersion: 1.277.0
+  generationVersion: 2.317.0
+  releaseVersion: 5.6.12
+  configChecksum: 07ee419dccd2777287e8afcfc0972899
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -91,10 +91,10 @@ generatedFiles:
   - src/speakeasy/models/operations/getembedaccesstoken.py
   - src/speakeasy/models/operations/getvalidembedaccesstokens.py
   - src/speakeasy/models/operations/revokeembedaccesstoken.py
-  - src/speakeasy/models/operations/getworkspaceevents.py
-  - src/speakeasy/models/operations/getworkspaceeventsbysourcerevisiondigest.py
+  - src/speakeasy/models/operations/getworkspaceeventsbytarget.py
   - src/speakeasy/models/operations/getworkspacetargets.py
   - src/speakeasy/models/operations/postworkspaceevents.py
+  - src/speakeasy/models/operations/searchworkspaceevents.py
   - src/speakeasy/models/errors/error.py
   - src/speakeasy/models/shared/generateopenapispecdiff.py
   - src/speakeasy/models/shared/api.py
@@ -231,18 +231,18 @@ generatedFiles:
   - docs/models/operations/getvalidembedaccesstokensresponse.md
   - docs/models/operations/revokeembedaccesstokenrequest.md
   - docs/models/operations/revokeembedaccesstokenresponse.md
-  - docs/models/operations/getworkspaceeventsglobals.md
-  - docs/models/operations/getworkspaceeventsrequest.md
-  - docs/models/operations/getworkspaceeventsresponse.md
-  - docs/models/operations/getworkspaceeventsbysourcerevisiondigestglobals.md
-  - docs/models/operations/getworkspaceeventsbysourcerevisiondigestrequest.md
-  - docs/models/operations/getworkspaceeventsbysourcerevisiondigestresponse.md
+  - docs/models/operations/getworkspaceeventsbytargetglobals.md
+  - docs/models/operations/getworkspaceeventsbytargetrequest.md
+  - docs/models/operations/getworkspaceeventsbytargetresponse.md
   - docs/models/operations/getworkspacetargetsglobals.md
   - docs/models/operations/getworkspacetargetsrequest.md
   - docs/models/operations/getworkspacetargetsresponse.md
   - docs/models/operations/postworkspaceeventsglobals.md
   - docs/models/operations/postworkspaceeventsrequest.md
   - docs/models/operations/postworkspaceeventsresponse.md
+  - docs/models/operations/searchworkspaceeventsglobals.md
+  - docs/models/operations/searchworkspaceeventsrequest.md
+  - docs/models/operations/searchworkspaceeventsresponse.md
   - docs/models/errors/error.md
   - docs/models/shared/generateopenapispecdiff.md
   - docs/models/shared/api.md

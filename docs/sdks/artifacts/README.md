@@ -8,6 +8,7 @@
 * [get_namespaces](#get_namespaces) - Each namespace contains many revisions.
 * [get_revisions](#get_revisions)
 * [get_tags](#get_tags)
+* [post_tags](#post_tags) - Add tags to an existing revision
 * [preflight](#preflight) - Get access token for communicating with OCI distribution endpoints
 
 ## get_blob
@@ -222,6 +223,51 @@ if res.get_tags_response is not None:
 ### Response
 
 **[operations.GetTagsResponse](../../models/operations/gettagsresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## post_tags
+
+Add tags to an existing revision
+
+### Example Usage
+
+```python
+import speakeasy
+from speakeasy.models import operations, shared
+
+s = speakeasy.Speakeasy(
+    security=shared.Security(
+        api_key="<YOUR_API_KEY_HERE>",
+    ),
+    workspace_id='<value>',
+)
+
+req = operations.PostTagsRequest(
+    namespace_name='<value>',
+)
+
+res = s.artifacts.post_tags(req)
+
+if res is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `request`                                                                | [operations.PostTagsRequest](../../models/operations/posttagsrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+
+
+### Response
+
+**[operations.PostTagsResponse](../../models/operations/posttagsresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

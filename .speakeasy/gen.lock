@@ -1,19 +1,20 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: e87f7661ef116d09df25c842b1032981
+  docChecksum: 1710218668d467d8f56c88d745bfdf80
   docVersion: 0.4.0 .
-  speakeasyVersion: 1.277.0
-  generationVersion: 2.317.0
-  releaseVersion: 5.6.12
-  configChecksum: 07ee419dccd2777287e8afcfc0972899
+  speakeasyVersion: 1.277.8
+  generationVersion: 2.319.10
+  releaseVersion: 5.7.0
+  configChecksum: 8bbd4341c19f8d7e8c265101ef155959
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   published: true
 features:
   python:
-    core: 4.6.5
+    acceptHeaders: 2.81.2
+    core: 4.6.7
     downloadStreams: 0.0.2
     examples: 2.81.3
     globalSecurity: 2.83.5
@@ -45,7 +46,6 @@ generatedFiles:
   - src/speakeasy/utils/retries.py
   - src/speakeasy/utils/utils.py
   - src/speakeasy/models/errors/sdkerror.py
-  - tests/helpers.py
   - src/speakeasy/models/operations/deleteapi.py
   - src/speakeasy/models/operations/generateopenapispec.py
   - src/speakeasy/models/operations/generatepostmancollection.py
@@ -76,6 +76,7 @@ generatedFiles:
   - src/speakeasy/models/operations/getnamespaces.py
   - src/speakeasy/models/operations/getrevisions.py
   - src/speakeasy/models/operations/gettags.py
+  - src/speakeasy/models/operations/posttags.py
   - src/speakeasy/models/operations/preflight.py
   - src/speakeasy/models/operations/getaccesstoken.py
   - src/speakeasy/models/operations/getuser.py
@@ -114,6 +115,7 @@ generatedFiles:
   - src/speakeasy/models/shared/revision.py
   - src/speakeasy/models/shared/gettagsresponse.py
   - src/speakeasy/models/shared/tag.py
+  - src/speakeasy/models/shared/addtags.py
   - src/speakeasy/models/shared/preflighttoken.py
   - src/speakeasy/models/shared/preflightrequest.py
   - src/speakeasy/models/shared/accesstoken.py
@@ -202,6 +204,8 @@ generatedFiles:
   - docs/models/operations/getrevisionsresponse.md
   - docs/models/operations/gettagsrequest.md
   - docs/models/operations/gettagsresponse.md
+  - docs/models/operations/posttagsrequest.md
+  - docs/models/operations/posttagsresponse.md
   - docs/models/operations/preflightresponse.md
   - docs/models/operations/getaccesstokenrequest.md
   - docs/models/operations/getaccesstokenresponse.md
@@ -263,6 +267,7 @@ generatedFiles:
   - docs/models/shared/revision.md
   - docs/models/shared/gettagsresponse.md
   - docs/models/shared/tag.md
+  - docs/models/shared/addtags.md
   - docs/models/shared/preflighttoken.md
   - docs/models/shared/preflightrequest.md
   - docs/models/shared/claims.md

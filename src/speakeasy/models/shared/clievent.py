@@ -53,6 +53,8 @@ class CliEvent:
     r"""Name of the CI environment."""
     duration_ms: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('duration_ms'), 'exclude': lambda f: f is None }})
     r"""Duration of the event in milliseconds."""
+    error: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('error'), 'exclude': lambda f: f is None }})
+    r"""Error message if the event was not successful."""
     generate_bump_type: Optional[GenerateBumpType] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_bump_type'), 'exclude': lambda f: f is None }})
     r"""Bump type of the lock file (calculated semver delta, or a custom change (manual release))"""
     generate_config_post_checksum: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_config_post_checksum'), 'exclude': lambda f: f is None }})
@@ -117,6 +119,8 @@ class CliEvent:
     r"""User's name from git configuration. (not GitHub username)"""
     hostname: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('hostname'), 'exclude': lambda f: f is None }})
     r"""Remote hostname."""
+    last_step: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('last_step'), 'exclude': lambda f: f is None }})
+    r"""The last step of the event."""
     lint_report_digest: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lint_report_digest'), 'exclude': lambda f: f is None }})
     r"""The checksum of the lint report."""
     lint_report_error_count: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('lint_report_error_count'), 'exclude': lambda f: f is None }})
@@ -131,6 +135,8 @@ class CliEvent:
     r"""Checksum of the currently Rendered OpenAPI document."""
     management_doc_version: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('management_doc_version'), 'exclude': lambda f: f is None }})
     r"""Version taken from info.version field of the Rendered OpenAPI document."""
+    mermaid_diagram: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('mermaid_diagram'), 'exclude': lambda f: f is None }})
+    r"""Mermaid diagram"""
     openapi_diff_base_source_blob_digest: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openapi_diff_base_source_blob_digest'), 'exclude': lambda f: f is None }})
     r"""The blob digest of the base source."""
     openapi_diff_base_source_namespace_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('openapi_diff_base_source_namespace_name'), 'exclude': lambda f: f is None }})
@@ -161,5 +167,13 @@ class CliEvent:
     r"""The namespace name of the source."""
     source_revision_digest: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('source_revision_digest'), 'exclude': lambda f: f is None }})
     r"""The revision digest of the source."""
+    workflow_lock_post_raw: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workflow_lock_post_raw'), 'exclude': lambda f: f is None }})
+    r"""Workflow lock file (post execution)"""
+    workflow_lock_pre_raw: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workflow_lock_pre_raw'), 'exclude': lambda f: f is None }})
+    r"""Workflow lock file (prior to execution)"""
+    workflow_post_raw: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workflow_post_raw'), 'exclude': lambda f: f is None }})
+    r"""Workflow file (post execution)"""
+    workflow_pre_raw: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workflow_pre_raw'), 'exclude': lambda f: f is None }})
+    r"""Workflow file (prior to execution)"""
     
 

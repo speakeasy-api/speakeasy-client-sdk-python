@@ -30,16 +30,13 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.DeleteSchemaRequest(
+res = s.schemas.delete_schema(request=operations.DeleteSchemaRequest(
     api_id='<value>',
     revision_id='<value>',
     version_id='<value>',
-)
-
-res = s.schemas.delete_schema(req)
+))
 
 if res is not None:
     # handle response
@@ -77,15 +74,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.DownloadSchemaRequest(
+res = s.schemas.download_schema(request=operations.DownloadSchemaRequest(
     api_id='<value>',
     version_id='<value>',
-)
-
-res = s.schemas.download_schema(req)
+))
 
 if res.two_hundred_application_json_schema is not None:
     # handle response
@@ -123,16 +117,13 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.DownloadSchemaRevisionRequest(
+res = s.schemas.download_schema_revision(request=operations.DownloadSchemaRevisionRequest(
     api_id='<value>',
     revision_id='<value>',
     version_id='<value>',
-)
-
-res = s.schemas.download_schema_revision(req)
+))
 
 if res.two_hundred_application_json_schema is not None:
     # handle response
@@ -171,15 +162,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetSchemaRequest(
+res = s.schemas.get_schema(request=operations.GetSchemaRequest(
     api_id='<value>',
     version_id='<value>',
-)
-
-res = s.schemas.get_schema(req)
+))
 
 if res.schema is not None:
     # handle response
@@ -217,17 +205,14 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetSchemaDiffRequest(
+res = s.schemas.get_schema_diff(request=operations.GetSchemaDiffRequest(
     api_id='<value>',
     base_revision_id='<value>',
     target_revision_id='<value>',
     version_id='<value>',
-)
-
-res = s.schemas.get_schema_diff(req)
+))
 
 if res.schema_diff is not None:
     # handle response
@@ -266,16 +251,13 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetSchemaRevisionRequest(
+res = s.schemas.get_schema_revision(request=operations.GetSchemaRevisionRequest(
     api_id='<value>',
     revision_id='<value>',
     version_id='<value>',
-)
-
-res = s.schemas.get_schema_revision(req)
+))
 
 if res.schema is not None:
     # handle response
@@ -314,15 +296,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetSchemasRequest(
+res = s.schemas.get_schemas(request=operations.GetSchemasRequest(
     api_id='<value>',
     version_id='<value>',
-)
-
-res = s.schemas.get_schemas(req)
+))
 
 if res.classes is not None:
     # handle response
@@ -361,10 +340,9 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.RegisterSchemaRequest(
+res = s.schemas.register_schema(request=operations.RegisterSchemaRequest(
     request_body=operations.RegisterSchemaRequestBody(
         file=operations.RegisterSchemaFile(
             content='0xCAFCA03e0e'.encode(),
@@ -373,9 +351,7 @@ req = operations.RegisterSchemaRequest(
     ),
     api_id='<value>',
     version_id='<value>',
-)
-
-res = s.schemas.register_schema(req)
+))
 
 if res is not None:
     # handle response

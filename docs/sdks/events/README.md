@@ -26,14 +26,11 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetWorkspaceEventsByTargetRequest(
+res = s.events.get_workspace_events_by_target(request=operations.GetWorkspaceEventsByTargetRequest(
     target_id='<value>',
-)
-
-res = s.events.get_workspace_events_by_target(req)
+))
 
 if res.cli_event_batch is not None:
     # handle response
@@ -72,12 +69,9 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetWorkspaceTargetsRequest()
-
-res = s.events.get_workspace_targets(req)
+res = s.events.get_workspace_targets(request=operations.GetWorkspaceTargetsRequest())
 
 if res.target_sdk_list is not None:
     # handle response
@@ -117,10 +111,9 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.PostWorkspaceEventsRequest(
+res = s.events.post_workspace_events(request=operations.PostWorkspaceEventsRequest(
     request_body=[
         shared.CliEvent(
             created_at=dateutil.parser.isoparse('2024-11-21T06:58:42.120Z'),
@@ -134,9 +127,7 @@ req = operations.PostWorkspaceEventsRequest(
             workspace_id='<value>',
         ),
     ],
-)
-
-res = s.events.post_workspace_events(req)
+))
 
 if res is not None:
     # handle response
@@ -176,12 +167,9 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.SearchWorkspaceEventsRequest()
-
-res = s.events.search_workspace_events(req)
+res = s.events.search_workspace_events(request=operations.SearchWorkspaceEventsRequest())
 
 if res.cli_event_batch is not None:
     # handle response

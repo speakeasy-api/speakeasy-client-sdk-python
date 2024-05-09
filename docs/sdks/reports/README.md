@@ -25,14 +25,11 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetChangesReportSignedURLRequest(
+res = s.reports.get_changes_report_signed_url(request=operations.GetChangesReportSignedURLRequest(
     document_checksum='<value>',
-)
-
-res = s.reports.get_changes_report_signed_url(req)
+))
 
 if res.signed_access is not None:
     # handle response
@@ -70,14 +67,11 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetLintingReportSignedURLRequest(
+res = s.reports.get_linting_report_signed_url(request=operations.GetLintingReportSignedURLRequest(
     document_checksum='<value>',
-)
-
-res = s.reports.get_linting_report_signed_url(req)
+))
 
 if res.signed_access is not None:
     # handle response
@@ -115,18 +109,15 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.UploadReportRequestBody(
+res = s.reports.upload_report(request=operations.UploadReportRequestBody(
     data=shared.Report(),
     file=operations.File(
         content='0xA329C0ad85'.encode(),
         file_name='sausages.m3a',
     ),
-)
-
-res = s.reports.upload_report(req)
+))
 
 if res.uploaded_report is not None:
     # handle response

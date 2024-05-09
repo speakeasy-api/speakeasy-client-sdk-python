@@ -28,15 +28,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.DeleteAPIRequest(
+res = s.apis.delete_api(request=operations.DeleteAPIRequest(
     api_id='<value>',
     version_id='<value>',
-)
-
-res = s.apis.delete_api(req)
+))
 
 if res is not None:
     # handle response
@@ -75,15 +72,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GenerateOpenAPISpecRequest(
+res = s.apis.generate_open_api_spec(request=operations.GenerateOpenAPISpecRequest(
     api_id='<value>',
     version_id='<value>',
-)
-
-res = s.apis.generate_open_api_spec(req)
+))
 
 if res.generate_open_api_spec_diff is not None:
     # handle response
@@ -121,15 +115,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GeneratePostmanCollectionRequest(
+res = s.apis.generate_postman_collection(request=operations.GeneratePostmanCollectionRequest(
     api_id='<value>',
     version_id='<value>',
-)
-
-res = s.apis.generate_postman_collection(req)
+))
 
 if res.postman_collection is not None:
     # handle response
@@ -168,14 +159,11 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetAllAPIVersionsRequest(
+res = s.apis.get_all_api_versions(request=operations.GetAllAPIVersionsRequest(
     api_id='<value>',
-)
-
-res = s.apis.get_all_api_versions(req)
+))
 
 if res.apis is not None:
     # handle response
@@ -214,12 +202,9 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetApisRequest()
-
-res = s.apis.get_apis(req)
+res = s.apis.get_apis(request=operations.GetApisRequest())
 
 if res.apis is not None:
     # handle response
@@ -258,19 +243,16 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.UpsertAPIRequest(
+res = s.apis.upsert_api(request=operations.UpsertAPIRequest(
     api=shared.APIInput(
         api_id='<value>',
         description='Synchronised 5th generation knowledge user',
         version_id='<value>',
     ),
     api_id='<value>',
-)
-
-res = s.apis.upsert_api(req)
+))
 
 if res.api is not None:
     # handle response

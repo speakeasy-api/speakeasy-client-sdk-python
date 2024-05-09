@@ -61,6 +61,7 @@ class Events:
         res = operations.GetWorkspaceEventsByTargetResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[List[shared.CliEvent]])
                 res.cli_event_batch = out
@@ -70,6 +71,7 @@ class Events:
         elif http_res.status_code >= 400 and http_res.status_code < 500:
             raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code >= 500 and http_res.status_code < 600:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.Error)
                 raise out
@@ -128,6 +130,7 @@ class Events:
         res = operations.GetWorkspaceTargetsResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[List[shared.TargetSDK]])
                 res.target_sdk_list = out
@@ -137,6 +140,7 @@ class Events:
         elif http_res.status_code >= 400 and http_res.status_code < 500:
             raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code >= 500 and http_res.status_code < 600:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.Error)
                 raise out
@@ -228,6 +232,7 @@ class Events:
         elif http_res.status_code >= 400 and http_res.status_code < 500:
             raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code >= 500 and http_res.status_code < 600:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.Error)
                 raise out
@@ -286,6 +291,7 @@ class Events:
         res = operations.SearchWorkspaceEventsResponse(status_code=http_res.status_code, content_type=http_res.headers.get('Content-Type') or '', raw_response=http_res)
         
         if http_res.status_code == 200:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, Optional[List[shared.CliEvent]])
                 res.cli_event_batch = out
@@ -295,6 +301,7 @@ class Events:
         elif http_res.status_code >= 400 and http_res.status_code < 500:
             raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code >= 500 and http_res.status_code < 600:
+            # pylint: disable=no-else-return
             if utils.match_content_type(http_res.headers.get('Content-Type') or '', 'application/json'):                
                 out = utils.unmarshal_json(http_res.text, errors.Error)
                 raise out

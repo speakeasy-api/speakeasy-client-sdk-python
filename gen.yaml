@@ -10,7 +10,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 python:
-  version: 5.7.1
+  version: 5.8.0
   additionalDependencies:
     dependencies: {}
     extraDependencies:
@@ -29,6 +29,7 @@ python:
       webhooks: models/webhooks
   inputModelSuffix: input
   maxMethodParams: 0
+  methodArguments: require-security-and-request
   outputModelSuffix: output
   packageName: speakeasy-client-sdk-python
   projectUrls: {}

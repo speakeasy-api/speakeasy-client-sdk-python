@@ -25,17 +25,14 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.DeleteVersionMetadataRequest(
+res = s.metadata.delete_version_metadata(request=operations.DeleteVersionMetadataRequest(
     api_id='<value>',
     meta_key='<value>',
     meta_value='<value>',
     version_id='<value>',
-)
-
-res = s.metadata.delete_version_metadata(req)
+))
 
 if res is not None:
     # handle response
@@ -73,15 +70,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetVersionMetadataRequest(
+res = s.metadata.get_version_metadata(request=operations.GetVersionMetadataRequest(
     api_id='<value>',
     version_id='<value>',
-)
-
-res = s.metadata.get_version_metadata(req)
+))
 
 if res.version_metadata is not None:
     # handle response
@@ -119,19 +113,16 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.InsertVersionMetadataRequest(
+res = s.metadata.insert_version_metadata(request=operations.InsertVersionMetadataRequest(
     version_metadata=shared.VersionMetadataInput(
         meta_key='<value>',
         meta_value='<value>',
     ),
     api_id='<value>',
     version_id='<value>',
-)
-
-res = s.metadata.insert_version_metadata(req)
+))
 
 if res.version_metadata is not None:
     # handle response

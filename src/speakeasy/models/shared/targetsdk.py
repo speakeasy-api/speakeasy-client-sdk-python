@@ -33,10 +33,16 @@ class TargetSDK:
     r"""Error message if the last event was not successful."""
     generate_config_post_version: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_config_post_version'), 'exclude': lambda f: f is None }})
     r"""Version of the generated target (post generation)"""
+    generate_eligible_features: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_eligible_features'), 'exclude': lambda f: f is None }})
+    r"""Eligible feature set during generation"""
     generate_gen_lock_pre_features: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_gen_lock_pre_features'), 'exclude': lambda f: f is None }})
     r"""Features prior to generation"""
     generate_gen_lock_pre_version: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_gen_lock_pre_version'), 'exclude': lambda f: f is None }})
     r"""Artifact version for the Previous Generation"""
+    generate_number_of_operations_ignored: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_number_of_operations_ignored'), 'exclude': lambda f: f is None }})
+    r"""The number of operations ignored in generation."""
+    generate_number_of_operations_used: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_number_of_operations_used'), 'exclude': lambda f: f is None }})
+    r"""The number of operations used in generation."""
     generate_published: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_published'), 'exclude': lambda f: f is None }})
     r"""Indicates whether the target was considered published."""
     generate_target_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_target_name'), 'exclude': lambda f: f is None }})
@@ -45,6 +51,8 @@ class TargetSDK:
     r"""The version of the Speakeasy generator for this target eg v2 of the typescript generator."""
     gh_action_organization: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gh_action_organization'), 'exclude': lambda f: f is None }})
     r"""GitHub organization of the action."""
+    gh_action_ref: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gh_action_ref'), 'exclude': lambda f: f is None }})
+    r"""GitHub Action ref value."""
     gh_action_repository: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gh_action_repository'), 'exclude': lambda f: f is None }})
     r"""GitHub repository of the action."""
     gh_action_run_link: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gh_action_run_link'), 'exclude': lambda f: f is None }})

@@ -25,17 +25,14 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetBlobRequest(
+res = s.artifacts.get_blob(request=operations.GetBlobRequest(
     digest='<value>',
     namespace_name='<value>',
     organization_slug='<value>',
     workspace_slug='<value>',
-)
-
-res = s.artifacts.get_blob(req)
+))
 
 if res.blob is not None:
     # handle response
@@ -73,17 +70,14 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetManifestRequest(
+res = s.artifacts.get_manifest(request=operations.GetManifestRequest(
     namespace_name='<value>',
     organization_slug='<value>',
     revision_reference='<value>',
     workspace_slug='<value>',
-)
-
-res = s.artifacts.get_manifest(req)
+))
 
 if res.manifest is not None:
     # handle response
@@ -121,9 +115,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
-
 
 res = s.artifacts.get_namespaces()
 
@@ -155,14 +147,11 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetRevisionsRequest(
+res = s.artifacts.get_revisions(request=operations.GetRevisionsRequest(
     namespace_name='<value>',
-)
-
-res = s.artifacts.get_revisions(req)
+))
 
 if res.get_revisions_response is not None:
     # handle response
@@ -198,14 +187,11 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetTagsRequest(
+res = s.artifacts.get_tags(request=operations.GetTagsRequest(
     namespace_name='<value>',
-)
-
-res = s.artifacts.get_tags(req)
+))
 
 if res.get_tags_response is not None:
     # handle response
@@ -243,14 +229,11 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.PostTagsRequest(
+res = s.artifacts.post_tags(request=operations.PostTagsRequest(
     namespace_name='<value>',
-)
-
-res = s.artifacts.post_tags(req)
+))
 
 if res is not None:
     # handle response
@@ -288,14 +271,11 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = shared.PreflightRequest(
+res = s.artifacts.preflight(request=shared.PreflightRequest(
     namespace_name='<value>',
-)
-
-res = s.artifacts.preflight(req)
+))
 
 if res.preflight_token is not None:
     # handle response

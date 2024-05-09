@@ -30,16 +30,13 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.DeleteAPIEndpointRequest(
+res = s.api_endpoints.delete_api_endpoint(request=operations.DeleteAPIEndpointRequest(
     api_endpoint_id='<value>',
     api_id='<value>',
     version_id='<value>',
-)
-
-res = s.api_endpoints.delete_api_endpoint(req)
+))
 
 if res is not None:
     # handle response
@@ -78,16 +75,13 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.FindAPIEndpointRequest(
+res = s.api_endpoints.find_api_endpoint(request=operations.FindAPIEndpointRequest(
     api_id='<value>',
     display_name='Don.Strosin',
     version_id='<value>',
-)
-
-res = s.api_endpoints.find_api_endpoint(req)
+))
 
 if res.api_endpoint is not None:
     # handle response
@@ -126,16 +120,13 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GenerateOpenAPISpecForAPIEndpointRequest(
+res = s.api_endpoints.generate_open_api_spec_for_api_endpoint(request=operations.GenerateOpenAPISpecForAPIEndpointRequest(
     api_endpoint_id='<value>',
     api_id='<value>',
     version_id='<value>',
-)
-
-res = s.api_endpoints.generate_open_api_spec_for_api_endpoint(req)
+))
 
 if res.generate_open_api_spec_diff is not None:
     # handle response
@@ -173,16 +164,13 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GeneratePostmanCollectionForAPIEndpointRequest(
+res = s.api_endpoints.generate_postman_collection_for_api_endpoint(request=operations.GeneratePostmanCollectionForAPIEndpointRequest(
     api_endpoint_id='<value>',
     api_id='<value>',
     version_id='<value>',
-)
-
-res = s.api_endpoints.generate_postman_collection_for_api_endpoint(req)
+))
 
 if res.postman_collection is not None:
     # handle response
@@ -220,14 +208,11 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetAllAPIEndpointsRequest(
+res = s.api_endpoints.get_all_api_endpoints(request=operations.GetAllAPIEndpointsRequest(
     api_id='<value>',
-)
-
-res = s.api_endpoints.get_all_api_endpoints(req)
+))
 
 if res.api_endpoints is not None:
     # handle response
@@ -265,15 +250,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetAllForVersionAPIEndpointsRequest(
+res = s.api_endpoints.get_all_for_version_api_endpoints(request=operations.GetAllForVersionAPIEndpointsRequest(
     api_id='<value>',
     version_id='<value>',
-)
-
-res = s.api_endpoints.get_all_for_version_api_endpoints(req)
+))
 
 if res.api_endpoints is not None:
     # handle response
@@ -311,16 +293,13 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetAPIEndpointRequest(
+res = s.api_endpoints.get_api_endpoint(request=operations.GetAPIEndpointRequest(
     api_endpoint_id='<value>',
     api_id='<value>',
     version_id='<value>',
-)
-
-res = s.api_endpoints.get_api_endpoint(req)
+))
 
 if res.api_endpoint is not None:
     # handle response
@@ -358,10 +337,9 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.UpsertAPIEndpointRequest(
+res = s.api_endpoints.upsert_api_endpoint(request=operations.UpsertAPIEndpointRequest(
     api_endpoint=shared.APIEndpointInput(
         api_endpoint_id='<value>',
         description='Public-key systematic attitude',
@@ -373,9 +351,7 @@ req = operations.UpsertAPIEndpointRequest(
     api_endpoint_id='<value>',
     api_id='<value>',
     version_id='<value>',
-)
-
-res = s.api_endpoints.upsert_api_endpoint(req)
+))
 
 if res.api_endpoint is not None:
     # handle response

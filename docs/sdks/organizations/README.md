@@ -19,9 +19,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
-
 
 res = s.organizations.get_organizations()
 

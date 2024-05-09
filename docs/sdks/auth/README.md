@@ -22,15 +22,11 @@ Get or refresh an access token for the current workspace.
 import speakeasy
 from speakeasy.models import operations
 
-s = speakeasy.Speakeasy(
-    workspace_id='<value>',
-)
+s = speakeasy.Speakeasy()
 
-req = operations.GetAccessTokenRequest(
+res = s.auth.get_access_token(request=operations.GetAccessTokenRequest(
     workspace_id='<value>',
-)
-
-res = s.auth.get_access_token(req)
+))
 
 if res.access_token is not None:
     # handle response
@@ -68,9 +64,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
-
 
 res = s.auth.get_user()
 
@@ -104,12 +98,9 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetWorkspaceAccessRequest()
-
-res = s.auth.get_workspace_access(req)
+res = s.auth.get_workspace_access(request=operations.GetWorkspaceAccessRequest())
 
 if res.access_details is not None:
     # handle response
@@ -148,9 +139,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
-
 
 res = s.auth.validate_api_key()
 

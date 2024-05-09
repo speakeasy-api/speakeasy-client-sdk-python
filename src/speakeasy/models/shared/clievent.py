@@ -69,6 +69,8 @@ class CliEvent:
     r"""Rendered configuration file (prior to generation)"""
     generate_config_pre_version: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_config_pre_version'), 'exclude': lambda f: f is None }})
     r"""The version of the customer's SDK before we generated"""
+    generate_eligible_features: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_eligible_features'), 'exclude': lambda f: f is None }})
+    r"""Eligible feature set during generation"""
     generate_gen_lock_id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_gen_lock_id'), 'exclude': lambda f: f is None }})
     r"""gen.lock ID (expected to be a uuid)."""
     generate_gen_lock_post_features: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_gen_lock_post_features'), 'exclude': lambda f: f is None }})
@@ -87,6 +89,10 @@ class CliEvent:
     r"""Revision digest of the Previous Generation"""
     generate_gen_lock_pre_version: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_gen_lock_pre_version'), 'exclude': lambda f: f is None }})
     r"""Artifact version for the Previous Generation"""
+    generate_number_of_operations_ignored: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_number_of_operations_ignored'), 'exclude': lambda f: f is None }})
+    r"""The number of operations ignored in generation."""
+    generate_number_of_operations_used: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_number_of_operations_used'), 'exclude': lambda f: f is None }})
+    r"""The number of operations used in generation."""
     generate_output_tests: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_output_tests'), 'exclude': lambda f: f is None }})
     r"""Indicates whether tests were output."""
     generate_published: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generate_published'), 'exclude': lambda f: f is None }})
@@ -101,6 +107,8 @@ class CliEvent:
     r"""Version of the generation logic used."""
     gh_action_organization: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gh_action_organization'), 'exclude': lambda f: f is None }})
     r"""GitHub organization of the action."""
+    gh_action_ref: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gh_action_ref'), 'exclude': lambda f: f is None }})
+    r"""GitHub Action ref value."""
     gh_action_repository: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gh_action_repository'), 'exclude': lambda f: f is None }})
     r"""GitHub repository of the action."""
     gh_action_run_link: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('gh_action_run_link'), 'exclude': lambda f: f is None }})

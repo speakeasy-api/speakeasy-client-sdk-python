@@ -26,12 +26,9 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetEmbedAccessTokenRequest()
-
-res = s.embeds.get_embed_access_token(req)
+res = s.embeds.get_embed_access_token(request=operations.GetEmbedAccessTokenRequest())
 
 if res.embed_access_token_response is not None:
     # handle response
@@ -69,9 +66,7 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
-
 
 res = s.embeds.get_valid_embed_access_tokens()
 
@@ -105,14 +100,11 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.RevokeEmbedAccessTokenRequest(
+res = s.embeds.revoke_embed_access_token(request=operations.RevokeEmbedAccessTokenRequest(
     token_id='<value>',
-)
-
-res = s.embeds.revoke_embed_access_token(req)
+))
 
 if res is not None:
     # handle response

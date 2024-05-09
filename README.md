@@ -21,12 +21,9 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetApisRequest()
-
-res = s.apis.get_apis(req)
+res = s.apis.get_apis(request=operations.GetApisRequest())
 
 if res.apis is not None:
     # handle response
@@ -148,16 +145,13 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
-)
-
-req = operations.GetWorkspaceEventsByTargetRequest(
-    target_id='<value>',
 )
 
 res = None
 try:
-    res = s.events.get_workspace_events_by_target(req)
+    res = s.events.get_workspace_events_by_target(request=operations.GetWorkspaceEventsByTargetRequest(
+    target_id='<value>',
+))
 except errors.Error as e:
     # handle exception
     raise(e)
@@ -196,15 +190,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.DeleteAPIRequest(
+res = s.apis.delete_api(request=operations.DeleteAPIRequest(
     api_id='<value>',
     version_id='<value>',
-)
-
-res = s.apis.delete_api(req)
+))
 
 if res is not None:
     # handle response
@@ -225,15 +216,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.DeleteAPIRequest(
+res = s.apis.delete_api(request=operations.DeleteAPIRequest(
     api_id='<value>',
     version_id='<value>',
-)
-
-res = s.apis.delete_api(req)
+))
 
 if res is not None:
     # handle response
@@ -283,15 +271,12 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.DeleteAPIRequest(
+res = s.apis.delete_api(request=operations.DeleteAPIRequest(
     api_id='<value>',
     version_id='<value>',
-)
-
-res = s.apis.delete_api(req)
+))
 
 if res is not None:
     # handle response
@@ -327,14 +312,11 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetWorkspaceEventsByTargetRequest(
+res = s.events.get_workspace_events_by_target(request=operations.GetWorkspaceEventsByTargetRequest(
     target_id='<value>',
-)
-
-res = s.events.get_workspace_events_by_target(req)
+))
 
 if res.cli_event_batch is not None:
     # handle response
@@ -358,12 +340,9 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetWorkspaceAccessRequest()
-
-res = s.auth.get_workspace_access(req,
+res = s.auth.get_workspace_access(request=operations.GetWorkspaceAccessRequest(),
     RetryConfig('backoff', BackoffStrategy(1, 50, 1.1, 100), False))
 
 if res.access_details is not None:
@@ -383,12 +362,9 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetWorkspaceAccessRequest()
-
-res = s.auth.get_workspace_access(req)
+res = s.auth.get_workspace_access(request=operations.GetWorkspaceAccessRequest())
 
 if res.access_details is not None:
     # handle response

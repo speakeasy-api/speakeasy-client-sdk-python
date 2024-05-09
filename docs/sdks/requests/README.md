@@ -26,14 +26,11 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GenerateRequestPostmanCollectionRequest(
+res = s.requests.generate_request_postman_collection(request=operations.GenerateRequestPostmanCollectionRequest(
     request_id='<value>',
-)
-
-res = s.requests.generate_request_postman_collection(req)
+))
 
 if res.postman_collection is not None:
     # handle response
@@ -71,14 +68,11 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.GetRequestFromEventLogRequest(
+res = s.requests.get_request_from_event_log(request=operations.GetRequestFromEventLogRequest(
     request_id='<value>',
-)
-
-res = s.requests.get_request_from_event_log(req)
+))
 
 if res.unbounded_request is not None:
     # handle response
@@ -117,12 +111,9 @@ s = speakeasy.Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-    workspace_id='<value>',
 )
 
-req = operations.QueryEventLogRequest()
-
-res = s.requests.query_event_log(req)
+res = s.requests.query_event_log(request=operations.QueryEventLogRequest())
 
 if res.bounded_requests is not None:
     # handle response

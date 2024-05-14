@@ -12,15 +12,12 @@ class AccountType(str, Enum):
     SCALE_UP = 'scale-up'
     ENTERPRISE = 'enterprise'
 
-class FeatureFlags(str, Enum):
-    SCHEMA_REGISTRY = 'schema_registry'
-
 
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class APIKeyDetails:
     account_type: AccountType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_type') }})
-    feature_flags: List[FeatureFlags] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('feature_flags') }})
+    enabled_features: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enabled_features') }})
     org_slug: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('org_slug') }})
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspace_id') }})
     workspace_slug: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspace_slug') }})

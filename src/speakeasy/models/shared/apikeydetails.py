@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 import dataclasses
+from .featureflag import FeatureFlag
 from dataclasses_json import Undefined, dataclass_json
 from enum import Enum
 from speakeasy import utils
 from typing import List, Optional
+
 
 class AccountType(str, Enum):
     FREE = 'free'
@@ -17,10 +19,12 @@ class AccountType(str, Enum):
 @dataclasses.dataclass
 class APIKeyDetails:
     account_type: AccountType = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('account_type') }})
-    enabled_features: List[str] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enabled_features') }})
+    enabled_features: List[FeatureFlag] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('enabled_features') }})
     org_slug: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('org_slug') }})
     workspace_id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspace_id') }})
     workspace_slug: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspace_slug') }})
+    feature_flags: Optional[List[str]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('feature_flags'), 'exclude': lambda f: f is None }})
+    r"""Deprecated field: This will be removed in a future release, please migrate away from it as soon as possible."""
     generation_access_unlimited: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('generation_access_unlimited'), 'exclude': lambda f: f is None }})
     
 

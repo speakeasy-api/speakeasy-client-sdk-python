@@ -13,6 +13,7 @@ from .boundedrequest import *
 from .clievent import *
 from .embedaccesstokenresponse import *
 from .embedtoken import *
+from .featureflag import *
 from .filter_ import *
 from .filters import *
 from .generateopenapispecdiff import *
@@ -39,4 +40,4 @@ from .v2descriptor import *
 from .versionmetadata import *
 from .versionmetadata_input import *
 
-__all__ = ["API","APIEndpoint","APIEndpointInput","APIInput","APIKeyDetails","AccessDetails","AccessToken","AccessTokenAccountType","AccessTokenUser","AccountType","AddTags","Annotations","BoundedRequest","Claims","CliEvent","EmbedAccessTokenResponse","EmbedToken","Filter","Filters","GenerateBumpType","GenerateOpenAPISpecDiff","GetNamespacesResponse","GetRevisionsResponse","GetTagsResponse","InteractionType","Level","Manifest","Namespace","OpenapiDiffBumpType","Organization","OrganizationAccountType","PreflightRequest","PreflightToken","Report","RequestMetadata","Revision","Schema","SchemaDiff","Security","Tag","TargetSDK","Type","UnboundedRequest","User","V2Descriptor","ValueChange","VersionMetadata","VersionMetadataInput","Workspaces"]
+__all__ = ["API","APIEndpoint","APIEndpointInput","APIInput","APIKeyDetails","AccessDetails","AccessToken","AccessTokenAccountType","AccessTokenUser","AccountType","AddTags","Annotations","BoundedRequest","Claims","CliEvent","EmbedAccessTokenResponse","EmbedToken","FeatureFlag","Filter","Filters","GenerateBumpType","GenerateOpenAPISpecDiff","GetNamespacesResponse","GetRevisionsResponse","GetTagsResponse","InteractionType","Level","Manifest","Namespace","OpenapiDiffBumpType","Organization","OrganizationAccountType","PreflightRequest","PreflightToken","Report","RequestMetadata","Revision","Schema","SchemaDiff","Security","Tag","TargetSDK","Type","UnboundedRequest","User","V2Descriptor","ValueChange","VersionMetadata","VersionMetadataInput","Workspaces"]

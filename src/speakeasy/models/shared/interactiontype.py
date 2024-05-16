@@ -3,6 +3,7 @@
 from __future__ import annotations
 from enum import Enum
 
+
 class InteractionType(str, Enum):
     r"""Type of interaction."""
     CI_EXEC = 'CI_EXEC'

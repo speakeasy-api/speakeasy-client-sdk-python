@@ -10,6 +10,7 @@ from enum import Enum
 from speakeasy import utils
 from typing import Optional
 
+
 class GenerateBumpType(str, Enum):
     r"""Bump type of the lock file (calculated semver delta, or a custom change (manual release))"""
     MAJOR = 'major'
@@ -17,6 +18,7 @@ class GenerateBumpType(str, Enum):
     PATCH = 'patch'
     CUSTOM = 'custom'
     NONE = 'none'
+
 
 class OpenapiDiffBumpType(str, Enum):
     r"""Bump type of the lock file (calculated semver delta, or a custom change (manual release))"""

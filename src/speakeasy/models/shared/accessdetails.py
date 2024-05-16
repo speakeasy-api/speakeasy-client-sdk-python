@@ -7,6 +7,7 @@ from enum import Enum
 from speakeasy import utils
 from typing import Optional
 
+
 class Level(str, Enum):
     ALLOWED = 'allowed'
     WARNING = 'warning'

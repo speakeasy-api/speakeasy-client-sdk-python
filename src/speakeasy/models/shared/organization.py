@@ -9,6 +9,7 @@ from enum import Enum
 from speakeasy import utils
 from typing import Optional
 
+
 class OrganizationAccountType(str, Enum):
     FREE = 'free'
     SCALE_UP = 'scale-up'

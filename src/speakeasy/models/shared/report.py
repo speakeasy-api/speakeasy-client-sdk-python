@@ -7,6 +7,7 @@ from enum import Enum
 from speakeasy import utils
 from typing import Optional
 
+
 class Type(str, Enum):
     LINTING = 'linting'
     CHANGES = 'changes'

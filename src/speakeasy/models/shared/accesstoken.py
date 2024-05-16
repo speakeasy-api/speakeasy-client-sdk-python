@@ -3,6 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import dateutil.parser
+from .featureflag import FeatureFlag
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
 from enum import Enum
@@ -25,6 +26,7 @@ class AccessTokenUser:
     email_verified: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email_verified'), 'exclude': lambda f: f is None }})
     id: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('id'), 'exclude': lambda f: f is None }})
     
+
 
 
 class AccessTokenAccountType(str, Enum):
@@ -51,6 +53,7 @@ class AccessToken:
     access_token: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('access_token') }})
     claims: Claims = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('claims') }})
     user: AccessTokenUser = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('user') }})
+    feature_flags: Optional[List[FeatureFlag]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('feature_flags'), 'exclude': lambda f: f is None }})
     workspaces: Optional[List[Workspaces]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('workspaces'), 'exclude': lambda f: f is None }})
     
 

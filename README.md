@@ -95,8 +95,15 @@ if res.apis is not None:
 * [get_request_from_event_log](docs/sdks/requests/README.md#get_request_from_event_log) - Get information about a particular request.
 * [query_event_log](docs/sdks/requests/README.md#query_event_log) - Query the event log to retrieve a list of requests.
 
+### [github](docs/sdks/github/README.md)
+
+* [github_check_access](docs/sdks/github/README.md#github_check_access)
+* [github_configure_target](docs/sdks/github/README.md#github_configure_target)
+* [github_trigger_action](docs/sdks/github/README.md#github_trigger_action)
+
 ### [organizations](docs/sdks/organizations/README.md)
 
+* [get_organization_usage](docs/sdks/organizations/README.md#get_organization_usage) - Get billing usage summary for a particular organization
 * [get_organizations](docs/sdks/organizations/README.md#get_organizations) - Get organizations for a user
 
 ### [reports](docs/sdks/reports/README.md)

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: f3ee86ef6f2ca4b47599522e63754f76
+  docChecksum: 5dd84d4ef84bb4a4426881954f176d08
   docVersion: 0.4.0 .
-  speakeasyVersion: 1.291.0
-  generationVersion: 2.332.4
-  releaseVersion: 5.9.0
-  configChecksum: 72d9a0b8b92ec65a14387c0ccd2cf858
+  speakeasyVersion: 1.293.1
+  generationVersion: 2.333.3
+  releaseVersion: 5.9.1
+  configChecksum: e16961395bd72b354338bd64a93ff0d8
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -38,6 +38,7 @@ generatedFiles:
   - src/speakeasy/artifacts.py
   - src/speakeasy/auth.py
   - src/speakeasy/requests.py
+  - src/speakeasy/github.py
   - src/speakeasy/organizations.py
   - src/speakeasy/reports.py
   - src/speakeasy/embeds.py
@@ -90,6 +91,10 @@ generatedFiles:
   - src/speakeasy/models/operations/generaterequestpostmancollection.py
   - src/speakeasy/models/operations/getrequestfromeventlog.py
   - src/speakeasy/models/operations/queryeventlog.py
+  - src/speakeasy/models/operations/githubcheckaccess.py
+  - src/speakeasy/models/operations/githubconfiguretarget.py
+  - src/speakeasy/models/operations/githubtriggeraction.py
+  - src/speakeasy/models/operations/getorganizationusage.py
   - src/speakeasy/models/operations/getorganizations.py
   - src/speakeasy/models/operations/getchangesreportsignedurl.py
   - src/speakeasy/models/operations/getlintingreportsignedurl.py
@@ -133,6 +138,10 @@ generatedFiles:
   - src/speakeasy/models/shared/requestmetadata.py
   - src/speakeasy/models/shared/filters.py
   - src/speakeasy/models/shared/filter_.py
+  - src/speakeasy/models/shared/githubconfiguretargetrequest.py
+  - src/speakeasy/models/shared/githubtriggeractionrequest.py
+  - src/speakeasy/models/shared/organizationusageresponse.py
+  - src/speakeasy/models/shared/organizationusage.py
   - src/speakeasy/models/shared/organization.py
   - src/speakeasy/models/shared/report.py
   - src/speakeasy/models/shared/embedaccesstokenresponse.py
@@ -225,6 +234,11 @@ generatedFiles:
   - docs/models/operations/getrequestfromeventlogresponse.md
   - docs/models/operations/queryeventlogrequest.md
   - docs/models/operations/queryeventlogresponse.md
+  - docs/models/operations/githubcheckaccessrequest.md
+  - docs/models/operations/githubcheckaccessresponse.md
+  - docs/models/operations/githubconfiguretargetresponse.md
+  - docs/models/operations/githubtriggeractionresponse.md
+  - docs/models/operations/getorganizationusageresponse.md
   - docs/models/operations/getorganizationsresponse.md
   - docs/models/operations/getchangesreportsignedurlrequest.md
   - docs/models/operations/getchangesreportsignedurlsignedaccess.md
@@ -292,6 +306,10 @@ generatedFiles:
   - docs/models/shared/requestmetadata.md
   - docs/models/shared/filters.md
   - docs/models/shared/filter_.md
+  - docs/models/shared/githubconfiguretargetrequest.md
+  - docs/models/shared/githubtriggeractionrequest.md
+  - docs/models/shared/organizationusageresponse.md
+  - docs/models/shared/organizationusage.md
   - docs/models/shared/organizationaccounttype.md
   - docs/models/shared/organization.md
   - docs/models/shared/type.md
@@ -314,6 +332,7 @@ generatedFiles:
   - docs/models/utils/retryconfig.md
   - docs/sdks/auth/README.md
   - docs/sdks/requests/README.md
+  - docs/sdks/github/README.md
   - docs/sdks/organizations/README.md
   - docs/sdks/reports/README.md
   - docs/sdks/embeds/README.md

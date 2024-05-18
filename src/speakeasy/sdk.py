@@ -7,6 +7,7 @@ from .artifacts import Artifacts
 from .auth import Auth
 from .embeds import Embeds
 from .events import Events
+from .github import Github
 from .metadata import Metadata
 from .organizations import Organizations
 from .reports import Reports
@@ -36,6 +37,7 @@ class Speakeasy:
     r"""REST APIs for managing Authentication"""
     requests: Requests
     r"""REST APIs for retrieving request information"""
+    github: Github
     organizations: Organizations
     reports: Reports
     r"""REST APIs for managing reports"""
@@ -113,6 +115,7 @@ class Speakeasy:
         self.artifacts = Artifacts(self.sdk_configuration)
         self.auth = Auth(self.sdk_configuration)
         self.requests = Requests(self.sdk_configuration)
+        self.github = Github(self.sdk_configuration)
         self.organizations = Organizations(self.sdk_configuration)
         self.reports = Reports(self.sdk_configuration)
         self.embeds = Embeds(self.sdk_configuration)

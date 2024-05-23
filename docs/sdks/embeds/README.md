@@ -28,6 +28,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.embeds.get_embed_access_token(request=operations.GetEmbedAccessTokenRequest())
 
 if res.embed_access_token_response is not None:
@@ -68,6 +69,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.embeds.get_valid_embed_access_tokens()
 
 if res.embed_tokens is not None:
@@ -101,6 +103,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.embeds.revoke_embed_access_token(request=operations.RevokeEmbedAccessTokenRequest(
     token_id='<value>',

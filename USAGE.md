@@ -9,6 +9,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.apis.get_apis(request=operations.GetApisRequest())
 
 if res.apis is not None:

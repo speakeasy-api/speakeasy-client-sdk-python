@@ -27,6 +27,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.artifacts.get_blob(request=operations.GetBlobRequest(
     digest='<value>',
     namespace_name='<value>',
@@ -71,6 +72,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.artifacts.get_manifest(request=operations.GetManifestRequest(
     namespace_name='<value>',
@@ -117,6 +119,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.artifacts.get_namespaces()
 
 if res.get_namespaces_response is not None:
@@ -148,6 +151,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.artifacts.get_revisions(request=operations.GetRevisionsRequest(
     namespace_name='<value>',
@@ -188,6 +192,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.artifacts.get_tags(request=operations.GetTagsRequest(
     namespace_name='<value>',
@@ -231,6 +236,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.artifacts.post_tags(request=operations.PostTagsRequest(
     namespace_name='<value>',
 ))
@@ -272,6 +278,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.artifacts.preflight(request=shared.PreflightRequest(
     namespace_name='<value>',

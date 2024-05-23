@@ -30,6 +30,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.apis.delete_api(request=operations.DeleteAPIRequest(
     api_id='<value>',
     version_id='<value>',
@@ -74,6 +75,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.apis.generate_open_api_spec(request=operations.GenerateOpenAPISpecRequest(
     api_id='<value>',
     version_id='<value>',
@@ -116,6 +118,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.apis.generate_postman_collection(request=operations.GeneratePostmanCollectionRequest(
     api_id='<value>',
@@ -161,6 +164,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.apis.get_all_api_versions(request=operations.GetAllAPIVersionsRequest(
     api_id='<value>',
 ))
@@ -204,6 +208,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.apis.get_apis(request=operations.GetApisRequest())
 
 if res.apis is not None:
@@ -244,6 +249,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.apis.upsert_api(request=operations.UpsertAPIRequest(
     api=shared.APIInput(

@@ -21,6 +21,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.github.github_check_access(request=operations.GithubCheckAccessRequest(
     org='<value>',
     repo='<value>',
@@ -62,6 +63,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.github.github_configure_target(request=shared.GithubConfigureTargetRequest(
     org='<value>',
     repo_name='<value>',
@@ -102,6 +104,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.github.github_trigger_action(request=shared.GithubTriggerActionRequest(
     gen_lock_id='<value>',

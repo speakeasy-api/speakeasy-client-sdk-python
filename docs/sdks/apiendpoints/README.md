@@ -32,6 +32,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.api_endpoints.delete_api_endpoint(request=operations.DeleteAPIEndpointRequest(
     api_endpoint_id='<value>',
     api_id='<value>',
@@ -76,6 +77,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.api_endpoints.find_api_endpoint(request=operations.FindAPIEndpointRequest(
     api_id='<value>',
@@ -122,6 +124,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.api_endpoints.generate_open_api_spec_for_api_endpoint(request=operations.GenerateOpenAPISpecForAPIEndpointRequest(
     api_endpoint_id='<value>',
     api_id='<value>',
@@ -165,6 +168,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.api_endpoints.generate_postman_collection_for_api_endpoint(request=operations.GeneratePostmanCollectionForAPIEndpointRequest(
     api_endpoint_id='<value>',
@@ -210,6 +214,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.api_endpoints.get_all_api_endpoints(request=operations.GetAllAPIEndpointsRequest(
     api_id='<value>',
 ))
@@ -251,6 +256,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.api_endpoints.get_all_for_version_api_endpoints(request=operations.GetAllForVersionAPIEndpointsRequest(
     api_id='<value>',
@@ -295,6 +301,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.api_endpoints.get_api_endpoint(request=operations.GetAPIEndpointRequest(
     api_endpoint_id='<value>',
     api_id='<value>',
@@ -338,6 +345,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.api_endpoints.upsert_api_endpoint(request=operations.UpsertAPIEndpointRequest(
     api_endpoint=shared.APIEndpointInput(

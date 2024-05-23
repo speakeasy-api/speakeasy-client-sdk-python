@@ -27,6 +27,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.metadata.delete_version_metadata(request=operations.DeleteVersionMetadataRequest(
     api_id='<value>',
     meta_key='<value>',
@@ -72,6 +73,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.metadata.get_version_metadata(request=operations.GetVersionMetadataRequest(
     api_id='<value>',
     version_id='<value>',
@@ -114,6 +116,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.metadata.insert_version_metadata(request=operations.InsertVersionMetadataRequest(
     version_metadata=shared.VersionMetadataInput(

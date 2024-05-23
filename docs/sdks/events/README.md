@@ -28,6 +28,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.events.get_workspace_events_by_target(request=operations.GetWorkspaceEventsByTargetRequest(
     target_id='<value>',
 ))
@@ -71,6 +72,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.events.get_workspace_targets(request=operations.GetWorkspaceTargetsRequest())
 
 if res.target_sdk_list is not None:
@@ -112,6 +114,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.events.post_workspace_events(request=operations.PostWorkspaceEventsRequest(
     request_body=[
@@ -168,6 +171,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.events.search_workspace_events(request=operations.SearchWorkspaceEventsRequest())
 

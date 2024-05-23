@@ -32,6 +32,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.schemas.delete_schema(request=operations.DeleteSchemaRequest(
     api_id='<value>',
     revision_id='<value>',
@@ -76,6 +77,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.schemas.download_schema(request=operations.DownloadSchemaRequest(
     api_id='<value>',
     version_id='<value>',
@@ -118,6 +120,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.schemas.download_schema_revision(request=operations.DownloadSchemaRevisionRequest(
     api_id='<value>',
@@ -164,6 +167,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.schemas.get_schema(request=operations.GetSchemaRequest(
     api_id='<value>',
     version_id='<value>',
@@ -206,6 +210,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.schemas.get_schema_diff(request=operations.GetSchemaDiffRequest(
     api_id='<value>',
@@ -253,6 +258,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.schemas.get_schema_revision(request=operations.GetSchemaRevisionRequest(
     api_id='<value>',
     revision_id='<value>',
@@ -298,6 +304,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.schemas.get_schemas(request=operations.GetSchemasRequest(
     api_id='<value>',
     version_id='<value>',
@@ -341,6 +348,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.schemas.register_schema(request=operations.RegisterSchemaRequest(
     request_body=operations.RegisterSchemaRequestBody(

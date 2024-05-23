@@ -27,6 +27,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.reports.get_changes_report_signed_url(request=operations.GetChangesReportSignedURLRequest(
     document_checksum='<value>',
 ))
@@ -69,6 +70,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.reports.get_linting_report_signed_url(request=operations.GetLintingReportSignedURLRequest(
     document_checksum='<value>',
 ))
@@ -110,6 +112,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.reports.upload_report(request=operations.UploadReportRequestBody(
     data=shared.Report(),

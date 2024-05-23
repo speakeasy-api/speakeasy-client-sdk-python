@@ -23,6 +23,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.apis.get_apis(request=operations.GetApisRequest())
 
 if res.apis is not None:
@@ -159,6 +160,7 @@ try:
     res = s.events.get_workspace_events_by_target(request=operations.GetWorkspaceEventsByTargetRequest(
     target_id='<value>',
 ))
+
 except errors.Error as e:
     # handle exception
     raise(e)
@@ -199,6 +201,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.apis.delete_api(request=operations.DeleteAPIRequest(
     api_id='<value>',
     version_id='<value>',
@@ -224,6 +227,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.apis.delete_api(request=operations.DeleteAPIRequest(
     api_id='<value>',
@@ -280,6 +284,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.apis.delete_api(request=operations.DeleteAPIRequest(
     api_id='<value>',
     version_id='<value>',
@@ -321,6 +326,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.events.get_workspace_events_by_target(request=operations.GetWorkspaceEventsByTargetRequest(
     target_id='<value>',
 ))
@@ -349,6 +355,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.auth.get_workspace_access(request=operations.GetWorkspaceAccessRequest(),
     RetryConfig('backoff', BackoffStrategy(1, 50, 1.1, 100), False))
 
@@ -370,6 +377,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.auth.get_workspace_access(request=operations.GetWorkspaceAccessRequest())
 

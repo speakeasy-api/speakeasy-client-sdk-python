@@ -24,6 +24,7 @@ from speakeasy.models import operations
 
 s = speakeasy.Speakeasy()
 
+
 res = s.auth.get_access_token(request=operations.GetAccessTokenRequest(
     workspace_id='<value>',
 ))
@@ -66,6 +67,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.auth.get_user()
 
 if res.user is not None:
@@ -99,6 +101,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.auth.get_workspace_access(request=operations.GetWorkspaceAccessRequest())
 
@@ -140,6 +143,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.auth.validate_api_key()
 

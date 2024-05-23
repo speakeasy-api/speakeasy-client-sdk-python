@@ -22,6 +22,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.organizations.get_organization_usage()
 
 if res.organization_usage_response is not None:
@@ -55,6 +56,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.organizations.get_organizations()
 

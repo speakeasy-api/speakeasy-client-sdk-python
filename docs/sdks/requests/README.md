@@ -28,6 +28,7 @@ s = speakeasy.Speakeasy(
     ),
 )
 
+
 res = s.requests.generate_request_postman_collection(request=operations.GenerateRequestPostmanCollectionRequest(
     request_id='<value>',
 ))
@@ -69,6 +70,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.requests.get_request_from_event_log(request=operations.GetRequestFromEventLogRequest(
     request_id='<value>',
@@ -112,6 +114,7 @@ s = speakeasy.Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
+
 
 res = s.requests.query_event_log(request=operations.QueryEventLogRequest())
 

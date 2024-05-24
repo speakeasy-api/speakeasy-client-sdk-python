@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: f85cf38fea71c78f79ca43b23b176863
+  docChecksum: c1d828d0e8ecf8fac6bec9e95f0ca086
   docVersion: 0.4.0 .
-  speakeasyVersion: 1.295.1
+  speakeasyVersion: 1.295.2
   generationVersion: 2.335.5
-  releaseVersion: 5.9.3
-  configChecksum: f214276d85bd4a6db884ad33029769bd
+  releaseVersion: 5.9.4
+  configChecksum: 4de1f6a9cb3447add984c35df9f5946a
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -94,6 +94,7 @@ generatedFiles:
   - src/speakeasy/models/operations/githubcheckaccess.py
   - src/speakeasy/models/operations/githubconfiguretarget.py
   - src/speakeasy/models/operations/githubtriggeraction.py
+  - src/speakeasy/models/operations/createfreetrial.py
   - src/speakeasy/models/operations/getorganizationusage.py
   - src/speakeasy/models/operations/getorganizations.py
   - src/speakeasy/models/operations/getchangesreportsignedurl.py
@@ -238,6 +239,7 @@ generatedFiles:
   - docs/models/operations/githubcheckaccessresponse.md
   - docs/models/operations/githubconfiguretargetresponse.md
   - docs/models/operations/githubtriggeractionresponse.md
+  - docs/models/operations/createfreetrialresponse.md
   - docs/models/operations/getorganizationusageresponse.md
   - docs/models/operations/getorganizationsresponse.md
   - docs/models/operations/getchangesreportsignedurlrequest.md

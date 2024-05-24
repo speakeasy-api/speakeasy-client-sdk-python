@@ -104,6 +104,7 @@ if res.apis is not None:
 
 ### [organizations](docs/sdks/organizations/README.md)
 
+* [create_free_trial](docs/sdks/organizations/README.md#create_free_trial) - Create a free trial for an organization
 * [get_organization_usage](docs/sdks/organizations/README.md#get_organization_usage) - Get billing usage summary for a particular organization
 * [get_organizations](docs/sdks/organizations/README.md#get_organizations) - Get organizations for a user
 

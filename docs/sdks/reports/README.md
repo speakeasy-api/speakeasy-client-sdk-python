@@ -118,7 +118,7 @@ res = s.reports.upload_report(request=operations.UploadReportRequestBody(
     data=shared.Report(),
     file=operations.File(
         content='0xA329C0ad85'.encode(),
-        file_name='sausages.m3a',
+        file_name='your_file_here',
     ),
 ))
 

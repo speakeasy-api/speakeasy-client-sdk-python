@@ -354,7 +354,7 @@ res = s.schemas.register_schema(request=operations.RegisterSchemaRequest(
     request_body=operations.RegisterSchemaRequestBody(
         file=operations.RegisterSchemaFile(
             content='0xCAFCA03e0e'.encode(),
-            file_name='bronze_table_blues.m2a',
+            file_name='your_file_here',
         ),
     ),
     api_id='<value>',

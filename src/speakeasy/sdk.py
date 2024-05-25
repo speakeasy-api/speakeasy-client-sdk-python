@@ -14,6 +14,7 @@ from .reports import Reports
 from .requests import Requests
 from .schemas import Schemas
 from .sdkconfiguration import SDKConfiguration
+from .suggest import Suggest
 from .utils.retries import RetryConfig
 from speakeasy import utils
 from speakeasy._hooks import SDKHooks
@@ -41,6 +42,8 @@ class Speakeasy:
     organizations: Organizations
     reports: Reports
     r"""REST APIs for managing reports"""
+    suggest: Suggest
+    r"""REST APIs for managing LLM OAS suggestions"""
     embeds: Embeds
     r"""REST APIs for managing embeds"""
     events: Events
@@ -118,5 +121,6 @@ class Speakeasy:
         self.github = Github(self.sdk_configuration)
         self.organizations = Organizations(self.sdk_configuration)
         self.reports = Reports(self.sdk_configuration)
+        self.suggest = Suggest(self.sdk_configuration)
         self.embeds = Embeds(self.sdk_configuration)
         self.events = Events(self.sdk_configuration)

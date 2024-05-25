@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: c1d828d0e8ecf8fac6bec9e95f0ca086
+  docChecksum: 8a861fbcf601580459816dcab1973d85
   docVersion: 0.4.0 .
-  speakeasyVersion: 1.295.2
-  generationVersion: 2.335.5
-  releaseVersion: 5.9.4
-  configChecksum: 4de1f6a9cb3447add984c35df9f5946a
+  speakeasyVersion: 1.296.1
+  generationVersion: 2.338.1
+  releaseVersion: 5.9.5
+  configChecksum: 5f14342b41503337cd11f18dcc9e1d83
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -41,6 +41,7 @@ generatedFiles:
   - src/speakeasy/github.py
   - src/speakeasy/organizations.py
   - src/speakeasy/reports.py
+  - src/speakeasy/suggest.py
   - src/speakeasy/embeds.py
   - src/speakeasy/events.py
   - src/speakeasy/sdk.py
@@ -100,6 +101,7 @@ generatedFiles:
   - src/speakeasy/models/operations/getchangesreportsignedurl.py
   - src/speakeasy/models/operations/getlintingreportsignedurl.py
   - src/speakeasy/models/operations/uploadreport.py
+  - src/speakeasy/models/operations/suggestoperationids.py
   - src/speakeasy/models/operations/getembedaccesstoken.py
   - src/speakeasy/models/operations/getvalidembedaccesstokens.py
   - src/speakeasy/models/operations/revokeembedaccesstoken.py
@@ -252,6 +254,13 @@ generatedFiles:
   - docs/models/operations/uploadreportrequestbody.md
   - docs/models/operations/uploadreportuploadedreport.md
   - docs/models/operations/uploadreportresponse.md
+  - docs/models/operations/depthstyle.md
+  - docs/models/operations/style.md
+  - docs/models/operations/opts.md
+  - docs/models/operations/schema.md
+  - docs/models/operations/suggestoperationidsrequestbody.md
+  - docs/models/operations/suggestoperationidssuggestion.md
+  - docs/models/operations/suggestoperationidsresponse.md
   - docs/models/operations/getembedaccesstokenrequest.md
   - docs/models/operations/getembedaccesstokenresponse.md
   - docs/models/operations/getvalidembedaccesstokensresponse.md
@@ -337,6 +346,7 @@ generatedFiles:
   - docs/sdks/github/README.md
   - docs/sdks/organizations/README.md
   - docs/sdks/reports/README.md
+  - docs/sdks/suggest/README.md
   - docs/sdks/embeds/README.md
   - docs/sdks/events/README.md
   - USAGE.md

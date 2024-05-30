@@ -162,7 +162,7 @@ class Auth:
             if global_retry_config:
                 retry_config = global_retry_config
             else:
-                retry_config = utils.RetryConfig('backoff', utils.BackoffStrategy(100, 2000, 1.5, 30000), True)
+                retry_config = utils.RetryConfig('backoff', utils.BackoffStrategy(100, 2000, 1.5, 60000), True)
 
         req = None
         def do_request():

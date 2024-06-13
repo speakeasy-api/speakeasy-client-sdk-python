@@ -4,10 +4,12 @@ sources:
     speakeasy-openapi:
         inputs:
             - location: https://docs.speakeasyapi.dev/openapi.yaml
+        registry:
+            location: registry.speakeasyapi.dev/speakeasy-self/speakeasy-self/speakeasy-openapi
 targets:
     speakeasy-client-sdk-python:
         target: python
         source: speakeasy-openapi
         publish:
             pypi:
-                 token: $pypi_token
+                token: $pypi_token

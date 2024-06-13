@@ -1,0 +1,32 @@
+speakeasyVersion: 1.306.0
+sources:
+    speakeasy-openapi:
+        sourceNamespace: speakeasy-openapi
+        sourceRevisionDigest: sha256:9b1d787d7b7b1d76c61c8d3a7ee337f893477177718a1dcc9c8a75d87c96b70c
+        sourceBlobDigest: sha256:365cff53ebcbec5d1ecffc67df61b8a43b991971905b30d5b5993081168ef961
+        tags:
+            - latest
+            - main
+targets:
+    speakeasy-client-sdk-python:
+        source: speakeasy-openapi
+        sourceNamespace: speakeasy-openapi
+        sourceRevisionDigest: sha256:9b1d787d7b7b1d76c61c8d3a7ee337f893477177718a1dcc9c8a75d87c96b70c
+        sourceBlobDigest: sha256:365cff53ebcbec5d1ecffc67df61b8a43b991971905b30d5b5993081168ef961
+        outLocation: /github/workspace/repo
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        speakeasy-openapi:
+            inputs:
+                - location: https://docs.speakeasyapi.dev/openapi.yaml
+            registry:
+                location: registry.speakeasyapi.dev/speakeasy-self/speakeasy-self/speakeasy-openapi
+    targets:
+        speakeasy-client-sdk-python:
+            target: python
+            source: speakeasy-openapi
+            publish:
+                pypi:
+                    token: $pypi_token

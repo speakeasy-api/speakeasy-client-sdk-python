@@ -5,8 +5,8 @@ management:
   docVersion: 0.4.0 .
   speakeasyVersion: 1.306.0
   generationVersion: 2.340.3
-  releaseVersion: 5.9.8
-  configChecksum: 00973171e664d682d0b496afedf6273c
+  releaseVersion: 5.9.9
+  configChecksum: 0728fb0f2bd28e5126a86d3c8f2cb103
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git

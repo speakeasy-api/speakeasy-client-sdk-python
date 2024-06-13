@@ -1,0 +1,10 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    speakeasy-openapi:
+        inputs:
+            - location: https://docs.speakeasyapi.dev/openapi.yaml
+targets:
+    speakeasy-client-sdk-python:
+        target: python
+        source: speakeasy-openapi

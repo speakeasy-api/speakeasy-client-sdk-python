@@ -4,6 +4,7 @@ from __future__ import annotations
 import dataclasses
 import requests as requests_http
 from ...models.shared import clievent as shared_clievent
+from ...models.shared import interactiontype as shared_interactiontype
 from typing import List, Optional
 
 
@@ -16,6 +17,10 @@ class SearchWorkspaceEventsGlobals:
 
 @dataclasses.dataclass
 class SearchWorkspaceEventsRequest:
+    generate_gen_lock_id: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'generate_gen_lock_id', 'style': 'form', 'explode': True }})
+    r"""A specific gen lock ID for the events."""
+    interaction_type: Optional[shared_interactiontype.InteractionType] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'interaction_type', 'style': 'form', 'explode': True }})
+    r"""Specified interaction type for events."""
     lint_report_digest: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'lint_report_digest', 'style': 'form', 'explode': True }})
     r"""Unique identifier of the lint report digest."""
     openapi_diff_report_digest: Optional[str] = dataclasses.field(default=None, metadata={'query_param': { 'field_name': 'openapi_diff_report_digest', 'style': 'form', 'explode': True }})

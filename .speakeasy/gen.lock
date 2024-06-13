@@ -3,10 +3,10 @@ id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
   docChecksum: 48caee63217cf42b334122c89dc04004
   docVersion: 0.4.0 .
-  speakeasyVersion: 1.306.0
-  generationVersion: 2.340.3
-  releaseVersion: 5.9.10
-  configChecksum: d2a915cd4eb0b7e3993b098cb40f0c2a
+  speakeasyVersion: 1.307.0
+  generationVersion: 2.342.0
+  releaseVersion: 5.9.11
+  configChecksum: 5c4941f0df4a7f260a07d151d775f22e
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -15,7 +15,7 @@ features:
   python:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
-    core: 4.6.9
+    core: 4.6.10
     deprecations: 2.81.1
     downloadStreams: 0.0.2
     examples: 2.81.3
@@ -45,8 +45,10 @@ generatedFiles:
   - src/speakeasy/embeds.py
   - src/speakeasy/events.py
   - src/speakeasy/sdk.py
+  - Makefile
   - py.typed
   - pylintrc
+  - scripts/publish.sh
   - setup.py
   - src/speakeasy/__init__.py
   - src/speakeasy/utils/__init__.py

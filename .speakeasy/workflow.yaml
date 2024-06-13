@@ -8,3 +8,6 @@ targets:
     speakeasy-client-sdk-python:
         target: python
         source: speakeasy-openapi
+        publish:
+            pypi:
+                 token: $pypi_token

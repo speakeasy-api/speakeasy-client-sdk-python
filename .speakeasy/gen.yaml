@@ -1,0 +1,12 @@
+configVersion: 2.0.0
+generation:
+  sdkClassName: speakeasy
+  usageSnippets:
+    optionalPropertyRendering: withExample
+python:
+  version: 5.9.16
+  author: Speakeasy
+  clientServerStatusCodesAsErrors: true
+  description: Speakeasy API Client SDK for Python
+  packageName: speakeasy-client-sdk-python
+  templateVersion: v2

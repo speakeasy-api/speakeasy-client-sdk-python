@@ -99,7 +99,9 @@ if res.apis is not None:
 ### [github](docs/sdks/github/README.md)
 
 * [github_check_access](docs/sdks/github/README.md#github_check_access)
+* [github_check_publishing_secrets](docs/sdks/github/README.md#github_check_publishing_secrets)
 * [github_configure_target](docs/sdks/github/README.md#github_configure_target)
+* [github_store_publishing_secrets](docs/sdks/github/README.md#github_store_publishing_secrets)
 * [github_trigger_action](docs/sdks/github/README.md#github_trigger_action)
 
 ### [organizations](docs/sdks/organizations/README.md)

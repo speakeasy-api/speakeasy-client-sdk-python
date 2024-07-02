@@ -13,3 +13,7 @@ targets:
         publish:
             pypi:
                 token: $pypi_token
+        codeSamples:
+            output: codeSamples.yaml
+            registry:
+                location: registry.speakeasyapi.dev/speakeasy-self/speakeasy-self/code-samples-python-speakeasy-client-sdk-python

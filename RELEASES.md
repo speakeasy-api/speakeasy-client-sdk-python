@@ -1717,3 +1717,13 @@ Based on:
 - [python v5.9.16] .
 ### Releases
 - [PyPI v5.9.16] https://pypi.org/project/speakeasy-client-sdk-python/5.9.16 - .
+
+## 2024-07-10 10:27:01
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.330.0 (2.361.10) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v5.10.1] .
+### Releases
+- [PyPI v5.10.1] https://pypi.org/project/speakeasy-client-sdk-python/5.10.1 - .

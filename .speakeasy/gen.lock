@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: 62de849b4a7c6afc8aa8d16b041d7861
+  docChecksum: e4cb9ecada8b35163db080ecaaf60fe3
   docVersion: 0.4.0 .
-  speakeasyVersion: internal
-  generationVersion: internal
-  releaseVersion: 5.10.0
-  configChecksum: 9258729c646fceda72d09c2237f588bd
+  speakeasyVersion: 1.330.0
+  generationVersion: 2.361.10
+  releaseVersion: 5.10.1
+  configChecksum: 1023da4f627eda0126581ce862792ecd
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git

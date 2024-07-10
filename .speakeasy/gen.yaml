@@ -1,0 +1,38 @@
+configVersion: 2.0.0
+generation:
+  sdkClassName: speakeasy
+  usageSnippets:
+    optionalPropertyRendering: withExample
+  fixes:
+    nameResolutionDec2023: false
+    parameterOrderingFeb2024: false
+    requestResponseComponentNamesFeb2024: false
+  auth:
+    oAuth2ClientCredentialsEnabled: false
+python:
+  version: 5.10.0
+  additionalDependencies:
+    dev: {}
+    main: {}
+  authors:
+    - Speakeasy
+  clientServerStatusCodesAsErrors: true
+  description: Speakeasy API Client SDK for Python
+  flattenGlobalSecurity: false
+  flattenRequests: false
+  imports:
+    option: openapi
+    paths:
+      callbacks: models/callbacks
+      errors: models/errors
+      operations: models/operations
+      shared: models/shared
+      webhooks: models/webhooks
+  inputModelSuffix: input
+  maxMethodParams: 0
+  methodArguments: require-security-and-request
+  outputModelSuffix: output
+  packageName: speakeasy-client-sdk-python
+  projectUrls: {}
+  responseFormat: envelope
+  templateVersion: v2

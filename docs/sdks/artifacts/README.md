@@ -1,11 +1,16 @@
 # Artifacts
 (*artifacts*)
 
+## Overview
+
+REST APIs for working with Registry artifacts
+
 ### Available Operations
 
 * [get_blob](#get_blob) - Get blob for a particular digest
 * [get_manifest](#get_manifest) - Get manifest for a particular reference
 * [get_namespaces](#get_namespaces) - Each namespace contains many revisions.
+* [get_oas_summary](#get_oas_summary)
 * [get_revisions](#get_revisions)
 * [get_tags](#get_tags)
 * [post_tags](#post_tags) - Add tags to an existing revision
@@ -18,22 +23,23 @@ Get blob for a particular digest
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.artifacts.get_blob(request=operations.GetBlobRequest(
-    digest='<value>',
-    namespace_name='<value>',
-    organization_slug='<value>',
-    workspace_slug='<value>',
-))
+res = s.artifacts.get_blob(request={
+    "digest": "<value>",
+    "namespace_name": "<value>",
+    "organization_slug": "<value>",
+    "workspace_slug": "<value>",
+})
 
 if res.blob is not None:
     # handle response
@@ -64,22 +70,23 @@ Get manifest for a particular reference
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.artifacts.get_manifest(request=operations.GetManifestRequest(
-    namespace_name='<value>',
-    organization_slug='<value>',
-    revision_reference='<value>',
-    workspace_slug='<value>',
-))
+res = s.artifacts.get_manifest(request={
+    "namespace_name": "<value>",
+    "organization_slug": "<value>",
+    "revision_reference": "<value>",
+    "workspace_slug": "<value>",
+})
 
 if res.manifest is not None:
     # handle response
@@ -110,12 +117,13 @@ Each namespace contains many revisions.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
@@ -138,24 +146,68 @@ if res.get_namespaces_response is not None:
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
+## get_oas_summary
+
+### Example Usage
+
+```python
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
+
+s = Speakeasy(
+    security=shared.Security(
+        api_key=os.getenv("API_KEY", ""),
+    ),
+)
+
+
+res = s.artifacts.get_oas_summary(request={
+    "namespace_name": "<value>",
+    "revision_reference": "<value>",
+})
+
+if res.oas_summary is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `request`                                                                          | [operations.GetOASSummaryRequest](../../models/operations/getoassummaryrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+
+
+### Response
+
+**[operations.GetOASSummaryResponse](../../models/operations/getoassummaryresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
 ## get_revisions
 
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.artifacts.get_revisions(request=operations.GetRevisionsRequest(
-    namespace_name='<value>',
-))
+res = s.artifacts.get_revisions(request={
+    "namespace_name": "<value>",
+})
 
 if res.get_revisions_response is not None:
     # handle response
@@ -184,19 +236,20 @@ if res.get_revisions_response is not None:
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.artifacts.get_tags(request=operations.GetTagsRequest(
-    namespace_name='<value>',
-))
+res = s.artifacts.get_tags(request={
+    "namespace_name": "<value>",
+})
 
 if res.get_tags_response is not None:
     # handle response
@@ -227,19 +280,20 @@ Add tags to an existing revision
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.artifacts.post_tags(request=operations.PostTagsRequest(
-    namespace_name='<value>',
-))
+res = s.artifacts.post_tags(request={
+    "namespace_name": "<value>",
+})
 
 if res is not None:
     # handle response
@@ -270,19 +324,20 @@ Get access token for communicating with OCI distribution endpoints
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.artifacts.preflight(request=shared.PreflightRequest(
-    namespace_name='<value>',
-))
+res = s.artifacts.preflight(request={
+    "namespace_name": "<value>",
+})
 
 if res.preflight_token is not None:
     # handle response

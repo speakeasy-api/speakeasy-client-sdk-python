@@ -19,17 +19,18 @@ Filters can be applied allowing views to be filtered to things like particular c
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.embeds.get_embed_access_token(request=operations.GetEmbedAccessTokenRequest())
+res = s.embeds.get_embed_access_token(request={})
 
 if res.embed_access_token_response is not None:
     # handle response
@@ -60,12 +61,13 @@ Get all valid embed access tokens for the current workspace.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
@@ -95,19 +97,20 @@ Revoke an embed access EmbedToken.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.embeds.revoke_embed_access_token(request=operations.RevokeEmbedAccessTokenRequest(
-    token_id='<value>',
-))
+res = s.embeds.revoke_embed_access_token(request={
+    "token_id": "<value>",
+})
 
 if res is not None:
     # handle response

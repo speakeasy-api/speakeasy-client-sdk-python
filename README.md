@@ -3,8 +3,14 @@
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+PIP
 ```bash
 pip install speakeasy-client-sdk-python
+```
+
+Poetry
+```bash
+poetry add speakeasy-client-sdk-python
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -14,22 +20,47 @@ pip install speakeasy-client-sdk-python
 ### Example
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+# Synchronous Example
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.apis.get_apis(request=operations.GetApisRequest())
+res = s.apis.get_apis(request={})
 
 if res.apis is not None:
     # handle response
     pass
+```
 
+</br>
+
+The same SDK client can also be used to make asychronous requests by importing asyncio.
+```python
+# Asynchronous Example
+import asyncio
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
+
+async def main():
+    s = Speakeasy(
+        security=shared.Security(
+            api_key=os.getenv("API_KEY", ""),
+        ),
+    )
+    res = await s.apis.get_apis_async(request={})
+    if res.apis is not None:
+        # handle response
+        pass
+
+asyncio.run(main())
 ```
 <!-- End SDK Example Usage [usage] -->
 
@@ -78,6 +109,7 @@ if res.apis is not None:
 * [get_blob](docs/sdks/artifacts/README.md#get_blob) - Get blob for a particular digest
 * [get_manifest](docs/sdks/artifacts/README.md#get_manifest) - Get manifest for a particular reference
 * [get_namespaces](docs/sdks/artifacts/README.md#get_namespaces) - Each namespace contains many revisions.
+* [get_oas_summary](docs/sdks/artifacts/README.md#get_oas_summary)
 * [get_revisions](docs/sdks/artifacts/README.md#get_revisions)
 * [get_tags](docs/sdks/artifacts/README.md#get_tags)
 * [post_tags](docs/sdks/artifacts/README.md#post_tags) - Add tags to an existing revision
@@ -98,11 +130,15 @@ if res.apis is not None:
 
 ### [github](docs/sdks/github/README.md)
 
-* [github_check_access](docs/sdks/github/README.md#github_check_access)
+* [check_access](docs/sdks/github/README.md#check_access)
+* [configure_code_samples](docs/sdks/github/README.md#configure_code_samples)
+* [configure_mintlify_repo](docs/sdks/github/README.md#configure_mintlify_repo)
+* [configure_target](docs/sdks/github/README.md#configure_target)
+* [fetch_publishing_p_rs](docs/sdks/github/README.md#fetch_publishing_p_rs)
+* [get_action](docs/sdks/github/README.md#get_action)
 * [github_check_publishing_secrets](docs/sdks/github/README.md#github_check_publishing_secrets)
-* [github_configure_target](docs/sdks/github/README.md#github_configure_target)
 * [github_store_publishing_secrets](docs/sdks/github/README.md#github_store_publishing_secrets)
-* [github_trigger_action](docs/sdks/github/README.md#github_trigger_action)
+* [trigger_action](docs/sdks/github/README.md#trigger_action)
 
 ### [organizations](docs/sdks/organizations/README.md)
 
@@ -118,7 +154,9 @@ if res.apis is not None:
 
 ### [suggest](docs/sdks/suggest/README.md)
 
+* [apply_operation_i_ds](docs/sdks/suggest/README.md#apply_operation_i_ds) - Apply operation ID suggestions and download result.
 * [suggest_operation_i_ds](docs/sdks/suggest/README.md#suggest_operation_i_ds) - Generate operation ID suggestions.
+* [suggest_operation_i_ds_registry](docs/sdks/suggest/README.md#suggest_operation_i_ds_registry) - Generate operation ID suggestions.
 
 ### [embeds](docs/sdks/embeds/README.md)
 
@@ -153,20 +191,21 @@ Handling errors in this SDK should largely match your expectations.  All operati
 ### Example
 
 ```python
-import speakeasy
-from speakeasy.models import errors, operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import errors, shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 res = None
 try:
-    res = s.events.get_workspace_events_by_target(request=operations.GetWorkspaceEventsByTargetRequest(
-    target_id='<value>',
-))
+    res = s.events.get_workspace_events_by_target(request={
+    "target_id": "<value>",
+})
 
 except errors.Error as e:
     # handle exception
@@ -198,21 +237,22 @@ You can override the default server globally by passing a server name to the `se
 #### Example
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     server="prod",
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.apis.delete_api(request=operations.DeleteAPIRequest(
-    api_id='<value>',
-    version_id='<value>',
-))
+res = s.apis.delete_api(request={
+    "api_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res is not None:
     # handle response
@@ -225,21 +265,22 @@ if res is not None:
 
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     server_url="https://api.prod.speakeasyapi.dev",
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.apis.delete_api(request=operations.DeleteAPIRequest(
-    api_id='<value>',
-    version_id='<value>',
-))
+res = s.apis.delete_api(request={
+    "api_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res is not None:
     # handle response
@@ -253,16 +294,81 @@ if res is not None:
 <!-- Start Custom HTTP Client [http-client] -->
 ## Custom HTTP Client
 
-The Python SDK makes API calls using the [requests](https://pypi.org/project/requests/) HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `requests.Session` object.
+The Python SDK makes API calls using the [httpx](https://www.python-httpx.org/) HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with your own HTTP client instance.
+Depending on whether you are using the sync or async version of the SDK, you can pass an instance of `HttpClient` or `AsyncHttpClient` respectively, which are Protocol's ensuring that the client has the necessary methods to make API calls.
+This allows you to wrap the client with your own custom logic, such as adding custom headers, logging, or error handling, or you can just pass an instance of `httpx.Client` or `httpx.AsyncClient` directly.
 
 For example, you could specify a header for every request that this sdk makes as follows:
 ```python
-import speakeasy
-import requests
+from speakeasy_client_sdk_python import Speakeasy
+import httpx
 
-http_client = requests.Session()
-http_client.headers.update({'x-custom-header': 'someValue'})
-s = speakeasy.Speakeasy(client=http_client)
+http_client = httpx.Client(headers={"x-custom-header": "someValue"})
+s = Speakeasy(client=http_client)
+```
+
+or you could wrap the client with your own custom logic:
+```python
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.httpclient import AsyncHttpClient
+import httpx
+
+class CustomClient(AsyncHttpClient):
+    client: AsyncHttpClient
+
+    def __init__(self, client: AsyncHttpClient):
+        self.client = client
+
+    async def send(
+        self,
+        request: httpx.Request,
+        *,
+        stream: bool = False,
+        auth: Union[
+            httpx._types.AuthTypes, httpx._client.UseClientDefault, None
+        ] = httpx.USE_CLIENT_DEFAULT,
+        follow_redirects: Union[
+            bool, httpx._client.UseClientDefault
+        ] = httpx.USE_CLIENT_DEFAULT,
+    ) -> httpx.Response:
+        request.headers["Client-Level-Header"] = "added by client"
+
+        return await self.client.send(
+            request, stream=stream, auth=auth, follow_redirects=follow_redirects
+        )
+
+    def build_request(
+        self,
+        method: str,
+        url: httpx._types.URLTypes,
+        *,
+        content: Optional[httpx._types.RequestContent] = None,
+        data: Optional[httpx._types.RequestData] = None,
+        files: Optional[httpx._types.RequestFiles] = None,
+        json: Optional[Any] = None,
+        params: Optional[httpx._types.QueryParamTypes] = None,
+        headers: Optional[httpx._types.HeaderTypes] = None,
+        cookies: Optional[httpx._types.CookieTypes] = None,
+        timeout: Union[
+            httpx._types.TimeoutTypes, httpx._client.UseClientDefault
+        ] = httpx.USE_CLIENT_DEFAULT,
+        extensions: Optional[httpx._types.RequestExtensions] = None,
+    ) -> httpx.Request:
+        return self.client.build_request(
+            method,
+            url,
+            content=content,
+            data=data,
+            files=files,
+            json=json,
+            params=params,
+            headers=headers,
+            cookies=cookies,
+            timeout=timeout,
+            extensions=extensions,
+        )
+
+s = Speakeasy(async_client=CustomClient(httpx.AsyncClient()))
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -282,20 +388,21 @@ This SDK supports the following security schemes globally:
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.apis.delete_api(request=operations.DeleteAPIRequest(
-    api_id='<value>',
-    version_id='<value>',
-))
+res = s.apis.delete_api(request={
+    "api_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res is not None:
     # handle response
@@ -309,7 +416,7 @@ if res is not None:
 
 A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `workspaceID` to `'<value>'` at SDK initialization and then you do not have to pass the same value on calls to operations like `get_workspace_events_by_target`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `workspaceID` to `"<value>"` at SDK initialization and then you do not have to pass the same value on calls to operations like `get_workspace_events_by_target`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
@@ -324,19 +431,20 @@ The following global parameter is available.
 ### Example
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.events.get_workspace_events_by_target(request=operations.GetWorkspaceEventsByTargetRequest(
-    target_id='<value>',
-))
+res = s.events.get_workspace_events_by_target(request={
+    "target_id": "<value>",
+})
 
 if res.cli_event_batch is not None:
     # handle response
@@ -352,19 +460,20 @@ Some of the endpoints in this SDK support retries. If you use the SDK without an
 
 To change the default retry strategy for a single API call, simply provide a `RetryConfig` object to the call:
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
 from speakeasy.utils import BackoffStrategy, RetryConfig
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.auth.get_workspace_access(request=operations.GetWorkspaceAccessRequest(),
-    RetryConfig('backoff', BackoffStrategy(1, 50, 1.1, 100), False))
+res = s.auth.get_workspace_access(request={},
+    RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False))
 
 if res.access_details is not None:
     # handle response
@@ -374,19 +483,20 @@ if res.access_details is not None:
 
 If you'd like to override the default retry strategy for all operations that support retries, you can use the `retry_config` optional parameter when initializing the SDK:
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
 from speakeasy.utils import BackoffStrategy, RetryConfig
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
-    retry_config=RetryConfig('backoff', BackoffStrategy(1, 50, 1.1, 100), False),
+s = Speakeasy(
+    retry_config=RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False),
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.auth.get_workspace_access(request=operations.GetWorkspaceAccessRequest())
+res = s.auth.get_workspace_access(request={})
 
 if res.access_details is not None:
     # handle response
@@ -394,6 +504,46 @@ if res.access_details is not None:
 
 ```
 <!-- End Retries [retries] -->
+
+<!-- Start File uploads [file-upload] -->
+## File uploads
+
+Certain SDK methods accept file objects as part of a request body or multi-part request. It is possible and typically recommended to upload files as a stream rather than reading the entire contents into memory. This avoids excessive memory consumption and potentially crashing with out-of-memory errors when working with very large files. The following example demonstrates how to attach a file stream to a request.
+
+> [!TIP]
+>
+> For endpoints that handle file uploads bytes arrays can also be used. However, using streams is recommended for large files.
+>
+
+```python
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
+
+s = Speakeasy(
+    security=shared.Security(
+        api_key=os.getenv("API_KEY", ""),
+    ),
+)
+
+
+res = s.schemas.register_schema(request={
+    "request_body": {
+        "file": {
+            "content": open("<file_path>", "rb"),
+            "file_name": "your_file_here",
+        },
+    },
+    "api_id": "<value>",
+    "version_id": "<value>",
+})
+
+if res is not None:
+    # handle response
+    pass
+
+```
+<!-- End File uploads [file-upload] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

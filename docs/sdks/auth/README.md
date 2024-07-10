@@ -19,15 +19,14 @@ Get or refresh an access token for the current workspace.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations
+from speakeasy_client_sdk_python import Speakeasy
 
-s = speakeasy.Speakeasy()
+s = Speakeasy()
 
 
-res = s.auth.get_access_token(request=operations.GetAccessTokenRequest(
-    workspace_id='<value>',
-))
+res = s.auth.get_access_token(request={
+    "workspace_id": "<value>",
+})
 
 if res.access_token is not None:
     # handle response
@@ -58,12 +57,13 @@ Get information about the current user.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
@@ -93,17 +93,18 @@ Checks if generation is permitted for a particular run of the CLI
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.auth.get_workspace_access(request=operations.GetWorkspaceAccessRequest())
+res = s.auth.get_workspace_access(request={})
 
 if res.access_details is not None:
     # handle response
@@ -135,12 +136,13 @@ Validate the current api key.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 

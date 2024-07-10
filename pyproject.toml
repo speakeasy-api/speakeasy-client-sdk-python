@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "speakeasy-client-sdk-python"
+version = "5.10.0"
+description = "Speakeasy API Client SDK for Python"
+authors = ["Speakeasy",]
+readme = "README.md"
+repository = "https://github.com/speakeasy-api/speakeasy-client-sdk-python.git"
+packages = [
+    { include = "speakeasy_client_sdk_python", from = "src" }
+]
+include = ["py.typed"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+httpx = "^0.27.0"
+jsonpath-python = "^1.0.6"
+pydantic = "~2.8.2"
+python-dateutil = "^2.9.0.post0"
+typing-inspect = "^0.9.0"
+
+[tool.poetry.group.dev.dependencies]
+pylint = "==3.2.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]

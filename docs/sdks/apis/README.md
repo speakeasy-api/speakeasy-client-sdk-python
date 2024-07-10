@@ -21,20 +21,21 @@ Delete a particular version of an Api. The will also delete all associated ApiEn
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.apis.delete_api(request=operations.DeleteAPIRequest(
-    api_id='<value>',
-    version_id='<value>',
-))
+res = s.apis.delete_api(request={
+    "api_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res is not None:
     # handle response
@@ -66,20 +67,21 @@ Returns the original document and the newly generated document allowing a diff t
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.apis.generate_open_api_spec(request=operations.GenerateOpenAPISpecRequest(
-    api_id='<value>',
-    version_id='<value>',
-))
+res = s.apis.generate_open_api_spec(request={
+    "api_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res.generate_open_api_spec_diff is not None:
     # handle response
@@ -110,20 +112,21 @@ Generates a postman collection containing all endpoints for a particular API. In
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.apis.generate_postman_collection(request=operations.GeneratePostmanCollectionRequest(
-    api_id='<value>',
-    version_id='<value>',
-))
+res = s.apis.generate_postman_collection(request={
+    "api_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res.postman_collection is not None:
     # handle response
@@ -155,19 +158,20 @@ Supports filtering the versions based on metadata attributes.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.apis.get_all_api_versions(request=operations.GetAllAPIVersionsRequest(
-    api_id='<value>',
-))
+res = s.apis.get_all_api_versions(request={
+    "api_id": "<value>",
+})
 
 if res.apis is not None:
     # handle response
@@ -199,17 +203,18 @@ Supports filtering the APIs based on metadata attributes.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.apis.get_apis(request=operations.GetApisRequest())
+res = s.apis.get_apis(request={})
 
 if res.apis is not None:
     # handle response
@@ -241,24 +246,25 @@ If the Api exists, it will be updated.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.apis.upsert_api(request=operations.UpsertAPIRequest(
-    api=shared.APIInput(
-        api_id='<value>',
-        description='Synchronised 5th generation knowledge user',
-        version_id='<value>',
-    ),
-    api_id='<value>',
-))
+res = s.apis.upsert_api(request={
+    "api": {
+        "api_id": "<value>",
+        "description": "Synchronised 5th generation knowledge user",
+        "version_id": "<value>",
+    },
+    "api_id": "<value>",
+})
 
 if res.api is not None:
     # handle response

@@ -23,21 +23,22 @@ Delete a particular schema revision for an Api.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.schemas.delete_schema(request=operations.DeleteSchemaRequest(
-    api_id='<value>',
-    revision_id='<value>',
-    version_id='<value>',
-))
+res = s.schemas.delete_schema(request={
+    "api_id": "<value>",
+    "revision_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res is not None:
     # handle response
@@ -68,20 +69,21 @@ Download the latest schema for a particular apiID.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.schemas.download_schema(request=operations.DownloadSchemaRequest(
-    api_id='<value>',
-    version_id='<value>',
-))
+res = s.schemas.download_schema(request={
+    "api_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res.two_hundred_application_json_schema is not None:
     # handle response
@@ -112,21 +114,22 @@ Download a particular schema revision for an Api.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.schemas.download_schema_revision(request=operations.DownloadSchemaRevisionRequest(
-    api_id='<value>',
-    revision_id='<value>',
-    version_id='<value>',
-))
+res = s.schemas.download_schema_revision(request={
+    "api_id": "<value>",
+    "revision_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res.two_hundred_application_json_schema is not None:
     # handle response
@@ -158,20 +161,21 @@ This won't include the schema itself, that can be retrieved via the downloadSche
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.schemas.get_schema(request=operations.GetSchemaRequest(
-    api_id='<value>',
-    version_id='<value>',
-))
+res = s.schemas.get_schema(request={
+    "api_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res.schema is not None:
     # handle response
@@ -202,22 +206,23 @@ Get a diff of two schema revisions for an Api.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.schemas.get_schema_diff(request=operations.GetSchemaDiffRequest(
-    api_id='<value>',
-    base_revision_id='<value>',
-    target_revision_id='<value>',
-    version_id='<value>',
-))
+res = s.schemas.get_schema_diff(request={
+    "api_id": "<value>",
+    "base_revision_id": "<value>",
+    "target_revision_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res.schema_diff is not None:
     # handle response
@@ -249,21 +254,22 @@ This won't include the schema itself, that can be retrieved via the downloadSche
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.schemas.get_schema_revision(request=operations.GetSchemaRevisionRequest(
-    api_id='<value>',
-    revision_id='<value>',
-    version_id='<value>',
-))
+res = s.schemas.get_schema_revision(request={
+    "api_id": "<value>",
+    "revision_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res.schema is not None:
     # handle response
@@ -295,20 +301,21 @@ This won't include the schemas themselves, they can be retrieved via the downloa
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.schemas.get_schemas(request=operations.GetSchemasRequest(
-    api_id='<value>',
-    version_id='<value>',
-))
+res = s.schemas.get_schemas(request={
+    "api_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res.classes is not None:
     # handle response
@@ -340,26 +347,27 @@ This will be used to populate ApiEndpoints and used as a base for any schema gen
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.schemas.register_schema(request=operations.RegisterSchemaRequest(
-    request_body=operations.RegisterSchemaRequestBody(
-        file=operations.RegisterSchemaFile(
-            content='0xCAFCA03e0e'.encode(),
-            file_name='your_file_here',
-        ),
-    ),
-    api_id='<value>',
-    version_id='<value>',
-))
+res = s.schemas.register_schema(request={
+    "request_body": {
+        "file": {
+            "content": open("<file_path>", "rb"),
+            "file_name": "your_file_here",
+        },
+    },
+    "api_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res is not None:
     # handle response

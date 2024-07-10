@@ -3,31 +3,170 @@
 
 ### Available Operations
 
-* [github_check_access](#github_check_access)
+* [check_access](#check_access)
+* [configure_code_samples](#configure_code_samples)
+* [configure_mintlify_repo](#configure_mintlify_repo)
+* [configure_target](#configure_target)
+* [fetch_publishing_p_rs](#fetch_publishing_p_rs)
+* [get_action](#get_action)
 * [github_check_publishing_secrets](#github_check_publishing_secrets)
-* [github_configure_target](#github_configure_target)
 * [github_store_publishing_secrets](#github_store_publishing_secrets)
-* [github_trigger_action](#github_trigger_action)
+* [trigger_action](#trigger_action)
 
-## github_check_access
+## check_access
 
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.github.github_check_access(request=operations.GithubCheckAccessRequest(
-    org='<value>',
-    repo='<value>',
-))
+res = s.github.check_access(request={
+    "org": "<value>",
+    "repo": "<value>",
+})
+
+if res is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `request`                                                                      | [operations.CheckAccessRequest](../../models/operations/checkaccessrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+
+
+### Response
+
+**[operations.CheckAccessResponse](../../models/operations/checkaccessresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## configure_code_samples
+
+### Example Usage
+
+```python
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
+
+s = Speakeasy(
+    security=shared.Security(
+        api_key=os.getenv("API_KEY", ""),
+    ),
+)
+
+
+res = s.github.configure_code_samples(request={
+    "org": "<value>",
+    "repo": "<value>",
+    "target_name": "<value>",
+})
+
+if res.github_configure_code_samples_response is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `request`                                                                                            | [shared.GithubConfigureCodeSamplesRequest](../../models/shared/githubconfigurecodesamplesrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+
+
+### Response
+
+**[operations.ConfigureCodeSamplesResponse](../../models/operations/configurecodesamplesresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## configure_mintlify_repo
+
+### Example Usage
+
+```python
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
+
+s = Speakeasy(
+    security=shared.Security(
+        api_key=os.getenv("API_KEY", ""),
+    ),
+)
+
+
+res = s.github.configure_mintlify_repo(request={
+    "input": "<value>",
+    "org": "<value>",
+    "overlays": [
+        "<value>",
+    ],
+    "repo": "<value>",
+})
+
+if res is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `request`                                                                                              | [shared.GithubConfigureMintlifyRepoRequest](../../models/shared/githubconfiguremintlifyreporequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
+
+
+### Response
+
+**[operations.ConfigureMintlifyRepoResponse](../../models/operations/configuremintlifyreporesponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## configure_target
+
+### Example Usage
+
+```python
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
+
+s = Speakeasy(
+    security=shared.Security(
+        api_key=os.getenv("API_KEY", ""),
+    ),
+)
+
+
+res = s.github.configure_target(request={
+    "org": "<value>",
+    "repo_name": "<value>",
+})
 
 if res is not None:
     # handle response
@@ -39,12 +178,99 @@ if res is not None:
 
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `request`                                                                                  | [operations.GithubCheckAccessRequest](../../models/operations/githubcheckaccessrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `request`                                                                                  | [shared.GithubConfigureTargetRequest](../../models/shared/githubconfiguretargetrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 
 
 ### Response
 
-**[operations.GithubCheckAccessResponse](../../models/operations/githubcheckaccessresponse.md)**
+**[operations.ConfigureTargetResponse](../../models/operations/configuretargetresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## fetch_publishing_p_rs
+
+### Example Usage
+
+```python
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
+
+s = Speakeasy(
+    security=shared.Security(
+        api_key=os.getenv("API_KEY", ""),
+    ),
+)
+
+
+res = s.github.fetch_publishing_p_rs(request={
+    "generate_gen_lock_id": "<value>",
+    "org": "<value>",
+    "repo": "<value>",
+})
+
+if res.github_publishing_pr_response is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `request`                                                                                    | [operations.FetchPublishingPRsRequest](../../models/operations/fetchpublishingprsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+
+
+### Response
+
+**[operations.FetchPublishingPRsResponse](../../models/operations/fetchpublishingprsresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4xx-5xx         | */*             |
+
+## get_action
+
+### Example Usage
+
+```python
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
+
+s = Speakeasy(
+    security=shared.Security(
+        api_key=os.getenv("API_KEY", ""),
+    ),
+)
+
+
+res = s.github.get_action(request={
+    "org": "<value>",
+    "repo": "<value>",
+})
+
+if res.github_get_action_response is not None:
+    # handle response
+    pass
+
+```
+
+### Parameters
+
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `request`                                                                  | [operations.GetActionRequest](../../models/operations/getactionrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+
+
+### Response
+
+**[operations.GetActionResponse](../../models/operations/getactionresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -56,19 +282,20 @@ if res is not None:
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.github.github_check_publishing_secrets(request=operations.GithubCheckPublishingSecretsRequest(
-    generate_gen_lock_id='<value>',
-))
+res = s.github.github_check_publishing_secrets(request={
+    "generate_gen_lock_id": "<value>",
+})
 
 if res.github_missing_publishing_secrets_response is not None:
     # handle response
@@ -92,66 +319,25 @@ if res.github_missing_publishing_secrets_response is not None:
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## github_configure_target
-
-### Example Usage
-
-```python
-import speakeasy
-from speakeasy.models import shared
-
-s = speakeasy.Speakeasy(
-    security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
-    ),
-)
-
-
-res = s.github.github_configure_target(request=shared.GithubConfigureTargetRequest(
-    org='<value>',
-    repo_name='<value>',
-))
-
-if res is not None:
-    # handle response
-    pass
-
-```
-
-### Parameters
-
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `request`                                                                                  | [shared.GithubConfigureTargetRequest](../../models/shared/githubconfiguretargetrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
-
-
-### Response
-
-**[operations.GithubConfigureTargetResponse](../../models/operations/githubconfiguretargetresponse.md)**
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
-
 ## github_store_publishing_secrets
 
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.github.github_store_publishing_secrets(request=shared.GithubStorePublishingSecretsRequest(
-    generate_gen_lock_id='<value>',
-))
+res = s.github.github_store_publishing_secrets(request={
+    "generate_gen_lock_id": "<value>",
+})
 
 if res is not None:
     # handle response
@@ -175,26 +361,27 @@ if res is not None:
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
 
-## github_trigger_action
+## trigger_action
 
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.github.github_trigger_action(request=shared.GithubTriggerActionRequest(
-    gen_lock_id='<value>',
-    org='<value>',
-    repo_name='<value>',
-))
+res = s.github.trigger_action(request={
+    "gen_lock_id": "<value>",
+    "org": "<value>",
+    "repo_name": "<value>",
+})
 
 if res is not None:
     # handle response
@@ -211,7 +398,7 @@ if res is not None:
 
 ### Response
 
-**[operations.GithubTriggerActionResponse](../../models/operations/githubtriggeractionresponse.md)**
+**[operations.TriggerActionResponse](../../models/operations/triggeractionresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

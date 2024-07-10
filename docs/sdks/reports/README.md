@@ -18,19 +18,20 @@ Get the signed access url for the change reports for a particular document.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.reports.get_changes_report_signed_url(request=operations.GetChangesReportSignedURLRequest(
-    document_checksum='<value>',
-))
+res = s.reports.get_changes_report_signed_url(request={
+    "document_checksum": "<value>",
+})
 
 if res.signed_access is not None:
     # handle response
@@ -61,19 +62,20 @@ Get the signed access url for the linting reports for a particular document.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.reports.get_linting_report_signed_url(request=operations.GetLintingReportSignedURLRequest(
-    document_checksum='<value>',
-))
+res = s.reports.get_linting_report_signed_url(request={
+    "document_checksum": "<value>",
+})
 
 if res.signed_access is not None:
     # handle response
@@ -104,23 +106,24 @@ Upload a report.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.reports.upload_report(request=operations.UploadReportRequestBody(
-    data=shared.Report(),
-    file=operations.File(
-        content='0xA329C0ad85'.encode(),
-        file_name='your_file_here',
-    ),
-))
+res = s.reports.upload_report(request={
+    "data": {},
+    "file": {
+        "content": open("<file_path>", "rb"),
+        "file_name": "your_file_here",
+    },
+})
 
 if res.uploaded_report is not None:
     # handle response

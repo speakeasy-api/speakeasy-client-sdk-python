@@ -1,170 +1,203 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: faf7375f0e20304e1fb56c4a4b633e29
+  docChecksum: 62de849b4a7c6afc8aa8d16b041d7861
   docVersion: 0.4.0 .
-  speakeasyVersion: 1.308.2
-  generationVersion: 2.342.6
-  releaseVersion: 5.9.16
-  configChecksum: cc3fd0ac9979f80bcf018648a97209cb
+  speakeasyVersion: internal
+  generationVersion: internal
+  releaseVersion: 5.10.0
+  configChecksum: 9258729c646fceda72d09c2237f588bd
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   published: true
 features:
   python:
-    acceptHeaders: 2.81.2
+    acceptHeaders: 0.1.0
     additionalDependencies: 0.1.0
-    core: 4.6.11
-    deprecations: 2.81.1
-    downloadStreams: 0.0.2
-    examples: 2.81.3
-    globalSecurity: 2.83.5
+    core: 0.2.11
+    deprecations: 0.1.1
+    downloadStreams: 0.1.0
+    examples: 0.1.0
+    globalSecurity: 0.1.0
     globalSecurityCallbacks: 0.1.0
-    globalServerURLs: 2.82.2
-    globals: 2.82.1
-    inputOutputModels: 2.83.1
+    globalServerURLs: 0.1.0
+    globals: 0.1.0
+    inputOutputModels: 0.1.0
+    multipartFileContentType: 0.1.0
     nullables: 0.1.0
     responseFormat: 0.1.0
-    retries: 2.82.2
+    retries: 0.1.0
     sdkHooks: 0.1.0
-    serverIDs: 2.81.1
+    serverIDs: 0.1.0
+    uploadStreams: 0.1.0
 generatedFiles:
-  - src/speakeasy/sdkconfiguration.py
-  - src/speakeasy/apis.py
-  - src/speakeasy/apiendpoints.py
-  - src/speakeasy/metadata.py
-  - src/speakeasy/schemas.py
-  - src/speakeasy/artifacts.py
-  - src/speakeasy/auth.py
-  - src/speakeasy/requests.py
-  - src/speakeasy/github.py
-  - src/speakeasy/organizations.py
-  - src/speakeasy/reports.py
-  - src/speakeasy/suggest.py
-  - src/speakeasy/embeds.py
-  - src/speakeasy/events.py
-  - src/speakeasy/sdk.py
-  - Makefile
+  - src/speakeasy_client_sdk_python/sdkconfiguration.py
+  - src/speakeasy_client_sdk_python/apis.py
+  - src/speakeasy_client_sdk_python/apiendpoints.py
+  - src/speakeasy_client_sdk_python/metadata.py
+  - src/speakeasy_client_sdk_python/schemas.py
+  - src/speakeasy_client_sdk_python/artifacts.py
+  - src/speakeasy_client_sdk_python/auth.py
+  - src/speakeasy_client_sdk_python/requests.py
+  - src/speakeasy_client_sdk_python/github.py
+  - src/speakeasy_client_sdk_python/organizations.py
+  - src/speakeasy_client_sdk_python/reports.py
+  - src/speakeasy_client_sdk_python/suggest.py
+  - src/speakeasy_client_sdk_python/embeds.py
+  - src/speakeasy_client_sdk_python/events.py
+  - src/speakeasy_client_sdk_python/sdk.py
   - py.typed
   - pylintrc
+  - pyproject.toml
   - scripts/publish.sh
-  - setup.py
-  - src/speakeasy/__init__.py
-  - src/speakeasy/utils/__init__.py
-  - src/speakeasy/utils/retries.py
-  - src/speakeasy/utils/utils.py
-  - src/speakeasy/models/errors/sdkerror.py
-  - src/speakeasy/models/operations/deleteapi.py
-  - src/speakeasy/models/operations/generateopenapispec.py
-  - src/speakeasy/models/operations/generatepostmancollection.py
-  - src/speakeasy/models/operations/getallapiversions.py
-  - src/speakeasy/models/operations/getapis.py
-  - src/speakeasy/models/operations/upsertapi.py
-  - src/speakeasy/models/operations/deleteapiendpoint.py
-  - src/speakeasy/models/operations/findapiendpoint.py
-  - src/speakeasy/models/operations/generateopenapispecforapiendpoint.py
-  - src/speakeasy/models/operations/generatepostmancollectionforapiendpoint.py
-  - src/speakeasy/models/operations/getallapiendpoints.py
-  - src/speakeasy/models/operations/getallforversionapiendpoints.py
-  - src/speakeasy/models/operations/getapiendpoint.py
-  - src/speakeasy/models/operations/upsertapiendpoint.py
-  - src/speakeasy/models/operations/deleteversionmetadata.py
-  - src/speakeasy/models/operations/getversionmetadata.py
-  - src/speakeasy/models/operations/insertversionmetadata.py
-  - src/speakeasy/models/operations/deleteschema.py
-  - src/speakeasy/models/operations/downloadschema.py
-  - src/speakeasy/models/operations/downloadschemarevision.py
-  - src/speakeasy/models/operations/getschema.py
-  - src/speakeasy/models/operations/getschemadiff.py
-  - src/speakeasy/models/operations/getschemarevision.py
-  - src/speakeasy/models/operations/getschemas.py
-  - src/speakeasy/models/operations/registerschema.py
-  - src/speakeasy/models/operations/getblob.py
-  - src/speakeasy/models/operations/getmanifest.py
-  - src/speakeasy/models/operations/getnamespaces.py
-  - src/speakeasy/models/operations/getrevisions.py
-  - src/speakeasy/models/operations/gettags.py
-  - src/speakeasy/models/operations/posttags.py
-  - src/speakeasy/models/operations/preflight.py
-  - src/speakeasy/models/operations/getaccesstoken.py
-  - src/speakeasy/models/operations/getuser.py
-  - src/speakeasy/models/operations/getworkspaceaccess.py
-  - src/speakeasy/models/operations/validateapikey.py
-  - src/speakeasy/models/operations/generaterequestpostmancollection.py
-  - src/speakeasy/models/operations/getrequestfromeventlog.py
-  - src/speakeasy/models/operations/queryeventlog.py
-  - src/speakeasy/models/operations/githubcheckaccess.py
-  - src/speakeasy/models/operations/githubcheckpublishingsecrets.py
-  - src/speakeasy/models/operations/githubconfiguretarget.py
-  - src/speakeasy/models/operations/githubstorepublishingsecrets.py
-  - src/speakeasy/models/operations/githubtriggeraction.py
-  - src/speakeasy/models/operations/createfreetrial.py
-  - src/speakeasy/models/operations/getorganizationusage.py
-  - src/speakeasy/models/operations/getorganizations.py
-  - src/speakeasy/models/operations/getchangesreportsignedurl.py
-  - src/speakeasy/models/operations/getlintingreportsignedurl.py
-  - src/speakeasy/models/operations/uploadreport.py
-  - src/speakeasy/models/operations/suggestoperationids.py
-  - src/speakeasy/models/operations/getembedaccesstoken.py
-  - src/speakeasy/models/operations/getvalidembedaccesstokens.py
-  - src/speakeasy/models/operations/revokeembedaccesstoken.py
-  - src/speakeasy/models/operations/getworkspaceeventsbytarget.py
-  - src/speakeasy/models/operations/getworkspacetargets.py
-  - src/speakeasy/models/operations/postworkspaceevents.py
-  - src/speakeasy/models/operations/searchworkspaceevents.py
-  - src/speakeasy/models/errors/error.py
-  - src/speakeasy/models/shared/generateopenapispecdiff.py
-  - src/speakeasy/models/shared/api.py
-  - src/speakeasy/models/shared/api_input.py
-  - src/speakeasy/models/shared/apiendpoint.py
-  - src/speakeasy/models/shared/apiendpoint_input.py
-  - src/speakeasy/models/shared/versionmetadata.py
-  - src/speakeasy/models/shared/versionmetadata_input.py
-  - src/speakeasy/models/shared/schema.py
-  - src/speakeasy/models/shared/schemadiff.py
-  - src/speakeasy/models/shared/manifest.py
-  - src/speakeasy/models/shared/v2descriptor.py
-  - src/speakeasy/models/shared/annotations.py
-  - src/speakeasy/models/shared/getnamespacesresponse.py
-  - src/speakeasy/models/shared/namespace.py
-  - src/speakeasy/models/shared/getrevisionsresponse.py
-  - src/speakeasy/models/shared/revision.py
-  - src/speakeasy/models/shared/gettagsresponse.py
-  - src/speakeasy/models/shared/tag.py
-  - src/speakeasy/models/shared/addtags.py
-  - src/speakeasy/models/shared/preflighttoken.py
-  - src/speakeasy/models/shared/preflightrequest.py
-  - src/speakeasy/models/shared/accesstoken.py
-  - src/speakeasy/models/shared/featureflag.py
-  - src/speakeasy/models/shared/user.py
-  - src/speakeasy/models/shared/accessdetails.py
-  - src/speakeasy/models/shared/apikeydetails.py
-  - src/speakeasy/models/shared/unboundedrequest.py
-  - src/speakeasy/models/shared/boundedrequest.py
-  - src/speakeasy/models/shared/requestmetadata.py
-  - src/speakeasy/models/shared/filters.py
-  - src/speakeasy/models/shared/filter_.py
-  - src/speakeasy/models/shared/githubmissingpublishingsecretsresponse.py
-  - src/speakeasy/models/shared/githubconfiguretargetrequest.py
-  - src/speakeasy/models/shared/githubstorepublishingsecretsrequest.py
-  - src/speakeasy/models/shared/githubtriggeractionrequest.py
-  - src/speakeasy/models/shared/organizationusageresponse.py
-  - src/speakeasy/models/shared/organizationusage.py
-  - src/speakeasy/models/shared/organization.py
-  - src/speakeasy/models/shared/report.py
-  - src/speakeasy/models/shared/embedaccesstokenresponse.py
-  - src/speakeasy/models/shared/embedtoken.py
-  - src/speakeasy/models/shared/clievent.py
-  - src/speakeasy/models/shared/interactiontype.py
-  - src/speakeasy/models/shared/targetsdk.py
-  - src/speakeasy/models/shared/security.py
-  - src/speakeasy/models/internal/globals.py
-  - src/speakeasy/models/__init__.py
-  - src/speakeasy/models/errors/__init__.py
-  - src/speakeasy/models/operations/__init__.py
-  - src/speakeasy/models/shared/__init__.py
-  - src/speakeasy/models/internal/__init__.py
+  - src/speakeasy_client_sdk_python/__init__.py
+  - src/speakeasy_client_sdk_python/basesdk.py
+  - src/speakeasy_client_sdk_python/httpclient.py
+  - src/speakeasy_client_sdk_python/types/__init__.py
+  - src/speakeasy_client_sdk_python/types/basemodel.py
+  - src/speakeasy_client_sdk_python/utils/__init__.py
+  - src/speakeasy_client_sdk_python/utils/enums.py
+  - src/speakeasy_client_sdk_python/utils/eventstreaming.py
+  - src/speakeasy_client_sdk_python/utils/forms.py
+  - src/speakeasy_client_sdk_python/utils/headers.py
+  - src/speakeasy_client_sdk_python/utils/metadata.py
+  - src/speakeasy_client_sdk_python/utils/queryparams.py
+  - src/speakeasy_client_sdk_python/utils/requestbodies.py
+  - src/speakeasy_client_sdk_python/utils/retries.py
+  - src/speakeasy_client_sdk_python/utils/security.py
+  - src/speakeasy_client_sdk_python/utils/serializers.py
+  - src/speakeasy_client_sdk_python/utils/url.py
+  - src/speakeasy_client_sdk_python/utils/values.py
+  - src/speakeasy_client_sdk_python/models/errors/sdkerror.py
+  - src/speakeasy_client_sdk_python/models/operations/deleteapi.py
+  - src/speakeasy_client_sdk_python/models/operations/generateopenapispec.py
+  - src/speakeasy_client_sdk_python/models/operations/generatepostmancollection.py
+  - src/speakeasy_client_sdk_python/models/operations/getallapiversions.py
+  - src/speakeasy_client_sdk_python/models/operations/getapis.py
+  - src/speakeasy_client_sdk_python/models/operations/upsertapi.py
+  - src/speakeasy_client_sdk_python/models/operations/deleteapiendpoint.py
+  - src/speakeasy_client_sdk_python/models/operations/findapiendpoint.py
+  - src/speakeasy_client_sdk_python/models/operations/generateopenapispecforapiendpoint.py
+  - src/speakeasy_client_sdk_python/models/operations/generatepostmancollectionforapiendpoint.py
+  - src/speakeasy_client_sdk_python/models/operations/getallapiendpoints.py
+  - src/speakeasy_client_sdk_python/models/operations/getallforversionapiendpoints.py
+  - src/speakeasy_client_sdk_python/models/operations/getapiendpoint.py
+  - src/speakeasy_client_sdk_python/models/operations/upsertapiendpoint.py
+  - src/speakeasy_client_sdk_python/models/operations/deleteversionmetadata.py
+  - src/speakeasy_client_sdk_python/models/operations/getversionmetadata.py
+  - src/speakeasy_client_sdk_python/models/operations/insertversionmetadata.py
+  - src/speakeasy_client_sdk_python/models/operations/deleteschema.py
+  - src/speakeasy_client_sdk_python/models/operations/downloadschema.py
+  - src/speakeasy_client_sdk_python/models/operations/downloadschemarevision.py
+  - src/speakeasy_client_sdk_python/models/operations/getschema.py
+  - src/speakeasy_client_sdk_python/models/operations/getschemadiff.py
+  - src/speakeasy_client_sdk_python/models/operations/getschemarevision.py
+  - src/speakeasy_client_sdk_python/models/operations/getschemas.py
+  - src/speakeasy_client_sdk_python/models/operations/registerschema.py
+  - src/speakeasy_client_sdk_python/models/operations/getblob.py
+  - src/speakeasy_client_sdk_python/models/operations/getmanifest.py
+  - src/speakeasy_client_sdk_python/models/operations/getnamespaces.py
+  - src/speakeasy_client_sdk_python/models/operations/getoassummary.py
+  - src/speakeasy_client_sdk_python/models/operations/getrevisions.py
+  - src/speakeasy_client_sdk_python/models/operations/gettags.py
+  - src/speakeasy_client_sdk_python/models/operations/posttags.py
+  - src/speakeasy_client_sdk_python/models/operations/preflight.py
+  - src/speakeasy_client_sdk_python/models/operations/getaccesstoken.py
+  - src/speakeasy_client_sdk_python/models/operations/getuser.py
+  - src/speakeasy_client_sdk_python/models/operations/getworkspaceaccess.py
+  - src/speakeasy_client_sdk_python/models/operations/validateapikey.py
+  - src/speakeasy_client_sdk_python/models/operations/generaterequestpostmancollection.py
+  - src/speakeasy_client_sdk_python/models/operations/getrequestfromeventlog.py
+  - src/speakeasy_client_sdk_python/models/operations/queryeventlog.py
+  - src/speakeasy_client_sdk_python/models/operations/checkaccess.py
+  - src/speakeasy_client_sdk_python/models/operations/configurecodesamples.py
+  - src/speakeasy_client_sdk_python/models/operations/configuremintlifyrepo.py
+  - src/speakeasy_client_sdk_python/models/operations/configuretarget.py
+  - src/speakeasy_client_sdk_python/models/operations/fetchpublishingprs.py
+  - src/speakeasy_client_sdk_python/models/operations/getaction.py
+  - src/speakeasy_client_sdk_python/models/operations/githubcheckpublishingsecrets.py
+  - src/speakeasy_client_sdk_python/models/operations/githubstorepublishingsecrets.py
+  - src/speakeasy_client_sdk_python/models/operations/triggeraction.py
+  - src/speakeasy_client_sdk_python/models/operations/createfreetrial.py
+  - src/speakeasy_client_sdk_python/models/operations/getorganizationusage.py
+  - src/speakeasy_client_sdk_python/models/operations/getorganizations.py
+  - src/speakeasy_client_sdk_python/models/operations/getchangesreportsignedurl.py
+  - src/speakeasy_client_sdk_python/models/operations/getlintingreportsignedurl.py
+  - src/speakeasy_client_sdk_python/models/operations/uploadreport.py
+  - src/speakeasy_client_sdk_python/models/operations/applyoperationids.py
+  - src/speakeasy_client_sdk_python/models/operations/suggestoperationids.py
+  - src/speakeasy_client_sdk_python/models/operations/suggestoperationidsregistry.py
+  - src/speakeasy_client_sdk_python/models/operations/getembedaccesstoken.py
+  - src/speakeasy_client_sdk_python/models/operations/getvalidembedaccesstokens.py
+  - src/speakeasy_client_sdk_python/models/operations/revokeembedaccesstoken.py
+  - src/speakeasy_client_sdk_python/models/operations/getworkspaceeventsbytarget.py
+  - src/speakeasy_client_sdk_python/models/operations/getworkspacetargets.py
+  - src/speakeasy_client_sdk_python/models/operations/postworkspaceevents.py
+  - src/speakeasy_client_sdk_python/models/operations/searchworkspaceevents.py
+  - src/speakeasy_client_sdk_python/models/errors/error.py
+  - src/speakeasy_client_sdk_python/models/shared/generateopenapispecdiff.py
+  - src/speakeasy_client_sdk_python/models/shared/api.py
+  - src/speakeasy_client_sdk_python/models/shared/api_input.py
+  - src/speakeasy_client_sdk_python/models/shared/apiendpoint.py
+  - src/speakeasy_client_sdk_python/models/shared/apiendpoint_input.py
+  - src/speakeasy_client_sdk_python/models/shared/versionmetadata.py
+  - src/speakeasy_client_sdk_python/models/shared/versionmetadata_input.py
+  - src/speakeasy_client_sdk_python/models/shared/schema.py
+  - src/speakeasy_client_sdk_python/models/shared/schemadiff.py
+  - src/speakeasy_client_sdk_python/models/shared/manifest.py
+  - src/speakeasy_client_sdk_python/models/shared/v2descriptor.py
+  - src/speakeasy_client_sdk_python/models/shared/annotations.py
+  - src/speakeasy_client_sdk_python/models/shared/getnamespacesresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/namespace.py
+  - src/speakeasy_client_sdk_python/models/shared/oassummary.py
+  - src/speakeasy_client_sdk_python/models/shared/oasoperation.py
+  - src/speakeasy_client_sdk_python/models/shared/oasinfo.py
+  - src/speakeasy_client_sdk_python/models/shared/getrevisionsresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/revision.py
+  - src/speakeasy_client_sdk_python/models/shared/gettagsresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/tag.py
+  - src/speakeasy_client_sdk_python/models/shared/addtags.py
+  - src/speakeasy_client_sdk_python/models/shared/preflighttoken.py
+  - src/speakeasy_client_sdk_python/models/shared/preflightrequest.py
+  - src/speakeasy_client_sdk_python/models/shared/accesstoken.py
+  - src/speakeasy_client_sdk_python/models/shared/featureflag.py
+  - src/speakeasy_client_sdk_python/models/shared/user.py
+  - src/speakeasy_client_sdk_python/models/shared/accessdetails.py
+  - src/speakeasy_client_sdk_python/models/shared/apikeydetails.py
+  - src/speakeasy_client_sdk_python/models/shared/unboundedrequest.py
+  - src/speakeasy_client_sdk_python/models/shared/boundedrequest.py
+  - src/speakeasy_client_sdk_python/models/shared/requestmetadata.py
+  - src/speakeasy_client_sdk_python/models/shared/filters.py
+  - src/speakeasy_client_sdk_python/models/shared/filter_.py
+  - src/speakeasy_client_sdk_python/models/shared/githubconfigurecodesamplesresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/workflowdocument.py
+  - src/speakeasy_client_sdk_python/models/shared/githubconfigurecodesamplesrequest.py
+  - src/speakeasy_client_sdk_python/models/shared/githubconfiguremintlifyreporequest.py
+  - src/speakeasy_client_sdk_python/models/shared/githubconfiguretargetrequest.py
+  - src/speakeasy_client_sdk_python/models/shared/githubpublishingprresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/githubgetactionresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/githubmissingpublishingsecretsresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/githubstorepublishingsecretsrequest.py
+  - src/speakeasy_client_sdk_python/models/shared/githubtriggeractionrequest.py
+  - src/speakeasy_client_sdk_python/models/shared/organizationusageresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/organizationusage.py
+  - src/speakeasy_client_sdk_python/models/shared/organization.py
+  - src/speakeasy_client_sdk_python/models/shared/report.py
+  - src/speakeasy_client_sdk_python/models/shared/suggestedoperationids.py
+  - src/speakeasy_client_sdk_python/models/shared/suggestoperationidsopts.py
+  - src/speakeasy_client_sdk_python/models/shared/embedaccesstokenresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/embedtoken.py
+  - src/speakeasy_client_sdk_python/models/shared/clievent.py
+  - src/speakeasy_client_sdk_python/models/shared/interactiontype.py
+  - src/speakeasy_client_sdk_python/models/shared/targetsdk.py
+  - src/speakeasy_client_sdk_python/models/shared/security.py
+  - src/speakeasy_client_sdk_python/models/internal/globals.py
+  - src/speakeasy_client_sdk_python/models/__init__.py
+  - src/speakeasy_client_sdk_python/models/errors/__init__.py
+  - src/speakeasy_client_sdk_python/models/operations/__init__.py
+  - src/speakeasy_client_sdk_python/models/shared/__init__.py
+  - src/speakeasy_client_sdk_python/models/internal/__init__.py
   - docs/models/operations/deleteapirequest.md
   - docs/models/operations/deleteapiresponse.md
   - docs/models/operations/generateopenapispecrequest.md
@@ -224,6 +257,8 @@ generatedFiles:
   - docs/models/operations/getmanifestrequest.md
   - docs/models/operations/getmanifestresponse.md
   - docs/models/operations/getnamespacesresponse.md
+  - docs/models/operations/getoassummaryrequest.md
+  - docs/models/operations/getoassummaryresponse.md
   - docs/models/operations/getrevisionsrequest.md
   - docs/models/operations/getrevisionsresponse.md
   - docs/models/operations/gettagsrequest.md
@@ -243,13 +278,19 @@ generatedFiles:
   - docs/models/operations/getrequestfromeventlogresponse.md
   - docs/models/operations/queryeventlogrequest.md
   - docs/models/operations/queryeventlogresponse.md
-  - docs/models/operations/githubcheckaccessrequest.md
-  - docs/models/operations/githubcheckaccessresponse.md
+  - docs/models/operations/checkaccessrequest.md
+  - docs/models/operations/checkaccessresponse.md
+  - docs/models/operations/configurecodesamplesresponse.md
+  - docs/models/operations/configuremintlifyreporesponse.md
+  - docs/models/operations/configuretargetresponse.md
+  - docs/models/operations/fetchpublishingprsrequest.md
+  - docs/models/operations/fetchpublishingprsresponse.md
+  - docs/models/operations/getactionrequest.md
+  - docs/models/operations/getactionresponse.md
   - docs/models/operations/githubcheckpublishingsecretsrequest.md
   - docs/models/operations/githubcheckpublishingsecretsresponse.md
-  - docs/models/operations/githubconfiguretargetresponse.md
   - docs/models/operations/githubstorepublishingsecretsresponse.md
-  - docs/models/operations/githubtriggeractionresponse.md
+  - docs/models/operations/triggeractionresponse.md
   - docs/models/operations/createfreetrialresponse.md
   - docs/models/operations/getorganizationusageresponse.md
   - docs/models/operations/getorganizationsresponse.md
@@ -263,13 +304,15 @@ generatedFiles:
   - docs/models/operations/uploadreportrequestbody.md
   - docs/models/operations/uploadreportuploadedreport.md
   - docs/models/operations/uploadreportresponse.md
-  - docs/models/operations/depthstyle.md
-  - docs/models/operations/style.md
-  - docs/models/operations/opts.md
+  - docs/models/operations/applyoperationidsrequestbody.md
+  - docs/models/operations/applyoperationidsrequest.md
+  - docs/models/operations/applyoperationidsresponse.md
   - docs/models/operations/schema.md
   - docs/models/operations/suggestoperationidsrequestbody.md
-  - docs/models/operations/suggestoperationidssuggestion.md
+  - docs/models/operations/suggestoperationidsrequest.md
   - docs/models/operations/suggestoperationidsresponse.md
+  - docs/models/operations/suggestoperationidsregistryrequest.md
+  - docs/models/operations/suggestoperationidsregistryresponse.md
   - docs/models/operations/getembedaccesstokenrequest.md
   - docs/models/operations/getembedaccesstokenresponse.md
   - docs/models/operations/getvalidembedaccesstokensresponse.md
@@ -303,6 +346,10 @@ generatedFiles:
   - docs/models/shared/annotations.md
   - docs/models/shared/getnamespacesresponse.md
   - docs/models/shared/namespace.md
+  - docs/models/shared/oassummary.md
+  - docs/models/shared/oasoperation.md
+  - docs/models/shared/license.md
+  - docs/models/shared/oasinfo.md
   - docs/models/shared/getrevisionsresponse.md
   - docs/models/shared/revision.md
   - docs/models/shared/gettagsresponse.md
@@ -326,8 +373,15 @@ generatedFiles:
   - docs/models/shared/requestmetadata.md
   - docs/models/shared/filters.md
   - docs/models/shared/filter_.md
-  - docs/models/shared/githubmissingpublishingsecretsresponse.md
+  - docs/models/shared/githubconfigurecodesamplesresponse.md
+  - docs/models/shared/auth.md
+  - docs/models/shared/workflowdocument.md
+  - docs/models/shared/githubconfigurecodesamplesrequest.md
+  - docs/models/shared/githubconfiguremintlifyreporequest.md
   - docs/models/shared/githubconfiguretargetrequest.md
+  - docs/models/shared/githubpublishingprresponse.md
+  - docs/models/shared/githubgetactionresponse.md
+  - docs/models/shared/githubmissingpublishingsecretsresponse.md
   - docs/models/shared/githubstorepublishingsecretsrequest.md
   - docs/models/shared/githubtriggeractionrequest.md
   - docs/models/shared/organizationusageresponse.md
@@ -336,6 +390,10 @@ generatedFiles:
   - docs/models/shared/organization.md
   - docs/models/shared/type.md
   - docs/models/shared/report.md
+  - docs/models/shared/suggestedoperationids.md
+  - docs/models/shared/depthstyle.md
+  - docs/models/shared/style.md
+  - docs/models/shared/suggestoperationidsopts.md
   - docs/models/shared/embedaccesstokenresponse.md
   - docs/models/shared/embedtoken.md
   - docs/models/shared/generatebumptype.md
@@ -362,6 +420,6 @@ generatedFiles:
   - docs/sdks/events/README.md
   - USAGE.md
   - .gitattributes
-  - src/speakeasy/_hooks/sdkhooks.py
-  - src/speakeasy/_hooks/types.py
-  - src/speakeasy/_hooks/__init__.py
+  - src/speakeasy_client_sdk_python/_hooks/sdkhooks.py
+  - src/speakeasy_client_sdk_python/_hooks/types.py
+  - src/speakeasy_client_sdk_python/_hooks/__init__.py

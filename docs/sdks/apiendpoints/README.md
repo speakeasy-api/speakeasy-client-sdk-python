@@ -23,21 +23,22 @@ Delete an ApiEndpoint. This will also delete all associated Request Logs (if usi
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.api_endpoints.delete_api_endpoint(request=operations.DeleteAPIEndpointRequest(
-    api_endpoint_id='<value>',
-    api_id='<value>',
-    version_id='<value>',
-))
+res = s.api_endpoints.delete_api_endpoint(request={
+    "api_endpoint_id": "<value>",
+    "api_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res is not None:
     # handle response
@@ -69,21 +70,22 @@ This is useful for finding the ID of an ApiEndpoint to use in the /v1/apis/{apiI
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.api_endpoints.find_api_endpoint(request=operations.FindAPIEndpointRequest(
-    api_id='<value>',
-    display_name='Don.Strosin',
-    version_id='<value>',
-))
+res = s.api_endpoints.find_api_endpoint(request={
+    "api_id": "<value>",
+    "display_name": "Don.Strosin",
+    "version_id": "<value>",
+})
 
 if res.api_endpoint is not None:
     # handle response
@@ -115,21 +117,22 @@ Returns the original document and the newly generated document allowing a diff t
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.api_endpoints.generate_open_api_spec_for_api_endpoint(request=operations.GenerateOpenAPISpecForAPIEndpointRequest(
-    api_endpoint_id='<value>',
-    api_id='<value>',
-    version_id='<value>',
-))
+res = s.api_endpoints.generate_open_api_spec_for_api_endpoint(request={
+    "api_endpoint_id": "<value>",
+    "api_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res.generate_open_api_spec_diff is not None:
     # handle response
@@ -160,21 +163,22 @@ Generates a postman collection that allows the endpoint to be called from postma
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.api_endpoints.generate_postman_collection_for_api_endpoint(request=operations.GeneratePostmanCollectionForAPIEndpointRequest(
-    api_endpoint_id='<value>',
-    api_id='<value>',
-    version_id='<value>',
-))
+res = s.api_endpoints.generate_postman_collection_for_api_endpoint(request={
+    "api_endpoint_id": "<value>",
+    "api_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res.postman_collection is not None:
     # handle response
@@ -205,19 +209,20 @@ Get all Api endpoints for a particular apiID.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.api_endpoints.get_all_api_endpoints(request=operations.GetAllAPIEndpointsRequest(
-    api_id='<value>',
-))
+res = s.api_endpoints.get_all_api_endpoints(request={
+    "api_id": "<value>",
+})
 
 if res.api_endpoints is not None:
     # handle response
@@ -248,20 +253,21 @@ Get all ApiEndpoints for a particular apiID and versionID.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.api_endpoints.get_all_for_version_api_endpoints(request=operations.GetAllForVersionAPIEndpointsRequest(
-    api_id='<value>',
-    version_id='<value>',
-))
+res = s.api_endpoints.get_all_for_version_api_endpoints(request={
+    "api_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res.api_endpoints is not None:
     # handle response
@@ -292,21 +298,22 @@ Get an ApiEndpoint.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.api_endpoints.get_api_endpoint(request=operations.GetAPIEndpointRequest(
-    api_endpoint_id='<value>',
-    api_id='<value>',
-    version_id='<value>',
-))
+res = s.api_endpoints.get_api_endpoint(request={
+    "api_endpoint_id": "<value>",
+    "api_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res.api_endpoint is not None:
     # handle response
@@ -337,29 +344,30 @@ Upsert an ApiEndpoint. If the ApiEndpoint does not exist it will be created, oth
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.api_endpoints.upsert_api_endpoint(request=operations.UpsertAPIEndpointRequest(
-    api_endpoint=shared.APIEndpointInput(
-        api_endpoint_id='<value>',
-        description='Public-key systematic attitude',
-        display_name='Camille.Schaefer11',
-        method='<value>',
-        path='/Library',
-        version_id='<value>',
-    ),
-    api_endpoint_id='<value>',
-    api_id='<value>',
-    version_id='<value>',
-))
+res = s.api_endpoints.upsert_api_endpoint(request={
+    "api_endpoint": {
+        "api_endpoint_id": "<value>",
+        "description": "Public-key systematic attitude",
+        "display_name": "Camille.Schaefer11",
+        "method": "<value>",
+        "path": "/Library",
+        "version_id": "<value>",
+    },
+    "api_endpoint_id": "<value>",
+    "api_id": "<value>",
+    "version_id": "<value>",
+})
 
 if res.api_endpoint is not None:
     # handle response

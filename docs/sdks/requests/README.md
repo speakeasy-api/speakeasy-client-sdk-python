@@ -19,19 +19,20 @@ Allowing it to be replayed with the same inputs that were captured by the SDK.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.requests.generate_request_postman_collection(request=operations.GenerateRequestPostmanCollectionRequest(
-    request_id='<value>',
-))
+res = s.requests.generate_request_postman_collection(request={
+    "request_id": "<value>",
+})
 
 if res.postman_collection is not None:
     # handle response
@@ -62,19 +63,20 @@ Get information about a particular request.
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.requests.get_request_from_event_log(request=operations.GetRequestFromEventLogRequest(
-    request_id='<value>',
-))
+res = s.requests.get_request_from_event_log(request={
+    "request_id": "<value>",
+})
 
 if res.unbounded_request is not None:
     # handle response
@@ -106,17 +108,18 @@ Allows the filtering of requests on a number of criteria such as ApiID, VersionI
 ### Example Usage
 
 ```python
-import speakeasy
-from speakeasy.models import operations, shared
+import os
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
 
-s = speakeasy.Speakeasy(
+s = Speakeasy(
     security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
+        api_key=os.getenv("API_KEY", ""),
     ),
 )
 
 
-res = s.requests.query_event_log(request=operations.QueryEventLogRequest())
+res = s.requests.query_event_log(request={})
 
 if res.bounded_requests is not None:
     # handle response

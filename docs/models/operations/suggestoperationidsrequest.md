@@ -1,0 +1,10 @@
+# SuggestOperationIDsRequest
+
+
+## Fields
+
+| Field                                                                                                  | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `request_body`                                                                                         | [operations.SuggestOperationIDsRequestBody](../../models/operations/suggestoperationidsrequestbody.md) | :heavy_check_mark:                                                                                     | The schema file to upload provided as a multipart/form-data file segment.                              |
+| `x_session_id`                                                                                         | *str*                                                                                                  | :heavy_check_mark:                                                                                     | N/A                                                                                                    |
+| `limit`                                                                                                | *Optional[float]*                                                                                      | :heavy_minus_sign:                                                                                     | Max number of suggestions to request                                                                   |

@@ -472,10 +472,13 @@ s = Speakeasy(
 )
 
 
-res = s.auth.get_workspace_access(request={},
+res = s.apis.delete_api(request={
+    "api_id": "<value>",
+    "version_id": "<value>",
+},
     RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False))
 
-if res.access_details is not None:
+if res is not None:
     # handle response
     pass
 
@@ -496,9 +499,12 @@ s = Speakeasy(
 )
 
 
-res = s.auth.get_workspace_access(request={})
+res = s.apis.delete_api(request={
+    "api_id": "<value>",
+    "version_id": "<value>",
+})
 
-if res.access_details is not None:
+if res is not None:
     # handle response
     pass
 

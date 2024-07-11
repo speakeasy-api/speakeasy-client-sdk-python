@@ -3,7 +3,7 @@
 from .basesdk import BaseSDK
 from speakeasy_client_sdk_python._hooks import HookContext
 from speakeasy_client_sdk_python.models import errors, operations
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import BaseModel, Nullable, UNSET
 import speakeasy_client_sdk_python.utils as utils
 from typing import Optional, Union
 
@@ -14,17 +14,22 @@ class Reports(BaseSDK):
     def get_changes_report_signed_url(
         self, *,
         request: Union[operations.GetChangesReportSignedURLRequest, operations.GetChangesReportSignedURLRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetChangesReportSignedURLResponse:
         r"""Get the signed access url for the change reports for a particular document.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -46,10 +51,25 @@ class Reports(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="getChangesReportSignedUrl", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetChangesReportSignedURLResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -68,17 +88,22 @@ class Reports(BaseSDK):
     async def get_changes_report_signed_url_async(
         self, *,
         request: Union[operations.GetChangesReportSignedURLRequest, operations.GetChangesReportSignedURLRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetChangesReportSignedURLResponse:
         r"""Get the signed access url for the change reports for a particular document.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -100,10 +125,25 @@ class Reports(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="getChangesReportSignedUrl", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetChangesReportSignedURLResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -122,17 +162,22 @@ class Reports(BaseSDK):
     def get_linting_report_signed_url(
         self, *,
         request: Union[operations.GetLintingReportSignedURLRequest, operations.GetLintingReportSignedURLRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetLintingReportSignedURLResponse:
         r"""Get the signed access url for the linting reports for a particular document.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -154,10 +199,25 @@ class Reports(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="getLintingReportSignedUrl", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetLintingReportSignedURLResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -176,17 +236,22 @@ class Reports(BaseSDK):
     async def get_linting_report_signed_url_async(
         self, *,
         request: Union[operations.GetLintingReportSignedURLRequest, operations.GetLintingReportSignedURLRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetLintingReportSignedURLResponse:
         r"""Get the signed access url for the linting reports for a particular document.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -208,10 +273,25 @@ class Reports(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="getLintingReportSignedUrl", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetLintingReportSignedURLResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -230,17 +310,22 @@ class Reports(BaseSDK):
     def upload_report(
         self, *,
         request: Union[operations.UploadReportRequestBody, operations.UploadReportRequestBodyTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.UploadReportResponse:
         r"""Upload a report.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -263,10 +348,25 @@ class Reports(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="uploadReport", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.UploadReportResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -285,17 +385,22 @@ class Reports(BaseSDK):
     async def upload_report_async(
         self, *,
         request: Union[operations.UploadReportRequestBody, operations.UploadReportRequestBodyTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.UploadReportResponse:
         r"""Upload a report.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -318,10 +423,25 @@ class Reports(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="uploadReport", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.UploadReportResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)

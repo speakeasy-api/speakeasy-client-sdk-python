@@ -4,7 +4,7 @@ from .basesdk import BaseSDK
 from enum import Enum
 from speakeasy_client_sdk_python._hooks import HookContext
 from speakeasy_client_sdk_python.models import errors, operations, shared
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import BaseModel, Nullable, UNSET
 import speakeasy_client_sdk_python.utils as utils
 from typing import Optional, Union
 
@@ -23,6 +23,7 @@ class Artifacts(BaseSDK):
     def get_blob(
         self, *,
         request: Union[operations.GetBlobRequest, operations.GetBlobRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
         accept_header_override: Optional[GetBlobAcceptEnum] = None
@@ -30,12 +31,16 @@ class Artifacts(BaseSDK):
         r"""Get blob for a particular digest
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         :param accept_header_override: Override the default accept header for this method
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -57,10 +62,25 @@ class Artifacts(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="getBlob", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetBlobResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -81,6 +101,7 @@ class Artifacts(BaseSDK):
     async def get_blob_async(
         self, *,
         request: Union[operations.GetBlobRequest, operations.GetBlobRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
         accept_header_override: Optional[GetBlobAcceptEnum] = None
@@ -88,12 +109,16 @@ class Artifacts(BaseSDK):
         r"""Get blob for a particular digest
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         :param accept_header_override: Override the default accept header for this method
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -115,10 +140,25 @@ class Artifacts(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="getBlob", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetBlobResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -139,6 +179,7 @@ class Artifacts(BaseSDK):
     def get_manifest(
         self, *,
         request: Union[operations.GetManifestRequest, operations.GetManifestRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
         accept_header_override: Optional[GetManifestAcceptEnum] = None
@@ -146,12 +187,16 @@ class Artifacts(BaseSDK):
         r"""Get manifest for a particular reference
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         :param accept_header_override: Override the default accept header for this method
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -173,10 +218,25 @@ class Artifacts(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="getManifest", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetManifestResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -197,6 +257,7 @@ class Artifacts(BaseSDK):
     async def get_manifest_async(
         self, *,
         request: Union[operations.GetManifestRequest, operations.GetManifestRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
         accept_header_override: Optional[GetManifestAcceptEnum] = None
@@ -204,12 +265,16 @@ class Artifacts(BaseSDK):
         r"""Get manifest for a particular reference
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         :param accept_header_override: Override the default accept header for this method
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -231,10 +296,25 @@ class Artifacts(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="getManifest", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetManifestResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -254,16 +334,21 @@ class Artifacts(BaseSDK):
     
     def get_namespaces(
         self, *,
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetNamespacesResponse:
         r"""Each namespace contains many revisions.
 
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         req = self.build_request(
@@ -281,10 +366,25 @@ class Artifacts(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="getNamespaces", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetNamespacesResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -304,16 +404,21 @@ class Artifacts(BaseSDK):
     
     async def get_namespaces_async(
         self, *,
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetNamespacesResponse:
         r"""Each namespace contains many revisions.
 
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         req = self.build_request(
@@ -331,10 +436,25 @@ class Artifacts(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="getNamespaces", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetNamespacesResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -355,16 +475,21 @@ class Artifacts(BaseSDK):
     def get_oas_summary(
         self, *,
         request: Union[operations.GetOASSummaryRequest, operations.GetOASSummaryRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetOASSummaryResponse:
         r"""
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -386,10 +511,25 @@ class Artifacts(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="getOASSummary", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetOASSummaryResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -410,16 +550,21 @@ class Artifacts(BaseSDK):
     async def get_oas_summary_async(
         self, *,
         request: Union[operations.GetOASSummaryRequest, operations.GetOASSummaryRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetOASSummaryResponse:
         r"""
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -441,10 +586,25 @@ class Artifacts(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="getOASSummary", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetOASSummaryResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -465,16 +625,21 @@ class Artifacts(BaseSDK):
     def get_revisions(
         self, *,
         request: Union[operations.GetRevisionsRequest, operations.GetRevisionsRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetRevisionsResponse:
         r"""
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -496,10 +661,25 @@ class Artifacts(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="getRevisions", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetRevisionsResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -520,16 +700,21 @@ class Artifacts(BaseSDK):
     async def get_revisions_async(
         self, *,
         request: Union[operations.GetRevisionsRequest, operations.GetRevisionsRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetRevisionsResponse:
         r"""
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -551,10 +736,25 @@ class Artifacts(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="getRevisions", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetRevisionsResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -575,16 +775,21 @@ class Artifacts(BaseSDK):
     def get_tags(
         self, *,
         request: Union[operations.GetTagsRequest, operations.GetTagsRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetTagsResponse:
         r"""
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -606,10 +811,25 @@ class Artifacts(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="getTags", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetTagsResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -630,16 +850,21 @@ class Artifacts(BaseSDK):
     async def get_tags_async(
         self, *,
         request: Union[operations.GetTagsRequest, operations.GetTagsRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetTagsResponse:
         r"""
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -661,10 +886,25 @@ class Artifacts(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="getTags", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetTagsResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -685,17 +925,22 @@ class Artifacts(BaseSDK):
     def post_tags(
         self, *,
         request: Union[operations.PostTagsRequest, operations.PostTagsRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.PostTagsResponse:
         r"""Add tags to an existing revision
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -718,10 +963,25 @@ class Artifacts(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="postTags", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.PostTagsResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -742,17 +1002,22 @@ class Artifacts(BaseSDK):
     async def post_tags_async(
         self, *,
         request: Union[operations.PostTagsRequest, operations.PostTagsRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.PostTagsResponse:
         r"""Add tags to an existing revision
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -775,10 +1040,25 @@ class Artifacts(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="postTags", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.PostTagsResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -799,17 +1079,22 @@ class Artifacts(BaseSDK):
     def preflight(
         self, *,
         request: Optional[Union[shared.PreflightRequest, shared.PreflightRequestTypedDict]] = None,
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.PreflightResponse:
         r"""Get access token for communicating with OCI distribution endpoints
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -832,10 +1117,25 @@ class Artifacts(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="preflight", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.PreflightResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -856,17 +1156,22 @@ class Artifacts(BaseSDK):
     async def preflight_async(
         self, *,
         request: Optional[Union[shared.PreflightRequest, shared.PreflightRequestTypedDict]] = None,
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.PreflightResponse:
         r"""Get access token for communicating with OCI distribution endpoints
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -889,10 +1194,25 @@ class Artifacts(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="preflight", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.PreflightResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)

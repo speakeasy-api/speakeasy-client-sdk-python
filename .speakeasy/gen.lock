@@ -1,36 +1,37 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: e4cb9ecada8b35163db080ecaaf60fe3
+  docChecksum: f5cf06d8d5f2ec68226ab161d7a73cba
   docVersion: 0.4.0 .
-  speakeasyVersion: 1.330.0
-  generationVersion: 2.361.10
-  releaseVersion: 5.10.1
-  configChecksum: 1023da4f627eda0126581ce862792ecd
+  speakeasyVersion: 1.331.0
+  generationVersion: 2.365.0
+  releaseVersion: 6.0.0
+  configChecksum: f414126a58ac4fbab5782f1046b2f87c
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   published: true
 features:
   python:
-    acceptHeaders: 0.1.0
-    additionalDependencies: 0.1.0
-    core: 0.2.11
-    deprecations: 0.1.1
-    downloadStreams: 0.1.0
-    examples: 0.1.0
-    globalSecurity: 0.1.0
-    globalSecurityCallbacks: 0.1.0
-    globalServerURLs: 0.1.0
-    globals: 0.1.0
-    inputOutputModels: 0.1.0
-    multipartFileContentType: 0.1.0
-    nullables: 0.1.0
-    responseFormat: 0.1.0
-    retries: 0.1.0
-    sdkHooks: 0.1.0
-    serverIDs: 0.1.0
-    uploadStreams: 0.1.0
+    acceptHeaders: 3.0.0
+    additionalDependencies: 1.0.0
+    core: 5.0.0
+    defaultEnabledRetries: 0.2.0
+    deprecations: 3.0.0
+    downloadStreams: 1.0.0
+    examples: 3.0.0
+    globalSecurity: 3.0.0
+    globalSecurityCallbacks: 1.0.0
+    globalServerURLs: 3.0.0
+    globals: 3.0.0
+    inputOutputModels: 3.0.0
+    multipartFileContentType: 1.0.0
+    nullables: 1.0.0
+    responseFormat: 1.0.0
+    retries: 3.0.0
+    sdkHooks: 1.0.0
+    serverIDs: 3.0.0
+    uploadStreams: 1.0.0
 generatedFiles:
   - src/speakeasy_client_sdk_python/sdkconfiguration.py
   - src/speakeasy_client_sdk_python/apis.py
@@ -404,12 +405,12 @@ generatedFiles:
   - docs/models/shared/security.md
   - docs/models/internal/globals.md
   - docs/sdks/speakeasy/README.md
+  - docs/models/utils/retryconfig.md
   - docs/sdks/apis/README.md
   - docs/sdks/apiendpoints/README.md
   - docs/sdks/metadata/README.md
   - docs/sdks/schemas/README.md
   - docs/sdks/artifacts/README.md
-  - docs/models/utils/retryconfig.md
   - docs/sdks/auth/README.md
   - docs/sdks/requests/README.md
   - docs/sdks/github/README.md

@@ -3,7 +3,7 @@
 from .basesdk import BaseSDK
 from speakeasy_client_sdk_python._hooks import HookContext
 from speakeasy_client_sdk_python.models import errors, operations, shared
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import BaseModel, Nullable, UNSET
 import speakeasy_client_sdk_python.utils as utils
 from typing import List, Optional, Union
 
@@ -14,17 +14,22 @@ class Metadata(BaseSDK):
     def delete_version_metadata(
         self, *,
         request: Union[operations.DeleteVersionMetadataRequest, operations.DeleteVersionMetadataRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.DeleteVersionMetadataResponse:
         r"""Delete metadata for a particular apiID and versionID.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -46,10 +51,25 @@ class Metadata(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="deleteVersionMetadata", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.DeleteVersionMetadataResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -70,17 +90,22 @@ class Metadata(BaseSDK):
     async def delete_version_metadata_async(
         self, *,
         request: Union[operations.DeleteVersionMetadataRequest, operations.DeleteVersionMetadataRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.DeleteVersionMetadataResponse:
         r"""Delete metadata for a particular apiID and versionID.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -102,10 +127,25 @@ class Metadata(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="deleteVersionMetadata", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.DeleteVersionMetadataResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -126,17 +166,22 @@ class Metadata(BaseSDK):
     def get_version_metadata(
         self, *,
         request: Union[operations.GetVersionMetadataRequest, operations.GetVersionMetadataRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetVersionMetadataResponse:
         r"""Get all metadata for a particular apiID and versionID.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -158,10 +203,25 @@ class Metadata(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="getVersionMetadata", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetVersionMetadataResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -182,17 +242,22 @@ class Metadata(BaseSDK):
     async def get_version_metadata_async(
         self, *,
         request: Union[operations.GetVersionMetadataRequest, operations.GetVersionMetadataRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetVersionMetadataResponse:
         r"""Get all metadata for a particular apiID and versionID.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -214,10 +279,25 @@ class Metadata(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="getVersionMetadata", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetVersionMetadataResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -238,17 +318,22 @@ class Metadata(BaseSDK):
     def insert_version_metadata(
         self, *,
         request: Union[operations.InsertVersionMetadataRequest, operations.InsertVersionMetadataRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.InsertVersionMetadataResponse:
         r"""Insert metadata for a particular apiID and versionID.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -271,10 +356,25 @@ class Metadata(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="insertVersionMetadata", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.InsertVersionMetadataResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -295,17 +395,22 @@ class Metadata(BaseSDK):
     async def insert_version_metadata_async(
         self, *,
         request: Union[operations.InsertVersionMetadataRequest, operations.InsertVersionMetadataRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.InsertVersionMetadataResponse:
         r"""Insert metadata for a particular apiID and versionID.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -328,10 +433,25 @@ class Metadata(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="insertVersionMetadata", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.InsertVersionMetadataResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)

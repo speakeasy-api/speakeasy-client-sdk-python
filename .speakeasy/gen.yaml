@@ -10,7 +10,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 python:
-  version: 5.10.1
+  version: 6.0.0
   additionalDependencies:
     dev: {}
     main: {}

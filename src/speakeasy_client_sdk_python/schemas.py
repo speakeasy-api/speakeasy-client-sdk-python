@@ -4,7 +4,7 @@ from .basesdk import BaseSDK
 from enum import Enum
 from speakeasy_client_sdk_python._hooks import HookContext
 from speakeasy_client_sdk_python.models import errors, operations, shared
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import BaseModel, Nullable, UNSET
 import speakeasy_client_sdk_python.utils as utils
 from typing import List, Optional, Union
 
@@ -23,17 +23,22 @@ class Schemas(BaseSDK):
     def delete_schema(
         self, *,
         request: Union[operations.DeleteSchemaRequest, operations.DeleteSchemaRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.DeleteSchemaResponse:
         r"""Delete a particular schema revision for an Api.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -55,10 +60,25 @@ class Schemas(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="deleteSchema", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.DeleteSchemaResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -79,17 +99,22 @@ class Schemas(BaseSDK):
     async def delete_schema_async(
         self, *,
         request: Union[operations.DeleteSchemaRequest, operations.DeleteSchemaRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.DeleteSchemaResponse:
         r"""Delete a particular schema revision for an Api.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -111,10 +136,25 @@ class Schemas(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="deleteSchema", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.DeleteSchemaResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -135,6 +175,7 @@ class Schemas(BaseSDK):
     def download_schema(
         self, *,
         request: Union[operations.DownloadSchemaRequest, operations.DownloadSchemaRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
         accept_header_override: Optional[DownloadSchemaAcceptEnum] = None
@@ -142,12 +183,16 @@ class Schemas(BaseSDK):
         r"""Download the latest schema for a particular apiID.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         :param accept_header_override: Override the default accept header for this method
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -169,10 +214,25 @@ class Schemas(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="downloadSchema", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.DownloadSchemaResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -195,6 +255,7 @@ class Schemas(BaseSDK):
     async def download_schema_async(
         self, *,
         request: Union[operations.DownloadSchemaRequest, operations.DownloadSchemaRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
         accept_header_override: Optional[DownloadSchemaAcceptEnum] = None
@@ -202,12 +263,16 @@ class Schemas(BaseSDK):
         r"""Download the latest schema for a particular apiID.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         :param accept_header_override: Override the default accept header for this method
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -229,10 +294,25 @@ class Schemas(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="downloadSchema", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.DownloadSchemaResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -255,6 +335,7 @@ class Schemas(BaseSDK):
     def download_schema_revision(
         self, *,
         request: Union[operations.DownloadSchemaRevisionRequest, operations.DownloadSchemaRevisionRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
         accept_header_override: Optional[DownloadSchemaRevisionAcceptEnum] = None
@@ -262,12 +343,16 @@ class Schemas(BaseSDK):
         r"""Download a particular schema revision for an Api.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         :param accept_header_override: Override the default accept header for this method
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -289,10 +374,25 @@ class Schemas(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="downloadSchemaRevision", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.DownloadSchemaRevisionResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -315,6 +415,7 @@ class Schemas(BaseSDK):
     async def download_schema_revision_async(
         self, *,
         request: Union[operations.DownloadSchemaRevisionRequest, operations.DownloadSchemaRevisionRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
         accept_header_override: Optional[DownloadSchemaRevisionAcceptEnum] = None
@@ -322,12 +423,16 @@ class Schemas(BaseSDK):
         r"""Download a particular schema revision for an Api.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         :param accept_header_override: Override the default accept header for this method
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -349,10 +454,25 @@ class Schemas(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="downloadSchemaRevision", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.DownloadSchemaRevisionResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -375,6 +495,7 @@ class Schemas(BaseSDK):
     def get_schema(
         self, *,
         request: Union[operations.GetSchemaRequest, operations.GetSchemaRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetSchemaResponse:
@@ -384,11 +505,15 @@ class Schemas(BaseSDK):
         This won't include the schema itself, that can be retrieved via the downloadSchema operation.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -410,10 +535,25 @@ class Schemas(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="getSchema", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetSchemaResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -434,6 +574,7 @@ class Schemas(BaseSDK):
     async def get_schema_async(
         self, *,
         request: Union[operations.GetSchemaRequest, operations.GetSchemaRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetSchemaResponse:
@@ -443,11 +584,15 @@ class Schemas(BaseSDK):
         This won't include the schema itself, that can be retrieved via the downloadSchema operation.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -469,10 +614,25 @@ class Schemas(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="getSchema", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetSchemaResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -493,17 +653,22 @@ class Schemas(BaseSDK):
     def get_schema_diff(
         self, *,
         request: Union[operations.GetSchemaDiffRequest, operations.GetSchemaDiffRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetSchemaDiffResponse:
         r"""Get a diff of two schema revisions for an Api.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -525,10 +690,25 @@ class Schemas(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="getSchemaDiff", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetSchemaDiffResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -549,17 +729,22 @@ class Schemas(BaseSDK):
     async def get_schema_diff_async(
         self, *,
         request: Union[operations.GetSchemaDiffRequest, operations.GetSchemaDiffRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetSchemaDiffResponse:
         r"""Get a diff of two schema revisions for an Api.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -581,10 +766,25 @@ class Schemas(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="getSchemaDiff", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetSchemaDiffResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -605,6 +805,7 @@ class Schemas(BaseSDK):
     def get_schema_revision(
         self, *,
         request: Union[operations.GetSchemaRevisionRequest, operations.GetSchemaRevisionRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetSchemaRevisionResponse:
@@ -614,11 +815,15 @@ class Schemas(BaseSDK):
         This won't include the schema itself, that can be retrieved via the downloadSchema operation.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -640,10 +845,25 @@ class Schemas(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="getSchemaRevision", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetSchemaRevisionResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -664,6 +884,7 @@ class Schemas(BaseSDK):
     async def get_schema_revision_async(
         self, *,
         request: Union[operations.GetSchemaRevisionRequest, operations.GetSchemaRevisionRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetSchemaRevisionResponse:
@@ -673,11 +894,15 @@ class Schemas(BaseSDK):
         This won't include the schema itself, that can be retrieved via the downloadSchema operation.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -699,10 +924,25 @@ class Schemas(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="getSchemaRevision", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetSchemaRevisionResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -723,6 +963,7 @@ class Schemas(BaseSDK):
     def get_schemas(
         self, *,
         request: Union[operations.GetSchemasRequest, operations.GetSchemasRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetSchemasResponse:
@@ -732,11 +973,15 @@ class Schemas(BaseSDK):
         This won't include the schemas themselves, they can be retrieved via the downloadSchema operation.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -758,10 +1003,25 @@ class Schemas(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="getSchemas", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetSchemasResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -782,6 +1042,7 @@ class Schemas(BaseSDK):
     async def get_schemas_async(
         self, *,
         request: Union[operations.GetSchemasRequest, operations.GetSchemasRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.GetSchemasResponse:
@@ -791,11 +1052,15 @@ class Schemas(BaseSDK):
         This won't include the schemas themselves, they can be retrieved via the downloadSchema operation.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -817,10 +1082,25 @@ class Schemas(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="getSchemas", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.GetSchemasResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -841,6 +1121,7 @@ class Schemas(BaseSDK):
     def register_schema(
         self, *,
         request: Union[operations.RegisterSchemaRequest, operations.RegisterSchemaRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.RegisterSchemaResponse:
@@ -850,11 +1131,15 @@ class Schemas(BaseSDK):
         This will be used to populate ApiEndpoints and used as a base for any schema generation if present.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -877,10 +1162,25 @@ class Schemas(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="registerSchema", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.RegisterSchemaResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -901,6 +1201,7 @@ class Schemas(BaseSDK):
     async def register_schema_async(
         self, *,
         request: Union[operations.RegisterSchemaRequest, operations.RegisterSchemaRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.RegisterSchemaResponse:
@@ -910,11 +1211,15 @@ class Schemas(BaseSDK):
         This will be used to populate ApiEndpoints and used as a base for any schema generation if present.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -937,10 +1242,25 @@ class Schemas(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="registerSchema", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.RegisterSchemaResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)

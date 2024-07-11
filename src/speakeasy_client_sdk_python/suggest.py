@@ -4,7 +4,7 @@ from .basesdk import BaseSDK
 from enum import Enum
 from speakeasy_client_sdk_python._hooks import HookContext
 from speakeasy_client_sdk_python.models import errors, operations, shared
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import BaseModel, Nullable, UNSET
 import speakeasy_client_sdk_python.utils as utils
 from typing import Optional, Union
 
@@ -19,6 +19,7 @@ class Suggest(BaseSDK):
     def apply_operation_i_ds(
         self, *,
         request: Union[operations.ApplyOperationIDsRequest, operations.ApplyOperationIDsRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
         accept_header_override: Optional[ApplyOperationIDsAcceptEnum] = None
@@ -26,12 +27,16 @@ class Suggest(BaseSDK):
         r"""Apply operation ID suggestions and download result.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         :param accept_header_override: Override the default accept header for this method
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -54,10 +59,25 @@ class Suggest(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="applyOperationIDs", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.ApplyOperationIDsResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -80,6 +100,7 @@ class Suggest(BaseSDK):
     async def apply_operation_i_ds_async(
         self, *,
         request: Union[operations.ApplyOperationIDsRequest, operations.ApplyOperationIDsRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
         accept_header_override: Optional[ApplyOperationIDsAcceptEnum] = None
@@ -87,12 +108,16 @@ class Suggest(BaseSDK):
         r"""Apply operation ID suggestions and download result.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         :param accept_header_override: Override the default accept header for this method
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -115,10 +140,25 @@ class Suggest(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="applyOperationIDs", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.ApplyOperationIDsResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -141,6 +181,7 @@ class Suggest(BaseSDK):
     def suggest_operation_i_ds(
         self, *,
         request: Union[operations.SuggestOperationIDsRequest, operations.SuggestOperationIDsRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.SuggestOperationIDsResponse:
@@ -149,11 +190,15 @@ class Suggest(BaseSDK):
         Get suggestions from an LLM model for improving the operationIDs in the provided schema.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -176,10 +221,25 @@ class Suggest(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="suggestOperationIDs", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.SuggestOperationIDsResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -198,6 +258,7 @@ class Suggest(BaseSDK):
     async def suggest_operation_i_ds_async(
         self, *,
         request: Union[operations.SuggestOperationIDsRequest, operations.SuggestOperationIDsRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.SuggestOperationIDsResponse:
@@ -206,11 +267,15 @@ class Suggest(BaseSDK):
         Get suggestions from an LLM model for improving the operationIDs in the provided schema.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -233,10 +298,25 @@ class Suggest(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="suggestOperationIDs", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.SuggestOperationIDsResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -255,6 +335,7 @@ class Suggest(BaseSDK):
     def suggest_operation_i_ds_registry(
         self, *,
         request: Union[operations.SuggestOperationIDsRegistryRequest, operations.SuggestOperationIDsRegistryRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.SuggestOperationIDsRegistryResponse:
@@ -263,11 +344,15 @@ class Suggest(BaseSDK):
         Get suggestions from an LLM model for improving the operationIDs in the provided schema.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -290,10 +375,25 @@ class Suggest(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = self.do_request(
             hook_ctx=HookContext(operation_id="suggestOperationIDsRegistry", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.SuggestOperationIDsRegistryResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
@@ -312,6 +412,7 @@ class Suggest(BaseSDK):
     async def suggest_operation_i_ds_registry_async(
         self, *,
         request: Union[operations.SuggestOperationIDsRegistryRequest, operations.SuggestOperationIDsRegistryRequestTypedDict],
+        retries: Optional[Nullable[utils.RetryConfig]] = UNSET,
         server_url: Optional[str] = None,
         timeout_config: Optional[int] = None,
     ) -> operations.SuggestOperationIDsRegistryResponse:
@@ -320,11 +421,15 @@ class Suggest(BaseSDK):
         Get suggestions from an LLM model for improving the operationIDs in the provided schema.
 
         :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_config: Override the default request timeout configuration for this method in milliseconds
         """
         base_url = None
         url_variables = None
+        if timeout_config is None:
+            timeout_config = self.sdk_configuration.timeout_config
+        
         if server_url is not None:
             base_url = server_url
         
@@ -347,10 +452,25 @@ class Suggest(BaseSDK):
             timeout_config=timeout_config,
         )
         
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, [
+                "429",
+                "500",
+                "502",
+                "503",
+                "504"
+            ])                
+        
         http_res = await self.do_request_async(
             hook_ctx=HookContext(operation_id="suggestOperationIDsRegistry", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            retry_config=retry_config
         )
         
         res = operations.SuggestOperationIDsRegistryResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)

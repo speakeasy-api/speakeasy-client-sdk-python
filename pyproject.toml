@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "speakeasy-client-sdk-python"
-version = "5.10.1"
+version = "6.0.0"
 description = "Speakeasy API Client SDK for Python"
 authors = ["Speakeasy",]
 readme = "README.md"

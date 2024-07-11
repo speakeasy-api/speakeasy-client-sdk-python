@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import List, TypedDict
+from typing import List, Optional, TypedDict
+from typing_extensions import NotRequired
 
 
 class GithubConfigureMintlifyRepoRequestTypedDict(TypedDict):
@@ -16,6 +17,8 @@ class GithubConfigureMintlifyRepoRequestTypedDict(TypedDict):
     r"""The overlays to apply"""
     repo: str
     r"""The GitHub repository name"""
+    subdirectory: NotRequired[str]
+    r"""The subdirectory (location of mint.json)"""
     
 
 class GithubConfigureMintlifyRepoRequest(BaseModel):
@@ -29,4 +32,6 @@ class GithubConfigureMintlifyRepoRequest(BaseModel):
     r"""The overlays to apply"""
     repo: str
     r"""The GitHub repository name"""
+    subdirectory: Optional[str] = None
+    r"""The subdirectory (location of mint.json)"""
     

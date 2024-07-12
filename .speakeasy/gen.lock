@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: f5cf06d8d5f2ec68226ab161d7a73cba
+  docChecksum: 638dbecd668cc1d7818c3b5aefd2d3e1
   docVersion: 0.4.0 .
-  speakeasyVersion: 1.331.0
-  generationVersion: 2.365.0
-  releaseVersion: 6.0.0
-  configChecksum: f414126a58ac4fbab5782f1046b2f87c
+  speakeasyVersion: 1.332.1
+  generationVersion: 2.366.1
+  releaseVersion: 6.0.1
+  configChecksum: 97d1236f08906ddf9eec64830edad7ae
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -44,6 +44,7 @@ generatedFiles:
   - src/speakeasy_client_sdk_python/github.py
   - src/speakeasy_client_sdk_python/organizations.py
   - src/speakeasy_client_sdk_python/reports.py
+  - src/speakeasy_client_sdk_python/shorturls.py
   - src/speakeasy_client_sdk_python/suggest.py
   - src/speakeasy_client_sdk_python/embeds.py
   - src/speakeasy_client_sdk_python/events.py
@@ -126,6 +127,7 @@ generatedFiles:
   - src/speakeasy_client_sdk_python/models/operations/getchangesreportsignedurl.py
   - src/speakeasy_client_sdk_python/models/operations/getlintingreportsignedurl.py
   - src/speakeasy_client_sdk_python/models/operations/uploadreport.py
+  - src/speakeasy_client_sdk_python/models/operations/create.py
   - src/speakeasy_client_sdk_python/models/operations/applyoperationids.py
   - src/speakeasy_client_sdk_python/models/operations/suggestoperationids.py
   - src/speakeasy_client_sdk_python/models/operations/suggestoperationidsregistry.py
@@ -185,6 +187,7 @@ generatedFiles:
   - src/speakeasy_client_sdk_python/models/shared/organizationusage.py
   - src/speakeasy_client_sdk_python/models/shared/organization.py
   - src/speakeasy_client_sdk_python/models/shared/report.py
+  - src/speakeasy_client_sdk_python/models/shared/shorturl.py
   - src/speakeasy_client_sdk_python/models/shared/suggestedoperationids.py
   - src/speakeasy_client_sdk_python/models/shared/suggestoperationidsopts.py
   - src/speakeasy_client_sdk_python/models/shared/embedaccesstokenresponse.py
@@ -305,6 +308,8 @@ generatedFiles:
   - docs/models/operations/uploadreportrequestbody.md
   - docs/models/operations/uploadreportuploadedreport.md
   - docs/models/operations/uploadreportresponse.md
+  - docs/models/operations/createrequestbody.md
+  - docs/models/operations/createresponse.md
   - docs/models/operations/applyoperationidsrequestbody.md
   - docs/models/operations/applyoperationidsrequest.md
   - docs/models/operations/applyoperationidsresponse.md
@@ -391,6 +396,7 @@ generatedFiles:
   - docs/models/shared/organization.md
   - docs/models/shared/type.md
   - docs/models/shared/report.md
+  - docs/models/shared/shorturl.md
   - docs/models/shared/suggestedoperationids.md
   - docs/models/shared/depthstyle.md
   - docs/models/shared/style.md
@@ -416,6 +422,7 @@ generatedFiles:
   - docs/sdks/github/README.md
   - docs/sdks/organizations/README.md
   - docs/sdks/reports/README.md
+  - docs/sdks/shorturls/README.md
   - docs/sdks/suggest/README.md
   - docs/sdks/embeds/README.md
   - docs/sdks/events/README.md

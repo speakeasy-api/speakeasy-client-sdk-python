@@ -19,6 +19,7 @@ from speakeasy_client_sdk_python.organizations import Organizations
 from speakeasy_client_sdk_python.reports import Reports
 from speakeasy_client_sdk_python.requests import Requests
 from speakeasy_client_sdk_python.schemas import Schemas
+from speakeasy_client_sdk_python.shorturls import ShortURLs
 from speakeasy_client_sdk_python.suggest import Suggest
 from speakeasy_client_sdk_python.types import Nullable, UNSET
 import speakeasy_client_sdk_python.utils as utils
@@ -46,6 +47,8 @@ class Speakeasy(BaseSDK):
     organizations: Organizations
     reports: Reports
     r"""REST APIs for managing reports"""
+    short_ur_ls: ShortURLs
+    r"""REST APIs for managing short URLs"""
     suggest: Suggest
     r"""REST APIs for managing LLM OAS suggestions"""
     embeds: Embeds
@@ -133,6 +136,7 @@ class Speakeasy(BaseSDK):
         self.github = Github(self.sdk_configuration)
         self.organizations = Organizations(self.sdk_configuration)
         self.reports = Reports(self.sdk_configuration)
+        self.short_ur_ls = ShortURLs(self.sdk_configuration)
         self.suggest = Suggest(self.sdk_configuration)
         self.embeds = Embeds(self.sdk_configuration)
         self.events = Events(self.sdk_configuration)

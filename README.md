@@ -152,6 +152,10 @@ asyncio.run(main())
 * [get_linting_report_signed_url](docs/sdks/reports/README.md#get_linting_report_signed_url) - Get the signed access url for the linting reports for a particular document.
 * [upload_report](docs/sdks/reports/README.md#upload_report) - Upload a report.
 
+### [short_ur_ls](docs/sdks/shorturls/README.md)
+
+* [create](docs/sdks/shorturls/README.md#create) - Shorten a URL.
+
 ### [suggest](docs/sdks/suggest/README.md)
 
 * [apply_operation_i_ds](docs/sdks/suggest/README.md#apply_operation_i_ds) - Apply operation ID suggestions and download result.

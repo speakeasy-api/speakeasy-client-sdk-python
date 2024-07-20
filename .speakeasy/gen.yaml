@@ -10,7 +10,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 python:
-  version: 6.0.1
+  version: 6.2.0
   additionalDependencies:
     dev: {}
     main: {}
@@ -18,6 +18,7 @@ python:
     - Speakeasy
   clientServerStatusCodesAsErrors: true
   description: Speakeasy API Client SDK for Python
+  enumFormat: enum
   flattenGlobalSecurity: false
   flattenRequests: false
   imports:

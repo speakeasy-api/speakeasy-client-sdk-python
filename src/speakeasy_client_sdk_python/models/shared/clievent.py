@@ -10,11 +10,13 @@ from typing_extensions import NotRequired
 
 
 class GenerateBumpType(str, Enum):
-    r"""Bump type of the lock file (calculated semver delta, or a custom change (manual release))"""
+    r"""Bump type of the lock file (calculated semver delta, custom change (manual release), or prerelease/graduate)"""
     MAJOR = "major"
     MINOR = "minor"
     PATCH = "patch"
     CUSTOM = "custom"
+    GRADUATE = "graduate"
+    PRERELEASE = "prerelease"
     NONE = "none"
 
 
@@ -54,7 +56,7 @@ class CliEventTypedDict(TypedDict):
     error: NotRequired[str]
     r"""Error message if the event was not successful."""
     generate_bump_type: NotRequired[GenerateBumpType]
-    r"""Bump type of the lock file (calculated semver delta, or a custom change (manual release))"""
+    r"""Bump type of the lock file (calculated semver delta, custom change (manual release), or prerelease/graduate)"""
     generate_config_post_checksum: NotRequired[str]
     r"""Checksum of the configuration file (post generation)"""
     generate_config_post_raw: NotRequired[str]
@@ -213,7 +215,7 @@ class CliEvent(BaseModel):
     error: Optional[str] = None
     r"""Error message if the event was not successful."""
     generate_bump_type: Optional[GenerateBumpType] = None
-    r"""Bump type of the lock file (calculated semver delta, or a custom change (manual release))"""
+    r"""Bump type of the lock file (calculated semver delta, custom change (manual release), or prerelease/graduate)"""
     generate_config_post_checksum: Optional[str] = None
     r"""Checksum of the configuration file (post generation)"""
     generate_config_post_raw: Optional[str] = None

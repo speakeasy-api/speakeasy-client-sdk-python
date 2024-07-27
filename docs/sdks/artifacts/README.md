@@ -347,9 +347,7 @@ s = Speakeasy(
 )
 
 
-res = s.artifacts.preflight(request={
-    "namespace_name": "<value>",
-})
+res = s.artifacts.preflight()
 
 if res.preflight_token is not None:
     # handle response

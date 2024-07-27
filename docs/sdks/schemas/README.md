@@ -180,7 +180,7 @@ res = s.schemas.get_schema(request={
     "version_id": "<value>",
 })
 
-if res.schema is not None:
+if res.schema_ is not None:
     # handle response
     pass
 
@@ -276,7 +276,7 @@ res = s.schemas.get_schema_revision(request={
     "version_id": "<value>",
 })
 
-if res.schema is not None:
+if res.schema_ is not None:
     # handle response
     pass
 

@@ -76,7 +76,7 @@ s = Speakeasy(
 )
 
 
-res = s.events.get_workspace_targets(request={})
+res = s.events.get_workspace_targets()
 
 if res.target_sdk_list is not None:
     # handle response
@@ -179,7 +179,7 @@ s = Speakeasy(
 )
 
 
-res = s.events.search_workspace_events(request={})
+res = s.events.search_workspace_events()
 
 if res.cli_event_batch is not None:
     # handle response

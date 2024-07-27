@@ -32,7 +32,7 @@ s = Speakeasy(
 )
 
 
-res = s.apis.get_apis(request={})
+res = s.apis.get_apis()
 
 if res.apis is not None:
     # handle response
@@ -55,7 +55,7 @@ async def main():
             api_key=os.getenv("API_KEY", ""),
         ),
     )
-    res = await s.apis.get_apis_async(request={})
+    res = await s.apis.get_apis_async()
     if res.apis is not None:
         # handle response
         pass
@@ -143,6 +143,7 @@ asyncio.run(main())
 ### [organizations](docs/sdks/organizations/README.md)
 
 * [create_free_trial](docs/sdks/organizations/README.md#create_free_trial) - Create a free trial for an organization
+* [get_organization](docs/sdks/organizations/README.md#get_organization) - Get organization
 * [get_organization_usage](docs/sdks/organizations/README.md#get_organization_usage) - Get billing usage summary for a particular organization
 * [get_organizations](docs/sdks/organizations/README.md#get_organizations) - Get organizations for a user
 
@@ -167,6 +168,10 @@ asyncio.run(main())
 * [get_embed_access_token](docs/sdks/embeds/README.md#get_embed_access_token) - Get an embed access token for the current workspace.
 * [get_valid_embed_access_tokens](docs/sdks/embeds/README.md#get_valid_embed_access_tokens) - Get all valid embed access tokens for the current workspace.
 * [revoke_embed_access_token](docs/sdks/embeds/README.md#revoke_embed_access_token) - Revoke an embed access EmbedToken.
+
+### [workspaces](docs/sdks/workspaces/README.md)
+
+* [get_workspace](docs/sdks/workspaces/README.md#get_workspace) - Get workspace
 
 ### [events](docs/sdks/events/README.md)
 
@@ -420,7 +425,7 @@ if res is not None:
 
 A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `workspaceID` to `"<value>"` at SDK initialization and then you do not have to pass the same value on calls to operations like `get_workspace_events_by_target`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `workspaceID` to `"<value>"` at SDK initialization and then you do not have to pass the same value on calls to operations like `get_workspace`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
@@ -446,11 +451,9 @@ s = Speakeasy(
 )
 
 
-res = s.events.get_workspace_events_by_target(request={
-    "target_id": "<value>",
-})
+res = s.workspaces.get_workspace()
 
-if res.cli_event_batch is not None:
+if res.workspace is not None:
     # handle response
     pass
 

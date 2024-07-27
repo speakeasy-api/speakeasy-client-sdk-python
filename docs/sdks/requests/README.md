@@ -121,7 +121,7 @@ s = Speakeasy(
 )
 
 
-res = s.requests.query_event_log(request={})
+res = s.requests.query_event_log()
 
 if res.bounded_requests is not None:
     # handle response

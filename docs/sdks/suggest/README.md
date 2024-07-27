@@ -76,7 +76,7 @@ s = Speakeasy(
 
 res = s.suggest.suggest_operation_i_ds(request={
     "request_body": {
-        "schema": {
+        "schema_": {
             "content": open("<file_path>", "rb"),
             "file_name": "your_file_here",
         },

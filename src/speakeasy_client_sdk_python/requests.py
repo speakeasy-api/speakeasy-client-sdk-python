@@ -80,6 +80,7 @@ class Requests(BaseSDK):
             hook_ctx=HookContext(operation_id="generateRequestPostmanCollection", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            stream=True,
             retry_config=retry_config
         )
         
@@ -88,7 +89,7 @@ class Requests(BaseSDK):
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         if utils.match_response(http_res, "default", "application/json"):
-            return operations.GenerateRequestPostmanCollectionResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
+            return operations.GenerateRequestPostmanCollectionResponse(error=utils.unmarshal_json(utils.stream_to_text(http_res), Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
         
         content_type = http_res.headers.get("Content-Type")
         raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
@@ -159,6 +160,7 @@ class Requests(BaseSDK):
             hook_ctx=HookContext(operation_id="generateRequestPostmanCollection", oauth2_scopes=[], security_source=self.sdk_configuration.security),
             request=req,
             error_status_codes=["4XX","5XX"],
+            stream=True,
             retry_config=retry_config
         )
         
@@ -167,7 +169,7 @@ class Requests(BaseSDK):
         if utils.match_response(http_res, ["4XX","5XX"], "*"):
             raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
         if utils.match_response(http_res, "default", "application/json"):
-            return operations.GenerateRequestPostmanCollectionResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
+            return operations.GenerateRequestPostmanCollectionResponse(error=utils.unmarshal_json(utils.stream_to_text(http_res), Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
         
         content_type = http_res.headers.get("Content-Type")
         raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)

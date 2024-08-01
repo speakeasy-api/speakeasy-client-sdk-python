@@ -31,9 +31,9 @@ s = Speakeasy(
 
 res = s.metadata.delete_version_metadata(request={
     "api_id": "<value>",
+    "version_id": "<value>",
     "meta_key": "<value>",
     "meta_value": "<value>",
-    "version_id": "<value>",
 })
 
 if res is not None:
@@ -124,12 +124,12 @@ s = Speakeasy(
 
 
 res = s.metadata.insert_version_metadata(request={
+    "api_id": "<value>",
+    "version_id": "<value>",
     "version_metadata": {
         "meta_key": "<value>",
         "meta_value": "<value>",
     },
-    "api_id": "<value>",
-    "version_id": "<value>",
 })
 
 if res.version_metadata is not None:

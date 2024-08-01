@@ -11,25 +11,25 @@ from typing_extensions import Annotated, NotRequired
 
 
 class SuggestOperationIDsRegistryRequestTypedDict(TypedDict):
+    x_session_id: str
     namespace_name: str
     revision_reference: str
     r"""Tag or digest"""
-    x_session_id: str
-    suggest_operation_i_ds_opts: NotRequired[shared_suggestoperationidsopts.SuggestOperationIDsOptsTypedDict]
-    r"""The schema file to upload provided as a multipart/form-data file segment."""
     limit: NotRequired[float]
     r"""Max number of suggestions to request"""
+    suggest_operation_i_ds_opts: NotRequired[shared_suggestoperationidsopts.SuggestOperationIDsOptsTypedDict]
+    r"""The schema file to upload provided as a multipart/form-data file segment."""
     
 
 class SuggestOperationIDsRegistryRequest(BaseModel):
+    x_session_id: Annotated[str, pydantic.Field(alias="x-session-id"), FieldMetadata(header=HeaderMetadata(style="simple", explode=False))]
     namespace_name: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     revision_reference: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""Tag or digest"""
-    x_session_id: Annotated[str, pydantic.Field(alias="x-session-id"), FieldMetadata(header=HeaderMetadata(style="simple", explode=False))]
-    suggest_operation_i_ds_opts: Annotated[Optional[shared_suggestoperationidsopts.SuggestOperationIDsOpts], FieldMetadata(request=RequestMetadata(media_type="application/json"))] = None
-    r"""The schema file to upload provided as a multipart/form-data file segment."""
     limit: Annotated[Optional[float], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
     r"""Max number of suggestions to request"""
+    suggest_operation_i_ds_opts: Annotated[Optional[shared_suggestoperationidsopts.SuggestOperationIDsOpts], FieldMetadata(request=RequestMetadata(media_type="application/json"))] = None
+    r"""The schema file to upload provided as a multipart/form-data file segment."""
     
 
 class SuggestOperationIDsRegistryResponseTypedDict(TypedDict):

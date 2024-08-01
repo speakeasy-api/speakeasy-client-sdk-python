@@ -12,25 +12,25 @@ from typing_extensions import Annotated, NotRequired
 
 
 class UpsertAPIEndpointRequestTypedDict(TypedDict):
-    api_endpoint: shared_apiendpoint_input.APIEndpointInputTypedDict
-    r"""A JSON representation of the ApiEndpoint to upsert."""
-    api_endpoint_id: str
-    r"""The ID of the ApiEndpoint to upsert."""
     api_id: str
     r"""The ID of the Api the ApiEndpoint belongs to."""
     version_id: str
     r"""The version ID of the Api the ApiEndpoint belongs to."""
+    api_endpoint_id: str
+    r"""The ID of the ApiEndpoint to upsert."""
+    api_endpoint: shared_apiendpoint_input.APIEndpointInputTypedDict
+    r"""A JSON representation of the ApiEndpoint to upsert."""
     
 
 class UpsertAPIEndpointRequest(BaseModel):
-    api_endpoint: Annotated[shared_apiendpoint_input.APIEndpointInput, FieldMetadata(request=RequestMetadata(media_type="application/json"))]
-    r"""A JSON representation of the ApiEndpoint to upsert."""
-    api_endpoint_id: Annotated[str, pydantic.Field(alias="apiEndpointID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
-    r"""The ID of the ApiEndpoint to upsert."""
     api_id: Annotated[str, pydantic.Field(alias="apiID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The ID of the Api the ApiEndpoint belongs to."""
     version_id: Annotated[str, pydantic.Field(alias="versionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The version ID of the Api the ApiEndpoint belongs to."""
+    api_endpoint_id: Annotated[str, pydantic.Field(alias="apiEndpointID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    r"""The ID of the ApiEndpoint to upsert."""
+    api_endpoint: Annotated[shared_apiendpoint_input.APIEndpointInput, FieldMetadata(request=RequestMetadata(media_type="application/json"))]
+    r"""A JSON representation of the ApiEndpoint to upsert."""
     
 
 class UpsertAPIEndpointResponseTypedDict(TypedDict):

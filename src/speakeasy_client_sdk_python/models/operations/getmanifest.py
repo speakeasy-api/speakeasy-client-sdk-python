@@ -11,19 +11,19 @@ from typing_extensions import Annotated, NotRequired
 
 
 class GetManifestRequestTypedDict(TypedDict):
-    namespace_name: str
     organization_slug: str
+    workspace_slug: str
+    namespace_name: str
     revision_reference: str
     r"""Tag or digest"""
-    workspace_slug: str
     
 
 class GetManifestRequest(BaseModel):
-    namespace_name: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     organization_slug: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    workspace_slug: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    namespace_name: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     revision_reference: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""Tag or digest"""
-    workspace_slug: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     
 
 class GetManifestResponseTypedDict(TypedDict):

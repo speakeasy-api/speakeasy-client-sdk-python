@@ -75,13 +75,13 @@ s = Speakeasy(
 
 
 res = s.suggest.suggest_operation_i_ds(request={
+    "x_session_id": "<value>",
     "request_body": {
         "schema_": {
             "content": open("<file_path>", "rb"),
             "file_name": "your_file_here",
         },
     },
-    "x_session_id": "<value>",
 })
 
 if res.suggested_operation_i_ds is not None:
@@ -126,9 +126,9 @@ s = Speakeasy(
 
 
 res = s.suggest.suggest_operation_i_ds_registry(request={
+    "x_session_id": "<value>",
     "namespace_name": "<value>",
     "revision_reference": "<value>",
-    "x_session_id": "<value>",
 })
 
 if res.suggested_operation_i_ds is not None:

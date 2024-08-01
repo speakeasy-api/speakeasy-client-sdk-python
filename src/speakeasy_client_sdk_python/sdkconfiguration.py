@@ -3,7 +3,7 @@
 
 from ._hooks import SDKHooks
 from .httpclient import AsyncHttpClient, HttpClient
-from .utils import RetryConfig, remove_suffix
+from .utils import Logger, RetryConfig, remove_suffix
 from dataclasses import dataclass
 from pydantic import Field
 from speakeasy_client_sdk_python.models import internal, shared
@@ -28,11 +28,12 @@ class SDKConfiguration:
     server: Optional[str] = ""
     language: str = "python"
     openapi_doc_version: str = "0.4.0 ."
-    sdk_version: str = "6.3.0"
-    gen_version: str = "2.379.6"
-    user_agent: str = "speakeasy-sdk/python 6.3.0 2.379.6 0.4.0 . speakeasy-client-sdk-python"
+    sdk_version: str = "7.0.0-rc.0"
+    gen_version: str = "2.384.3"
+    user_agent: str = "speakeasy-sdk/python 7.0.0-rc.0 2.384.3 0.4.0 . speakeasy-client-sdk-python"
     retry_config: OptionalNullable[RetryConfig] = Field(default_factory=lambda: UNSET)
     timeout_ms: Optional[int] = None
+    debug_logger: Optional[Logger] = None
 
     def __post_init__(self):
         self._hooks = SDKHooks()

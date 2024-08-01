@@ -14,19 +14,19 @@ from typing_extensions import Annotated, NotRequired
 class FindAPIEndpointRequestTypedDict(TypedDict):
     api_id: str
     r"""The ID of the Api the ApiEndpoint belongs to."""
-    display_name: str
-    r"""The displayName of the ApiEndpoint to find (set by operationId from OpenAPI schema)."""
     version_id: str
     r"""The version ID of the Api the ApiEndpoint belongs to."""
+    display_name: str
+    r"""The displayName of the ApiEndpoint to find (set by operationId from OpenAPI schema)."""
     
 
 class FindAPIEndpointRequest(BaseModel):
     api_id: Annotated[str, pydantic.Field(alias="apiID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The ID of the Api the ApiEndpoint belongs to."""
-    display_name: Annotated[str, pydantic.Field(alias="displayName"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
-    r"""The displayName of the ApiEndpoint to find (set by operationId from OpenAPI schema)."""
     version_id: Annotated[str, pydantic.Field(alias="versionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The version ID of the Api the ApiEndpoint belongs to."""
+    display_name: Annotated[str, pydantic.Field(alias="displayName"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    r"""The displayName of the ApiEndpoint to find (set by operationId from OpenAPI schema)."""
     
 
 class FindAPIEndpointResponseTypedDict(TypedDict):

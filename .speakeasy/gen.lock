@@ -3,10 +3,10 @@ id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
   docChecksum: 312822a7ccdbf7c77dbbfeef49fb2053
   docVersion: 0.4.0 .
-  speakeasyVersion: 1.346.3
-  generationVersion: 2.379.6
-  releaseVersion: 6.3.0
-  configChecksum: 511764c1ed21807dbbda4fcd048339ff
+  speakeasyVersion: 1.351.1
+  generationVersion: 2.384.3
+  releaseVersion: 7.0.0-rc.0
+  configChecksum: 1d686a63e7865a7b7cb6ff50fbdaeda1
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -15,11 +15,11 @@ features:
   python:
     acceptHeaders: 3.0.0
     additionalDependencies: 1.0.0
-    core: 5.2.4
+    core: 5.3.1
     defaultEnabledRetries: 0.2.0
     deprecations: 3.0.0
-    downloadStreams: 1.0.0
-    envVarSecurityUsage: 0.2.0
+    downloadStreams: 1.0.1
+    envVarSecurityUsage: 0.2.1
     examples: 3.0.0
     globalSecurity: 3.0.0
     globalSecurityCallbacks: 1.0.0
@@ -69,6 +69,7 @@ generatedFiles:
   - src/speakeasy_client_sdk_python/utils/eventstreaming.py
   - src/speakeasy_client_sdk_python/utils/forms.py
   - src/speakeasy_client_sdk_python/utils/headers.py
+  - src/speakeasy_client_sdk_python/utils/logger.py
   - src/speakeasy_client_sdk_python/utils/metadata.py
   - src/speakeasy_client_sdk_python/utils/queryparams.py
   - src/speakeasy_client_sdk_python/utils/requestbodies.py

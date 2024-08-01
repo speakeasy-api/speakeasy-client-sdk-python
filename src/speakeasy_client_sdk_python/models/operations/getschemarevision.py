@@ -14,19 +14,19 @@ from typing_extensions import Annotated, NotRequired
 class GetSchemaRevisionRequestTypedDict(TypedDict):
     api_id: str
     r"""The ID of the Api to retrieve schemas for."""
-    revision_id: str
-    r"""The revision ID of the schema to retrieve."""
     version_id: str
     r"""The version ID of the Api to delete metadata for."""
+    revision_id: str
+    r"""The revision ID of the schema to retrieve."""
     
 
 class GetSchemaRevisionRequest(BaseModel):
     api_id: Annotated[str, pydantic.Field(alias="apiID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The ID of the Api to retrieve schemas for."""
-    revision_id: Annotated[str, pydantic.Field(alias="revisionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
-    r"""The revision ID of the schema to retrieve."""
     version_id: Annotated[str, pydantic.Field(alias="versionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The version ID of the Api to delete metadata for."""
+    revision_id: Annotated[str, pydantic.Field(alias="revisionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    r"""The revision ID of the schema to retrieve."""
     
 
 class GetSchemaRevisionResponseTypedDict(TypedDict):

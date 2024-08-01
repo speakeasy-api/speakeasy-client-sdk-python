@@ -26,17 +26,17 @@ class QueryParamOp(BaseModel):
     
 
 class GetApisRequestTypedDict(TypedDict):
-    metadata: NotRequired[Dict[str, List[str]]]
-    r"""Metadata to filter Apis on"""
     op: NotRequired[QueryParamOpTypedDict]
     r"""Configuration for filter operations"""
+    metadata: NotRequired[Dict[str, List[str]]]
+    r"""Metadata to filter Apis on"""
     
 
 class GetApisRequest(BaseModel):
-    metadata: Annotated[Optional[Dict[str, List[str]]], FieldMetadata(query=QueryParamMetadata(style="deepObject", explode=True))] = None
-    r"""Metadata to filter Apis on"""
     op: Annotated[Optional[QueryParamOp], FieldMetadata(query=QueryParamMetadata(style="deepObject", explode=True))] = None
     r"""Configuration for filter operations"""
+    metadata: Annotated[Optional[Dict[str, List[str]]], FieldMetadata(query=QueryParamMetadata(style="deepObject", explode=True))] = None
+    r"""Metadata to filter Apis on"""
     
 
 class GetApisResponseTypedDict(TypedDict):

@@ -12,21 +12,21 @@ from typing_extensions import Annotated, NotRequired
 
 
 class InsertVersionMetadataRequestTypedDict(TypedDict):
-    version_metadata: shared_versionmetadata_input.VersionMetadataInputTypedDict
-    r"""A JSON representation of the metadata to insert."""
     api_id: str
     r"""The ID of the Api to insert metadata for."""
     version_id: str
     r"""The version ID of the Api to insert metadata for."""
+    version_metadata: shared_versionmetadata_input.VersionMetadataInputTypedDict
+    r"""A JSON representation of the metadata to insert."""
     
 
 class InsertVersionMetadataRequest(BaseModel):
-    version_metadata: Annotated[shared_versionmetadata_input.VersionMetadataInput, FieldMetadata(request=RequestMetadata(media_type="application/json"))]
-    r"""A JSON representation of the metadata to insert."""
     api_id: Annotated[str, pydantic.Field(alias="apiID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The ID of the Api to insert metadata for."""
     version_id: Annotated[str, pydantic.Field(alias="versionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The version ID of the Api to insert metadata for."""
+    version_metadata: Annotated[shared_versionmetadata_input.VersionMetadataInput, FieldMetadata(request=RequestMetadata(media_type="application/json"))]
+    r"""A JSON representation of the metadata to insert."""
     
 
 class InsertVersionMetadataResponseTypedDict(TypedDict):

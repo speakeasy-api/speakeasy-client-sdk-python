@@ -3,6 +3,7 @@
 from .basesdk import BaseSDK
 from .httpclient import AsyncHttpClient, HttpClient
 from .sdkconfiguration import SDKConfiguration
+from .utils.logger import Logger, NoOpLogger
 from .utils.retries import RetryConfig
 import httpx
 from speakeasy_client_sdk_python._hooks import SDKHooks
@@ -67,7 +68,8 @@ class Speakeasy(BaseSDK):
         client: Optional[HttpClient] = None,
         async_client: Optional[AsyncHttpClient] = None,
         retry_config: OptionalNullable[RetryConfig] = UNSET,
-        timeout_ms: Optional[int] = None
+        timeout_ms: Optional[int] = None,
+        debug_logger: Optional[Logger] = None
     ) -> None:
         r"""Instantiates the SDK configuring it with the provided parameters.
 
@@ -91,6 +93,9 @@ class Speakeasy(BaseSDK):
         if async_client is None:
             async_client = httpx.AsyncClient()
 
+        if debug_logger is None:
+            debug_logger = NoOpLogger()
+
         assert issubclass(
             type(async_client), AsyncHttpClient
         ), "The provided async_client must implement the AsyncHttpClient protocol."
@@ -111,7 +116,8 @@ class Speakeasy(BaseSDK):
             server_url=server_url,
             server=server,
             retry_config=retry_config,
-            timeout_ms=timeout_ms
+            timeout_ms=timeout_ms,
+            debug_logger=debug_logger
         ))
 
         hooks = SDKHooks()

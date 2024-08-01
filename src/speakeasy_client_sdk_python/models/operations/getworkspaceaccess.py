@@ -13,19 +13,19 @@ from typing_extensions import Annotated, NotRequired
 class GetWorkspaceAccessRequestTypedDict(TypedDict):
     gen_lock_id: NotRequired[str]
     r"""Unique identifier of the generation target."""
-    passive: NotRequired[bool]
-    r"""Skip side-effects like incrementing metrics."""
     target_type: NotRequired[str]
     r"""The type of the generated target."""
+    passive: NotRequired[bool]
+    r"""Skip side-effects like incrementing metrics."""
     
 
 class GetWorkspaceAccessRequest(BaseModel):
     gen_lock_id: Annotated[Optional[str], pydantic.Field(alias="genLockId"), FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
     r"""Unique identifier of the generation target."""
-    passive: Annotated[Optional[bool], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
-    r"""Skip side-effects like incrementing metrics."""
     target_type: Annotated[Optional[str], pydantic.Field(alias="targetType"), FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
     r"""The type of the generated target."""
+    passive: Annotated[Optional[bool], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
+    r"""Skip side-effects like incrementing metrics."""
     
 
 class GetWorkspaceAccessResponseTypedDict(TypedDict):

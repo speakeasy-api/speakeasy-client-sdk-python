@@ -14,23 +14,23 @@ from typing_extensions import Annotated, NotRequired
 class GetSchemaDiffRequestTypedDict(TypedDict):
     api_id: str
     r"""The ID of the Api to retrieve schemas for."""
+    version_id: str
+    r"""The version ID of the Api to delete metadata for."""
     base_revision_id: str
     r"""The base revision ID of the schema to retrieve."""
     target_revision_id: str
     r"""The target revision ID of the schema to retrieve."""
-    version_id: str
-    r"""The version ID of the Api to delete metadata for."""
     
 
 class GetSchemaDiffRequest(BaseModel):
     api_id: Annotated[str, pydantic.Field(alias="apiID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The ID of the Api to retrieve schemas for."""
+    version_id: Annotated[str, pydantic.Field(alias="versionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    r"""The version ID of the Api to delete metadata for."""
     base_revision_id: Annotated[str, pydantic.Field(alias="baseRevisionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The base revision ID of the schema to retrieve."""
     target_revision_id: Annotated[str, pydantic.Field(alias="targetRevisionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The target revision ID of the schema to retrieve."""
-    version_id: Annotated[str, pydantic.Field(alias="versionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
-    r"""The version ID of the Api to delete metadata for."""
     
 
 class GetSchemaDiffResponseTypedDict(TypedDict):

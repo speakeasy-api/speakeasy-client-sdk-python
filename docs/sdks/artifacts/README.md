@@ -35,10 +35,10 @@ s = Speakeasy(
 
 
 res = s.artifacts.get_blob(request={
-    "digest": "<value>",
-    "namespace_name": "<value>",
     "organization_slug": "<value>",
     "workspace_slug": "<value>",
+    "namespace_name": "<value>",
+    "digest": "<value>",
 })
 
 if res.blob is not None:
@@ -83,10 +83,10 @@ s = Speakeasy(
 
 
 res = s.artifacts.get_manifest(request={
-    "namespace_name": "<value>",
     "organization_slug": "<value>",
-    "revision_reference": "<value>",
     "workspace_slug": "<value>",
+    "namespace_name": "<value>",
+    "revision_reference": "<value>",
 })
 
 if res.manifest is not None:

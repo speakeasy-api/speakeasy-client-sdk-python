@@ -20,17 +20,17 @@ class GetWorkspaceTargetsGlobals(BaseModel):
     
 
 class GetWorkspaceTargetsRequestTypedDict(TypedDict):
-    after_last_event_created_at: NotRequired[datetime]
-    r"""Filter to only return targets with events created after this timestamp"""
     workspace_id: NotRequired[str]
     r"""Unique identifier of the workspace."""
+    after_last_event_created_at: NotRequired[datetime]
+    r"""Filter to only return targets with events created after this timestamp"""
     
 
 class GetWorkspaceTargetsRequest(BaseModel):
-    after_last_event_created_at: Annotated[Optional[datetime], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
-    r"""Filter to only return targets with events created after this timestamp"""
     workspace_id: Annotated[Optional[str], pydantic.Field(alias="workspaceID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))] = None
     r"""Unique identifier of the workspace."""
+    after_last_event_created_at: Annotated[Optional[datetime], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
+    r"""Filter to only return targets with events created after this timestamp"""
     
 
 class GetWorkspaceTargetsResponseTypedDict(TypedDict):

@@ -263,12 +263,12 @@ s = Speakeasy(
 
 
 res = s.apis.upsert_api(request={
+    "api_id": "<value>",
     "api": {
         "api_id": "<value>",
         "description": "Synchronised 5th generation knowledge user",
         "version_id": "<value>",
     },
-    "api_id": "<value>",
 })
 
 if res.api is not None:

@@ -22,19 +22,19 @@ class GetWorkspaceEventsByTargetGlobals(BaseModel):
 class GetWorkspaceEventsByTargetRequestTypedDict(TypedDict):
     target_id: str
     r"""Filter to only return events corresponding to a particular gen_lock_id (gen_lock_id uniquely identifies a target)"""
-    after_created_at: NotRequired[datetime]
-    r"""Filter to only return events created after this timestamp"""
     workspace_id: NotRequired[str]
     r"""Unique identifier of the workspace."""
+    after_created_at: NotRequired[datetime]
+    r"""Filter to only return events created after this timestamp"""
     
 
 class GetWorkspaceEventsByTargetRequest(BaseModel):
     target_id: Annotated[str, pydantic.Field(alias="targetID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""Filter to only return events corresponding to a particular gen_lock_id (gen_lock_id uniquely identifies a target)"""
-    after_created_at: Annotated[Optional[datetime], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
-    r"""Filter to only return events created after this timestamp"""
     workspace_id: Annotated[Optional[str], pydantic.Field(alias="workspaceID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))] = None
     r"""Unique identifier of the workspace."""
+    after_created_at: Annotated[Optional[datetime], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
+    r"""Filter to only return events created after this timestamp"""
     
 
 class GetWorkspaceEventsByTargetResponseTypedDict(TypedDict):

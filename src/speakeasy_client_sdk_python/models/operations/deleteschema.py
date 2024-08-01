@@ -13,19 +13,19 @@ from typing_extensions import Annotated, NotRequired
 class DeleteSchemaRequestTypedDict(TypedDict):
     api_id: str
     r"""The ID of the Api to delete schemas for."""
-    revision_id: str
-    r"""The revision ID of the schema to delete."""
     version_id: str
     r"""The version ID of the Api to delete metadata for."""
+    revision_id: str
+    r"""The revision ID of the schema to delete."""
     
 
 class DeleteSchemaRequest(BaseModel):
     api_id: Annotated[str, pydantic.Field(alias="apiID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The ID of the Api to delete schemas for."""
-    revision_id: Annotated[str, pydantic.Field(alias="revisionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
-    r"""The revision ID of the schema to delete."""
     version_id: Annotated[str, pydantic.Field(alias="versionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The version ID of the Api to delete metadata for."""
+    revision_id: Annotated[str, pydantic.Field(alias="revisionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    r"""The revision ID of the schema to delete."""
     
 
 class DeleteSchemaResponseTypedDict(TypedDict):

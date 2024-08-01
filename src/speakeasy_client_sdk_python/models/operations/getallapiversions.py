@@ -28,19 +28,19 @@ class Op(BaseModel):
 class GetAllAPIVersionsRequestTypedDict(TypedDict):
     api_id: str
     r"""The ID of the Api to retrieve."""
-    metadata: NotRequired[Dict[str, List[str]]]
-    r"""Metadata to filter Apis on"""
     op: NotRequired[OpTypedDict]
     r"""Configuration for filter operations"""
+    metadata: NotRequired[Dict[str, List[str]]]
+    r"""Metadata to filter Apis on"""
     
 
 class GetAllAPIVersionsRequest(BaseModel):
     api_id: Annotated[str, pydantic.Field(alias="apiID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The ID of the Api to retrieve."""
-    metadata: Annotated[Optional[Dict[str, List[str]]], FieldMetadata(query=QueryParamMetadata(style="deepObject", explode=True))] = None
-    r"""Metadata to filter Apis on"""
     op: Annotated[Optional[Op], FieldMetadata(query=QueryParamMetadata(style="deepObject", explode=True))] = None
     r"""Configuration for filter operations"""
+    metadata: Annotated[Optional[Dict[str, List[str]]], FieldMetadata(query=QueryParamMetadata(style="deepObject", explode=True))] = None
+    r"""Metadata to filter Apis on"""
     
 
 class GetAllAPIVersionsResponseTypedDict(TypedDict):

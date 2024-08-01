@@ -541,14 +541,14 @@ s = Speakeasy(
 
 
 res = s.schemas.register_schema(request={
+    "api_id": "<value>",
+    "version_id": "<value>",
     "request_body": {
         "file": {
             "content": open("<file_path>", "rb"),
             "file_name": "your_file_here",
         },
     },
-    "api_id": "<value>",
-    "version_id": "<value>",
 })
 
 if res is not None:
@@ -557,6 +557,20 @@ if res is not None:
 
 ```
 <!-- End File uploads [file-upload] -->
+
+<!-- Start Debugging [debug] -->
+## Debugging
+
+To emit debug logs for SDK requests and responses you can pass a logger object directly into your SDK object.
+
+```python
+from speakeasy_client_sdk_python import Speakeasy
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+s = Speakeasy(debug_logger=logging.getLogger("speakeasy_client_sdk_python"))
+```
+<!-- End Debugging [debug] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

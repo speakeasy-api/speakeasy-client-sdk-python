@@ -5,7 +5,7 @@ import httpx
 from speakeasy_client_sdk_python._hooks import AfterErrorContext, AfterSuccessContext, BeforeRequestContext
 from speakeasy_client_sdk_python.models import errors
 import speakeasy_client_sdk_python.utils as utils
-from speakeasy_client_sdk_python.utils import RetryConfig, SerializedRequestBody
+from speakeasy_client_sdk_python.utils import RetryConfig, SerializedRequestBody, get_body_content
 from typing import Callable, List, Optional, Tuple
 
 class BaseSDK:
@@ -113,9 +113,11 @@ class BaseSDK:
         hook_ctx,
         request,
         error_status_codes,
+        stream=False,
         retry_config: Optional[Tuple[RetryConfig, List[str]]] = None,
     ) -> httpx.Response:
         client = self.sdk_configuration.client
+        logger = self.sdk_configuration.debug_logger
 
         def do():
             http_res = None
@@ -123,26 +125,45 @@ class BaseSDK:
                 req = self.sdk_configuration.get_hooks().before_request(
                     BeforeRequestContext(hook_ctx), request
                 )
-                http_res = client.send(req)
+                logger.debug(
+                    "Request:\nMethod: %s\nURL: %s\nHeaders: %s\nBody: %s",
+                    req.method,
+                    req.url,
+                    req.headers,
+                    get_body_content(req)
+                )
+                http_res = client.send(req, stream=stream)
             except Exception as e:
                 _, e = self.sdk_configuration.get_hooks().after_error(
                     AfterErrorContext(hook_ctx), None, e
                 )
                 if e is not None:
+                    logger.debug("Request Exception", exc_info=True)
                     raise e
 
             if http_res is None:
+                logger.debug("Raising no response SDK error")
                 raise errors.SDKError("No response received")
+
+            logger.debug(
+                "Response:\nStatus Code: %s\nURL: %s\nHeaders: %s\nBody: %s",
+                http_res.status_code,
+                http_res.url,
+                http_res.headers,
+                "<streaming response>" if stream else http_res.text
+            )
 
             if utils.match_status_codes(error_status_codes, http_res.status_code):
                 result, err = self.sdk_configuration.get_hooks().after_error(
                     AfterErrorContext(hook_ctx), http_res, None
                 )
                 if err is not None:
+                    logger.debug("Request Exception", exc_info=True)
                     raise err
                 if result is not None:
                     http_res = result
                 else:
+                    logger.debug("Raising unexpected SDK error")
                     raise errors.SDKError("Unexpected error occurred")
 
             return http_res
@@ -164,36 +185,56 @@ class BaseSDK:
         hook_ctx,
         request,
         error_status_codes,
+        stream=False,
         retry_config: Optional[Tuple[RetryConfig, List[str]]] = None,
     ) -> httpx.Response:
         client = self.sdk_configuration.async_client
-
+        logger = self.sdk_configuration.debug_logger
         async def do():
             http_res = None
             try:
                 req = self.sdk_configuration.get_hooks().before_request(
                     BeforeRequestContext(hook_ctx), request
                 )
-                http_res = await client.send(req)
+                logger.debug(
+                    "Request:\nMethod: %s\nURL: %s\nHeaders: %s\nBody: %s",
+                    req.method,
+                    req.url,
+                    req.headers,
+                    get_body_content(req)
+                )
+                http_res = await client.send(req, stream=stream)
             except Exception as e:
                 _, e = self.sdk_configuration.get_hooks().after_error(
                     AfterErrorContext(hook_ctx), None, e
                 )
                 if e is not None:
+                    logger.debug("Request Exception", exc_info=True)
                     raise e
 
             if http_res is None:
+                logger.debug("Raising no response SDK error")
                 raise errors.SDKError("No response received")
+
+            logger.debug(
+                "Response:\nStatus Code: %s\nURL: %s\nHeaders: %s\nBody: %s",
+                http_res.status_code,
+                http_res.url,
+                http_res.headers,
+                "<streaming response>" if stream else http_res.text
+            )
 
             if utils.match_status_codes(error_status_codes, http_res.status_code):
                 result, err = self.sdk_configuration.get_hooks().after_error(
                     AfterErrorContext(hook_ctx), http_res, None
                 )
                 if err is not None:
+                    logger.debug("Request Exception", exc_info=True)
                     raise err
                 if result is not None:
                     http_res = result
                 else:
+                    logger.debug("Raising unexpected SDK error")
                     raise errors.SDKError("Unexpected error occurred")
 
             return http_res

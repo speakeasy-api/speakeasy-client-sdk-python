@@ -38,17 +38,17 @@ class SuggestOperationIDsRequestBody(BaseModel):
     
 
 class SuggestOperationIDsRequestTypedDict(TypedDict):
+    x_session_id: str
     request_body: SuggestOperationIDsRequestBodyTypedDict
     r"""The schema file to upload provided as a multipart/form-data file segment."""
-    x_session_id: str
     limit: NotRequired[float]
     r"""Max number of suggestions to request"""
     
 
 class SuggestOperationIDsRequest(BaseModel):
+    x_session_id: Annotated[str, pydantic.Field(alias="x-session-id"), FieldMetadata(header=HeaderMetadata(style="simple", explode=False))]
     request_body: Annotated[SuggestOperationIDsRequestBody, FieldMetadata(request=RequestMetadata(media_type="multipart/form-data"))]
     r"""The schema file to upload provided as a multipart/form-data file segment."""
-    x_session_id: Annotated[str, pydantic.Field(alias="x-session-id"), FieldMetadata(header=HeaderMetadata(style="simple", explode=False))]
     limit: Annotated[Optional[float], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
     r"""Max number of suggestions to request"""
     

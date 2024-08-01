@@ -12,21 +12,21 @@ from typing_extensions import Annotated, NotRequired
 
 
 class GenerateOpenAPISpecForAPIEndpointRequestTypedDict(TypedDict):
-    api_endpoint_id: str
-    r"""The ID of the ApiEndpoint to generate an OpenAPI specification for."""
     api_id: str
     r"""The ID of the Api to generate an OpenAPI specification for."""
     version_id: str
     r"""The version ID of the Api to generate an OpenAPI specification for."""
+    api_endpoint_id: str
+    r"""The ID of the ApiEndpoint to generate an OpenAPI specification for."""
     
 
 class GenerateOpenAPISpecForAPIEndpointRequest(BaseModel):
-    api_endpoint_id: Annotated[str, pydantic.Field(alias="apiEndpointID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
-    r"""The ID of the ApiEndpoint to generate an OpenAPI specification for."""
     api_id: Annotated[str, pydantic.Field(alias="apiID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The ID of the Api to generate an OpenAPI specification for."""
     version_id: Annotated[str, pydantic.Field(alias="versionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The version ID of the Api to generate an OpenAPI specification for."""
+    api_endpoint_id: Annotated[str, pydantic.Field(alias="apiEndpointID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    r"""The ID of the ApiEndpoint to generate an OpenAPI specification for."""
     
 
 class GenerateOpenAPISpecForAPIEndpointResponseTypedDict(TypedDict):

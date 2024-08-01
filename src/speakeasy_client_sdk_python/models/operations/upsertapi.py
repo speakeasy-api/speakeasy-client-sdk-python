@@ -12,17 +12,17 @@ from typing_extensions import Annotated, NotRequired
 
 
 class UpsertAPIRequestTypedDict(TypedDict):
-    api: shared_api_input.APIInputTypedDict
-    r"""A JSON representation of the Api to upsert"""
     api_id: str
     r"""The ID of the Api to upsert."""
+    api: shared_api_input.APIInputTypedDict
+    r"""A JSON representation of the Api to upsert"""
     
 
 class UpsertAPIRequest(BaseModel):
-    api: Annotated[shared_api_input.APIInput, FieldMetadata(request=RequestMetadata(media_type="application/json"))]
-    r"""A JSON representation of the Api to upsert"""
     api_id: Annotated[str, pydantic.Field(alias="apiID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The ID of the Api to upsert."""
+    api: Annotated[shared_api_input.APIInput, FieldMetadata(request=RequestMetadata(media_type="application/json"))]
+    r"""A JSON representation of the Api to upsert"""
     
 
 class UpsertAPIResponseTypedDict(TypedDict):

@@ -19,33 +19,33 @@ class SearchWorkspaceEventsGlobals(BaseModel):
     
 
 class SearchWorkspaceEventsRequestTypedDict(TypedDict):
-    generate_gen_lock_id: NotRequired[str]
-    r"""A specific gen lock ID for the events."""
-    interaction_type: NotRequired[shared_interactiontype.InteractionType]
-    r"""Specified interaction type for events."""
+    workspace_id: NotRequired[str]
+    r"""Unique identifier of the workspace."""
+    source_revision_digest: NotRequired[str]
+    r"""Unique identifier of the source revision digest."""
     lint_report_digest: NotRequired[str]
     r"""Unique identifier of the lint report digest."""
     openapi_diff_report_digest: NotRequired[str]
     r"""Unique identifier of the openapi diff report digest."""
-    source_revision_digest: NotRequired[str]
-    r"""Unique identifier of the source revision digest."""
-    workspace_id: NotRequired[str]
-    r"""Unique identifier of the workspace."""
+    interaction_type: NotRequired[shared_interactiontype.InteractionType]
+    r"""Specified interaction type for events."""
+    generate_gen_lock_id: NotRequired[str]
+    r"""A specific gen lock ID for the events."""
     
 
 class SearchWorkspaceEventsRequest(BaseModel):
-    generate_gen_lock_id: Annotated[Optional[str], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
-    r"""A specific gen lock ID for the events."""
-    interaction_type: Annotated[Optional[shared_interactiontype.InteractionType], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
-    r"""Specified interaction type for events."""
+    workspace_id: Annotated[Optional[str], pydantic.Field(alias="workspaceID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))] = None
+    r"""Unique identifier of the workspace."""
+    source_revision_digest: Annotated[Optional[str], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
+    r"""Unique identifier of the source revision digest."""
     lint_report_digest: Annotated[Optional[str], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
     r"""Unique identifier of the lint report digest."""
     openapi_diff_report_digest: Annotated[Optional[str], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
     r"""Unique identifier of the openapi diff report digest."""
-    source_revision_digest: Annotated[Optional[str], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
-    r"""Unique identifier of the source revision digest."""
-    workspace_id: Annotated[Optional[str], pydantic.Field(alias="workspaceID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))] = None
-    r"""Unique identifier of the workspace."""
+    interaction_type: Annotated[Optional[shared_interactiontype.InteractionType], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
+    r"""Specified interaction type for events."""
+    generate_gen_lock_id: Annotated[Optional[str], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
+    r"""A specific gen lock ID for the events."""
     
 
 class SearchWorkspaceEventsResponseTypedDict(TypedDict):

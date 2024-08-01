@@ -36,21 +36,21 @@ class RegisterSchemaRequestBody(BaseModel):
     
 
 class RegisterSchemaRequestTypedDict(TypedDict):
-    request_body: RegisterSchemaRequestBodyTypedDict
-    r"""The schema file to upload provided as a multipart/form-data file segment."""
     api_id: str
     r"""The ID of the Api to get the schema for."""
     version_id: str
     r"""The version ID of the Api to delete metadata for."""
+    request_body: RegisterSchemaRequestBodyTypedDict
+    r"""The schema file to upload provided as a multipart/form-data file segment."""
     
 
 class RegisterSchemaRequest(BaseModel):
-    request_body: Annotated[RegisterSchemaRequestBody, FieldMetadata(request=RequestMetadata(media_type="multipart/form-data"))]
-    r"""The schema file to upload provided as a multipart/form-data file segment."""
     api_id: Annotated[str, pydantic.Field(alias="apiID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The ID of the Api to get the schema for."""
     version_id: Annotated[str, pydantic.Field(alias="versionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The version ID of the Api to delete metadata for."""
+    request_body: Annotated[RegisterSchemaRequestBody, FieldMetadata(request=RequestMetadata(media_type="multipart/form-data"))]
+    r"""The schema file to upload provided as a multipart/form-data file segment."""
     
 
 class RegisterSchemaResponseTypedDict(TypedDict):

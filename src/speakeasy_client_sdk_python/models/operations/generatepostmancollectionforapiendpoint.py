@@ -11,21 +11,21 @@ from typing_extensions import Annotated, NotRequired
 
 
 class GeneratePostmanCollectionForAPIEndpointRequestTypedDict(TypedDict):
-    api_endpoint_id: str
-    r"""The ID of the ApiEndpoint to generate a Postman collection for."""
     api_id: str
     r"""The ID of the Api to generate a Postman collection for."""
     version_id: str
     r"""The version ID of the Api to generate a Postman collection for."""
+    api_endpoint_id: str
+    r"""The ID of the ApiEndpoint to generate a Postman collection for."""
     
 
 class GeneratePostmanCollectionForAPIEndpointRequest(BaseModel):
-    api_endpoint_id: Annotated[str, pydantic.Field(alias="apiEndpointID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
-    r"""The ID of the ApiEndpoint to generate a Postman collection for."""
     api_id: Annotated[str, pydantic.Field(alias="apiID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The ID of the Api to generate a Postman collection for."""
     version_id: Annotated[str, pydantic.Field(alias="versionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The version ID of the Api to generate a Postman collection for."""
+    api_endpoint_id: Annotated[str, pydantic.Field(alias="apiEndpointID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    r"""The ID of the ApiEndpoint to generate a Postman collection for."""
     
 
 class GeneratePostmanCollectionForAPIEndpointResponseTypedDict(TypedDict):

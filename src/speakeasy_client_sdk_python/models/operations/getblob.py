@@ -10,17 +10,17 @@ from typing_extensions import Annotated, NotRequired
 
 
 class GetBlobRequestTypedDict(TypedDict):
-    digest: str
-    namespace_name: str
     organization_slug: str
     workspace_slug: str
+    namespace_name: str
+    digest: str
     
 
 class GetBlobRequest(BaseModel):
-    digest: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
-    namespace_name: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     organization_slug: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     workspace_slug: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    namespace_name: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    digest: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     
 
 class GetBlobResponseTypedDict(TypedDict):

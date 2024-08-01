@@ -35,9 +35,9 @@ s = Speakeasy(
 
 
 res = s.api_endpoints.delete_api_endpoint(request={
-    "api_endpoint_id": "<value>",
     "api_id": "<value>",
     "version_id": "<value>",
+    "api_endpoint_id": "<value>",
 })
 
 if res is not None:
@@ -84,8 +84,8 @@ s = Speakeasy(
 
 res = s.api_endpoints.find_api_endpoint(request={
     "api_id": "<value>",
-    "display_name": "Don.Strosin",
     "version_id": "<value>",
+    "display_name": "Don.Strosin",
 })
 
 if res.api_endpoint is not None:
@@ -131,9 +131,9 @@ s = Speakeasy(
 
 
 res = s.api_endpoints.generate_open_api_spec_for_api_endpoint(request={
-    "api_endpoint_id": "<value>",
     "api_id": "<value>",
     "version_id": "<value>",
+    "api_endpoint_id": "<value>",
 })
 
 if res.generate_open_api_spec_diff is not None:
@@ -178,9 +178,9 @@ s = Speakeasy(
 
 
 res = s.api_endpoints.generate_postman_collection_for_api_endpoint(request={
-    "api_endpoint_id": "<value>",
     "api_id": "<value>",
     "version_id": "<value>",
+    "api_endpoint_id": "<value>",
 })
 
 if res.postman_collection is not None:
@@ -316,9 +316,9 @@ s = Speakeasy(
 
 
 res = s.api_endpoints.get_api_endpoint(request={
-    "api_endpoint_id": "<value>",
     "api_id": "<value>",
     "version_id": "<value>",
+    "api_endpoint_id": "<value>",
 })
 
 if res.api_endpoint is not None:
@@ -363,6 +363,9 @@ s = Speakeasy(
 
 
 res = s.api_endpoints.upsert_api_endpoint(request={
+    "api_id": "<value>",
+    "version_id": "<value>",
+    "api_endpoint_id": "<value>",
     "api_endpoint": {
         "api_endpoint_id": "<value>",
         "description": "Public-key systematic attitude",
@@ -371,9 +374,6 @@ res = s.api_endpoints.upsert_api_endpoint(request={
         "path": "/Library",
         "version_id": "<value>",
     },
-    "api_endpoint_id": "<value>",
-    "api_id": "<value>",
-    "version_id": "<value>",
 })
 
 if res.api_endpoint is not None:

@@ -13,23 +13,23 @@ from typing_extensions import Annotated, NotRequired
 class DeleteVersionMetadataRequestTypedDict(TypedDict):
     api_id: str
     r"""The ID of the Api to delete metadata for."""
+    version_id: str
+    r"""The version ID of the Api to delete metadata for."""
     meta_key: str
     r"""The key of the metadata to delete."""
     meta_value: str
     r"""The value of the metadata to delete."""
-    version_id: str
-    r"""The version ID of the Api to delete metadata for."""
     
 
 class DeleteVersionMetadataRequest(BaseModel):
     api_id: Annotated[str, pydantic.Field(alias="apiID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The ID of the Api to delete metadata for."""
+    version_id: Annotated[str, pydantic.Field(alias="versionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    r"""The version ID of the Api to delete metadata for."""
     meta_key: Annotated[str, pydantic.Field(alias="metaKey"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The key of the metadata to delete."""
     meta_value: Annotated[str, pydantic.Field(alias="metaValue"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
     r"""The value of the metadata to delete."""
-    version_id: Annotated[str, pydantic.Field(alias="versionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
-    r"""The version ID of the Api to delete metadata for."""
     
 
 class DeleteVersionMetadataResponseTypedDict(TypedDict):

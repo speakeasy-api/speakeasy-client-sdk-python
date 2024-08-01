@@ -1767,3 +1767,13 @@ Based on:
 - [python v6.3.0] .
 ### Releases
 - [PyPI v6.3.0] https://pypi.org/project/speakeasy-client-sdk-python/6.3.0 - .
+
+## 2024-08-01 18:11:22
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.351.1 (2.384.3) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [python v7.0.0-rc.0] .
+### Releases
+- [PyPI v7.0.0-rc.0] https://pypi.org/project/speakeasy-client-sdk-python/7.0.0-rc.0 - .

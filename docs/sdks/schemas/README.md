@@ -36,8 +36,8 @@ s = Speakeasy(
 
 res = s.schemas.delete_schema(request={
     "api_id": "<value>",
-    "revision_id": "<value>",
     "version_id": "<value>",
+    "revision_id": "<value>",
 })
 
 if res is not None:
@@ -129,8 +129,8 @@ s = Speakeasy(
 
 res = s.schemas.download_schema_revision(request={
     "api_id": "<value>",
-    "revision_id": "<value>",
     "version_id": "<value>",
+    "revision_id": "<value>",
 })
 
 if res.two_hundred_application_json_schema is not None:
@@ -223,9 +223,9 @@ s = Speakeasy(
 
 res = s.schemas.get_schema_diff(request={
     "api_id": "<value>",
+    "version_id": "<value>",
     "base_revision_id": "<value>",
     "target_revision_id": "<value>",
-    "version_id": "<value>",
 })
 
 if res.schema_diff is not None:
@@ -272,8 +272,8 @@ s = Speakeasy(
 
 res = s.schemas.get_schema_revision(request={
     "api_id": "<value>",
-    "revision_id": "<value>",
     "version_id": "<value>",
+    "revision_id": "<value>",
 })
 
 if res.schema_ is not None:
@@ -366,14 +366,14 @@ s = Speakeasy(
 
 
 res = s.schemas.register_schema(request={
+    "api_id": "<value>",
+    "version_id": "<value>",
     "request_body": {
         "file": {
             "content": open("<file_path>", "rb"),
             "file_name": "your_file_here",
         },
     },
-    "api_id": "<value>",
-    "version_id": "<value>",
 })
 
 if res is not None:

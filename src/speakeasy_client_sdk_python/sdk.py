@@ -6,6 +6,7 @@ from .sdkconfiguration import SDKConfiguration
 from .utils.logger import Logger, NoOpLogger
 from .utils.retries import RetryConfig
 import httpx
+from speakeasy_client_sdk_python import utils
 from speakeasy_client_sdk_python._hooks import SDKHooks
 from speakeasy_client_sdk_python.apiendpoints import APIEndpoints
 from speakeasy_client_sdk_python.apis import Apis
@@ -23,7 +24,6 @@ from speakeasy_client_sdk_python.schemas import Schemas
 from speakeasy_client_sdk_python.shorturls import ShortURLs
 from speakeasy_client_sdk_python.suggest import Suggest
 from speakeasy_client_sdk_python.types import OptionalNullable, UNSET
-import speakeasy_client_sdk_python.utils as utils
 from speakeasy_client_sdk_python.workspaces import Workspaces
 from typing import Callable, Dict, Optional, Union
 

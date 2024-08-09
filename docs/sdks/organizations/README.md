@@ -15,13 +15,12 @@ Creates a free trial for an organization
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -57,13 +56,12 @@ Get information about a particular organization.
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -102,13 +100,12 @@ Returns a billing usage summary by target languages for a particular organizatio
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -144,13 +141,12 @@ Returns a list of organizations a user has access too
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 

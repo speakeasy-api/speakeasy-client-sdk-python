@@ -2,9 +2,9 @@
 
 from .sdkconfiguration import SDKConfiguration
 import httpx
+from speakeasy_client_sdk_python import utils
 from speakeasy_client_sdk_python._hooks import AfterErrorContext, AfterSuccessContext, BeforeRequestContext
 from speakeasy_client_sdk_python.models import errors
-import speakeasy_client_sdk_python.utils as utils
 from speakeasy_client_sdk_python.utils import RetryConfig, SerializedRequestBody, get_body_content
 from typing import Callable, List, Optional, Tuple
 

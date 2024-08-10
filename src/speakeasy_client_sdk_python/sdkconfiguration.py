@@ -22,18 +22,18 @@ SERVERS = {
 class SDKConfiguration:
     client: HttpClient
     async_client: AsyncHttpClient
+    debug_logger: Logger
     globals: internal.Globals
     security: Optional[Union[shared.Security,Callable[[], shared.Security]]] = None
     server_url: Optional[str] = ""
     server: Optional[str] = ""
     language: str = "python"
     openapi_doc_version: str = "0.4.0 ."
-    sdk_version: str = "7.0.0-rc.0"
-    gen_version: str = "2.384.3"
-    user_agent: str = "speakeasy-sdk/python 7.0.0-rc.0 2.384.3 0.4.0 . speakeasy-client-sdk-python"
+    sdk_version: str = "7.0.0-rc.1"
+    gen_version: str = "2.393.4"
+    user_agent: str = "speakeasy-sdk/python 7.0.0-rc.1 2.393.4 0.4.0 . speakeasy-client-sdk-python"
     retry_config: OptionalNullable[RetryConfig] = Field(default_factory=lambda: UNSET)
     timeout_ms: Optional[int] = None
-    debug_logger: Optional[Logger] = None
 
     def __post_init__(self):
         self._hooks = SDKHooks()

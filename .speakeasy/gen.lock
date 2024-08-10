@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: 312822a7ccdbf7c77dbbfeef49fb2053
+  docChecksum: 7e5374ccd8317cf07089c151d486221b
   docVersion: 0.4.0 .
-  speakeasyVersion: 1.351.1
-  generationVersion: 2.384.3
-  releaseVersion: 7.0.0-rc.0
-  configChecksum: 1d686a63e7865a7b7cb6ff50fbdaeda1
+  speakeasyVersion: 1.361.1
+  generationVersion: 2.393.4
+  releaseVersion: 7.0.0-rc.1
+  configChecksum: 352cb880812185e4b20ae9e7ae20962a
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -15,19 +15,20 @@ features:
   python:
     acceptHeaders: 3.0.0
     additionalDependencies: 1.0.0
-    core: 5.3.1
+    core: 5.3.7
     defaultEnabledRetries: 0.2.0
     deprecations: 3.0.0
     downloadStreams: 1.0.1
-    envVarSecurityUsage: 0.2.1
+    envVarSecurityUsage: 0.3.1
     examples: 3.0.0
-    globalSecurity: 3.0.0
+    globalSecurity: 3.0.2
     globalSecurityCallbacks: 1.0.0
     globalServerURLs: 3.0.0
     globals: 3.0.0
     inputOutputModels: 3.0.0
     multipartFileContentType: 1.0.0
     nullables: 1.0.0
+    openEnums: 1.0.0
     responseFormat: 1.0.0
     retries: 3.0.0
     sdkHooks: 1.0.0
@@ -53,9 +54,12 @@ generatedFiles:
   - src/speakeasy_client_sdk_python/events.py
   - src/speakeasy_client_sdk_python/sdk.py
   - .vscode/settings.json
+  - poetry.toml
   - py.typed
   - pylintrc
   - pyproject.toml
+  - scripts/compile.sh
+  - scripts/prepare-readme.py
   - scripts/publish.sh
   - src/speakeasy_client_sdk_python/__init__.py
   - src/speakeasy_client_sdk_python/basesdk.py
@@ -175,6 +179,7 @@ generatedFiles:
   - src/speakeasy_client_sdk_python/models/shared/preflighttoken.py
   - src/speakeasy_client_sdk_python/models/shared/preflightrequest.py
   - src/speakeasy_client_sdk_python/models/shared/accesstoken.py
+  - src/speakeasy_client_sdk_python/models/shared/accounttype.py
   - src/speakeasy_client_sdk_python/models/shared/featureflag.py
   - src/speakeasy_client_sdk_python/models/shared/user.py
   - src/speakeasy_client_sdk_python/models/shared/accessdetails.py
@@ -379,14 +384,13 @@ generatedFiles:
   - docs/models/shared/preflightrequest.md
   - docs/models/shared/claims.md
   - docs/models/shared/accesstokenuser.md
-  - docs/models/shared/accesstokenaccounttype.md
   - docs/models/shared/workspaces.md
   - docs/models/shared/accesstoken.md
+  - docs/models/shared/accounttype.md
   - docs/models/shared/featureflag.md
   - docs/models/shared/user.md
   - docs/models/shared/level.md
   - docs/models/shared/accessdetails.md
-  - docs/models/shared/accounttype.md
   - docs/models/shared/apikeydetails.md
   - docs/models/shared/unboundedrequest.md
   - docs/models/shared/boundedrequest.md
@@ -404,7 +408,6 @@ generatedFiles:
   - docs/models/shared/githubmissingpublishingsecretsresponse.md
   - docs/models/shared/githubstorepublishingsecretsrequest.md
   - docs/models/shared/githubtriggeractionrequest.md
-  - docs/models/shared/organizationaccounttype.md
   - docs/models/shared/organization.md
   - docs/models/shared/organizationusageresponse.md
   - docs/models/shared/organizationusage.md

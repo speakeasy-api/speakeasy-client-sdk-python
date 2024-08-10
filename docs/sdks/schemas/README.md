@@ -23,13 +23,12 @@ Delete a particular schema revision for an Api.
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -70,13 +69,12 @@ Download the latest schema for a particular apiID.
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -116,13 +114,12 @@ Download a particular schema revision for an Api.
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -164,13 +161,12 @@ This won't include the schema itself, that can be retrieved via the downloadSche
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -210,13 +206,12 @@ Get a diff of two schema revisions for an Api.
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -259,13 +254,12 @@ This won't include the schema itself, that can be retrieved via the downloadSche
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -307,13 +301,12 @@ This won't include the schemas themselves, they can be retrieved via the downloa
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -354,13 +347,12 @@ This will be used to populate ApiEndpoints and used as a base for any schema gen
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 

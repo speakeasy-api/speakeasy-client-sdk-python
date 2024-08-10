@@ -19,13 +19,12 @@ Filters can be applied allowing views to be filtered to things like particular c
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -62,13 +61,12 @@ Get all valid embed access tokens for the current workspace.
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -104,13 +102,12 @@ Revoke an embed access EmbedToken.
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 

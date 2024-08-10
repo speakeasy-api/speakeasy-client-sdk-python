@@ -1,13 +1,12 @@
 <!-- Start SDK Example Usage [usage] -->
 ```python
 # Synchronous Example
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -25,14 +24,13 @@ The same SDK client can also be used to make asychronous requests by importing a
 ```python
 # Asynchronous Example
 import asyncio
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 async def main():
     s = Speakeasy(
         security=shared.Security(
-            api_key=os.getenv("API_KEY", ""),
+            api_key="<YOUR_API_KEY_HERE>",
         ),
     )
     res = await s.apis.get_apis_async()

@@ -21,13 +21,12 @@ Delete a particular version of an Api. The will also delete all associated ApiEn
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -68,13 +67,12 @@ Returns the original document and the newly generated document allowing a diff t
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -114,13 +112,12 @@ Generates a postman collection containing all endpoints for a particular API. In
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -161,13 +158,12 @@ Supports filtering the versions based on metadata attributes.
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -207,13 +203,12 @@ Supports filtering the APIs based on metadata attributes.
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 
@@ -251,13 +246,12 @@ If the Api exists, it will be updated.
 ### Example Usage
 
 ```python
-import os
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 s = Speakeasy(
     security=shared.Security(
-        api_key=os.getenv("API_KEY", ""),
+        api_key="<YOUR_API_KEY_HERE>",
     ),
 )
 

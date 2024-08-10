@@ -2,10 +2,10 @@
 
 from .basesdk import BaseSDK
 from enum import Enum
+from speakeasy_client_sdk_python import utils
 from speakeasy_client_sdk_python._hooks import HookContext
 from speakeasy_client_sdk_python.models import errors, operations, shared
 from speakeasy_client_sdk_python.types import BaseModel, OptionalNullable, UNSET
-import speakeasy_client_sdk_python.utils as utils
 from typing import List, Optional, Union, cast
 
 class GeneratePostmanCollectionAcceptEnum(str, Enum):

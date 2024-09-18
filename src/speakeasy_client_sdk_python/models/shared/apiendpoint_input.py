@@ -7,7 +7,7 @@ from typing import TypedDict
 
 class APIEndpointInputTypedDict(TypedDict):
     r"""An ApiEndpoint is a description of an Endpoint for an API."""
-    
+
     api_endpoint_id: str
     r"""The ID of this ApiEndpoint. This is a hash of the method and path."""
     description: str
@@ -20,21 +20,25 @@ class APIEndpointInputTypedDict(TypedDict):
     r"""Path that handles this Api."""
     version_id: str
     r"""The version ID of the Api this ApiEndpoint belongs to."""
-    
+
 
 class APIEndpointInput(BaseModel):
     r"""An ApiEndpoint is a description of an Endpoint for an API."""
-    
+
     api_endpoint_id: str
     r"""The ID of this ApiEndpoint. This is a hash of the method and path."""
+
     description: str
     r"""A detailed description of the ApiEndpoint."""
+
     display_name: str
     r"""A human-readable name for the ApiEndpoint."""
+
     method: str
     r"""HTTP verb."""
+
     path: str
     r"""Path that handles this Api."""
+
     version_id: str
     r"""The version ID of the Api this ApiEndpoint belongs to."""
-    

@@ -11,10 +11,10 @@ class Type(str, Enum):
     LINTING = "linting"
     CHANGES = "changes"
 
+
 class ReportTypedDict(TypedDict):
     type: NotRequired[Type]
-    
+
 
 class Report(BaseModel):
     type: Optional[Type] = None
-    

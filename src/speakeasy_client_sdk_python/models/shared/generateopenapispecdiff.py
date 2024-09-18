@@ -8,9 +8,9 @@ from typing import TypedDict
 class GenerateOpenAPISpecDiffTypedDict(TypedDict):
     current_schema: str
     new_schema: str
-    
+
 
 class GenerateOpenAPISpecDiff(BaseModel):
     current_schema: str
+
     new_schema: str
-    

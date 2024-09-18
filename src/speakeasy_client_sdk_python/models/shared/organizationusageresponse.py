@@ -10,7 +10,7 @@ from typing_extensions import NotRequired
 
 class OrganizationUsageResponseTypedDict(TypedDict):
     r"""A billing summary of organization usage"""
-    
+
     allowed_languages: List[str]
     r"""List of allowed languages"""
     total_allowed_languages: int
@@ -18,16 +18,18 @@ class OrganizationUsageResponseTypedDict(TypedDict):
     usage: List[OrganizationUsageTypedDict]
     free_trial_expiry: NotRequired[datetime]
     r"""Expiry date of the free trial, will be null if no trial"""
-    
+
 
 class OrganizationUsageResponse(BaseModel):
     r"""A billing summary of organization usage"""
-    
+
     allowed_languages: List[str]
     r"""List of allowed languages"""
+
     total_allowed_languages: int
     r"""Total number of allowed languages, -1 if unlimited"""
+
     usage: List[OrganizationUsage]
+
     free_trial_expiry: Optional[datetime] = None
     r"""Expiry date of the free trial, will be null if no trial"""
-    

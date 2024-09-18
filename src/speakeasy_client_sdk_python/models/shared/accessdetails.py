@@ -12,14 +12,16 @@ class Level(str, Enum):
     WARNING = "warning"
     BLOCKED = "blocked"
 
+
 class AccessDetailsTypedDict(TypedDict):
     generation_allowed: bool
     message: str
     level: NotRequired[Level]
-    
+
 
 class AccessDetails(BaseModel):
     generation_allowed: bool
+
     message: str
+
     level: Optional[Level] = None
-    

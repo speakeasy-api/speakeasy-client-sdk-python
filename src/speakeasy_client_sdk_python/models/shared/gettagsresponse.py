@@ -8,8 +8,7 @@ from typing import List, TypedDict
 
 class GetTagsResponseTypedDict(TypedDict):
     items: List[TagTypedDict]
-    
+
 
 class GetTagsResponse(BaseModel):
     items: List[Tag]
-    

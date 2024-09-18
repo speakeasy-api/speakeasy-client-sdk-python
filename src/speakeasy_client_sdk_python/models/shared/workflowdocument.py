@@ -9,23 +9,24 @@ from typing_extensions import NotRequired
 class AuthTypedDict(TypedDict):
     header: str
     secret: str
-    
+
 
 class Auth(BaseModel):
     header: str
+
     secret: str
-    
+
 
 class WorkflowDocumentTypedDict(TypedDict):
     r"""A document referenced by a workflow"""
-    
+
     location: str
     auth: NotRequired[AuthTypedDict]
-    
+
 
 class WorkflowDocument(BaseModel):
     r"""A document referenced by a workflow"""
-    
+
     location: str
+
     auth: Optional[Auth] = None
-    

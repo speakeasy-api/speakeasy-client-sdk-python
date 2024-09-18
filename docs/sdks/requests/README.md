@@ -28,7 +28,6 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.requests.generate_request_postman_collection(request={
     "request_id": "<value>",
 })
@@ -46,15 +45,16 @@ if res.postman_collection is not None:
 | `request`                                                                                                                | [operations.GenerateRequestPostmanCollectionRequest](../../models/operations/generaterequestpostmancollectionrequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
 | `retries`                                                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                         | :heavy_minus_sign:                                                                                                       | Configuration to override the default retry behavior of the client.                                                      |
 
-
 ### Response
 
 **[operations.GenerateRequestPostmanCollectionResponse](../../models/operations/generaterequestpostmancollectionresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## get_request_from_event_log
 
@@ -71,7 +71,6 @@ s = Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
-
 
 res = s.requests.get_request_from_event_log(request={
     "request_id": "<value>",
@@ -90,15 +89,16 @@ if res.unbounded_request is not None:
 | `request`                                                                                            | [operations.GetRequestFromEventLogRequest](../../models/operations/getrequestfromeventlogrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 | `retries`                                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                     | :heavy_minus_sign:                                                                                   | Configuration to override the default retry behavior of the client.                                  |
 
-
 ### Response
 
 **[operations.GetRequestFromEventLogResponse](../../models/operations/getrequestfromeventlogresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## query_event_log
 
@@ -117,8 +117,7 @@ s = Speakeasy(
     ),
 )
 
-
-res = s.requests.query_event_log()
+res = s.requests.query_event_log(request={})
 
 if res.bounded_requests is not None:
     # handle response
@@ -133,10 +132,10 @@ if res.bounded_requests is not None:
 | `request`                                                                          | [operations.QueryEventLogRequest](../../models/operations/queryeventlogrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
 
-
 ### Response
 
 **[operations.QueryEventLogResponse](../../models/operations/queryeventlogresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

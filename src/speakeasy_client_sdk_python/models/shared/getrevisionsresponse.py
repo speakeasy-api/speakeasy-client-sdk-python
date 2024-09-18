@@ -9,9 +9,9 @@ from typing import List, TypedDict
 class GetRevisionsResponseTypedDict(TypedDict):
     items: List[RevisionTypedDict]
     next_page_token: str
-    
+
 
 class GetRevisionsResponse(BaseModel):
     items: List[Revision]
+
     next_page_token: str
-    

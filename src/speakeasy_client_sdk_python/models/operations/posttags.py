@@ -5,7 +5,11 @@ import httpx
 from speakeasy_client_sdk_python.models.errors import error as errors_error
 from speakeasy_client_sdk_python.models.shared import addtags as shared_addtags
 from speakeasy_client_sdk_python.types import BaseModel
-from speakeasy_client_sdk_python.utils import FieldMetadata, PathParamMetadata, RequestMetadata
+from speakeasy_client_sdk_python.utils import (
+    FieldMetadata,
+    PathParamMetadata,
+    RequestMetadata,
+)
 from typing import Optional, TypedDict
 from typing_extensions import Annotated, NotRequired
 
@@ -14,13 +18,19 @@ class PostTagsRequestTypedDict(TypedDict):
     namespace_name: str
     add_tags: NotRequired[shared_addtags.AddTagsTypedDict]
     r"""A JSON representation of the tags to add"""
-    
+
 
 class PostTagsRequest(BaseModel):
-    namespace_name: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
-    add_tags: Annotated[Optional[shared_addtags.AddTags], FieldMetadata(request=RequestMetadata(media_type="application/json"))] = None
+    namespace_name: Annotated[
+        str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
+    ]
+
+    add_tags: Annotated[
+        Optional[shared_addtags.AddTags],
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ] = None
     r"""A JSON representation of the tags to add"""
-    
+
 
 class PostTagsResponseTypedDict(TypedDict):
     content_type: str
@@ -31,15 +41,17 @@ class PostTagsResponseTypedDict(TypedDict):
     r"""Raw HTTP response; suitable for custom response parsing"""
     error: NotRequired[errors_error.Error]
     r"""Default error response"""
-    
+
 
 class PostTagsResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
-    

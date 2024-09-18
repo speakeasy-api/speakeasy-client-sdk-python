@@ -1,14 +1,47 @@
 # speakeasy-client-sdk-python
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Speakeasy API: The Speakeasy API allows teams to manage common operations with their APIs
+
+For more information about the API: [The Speakeasy Platform Documentation](/docs)
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [IDE Support](#ide-support)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Global Parameters](#global-parameters)
+* [File uploads](#file-uploads)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Debugging](#debugging)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
-PIP
+The SDK can be installed with either *pip* or *poetry* package managers.
+
+### PIP
+
+*PIP* is the default package installer for Python, enabling easy installation and management of packages from PyPI via the command line.
+
 ```bash
 pip install speakeasy-client-sdk-python
 ```
 
-Poetry
+### Poetry
+
+*Poetry* is a modern tool that simplifies dependency management and package publishing by using a single `pyproject.toml` file to handle project metadata and dependencies.
+
 ```bash
 poetry add speakeasy-client-sdk-python
 ```
@@ -30,8 +63,7 @@ s = Speakeasy(
     ),
 )
 
-
-res = s.apis.get_apis()
+res = s.apis.get_apis(request={})
 
 if res.apis is not None:
     # handle response
@@ -53,7 +85,7 @@ async def main():
             api_key="<YOUR_API_KEY_HERE>",
         ),
     )
-    res = await s.apis.get_apis_async()
+    res = await s.apis.get_apis_async(request={})
     if res.apis is not None:
         # handle response
         pass
@@ -65,14 +97,8 @@ asyncio.run(main())
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [apis](docs/sdks/apis/README.md)
-
-* [delete_api](docs/sdks/apis/README.md#delete_api) - Delete an Api.
-* [generate_open_api_spec](docs/sdks/apis/README.md#generate_open_api_spec) - Generate an OpenAPI specification for a particular Api.
-* [generate_postman_collection](docs/sdks/apis/README.md#generate_postman_collection) - Generate a Postman collection for a particular Api.
-* [get_all_api_versions](docs/sdks/apis/README.md#get_all_api_versions) - Get all Api versions for a particular ApiEndpoint.
-* [get_apis](docs/sdks/apis/README.md#get_apis) - Get a list of Apis for a given workspace
-* [upsert_api](docs/sdks/apis/README.md#upsert_api) - Upsert an Api
+<details open>
+<summary>Available methods</summary>
 
 ### [api_endpoints](docs/sdks/apiendpoints/README.md)
 
@@ -85,22 +111,14 @@ asyncio.run(main())
 * [get_api_endpoint](docs/sdks/apiendpoints/README.md#get_api_endpoint) - Get an ApiEndpoint.
 * [upsert_api_endpoint](docs/sdks/apiendpoints/README.md#upsert_api_endpoint) - Upsert an ApiEndpoint.
 
-### [metadata](docs/sdks/metadata/README.md)
+### [apis](docs/sdks/apis/README.md)
 
-* [delete_version_metadata](docs/sdks/metadata/README.md#delete_version_metadata) - Delete metadata for a particular apiID and versionID.
-* [get_version_metadata](docs/sdks/metadata/README.md#get_version_metadata) - Get all metadata for a particular apiID and versionID.
-* [insert_version_metadata](docs/sdks/metadata/README.md#insert_version_metadata) - Insert metadata for a particular apiID and versionID.
-
-### [schemas](docs/sdks/schemas/README.md)
-
-* [delete_schema](docs/sdks/schemas/README.md#delete_schema) - Delete a particular schema revision for an Api.
-* [download_schema](docs/sdks/schemas/README.md#download_schema) - Download the latest schema for a particular apiID.
-* [download_schema_revision](docs/sdks/schemas/README.md#download_schema_revision) - Download a particular schema revision for an Api.
-* [get_schema](docs/sdks/schemas/README.md#get_schema) - Get information about the latest schema.
-* [get_schema_diff](docs/sdks/schemas/README.md#get_schema_diff) - Get a diff of two schema revisions for an Api.
-* [get_schema_revision](docs/sdks/schemas/README.md#get_schema_revision) - Get information about a particular schema revision for an Api.
-* [get_schemas](docs/sdks/schemas/README.md#get_schemas) - Get information about all schemas associated with a particular apiID.
-* [register_schema](docs/sdks/schemas/README.md#register_schema) - Register a schema.
+* [delete_api](docs/sdks/apis/README.md#delete_api) - Delete an Api.
+* [generate_open_api_spec](docs/sdks/apis/README.md#generate_open_api_spec) - Generate an OpenAPI specification for a particular Api.
+* [generate_postman_collection](docs/sdks/apis/README.md#generate_postman_collection) - Generate a Postman collection for a particular Api.
+* [get_all_api_versions](docs/sdks/apis/README.md#get_all_api_versions) - Get all Api versions for a particular ApiEndpoint.
+* [get_apis](docs/sdks/apis/README.md#get_apis) - Get a list of Apis for a given workspace
+* [upsert_api](docs/sdks/apis/README.md#upsert_api) - Upsert an Api
 
 ### [artifacts](docs/sdks/artifacts/README.md)
 
@@ -120,11 +138,18 @@ asyncio.run(main())
 * [get_workspace_access](docs/sdks/auth/README.md#get_workspace_access) - Get access allowances for a particular workspace
 * [validate_api_key](docs/sdks/auth/README.md#validate_api_key) - Validate the current api key.
 
-### [requests](docs/sdks/requests/README.md)
+### [embeds](docs/sdks/embeds/README.md)
 
-* [generate_request_postman_collection](docs/sdks/requests/README.md#generate_request_postman_collection) - Generate a Postman collection for a particular request.
-* [get_request_from_event_log](docs/sdks/requests/README.md#get_request_from_event_log) - Get information about a particular request.
-* [query_event_log](docs/sdks/requests/README.md#query_event_log) - Query the event log to retrieve a list of requests.
+* [get_embed_access_token](docs/sdks/embeds/README.md#get_embed_access_token) - Get an embed access token for the current workspace.
+* [get_valid_embed_access_tokens](docs/sdks/embeds/README.md#get_valid_embed_access_tokens) - Get all valid embed access tokens for the current workspace.
+* [revoke_embed_access_token](docs/sdks/embeds/README.md#revoke_embed_access_token) - Revoke an embed access EmbedToken.
+
+### [events](docs/sdks/events/README.md)
+
+* [get_workspace_events_by_target](docs/sdks/events/README.md#get_workspace_events_by_target) - Load recent events for a particular workspace
+* [get_workspace_targets](docs/sdks/events/README.md#get_workspace_targets) - Load targets for a particular workspace
+* [post_workspace_events](docs/sdks/events/README.md#post_workspace_events) - Post events for a specific workspace
+* [search_workspace_events](docs/sdks/events/README.md#search_workspace_events) - Search events for a particular workspace by any field
 
 ### [github](docs/sdks/github/README.md)
 
@@ -137,6 +162,12 @@ asyncio.run(main())
 * [github_check_publishing_secrets](docs/sdks/github/README.md#github_check_publishing_secrets)
 * [github_store_publishing_secrets](docs/sdks/github/README.md#github_store_publishing_secrets)
 * [trigger_action](docs/sdks/github/README.md#trigger_action)
+
+### [metadata](docs/sdks/metadata/README.md)
+
+* [delete_version_metadata](docs/sdks/metadata/README.md#delete_version_metadata) - Delete metadata for a particular apiID and versionID.
+* [get_version_metadata](docs/sdks/metadata/README.md#get_version_metadata) - Get all metadata for a particular apiID and versionID.
+* [insert_version_metadata](docs/sdks/metadata/README.md#insert_version_metadata) - Insert metadata for a particular apiID and versionID.
 
 ### [organizations](docs/sdks/organizations/README.md)
 
@@ -151,32 +182,40 @@ asyncio.run(main())
 * [get_linting_report_signed_url](docs/sdks/reports/README.md#get_linting_report_signed_url) - Get the signed access url for the linting reports for a particular document.
 * [upload_report](docs/sdks/reports/README.md#upload_report) - Upload a report.
 
+### [requests](docs/sdks/requests/README.md)
+
+* [generate_request_postman_collection](docs/sdks/requests/README.md#generate_request_postman_collection) - Generate a Postman collection for a particular request.
+* [get_request_from_event_log](docs/sdks/requests/README.md#get_request_from_event_log) - Get information about a particular request.
+* [query_event_log](docs/sdks/requests/README.md#query_event_log) - Query the event log to retrieve a list of requests.
+
+### [schemas](docs/sdks/schemas/README.md)
+
+* [delete_schema](docs/sdks/schemas/README.md#delete_schema) - Delete a particular schema revision for an Api.
+* [download_schema](docs/sdks/schemas/README.md#download_schema) - Download the latest schema for a particular apiID.
+* [download_schema_revision](docs/sdks/schemas/README.md#download_schema_revision) - Download a particular schema revision for an Api.
+* [get_schema](docs/sdks/schemas/README.md#get_schema) - Get information about the latest schema.
+* [get_schema_diff](docs/sdks/schemas/README.md#get_schema_diff) - Get a diff of two schema revisions for an Api.
+* [get_schema_revision](docs/sdks/schemas/README.md#get_schema_revision) - Get information about a particular schema revision for an Api.
+* [get_schemas](docs/sdks/schemas/README.md#get_schemas) - Get information about all schemas associated with a particular apiID.
+* [register_schema](docs/sdks/schemas/README.md#register_schema) - Register a schema.
+
 ### [short_ur_ls](docs/sdks/shorturls/README.md)
 
 * [create](docs/sdks/shorturls/README.md#create) - Shorten a URL.
 
+
 ### [suggest](docs/sdks/suggest/README.md)
 
-* [apply_operation_i_ds](docs/sdks/suggest/README.md#apply_operation_i_ds) - Apply operation ID suggestions and download result.
-* [suggest_operation_i_ds](docs/sdks/suggest/README.md#suggest_operation_i_ds) - Generate operation ID suggestions.
-* [suggest_operation_i_ds_registry](docs/sdks/suggest/README.md#suggest_operation_i_ds_registry) - Generate operation ID suggestions.
-
-### [embeds](docs/sdks/embeds/README.md)
-
-* [get_embed_access_token](docs/sdks/embeds/README.md#get_embed_access_token) - Get an embed access token for the current workspace.
-* [get_valid_embed_access_tokens](docs/sdks/embeds/README.md#get_valid_embed_access_tokens) - Get all valid embed access tokens for the current workspace.
-* [revoke_embed_access_token](docs/sdks/embeds/README.md#revoke_embed_access_token) - Revoke an embed access EmbedToken.
+* [suggest](docs/sdks/suggest/README.md#suggest) - Generate suggestions for improving an OpenAPI document.
+* [suggest_open_api](docs/sdks/suggest/README.md#suggest_open_api) - (DEPRECATED) Generate suggestions for improving an OpenAPI document.
+* [suggest_open_api_registry](docs/sdks/suggest/README.md#suggest_open_api_registry) - Generate suggestions for improving an OpenAPI document stored in the registry.
 
 ### [workspaces](docs/sdks/workspaces/README.md)
 
 * [get_workspace](docs/sdks/workspaces/README.md#get_workspace) - Get workspace
+* [get_workspace_feature_flags](docs/sdks/workspaces/README.md#get_workspace_feature_flags) - Get workspace feature flags
 
-### [events](docs/sdks/events/README.md)
-
-* [get_workspace_events_by_target](docs/sdks/events/README.md#get_workspace_events_by_target) - Load recent events for a particular workspace
-* [get_workspace_targets](docs/sdks/events/README.md#get_workspace_targets) - Load targets for a particular workspace
-* [post_workspace_events](docs/sdks/events/README.md#post_workspace_events) - Post events for a specific workspace
-* [search_workspace_events](docs/sdks/events/README.md#search_workspace_events) - Search events for a particular workspace by any field
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 
@@ -209,21 +248,18 @@ s = Speakeasy(
 
 res = None
 try:
-    res = s.events.get_workspace_events_by_target(request={
-    "target_id": "<value>",
-})
+    res = s.workspaces.get_workspace_feature_flags(request={})
+
+    if res.workspace_feature_flag_response is not None:
+        # handle response
+        pass
 
 except errors.Error as e:
-    # handle exception
+    # handle e.data: errors.ErrorData
     raise(e)
 except errors.SDKError as e:
     # handle exception
     raise(e)
-
-if res.cli_event_batch is not None:
-    # handle response
-    pass
-
 ```
 <!-- End Error Handling [errors] -->
 
@@ -253,7 +289,6 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.apis.delete_api(request={
     "api_id": "<value>",
     "version_id": "<value>",
@@ -279,7 +314,6 @@ s = Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
-
 
 res = s.apis.delete_api(request={
     "api_id": "<value>",
@@ -401,7 +435,6 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.apis.delete_api(request={
     "api_id": "<value>",
     "version_id": "<value>",
@@ -443,8 +476,7 @@ s = Speakeasy(
     ),
 )
 
-
-res = s.workspaces.get_workspace()
+res = s.workspaces.get_workspace(request={})
 
 if res.workspace is not None:
     # handle response
@@ -470,7 +502,6 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.apis.delete_api(request={
     "api_id": "<value>",
     "version_id": "<value>",
@@ -495,7 +526,6 @@ s = Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
-
 
 res = s.apis.delete_api(request={
     "api_id": "<value>",
@@ -529,14 +559,13 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.schemas.register_schema(request={
     "api_id": "<value>",
     "version_id": "<value>",
     "request_body": {
         "file": {
-            "content": open("<file_path>", "rb"),
-            "file_name": "your_file_here",
+            "content": open("example.file", "rb"),
+            "file_name": "example.file",
         },
     },
 })
@@ -551,8 +580,9 @@ if res is not None:
 <!-- Start Debugging [debug] -->
 ## Debugging
 
-To emit debug logs for SDK requests and responses you can pass a logger object directly into your SDK object.
+You can setup your SDK to emit debug logs for SDK requests and responses.
 
+You can pass your own logger class directly into your SDK.
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 import logging

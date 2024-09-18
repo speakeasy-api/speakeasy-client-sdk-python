@@ -8,18 +8,18 @@ from typing_extensions import NotRequired
 
 class GithubStorePublishingSecretsRequestTypedDict(TypedDict):
     r"""A request to store publishing secrets for a github target"""
-    
+
     generate_gen_lock_id: str
     r"""The generation lock ID"""
     secrets: NotRequired[Dict[str, str]]
     r"""A map of secrets to store in the GitHub target"""
-    
+
 
 class GithubStorePublishingSecretsRequest(BaseModel):
     r"""A request to store publishing secrets for a github target"""
-    
+
     generate_gen_lock_id: str
     r"""The generation lock ID"""
+
     secrets: Optional[Dict[str, str]] = None
     r"""A map of secrets to store in the GitHub target"""
-    

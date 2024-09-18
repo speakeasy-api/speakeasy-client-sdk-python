@@ -1,6 +1,8 @@
 # Github
 (*github*)
 
+## Overview
+
 ### Available Operations
 
 * [check_access](#check_access)
@@ -27,7 +29,6 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.github.check_access(request={
     "org": "<value>",
     "repo": "<value>",
@@ -46,15 +47,16 @@ if res is not None:
 | `request`                                                                      | [operations.CheckAccessRequest](../../models/operations/checkaccessrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
 | `retries`                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)               | :heavy_minus_sign:                                                             | Configuration to override the default retry behavior of the client.            |
 
-
 ### Response
 
 **[operations.CheckAccessResponse](../../models/operations/checkaccessresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## configure_code_samples
 
@@ -69,7 +71,6 @@ s = Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
-
 
 res = s.github.configure_code_samples(request={
     "org": "<value>",
@@ -90,15 +91,16 @@ if res.github_configure_code_samples_response is not None:
 | `request`                                                                                            | [shared.GithubConfigureCodeSamplesRequest](../../models/shared/githubconfigurecodesamplesrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 | `retries`                                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                     | :heavy_minus_sign:                                                                                   | Configuration to override the default retry behavior of the client.                                  |
 
-
 ### Response
 
 **[operations.ConfigureCodeSamplesResponse](../../models/operations/configurecodesamplesresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## configure_mintlify_repo
 
@@ -113,7 +115,6 @@ s = Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
-
 
 res = s.github.configure_mintlify_repo(request={
     "input": "<value>",
@@ -137,15 +138,16 @@ if res is not None:
 | `request`                                                                                              | [shared.GithubConfigureMintlifyRepoRequest](../../models/shared/githubconfiguremintlifyreporequest.md) | :heavy_check_mark:                                                                                     | The request object to use for the request.                                                             |
 | `retries`                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                       | :heavy_minus_sign:                                                                                     | Configuration to override the default retry behavior of the client.                                    |
 
-
 ### Response
 
 **[operations.ConfigureMintlifyRepoResponse](../../models/operations/configuremintlifyreporesponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## configure_target
 
@@ -160,7 +162,6 @@ s = Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
-
 
 res = s.github.configure_target(request={
     "org": "<value>",
@@ -180,15 +181,16 @@ if res is not None:
 | `request`                                                                                  | [shared.GithubConfigureTargetRequest](../../models/shared/githubconfiguretargetrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `retries`                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                           | :heavy_minus_sign:                                                                         | Configuration to override the default retry behavior of the client.                        |
 
-
 ### Response
 
 **[operations.ConfigureTargetResponse](../../models/operations/configuretargetresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## fetch_publishing_p_rs
 
@@ -203,7 +205,6 @@ s = Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
-
 
 res = s.github.fetch_publishing_p_rs(request={
     "generate_gen_lock_id": "<value>",
@@ -224,15 +225,16 @@ if res.github_publishing_pr_response is not None:
 | `request`                                                                                    | [operations.FetchPublishingPRsRequest](../../models/operations/fetchpublishingprsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
 
-
 ### Response
 
 **[operations.FetchPublishingPRsResponse](../../models/operations/fetchpublishingprsresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## get_action
 
@@ -247,7 +249,6 @@ s = Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
-
 
 res = s.github.get_action(request={
     "org": "<value>",
@@ -267,15 +268,16 @@ if res.github_get_action_response is not None:
 | `request`                                                                  | [operations.GetActionRequest](../../models/operations/getactionrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 | `retries`                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)           | :heavy_minus_sign:                                                         | Configuration to override the default retry behavior of the client.        |
 
-
 ### Response
 
 **[operations.GetActionResponse](../../models/operations/getactionresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## github_check_publishing_secrets
 
@@ -290,7 +292,6 @@ s = Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
-
 
 res = s.github.github_check_publishing_secrets(request={
     "generate_gen_lock_id": "<value>",
@@ -309,15 +310,16 @@ if res.github_missing_publishing_secrets_response is not None:
 | `request`                                                                                                        | [operations.GithubCheckPublishingSecretsRequest](../../models/operations/githubcheckpublishingsecretsrequest.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
 | `retries`                                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                 | :heavy_minus_sign:                                                                                               | Configuration to override the default retry behavior of the client.                                              |
 
-
 ### Response
 
 **[operations.GithubCheckPublishingSecretsResponse](../../models/operations/githubcheckpublishingsecretsresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## github_store_publishing_secrets
 
@@ -332,7 +334,6 @@ s = Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
-
 
 res = s.github.github_store_publishing_secrets(request={
     "generate_gen_lock_id": "<value>",
@@ -351,15 +352,16 @@ if res is not None:
 | `request`                                                                                                | [shared.GithubStorePublishingSecretsRequest](../../models/shared/githubstorepublishingsecretsrequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 | `retries`                                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                         | :heavy_minus_sign:                                                                                       | Configuration to override the default retry behavior of the client.                                      |
 
-
 ### Response
 
 **[operations.GithubStorePublishingSecretsResponse](../../models/operations/githubstorepublishingsecretsresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## trigger_action
 
@@ -374,7 +376,6 @@ s = Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
-
 
 res = s.github.trigger_action(request={
     "gen_lock_id": "<value>",
@@ -395,10 +396,10 @@ if res is not None:
 | `request`                                                                              | [shared.GithubTriggerActionRequest](../../models/shared/githubtriggeractionrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `retries`                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                       | :heavy_minus_sign:                                                                     | Configuration to override the default retry behavior of the client.                    |
 
-
 ### Response
 
 **[operations.TriggerActionResponse](../../models/operations/triggeractionresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

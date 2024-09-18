@@ -8,8 +8,7 @@ from typing import List, TypedDict
 
 class GetNamespacesResponseTypedDict(TypedDict):
     items: List[NamespaceTypedDict]
-    
+
 
 class GetNamespacesResponse(BaseModel):
     items: List[Namespace]
-    

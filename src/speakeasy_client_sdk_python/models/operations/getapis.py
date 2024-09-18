@@ -13,31 +13,38 @@ from typing_extensions import Annotated, NotRequired
 
 class QueryParamOpTypedDict(TypedDict):
     r"""Configuration for filter operations"""
-    
+
     and_: bool
     r"""Whether to AND or OR the filters"""
-    
+
 
 class QueryParamOp(BaseModel):
     r"""Configuration for filter operations"""
-    
+
     and_: Annotated[bool, pydantic.Field(alias="and"), FieldMetadata(query=True)]
     r"""Whether to AND or OR the filters"""
-    
+
 
 class GetApisRequestTypedDict(TypedDict):
     op: NotRequired[QueryParamOpTypedDict]
     r"""Configuration for filter operations"""
     metadata: NotRequired[Dict[str, List[str]]]
     r"""Metadata to filter Apis on"""
-    
+
 
 class GetApisRequest(BaseModel):
-    op: Annotated[Optional[QueryParamOp], FieldMetadata(query=QueryParamMetadata(style="deepObject", explode=True))] = None
+    op: Annotated[
+        Optional[QueryParamOp],
+        FieldMetadata(query=QueryParamMetadata(style="deepObject", explode=True)),
+    ] = None
     r"""Configuration for filter operations"""
-    metadata: Annotated[Optional[Dict[str, List[str]]], FieldMetadata(query=QueryParamMetadata(style="deepObject", explode=True))] = None
+
+    metadata: Annotated[
+        Optional[Dict[str, List[str]]],
+        FieldMetadata(query=QueryParamMetadata(style="deepObject", explode=True)),
+    ] = None
     r"""Metadata to filter Apis on"""
-    
+
 
 class GetApisResponseTypedDict(TypedDict):
     content_type: str
@@ -50,17 +57,20 @@ class GetApisResponseTypedDict(TypedDict):
     r"""OK"""
     error: NotRequired[errors_error.Error]
     r"""Default error response"""
-    
+
 
 class GetApisResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     apis: Optional[List[shared_api.API]] = None
     r"""OK"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
-    

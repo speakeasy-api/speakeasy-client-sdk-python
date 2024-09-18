@@ -13,21 +13,29 @@ from typing_extensions import Annotated, NotRequired
 
 class GetWorkspaceGlobalsTypedDict(TypedDict):
     workspace_id: NotRequired[str]
-    
+
 
 class GetWorkspaceGlobals(BaseModel):
-    workspace_id: Annotated[Optional[str], pydantic.Field(alias="workspaceID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))] = None
-    
+    workspace_id: Annotated[
+        Optional[str],
+        pydantic.Field(alias="workspaceID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ] = None
+
 
 class GetWorkspaceRequestTypedDict(TypedDict):
     workspace_id: NotRequired[str]
     r"""Unique identifier of the workspace."""
-    
+
 
 class GetWorkspaceRequest(BaseModel):
-    workspace_id: Annotated[Optional[str], pydantic.Field(alias="workspaceID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))] = None
+    workspace_id: Annotated[
+        Optional[str],
+        pydantic.Field(alias="workspaceID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ] = None
     r"""Unique identifier of the workspace."""
-    
+
 
 class GetWorkspaceResponseTypedDict(TypedDict):
     content_type: str
@@ -40,17 +48,20 @@ class GetWorkspaceResponseTypedDict(TypedDict):
     r"""Default error response"""
     workspace: NotRequired[shared_workspace.WorkspaceTypedDict]
     r"""OK"""
-    
+
 
 class GetWorkspaceResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
+
     workspace: Optional[shared_workspace.Workspace] = None
     r"""OK"""
-    

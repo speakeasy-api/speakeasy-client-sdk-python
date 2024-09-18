@@ -30,7 +30,6 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.apis.delete_api(request={
     "api_id": "<value>",
     "version_id": "<value>",
@@ -49,15 +48,16 @@ if res is not None:
 | `request`                                                                  | [operations.DeleteAPIRequest](../../models/operations/deleteapirequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 | `retries`                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)           | :heavy_minus_sign:                                                         | Configuration to override the default retry behavior of the client.        |
 
-
 ### Response
 
 **[operations.DeleteAPIResponse](../../models/operations/deleteapiresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## generate_open_api_spec
 
@@ -75,7 +75,6 @@ s = Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
-
 
 res = s.apis.generate_open_api_spec(request={
     "api_id": "<value>",
@@ -95,15 +94,16 @@ if res.generate_open_api_spec_diff is not None:
 | `request`                                                                                      | [operations.GenerateOpenAPISpecRequest](../../models/operations/generateopenapispecrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 | `retries`                                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                               | :heavy_minus_sign:                                                                             | Configuration to override the default retry behavior of the client.                            |
 
-
 ### Response
 
 **[operations.GenerateOpenAPISpecResponse](../../models/operations/generateopenapispecresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## generate_postman_collection
 
@@ -120,7 +120,6 @@ s = Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
-
 
 res = s.apis.generate_postman_collection(request={
     "api_id": "<value>",
@@ -140,15 +139,16 @@ if res.postman_collection is not None:
 | `request`                                                                                                  | [operations.GeneratePostmanCollectionRequest](../../models/operations/generatepostmancollectionrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `retries`                                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                           | :heavy_minus_sign:                                                                                         | Configuration to override the default retry behavior of the client.                                        |
 
-
 ### Response
 
 **[operations.GeneratePostmanCollectionResponse](../../models/operations/generatepostmancollectionresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## get_all_api_versions
 
@@ -167,7 +167,6 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.apis.get_all_api_versions(request={
     "api_id": "<value>",
 })
@@ -185,15 +184,16 @@ if res.apis is not None:
 | `request`                                                                                  | [operations.GetAllAPIVersionsRequest](../../models/operations/getallapiversionsrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `retries`                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                           | :heavy_minus_sign:                                                                         | Configuration to override the default retry behavior of the client.                        |
 
-
 ### Response
 
 **[operations.GetAllAPIVersionsResponse](../../models/operations/getallapiversionsresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## get_apis
 
@@ -212,8 +212,7 @@ s = Speakeasy(
     ),
 )
 
-
-res = s.apis.get_apis()
+res = s.apis.get_apis(request={})
 
 if res.apis is not None:
     # handle response
@@ -228,15 +227,16 @@ if res.apis is not None:
 | `request`                                                              | [operations.GetApisRequest](../../models/operations/getapisrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
 | `retries`                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)       | :heavy_minus_sign:                                                     | Configuration to override the default retry behavior of the client.    |
 
-
 ### Response
 
 **[operations.GetApisResponse](../../models/operations/getapisresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## upsert_api
 
@@ -254,7 +254,6 @@ s = Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
-
 
 res = s.apis.upsert_api(request={
     "api_id": "<value>",
@@ -278,10 +277,10 @@ if res.api is not None:
 | `request`                                                                  | [operations.UpsertAPIRequest](../../models/operations/upsertapirequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 | `retries`                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)           | :heavy_minus_sign:                                                         | Configuration to override the default retry behavior of the client.        |
 
-
 ### Response
 
 **[operations.UpsertAPIResponse](../../models/operations/upsertapiresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

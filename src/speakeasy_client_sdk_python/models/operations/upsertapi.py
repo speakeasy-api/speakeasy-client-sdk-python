@@ -4,9 +4,16 @@ from __future__ import annotations
 import httpx
 import pydantic
 from speakeasy_client_sdk_python.models.errors import error as errors_error
-from speakeasy_client_sdk_python.models.shared import api as shared_api, api_input as shared_api_input
+from speakeasy_client_sdk_python.models.shared import (
+    api as shared_api,
+    api_input as shared_api_input,
+)
 from speakeasy_client_sdk_python.types import BaseModel
-from speakeasy_client_sdk_python.utils import FieldMetadata, PathParamMetadata, RequestMetadata
+from speakeasy_client_sdk_python.utils import (
+    FieldMetadata,
+    PathParamMetadata,
+    RequestMetadata,
+)
 from typing import Optional, TypedDict
 from typing_extensions import Annotated, NotRequired
 
@@ -16,14 +23,22 @@ class UpsertAPIRequestTypedDict(TypedDict):
     r"""The ID of the Api to upsert."""
     api: shared_api_input.APIInputTypedDict
     r"""A JSON representation of the Api to upsert"""
-    
+
 
 class UpsertAPIRequest(BaseModel):
-    api_id: Annotated[str, pydantic.Field(alias="apiID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    api_id: Annotated[
+        str,
+        pydantic.Field(alias="apiID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
     r"""The ID of the Api to upsert."""
-    api: Annotated[shared_api_input.APIInput, FieldMetadata(request=RequestMetadata(media_type="application/json"))]
+
+    api: Annotated[
+        shared_api_input.APIInput,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
     r"""A JSON representation of the Api to upsert"""
-    
+
 
 class UpsertAPIResponseTypedDict(TypedDict):
     content_type: str
@@ -36,17 +51,20 @@ class UpsertAPIResponseTypedDict(TypedDict):
     r"""OK"""
     error: NotRequired[errors_error.Error]
     r"""Default error response"""
-    
+
 
 class UpsertAPIResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     api: Optional[shared_api.API] = None
     r"""OK"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
-    

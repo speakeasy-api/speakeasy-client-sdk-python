@@ -10,9 +10,9 @@ from typing import List, TypedDict
 class OASSummaryTypedDict(TypedDict):
     info: OASInfoTypedDict
     operations: List[OASOperationTypedDict]
-    
+
 
 class OASSummary(BaseModel):
     info: OASInfo
+
     operations: List[OASOperation]
-    

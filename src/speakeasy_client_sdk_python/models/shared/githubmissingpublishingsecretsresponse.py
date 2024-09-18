@@ -8,12 +8,11 @@ from typing_extensions import NotRequired
 
 class GithubMissingPublishingSecretsResponseTypedDict(TypedDict):
     r"""A valid response containing MISSING publishing secret keys for a github target"""
-    
+
     missing_secrets: NotRequired[List[str]]
-    
+
 
 class GithubMissingPublishingSecretsResponse(BaseModel):
     r"""A valid response containing MISSING publishing secret keys for a github target"""
-    
+
     missing_secrets: Optional[List[str]] = None
-    

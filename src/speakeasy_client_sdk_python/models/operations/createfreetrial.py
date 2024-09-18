@@ -17,15 +17,17 @@ class CreateFreeTrialResponseTypedDict(TypedDict):
     r"""Raw HTTP response; suitable for custom response parsing"""
     error: NotRequired[errors_error.Error]
     r"""Default error response"""
-    
+
 
 class CreateFreeTrialResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
-    

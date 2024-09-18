@@ -1,6 +1,8 @@
 # Organizations
 (*organizations*)
 
+## Overview
+
 ### Available Operations
 
 * [create_free_trial](#create_free_trial) - Create a free trial for an organization
@@ -24,7 +26,6 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.organizations.create_free_trial()
 
 if res is not None:
@@ -39,15 +40,16 @@ if res is not None:
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
-
 ### Response
 
 **[operations.CreateFreeTrialResponse](../../models/operations/createfreetrialresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## get_organization
 
@@ -64,7 +66,6 @@ s = Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
-
 
 res = s.organizations.get_organization(request={
     "organization_id": "<value>",
@@ -83,15 +84,16 @@ if res.organization is not None:
 | `request`                                                                              | [operations.GetOrganizationRequest](../../models/operations/getorganizationrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `retries`                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                       | :heavy_minus_sign:                                                                     | Configuration to override the default retry behavior of the client.                    |
 
-
 ### Response
 
 **[operations.GetOrganizationResponse](../../models/operations/getorganizationresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## get_organization_usage
 
@@ -109,7 +111,6 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.organizations.get_organization_usage()
 
 if res.organization_usage_response is not None:
@@ -124,15 +125,16 @@ if res.organization_usage_response is not None:
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
-
 ### Response
 
 **[operations.GetOrganizationUsageResponse](../../models/operations/getorganizationusageresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## get_organizations
 
@@ -150,7 +152,6 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.organizations.get_organizations()
 
 if res.organizations is not None:
@@ -165,10 +166,10 @@ if res.organizations is not None:
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
-
 ### Response
 
 **[operations.GetOrganizationsResponse](../../models/operations/getorganizationsresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

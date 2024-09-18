@@ -8,14 +8,14 @@ from typing_extensions import NotRequired
 
 class RequestMetadataTypedDict(TypedDict):
     r"""Key-Value pairs associated with a request"""
-    
+
     key: NotRequired[str]
     value: NotRequired[str]
-    
+
 
 class RequestMetadata(BaseModel):
     r"""Key-Value pairs associated with a request"""
-    
+
     key: Optional[str] = None
+
     value: Optional[str] = None
-    

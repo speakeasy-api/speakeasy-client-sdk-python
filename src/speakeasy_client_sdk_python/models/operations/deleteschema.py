@@ -17,16 +17,30 @@ class DeleteSchemaRequestTypedDict(TypedDict):
     r"""The version ID of the Api to delete metadata for."""
     revision_id: str
     r"""The revision ID of the schema to delete."""
-    
+
 
 class DeleteSchemaRequest(BaseModel):
-    api_id: Annotated[str, pydantic.Field(alias="apiID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    api_id: Annotated[
+        str,
+        pydantic.Field(alias="apiID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
     r"""The ID of the Api to delete schemas for."""
-    version_id: Annotated[str, pydantic.Field(alias="versionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+
+    version_id: Annotated[
+        str,
+        pydantic.Field(alias="versionID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
     r"""The version ID of the Api to delete metadata for."""
-    revision_id: Annotated[str, pydantic.Field(alias="revisionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+
+    revision_id: Annotated[
+        str,
+        pydantic.Field(alias="revisionID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
     r"""The revision ID of the schema to delete."""
-    
+
 
 class DeleteSchemaResponseTypedDict(TypedDict):
     content_type: str
@@ -37,15 +51,17 @@ class DeleteSchemaResponseTypedDict(TypedDict):
     r"""Raw HTTP response; suitable for custom response parsing"""
     error: NotRequired[errors_error.Error]
     r"""Default error response"""
-    
+
 
 class DeleteSchemaResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
-    

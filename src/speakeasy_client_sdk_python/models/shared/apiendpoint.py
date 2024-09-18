@@ -9,7 +9,7 @@ from typing_extensions import NotRequired
 
 class APIEndpointTypedDict(TypedDict):
     r"""An ApiEndpoint is a description of an Endpoint for an API."""
-    
+
     api_endpoint_id: str
     r"""The ID of this ApiEndpoint. This is a hash of the method and path."""
     api_id: str
@@ -32,31 +32,40 @@ class APIEndpointTypedDict(TypedDict):
     r"""The workspace ID this ApiEndpoint belongs to."""
     matched: NotRequired[bool]
     r"""Determines if the endpoint was found in the OpenAPI spec associated with the parent Api."""
-    
+
 
 class APIEndpoint(BaseModel):
     r"""An ApiEndpoint is a description of an Endpoint for an API."""
-    
+
     api_endpoint_id: str
     r"""The ID of this ApiEndpoint. This is a hash of the method and path."""
+
     api_id: str
     r"""The ID of the Api this ApiEndpoint belongs to."""
+
     created_at: datetime
     r"""Creation timestamp."""
+
     description: str
     r"""A detailed description of the ApiEndpoint."""
+
     display_name: str
     r"""A human-readable name for the ApiEndpoint."""
+
     method: str
     r"""HTTP verb."""
+
     path: str
     r"""Path that handles this Api."""
+
     updated_at: datetime
     r"""Last update timestamp."""
+
     version_id: str
     r"""The version ID of the Api this ApiEndpoint belongs to."""
+
     workspace_id: str
     r"""The workspace ID this ApiEndpoint belongs to."""
+
     matched: Optional[bool] = None
     r"""Determines if the endpoint was found in the OpenAPI spec associated with the parent Api."""
-    

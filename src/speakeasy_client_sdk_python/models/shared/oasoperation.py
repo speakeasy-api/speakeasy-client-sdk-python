@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import List, TypedDict
+from typing import List, Optional, TypedDict
+from typing_extensions import NotRequired
 
 
 class OASOperationTypedDict(TypedDict):
@@ -11,12 +12,21 @@ class OASOperationTypedDict(TypedDict):
     operation_id: str
     path: str
     tags: List[str]
-    
+    group_override: NotRequired[str]
+    method_name_override: NotRequired[str]
+
 
 class OASOperation(BaseModel):
     description: str
+
     method: str
+
     operation_id: str
+
     path: str
+
     tags: List[str]
-    
+
+    group_override: Optional[str] = None
+
+    method_name_override: Optional[str] = None

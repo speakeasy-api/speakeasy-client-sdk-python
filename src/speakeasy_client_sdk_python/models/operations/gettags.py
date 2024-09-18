@@ -3,7 +3,9 @@
 from __future__ import annotations
 import httpx
 from speakeasy_client_sdk_python.models.errors import error as errors_error
-from speakeasy_client_sdk_python.models.shared import gettagsresponse as shared_gettagsresponse
+from speakeasy_client_sdk_python.models.shared import (
+    gettagsresponse as shared_gettagsresponse,
+)
 from speakeasy_client_sdk_python.types import BaseModel
 from speakeasy_client_sdk_python.utils import FieldMetadata, PathParamMetadata
 from typing import Optional, TypedDict
@@ -12,11 +14,13 @@ from typing_extensions import Annotated, NotRequired
 
 class GetTagsRequestTypedDict(TypedDict):
     namespace_name: str
-    
+
 
 class GetTagsRequest(BaseModel):
-    namespace_name: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
-    
+    namespace_name: Annotated[
+        str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
+    ]
+
 
 class GetTagsResponseTypedDict(TypedDict):
     content_type: str
@@ -29,17 +33,20 @@ class GetTagsResponseTypedDict(TypedDict):
     r"""Default error response"""
     get_tags_response: NotRequired[shared_gettagsresponse.GetTagsResponseTypedDict]
     r"""OK"""
-    
+
 
 class GetTagsResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
+
     get_tags_response: Optional[shared_gettagsresponse.GetTagsResponse] = None
     r"""OK"""
-    

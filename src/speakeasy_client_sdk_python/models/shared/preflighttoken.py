@@ -8,12 +8,11 @@ from typing_extensions import NotRequired
 
 class PreflightTokenTypedDict(TypedDict):
     r"""A PreflightToken is a token that allows access to the OCI distribution endpoints."""
-    
+
     auth_token: NotRequired[str]
-    
+
 
 class PreflightToken(BaseModel):
     r"""A PreflightToken is a token that allows access to the OCI distribution endpoints."""
-    
+
     auth_token: Optional[str] = None
-    

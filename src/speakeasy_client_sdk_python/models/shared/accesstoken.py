@@ -13,11 +13,11 @@ from typing_extensions import Annotated, NotRequired
 
 class ClaimsTypedDict(TypedDict):
     pass
-    
+
 
 class Claims(BaseModel):
     pass
-    
+
 
 class AccessTokenUserTypedDict(TypedDict):
     admin: NotRequired[bool]
@@ -26,47 +26,60 @@ class AccessTokenUserTypedDict(TypedDict):
     email: NotRequired[str]
     email_verified: NotRequired[bool]
     id: NotRequired[str]
-    
+
 
 class AccessTokenUser(BaseModel):
     admin: Optional[bool] = None
+
     created_at: Optional[datetime] = None
+
     display_name: Optional[str] = None
+
     email: Optional[str] = None
+
     email_verified: Optional[bool] = None
+
     id: Optional[str] = None
-    
+
 
 class WorkspacesTypedDict(TypedDict):
     account_type: NotRequired[AccountType]
     id: NotRequired[str]
     name: NotRequired[str]
     updated_at: NotRequired[datetime]
-    
+
 
 class Workspaces(BaseModel):
-    account_type: Annotated[Optional[AccountType], PlainValidator(validate_open_enum(False))] = None
+    account_type: Annotated[
+        Optional[AccountType], PlainValidator(validate_open_enum(False))
+    ] = None
+
     id: Optional[str] = None
+
     name: Optional[str] = None
+
     updated_at: Optional[datetime] = None
-    
+
 
 class AccessTokenTypedDict(TypedDict):
     r"""An AccessToken is a token that can be used to authenticate with the Speakeasy API."""
-    
+
     access_token: str
     claims: ClaimsTypedDict
     user: AccessTokenUserTypedDict
     feature_flags: NotRequired[List[FeatureFlagTypedDict]]
     workspaces: NotRequired[List[WorkspacesTypedDict]]
-    
+
 
 class AccessToken(BaseModel):
     r"""An AccessToken is a token that can be used to authenticate with the Speakeasy API."""
-    
+
     access_token: str
+
     claims: Claims
+
     user: AccessTokenUser
+
     feature_flags: Optional[List[FeatureFlag]] = None
+
     workspaces: Optional[List[Workspaces]] = None
-    

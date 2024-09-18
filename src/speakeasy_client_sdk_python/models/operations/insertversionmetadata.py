@@ -4,9 +4,16 @@ from __future__ import annotations
 import httpx
 import pydantic
 from speakeasy_client_sdk_python.models.errors import error as errors_error
-from speakeasy_client_sdk_python.models.shared import versionmetadata as shared_versionmetadata, versionmetadata_input as shared_versionmetadata_input
+from speakeasy_client_sdk_python.models.shared import (
+    versionmetadata as shared_versionmetadata,
+    versionmetadata_input as shared_versionmetadata_input,
+)
 from speakeasy_client_sdk_python.types import BaseModel
-from speakeasy_client_sdk_python.utils import FieldMetadata, PathParamMetadata, RequestMetadata
+from speakeasy_client_sdk_python.utils import (
+    FieldMetadata,
+    PathParamMetadata,
+    RequestMetadata,
+)
 from typing import Optional, TypedDict
 from typing_extensions import Annotated, NotRequired
 
@@ -18,16 +25,29 @@ class InsertVersionMetadataRequestTypedDict(TypedDict):
     r"""The version ID of the Api to insert metadata for."""
     version_metadata: shared_versionmetadata_input.VersionMetadataInputTypedDict
     r"""A JSON representation of the metadata to insert."""
-    
+
 
 class InsertVersionMetadataRequest(BaseModel):
-    api_id: Annotated[str, pydantic.Field(alias="apiID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    api_id: Annotated[
+        str,
+        pydantic.Field(alias="apiID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
     r"""The ID of the Api to insert metadata for."""
-    version_id: Annotated[str, pydantic.Field(alias="versionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+
+    version_id: Annotated[
+        str,
+        pydantic.Field(alias="versionID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
     r"""The version ID of the Api to insert metadata for."""
-    version_metadata: Annotated[shared_versionmetadata_input.VersionMetadataInput, FieldMetadata(request=RequestMetadata(media_type="application/json"))]
+
+    version_metadata: Annotated[
+        shared_versionmetadata_input.VersionMetadataInput,
+        FieldMetadata(request=RequestMetadata(media_type="application/json")),
+    ]
     r"""A JSON representation of the metadata to insert."""
-    
+
 
 class InsertVersionMetadataResponseTypedDict(TypedDict):
     content_type: str
@@ -40,17 +60,20 @@ class InsertVersionMetadataResponseTypedDict(TypedDict):
     r"""Default error response"""
     version_metadata: NotRequired[shared_versionmetadata.VersionMetadataTypedDict]
     r"""OK"""
-    
+
 
 class InsertVersionMetadataResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
+
     version_metadata: Optional[shared_versionmetadata.VersionMetadata] = None
     r"""OK"""
-    

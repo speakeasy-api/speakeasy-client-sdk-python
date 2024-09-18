@@ -12,12 +12,17 @@ from typing_extensions import Annotated, NotRequired
 class CheckAccessRequestTypedDict(TypedDict):
     org: str
     repo: str
-    
+
 
 class CheckAccessRequest(BaseModel):
-    org: Annotated[str, FieldMetadata(query=QueryParamMetadata(style="form", explode=True))]
-    repo: Annotated[str, FieldMetadata(query=QueryParamMetadata(style="form", explode=True))]
-    
+    org: Annotated[
+        str, FieldMetadata(query=QueryParamMetadata(style="form", explode=True))
+    ]
+
+    repo: Annotated[
+        str, FieldMetadata(query=QueryParamMetadata(style="form", explode=True))
+    ]
+
 
 class CheckAccessResponseTypedDict(TypedDict):
     content_type: str
@@ -28,15 +33,17 @@ class CheckAccessResponseTypedDict(TypedDict):
     r"""Raw HTTP response; suitable for custom response parsing"""
     error: NotRequired[errors_error.Error]
     r"""Default error response"""
-    
+
 
 class CheckAccessResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
-    

@@ -13,12 +13,17 @@ from typing_extensions import Annotated, NotRequired
 class GetOASSummaryRequestTypedDict(TypedDict):
     namespace_name: str
     revision_reference: str
-    
+
 
 class GetOASSummaryRequest(BaseModel):
-    namespace_name: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
-    revision_reference: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
-    
+    namespace_name: Annotated[
+        str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
+    ]
+
+    revision_reference: Annotated[
+        str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
+    ]
+
 
 class GetOASSummaryResponseTypedDict(TypedDict):
     content_type: str
@@ -31,17 +36,20 @@ class GetOASSummaryResponseTypedDict(TypedDict):
     r"""Default error response"""
     oas_summary: NotRequired[shared_oassummary.OASSummaryTypedDict]
     r"""OK"""
-    
+
 
 class GetOASSummaryResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
+
     oas_summary: Optional[shared_oassummary.OASSummary] = None
     r"""OK"""
-    

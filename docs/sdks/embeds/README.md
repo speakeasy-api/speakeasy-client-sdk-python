@@ -28,8 +28,7 @@ s = Speakeasy(
     ),
 )
 
-
-res = s.embeds.get_embed_access_token()
+res = s.embeds.get_embed_access_token(request={})
 
 if res.embed_access_token_response is not None:
     # handle response
@@ -44,15 +43,16 @@ if res.embed_access_token_response is not None:
 | `request`                                                                                      | [operations.GetEmbedAccessTokenRequest](../../models/operations/getembedaccesstokenrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 | `retries`                                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                               | :heavy_minus_sign:                                                                             | Configuration to override the default retry behavior of the client.                            |
 
-
 ### Response
 
 **[operations.GetEmbedAccessTokenResponse](../../models/operations/getembedaccesstokenresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## get_valid_embed_access_tokens
 
@@ -70,7 +70,6 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.embeds.get_valid_embed_access_tokens()
 
 if res.embed_tokens is not None:
@@ -85,15 +84,16 @@ if res.embed_tokens is not None:
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
 
-
 ### Response
 
 **[operations.GetValidEmbedAccessTokensResponse](../../models/operations/getvalidembedaccesstokensresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4xx-5xx         | */*             |
+
 
 ## revoke_embed_access_token
 
@@ -110,7 +110,6 @@ s = Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
-
 
 res = s.embeds.revoke_embed_access_token(request={
     "token_id": "<value>",
@@ -129,10 +128,10 @@ if res is not None:
 | `request`                                                                                            | [operations.RevokeEmbedAccessTokenRequest](../../models/operations/revokeembedaccesstokenrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 | `retries`                                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                     | :heavy_minus_sign:                                                                                   | Configuration to override the default retry behavior of the client.                                  |
 
-
 ### Response
 
 **[operations.RevokeEmbedAccessTokenResponse](../../models/operations/revokeembedaccesstokenresponse.md)**
+
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

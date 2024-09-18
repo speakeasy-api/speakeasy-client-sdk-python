@@ -19,15 +19,26 @@ class APIKeyDetailsTypedDict(TypedDict):
     workspace_slug: str
     feature_flags: NotRequired[List[str]]
     generation_access_unlimited: NotRequired[bool]
-    
+
 
 class APIKeyDetails(BaseModel):
     account_type_v2: Annotated[AccountType, PlainValidator(validate_open_enum(False))]
+
     enabled_features: List[str]
+
     org_slug: str
+
     telemetry_disabled: bool
+
     workspace_id: str
+
     workspace_slug: str
-    feature_flags: Annotated[Optional[List[str]], pydantic.Field(deprecated="warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible.")] = None
+
+    feature_flags: Annotated[
+        Optional[List[str]],
+        pydantic.Field(
+            deprecated="warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
+        ),
+    ] = None
+
     generation_access_unlimited: Optional[bool] = None
-    

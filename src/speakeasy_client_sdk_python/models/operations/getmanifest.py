@@ -16,15 +16,26 @@ class GetManifestRequestTypedDict(TypedDict):
     namespace_name: str
     revision_reference: str
     r"""Tag or digest"""
-    
+
 
 class GetManifestRequest(BaseModel):
-    organization_slug: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
-    workspace_slug: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
-    namespace_name: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
-    revision_reference: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    organization_slug: Annotated[
+        str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
+    ]
+
+    workspace_slug: Annotated[
+        str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
+    ]
+
+    namespace_name: Annotated[
+        str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
+    ]
+
+    revision_reference: Annotated[
+        str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
+    ]
     r"""Tag or digest"""
-    
+
 
 class GetManifestResponseTypedDict(TypedDict):
     content_type: str
@@ -37,17 +48,20 @@ class GetManifestResponseTypedDict(TypedDict):
     r"""Default error response"""
     manifest: NotRequired[shared_manifest.ManifestTypedDict]
     r"""OK"""
-    
+
 
 class GetManifestResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
+
     manifest: Optional[shared_manifest.Manifest] = None
     r"""OK"""
-    

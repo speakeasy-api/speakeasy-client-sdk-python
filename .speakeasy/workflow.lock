@@ -1,9 +1,9 @@
-speakeasyVersion: 1.361.1
+speakeasyVersion: 1.399.0
 sources:
     speakeasy-openapi:
         sourceNamespace: speakeasy-openapi
-        sourceRevisionDigest: sha256:f9c9ffd7c550f43e427c2bfe5fdbbe55f91d3dae20a90063d7e430762d9152c5
-        sourceBlobDigest: sha256:be0a96c80997c1222c549aeb6f7f2b1a96a494e56f8df0c2dddad9a95a43b631
+        sourceRevisionDigest: sha256:2b8d99a489055336e37c89e0dd6ad1b6cf5f59dad7b422fee770e11000aa4af3
+        sourceBlobDigest: sha256:33237bbe2d3634722cd7716eb6ec31d9791f75b4f39402f6f164ad4dd9629e9e
         tags:
             - latest
             - main
@@ -11,9 +11,10 @@ targets:
     speakeasy-client-sdk-python:
         source: speakeasy-openapi
         sourceNamespace: speakeasy-openapi
-        sourceRevisionDigest: sha256:f9c9ffd7c550f43e427c2bfe5fdbbe55f91d3dae20a90063d7e430762d9152c5
-        sourceBlobDigest: sha256:be0a96c80997c1222c549aeb6f7f2b1a96a494e56f8df0c2dddad9a95a43b631
-        outLocation: /github/workspace/repo
+        sourceRevisionDigest: sha256:2b8d99a489055336e37c89e0dd6ad1b6cf5f59dad7b422fee770e11000aa4af3
+        sourceBlobDigest: sha256:33237bbe2d3634722cd7716eb6ec31d9791f75b4f39402f6f164ad4dd9629e9e
+        codeSamplesNamespace: code-samples-python-speakeasy-client-sdk-python
+        codeSamplesRevisionDigest: sha256:8d32c9201fe06685c99de1f22cfc2ca7c453afa5bda0f2537a6a0635b75133d5
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -30,3 +31,7 @@ workflow:
             publish:
                 pypi:
                     token: $pypi_token
+            codeSamples:
+                output: codeSamples.yaml
+                registry:
+                    location: registry.speakeasyapi.dev/speakeasy-self/speakeasy-self/code-samples-python-speakeasy-client-sdk-python

@@ -8,7 +8,7 @@ from typing_extensions import NotRequired
 
 class APIInputTypedDict(TypedDict):
     r"""An Api is representation of a API (a collection of API Endpoints) within the Speakeasy Platform."""
-    
+
     api_id: str
     r"""The ID of this Api. This is a human-readable name (subject to change)."""
     description: str
@@ -17,17 +17,19 @@ class APIInputTypedDict(TypedDict):
     r"""The version ID of this Api. This is semantic version identifier."""
     meta_data: NotRequired[Dict[str, List[str]]]
     r"""A set of values associated with a meta_data key. This field is only set on get requests."""
-    
+
 
 class APIInput(BaseModel):
     r"""An Api is representation of a API (a collection of API Endpoints) within the Speakeasy Platform."""
-    
+
     api_id: str
     r"""The ID of this Api. This is a human-readable name (subject to change)."""
+
     description: str
     r"""A detailed description of the Api."""
+
     version_id: str
     r"""The version ID of this Api. This is semantic version identifier."""
+
     meta_data: Optional[Dict[str, List[str]]] = None
     r"""A set of values associated with a meta_data key. This field is only set on get requests."""
-    

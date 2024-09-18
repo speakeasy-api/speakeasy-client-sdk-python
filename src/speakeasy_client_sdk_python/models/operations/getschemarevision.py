@@ -18,16 +18,30 @@ class GetSchemaRevisionRequestTypedDict(TypedDict):
     r"""The version ID of the Api to delete metadata for."""
     revision_id: str
     r"""The revision ID of the schema to retrieve."""
-    
+
 
 class GetSchemaRevisionRequest(BaseModel):
-    api_id: Annotated[str, pydantic.Field(alias="apiID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    api_id: Annotated[
+        str,
+        pydantic.Field(alias="apiID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
     r"""The ID of the Api to retrieve schemas for."""
-    version_id: Annotated[str, pydantic.Field(alias="versionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+
+    version_id: Annotated[
+        str,
+        pydantic.Field(alias="versionID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
     r"""The version ID of the Api to delete metadata for."""
-    revision_id: Annotated[str, pydantic.Field(alias="revisionID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+
+    revision_id: Annotated[
+        str,
+        pydantic.Field(alias="revisionID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
     r"""The revision ID of the schema to retrieve."""
-    
+
 
 class GetSchemaRevisionResponseTypedDict(TypedDict):
     content_type: str
@@ -40,17 +54,20 @@ class GetSchemaRevisionResponseTypedDict(TypedDict):
     r"""Default error response"""
     schema_: NotRequired[shared_schema.SchemaTypedDict]
     r"""OK"""
-    
+
 
 class GetSchemaRevisionResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
+
     schema_: Optional[shared_schema.Schema] = None
     r"""OK"""
-    

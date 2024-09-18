@@ -8,7 +8,7 @@ from typing import TypedDict
 
 class VersionMetadataTypedDict(TypedDict):
     r"""A set of keys and associated values, attached to a particular version of an Api."""
-    
+
     api_id: str
     r"""The ID of the Api this Metadata belongs to."""
     created_at: datetime
@@ -21,21 +21,25 @@ class VersionMetadataTypedDict(TypedDict):
     r"""The version ID of the Api this Metadata belongs to."""
     workspace_id: str
     r"""The workspace ID this Metadata belongs to."""
-    
+
 
 class VersionMetadata(BaseModel):
     r"""A set of keys and associated values, attached to a particular version of an Api."""
-    
+
     api_id: str
     r"""The ID of the Api this Metadata belongs to."""
+
     created_at: datetime
     r"""Creation timestamp."""
+
     meta_key: str
     r"""The key for this metadata."""
+
     meta_value: str
     r"""One of the values for this metadata."""
+
     version_id: str
     r"""The version ID of the Api this Metadata belongs to."""
+
     workspace_id: str
     r"""The workspace ID this Metadata belongs to."""
-    

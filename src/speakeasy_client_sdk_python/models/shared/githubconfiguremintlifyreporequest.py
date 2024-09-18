@@ -8,7 +8,7 @@ from typing_extensions import NotRequired
 
 class GithubConfigureMintlifyRepoRequestTypedDict(TypedDict):
     r"""A request to configure a GitHub repository for mintlify"""
-    
+
     input: str
     r"""The input OpenAPI document"""
     org: str
@@ -19,19 +19,22 @@ class GithubConfigureMintlifyRepoRequestTypedDict(TypedDict):
     r"""The GitHub repository name"""
     subdirectory: NotRequired[str]
     r"""The subdirectory (location of mint.json)"""
-    
+
 
 class GithubConfigureMintlifyRepoRequest(BaseModel):
     r"""A request to configure a GitHub repository for mintlify"""
-    
+
     input: str
     r"""The input OpenAPI document"""
+
     org: str
     r"""The GitHub organization name"""
+
     overlays: List[str]
     r"""The overlays to apply"""
+
     repo: str
     r"""The GitHub repository name"""
+
     subdirectory: Optional[str] = None
     r"""The subdirectory (location of mint.json)"""
-    

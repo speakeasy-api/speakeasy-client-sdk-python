@@ -6,24 +6,28 @@ import pydantic
 from speakeasy_client_sdk_python.models.errors import error as errors_error
 from speakeasy_client_sdk_python.models.shared import api as shared_api
 from speakeasy_client_sdk_python.types import BaseModel
-from speakeasy_client_sdk_python.utils import FieldMetadata, PathParamMetadata, QueryParamMetadata
+from speakeasy_client_sdk_python.utils import (
+    FieldMetadata,
+    PathParamMetadata,
+    QueryParamMetadata,
+)
 from typing import Dict, List, Optional, TypedDict
 from typing_extensions import Annotated, NotRequired
 
 
 class OpTypedDict(TypedDict):
     r"""Configuration for filter operations"""
-    
+
     and_: bool
     r"""Whether to AND or OR the filters"""
-    
+
 
 class Op(BaseModel):
     r"""Configuration for filter operations"""
-    
+
     and_: Annotated[bool, pydantic.Field(alias="and"), FieldMetadata(query=True)]
     r"""Whether to AND or OR the filters"""
-    
+
 
 class GetAllAPIVersionsRequestTypedDict(TypedDict):
     api_id: str
@@ -32,16 +36,28 @@ class GetAllAPIVersionsRequestTypedDict(TypedDict):
     r"""Configuration for filter operations"""
     metadata: NotRequired[Dict[str, List[str]]]
     r"""Metadata to filter Apis on"""
-    
+
 
 class GetAllAPIVersionsRequest(BaseModel):
-    api_id: Annotated[str, pydantic.Field(alias="apiID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    api_id: Annotated[
+        str,
+        pydantic.Field(alias="apiID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
     r"""The ID of the Api to retrieve."""
-    op: Annotated[Optional[Op], FieldMetadata(query=QueryParamMetadata(style="deepObject", explode=True))] = None
+
+    op: Annotated[
+        Optional[Op],
+        FieldMetadata(query=QueryParamMetadata(style="deepObject", explode=True)),
+    ] = None
     r"""Configuration for filter operations"""
-    metadata: Annotated[Optional[Dict[str, List[str]]], FieldMetadata(query=QueryParamMetadata(style="deepObject", explode=True))] = None
+
+    metadata: Annotated[
+        Optional[Dict[str, List[str]]],
+        FieldMetadata(query=QueryParamMetadata(style="deepObject", explode=True)),
+    ] = None
     r"""Metadata to filter Apis on"""
-    
+
 
 class GetAllAPIVersionsResponseTypedDict(TypedDict):
     content_type: str
@@ -54,17 +70,20 @@ class GetAllAPIVersionsResponseTypedDict(TypedDict):
     r"""OK"""
     error: NotRequired[errors_error.Error]
     r"""Default error response"""
-    
+
 
 class GetAllAPIVersionsResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     apis: Optional[List[shared_api.API]] = None
     r"""OK"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
-    

@@ -14,14 +14,18 @@ class RevisionTypedDict(TypedDict):
     namespace_name: str
     tags: List[str]
     updated_at: datetime
-    
+
 
 class Revision(BaseModel):
     created_at: datetime
+
     digest: str
+
     id: str
     r"""Format {namespace_id}/{revision_digest}"""
+
     namespace_name: str
+
     tags: List[str]
+
     updated_at: datetime
-    

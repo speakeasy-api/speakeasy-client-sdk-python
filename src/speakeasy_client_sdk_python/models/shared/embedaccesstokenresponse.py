@@ -7,12 +7,11 @@ from typing import TypedDict
 
 class EmbedAccessTokenResponseTypedDict(TypedDict):
     r"""An EmbedAccessTokenResponse contains a token that can be used to embed a Speakeasy dashboard."""
-    
+
     access_token: str
-    
+
 
 class EmbedAccessTokenResponse(BaseModel):
     r"""An EmbedAccessTokenResponse contains a token that can be used to embed a Speakeasy dashboard."""
-    
+
     access_token: str
-    

@@ -8,9 +8,9 @@ from typing import TypedDict
 class ShortURLTypedDict(TypedDict):
     full_url: str
     short_url: str
-    
+
 
 class ShortURL(BaseModel):
     full_url: str
+
     short_url: str
-    

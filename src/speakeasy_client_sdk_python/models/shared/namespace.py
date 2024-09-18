@@ -8,22 +8,24 @@ from typing import TypedDict
 
 class NamespaceTypedDict(TypedDict):
     r"""A namespace contains many revisions."""
-    
+
     created_at: datetime
     id: str
     r"""{organization_slug}/{workspace_slug}/{namespace_name}"""
     name: str
     r"""A human-readable name for the namespace."""
     updated_at: datetime
-    
+
 
 class Namespace(BaseModel):
     r"""A namespace contains many revisions."""
-    
+
     created_at: datetime
+
     id: str
     r"""{organization_slug}/{workspace_slug}/{namespace_name}"""
+
     name: str
     r"""A human-readable name for the namespace."""
+
     updated_at: datetime
-    

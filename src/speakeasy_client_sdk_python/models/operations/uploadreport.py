@@ -15,39 +15,58 @@ class FileTypedDict(TypedDict):
     content: Union[bytes, IO[bytes], io.BufferedReader]
     file_name: str
     content_type: NotRequired[str]
-    
+
 
 class File(BaseModel):
-    content: Annotated[Union[bytes, IO[bytes], io.BufferedReader], pydantic.Field(alias=""), FieldMetadata(multipart=MultipartFormMetadata(content=True))]
-    file_name: Annotated[str, pydantic.Field(alias="file"), FieldMetadata(multipart=True)]
-    content_type: Annotated[Optional[str], pydantic.Field(alias="Content-Type"), FieldMetadata(multipart=True)] = None
-    
+    content: Annotated[
+        Union[bytes, IO[bytes], io.BufferedReader],
+        pydantic.Field(alias=""),
+        FieldMetadata(multipart=MultipartFormMetadata(content=True)),
+    ]
+
+    file_name: Annotated[
+        str, pydantic.Field(alias="file"), FieldMetadata(multipart=True)
+    ]
+
+    content_type: Annotated[
+        Optional[str],
+        pydantic.Field(alias="Content-Type"),
+        FieldMetadata(multipart=True),
+    ] = None
+
 
 class UploadReportRequestBodyTypedDict(TypedDict):
     r"""The report file to upload provided as a multipart/form-data file segment."""
-    
+
     data: shared_report.ReportTypedDict
     file: FileTypedDict
-    
+
 
 class UploadReportRequestBody(BaseModel):
     r"""The report file to upload provided as a multipart/form-data file segment."""
-    
-    data: Annotated[shared_report.Report, FieldMetadata(multipart=MultipartFormMetadata(json=True))]
-    file: Annotated[File, pydantic.Field(alias=""), FieldMetadata(multipart=MultipartFormMetadata(file=True))]
-    
+
+    data: Annotated[
+        shared_report.Report, FieldMetadata(multipart=MultipartFormMetadata(json=True))
+    ]
+
+    file: Annotated[
+        File,
+        pydantic.Field(alias=""),
+        FieldMetadata(multipart=MultipartFormMetadata(file=True)),
+    ]
+
 
 class UploadReportUploadedReportTypedDict(TypedDict):
     r"""OK"""
-    
+
     url: str
-    
+
 
 class UploadReportUploadedReport(BaseModel):
     r"""OK"""
-    
+
     url: str
-    
+
 
 class UploadReportResponseTypedDict(TypedDict):
     content_type: str
@@ -58,15 +77,17 @@ class UploadReportResponseTypedDict(TypedDict):
     r"""Raw HTTP response; suitable for custom response parsing"""
     uploaded_report: NotRequired[UploadReportUploadedReportTypedDict]
     r"""OK"""
-    
+
 
 class UploadReportResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     uploaded_report: Optional[UploadReportUploadedReport] = None
     r"""OK"""
-    

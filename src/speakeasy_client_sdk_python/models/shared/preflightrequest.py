@@ -7,8 +7,7 @@ from typing import TypedDict
 
 class PreflightRequestTypedDict(TypedDict):
     namespace_name: str
-    
+
 
 class PreflightRequest(BaseModel):
     namespace_name: str
-    

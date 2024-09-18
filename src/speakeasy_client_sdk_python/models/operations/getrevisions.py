@@ -3,9 +3,15 @@
 from __future__ import annotations
 import httpx
 from speakeasy_client_sdk_python.models.errors import error as errors_error
-from speakeasy_client_sdk_python.models.shared import getrevisionsresponse as shared_getrevisionsresponse
+from speakeasy_client_sdk_python.models.shared import (
+    getrevisionsresponse as shared_getrevisionsresponse,
+)
 from speakeasy_client_sdk_python.types import BaseModel
-from speakeasy_client_sdk_python.utils import FieldMetadata, PathParamMetadata, QueryParamMetadata
+from speakeasy_client_sdk_python.utils import (
+    FieldMetadata,
+    PathParamMetadata,
+    QueryParamMetadata,
+)
 from typing import Optional, TypedDict
 from typing_extensions import Annotated, NotRequired
 
@@ -14,13 +20,19 @@ class GetRevisionsRequestTypedDict(TypedDict):
     namespace_name: str
     next_page_token: NotRequired[str]
     r"""Token to retrieve the next page of results"""
-    
+
 
 class GetRevisionsRequest(BaseModel):
-    namespace_name: Annotated[str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
-    next_page_token: Annotated[Optional[str], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
+    namespace_name: Annotated[
+        str, FieldMetadata(path=PathParamMetadata(style="simple", explode=False))
+    ]
+
+    next_page_token: Annotated[
+        Optional[str],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
     r"""Token to retrieve the next page of results"""
-    
+
 
 class GetRevisionsResponseTypedDict(TypedDict):
     content_type: str
@@ -31,19 +43,26 @@ class GetRevisionsResponseTypedDict(TypedDict):
     r"""Raw HTTP response; suitable for custom response parsing"""
     error: NotRequired[errors_error.Error]
     r"""Default error response"""
-    get_revisions_response: NotRequired[shared_getrevisionsresponse.GetRevisionsResponseTypedDict]
+    get_revisions_response: NotRequired[
+        shared_getrevisionsresponse.GetRevisionsResponseTypedDict
+    ]
     r"""OK"""
-    
+
 
 class GetRevisionsResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
-    get_revisions_response: Optional[shared_getrevisionsresponse.GetRevisionsResponse] = None
+
+    get_revisions_response: Optional[
+        shared_getrevisionsresponse.GetRevisionsResponse
+    ] = None
     r"""OK"""
-    

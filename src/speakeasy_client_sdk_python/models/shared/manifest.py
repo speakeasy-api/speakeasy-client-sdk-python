@@ -11,7 +11,7 @@ from typing_extensions import Annotated, NotRequired
 
 class ManifestTypedDict(TypedDict):
     r"""Returns the requested manifest file"""
-    
+
     annotations: NotRequired[AnnotationsTypedDict]
     r"""Annotations"""
     artifact_type: NotRequired[str]
@@ -22,19 +22,24 @@ class ManifestTypedDict(TypedDict):
     r"""Media type usually application/vnd.docker.distribution.manifest.v2+json if this is in the accept header"""
     schema_version: NotRequired[int]
     r"""Schema version"""
-    
+
 
 class Manifest(BaseModel):
     r"""Returns the requested manifest file"""
-    
+
     annotations: Optional[Annotations] = None
     r"""Annotations"""
+
     artifact_type: Annotated[Optional[str], pydantic.Field(alias="artifactType")] = None
     r"""Type of artifact"""
+
     layers: Optional[List[V2Descriptor]] = None
     r"""List of V2 image layer information"""
+
     media_type: Annotated[Optional[str], pydantic.Field(alias="mediaType")] = None
     r"""Media type usually application/vnd.docker.distribution.manifest.v2+json if this is in the accept header"""
-    schema_version: Annotated[Optional[int], pydantic.Field(alias="schemaVersion")] = None
+
+    schema_version: Annotated[Optional[int], pydantic.Field(alias="schemaVersion")] = (
+        None
+    )
     r"""Schema version"""
-    

@@ -3,10 +3,19 @@
 from .sdkconfiguration import SDKConfiguration
 import httpx
 from speakeasy_client_sdk_python import utils
-from speakeasy_client_sdk_python._hooks import AfterErrorContext, AfterSuccessContext, BeforeRequestContext
+from speakeasy_client_sdk_python._hooks import (
+    AfterErrorContext,
+    AfterSuccessContext,
+    BeforeRequestContext,
+)
 from speakeasy_client_sdk_python.models import errors
-from speakeasy_client_sdk_python.utils import RetryConfig, SerializedRequestBody, get_body_content
+from speakeasy_client_sdk_python.utils import (
+    RetryConfig,
+    SerializedRequestBody,
+    get_body_content,
+)
 from typing import Callable, List, Optional, Tuple
+
 
 class BaseSDK:
     sdk_configuration: SDKConfiguration
@@ -24,6 +33,46 @@ class BaseSDK:
             url_variables = sdk_variables
 
         return utils.template_url(base_url, url_variables)
+
+    def build_request_async(
+        self,
+        method,
+        path,
+        base_url,
+        url_variables,
+        request,
+        request_body_required,
+        request_has_path_params,
+        request_has_query_params,
+        user_agent_header,
+        accept_header_value,
+        _globals=None,
+        security=None,
+        timeout_ms: Optional[int] = None,
+        get_serialized_body: Optional[
+            Callable[[], Optional[SerializedRequestBody]]
+        ] = None,
+        url_override: Optional[str] = None,
+    ) -> httpx.Request:
+        client = self.sdk_configuration.async_client
+        return self.build_request_with_client(
+            client,
+            method,
+            path,
+            base_url,
+            url_variables,
+            request,
+            request_body_required,
+            request_has_path_params,
+            request_has_query_params,
+            user_agent_header,
+            accept_header_value,
+            _globals,
+            security,
+            timeout_ms,
+            get_serialized_body,
+            url_override,
+        )
 
     def build_request(
         self,
@@ -46,7 +95,46 @@ class BaseSDK:
         url_override: Optional[str] = None,
     ) -> httpx.Request:
         client = self.sdk_configuration.client
+        return self.build_request_with_client(
+            client,
+            method,
+            path,
+            base_url,
+            url_variables,
+            request,
+            request_body_required,
+            request_has_path_params,
+            request_has_query_params,
+            user_agent_header,
+            accept_header_value,
+            _globals,
+            security,
+            timeout_ms,
+            get_serialized_body,
+            url_override,
+        )
 
+    def build_request_with_client(
+        self,
+        client,
+        method,
+        path,
+        base_url,
+        url_variables,
+        request,
+        request_body_required,
+        request_has_path_params,
+        request_has_query_params,
+        user_agent_header,
+        accept_header_value,
+        _globals=None,
+        security=None,
+        timeout_ms: Optional[int] = None,
+        get_serialized_body: Optional[
+            Callable[[], Optional[SerializedRequestBody]]
+        ] = None,
+        url_override: Optional[str] = None,
+    ) -> httpx.Request:
         query_params = {}
 
         url = url_override
@@ -70,7 +158,7 @@ class BaseSDK:
         if security is not None:
             if callable(security):
                 security = security()
-        
+
         if security is not None:
             security_headers, security_query_params = utils.get_security(security)
             headers = {**headers, **security_headers}
@@ -130,7 +218,7 @@ class BaseSDK:
                     req.method,
                     req.url,
                     req.headers,
-                    get_body_content(req)
+                    get_body_content(req),
                 )
                 http_res = client.send(req, stream=stream)
             except Exception as e:
@@ -150,7 +238,7 @@ class BaseSDK:
                 http_res.status_code,
                 http_res.url,
                 http_res.headers,
-                "<streaming response>" if stream else http_res.text
+                "<streaming response>" if stream else http_res.text,
             )
 
             if utils.match_status_codes(error_status_codes, http_res.status_code):
@@ -190,6 +278,7 @@ class BaseSDK:
     ) -> httpx.Response:
         client = self.sdk_configuration.async_client
         logger = self.sdk_configuration.debug_logger
+
         async def do():
             http_res = None
             try:
@@ -201,7 +290,7 @@ class BaseSDK:
                     req.method,
                     req.url,
                     req.headers,
-                    get_body_content(req)
+                    get_body_content(req),
                 )
                 http_res = await client.send(req, stream=stream)
             except Exception as e:
@@ -221,7 +310,7 @@ class BaseSDK:
                 http_res.status_code,
                 http_res.url,
                 http_res.headers,
-                "<streaming response>" if stream else http_res.text
+                "<streaming response>" if stream else http_res.text,
             )
 
             if utils.match_status_codes(error_status_codes, http_res.status_code):

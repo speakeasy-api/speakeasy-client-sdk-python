@@ -4,7 +4,9 @@ from __future__ import annotations
 import httpx
 import pydantic
 from speakeasy_client_sdk_python.models.errors import error as errors_error
-from speakeasy_client_sdk_python.models.shared import githubgetactionresponse as shared_githubgetactionresponse
+from speakeasy_client_sdk_python.models.shared import (
+    githubgetactionresponse as shared_githubgetactionresponse,
+)
 from speakeasy_client_sdk_python.types import BaseModel
 from speakeasy_client_sdk_python.utils import FieldMetadata, QueryParamMetadata
 from typing import Optional, TypedDict
@@ -16,14 +18,24 @@ class GetActionRequestTypedDict(TypedDict):
     repo: str
     target_name: NotRequired[str]
     r"""The targetName of the workflow target."""
-    
+
 
 class GetActionRequest(BaseModel):
-    org: Annotated[str, FieldMetadata(query=QueryParamMetadata(style="form", explode=True))]
-    repo: Annotated[str, FieldMetadata(query=QueryParamMetadata(style="form", explode=True))]
-    target_name: Annotated[Optional[str], pydantic.Field(alias="targetName"), FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
+    org: Annotated[
+        str, FieldMetadata(query=QueryParamMetadata(style="form", explode=True))
+    ]
+
+    repo: Annotated[
+        str, FieldMetadata(query=QueryParamMetadata(style="form", explode=True))
+    ]
+
+    target_name: Annotated[
+        Optional[str],
+        pydantic.Field(alias="targetName"),
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
     r"""The targetName of the workflow target."""
-    
+
 
 class GetActionResponseTypedDict(TypedDict):
     content_type: str
@@ -34,19 +46,26 @@ class GetActionResponseTypedDict(TypedDict):
     r"""Raw HTTP response; suitable for custom response parsing"""
     error: NotRequired[errors_error.Error]
     r"""Default error response"""
-    github_get_action_response: NotRequired[shared_githubgetactionresponse.GithubGetActionResponseTypedDict]
+    github_get_action_response: NotRequired[
+        shared_githubgetactionresponse.GithubGetActionResponseTypedDict
+    ]
     r"""OK"""
-    
+
 
 class GetActionResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
-    github_get_action_response: Optional[shared_githubgetactionresponse.GithubGetActionResponse] = None
+
+    github_get_action_response: Optional[
+        shared_githubgetactionresponse.GithubGetActionResponse
+    ] = None
     r"""OK"""
-    

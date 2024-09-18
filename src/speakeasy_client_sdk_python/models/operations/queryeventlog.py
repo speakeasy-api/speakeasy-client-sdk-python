@@ -3,7 +3,10 @@
 from __future__ import annotations
 import httpx
 from speakeasy_client_sdk_python.models.errors import error as errors_error
-from speakeasy_client_sdk_python.models.shared import boundedrequest as shared_boundedrequest, filters as shared_filters
+from speakeasy_client_sdk_python.models.shared import (
+    boundedrequest as shared_boundedrequest,
+    filters as shared_filters,
+)
 from speakeasy_client_sdk_python.types import BaseModel
 from speakeasy_client_sdk_python.utils import FieldMetadata, QueryParamMetadata
 from typing import List, Optional, TypedDict
@@ -13,12 +16,15 @@ from typing_extensions import Annotated, NotRequired
 class QueryEventLogRequestTypedDict(TypedDict):
     filters: NotRequired[shared_filters.FiltersTypedDict]
     r"""The filter to apply to the query."""
-    
+
 
 class QueryEventLogRequest(BaseModel):
-    filters: Annotated[Optional[shared_filters.Filters], FieldMetadata(query=QueryParamMetadata(serialization="json"))] = None
+    filters: Annotated[
+        Optional[shared_filters.Filters],
+        FieldMetadata(query=QueryParamMetadata(serialization="json")),
+    ] = None
     r"""The filter to apply to the query."""
-    
+
 
 class QueryEventLogResponseTypedDict(TypedDict):
     content_type: str
@@ -31,17 +37,20 @@ class QueryEventLogResponseTypedDict(TypedDict):
     r"""OK"""
     error: NotRequired[errors_error.Error]
     r"""Default error response"""
-    
+
 
 class QueryEventLogResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     bounded_requests: Optional[List[shared_boundedrequest.BoundedRequest]] = None
     r"""OK"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
-    

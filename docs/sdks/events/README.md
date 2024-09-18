@@ -28,7 +28,6 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.events.get_workspace_events_by_target(request={
     "target_id": "<value>",
 })
@@ -46,16 +45,17 @@ if res.cli_event_batch is not None:
 | `request`                                                                                                    | [operations.GetWorkspaceEventsByTargetRequest](../../models/operations/getworkspaceeventsbytargetrequest.md) | :heavy_check_mark:                                                                                           | The request object to use for the request.                                                                   |
 | `retries`                                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                             | :heavy_minus_sign:                                                                                           | Configuration to override the default retry behavior of the client.                                          |
 
-
 ### Response
 
 **[operations.GetWorkspaceEventsByTargetResponse](../../models/operations/getworkspaceeventsbytargetresponse.md)**
+
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.Error     | 5XX              | application/json |
 | errors.SDKError  | 4xx-5xx          | */*              |
+
 
 ## get_workspace_targets
 
@@ -73,8 +73,7 @@ s = Speakeasy(
     ),
 )
 
-
-res = s.events.get_workspace_targets()
+res = s.events.get_workspace_targets(request={})
 
 if res.target_sdk_list is not None:
     # handle response
@@ -89,16 +88,17 @@ if res.target_sdk_list is not None:
 | `request`                                                                                      | [operations.GetWorkspaceTargetsRequest](../../models/operations/getworkspacetargetsrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 | `retries`                                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                               | :heavy_minus_sign:                                                                             | Configuration to override the default retry behavior of the client.                            |
 
-
 ### Response
 
 **[operations.GetWorkspaceTargetsResponse](../../models/operations/getworkspacetargetsresponse.md)**
+
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.Error     | 5XX              | application/json |
 | errors.SDKError  | 4xx-5xx          | */*              |
+
 
 ## post_workspace_events
 
@@ -116,7 +116,6 @@ s = Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
-
 
 res = s.events.post_workspace_events(request={
     "request_body": [
@@ -147,16 +146,17 @@ if res is not None:
 | `request`                                                                                      | [operations.PostWorkspaceEventsRequest](../../models/operations/postworkspaceeventsrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
 | `retries`                                                                                      | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                               | :heavy_minus_sign:                                                                             | Configuration to override the default retry behavior of the client.                            |
 
-
 ### Response
 
 **[operations.PostWorkspaceEventsResponse](../../models/operations/postworkspaceeventsresponse.md)**
+
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
 | errors.Error     | 5XX              | application/json |
 | errors.SDKError  | 4xx-5xx          | */*              |
+
 
 ## search_workspace_events
 
@@ -174,8 +174,7 @@ s = Speakeasy(
     ),
 )
 
-
-res = s.events.search_workspace_events()
+res = s.events.search_workspace_events(request={})
 
 if res.cli_event_batch is not None:
     # handle response
@@ -190,10 +189,10 @@ if res.cli_event_batch is not None:
 | `request`                                                                                          | [operations.SearchWorkspaceEventsRequest](../../models/operations/searchworkspaceeventsrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
 | `retries`                                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                   | :heavy_minus_sign:                                                                                 | Configuration to override the default retry behavior of the client.                                |
 
-
 ### Response
 
 **[operations.SearchWorkspaceEventsResponse](../../models/operations/searchworkspaceeventsresponse.md)**
+
 ### Errors
 
 | Error Object     | Status Code      | Content Type     |

@@ -34,33 +34,44 @@ class UserTypedDict(TypedDict):
     r"""GitHub handle of the user."""
     photo_url: NotRequired[str]
     r"""URL of the user's photo."""
-    
+
 
 class User(BaseModel):
     admin: bool
     r"""Indicates whether the user is an admin."""
+
     confirmed: bool
     r"""Indicates whether the user has been confirmed."""
+
     created_at: datetime
     r"""Timestamp of the user's creation."""
+
     display_name: str
     r"""Display name of the user."""
+
     email: str
     r"""Email address of the user."""
+
     email_verified: bool
     r"""Indicates whether the email address has been verified."""
+
     id: str
     r"""Unique identifier for the user."""
+
     last_login_at: datetime
     r"""Timestamp of the last login."""
+
     updated_at: datetime
     r"""Timestamp of the user's last update."""
+
     whitelisted: bool
     r"""Indicates whether the user has been whitelisted."""
+
     default_workspace_id: Optional[str] = None
     r"""Identifier of the default workspace."""
+
     github_handle: Optional[str] = None
     r"""GitHub handle of the user."""
+
     photo_url: Optional[str] = None
     r"""URL of the user's photo."""
-    

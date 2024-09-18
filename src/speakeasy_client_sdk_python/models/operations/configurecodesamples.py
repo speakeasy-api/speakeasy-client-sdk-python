@@ -3,7 +3,9 @@
 from __future__ import annotations
 import httpx
 from speakeasy_client_sdk_python.models.errors import error as errors_error
-from speakeasy_client_sdk_python.models.shared import githubconfigurecodesamplesresponse as shared_githubconfigurecodesamplesresponse
+from speakeasy_client_sdk_python.models.shared import (
+    githubconfigurecodesamplesresponse as shared_githubconfigurecodesamplesresponse,
+)
 from speakeasy_client_sdk_python.types import BaseModel
 from typing import Optional, TypedDict
 from typing_extensions import NotRequired
@@ -18,19 +20,26 @@ class ConfigureCodeSamplesResponseTypedDict(TypedDict):
     r"""Raw HTTP response; suitable for custom response parsing"""
     error: NotRequired[errors_error.Error]
     r"""Default error response"""
-    github_configure_code_samples_response: NotRequired[shared_githubconfigurecodesamplesresponse.GithubConfigureCodeSamplesResponseTypedDict]
+    github_configure_code_samples_response: NotRequired[
+        shared_githubconfigurecodesamplesresponse.GithubConfigureCodeSamplesResponseTypedDict
+    ]
     r"""OK"""
-    
+
 
 class ConfigureCodeSamplesResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
-    github_configure_code_samples_response: Optional[shared_githubconfigurecodesamplesresponse.GithubConfigureCodeSamplesResponse] = None
+
+    github_configure_code_samples_response: Optional[
+        shared_githubconfigurecodesamplesresponse.GithubConfigureCodeSamplesResponse
+    ] = None
     r"""OK"""
-    

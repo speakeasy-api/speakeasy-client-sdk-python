@@ -6,32 +6,48 @@ import httpx
 import pydantic
 from speakeasy_client_sdk_python.models.shared import targetsdk as shared_targetsdk
 from speakeasy_client_sdk_python.types import BaseModel
-from speakeasy_client_sdk_python.utils import FieldMetadata, PathParamMetadata, QueryParamMetadata
+from speakeasy_client_sdk_python.utils import (
+    FieldMetadata,
+    PathParamMetadata,
+    QueryParamMetadata,
+)
 from typing import List, Optional, TypedDict
 from typing_extensions import Annotated, NotRequired
 
 
 class GetWorkspaceTargetsGlobalsTypedDict(TypedDict):
     workspace_id: NotRequired[str]
-    
+
 
 class GetWorkspaceTargetsGlobals(BaseModel):
-    workspace_id: Annotated[Optional[str], pydantic.Field(alias="workspaceID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))] = None
-    
+    workspace_id: Annotated[
+        Optional[str],
+        pydantic.Field(alias="workspaceID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ] = None
+
 
 class GetWorkspaceTargetsRequestTypedDict(TypedDict):
     workspace_id: NotRequired[str]
     r"""Unique identifier of the workspace."""
     after_last_event_created_at: NotRequired[datetime]
     r"""Filter to only return targets with events created after this timestamp"""
-    
+
 
 class GetWorkspaceTargetsRequest(BaseModel):
-    workspace_id: Annotated[Optional[str], pydantic.Field(alias="workspaceID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))] = None
+    workspace_id: Annotated[
+        Optional[str],
+        pydantic.Field(alias="workspaceID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ] = None
     r"""Unique identifier of the workspace."""
-    after_last_event_created_at: Annotated[Optional[datetime], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
+
+    after_last_event_created_at: Annotated[
+        Optional[datetime],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
     r"""Filter to only return targets with events created after this timestamp"""
-    
+
 
 class GetWorkspaceTargetsResponseTypedDict(TypedDict):
     content_type: str
@@ -42,15 +58,17 @@ class GetWorkspaceTargetsResponseTypedDict(TypedDict):
     r"""Raw HTTP response; suitable for custom response parsing"""
     target_sdk_list: NotRequired[List[shared_targetsdk.TargetSDKTypedDict]]
     r"""Success"""
-    
+
 
 class GetWorkspaceTargetsResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     target_sdk_list: Optional[List[shared_targetsdk.TargetSDK]] = None
     r"""Success"""
-    

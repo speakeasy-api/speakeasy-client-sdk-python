@@ -8,11 +8,11 @@ from typing_extensions import NotRequired
 
 class LicenseTypedDict(TypedDict):
     identifier: NotRequired[str]
-    
+
 
 class License(BaseModel):
     identifier: Optional[str] = None
-    
+
 
 class OASInfoTypedDict(TypedDict):
     description: str
@@ -20,12 +20,15 @@ class OASInfoTypedDict(TypedDict):
     summary: str
     title: str
     version: str
-    
+
 
 class OASInfo(BaseModel):
     description: str
+
     license: License
+
     summary: str
+
     title: str
+
     version: str
-    

@@ -8,14 +8,14 @@ from typing_extensions import NotRequired
 
 class GithubPublishingPRResponseTypedDict(TypedDict):
     r"""Open generation PRs pending publishing"""
-    
+
     generation_pull_request: NotRequired[str]
     pending_version: NotRequired[str]
-    
+
 
 class GithubPublishingPRResponse(BaseModel):
     r"""Open generation PRs pending publishing"""
-    
+
     generation_pull_request: Optional[str] = None
+
     pending_version: Optional[str] = None
-    

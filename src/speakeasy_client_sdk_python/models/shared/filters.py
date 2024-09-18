@@ -8,7 +8,7 @@ from typing import List, TypedDict
 
 class FiltersTypedDict(TypedDict):
     r"""Filters are used to query requests."""
-    
+
     filters: List[FilterTypedDict]
     r"""A list of filters to apply to the query."""
     limit: int
@@ -17,17 +17,19 @@ class FiltersTypedDict(TypedDict):
     r"""The offset to start the query from."""
     operator: str
     r"""The operator to use when combining filters."""
-    
+
 
 class Filters(BaseModel):
     r"""Filters are used to query requests."""
-    
+
     filters: List[Filter]
     r"""A list of filters to apply to the query."""
+
     limit: int
     r"""The maximum number of results to return."""
+
     offset: int
     r"""The offset to start the query from."""
+
     operator: str
     r"""The operator to use when combining filters."""
-    

@@ -3,7 +3,9 @@
 from __future__ import annotations
 import httpx
 from speakeasy_client_sdk_python.models.errors import error as errors_error
-from speakeasy_client_sdk_python.models.shared import githubpublishingprresponse as shared_githubpublishingprresponse
+from speakeasy_client_sdk_python.models.shared import (
+    githubpublishingprresponse as shared_githubpublishingprresponse,
+)
 from speakeasy_client_sdk_python.types import BaseModel
 from speakeasy_client_sdk_python.utils import FieldMetadata, QueryParamMetadata
 from typing import Optional, TypedDict
@@ -14,13 +16,21 @@ class FetchPublishingPRsRequestTypedDict(TypedDict):
     generate_gen_lock_id: str
     org: str
     repo: str
-    
+
 
 class FetchPublishingPRsRequest(BaseModel):
-    generate_gen_lock_id: Annotated[str, FieldMetadata(query=QueryParamMetadata(style="form", explode=True))]
-    org: Annotated[str, FieldMetadata(query=QueryParamMetadata(style="form", explode=True))]
-    repo: Annotated[str, FieldMetadata(query=QueryParamMetadata(style="form", explode=True))]
-    
+    generate_gen_lock_id: Annotated[
+        str, FieldMetadata(query=QueryParamMetadata(style="form", explode=True))
+    ]
+
+    org: Annotated[
+        str, FieldMetadata(query=QueryParamMetadata(style="form", explode=True))
+    ]
+
+    repo: Annotated[
+        str, FieldMetadata(query=QueryParamMetadata(style="form", explode=True))
+    ]
+
 
 class FetchPublishingPRsResponseTypedDict(TypedDict):
     content_type: str
@@ -31,19 +41,26 @@ class FetchPublishingPRsResponseTypedDict(TypedDict):
     r"""Raw HTTP response; suitable for custom response parsing"""
     error: NotRequired[errors_error.Error]
     r"""Default error response"""
-    github_publishing_pr_response: NotRequired[shared_githubpublishingprresponse.GithubPublishingPRResponseTypedDict]
+    github_publishing_pr_response: NotRequired[
+        shared_githubpublishingprresponse.GithubPublishingPRResponseTypedDict
+    ]
     r"""OK"""
-    
+
 
 class FetchPublishingPRsResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
-    github_publishing_pr_response: Optional[shared_githubpublishingprresponse.GithubPublishingPRResponse] = None
+
+    github_publishing_pr_response: Optional[
+        shared_githubpublishingprresponse.GithubPublishingPRResponse
+    ] = None
     r"""OK"""
-    

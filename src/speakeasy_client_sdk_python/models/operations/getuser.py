@@ -20,17 +20,20 @@ class GetUserResponseTypedDict(TypedDict):
     r"""Default error response"""
     user: NotRequired[shared_user.UserTypedDict]
     r"""OK"""
-    
+
 
 class GetUserResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
+
     user: Optional[shared_user.User] = None
     r"""OK"""
-    

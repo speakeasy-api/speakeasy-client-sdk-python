@@ -6,18 +6,26 @@ import httpx
 import pydantic
 from speakeasy_client_sdk_python.models.shared import clievent as shared_clievent
 from speakeasy_client_sdk_python.types import BaseModel
-from speakeasy_client_sdk_python.utils import FieldMetadata, PathParamMetadata, QueryParamMetadata
+from speakeasy_client_sdk_python.utils import (
+    FieldMetadata,
+    PathParamMetadata,
+    QueryParamMetadata,
+)
 from typing import List, Optional, TypedDict
 from typing_extensions import Annotated, NotRequired
 
 
 class GetWorkspaceEventsByTargetGlobalsTypedDict(TypedDict):
     workspace_id: NotRequired[str]
-    
+
 
 class GetWorkspaceEventsByTargetGlobals(BaseModel):
-    workspace_id: Annotated[Optional[str], pydantic.Field(alias="workspaceID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))] = None
-    
+    workspace_id: Annotated[
+        Optional[str],
+        pydantic.Field(alias="workspaceID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ] = None
+
 
 class GetWorkspaceEventsByTargetRequestTypedDict(TypedDict):
     target_id: str
@@ -26,16 +34,29 @@ class GetWorkspaceEventsByTargetRequestTypedDict(TypedDict):
     r"""Unique identifier of the workspace."""
     after_created_at: NotRequired[datetime]
     r"""Filter to only return events created after this timestamp"""
-    
+
 
 class GetWorkspaceEventsByTargetRequest(BaseModel):
-    target_id: Annotated[str, pydantic.Field(alias="targetID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    target_id: Annotated[
+        str,
+        pydantic.Field(alias="targetID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
     r"""Filter to only return events corresponding to a particular gen_lock_id (gen_lock_id uniquely identifies a target)"""
-    workspace_id: Annotated[Optional[str], pydantic.Field(alias="workspaceID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))] = None
+
+    workspace_id: Annotated[
+        Optional[str],
+        pydantic.Field(alias="workspaceID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ] = None
     r"""Unique identifier of the workspace."""
-    after_created_at: Annotated[Optional[datetime], FieldMetadata(query=QueryParamMetadata(style="form", explode=True))] = None
+
+    after_created_at: Annotated[
+        Optional[datetime],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
     r"""Filter to only return events created after this timestamp"""
-    
+
 
 class GetWorkspaceEventsByTargetResponseTypedDict(TypedDict):
     content_type: str
@@ -46,15 +67,17 @@ class GetWorkspaceEventsByTargetResponseTypedDict(TypedDict):
     r"""Raw HTTP response; suitable for custom response parsing"""
     cli_event_batch: NotRequired[List[shared_clievent.CliEventTypedDict]]
     r"""Success"""
-    
+
 
 class GetWorkspaceEventsByTargetResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     cli_event_batch: Optional[List[shared_clievent.CliEvent]] = None
     r"""Success"""
-    

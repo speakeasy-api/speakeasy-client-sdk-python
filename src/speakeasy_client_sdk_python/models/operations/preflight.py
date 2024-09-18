@@ -3,7 +3,9 @@
 from __future__ import annotations
 import httpx
 from speakeasy_client_sdk_python.models.errors import error as errors_error
-from speakeasy_client_sdk_python.models.shared import preflighttoken as shared_preflighttoken
+from speakeasy_client_sdk_python.models.shared import (
+    preflighttoken as shared_preflighttoken,
+)
 from speakeasy_client_sdk_python.types import BaseModel
 from typing import Optional, TypedDict
 from typing_extensions import NotRequired
@@ -20,17 +22,20 @@ class PreflightResponseTypedDict(TypedDict):
     r"""Default error response"""
     preflight_token: NotRequired[shared_preflighttoken.PreflightTokenTypedDict]
     r"""OK"""
-    
+
 
 class PreflightResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
+
     error: Optional[errors_error.Error] = None
     r"""Default error response"""
+
     preflight_token: Optional[shared_preflighttoken.PreflightToken] = None
     r"""OK"""
-    

@@ -12,13 +12,15 @@ class TagTypedDict(TypedDict):
     r"""Human readable tag name"""
     namespace_name: str
     revision_digest: str
-    
+
 
 class Tag(BaseModel):
     id: str
     r"""Format {namespace_id}/{tag}"""
+
     name: str
     r"""Human readable tag name"""
+
     namespace_name: str
+
     revision_digest: str
-    

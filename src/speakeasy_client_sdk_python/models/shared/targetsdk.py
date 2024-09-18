@@ -81,79 +81,113 @@ class TargetSDKTypedDict(TypedDict):
     r"""Workflow file (post execution)"""
     workflow_pre_raw: NotRequired[str]
     r"""Workflow file (prior to execution)"""
-    
+
 
 class TargetSDK(BaseModel):
     generate_gen_lock_id: str
     r"""gen.lock ID (expected to be a uuid). The same as `id`. A unique identifier for the target."""
+
     generate_target: str
     r"""eg `typescript`, `terraform`, `python`"""
+
     id: str
     r"""Unique identifier of the target the same as `generate_gen_lock_id`"""
+
     last_event_created_at: datetime
     r"""Timestamp when the event was created in the database."""
+
     last_event_id: str
     r"""Unique identifier of the last event for the target"""
+
     last_event_interaction_type: InteractionType
     r"""Type of interaction."""
+
     commit_head: Optional[str] = None
     r"""Remote commit ID."""
+
     continuous_integration_environment: Optional[str] = None
     r"""Name of the CI environment."""
+
     error: Optional[str] = None
     r"""Error message if the last event was not successful."""
+
     generate_config_post_version: Optional[str] = None
     r"""Version of the generated target (post generation)"""
+
     generate_eligible_features: Optional[str] = None
     r"""Eligible feature set during generation"""
+
     generate_gen_lock_pre_features: Optional[str] = None
     r"""Features prior to generation"""
+
     generate_gen_lock_pre_version: Optional[str] = None
     r"""Artifact version for the Previous Generation"""
+
     generate_number_of_operations_ignored: Optional[int] = None
     r"""The number of operations ignored in generation."""
+
     generate_number_of_operations_used: Optional[int] = None
     r"""The number of operations used in generation."""
+
     generate_published: Optional[bool] = None
     r"""Indicates whether the target was considered published."""
+
     generate_target_name: Optional[str] = None
     r"""The workflow name of the target."""
+
     generate_target_version: Optional[str] = None
     r"""The version of the Speakeasy generator for this target eg v2 of the typescript generator."""
+
     gh_action_organization: Optional[str] = None
     r"""GitHub organization of the action."""
+
     gh_action_ref: Optional[str] = None
     r"""GitHub Action ref value."""
+
     gh_action_repository: Optional[str] = None
     r"""GitHub repository of the action."""
+
     gh_action_run_link: Optional[str] = None
     r"""Link to the GitHub action run."""
+
     gh_action_version: Optional[str] = None
     r"""Version of the GitHub action."""
+
     git_relative_cwd: Optional[str] = None
     r"""Current working directory relative to the git root."""
+
     git_remote_default_owner: Optional[str] = None
     r"""Default owner for git remote."""
+
     git_remote_default_repo: Optional[str] = None
     r"""Default repository name for git remote."""
+
     git_user_email: Optional[str] = None
     r"""User email from git configuration."""
+
     git_user_name: Optional[str] = None
     r"""User's name from git configuration. (not GitHub username)"""
+
     hostname: Optional[str] = None
     r"""Remote hostname."""
+
     repo_label: Optional[str] = None
     r"""Label of the git repository."""
+
     source_blob_digest: Optional[str] = None
     r"""The blob digest of the source."""
+
     source_namespace_name: Optional[str] = None
     r"""The namespace name of the source."""
+
     source_revision_digest: Optional[str] = None
     r"""The revision digest of the source."""
+
     success: Optional[bool] = None
     r"""Indicates whether the event was successful."""
+
     workflow_post_raw: Optional[str] = None
     r"""Workflow file (post execution)"""
+
     workflow_pre_raw: Optional[str] = None
     r"""Workflow file (prior to execution)"""
-    

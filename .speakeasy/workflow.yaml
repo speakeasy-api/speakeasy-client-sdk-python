@@ -3,7 +3,7 @@ speakeasyVersion: latest
 sources:
     speakeasy-openapi:
         inputs:
-            - location: https://docs.speakeasyapi.dev/openapi.yaml
+            - location: https://speakeasy.com/openapi.yaml
         registry:
             location: registry.speakeasyapi.dev/speakeasy-self/speakeasy-self/speakeasy-openapi
 targets:

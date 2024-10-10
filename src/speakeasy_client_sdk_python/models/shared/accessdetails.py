@@ -3,8 +3,8 @@
 from __future__ import annotations
 from enum import Enum
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import Optional, TypedDict
-from typing_extensions import NotRequired
+from typing import Optional
+from typing_extensions import NotRequired, TypedDict
 
 
 class Level(str, Enum):
@@ -12,14 +12,16 @@ class Level(str, Enum):
     WARNING = "warning"
     BLOCKED = "blocked"
 
+
 class AccessDetailsTypedDict(TypedDict):
     generation_allowed: bool
     message: str
     level: NotRequired[Level]
-    
+
 
 class AccessDetails(BaseModel):
     generation_allowed: bool
+
     message: str
+
     level: Optional[Level] = None
-    

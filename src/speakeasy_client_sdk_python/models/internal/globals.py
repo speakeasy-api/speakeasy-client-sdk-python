@@ -4,14 +4,17 @@ from __future__ import annotations
 import pydantic
 from speakeasy_client_sdk_python.types import BaseModel
 from speakeasy_client_sdk_python.utils import FieldMetadata, PathParamMetadata
-from typing import Optional, TypedDict
-from typing_extensions import Annotated, NotRequired
+from typing import Optional
+from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class GlobalsTypedDict(TypedDict):
     workspace_id: NotRequired[str]
-    
+
 
 class Globals(BaseModel):
-    workspace_id: Annotated[Optional[str], pydantic.Field(alias="workspaceID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))] = None
-    
+    workspace_id: Annotated[
+        Optional[str],
+        pydantic.Field(alias="workspaceID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ] = None

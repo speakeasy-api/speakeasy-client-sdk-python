@@ -1,0 +1,10 @@
+# SuggestRequestBody
+
+
+## Fields
+
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `diagnostics`                                                                                      | List[[shared.Diagnostic](../../models/shared/diagnostic.md)]                                       | :heavy_check_mark:                                                                                 | N/A                                                                                                |
+| `oas_summary`                                                                                      | [shared.OASSummary](../../models/shared/oassummary.md)                                             | :heavy_check_mark:                                                                                 | N/A                                                                                                |
+| `suggestion_type`                                                                                  | [shared.SuggestRequestBodySuggestionType](../../models/shared/suggestrequestbodysuggestiontype.md) | :heavy_check_mark:                                                                                 | N/A                                                                                                |

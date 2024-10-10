@@ -3,23 +3,28 @@
 from __future__ import annotations
 import httpx
 import pydantic
-from speakeasy_client_sdk_python.models.errors import error as errors_error
-from speakeasy_client_sdk_python.models.shared import unboundedrequest as shared_unboundedrequest
+from speakeasy_client_sdk_python.models.shared import (
+    unboundedrequest as shared_unboundedrequest,
+)
 from speakeasy_client_sdk_python.types import BaseModel
 from speakeasy_client_sdk_python.utils import FieldMetadata, PathParamMetadata
-from typing import Optional, TypedDict
-from typing_extensions import Annotated, NotRequired
+from typing import Optional
+from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class GetRequestFromEventLogRequestTypedDict(TypedDict):
     request_id: str
     r"""The ID of the request to retrieve."""
-    
+
 
 class GetRequestFromEventLogRequest(BaseModel):
-    request_id: Annotated[str, pydantic.Field(alias="requestID"), FieldMetadata(path=PathParamMetadata(style="simple", explode=False))]
+    request_id: Annotated[
+        str,
+        pydantic.Field(alias="requestID"),
+        FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
+    ]
     r"""The ID of the request to retrieve."""
-    
+
 
 class GetRequestFromEventLogResponseTypedDict(TypedDict):
     content_type: str
@@ -28,21 +33,19 @@ class GetRequestFromEventLogResponseTypedDict(TypedDict):
     r"""HTTP response status code for this operation"""
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
-    error: NotRequired[errors_error.Error]
-    r"""Default error response"""
     unbounded_request: NotRequired[shared_unboundedrequest.UnboundedRequestTypedDict]
     r"""OK"""
-    
+
 
 class GetRequestFromEventLogResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
-    error: Optional[errors_error.Error] = None
-    r"""Default error response"""
+
     unbounded_request: Optional[shared_unboundedrequest.UnboundedRequest] = None
     r"""OK"""
-    

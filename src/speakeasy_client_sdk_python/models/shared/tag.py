@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import TypedDict
+from typing_extensions import TypedDict
 
 
 class TagTypedDict(TypedDict):
@@ -12,13 +12,15 @@ class TagTypedDict(TypedDict):
     r"""Human readable tag name"""
     namespace_name: str
     revision_digest: str
-    
+
 
 class Tag(BaseModel):
     id: str
     r"""Format {namespace_id}/{tag}"""
+
     name: str
     r"""Human readable tag name"""
+
     namespace_name: str
+
     revision_digest: str
-    

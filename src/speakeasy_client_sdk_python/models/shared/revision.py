@@ -3,7 +3,8 @@
 from __future__ import annotations
 from datetime import datetime
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import List, TypedDict
+from typing import List
+from typing_extensions import TypedDict
 
 
 class RevisionTypedDict(TypedDict):
@@ -14,14 +15,18 @@ class RevisionTypedDict(TypedDict):
     namespace_name: str
     tags: List[str]
     updated_at: datetime
-    
+
 
 class Revision(BaseModel):
     created_at: datetime
+
     digest: str
+
     id: str
     r"""Format {namespace_id}/{revision_digest}"""
+
     namespace_name: str
+
     tags: List[str]
+
     updated_at: datetime
-    

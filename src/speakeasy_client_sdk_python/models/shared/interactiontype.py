@@ -6,6 +6,7 @@ from enum import Enum
 
 class InteractionType(str, Enum):
     r"""Type of interaction."""
+
     CI_EXEC = "CI_EXEC"
     CLI_EXEC = "CLI_EXEC"
     LINT = "LINT"

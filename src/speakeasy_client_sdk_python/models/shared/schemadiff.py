@@ -3,8 +3,8 @@
 from __future__ import annotations
 import pydantic
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import Dict, List, TypedDict
-from typing_extensions import Annotated
+from typing import Dict, List
+from typing_extensions import Annotated, TypedDict
 
 
 class ValueChangeTypedDict(TypedDict):
@@ -12,33 +12,35 @@ class ValueChangeTypedDict(TypedDict):
     r"""Represents the previous value of the element."""
     to: str
     r"""Represents the current value of the element."""
-    
+
 
 class ValueChange(BaseModel):
     from_: Annotated[str, pydantic.Field(alias="From")]
     r"""Represents the previous value of the element."""
+
     to: Annotated[str, pydantic.Field(alias="To")]
     r"""Represents the current value of the element."""
-    
+
 
 class SchemaDiffTypedDict(TypedDict):
     r"""A SchemaDiff represents a diff of two Schemas."""
-    
+
     additions: List[str]
     r"""Holds every addition change in the diff."""
     deletions: List[str]
     r"""Holds every deletion change in the diff."""
     modifications: Dict[str, ValueChangeTypedDict]
     r"""Holds every modification change in the diff."""
-    
+
 
 class SchemaDiff(BaseModel):
     r"""A SchemaDiff represents a diff of two Schemas."""
-    
+
     additions: List[str]
     r"""Holds every addition change in the diff."""
+
     deletions: List[str]
     r"""Holds every deletion change in the diff."""
+
     modifications: Dict[str, ValueChange]
     r"""Holds every modification change in the diff."""
-    

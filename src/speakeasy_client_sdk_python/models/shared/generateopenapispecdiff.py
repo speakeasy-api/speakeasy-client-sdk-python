@@ -2,15 +2,15 @@
 
 from __future__ import annotations
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import TypedDict
+from typing_extensions import TypedDict
 
 
 class GenerateOpenAPISpecDiffTypedDict(TypedDict):
     current_schema: str
     new_schema: str
-    
+
 
 class GenerateOpenAPISpecDiff(BaseModel):
     current_schema: str
+
     new_schema: str
-    

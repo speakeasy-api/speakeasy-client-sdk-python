@@ -32,11 +32,10 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.api_endpoints.delete_api_endpoint(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
-    "api_endpoint_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
+    "api_endpoint_id": "<id>",
 })
 
 if res is not None:
@@ -52,15 +51,16 @@ if res is not None:
 | `request`                                                                                  | [operations.DeleteAPIEndpointRequest](../../models/operations/deleteapiendpointrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `retries`                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                           | :heavy_minus_sign:                                                                         | Configuration to override the default retry behavior of the client.                        |
 
-
 ### Response
 
 **[operations.DeleteAPIEndpointResponse](../../models/operations/deleteapiendpointresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 4XX              | application/json |
+| errors.SDKError  | 5XX              | \*/\*            |
 
 ## find_api_endpoint
 
@@ -79,11 +79,10 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.api_endpoints.find_api_endpoint(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
-    "display_name": "Don.Strosin",
+    "api_id": "<id>",
+    "version_id": "<id>",
+    "display_name": "Don_Kihn39",
 })
 
 if res.api_endpoint is not None:
@@ -99,15 +98,16 @@ if res.api_endpoint is not None:
 | `request`                                                                              | [operations.FindAPIEndpointRequest](../../models/operations/findapiendpointrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
 | `retries`                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                       | :heavy_minus_sign:                                                                     | Configuration to override the default retry behavior of the client.                    |
 
-
 ### Response
 
 **[operations.FindAPIEndpointResponse](../../models/operations/findapiendpointresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 4XX              | application/json |
+| errors.SDKError  | 5XX              | \*/\*            |
 
 ## generate_open_api_spec_for_api_endpoint
 
@@ -126,11 +126,10 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.api_endpoints.generate_open_api_spec_for_api_endpoint(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
-    "api_endpoint_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
+    "api_endpoint_id": "<id>",
 })
 
 if res.generate_open_api_spec_diff is not None:
@@ -146,15 +145,16 @@ if res.generate_open_api_spec_diff is not None:
 | `request`                                                                                                                  | [operations.GenerateOpenAPISpecForAPIEndpointRequest](../../models/operations/generateopenapispecforapiendpointrequest.md) | :heavy_check_mark:                                                                                                         | The request object to use for the request.                                                                                 |
 | `retries`                                                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                           | :heavy_minus_sign:                                                                                                         | Configuration to override the default retry behavior of the client.                                                        |
 
-
 ### Response
 
 **[operations.GenerateOpenAPISpecForAPIEndpointResponse](../../models/operations/generateopenapispecforapiendpointresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 4XX              | application/json |
+| errors.SDKError  | 5XX              | \*/\*            |
 
 ## generate_postman_collection_for_api_endpoint
 
@@ -172,11 +172,10 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.api_endpoints.generate_postman_collection_for_api_endpoint(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
-    "api_endpoint_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
+    "api_endpoint_id": "<id>",
 })
 
 if res.postman_collection is not None:
@@ -192,15 +191,16 @@ if res.postman_collection is not None:
 | `request`                                                                                                                              | [operations.GeneratePostmanCollectionForAPIEndpointRequest](../../models/operations/generatepostmancollectionforapiendpointrequest.md) | :heavy_check_mark:                                                                                                                     | The request object to use for the request.                                                                                             |
 | `retries`                                                                                                                              | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                                       | :heavy_minus_sign:                                                                                                                     | Configuration to override the default retry behavior of the client.                                                                    |
 
-
 ### Response
 
 **[operations.GeneratePostmanCollectionForAPIEndpointResponse](../../models/operations/generatepostmancollectionforapiendpointresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 4XX              | application/json |
+| errors.SDKError  | 5XX              | \*/\*            |
 
 ## get_all_api_endpoints
 
@@ -218,9 +218,8 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.api_endpoints.get_all_api_endpoints(request={
-    "api_id": "<value>",
+    "api_id": "<id>",
 })
 
 if res.api_endpoints is not None:
@@ -236,15 +235,16 @@ if res.api_endpoints is not None:
 | `request`                                                                                    | [operations.GetAllAPIEndpointsRequest](../../models/operations/getallapiendpointsrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
 | `retries`                                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                             | :heavy_minus_sign:                                                                           | Configuration to override the default retry behavior of the client.                          |
 
-
 ### Response
 
 **[operations.GetAllAPIEndpointsResponse](../../models/operations/getallapiendpointsresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 4XX              | application/json |
+| errors.SDKError  | 5XX              | \*/\*            |
 
 ## get_all_for_version_api_endpoints
 
@@ -262,10 +262,9 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.api_endpoints.get_all_for_version_api_endpoints(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
 })
 
 if res.api_endpoints is not None:
@@ -281,15 +280,16 @@ if res.api_endpoints is not None:
 | `request`                                                                                                        | [operations.GetAllForVersionAPIEndpointsRequest](../../models/operations/getallforversionapiendpointsrequest.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
 | `retries`                                                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                                 | :heavy_minus_sign:                                                                                               | Configuration to override the default retry behavior of the client.                                              |
 
-
 ### Response
 
 **[operations.GetAllForVersionAPIEndpointsResponse](../../models/operations/getallforversionapiendpointsresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 4XX              | application/json |
+| errors.SDKError  | 5XX              | \*/\*            |
 
 ## get_api_endpoint
 
@@ -307,11 +307,10 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.api_endpoints.get_api_endpoint(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
-    "api_endpoint_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
+    "api_endpoint_id": "<id>",
 })
 
 if res.api_endpoint is not None:
@@ -327,15 +326,16 @@ if res.api_endpoint is not None:
 | `request`                                                                            | [operations.GetAPIEndpointRequest](../../models/operations/getapiendpointrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
 
-
 ### Response
 
 **[operations.GetAPIEndpointResponse](../../models/operations/getapiendpointresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 4XX              | application/json |
+| errors.SDKError  | 5XX              | \*/\*            |
 
 ## upsert_api_endpoint
 
@@ -353,18 +353,17 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.api_endpoints.upsert_api_endpoint(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
-    "api_endpoint_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
+    "api_endpoint_id": "<id>",
     "api_endpoint": {
-        "api_endpoint_id": "<value>",
-        "description": "Public-key systematic attitude",
-        "display_name": "Camille.Schaefer11",
+        "api_endpoint_id": "<id>",
+        "description": "commandeer equate pish psst hoot ugh frankly supposing",
+        "display_name": "Eliseo.Little15",
         "method": "<value>",
-        "path": "/Library",
-        "version_id": "<value>",
+        "path": "/etc/defaults",
+        "version_id": "<id>",
     },
 })
 
@@ -381,12 +380,13 @@ if res.api_endpoint is not None:
 | `request`                                                                                  | [operations.UpsertAPIEndpointRequest](../../models/operations/upsertapiendpointrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `retries`                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                           | :heavy_minus_sign:                                                                         | Configuration to override the default retry behavior of the client.                        |
 
-
 ### Response
 
 **[operations.UpsertAPIEndpointResponse](../../models/operations/upsertapiendpointresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 4XX              | application/json |
+| errors.SDKError  | 5XX              | \*/\*            |

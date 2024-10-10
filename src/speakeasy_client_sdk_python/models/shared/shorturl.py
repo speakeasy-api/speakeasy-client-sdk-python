@@ -2,15 +2,15 @@
 
 from __future__ import annotations
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import TypedDict
+from typing_extensions import TypedDict
 
 
 class ShortURLTypedDict(TypedDict):
     full_url: str
     short_url: str
-    
+
 
 class ShortURL(BaseModel):
     full_url: str
+
     short_url: str
-    

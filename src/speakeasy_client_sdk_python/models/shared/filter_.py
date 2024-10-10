@@ -2,27 +2,28 @@
 
 from __future__ import annotations
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import TypedDict
+from typing_extensions import TypedDict
 
 
 class FilterTypedDict(TypedDict):
     r"""A filter is a key-value pair that can be used to filter a list of requests."""
-    
+
     key: str
     r"""The key of the filter."""
     operator: str
     r"""The operator of the filter."""
     value: str
     r"""The value of the filter."""
-    
+
 
 class Filter(BaseModel):
     r"""A filter is a key-value pair that can be used to filter a list of requests."""
-    
+
     key: str
     r"""The key of the filter."""
+
     operator: str
     r"""The operator of the filter."""
+
     value: str
     r"""The value of the filter."""
-    

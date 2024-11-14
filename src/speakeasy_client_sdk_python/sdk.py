@@ -3,7 +3,7 @@
 from .basesdk import BaseSDK
 from .httpclient import AsyncHttpClient, HttpClient
 from .sdkconfiguration import SDKConfiguration
-from .utils.logger import Logger, NoOpLogger
+from .utils.logger import Logger, get_default_logger
 from .utils.retries import RetryConfig
 import httpx
 from speakeasy_client_sdk_python import utils
@@ -22,15 +22,18 @@ from speakeasy_client_sdk_python.reports import Reports
 from speakeasy_client_sdk_python.requests import Requests
 from speakeasy_client_sdk_python.schemas import Schemas
 from speakeasy_client_sdk_python.shorturls import ShortURLs
+from speakeasy_client_sdk_python.subscriptions import Subscriptions
 from speakeasy_client_sdk_python.suggest import Suggest
 from speakeasy_client_sdk_python.types import OptionalNullable, UNSET
 from speakeasy_client_sdk_python.workspaces import Workspaces
 from typing import Callable, Dict, Optional, Union
 
+
 class Speakeasy(BaseSDK):
-    r"""Speakeasy API: The Speakeasy API allows teams to manage common operations with their APIs
+    r"""Speakeasy API: The Subscriptions API manages subscriptions for CLI and registry events
     /docs - The Speakeasy Platform Documentation
     """
+
     apis: Apis
     r"""REST APIs for managing Api entities"""
     api_endpoints: APIEndpoints
@@ -53,14 +56,19 @@ class Speakeasy(BaseSDK):
     r"""REST APIs for managing short URLs"""
     suggest: Suggest
     r"""REST APIs for managing LLM OAS suggestions"""
+    workspaces: Workspaces
     embeds: Embeds
     r"""REST APIs for managing embeds"""
-    workspaces: Workspaces
     events: Events
     r"""REST APIs for capturing event data"""
+    subscriptions: Subscriptions
+    r"""REST APIs for managing subscriptions"""
+
     def __init__(
         self,
-        security: Optional[Union[shared.Security, Callable[[], shared.Security]]] = None,
+        security: Optional[
+            Union[shared.Security, Callable[[], shared.Security]]
+        ] = None,
         workspace_id: Optional[str] = None,
         server: Optional[str] = None,
         server_url: Optional[str] = None,
@@ -69,7 +77,7 @@ class Speakeasy(BaseSDK):
         async_client: Optional[AsyncHttpClient] = None,
         retry_config: OptionalNullable[RetryConfig] = UNSET,
         timeout_ms: Optional[int] = None,
-        debug_logger: Optional[Logger] = None
+        debug_logger: Optional[Logger] = None,
     ) -> None:
         r"""Instantiates the SDK configuring it with the provided parameters.
 
@@ -94,7 +102,7 @@ class Speakeasy(BaseSDK):
             async_client = httpx.AsyncClient()
 
         if debug_logger is None:
-            debug_logger = NoOpLogger()
+            debug_logger = get_default_logger()
 
         assert issubclass(
             type(async_client), AsyncHttpClient
@@ -103,27 +111,32 @@ class Speakeasy(BaseSDK):
         if server_url is not None:
             if url_params is not None:
                 server_url = utils.template_url(server_url, url_params)
-    
+
         _globals = internal.Globals(
             workspace_id=utils.get_global_from_env(workspace_id, "WORKSPACE_ID", str),
         )
 
-        BaseSDK.__init__(self, SDKConfiguration(
-            client=client,
-            async_client=async_client,
-            globals=_globals,
-            security=security,
-            server_url=server_url,
-            server=server,
-            retry_config=retry_config,
-            timeout_ms=timeout_ms,
-            debug_logger=debug_logger
-        ))
+        BaseSDK.__init__(
+            self,
+            SDKConfiguration(
+                client=client,
+                async_client=async_client,
+                globals=_globals,
+                security=security,
+                server_url=server_url,
+                server=server,
+                retry_config=retry_config,
+                timeout_ms=timeout_ms,
+                debug_logger=debug_logger,
+            ),
+        )
 
         hooks = SDKHooks()
 
         current_server_url, *_ = self.sdk_configuration.get_server_details()
-        server_url, self.sdk_configuration.client = hooks.sdk_init(current_server_url, self.sdk_configuration.client)
+        server_url, self.sdk_configuration.client = hooks.sdk_init(
+            current_server_url, self.sdk_configuration.client
+        )
         if current_server_url != server_url:
             self.sdk_configuration.server_url = server_url
 
@@ -131,7 +144,6 @@ class Speakeasy(BaseSDK):
         self.sdk_configuration.__dict__["_hooks"] = hooks
 
         self._init_sdks()
-
 
     def _init_sdks(self):
         self.apis = Apis(self.sdk_configuration)
@@ -146,7 +158,7 @@ class Speakeasy(BaseSDK):
         self.reports = Reports(self.sdk_configuration)
         self.short_ur_ls = ShortURLs(self.sdk_configuration)
         self.suggest = Suggest(self.sdk_configuration)
-        self.embeds = Embeds(self.sdk_configuration)
         self.workspaces = Workspaces(self.sdk_configuration)
+        self.embeds = Embeds(self.sdk_configuration)
         self.events = Events(self.sdk_configuration)
-    
+        self.subscriptions = Subscriptions(self.sdk_configuration)

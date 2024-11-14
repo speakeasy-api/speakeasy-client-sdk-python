@@ -2,37 +2,50 @@
 
 from __future__ import annotations
 from datetime import datetime
+import pydantic
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import Optional, TypedDict
-from typing_extensions import NotRequired
+from typing import Optional
+from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class WorkspaceTypedDict(TypedDict):
     r"""A speakeasy workspace"""
-    
+
     created_at: datetime
     id: str
     name: str
     organization_id: str
     slug: str
-    telemetry_disabled: bool
     updated_at: datetime
     verified: bool
-    oci_repo: NotRequired[str]
-    oci_repo_created_at: NotRequired[datetime]
-    
+    inactive: NotRequired[bool]
+    telemetry_disabled: NotRequired[bool]
+    r"""Deprecated. Use organization.telemetry_disabled instead."""
+
 
 class Workspace(BaseModel):
     r"""A speakeasy workspace"""
-    
+
     created_at: datetime
+
     id: str
+
     name: str
+
     organization_id: str
+
     slug: str
-    telemetry_disabled: bool
+
     updated_at: datetime
+
     verified: bool
-    oci_repo: Optional[str] = None
-    oci_repo_created_at: Optional[datetime] = None
-    
+
+    inactive: Optional[bool] = None
+
+    telemetry_disabled: Annotated[
+        Optional[bool],
+        pydantic.Field(
+            deprecated="warning: ** DEPRECATED ** - This will be removed in a future release, please migrate away from it as soon as possible."
+        ),
+    ] = None
+    r"""Deprecated. Use organization.telemetry_disabled instead."""

@@ -10,8 +10,7 @@ s = Speakeasy(
     ),
 )
 
-
-res = s.apis.get_apis()
+res = s.apis.get_apis(request={})
 
 if res.apis is not None:
     # handle response
@@ -33,7 +32,7 @@ async def main():
             api_key="<YOUR_API_KEY_HERE>",
         ),
     )
-    res = await s.apis.get_apis_async()
+    res = await s.apis.get_apis_async(request={})
     if res.apis is not None:
         # handle response
         pass

@@ -1,0 +1,12 @@
+# ListRegistrySubscriptionsRequest
+
+
+## Fields
+
+| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `workspace_id`                                                               | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | The workspace ID                                                             |
+| `event_type`                                                                 | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | The event type                                                               |
+| `namespace_name`                                                             | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | The namespace name                                                           |
+| `subscription_type`                                                          | [Optional[shared.SubscriptionType]](../../models/shared/subscriptiontype.md) | :heavy_minus_sign:                                                           | The subscription type                                                        |
+| `tag`                                                                        | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | The tag                                                                      |

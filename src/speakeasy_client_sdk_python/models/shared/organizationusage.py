@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import List, TypedDict
+from typing import List
+from typing_extensions import TypedDict
 
 
 class OrganizationUsageTypedDict(TypedDict):
@@ -14,27 +15,37 @@ class OrganizationUsageTypedDict(TypedDict):
     r"""List of generation lock IDs"""
     language: str
     r"""The programming language used"""
+    max_operations: int
+    r"""Maximum Number of operations per SDK specific in contract"""
     number_of_operations: int
     r"""Number of operations performed"""
     used_features: List[str]
     r"""Features that have been used"""
     workspaces: List[str]
     r"""List of workspace IDs"""
-    
+
 
 class OrganizationUsage(BaseModel):
     accessible: bool
     r"""Indicates if the features are accessible"""
+
     accessible_features: List[str]
     r"""Features that are accessible"""
+
     gen_lock_ids: List[str]
     r"""List of generation lock IDs"""
+
     language: str
     r"""The programming language used"""
+
+    max_operations: int
+    r"""Maximum Number of operations per SDK specific in contract"""
+
     number_of_operations: int
     r"""Number of operations performed"""
+
     used_features: List[str]
     r"""Features that have been used"""
+
     workspaces: List[str]
     r"""List of workspace IDs"""
-    

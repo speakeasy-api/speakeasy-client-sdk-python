@@ -1,0 +1,2070 @@
+overlay: 1.0.0
+info:
+  title: CodeSamples overlay for python target
+  version: 0.0.0
+actions:
+  - target: $["paths"]["/v1/apis"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getApis
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.apis.get_apis(request={})
+
+            if res.apis is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getAllApiVersions
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.apis.get_all_api_versions(request={
+                "api_id": "<id>",
+            })
+
+            if res.apis is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}"]["put"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: upsertApi
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.apis.upsert_api(request={
+                "api_id": "<id>",
+                "api": {
+                    "api_id": "<id>",
+                    "description": "consequently brr happily yowza however gosh investigate joyfully direct",
+                    "version_id": "<id>",
+                },
+            })
+
+            if res.api is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/api_endpoints"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getAllApiEndpoints
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.api_endpoints.get_all_api_endpoints(request={
+                "api_id": "<id>",
+            })
+
+            if res.api_endpoints is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: deleteApi
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.apis.delete_api(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getAllForVersionApiEndpoints
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.api_endpoints.get_all_for_version_api_endpoints(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+            })
+
+            if res.api_endpoints is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints/find/{displayName}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: findApiEndpoint
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.api_endpoints.find_api_endpoint(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+                "display_name": "Don_Kihn39",
+            })
+
+            if res.api_endpoint is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: deleteApiEndpoint
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.api_endpoints.delete_api_endpoint(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+                "api_endpoint_id": "<id>",
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getApiEndpoint
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.api_endpoints.get_api_endpoint(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+                "api_endpoint_id": "<id>",
+            })
+
+            if res.api_endpoint is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}"]["put"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: upsertApiEndpoint
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.api_endpoints.upsert_api_endpoint(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+                "api_endpoint_id": "<id>",
+                "api_endpoint": {
+                    "api_endpoint_id": "<id>",
+                    "description": "commandeer equate pish psst hoot ugh frankly supposing",
+                    "display_name": "Eliseo.Little15",
+                    "method": "<value>",
+                    "path": "/etc/defaults",
+                    "version_id": "<id>",
+                },
+            })
+
+            if res.api_endpoint is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/openapi"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: generateOpenApiSpecForApiEndpoint
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.api_endpoints.generate_open_api_spec_for_api_endpoint(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+                "api_endpoint_id": "<id>",
+            })
+
+            if res.generate_open_api_spec_diff is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/postman"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: generatePostmanCollectionForApiEndpoint
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.api_endpoints.generate_postman_collection_for_api_endpoint(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+                "api_endpoint_id": "<id>",
+            })
+
+            if res.postman_collection is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/generate/openapi"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: generateOpenApiSpec
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.apis.generate_open_api_spec(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+            })
+
+            if res.generate_open_api_spec_diff is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/generate/postman"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: generatePostmanCollection
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.apis.generate_postman_collection(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+            })
+
+            if res.postman_collection is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/metadata"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getVersionMetadata
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.metadata.get_version_metadata(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+            })
+
+            if res.version_metadata is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/metadata"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: insertVersionMetadata
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.metadata.insert_version_metadata(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+                "version_metadata": {
+                    "meta_key": "<value>",
+                    "meta_value": "<value>",
+                },
+            })
+
+            if res.version_metadata is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/metadata/{metaKey}/{metaValue}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: deleteVersionMetadata
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.metadata.delete_version_metadata(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+                "meta_key": "<value>",
+                "meta_value": "<value>",
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getSchema
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.schemas.get_schema(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+            })
+
+            if res.schema_ is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: registerSchema
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.schemas.register_schema(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+                "request_body": {
+                    "file": {
+                        "file_name": "example.file",
+                        "content": open("example.file", "rb"),
+                    },
+                },
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema/download"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: downloadSchema
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.schemas.download_schema(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+            })
+
+            if res.two_xx_application_json_schema is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema/{baseRevisionID}/diff/{targetRevisionID}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getSchemaDiff
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.schemas.get_schema_diff(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+                "base_revision_id": "<id>",
+                "target_revision_id": "<id>",
+            })
+
+            if res.schema_diff is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: deleteSchema
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.schemas.delete_schema(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+                "revision_id": "<id>",
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getSchemaRevision
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.schemas.get_schema_revision(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+                "revision_id": "<id>",
+            })
+
+            if res.schema_ is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}/download"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: downloadSchemaRevision
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.schemas.download_schema_revision(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+                "revision_id": "<id>",
+            })
+
+            if res.two_xx_application_json_schema is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schemas"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getSchemas
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.schemas.get_schemas(request={
+                "api_id": "<id>",
+                "version_id": "<id>",
+            })
+
+            if res.schemata is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/artifacts/namespaces"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getNamespaces
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.artifacts.get_namespaces()
+
+            if res.get_namespaces_response is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/artifacts/namespaces/{namespace_name}/revisions"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getRevisions
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.artifacts.get_revisions(request={
+                "namespace_name": "<value>",
+            })
+
+            if res.get_revisions_response is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/artifacts/namespaces/{namespace_name}/tags"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getTags
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.artifacts.get_tags(request={
+                "namespace_name": "<value>",
+            })
+
+            if res.get_tags_response is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/artifacts/namespaces/{namespace_name}/tags"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: postTags
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.artifacts.post_tags(request={
+                "namespace_name": "<value>",
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/artifacts/preflight"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: preflight
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.artifacts.preflight()
+
+            if res.preflight_token is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/artifacts/remote_sources"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listRemoteSources
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.artifacts.list_remote_sources(request={
+                "namespace_name": "<value>",
+            })
+
+            if res.remote_source is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/artifacts/remote_sources"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createRemoteSource
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.artifacts.create_remote_source()
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/auth/access_token"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getAccessToken
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+
+            s = Speakeasy()
+
+            res = s.auth.get_access_token(request={
+                "workspace_id": "<id>",
+            })
+
+            if res.access_token is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/auth/validate"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: validateApiKey
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.auth.validate_api_key()
+
+            if res.api_key_details is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/eventlog/query"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: queryEventLog
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.requests.query_event_log(request={})
+
+            if res.bounded_requests is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/eventlog/{requestID}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getRequestFromEventLog
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.requests.get_request_from_event_log(request={
+                "request_id": "<id>",
+            })
+
+            if res.unbounded_request is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/eventlog/{requestID}/generate/postman"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: generateRequestPostmanCollection
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.requests.generate_request_postman_collection(request={
+                "request_id": "<id>",
+            })
+
+            if res.postman_collection is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/github/action"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getGitHubAction
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.github.get_action(request={
+                "org": "<value>",
+                "repo": "<value>",
+            })
+
+            if res.github_get_action_response is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/github/check_access"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: checkGithubAccess
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.github.check_access(request={
+                "org": "<value>",
+                "repo": "<value>",
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/github/configure_code_samples"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: githubConfigureCodeSamples
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.github.configure_code_samples(request={
+                "org": "<value>",
+                "repo": "<value>",
+                "target_name": "<value>",
+            })
+
+            if res.github_configure_code_samples_response is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/github/configure_mintlify_repo"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: githubConfigureMintlifyRepo
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.github.configure_mintlify_repo(request={
+                "org": "<value>",
+                "repo": "<value>",
+                "input": "<value>",
+                "overlays": [
+                    "<value>",
+                ],
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/github/configure_target"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: githubConfigureTarget
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.github.configure_target(request={
+                "org": "<value>",
+                "repo_name": "<value>",
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/github/link"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: linkGithubAccess
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.github.link_github(request={})
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/github/publishing_prs"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: githubCheckPublishingPRs
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.github.check_publishing_p_rs(request={
+                "generate_gen_lock_id": "<id>",
+                "org": "<value>",
+                "repo": "<value>",
+            })
+
+            if res.github_publishing_pr_response is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/github/publishing_secrets"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: githubCheckPublishingSecrets
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.github.check_publishing_secrets(request={
+                "generate_gen_lock_id": "<id>",
+            })
+
+            if res.github_missing_publishing_secrets_response is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/github/publishing_secrets"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: githubStorePublishingSecrets
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.github.store_publishing_secrets(request={
+                "generate_gen_lock_id": "<id>",
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/github/trigger_action"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: githubTriggerAction
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.github.trigger_action(request={
+                "org": "<value>",
+                "repo_name": "<value>",
+                "gen_lock_id": "<id>",
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/blobs/{digest}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getBlob
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.artifacts.get_blob(request={
+                "organization_slug": "<value>",
+                "workspace_slug": "<value>",
+                "namespace_name": "<value>",
+                "digest": "<value>",
+            })
+
+            if res.blob is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/manifests/{revision_reference}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getManifest
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.artifacts.get_manifest(request={
+                "organization_slug": "<value>",
+                "workspace_slug": "<value>",
+                "namespace_name": "<value>",
+                "revision_reference": "<value>",
+            })
+
+            if res.manifest is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/organization"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createOrganization
+          source: |-
+            import dateutil.parser
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.organizations.create(request={
+                "id": "<id>",
+                "name": "<value>",
+                "slug": "<value>",
+                "account_type": shared.AccountType.SCALE_UP,
+                "telemetry_disabled": False,
+                "created_at": dateutil.parser.isoparse("2023-04-03T12:48:32.253Z"),
+                "updated_at": dateutil.parser.isoparse("2022-05-28T06:20:22.766Z"),
+            })
+
+            if res.organization is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/organization/free_trial"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createFreeTrial
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.organizations.create_free_trial()
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/organization/usage"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getOrganizationUsage
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.organizations.get_usage()
+
+            if res.organization_usage_response is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/organization/{organizationID}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getOrganization
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.organizations.get(request={
+                "organization_id": "<id>",
+            })
+
+            if res.organization is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/organizations"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getOrganizations
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.organizations.get_all()
+
+            if res.organizations is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/reports"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: uploadReport
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.reports.upload_report(request={
+                "data": {},
+                "file": {
+                    "file_name": "example.file",
+                    "content": open("example.file", "rb"),
+                },
+            })
+
+            if res.uploaded_report is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/reports/changes/{documentChecksum}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getChangesReportSignedUrl
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.reports.get_changes_report_signed_url(request={
+                "document_checksum": "<value>",
+            })
+
+            if res.signed_access is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/reports/linting/{documentChecksum}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getLintingReportSignedUrl
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.reports.get_linting_report_signed_url(request={
+                "document_checksum": "<value>",
+            })
+
+            if res.signed_access is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/short_urls"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: create
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.short_ur_ls.create(request={
+                "url": "https://probable-heating.com/",
+            })
+
+            if res.short_url is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/suggest/items"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: suggestItems
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.suggest.suggest_items(request={
+                "prompt": "<value>",
+                "items": [
+                    "<value>",
+                ],
+            })
+
+            if res.strings is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/suggest/openapi"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: suggestOpenAPI
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.suggest.suggest_open_api(request={
+                "x_session_id": "<id>",
+                "request_body": {
+                    "schema_": {
+                        "file_name": "example.file",
+                        "content": open("example.file", "rb"),
+                    },
+                },
+            })
+
+            if res.schema_ is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/suggest/openapi/{namespace_name}/{revision_reference}"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: suggestOpenAPIRegistry
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.suggest.suggest_open_api_registry(request={
+                "x_session_id": "<id>",
+                "namespace_name": "<value>",
+                "revision_reference": "<value>",
+            })
+
+            if res.schema_ is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/suggest/openapi_from_summary"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: suggest
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.suggest.suggest(request={
+                "x_session_id": "<id>",
+                "suggest_request_body": {
+                    "oas_summary": {
+                        "info": {
+                            "title": "<value>",
+                            "summary": "<value>",
+                            "description": "ugh which garrote ashamed sarong fiddle really",
+                            "version": "<value>",
+                            "license": {},
+                        },
+                        "operations": [
+                            {
+                                "method": "<value>",
+                                "path": "/rescue",
+                                "operation_id": "<id>",
+                                "description": "kielbasa psst stitcher cannon devoted blindly apropos low",
+                                "tags": [
+                                    "<value>",
+                                ],
+                            },
+                        ],
+                    },
+                    "suggestion_type": shared.SuggestRequestBodySuggestionType.DIAGNOSTICS_ONLY,
+                    "diagnostics": [
+                        {
+                            "message": "<value>",
+                            "path": [
+                                "/opt/share",
+                            ],
+                            "type": "<value>",
+                        },
+                    ],
+                },
+            })
+
+            if res.schema_ is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/user"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getUser
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.auth.get_user()
+
+            if res.user is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getWorkspaceByContext
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.workspaces.get()
+
+            if res.workspace_and_organization is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createWorkspace
+          source: |-
+            import dateutil.parser
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.workspaces.create(request={
+                "created_at": dateutil.parser.isoparse("2023-06-18T07:14:55.338Z"),
+                "id": "<id>",
+                "name": "<value>",
+                "organization_id": "<id>",
+                "slug": "<value>",
+                "updated_at": dateutil.parser.isoparse("2023-12-01T17:06:07.804Z"),
+                "verified": True,
+            })
+
+            if res.workspace is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/access"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getWorkspaceAccess
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.auth.get_access(request={})
+
+            if res.access_details is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/embed-access-token"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getEmbedAccessToken
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.embeds.get_embed_access_token(request={})
+
+            if res.embed_access_token_response is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/embed-access-tokens/valid"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getValidEmbedAccessTokens
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.embeds.get_valid_embed_access_tokens()
+
+            if res.embed_tokens is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/embed-access-tokens/{tokenID}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: revokeEmbedAccessToken
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.embeds.revoke_embed_access_token(request={
+                "token_id": "<id>",
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/events/targets"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getWorkspaceTargets
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.events.get_targets(request={})
+
+            if res.target_sdk_list is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/{workspace_id}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getWorkspace
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.workspaces.get_by_id(request={})
+
+            if res.workspace is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/{workspace_id}/details"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: updateWorkspaceDetails
+          source: |-
+            import dateutil.parser
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.workspaces.update(request={
+                "workspace": {
+                    "created_at": dateutil.parser.isoparse("2024-07-28T19:04:48.565Z"),
+                    "id": "<id>",
+                    "name": "<value>",
+                    "organization_id": "<id>",
+                    "slug": "<value>",
+                    "updated_at": dateutil.parser.isoparse("2023-10-17T10:52:42.015Z"),
+                    "verified": True,
+                },
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/{workspace_id}/events"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: searchWorkspaceEvents
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.events.search(request={})
+
+            if res.cli_event_batch is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/{workspace_id}/events"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: postWorkspaceEvents
+          source: |-
+            import dateutil.parser
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.events.post(request={
+                "request_body": [
+                    {
+                        "id": "<id>",
+                        "execution_id": "<id>",
+                        "workspace_id": "<id>",
+                        "speakeasy_api_key_name": "<value>",
+                        "interaction_type": shared.InteractionType.QUICKSTART,
+                        "local_started_at": dateutil.parser.isoparse("2023-09-09T05:59:33.876Z"),
+                        "created_at": dateutil.parser.isoparse("2024-08-12T17:54:17.538Z"),
+                        "speakeasy_version": "<value>",
+                        "success": True,
+                    },
+                ],
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/{workspace_id}/events/targets"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getWorkspaceTargetsDeprecated
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.events.get_targets_deprecated(request={})
+
+            if res.target_sdk_list is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/{workspace_id}/events/targets/{target_id}/events"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getWorkspaceEventsByTarget
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.events.get_events_by_target(request={
+                "target_id": "<id>",
+            })
+
+            if res.cli_event_batch is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/{workspace_id}/feature_flags"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getWorkspaceFeatureFlags
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.workspaces.get_feature_flags(request={})
+
+            if res.workspace_feature_flag_response is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/{workspace_id}/registry_subscriptions"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: listRegistrySubscriptions
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.subscriptions.list_registry_subscriptions(request={})
+
+            if res.registry_subscriptions is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/{workspace_id}/registry_subscriptions"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createSubscription
+          source: |-
+            import dateutil.parser
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.subscriptions.create_subscription(request={
+                "registry_subscription": {
+                    "id": "<id>",
+                    "workspace_id": "<id>",
+                    "event_type": shared.EventType.UPDATE,
+                    "namespace_name": "<value>",
+                    "subscription_type": shared.SubscriptionType.CLI,
+                    "subscription_settings": "<value>",
+                    "created_at": dateutil.parser.isoparse("2022-06-08T17:58:57.702Z"),
+                    "updated_at": dateutil.parser.isoparse("2022-07-20T08:51:35.776Z"),
+                },
+            })
+
+            if res.registry_subscription is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/{workspace_id}/settings"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getWorkspaceSettings
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.workspaces.get_settings(request={})
+
+            if res.workspace_settings is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/{workspace_id}/settings"]["put"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: updateWorkspaceSettings
+          source: |-
+            import dateutil.parser
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.workspaces.update_settings(request={
+                "workspace_settings": {
+                    "workspace_id": "<id>",
+                    "webhook_url": "https://last-suspension.info/",
+                    "created_at": dateutil.parser.isoparse("2023-12-29T06:46:35.807Z"),
+                    "updated_at": dateutil.parser.isoparse("2024-02-04T10:37:56.725Z"),
+                },
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/{workspace_id}/team"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getWorkspaceTeam
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.workspaces.get_team(request={})
+
+            if res.workspace_team_response is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/{workspace_id}/team/email/{email}"]["put"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: grantUserAccessToWorkspace
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.workspaces.grant_access(request={
+                "email": "Lucinda.Batz8@hotmail.com",
+            })
+
+            if res.workspace_invite_response is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/{workspace_id}/team/{userId}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: revokeUserAccessToWorkspace
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.workspaces.revoke_access(request={
+                "user_id": "<id>",
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/{workspace_id}/tokens"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getWorkspaceTokens
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.workspaces.get_tokens(request={})
+
+            if res.workspace_tokens is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/{workspace_id}/tokens"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createWorkspaceToken
+          source: |-
+            import dateutil.parser
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.workspaces.create_token(request={
+                "workspace_token": {
+                    "id": "<id>",
+                    "name": "<value>",
+                    "workspace_id": "<id>",
+                    "alg": "<value>",
+                    "key": "<key>",
+                    "created_at": dateutil.parser.isoparse("2022-08-16T02:33:00.784Z"),
+                },
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspace/{workspace_id}/tokens/{tokenID}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: deleteWorkspaceToken
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.workspaces.delete_token(request={
+                "token_id": "<id>",
+            })
+
+            if res is not None:
+                # handle response
+                pass
+  - target: $["paths"]["/v1/workspaces"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getWorkspaces
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            s = Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            )
+
+            res = s.workspaces.get_all()
+
+            if res.workspaces is not None:
+                # handle response
+                pass

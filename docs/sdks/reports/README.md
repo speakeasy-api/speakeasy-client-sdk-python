@@ -27,7 +27,6 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.reports.get_changes_report_signed_url(request={
     "document_checksum": "<value>",
 })
@@ -45,15 +44,15 @@ if res.signed_access is not None:
 | `request`                                                                                                  | [operations.GetChangesReportSignedURLRequest](../../models/operations/getchangesreportsignedurlrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `retries`                                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                           | :heavy_minus_sign:                                                                                         | Configuration to override the default retry behavior of the client.                                        |
 
-
 ### Response
 
 **[operations.GetChangesReportSignedURLResponse](../../models/operations/getchangesreportsignedurlresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## get_linting_report_signed_url
 
@@ -70,7 +69,6 @@ s = Speakeasy(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 )
-
 
 res = s.reports.get_linting_report_signed_url(request={
     "document_checksum": "<value>",
@@ -89,15 +87,15 @@ if res.signed_access is not None:
 | `request`                                                                                                  | [operations.GetLintingReportSignedURLRequest](../../models/operations/getlintingreportsignedurlrequest.md) | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
 | `retries`                                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                           | :heavy_minus_sign:                                                                                         | Configuration to override the default retry behavior of the client.                                        |
 
-
 ### Response
 
 **[operations.GetLintingReportSignedURLResponse](../../models/operations/getlintingreportsignedurlresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## upload_report
 
@@ -115,12 +113,11 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.reports.upload_report(request={
     "data": {},
     "file": {
-        "content": open("<file_path>", "rb"),
-        "file_name": "your_file_here",
+        "content": open("example.file", "rb"),
+        "file_name": "example.file",
     },
 })
 
@@ -137,12 +134,12 @@ if res.uploaded_report is not None:
 | `request`                                                                                | [operations.UploadReportRequestBody](../../models/operations/uploadreportrequestbody.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
 | `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
 
-
 ### Response
 
 **[operations.UploadReportResponse](../../models/operations/uploadreportresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

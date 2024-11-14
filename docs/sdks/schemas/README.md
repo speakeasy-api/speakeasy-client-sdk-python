@@ -32,11 +32,10 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.schemas.delete_schema(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
-    "revision_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
+    "revision_id": "<id>",
 })
 
 if res is not None:
@@ -52,15 +51,16 @@ if res is not None:
 | `request`                                                                        | [operations.DeleteSchemaRequest](../../models/operations/deleteschemarequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 | `retries`                                                                        | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                 | :heavy_minus_sign:                                                               | Configuration to override the default retry behavior of the client.              |
 
-
 ### Response
 
 **[operations.DeleteSchemaResponse](../../models/operations/deleteschemaresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 4XX              | application/json |
+| errors.SDKError  | 5XX              | \*/\*            |
 
 ## download_schema
 
@@ -78,13 +78,12 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.schemas.download_schema(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
 })
 
-if res.two_hundred_application_json_schema is not None:
+if res.two_xx_application_json_schema is not None:
     # handle response
     pass
 
@@ -97,15 +96,16 @@ if res.two_hundred_application_json_schema is not None:
 | `request`                                                                            | [operations.DownloadSchemaRequest](../../models/operations/downloadschemarequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
 
-
 ### Response
 
 **[operations.DownloadSchemaResponse](../../models/operations/downloadschemaresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 4XX              | application/json |
+| errors.SDKError  | 5XX              | \*/\*            |
 
 ## download_schema_revision
 
@@ -123,14 +123,13 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.schemas.download_schema_revision(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
-    "revision_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
+    "revision_id": "<id>",
 })
 
-if res.two_hundred_application_json_schema is not None:
+if res.two_xx_application_json_schema is not None:
     # handle response
     pass
 
@@ -143,19 +142,20 @@ if res.two_hundred_application_json_schema is not None:
 | `request`                                                                                            | [operations.DownloadSchemaRevisionRequest](../../models/operations/downloadschemarevisionrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
 | `retries`                                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                                     | :heavy_minus_sign:                                                                                   | Configuration to override the default retry behavior of the client.                                  |
 
-
 ### Response
 
 **[operations.DownloadSchemaRevisionResponse](../../models/operations/downloadschemarevisionresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 4XX              | application/json |
+| errors.SDKError  | 5XX              | \*/\*            |
 
 ## get_schema
 
-Returns information about the last uploaded schema for a particular API version. 
+Returns information about the last uploaded schema for a particular API version.
 This won't include the schema itself, that can be retrieved via the downloadSchema operation.
 
 ### Example Usage
@@ -170,10 +170,9 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.schemas.get_schema(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
 })
 
 if res.schema_ is not None:
@@ -189,15 +188,16 @@ if res.schema_ is not None:
 | `request`                                                                  | [operations.GetSchemaRequest](../../models/operations/getschemarequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
 | `retries`                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)           | :heavy_minus_sign:                                                         | Configuration to override the default retry behavior of the client.        |
 
-
 ### Response
 
 **[operations.GetSchemaResponse](../../models/operations/getschemaresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 4XX              | application/json |
+| errors.SDKError  | 5XX              | \*/\*            |
 
 ## get_schema_diff
 
@@ -215,12 +215,11 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.schemas.get_schema_diff(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
-    "base_revision_id": "<value>",
-    "target_revision_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
+    "base_revision_id": "<id>",
+    "target_revision_id": "<id>",
 })
 
 if res.schema_diff is not None:
@@ -236,19 +235,20 @@ if res.schema_diff is not None:
 | `request`                                                                          | [operations.GetSchemaDiffRequest](../../models/operations/getschemadiffrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
 | `retries`                                                                          | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                   | :heavy_minus_sign:                                                                 | Configuration to override the default retry behavior of the client.                |
 
-
 ### Response
 
 **[operations.GetSchemaDiffResponse](../../models/operations/getschemadiffresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 4XX              | application/json |
+| errors.SDKError  | 5XX              | \*/\*            |
 
 ## get_schema_revision
 
-Returns information about the last uploaded schema for a particular schema revision. 
+Returns information about the last uploaded schema for a particular schema revision.
 This won't include the schema itself, that can be retrieved via the downloadSchema operation.
 
 ### Example Usage
@@ -263,11 +263,10 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.schemas.get_schema_revision(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
-    "revision_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
+    "revision_id": "<id>",
 })
 
 if res.schema_ is not None:
@@ -283,19 +282,20 @@ if res.schema_ is not None:
 | `request`                                                                                  | [operations.GetSchemaRevisionRequest](../../models/operations/getschemarevisionrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 | `retries`                                                                                  | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                           | :heavy_minus_sign:                                                                         | Configuration to override the default retry behavior of the client.                        |
 
-
 ### Response
 
 **[operations.GetSchemaRevisionResponse](../../models/operations/getschemarevisionresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 4XX              | application/json |
+| errors.SDKError  | 5XX              | \*/\*            |
 
 ## get_schemas
 
-Returns information the schemas associated with a particular apiID. 
+Returns information the schemas associated with a particular apiID.
 This won't include the schemas themselves, they can be retrieved via the downloadSchema operation.
 
 ### Example Usage
@@ -310,10 +310,9 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.schemas.get_schemas(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
 })
 
 if res.classes is not None:
@@ -329,15 +328,16 @@ if res.classes is not None:
 | `request`                                                                    | [operations.GetSchemasRequest](../../models/operations/getschemasrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 | `retries`                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)             | :heavy_minus_sign:                                                           | Configuration to override the default retry behavior of the client.          |
 
-
 ### Response
 
 **[operations.GetSchemasResponse](../../models/operations/getschemasresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 4XX              | application/json |
+| errors.SDKError  | 5XX              | \*/\*            |
 
 ## register_schema
 
@@ -356,14 +356,13 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.schemas.register_schema(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
     "request_body": {
         "file": {
-            "content": open("<file_path>", "rb"),
-            "file_name": "your_file_here",
+            "content": open("example.file", "rb"),
+            "file_name": "example.file",
         },
     },
 })
@@ -381,12 +380,13 @@ if res is not None:
 | `request`                                                                            | [operations.RegisterSchemaRequest](../../models/operations/registerschemarequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 | `retries`                                                                            | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                     | :heavy_minus_sign:                                                                   | Configuration to override the default retry behavior of the client.                  |
 
-
 ### Response
 
 **[operations.RegisterSchemaResponse](../../models/operations/registerschemaresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 4XX              | application/json |
+| errors.SDKError  | 5XX              | \*/\*            |

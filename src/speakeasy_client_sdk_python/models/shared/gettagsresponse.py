@@ -3,13 +3,13 @@
 from __future__ import annotations
 from .tag import Tag, TagTypedDict
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import List, TypedDict
+from typing import List
+from typing_extensions import TypedDict
 
 
 class GetTagsResponseTypedDict(TypedDict):
     items: List[TagTypedDict]
-    
+
 
 class GetTagsResponse(BaseModel):
     items: List[Tag]
-    

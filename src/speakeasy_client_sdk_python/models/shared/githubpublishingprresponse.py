@@ -2,20 +2,20 @@
 
 from __future__ import annotations
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import Optional, TypedDict
-from typing_extensions import NotRequired
+from typing import Optional
+from typing_extensions import NotRequired, TypedDict
 
 
 class GithubPublishingPRResponseTypedDict(TypedDict):
     r"""Open generation PRs pending publishing"""
-    
+
     generation_pull_request: NotRequired[str]
     pending_version: NotRequired[str]
-    
+
 
 class GithubPublishingPRResponse(BaseModel):
     r"""Open generation PRs pending publishing"""
-    
+
     generation_pull_request: Optional[str] = None
+
     pending_version: Optional[str] = None
-    

@@ -2,24 +2,24 @@
 
 from __future__ import annotations
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import Dict, Optional, TypedDict
-from typing_extensions import NotRequired
+from typing import Dict, Optional
+from typing_extensions import NotRequired, TypedDict
 
 
 class GithubStorePublishingSecretsRequestTypedDict(TypedDict):
     r"""A request to store publishing secrets for a github target"""
-    
+
     generate_gen_lock_id: str
     r"""The generation lock ID"""
     secrets: NotRequired[Dict[str, str]]
     r"""A map of secrets to store in the GitHub target"""
-    
+
 
 class GithubStorePublishingSecretsRequest(BaseModel):
     r"""A request to store publishing secrets for a github target"""
-    
+
     generate_gen_lock_id: str
     r"""The generation lock ID"""
+
     secrets: Optional[Dict[str, str]] = None
     r"""A map of secrets to store in the GitHub target"""
-    

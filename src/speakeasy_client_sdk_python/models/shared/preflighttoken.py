@@ -2,18 +2,17 @@
 
 from __future__ import annotations
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import Optional, TypedDict
-from typing_extensions import NotRequired
+from typing import Optional
+from typing_extensions import NotRequired, TypedDict
 
 
 class PreflightTokenTypedDict(TypedDict):
     r"""A PreflightToken is a token that allows access to the OCI distribution endpoints."""
-    
+
     auth_token: NotRequired[str]
-    
+
 
 class PreflightToken(BaseModel):
     r"""A PreflightToken is a token that allows access to the OCI distribution endpoints."""
-    
+
     auth_token: Optional[str] = None
-    

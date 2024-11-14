@@ -2,9 +2,16 @@
 
 from __future__ import annotations
 from datetime import datetime
-from speakeasy_client_sdk_python.types import BaseModel
-from typing import Optional, TypedDict
-from typing_extensions import NotRequired
+from pydantic import model_serializer
+from speakeasy_client_sdk_python.types import (
+    BaseModel,
+    Nullable,
+    OptionalNullable,
+    UNSET,
+    UNSET_SENTINEL,
+)
+from typing import Optional
+from typing_extensions import NotRequired, TypedDict
 
 
 class UserTypedDict(TypedDict):
@@ -22,45 +29,102 @@ class UserTypedDict(TypedDict):
     r"""Indicates whether the email address has been verified."""
     id: str
     r"""Unique identifier for the user."""
-    last_login_at: datetime
-    r"""Timestamp of the last login."""
     updated_at: datetime
     r"""Timestamp of the user's last update."""
     whitelisted: bool
     r"""Indicates whether the user has been whitelisted."""
-    default_workspace_id: NotRequired[str]
+    default_workspace_id: NotRequired[Nullable[str]]
     r"""Identifier of the default workspace."""
-    github_handle: NotRequired[str]
+    github_handle: NotRequired[Nullable[str]]
     r"""GitHub handle of the user."""
-    photo_url: NotRequired[str]
+    internal: NotRequired[bool]
+    r"""Indicates whether the user is internal."""
+    last_login_at: NotRequired[Nullable[datetime]]
+    r"""Timestamp of the last login."""
+    photo_url: NotRequired[Nullable[str]]
     r"""URL of the user's photo."""
-    
+
 
 class User(BaseModel):
     admin: bool
     r"""Indicates whether the user is an admin."""
+
     confirmed: bool
     r"""Indicates whether the user has been confirmed."""
+
     created_at: datetime
     r"""Timestamp of the user's creation."""
+
     display_name: str
     r"""Display name of the user."""
+
     email: str
     r"""Email address of the user."""
+
     email_verified: bool
     r"""Indicates whether the email address has been verified."""
+
     id: str
     r"""Unique identifier for the user."""
-    last_login_at: datetime
-    r"""Timestamp of the last login."""
+
     updated_at: datetime
     r"""Timestamp of the user's last update."""
+
     whitelisted: bool
     r"""Indicates whether the user has been whitelisted."""
-    default_workspace_id: Optional[str] = None
+
+    default_workspace_id: OptionalNullable[str] = UNSET
     r"""Identifier of the default workspace."""
-    github_handle: Optional[str] = None
+
+    github_handle: OptionalNullable[str] = UNSET
     r"""GitHub handle of the user."""
-    photo_url: Optional[str] = None
+
+    internal: Optional[bool] = None
+    r"""Indicates whether the user is internal."""
+
+    last_login_at: OptionalNullable[datetime] = UNSET
+    r"""Timestamp of the last login."""
+
+    photo_url: OptionalNullable[str] = UNSET
     r"""URL of the user's photo."""
-    
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = [
+            "default_workspace_id",
+            "github_handle",
+            "internal",
+            "last_login_at",
+            "photo_url",
+        ]
+        nullable_fields = [
+            "default_workspace_id",
+            "github_handle",
+            "last_login_at",
+            "photo_url",
+        ]
+        null_default_fields = []
+
+        serialized = handler(self)
+
+        m = {}
+
+        for n, f in self.model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+            serialized.pop(k, None)
+
+            optional_nullable = k in optional_fields and k in nullable_fields
+            is_set = (
+                self.__pydantic_fields_set__.intersection({n})
+                or k in null_default_fields
+            )  # pylint: disable=no-member
+
+            if val is not None and val != UNSET_SENTINEL:
+                m[k] = val
+            elif val != UNSET_SENTINEL and (
+                not k in optional_fields or (optional_nullable and is_set)
+            ):
+                m[k] = val
+
+        return m

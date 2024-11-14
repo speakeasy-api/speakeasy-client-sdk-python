@@ -3,13 +3,13 @@
 from __future__ import annotations
 from .namespace import Namespace, NamespaceTypedDict
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import List, TypedDict
+from typing import List
+from typing_extensions import TypedDict
 
 
 class GetNamespacesResponseTypedDict(TypedDict):
     items: List[NamespaceTypedDict]
-    
+
 
 class GetNamespacesResponse(BaseModel):
     items: List[Namespace]
-    

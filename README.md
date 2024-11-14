@@ -1,14 +1,47 @@
 # speakeasy-client-sdk-python
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Speakeasy API: The Subscriptions API manages subscriptions for CLI and registry events
+
+For more information about the API: [The Speakeasy Platform Documentation](/docs)
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [IDE Support](#ide-support)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Global Parameters](#global-parameters)
+* [File uploads](#file-uploads)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Debugging](#debugging)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
-PIP
+The SDK can be installed with either *pip* or *poetry* package managers.
+
+### PIP
+
+*PIP* is the default package installer for Python, enabling easy installation and management of packages from PyPI via the command line.
+
 ```bash
 pip install speakeasy-client-sdk-python
 ```
 
-Poetry
+### Poetry
+
+*Poetry* is a modern tool that simplifies dependency management and package publishing by using a single `pyproject.toml` file to handle project metadata and dependencies.
+
 ```bash
 poetry add speakeasy-client-sdk-python
 ```
@@ -30,8 +63,7 @@ s = Speakeasy(
     ),
 )
 
-
-res = s.apis.get_apis()
+res = s.apis.get_apis(request={})
 
 if res.apis is not None:
     # handle response
@@ -53,7 +85,7 @@ async def main():
             api_key="<YOUR_API_KEY_HERE>",
         ),
     )
-    res = await s.apis.get_apis_async()
+    res = await s.apis.get_apis_async(request={})
     if res.apis is not None:
         # handle response
         pass
@@ -65,14 +97,8 @@ asyncio.run(main())
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [apis](docs/sdks/apis/README.md)
-
-* [delete_api](docs/sdks/apis/README.md#delete_api) - Delete an Api.
-* [generate_open_api_spec](docs/sdks/apis/README.md#generate_open_api_spec) - Generate an OpenAPI specification for a particular Api.
-* [generate_postman_collection](docs/sdks/apis/README.md#generate_postman_collection) - Generate a Postman collection for a particular Api.
-* [get_all_api_versions](docs/sdks/apis/README.md#get_all_api_versions) - Get all Api versions for a particular ApiEndpoint.
-* [get_apis](docs/sdks/apis/README.md#get_apis) - Get a list of Apis for a given workspace
-* [upsert_api](docs/sdks/apis/README.md#upsert_api) - Upsert an Api
+<details open>
+<summary>Available methods</summary>
 
 ### [api_endpoints](docs/sdks/apiendpoints/README.md)
 
@@ -85,11 +111,86 @@ asyncio.run(main())
 * [get_api_endpoint](docs/sdks/apiendpoints/README.md#get_api_endpoint) - Get an ApiEndpoint.
 * [upsert_api_endpoint](docs/sdks/apiendpoints/README.md#upsert_api_endpoint) - Upsert an ApiEndpoint.
 
+### [apis](docs/sdks/apis/README.md)
+
+* [delete_api](docs/sdks/apis/README.md#delete_api) - Delete an Api.
+* [generate_open_api_spec](docs/sdks/apis/README.md#generate_open_api_spec) - Generate an OpenAPI specification for a particular Api.
+* [generate_postman_collection](docs/sdks/apis/README.md#generate_postman_collection) - Generate a Postman collection for a particular Api.
+* [get_all_api_versions](docs/sdks/apis/README.md#get_all_api_versions) - Get all Api versions for a particular ApiEndpoint.
+* [get_apis](docs/sdks/apis/README.md#get_apis) - Get a list of Apis for a given workspace
+* [upsert_api](docs/sdks/apis/README.md#upsert_api) - Upsert an Api
+
+### [artifacts](docs/sdks/artifacts/README.md)
+
+* [create_remote_source](docs/sdks/artifacts/README.md#create_remote_source) - Configure a new remote source
+* [get_blob](docs/sdks/artifacts/README.md#get_blob) - Get blob for a particular digest
+* [get_manifest](docs/sdks/artifacts/README.md#get_manifest) - Get manifest for a particular reference
+* [get_namespaces](docs/sdks/artifacts/README.md#get_namespaces) - Each namespace contains many revisions.
+* [get_revisions](docs/sdks/artifacts/README.md#get_revisions)
+* [get_tags](docs/sdks/artifacts/README.md#get_tags)
+* [list_remote_sources](docs/sdks/artifacts/README.md#list_remote_sources) - Get remote sources attached to a particular namespace
+* [post_tags](docs/sdks/artifacts/README.md#post_tags) - Add tags to an existing revision
+* [preflight](docs/sdks/artifacts/README.md#preflight) - Get access token for communicating with OCI distribution endpoints
+
+### [auth](docs/sdks/auth/README.md)
+
+* [get_access](docs/sdks/auth/README.md#get_access) - Get access allowances for a particular workspace
+* [get_access_token](docs/sdks/auth/README.md#get_access_token) - Get or refresh an access token for the current workspace.
+* [get_user](docs/sdks/auth/README.md#get_user) - Get information about the current user.
+* [validate_api_key](docs/sdks/auth/README.md#validate_api_key) - Validate the current api key.
+
+### [embeds](docs/sdks/embeds/README.md)
+
+* [get_embed_access_token](docs/sdks/embeds/README.md#get_embed_access_token) - Get an embed access token for the current workspace.
+* [get_valid_embed_access_tokens](docs/sdks/embeds/README.md#get_valid_embed_access_tokens) - Get all valid embed access tokens for the current workspace.
+* [revoke_embed_access_token](docs/sdks/embeds/README.md#revoke_embed_access_token) - Revoke an embed access EmbedToken.
+
+### [events](docs/sdks/events/README.md)
+
+* [get_events_by_target](docs/sdks/events/README.md#get_events_by_target) - Load recent events for a particular workspace
+* [get_targets](docs/sdks/events/README.md#get_targets) - Load targets for a particular workspace
+* [get_targets_deprecated](docs/sdks/events/README.md#get_targets_deprecated) - Load targets for a particular workspace
+* [post](docs/sdks/events/README.md#post) - Post events for a specific workspace
+* [search](docs/sdks/events/README.md#search) - Search events for a particular workspace by any field
+
+### [github](docs/sdks/github/README.md)
+
+* [check_access](docs/sdks/github/README.md#check_access)
+* [check_publishing_p_rs](docs/sdks/github/README.md#check_publishing_p_rs)
+* [check_publishing_secrets](docs/sdks/github/README.md#check_publishing_secrets)
+* [configure_code_samples](docs/sdks/github/README.md#configure_code_samples)
+* [configure_mintlify_repo](docs/sdks/github/README.md#configure_mintlify_repo)
+* [configure_target](docs/sdks/github/README.md#configure_target)
+* [get_action](docs/sdks/github/README.md#get_action)
+* [link_github](docs/sdks/github/README.md#link_github)
+* [store_publishing_secrets](docs/sdks/github/README.md#store_publishing_secrets)
+* [trigger_action](docs/sdks/github/README.md#trigger_action)
+
 ### [metadata](docs/sdks/metadata/README.md)
 
 * [delete_version_metadata](docs/sdks/metadata/README.md#delete_version_metadata) - Delete metadata for a particular apiID and versionID.
 * [get_version_metadata](docs/sdks/metadata/README.md#get_version_metadata) - Get all metadata for a particular apiID and versionID.
 * [insert_version_metadata](docs/sdks/metadata/README.md#insert_version_metadata) - Insert metadata for a particular apiID and versionID.
+
+### [organizations](docs/sdks/organizations/README.md)
+
+* [create](docs/sdks/organizations/README.md#create) - Create an organization
+* [create_free_trial](docs/sdks/organizations/README.md#create_free_trial) - Create a free trial for an organization
+* [get](docs/sdks/organizations/README.md#get) - Get organization
+* [get_all](docs/sdks/organizations/README.md#get_all) - Get organizations for a user
+* [get_usage](docs/sdks/organizations/README.md#get_usage) - Get billing usage summary for a particular organization
+
+### [reports](docs/sdks/reports/README.md)
+
+* [get_changes_report_signed_url](docs/sdks/reports/README.md#get_changes_report_signed_url) - Get the signed access url for the change reports for a particular document.
+* [get_linting_report_signed_url](docs/sdks/reports/README.md#get_linting_report_signed_url) - Get the signed access url for the linting reports for a particular document.
+* [upload_report](docs/sdks/reports/README.md#upload_report) - Upload a report.
+
+### [requests](docs/sdks/requests/README.md)
+
+* [generate_request_postman_collection](docs/sdks/requests/README.md#generate_request_postman_collection) - Generate a Postman collection for a particular request.
+* [get_request_from_event_log](docs/sdks/requests/README.md#get_request_from_event_log) - Get information about a particular request.
+* [query_event_log](docs/sdks/requests/README.md#query_event_log) - Query the event log to retrieve a list of requests.
 
 ### [schemas](docs/sdks/schemas/README.md)
 
@@ -102,81 +203,41 @@ asyncio.run(main())
 * [get_schemas](docs/sdks/schemas/README.md#get_schemas) - Get information about all schemas associated with a particular apiID.
 * [register_schema](docs/sdks/schemas/README.md#register_schema) - Register a schema.
 
-### [artifacts](docs/sdks/artifacts/README.md)
-
-* [get_blob](docs/sdks/artifacts/README.md#get_blob) - Get blob for a particular digest
-* [get_manifest](docs/sdks/artifacts/README.md#get_manifest) - Get manifest for a particular reference
-* [get_namespaces](docs/sdks/artifacts/README.md#get_namespaces) - Each namespace contains many revisions.
-* [get_oas_summary](docs/sdks/artifacts/README.md#get_oas_summary)
-* [get_revisions](docs/sdks/artifacts/README.md#get_revisions)
-* [get_tags](docs/sdks/artifacts/README.md#get_tags)
-* [post_tags](docs/sdks/artifacts/README.md#post_tags) - Add tags to an existing revision
-* [preflight](docs/sdks/artifacts/README.md#preflight) - Get access token for communicating with OCI distribution endpoints
-
-### [auth](docs/sdks/auth/README.md)
-
-* [get_access_token](docs/sdks/auth/README.md#get_access_token) - Get or refresh an access token for the current workspace.
-* [get_user](docs/sdks/auth/README.md#get_user) - Get information about the current user.
-* [get_workspace_access](docs/sdks/auth/README.md#get_workspace_access) - Get access allowances for a particular workspace
-* [validate_api_key](docs/sdks/auth/README.md#validate_api_key) - Validate the current api key.
-
-### [requests](docs/sdks/requests/README.md)
-
-* [generate_request_postman_collection](docs/sdks/requests/README.md#generate_request_postman_collection) - Generate a Postman collection for a particular request.
-* [get_request_from_event_log](docs/sdks/requests/README.md#get_request_from_event_log) - Get information about a particular request.
-* [query_event_log](docs/sdks/requests/README.md#query_event_log) - Query the event log to retrieve a list of requests.
-
-### [github](docs/sdks/github/README.md)
-
-* [check_access](docs/sdks/github/README.md#check_access)
-* [configure_code_samples](docs/sdks/github/README.md#configure_code_samples)
-* [configure_mintlify_repo](docs/sdks/github/README.md#configure_mintlify_repo)
-* [configure_target](docs/sdks/github/README.md#configure_target)
-* [fetch_publishing_p_rs](docs/sdks/github/README.md#fetch_publishing_p_rs)
-* [get_action](docs/sdks/github/README.md#get_action)
-* [github_check_publishing_secrets](docs/sdks/github/README.md#github_check_publishing_secrets)
-* [github_store_publishing_secrets](docs/sdks/github/README.md#github_store_publishing_secrets)
-* [trigger_action](docs/sdks/github/README.md#trigger_action)
-
-### [organizations](docs/sdks/organizations/README.md)
-
-* [create_free_trial](docs/sdks/organizations/README.md#create_free_trial) - Create a free trial for an organization
-* [get_organization](docs/sdks/organizations/README.md#get_organization) - Get organization
-* [get_organization_usage](docs/sdks/organizations/README.md#get_organization_usage) - Get billing usage summary for a particular organization
-* [get_organizations](docs/sdks/organizations/README.md#get_organizations) - Get organizations for a user
-
-### [reports](docs/sdks/reports/README.md)
-
-* [get_changes_report_signed_url](docs/sdks/reports/README.md#get_changes_report_signed_url) - Get the signed access url for the change reports for a particular document.
-* [get_linting_report_signed_url](docs/sdks/reports/README.md#get_linting_report_signed_url) - Get the signed access url for the linting reports for a particular document.
-* [upload_report](docs/sdks/reports/README.md#upload_report) - Upload a report.
-
 ### [short_ur_ls](docs/sdks/shorturls/README.md)
 
 * [create](docs/sdks/shorturls/README.md#create) - Shorten a URL.
 
+
+### [subscriptions](docs/sdks/subscriptions/README.md)
+
+* [create_subscription](docs/sdks/subscriptions/README.md#create_subscription) - Create Subscription
+* [list_registry_subscriptions](docs/sdks/subscriptions/README.md#list_registry_subscriptions) - List Subscriptions
+
 ### [suggest](docs/sdks/suggest/README.md)
 
-* [apply_operation_i_ds](docs/sdks/suggest/README.md#apply_operation_i_ds) - Apply operation ID suggestions and download result.
-* [suggest_operation_i_ds](docs/sdks/suggest/README.md#suggest_operation_i_ds) - Generate operation ID suggestions.
-* [suggest_operation_i_ds_registry](docs/sdks/suggest/README.md#suggest_operation_i_ds_registry) - Generate operation ID suggestions.
-
-### [embeds](docs/sdks/embeds/README.md)
-
-* [get_embed_access_token](docs/sdks/embeds/README.md#get_embed_access_token) - Get an embed access token for the current workspace.
-* [get_valid_embed_access_tokens](docs/sdks/embeds/README.md#get_valid_embed_access_tokens) - Get all valid embed access tokens for the current workspace.
-* [revoke_embed_access_token](docs/sdks/embeds/README.md#revoke_embed_access_token) - Revoke an embed access EmbedToken.
+* [suggest](docs/sdks/suggest/README.md#suggest) - Generate suggestions for improving an OpenAPI document.
+* [suggest_items](docs/sdks/suggest/README.md#suggest_items) - Generate generic suggestions for a list of items.
+* [suggest_open_api](docs/sdks/suggest/README.md#suggest_open_api) - (DEPRECATED) Generate suggestions for improving an OpenAPI document.
+* [suggest_open_api_registry](docs/sdks/suggest/README.md#suggest_open_api_registry) - Generate suggestions for improving an OpenAPI document stored in the registry.
 
 ### [workspaces](docs/sdks/workspaces/README.md)
 
-* [get_workspace](docs/sdks/workspaces/README.md#get_workspace) - Get workspace
+* [create](docs/sdks/workspaces/README.md#create) - Create a workspace
+* [create_token](docs/sdks/workspaces/README.md#create_token) - Create a token for a particular workspace
+* [delete_token](docs/sdks/workspaces/README.md#delete_token) - Delete a token for a particular workspace
+* [get](docs/sdks/workspaces/README.md#get) - Get workspace by context
+* [get_all](docs/sdks/workspaces/README.md#get_all) - Get workspaces for a user
+* [get_by_id](docs/sdks/workspaces/README.md#get_by_id) - Get workspace
+* [get_feature_flags](docs/sdks/workspaces/README.md#get_feature_flags) - Get workspace feature flags
+* [get_settings](docs/sdks/workspaces/README.md#get_settings) - Get workspace settings
+* [get_team](docs/sdks/workspaces/README.md#get_team) - Get team members for a particular workspace
+* [get_tokens](docs/sdks/workspaces/README.md#get_tokens) - Get tokens for a particular workspace
+* [grant_access](docs/sdks/workspaces/README.md#grant_access) - Grant a user access to a particular workspace
+* [revoke_access](docs/sdks/workspaces/README.md#revoke_access) - Revoke a user's access to a particular workspace
+* [update](docs/sdks/workspaces/README.md#update) - Update workspace details
+* [update_settings](docs/sdks/workspaces/README.md#update_settings) - Update workspace settings
 
-### [events](docs/sdks/events/README.md)
-
-* [get_workspace_events_by_target](docs/sdks/events/README.md#get_workspace_events_by_target) - Load recent events for a particular workspace
-* [get_workspace_targets](docs/sdks/events/README.md#get_workspace_targets) - Load targets for a particular workspace
-* [post_workspace_events](docs/sdks/events/README.md#post_workspace_events) - Post events for a specific workspace
-* [search_workspace_events](docs/sdks/events/README.md#search_workspace_events) - Search events for a particular workspace by any field
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 
@@ -188,12 +249,23 @@ asyncio.run(main())
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Handling errors in this SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate Error type.
+Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-| Error Object     | Status Code      | Content Type     |
-| ---------------- | ---------------- | ---------------- |
-| errors.Error     | 5XX              | application/json |
-| errors.SDKError  | 4xx-5xx          | */*              |
+By default, an API error will raise a errors.SDKError exception, which has the following properties:
+
+| Property        | Type             | Description           |
+|-----------------|------------------|-----------------------|
+| `.status_code`  | *int*            | The HTTP status code  |
+| `.message`      | *str*            | The error message     |
+| `.raw_response` | *httpx.Response* | The raw HTTP response |
+| `.body`         | *str*            | The response content  |
+
+When custom error responses are specified for an operation, the SDK may also raise their associated exceptions. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `delete_api_async` method may raise the following exceptions:
+
+| Error Type      | Status Code | Content Type     |
+| --------------- | ----------- | ---------------- |
+| errors.Error    | 4XX         | application/json |
+| errors.SDKError | 5XX         | \*/\*            |
 
 ### Example
 
@@ -209,21 +281,21 @@ s = Speakeasy(
 
 res = None
 try:
-    res = s.events.get_workspace_events_by_target(request={
-    "target_id": "<value>",
-})
+    res = s.apis.delete_api(request={
+        "api_id": "<id>",
+        "version_id": "<id>",
+    })
+
+    if res is not None:
+        # handle response
+        pass
 
 except errors.Error as e:
-    # handle exception
+    # handle e.data: errors.ErrorData
     raise(e)
 except errors.SDKError as e:
     # handle exception
     raise(e)
-
-if res.cli_event_batch is not None:
-    # handle response
-    pass
-
 ```
 <!-- End Error Handling [errors] -->
 
@@ -236,9 +308,9 @@ if res.cli_event_batch is not None:
 
 You can override the default server globally by passing a server name to the `server: str` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
 
-| Name | Server | Variables |
-| ----- | ------ | --------- |
-| `prod` | `https://api.prod.speakeasyapi.dev` | None |
+| Name   | Server                              |
+| ------ | ----------------------------------- |
+| `prod` | `https://api.prod.speakeasyapi.dev` |
 
 #### Example
 
@@ -253,10 +325,9 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.apis.delete_api(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
 })
 
 if res is not None:
@@ -264,7 +335,6 @@ if res is not None:
     pass
 
 ```
-
 
 ### Override Server URL Per-Client
 
@@ -280,10 +350,9 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.apis.delete_api(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
 })
 
 if res is not None:
@@ -385,10 +454,11 @@ s = Speakeasy(async_client=CustomClient(httpx.AsyncClient()))
 
 This SDK supports the following security schemes globally:
 
-| Name        | Type        | Scheme      |
-| ----------- | ----------- | ----------- |
-| `api_key`   | apiKey      | API key     |
-| `bearer`    | http        | HTTP Bearer |
+| Name                   | Type   | Scheme      |
+| ---------------------- | ------ | ----------- |
+| `api_key`              | apiKey | API key     |
+| `bearer`               | http   | HTTP Bearer |
+| `workspace_identifier` | apiKey | API key     |
 
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```python
@@ -401,10 +471,9 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.apis.delete_api(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
 })
 
 if res is not None:
@@ -419,34 +488,29 @@ if res is not None:
 
 A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `workspaceID` to `"<value>"` at SDK initialization and then you do not have to pass the same value on calls to operations like `get_workspace`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `workspace_id` to `"<id>"` at SDK initialization and then you do not have to pass the same value on calls to operations like `get_access_token`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
 
 The following global parameter is available.
 
-| Name | Type | Required | Description |
-| ---- | ---- |:--------:| ----------- |
-| workspace_id | str |  | The workspace_id parameter. |
-
+| Name         | Type | Description                 |
+| ------------ | ---- | --------------------------- |
+| workspace_id | str  | The workspace_id parameter. |
 
 ### Example
 
 ```python
 from speakeasy_client_sdk_python import Speakeasy
-from speakeasy_client_sdk_python.models import shared
 
-s = Speakeasy(
-    security=shared.Security(
-        api_key="<YOUR_API_KEY_HERE>",
-    ),
-)
+s = Speakeasy()
 
+res = s.auth.get_access_token(request={
+    "workspace_id": "<id>",
+})
 
-res = s.workspaces.get_workspace()
-
-if res.workspace is not None:
+if res.access_token is not None:
     # handle response
     pass
 
@@ -470,10 +534,9 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.apis.delete_api(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
 },
     RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False))
 
@@ -496,10 +559,9 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.apis.delete_api(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
 })
 
 if res is not None:
@@ -529,14 +591,13 @@ s = Speakeasy(
     ),
 )
 
-
 res = s.schemas.register_schema(request={
-    "api_id": "<value>",
-    "version_id": "<value>",
+    "api_id": "<id>",
+    "version_id": "<id>",
     "request_body": {
         "file": {
-            "content": open("<file_path>", "rb"),
-            "file_name": "your_file_here",
+            "content": open("example.file", "rb"),
+            "file_name": "example.file",
         },
     },
 })
@@ -551,8 +612,9 @@ if res is not None:
 <!-- Start Debugging [debug] -->
 ## Debugging
 
-To emit debug logs for SDK requests and responses you can pass a logger object directly into your SDK object.
+You can setup your SDK to emit debug logs for SDK requests and responses.
 
+You can pass your own logger class directly into your SDK.
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 import logging

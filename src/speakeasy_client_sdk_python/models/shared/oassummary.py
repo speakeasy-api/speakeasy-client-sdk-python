@@ -4,15 +4,16 @@ from __future__ import annotations
 from .oasinfo import OASInfo, OASInfoTypedDict
 from .oasoperation import OASOperation, OASOperationTypedDict
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import List, TypedDict
+from typing import List
+from typing_extensions import TypedDict
 
 
 class OASSummaryTypedDict(TypedDict):
     info: OASInfoTypedDict
     operations: List[OASOperationTypedDict]
-    
+
 
 class OASSummary(BaseModel):
     info: OASInfo
+
     operations: List[OASOperation]
-    

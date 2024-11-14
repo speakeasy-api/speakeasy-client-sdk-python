@@ -3,12 +3,12 @@
 from __future__ import annotations
 from datetime import datetime
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import TypedDict
+from typing_extensions import TypedDict
 
 
 class UnboundedRequestTypedDict(TypedDict):
     r"""An UnboundedRequest represents the HAR content capture by Speakeasy when logging a request."""
-    
+
     created_at: datetime
     r"""Creation timestamp."""
     har: str
@@ -19,19 +19,22 @@ class UnboundedRequestTypedDict(TypedDict):
     r"""The ID of this request."""
     workspace_id: str
     r"""The workspace ID this request was made to."""
-    
+
 
 class UnboundedRequest(BaseModel):
     r"""An UnboundedRequest represents the HAR content capture by Speakeasy when logging a request."""
-    
+
     created_at: datetime
     r"""Creation timestamp."""
+
     har: str
     r"""The HAR content of the request."""
+
     har_size_bytes: int
     r"""The size of the HAR content in bytes."""
+
     request_id: str
     r"""The ID of this request."""
+
     workspace_id: str
     r"""The workspace ID this request was made to."""
-    

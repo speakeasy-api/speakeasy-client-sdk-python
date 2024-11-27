@@ -1,4 +1,11 @@
-# speakeasy-client-sdk-python
+<div align="center">
+    <img width="300px" src="logo.png">
+    <h1>Speakeasy Python SDK</h1>
+    <p><strong>Best in class API tooling for robust SDKs, API docs, Terraform providers and end-to-end testing.</strong></p>
+    <p>Developer-friendly & type-safe Python SDK specifically catered to leverage the <strong>Speakeasy</strong> API.</p>
+    <a href="https://speakeasy.com/docs"><img src="https://img.shields.io/static/v1?label=Docs&message=API Ref&color=4c2cec&style=for-the-badge" /></a>
+    <a href="https://opensource.org/license/apache-2-0"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=for-the-badge" /></a>
+</div>
 
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation

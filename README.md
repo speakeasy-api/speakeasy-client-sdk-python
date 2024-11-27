@@ -1,4 +1,15 @@
-# speakeasy-client-sdk-python
+<div align="center">
+    <picture>
+	<source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/5dbef0ff-ee5f-4e8f-8abd-9f57e3310cb9">
+	<source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/38058088-ac68-443e-9d63-94200c201759">
+	<img width="400px" src="https://github.com/user-attachments/assets/5dbef0ff-ee5f-4e8f-8abd-9f57e3310cb9#gh-light-mode-only" alt="Speakeasy">
+    </picture>
+    <h1>Speakeasy Python SDK</h1>
+    <p><strong>The platform to build, test, document and distribute APIs to your users ❤️ Building really high quality APIs is hard. Speakeasy is a set of OpenAPI tools to make it easier.</strong></p>
+    <p>Developer-friendly & type-safe Python SDK specifically catered to leverage the <strong>Speakeasy</strong> API.</p>
+    <a href="https://speakeasy.com/docs"><img src="https://custom-icon-badges.demolab.com/badge/-Read%20The%20Docs-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
+    <a href="https://join.slack.com/t/speakeasy-dev/shared_invite/zt-1cwb3flxz-lS5SyZxAsF_3NOq5xc8Cjw"><img src="https://img.shields.io/static/v1?label=Slack&message=Join&color=7289da&style=for-the-badge" /></a>
+</div>
 
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation

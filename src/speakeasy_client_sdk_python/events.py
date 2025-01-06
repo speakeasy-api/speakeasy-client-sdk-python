@@ -5,18 +5,23 @@ from speakeasy_client_sdk_python import utils
 from speakeasy_client_sdk_python._hooks import HookContext
 from speakeasy_client_sdk_python.models import errors, operations, shared
 from speakeasy_client_sdk_python.types import BaseModel, OptionalNullable, UNSET
-from typing import Any, List, Optional, Union, cast
+from typing import Any, List, Mapping, Optional, Union, cast
+
 
 class Events(BaseSDK):
-    r"""REST APIs for capturing event data"""
-    
-    
-    def get_workspace_events_by_target(
-        self, *,
-        request: Union[operations.GetWorkspaceEventsByTargetRequest, operations.GetWorkspaceEventsByTargetRequestTypedDict],
+    r"""REST APIs for managing events captured by a speakeasy binary (CLI, GitHub Action etc)"""
+
+    def get_events_by_target(
+        self,
+        *,
+        request: Union[
+            operations.GetWorkspaceEventsByTargetRequest,
+            operations.GetWorkspaceEventsByTargetRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.GetWorkspaceEventsByTargetResponse:
         r"""Load recent events for a particular workspace
 
@@ -24,22 +29,25 @@ class Events(BaseSDK):
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GetWorkspaceEventsByTargetRequest)
+            request = utils.unmarshal(
+                request, operations.GetWorkspaceEventsByTargetRequest
+            )
         request = cast(operations.GetWorkspaceEventsByTargetRequest, request)
-        
-        req = self.build_request(
+
+        req = self._build_request(
             method="GET",
-            path="/v1/workspace/{workspaceID}/events/targets/{targetID}/events",
+            path="/v1/workspace/{workspace_id}/events/targets/{target_id}/events",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -48,54 +56,72 @@ class Events(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             _globals=operations.GetWorkspaceEventsByTargetGlobals(
                 workspace_id=self.sdk_configuration.globals.workspace_id,
             ),
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="getWorkspaceEventsByTarget", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(
+                operation_id="getWorkspaceEventsByTarget",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
+
         data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetWorkspaceEventsByTargetResponse(cli_event_batch=utils.unmarshal_json(http_res.text, Optional[List[shared.CliEvent]]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
+            return operations.GetWorkspaceEventsByTargetResponse(
+                cli_event_batch=utils.unmarshal_json(
+                    http_res.text, Optional[List[shared.CliEvent]]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
         if utils.match_response(http_res, "4XX", "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
         if utils.match_response(http_res, "5XX", "application/json"):
             data = utils.unmarshal_json(http_res.text, errors.ErrorData)
             raise errors.Error(data=data)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
 
-    
-    
-    async def get_workspace_events_by_target_async(
-        self, *,
-        request: Union[operations.GetWorkspaceEventsByTargetRequest, operations.GetWorkspaceEventsByTargetRequestTypedDict],
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def get_events_by_target_async(
+        self,
+        *,
+        request: Union[
+            operations.GetWorkspaceEventsByTargetRequest,
+            operations.GetWorkspaceEventsByTargetRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.GetWorkspaceEventsByTargetResponse:
         r"""Load recent events for a particular workspace
 
@@ -103,22 +129,25 @@ class Events(BaseSDK):
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GetWorkspaceEventsByTargetRequest)
+            request = utils.unmarshal(
+                request, operations.GetWorkspaceEventsByTargetRequest
+            )
         request = cast(operations.GetWorkspaceEventsByTargetRequest, request)
-        
-        req = self.build_request(
+
+        req = self._build_request_async(
             method="GET",
-            path="/v1/workspace/{workspaceID}/events/targets/{targetID}/events",
+            path="/v1/workspace/{workspace_id}/events/targets/{target_id}/events",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -127,54 +156,72 @@ class Events(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             _globals=operations.GetWorkspaceEventsByTargetGlobals(
                 workspace_id=self.sdk_configuration.globals.workspace_id,
             ),
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="getWorkspaceEventsByTarget", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(
+                operation_id="getWorkspaceEventsByTarget",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
+
         data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetWorkspaceEventsByTargetResponse(cli_event_batch=utils.unmarshal_json(http_res.text, Optional[List[shared.CliEvent]]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
+            return operations.GetWorkspaceEventsByTargetResponse(
+                cli_event_batch=utils.unmarshal_json(
+                    http_res.text, Optional[List[shared.CliEvent]]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
         if utils.match_response(http_res, "4XX", "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
         if utils.match_response(http_res, "5XX", "application/json"):
             data = utils.unmarshal_json(http_res.text, errors.ErrorData)
             raise errors.Error(data=data)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
 
-    
-    
-    def get_workspace_targets(
-        self, *,
-        request: Optional[Union[operations.GetWorkspaceTargetsRequest, operations.GetWorkspaceTargetsRequestTypedDict]] = None,
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def get_targets(
+        self,
+        *,
+        request: Union[
+            operations.GetWorkspaceTargetsRequest,
+            operations.GetWorkspaceTargetsRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.GetWorkspaceTargetsResponse:
         r"""Load targets for a particular workspace
 
@@ -182,78 +229,94 @@ class Events(BaseSDK):
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWorkspaceTargetsRequest)
         request = cast(operations.GetWorkspaceTargetsRequest, request)
-        
-        req = self.build_request(
+
+        req = self._build_request(
             method="GET",
-            path="/v1/workspace/{workspaceID}/events/targets",
+            path="/v1/workspace/events/targets",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
             request_body_required=False,
-            request_has_path_params=True,
+            request_has_path_params=False,
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
-            _globals=operations.GetWorkspaceTargetsGlobals(
-                workspace_id=self.sdk_configuration.globals.workspace_id,
-            ),
+            http_headers=http_headers,
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="getWorkspaceTargets", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(
+                operation_id="getWorkspaceTargets",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
+
         data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetWorkspaceTargetsResponse(target_sdk_list=utils.unmarshal_json(http_res.text, Optional[List[shared.TargetSDK]]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
+            return operations.GetWorkspaceTargetsResponse(
+                target_sdk_list=utils.unmarshal_json(
+                    http_res.text, Optional[List[shared.TargetSDK]]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
         if utils.match_response(http_res, "4XX", "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
         if utils.match_response(http_res, "5XX", "application/json"):
             data = utils.unmarshal_json(http_res.text, errors.ErrorData)
             raise errors.Error(data=data)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
 
-    
-    
-    async def get_workspace_targets_async(
-        self, *,
-        request: Optional[Union[operations.GetWorkspaceTargetsRequest, operations.GetWorkspaceTargetsRequestTypedDict]] = None,
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def get_targets_async(
+        self,
+        *,
+        request: Union[
+            operations.GetWorkspaceTargetsRequest,
+            operations.GetWorkspaceTargetsRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.GetWorkspaceTargetsResponse:
         r"""Load targets for a particular workspace
 
@@ -261,22 +324,120 @@ class Events(BaseSDK):
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWorkspaceTargetsRequest)
         request = cast(operations.GetWorkspaceTargetsRequest, request)
-        
-        req = self.build_request(
+
+        req = self._build_request_async(
             method="GET",
-            path="/v1/workspace/{workspaceID}/events/targets",
+            path="/v1/workspace/events/targets",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="getWorkspaceTargets",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetWorkspaceTargetsResponse(
+                target_sdk_list=utils.unmarshal_json(
+                    http_res.text, Optional[List[shared.TargetSDK]]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+        if utils.match_response(http_res, "5XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def get_targets_deprecated(
+        self,
+        *,
+        request: Union[
+            operations.GetWorkspaceTargetsDeprecatedRequest,
+            operations.GetWorkspaceTargetsDeprecatedRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetWorkspaceTargetsDeprecatedResponse:
+        r"""Load targets for a particular workspace
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.GetWorkspaceTargetsDeprecatedRequest
+            )
+        request = cast(operations.GetWorkspaceTargetsDeprecatedRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/v1/workspace/{workspace_id}/events/targets",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -285,54 +446,172 @@ class Events(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
-            _globals=operations.GetWorkspaceTargetsGlobals(
+            http_headers=http_headers,
+            _globals=operations.GetWorkspaceTargetsDeprecatedGlobals(
                 workspace_id=self.sdk_configuration.globals.workspace_id,
             ),
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="getWorkspaceTargets", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="getWorkspaceTargetsDeprecated",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
+
         data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetWorkspaceTargetsResponse(target_sdk_list=utils.unmarshal_json(http_res.text, Optional[List[shared.TargetSDK]]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
+            return operations.GetWorkspaceTargetsDeprecatedResponse(
+                target_sdk_list=utils.unmarshal_json(
+                    http_res.text, Optional[List[shared.TargetSDK]]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
         if utils.match_response(http_res, "4XX", "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
         if utils.match_response(http_res, "5XX", "application/json"):
             data = utils.unmarshal_json(http_res.text, errors.ErrorData)
             raise errors.Error(data=data)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
 
-    
-    
-    def post_workspace_events(
-        self, *,
-        request: Union[operations.PostWorkspaceEventsRequest, operations.PostWorkspaceEventsRequestTypedDict],
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def get_targets_deprecated_async(
+        self,
+        *,
+        request: Union[
+            operations.GetWorkspaceTargetsDeprecatedRequest,
+            operations.GetWorkspaceTargetsDeprecatedRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetWorkspaceTargetsDeprecatedResponse:
+        r"""Load targets for a particular workspace
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.GetWorkspaceTargetsDeprecatedRequest
+            )
+        request = cast(operations.GetWorkspaceTargetsDeprecatedRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/v1/workspace/{workspace_id}/events/targets",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            _globals=operations.GetWorkspaceTargetsDeprecatedGlobals(
+                workspace_id=self.sdk_configuration.globals.workspace_id,
+            ),
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="getWorkspaceTargetsDeprecated",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetWorkspaceTargetsDeprecatedResponse(
+                target_sdk_list=utils.unmarshal_json(
+                    http_res.text, Optional[List[shared.TargetSDK]]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+        if utils.match_response(http_res, "5XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def post(
+        self,
+        *,
+        request: Union[
+            operations.PostWorkspaceEventsRequest,
+            operations.PostWorkspaceEventsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.PostWorkspaceEventsResponse:
         r"""Post events for a specific workspace
 
@@ -342,22 +621,23 @@ class Events(BaseSDK):
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.PostWorkspaceEventsRequest)
         request = cast(operations.PostWorkspaceEventsRequest, request)
-        
-        req = self.build_request(
+
+        req = self._build_request(
             method="POST",
-            path="/v1/workspace/{workspaceID}/events",
+            path="/v1/workspace/{workspace_id}/events",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -366,56 +646,76 @@ class Events(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             _globals=operations.PostWorkspaceEventsGlobals(
                 workspace_id=self.sdk_configuration.globals.workspace_id,
             ),
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(request.request_body, False, False, "json", List[shared.CliEvent]),
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body, False, False, "json", List[shared.CliEvent]
+            ),
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
             else:
-                retries = utils.RetryConfig("backoff", utils.BackoffStrategy(100, 2000, 1.5, 60000), True)
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(100, 2000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "408",
-                "500",
-                "502",
-                "503"
-            ])                
-        
+            retry_config = (retries, ["408", "500", "502", "503"])
+
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="postWorkspaceEvents", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(
+                operation_id="postWorkspaceEvents",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
+
         data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
-            return operations.PostWorkspaceEventsResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
+            return operations.PostWorkspaceEventsResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
         if utils.match_response(http_res, "4XX", "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
         if utils.match_response(http_res, "5XX", "application/json"):
             data = utils.unmarshal_json(http_res.text, errors.ErrorData)
             raise errors.Error(data=data)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
 
-    
-    
-    async def post_workspace_events_async(
-        self, *,
-        request: Union[operations.PostWorkspaceEventsRequest, operations.PostWorkspaceEventsRequestTypedDict],
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def post_async(
+        self,
+        *,
+        request: Union[
+            operations.PostWorkspaceEventsRequest,
+            operations.PostWorkspaceEventsRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.PostWorkspaceEventsResponse:
         r"""Post events for a specific workspace
 
@@ -425,22 +725,23 @@ class Events(BaseSDK):
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.PostWorkspaceEventsRequest)
         request = cast(operations.PostWorkspaceEventsRequest, request)
-        
-        req = self.build_request(
+
+        req = self._build_request_async(
             method="POST",
-            path="/v1/workspace/{workspaceID}/events",
+            path="/v1/workspace/{workspace_id}/events",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -449,56 +750,76 @@ class Events(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             _globals=operations.PostWorkspaceEventsGlobals(
                 workspace_id=self.sdk_configuration.globals.workspace_id,
             ),
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(request.request_body, False, False, "json", List[shared.CliEvent]),
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request.request_body, False, False, "json", List[shared.CliEvent]
+            ),
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
             else:
-                retries = utils.RetryConfig("backoff", utils.BackoffStrategy(100, 2000, 1.5, 60000), True)
+                retries = utils.RetryConfig(
+                    "backoff", utils.BackoffStrategy(100, 2000, 1.5, 60000), True
+                )
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "408",
-                "500",
-                "502",
-                "503"
-            ])                
-        
+            retry_config = (retries, ["408", "500", "502", "503"])
+
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="postWorkspaceEvents", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(
+                operation_id="postWorkspaceEvents",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
+
         data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
-            return operations.PostWorkspaceEventsResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
+            return operations.PostWorkspaceEventsResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
         if utils.match_response(http_res, "4XX", "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
         if utils.match_response(http_res, "5XX", "application/json"):
             data = utils.unmarshal_json(http_res.text, errors.ErrorData)
             raise errors.Error(data=data)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
 
-    
-    
-    def search_workspace_events(
-        self, *,
-        request: Optional[Union[operations.SearchWorkspaceEventsRequest, operations.SearchWorkspaceEventsRequestTypedDict]] = None,
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def search(
+        self,
+        *,
+        request: Union[
+            operations.SearchWorkspaceEventsRequest,
+            operations.SearchWorkspaceEventsRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.SearchWorkspaceEventsResponse:
         r"""Search events for a particular workspace by any field
 
@@ -506,22 +827,23 @@ class Events(BaseSDK):
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.SearchWorkspaceEventsRequest)
         request = cast(operations.SearchWorkspaceEventsRequest, request)
-        
-        req = self.build_request(
+
+        req = self._build_request(
             method="GET",
-            path="/v1/workspace/{workspaceID}/events",
+            path="/v1/workspace/{workspace_id}/events",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -530,54 +852,72 @@ class Events(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             _globals=operations.SearchWorkspaceEventsGlobals(
                 workspace_id=self.sdk_configuration.globals.workspace_id,
             ),
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="searchWorkspaceEvents", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(
+                operation_id="searchWorkspaceEvents",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
+
         data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.SearchWorkspaceEventsResponse(cli_event_batch=utils.unmarshal_json(http_res.text, Optional[List[shared.CliEvent]]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
+            return operations.SearchWorkspaceEventsResponse(
+                cli_event_batch=utils.unmarshal_json(
+                    http_res.text, Optional[List[shared.CliEvent]]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
         if utils.match_response(http_res, "4XX", "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
         if utils.match_response(http_res, "5XX", "application/json"):
             data = utils.unmarshal_json(http_res.text, errors.ErrorData)
             raise errors.Error(data=data)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
 
-    
-    
-    async def search_workspace_events_async(
-        self, *,
-        request: Optional[Union[operations.SearchWorkspaceEventsRequest, operations.SearchWorkspaceEventsRequestTypedDict]] = None,
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def search_async(
+        self,
+        *,
+        request: Union[
+            operations.SearchWorkspaceEventsRequest,
+            operations.SearchWorkspaceEventsRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.SearchWorkspaceEventsResponse:
         r"""Search events for a particular workspace by any field
 
@@ -585,22 +925,23 @@ class Events(BaseSDK):
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.SearchWorkspaceEventsRequest)
         request = cast(operations.SearchWorkspaceEventsRequest, request)
-        
-        req = self.build_request(
+
+        req = self._build_request_async(
             method="GET",
-            path="/v1/workspace/{workspaceID}/events",
+            path="/v1/workspace/{workspace_id}/events",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -609,44 +950,57 @@ class Events(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             _globals=operations.SearchWorkspaceEventsGlobals(
                 workspace_id=self.sdk_configuration.globals.workspace_id,
             ),
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="searchWorkspaceEvents", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(
+                operation_id="searchWorkspaceEvents",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
+
         data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
-            return operations.SearchWorkspaceEventsResponse(cli_event_batch=utils.unmarshal_json(http_res.text, Optional[List[shared.CliEvent]]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
+            return operations.SearchWorkspaceEventsResponse(
+                cli_event_batch=utils.unmarshal_json(
+                    http_res.text, Optional[List[shared.CliEvent]]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
         if utils.match_response(http_res, "4XX", "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
         if utils.match_response(http_res, "5XX", "application/json"):
             data = utils.unmarshal_json(http_res.text, errors.ErrorData)
             raise errors.Error(data=data)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
 
-    
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )

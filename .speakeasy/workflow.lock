@@ -1,26 +1,30 @@
-speakeasyVersion: 1.361.1
+speakeasyVersion: 1.462.2
 sources:
     speakeasy-openapi:
         sourceNamespace: speakeasy-openapi
-        sourceRevisionDigest: sha256:f9c9ffd7c550f43e427c2bfe5fdbbe55f91d3dae20a90063d7e430762d9152c5
-        sourceBlobDigest: sha256:be0a96c80997c1222c549aeb6f7f2b1a96a494e56f8df0c2dddad9a95a43b631
+        sourceRevisionDigest: sha256:79fa1cda10dbe045bf4d56fd367cebff8244f2cf789740c759e44ba91be16cef
+        sourceBlobDigest: sha256:3a6d2e7825969575182762eba53f1b78039986d5c80ff7644aa6faafd5ce4c69
         tags:
             - latest
-            - main
+            - speakeasy-sdk-regen-1736136609
+            - 0.4.0
 targets:
     speakeasy-client-sdk-python:
         source: speakeasy-openapi
         sourceNamespace: speakeasy-openapi
-        sourceRevisionDigest: sha256:f9c9ffd7c550f43e427c2bfe5fdbbe55f91d3dae20a90063d7e430762d9152c5
-        sourceBlobDigest: sha256:be0a96c80997c1222c549aeb6f7f2b1a96a494e56f8df0c2dddad9a95a43b631
-        outLocation: /github/workspace/repo
+        sourceRevisionDigest: sha256:79fa1cda10dbe045bf4d56fd367cebff8244f2cf789740c759e44ba91be16cef
+        sourceBlobDigest: sha256:3a6d2e7825969575182762eba53f1b78039986d5c80ff7644aa6faafd5ce4c69
+        codeSamplesNamespace: code-samples-python-speakeasy-client-sdk-python
+        codeSamplesRevisionDigest: sha256:91eef570ebdc3cfb58537d237f79b7e36c765d7fdd43e0a385f0ea4ede4f8289
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         speakeasy-openapi:
             inputs:
-                - location: https://docs.speakeasyapi.dev/openapi.yaml
+                - location: https://speakeasy.com/openapi.yaml
+            overlays:
+                - location: ./overlay.yaml
             registry:
                 location: registry.speakeasyapi.dev/speakeasy-self/speakeasy-self/speakeasy-openapi
     targets:
@@ -30,3 +34,7 @@ workflow:
             publish:
                 pypi:
                     token: $pypi_token
+            codeSamples:
+                output: codeSamples.yaml
+                registry:
+                    location: registry.speakeasyapi.dev/speakeasy-self/speakeasy-self/code-samples-python-speakeasy-client-sdk-python

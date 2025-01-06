@@ -4,18 +4,18 @@
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
-s = Speakeasy(
+with Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-)
+) as speakeasy:
 
+    res = speakeasy.artifacts.create_remote_source()
 
-res = s.apis.get_apis()
+    assert res is not None
 
-if res.apis is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res)
 ```
 
 </br>
@@ -28,15 +28,18 @@ from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
 async def main():
-    s = Speakeasy(
+    async with Speakeasy(
         security=shared.Security(
             api_key="<YOUR_API_KEY_HERE>",
         ),
-    )
-    res = await s.apis.get_apis_async()
-    if res.apis is not None:
-        # handle response
-        pass
+    ) as speakeasy:
+
+        res = await speakeasy.artifacts.create_remote_source_async()
+
+        assert res is not None
+
+        # Handle response
+        print(res)
 
 asyncio.run(main())
 ```

@@ -19,20 +19,20 @@ Shorten a URL.
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
-s = Speakeasy(
+with Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
-)
+) as speakeasy:
 
+    res = speakeasy.short_ur_ls.create(request={
+        "url": "https://probable-heating.com/",
+    })
 
-res = s.short_ur_ls.create(request={
-    "url": "http://limp-pastry.org",
-})
+    assert res.short_url is not None
 
-if res.short_url is not None:
-    # handle response
-    pass
+    # Handle response
+    print(res.short_url)
 
 ```
 
@@ -43,12 +43,12 @@ if res.short_url is not None:
 | `request`                                                                    | [operations.CreateRequestBody](../../models/operations/createrequestbody.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 | `retries`                                                                    | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)             | :heavy_minus_sign:                                                           | Configuration to override the default retry behavior of the client.          |
 
-
 ### Response
 
 **[operations.CreateResponse](../../models/operations/createresponse.md)**
+
 ### Errors
 
-| Error Object    | Status Code     | Content Type    |
+| Error Type      | Status Code     | Content Type    |
 | --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

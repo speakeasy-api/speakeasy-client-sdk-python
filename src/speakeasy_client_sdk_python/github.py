@@ -5,37 +5,44 @@ from speakeasy_client_sdk_python import utils
 from speakeasy_client_sdk_python._hooks import HookContext
 from speakeasy_client_sdk_python.models import errors, operations, shared
 from speakeasy_client_sdk_python.types import BaseModel, OptionalNullable, UNSET
-from typing import Optional, Union, cast
+from typing import Any, Mapping, Optional, Union, cast
+
 
 class Github(BaseSDK):
-    
-    
+    r"""REST APIs for managing the github integration"""
+
     def check_access(
-        self, *,
-        request: Union[operations.CheckAccessRequest, operations.CheckAccessRequestTypedDict],
+        self,
+        *,
+        request: Union[
+            operations.CheckGithubAccessRequest,
+            operations.CheckGithubAccessRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> operations.CheckAccessResponse:
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.CheckGithubAccessResponse:
         r"""
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.CheckAccessRequest)
-        request = cast(operations.CheckAccessRequest, request)
-        
-        req = self.build_request(
+            request = utils.unmarshal(request, operations.CheckGithubAccessRequest)
+        request = cast(operations.CheckGithubAccessRequest, request)
+
+        req = self._build_request(
             method="GET",
             path="/v1/github/check_access",
             base_url=base_url,
@@ -46,69 +53,87 @@ class Github(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
-        http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="checkAccess", oauth2_scopes=[], security_source=self.sdk_configuration.security),
-            request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
-        )
-        
-        if utils.match_response(http_res, "200", "*"):
-            return operations.CheckAccessResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        if utils.match_response(http_res, "default", "application/json"):
-            return operations.CheckAccessResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
 
-    
-    
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="checkGithubAccess",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "*"):
+            return operations.CheckGithubAccessResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
     async def check_access_async(
-        self, *,
-        request: Union[operations.CheckAccessRequest, operations.CheckAccessRequestTypedDict],
+        self,
+        *,
+        request: Union[
+            operations.CheckGithubAccessRequest,
+            operations.CheckGithubAccessRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> operations.CheckAccessResponse:
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.CheckGithubAccessResponse:
         r"""
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.CheckAccessRequest)
-        request = cast(operations.CheckAccessRequest, request)
-        
-        req = self.build_request(
+            request = utils.unmarshal(request, operations.CheckGithubAccessRequest)
+        request = cast(operations.CheckGithubAccessRequest, request)
+
+        req = self._build_request_async(
             method="GET",
             path="/v1/github/check_access",
             base_url=base_url,
@@ -119,69 +144,473 @@ class Github(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="checkAccess", oauth2_scopes=[], security_source=self.sdk_configuration.security),
-            request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
-        )
-        
-        if utils.match_response(http_res, "200", "*"):
-            return operations.CheckAccessResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        if utils.match_response(http_res, "default", "application/json"):
-            return operations.CheckAccessResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
 
-    
-    
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="checkGithubAccess",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "*"):
+            return operations.CheckGithubAccessResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def check_publishing_p_rs(
+        self,
+        *,
+        request: Union[
+            operations.GithubCheckPublishingPRsRequest,
+            operations.GithubCheckPublishingPRsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GithubCheckPublishingPRsResponse:
+        r"""
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.GithubCheckPublishingPRsRequest
+            )
+        request = cast(operations.GithubCheckPublishingPRsRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/v1/github/publishing_prs",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="githubCheckPublishingPRs",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "application/json"):
+            return operations.GithubCheckPublishingPRsResponse(
+                github_publishing_pr_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GithubPublishingPRResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def check_publishing_p_rs_async(
+        self,
+        *,
+        request: Union[
+            operations.GithubCheckPublishingPRsRequest,
+            operations.GithubCheckPublishingPRsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GithubCheckPublishingPRsResponse:
+        r"""
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.GithubCheckPublishingPRsRequest
+            )
+        request = cast(operations.GithubCheckPublishingPRsRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/v1/github/publishing_prs",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="githubCheckPublishingPRs",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "application/json"):
+            return operations.GithubCheckPublishingPRsResponse(
+                github_publishing_pr_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GithubPublishingPRResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def check_publishing_secrets(
+        self,
+        *,
+        request: Union[
+            operations.GithubCheckPublishingSecretsRequest,
+            operations.GithubCheckPublishingSecretsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GithubCheckPublishingSecretsResponse:
+        r"""
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.GithubCheckPublishingSecretsRequest
+            )
+        request = cast(operations.GithubCheckPublishingSecretsRequest, request)
+
+        req = self._build_request(
+            method="GET",
+            path="/v1/github/publishing_secrets",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="githubCheckPublishingSecrets",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "application/json"):
+            return operations.GithubCheckPublishingSecretsResponse(
+                github_missing_publishing_secrets_response=utils.unmarshal_json(
+                    http_res.text,
+                    Optional[shared.GithubMissingPublishingSecretsResponse],
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def check_publishing_secrets_async(
+        self,
+        *,
+        request: Union[
+            operations.GithubCheckPublishingSecretsRequest,
+            operations.GithubCheckPublishingSecretsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GithubCheckPublishingSecretsResponse:
+        r"""
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(
+                request, operations.GithubCheckPublishingSecretsRequest
+            )
+        request = cast(operations.GithubCheckPublishingSecretsRequest, request)
+
+        req = self._build_request_async(
+            method="GET",
+            path="/v1/github/publishing_secrets",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="githubCheckPublishingSecrets",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "application/json"):
+            return operations.GithubCheckPublishingSecretsResponse(
+                github_missing_publishing_secrets_response=utils.unmarshal_json(
+                    http_res.text,
+                    Optional[shared.GithubMissingPublishingSecretsResponse],
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
     def configure_code_samples(
-        self, *,
-        request: Union[shared.GithubConfigureCodeSamplesRequest, shared.GithubConfigureCodeSamplesRequestTypedDict],
+        self,
+        *,
+        request: Union[
+            shared.GithubConfigureCodeSamplesRequest,
+            shared.GithubConfigureCodeSamplesRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> operations.ConfigureCodeSamplesResponse:
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GithubConfigureCodeSamplesResponse:
         r"""
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.GithubConfigureCodeSamplesRequest)
         request = cast(shared.GithubConfigureCodeSamplesRequest, request)
-        
-        req = self.build_request(
+
+        req = self._build_request(
             method="POST",
             path="/v1/github/configure_code_samples",
             base_url=base_url,
@@ -192,70 +621,93 @@ class Github(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(request, False, False, "json", shared.GithubConfigureCodeSamplesRequest),
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request, False, False, "json", shared.GithubConfigureCodeSamplesRequest
+            ),
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
-        http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="configureCodeSamples", oauth2_scopes=[], security_source=self.sdk_configuration.security),
-            request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
-        )
-        
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.ConfigureCodeSamplesResponse(github_configure_code_samples_response=utils.unmarshal_json(http_res.text, Optional[shared.GithubConfigureCodeSamplesResponse]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        if utils.match_response(http_res, "default", "application/json"):
-            return operations.ConfigureCodeSamplesResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
 
-    
-    
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="githubConfigureCodeSamples",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "application/json"):
+            return operations.GithubConfigureCodeSamplesResponse(
+                github_configure_code_samples_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GithubConfigureCodeSamplesResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
     async def configure_code_samples_async(
-        self, *,
-        request: Union[shared.GithubConfigureCodeSamplesRequest, shared.GithubConfigureCodeSamplesRequestTypedDict],
+        self,
+        *,
+        request: Union[
+            shared.GithubConfigureCodeSamplesRequest,
+            shared.GithubConfigureCodeSamplesRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> operations.ConfigureCodeSamplesResponse:
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GithubConfigureCodeSamplesResponse:
         r"""
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.GithubConfigureCodeSamplesRequest)
         request = cast(shared.GithubConfigureCodeSamplesRequest, request)
-        
-        req = self.build_request(
+
+        req = self._build_request_async(
             method="POST",
             path="/v1/github/configure_code_samples",
             base_url=base_url,
@@ -266,70 +718,95 @@ class Github(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(request, False, False, "json", shared.GithubConfigureCodeSamplesRequest),
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request, False, False, "json", shared.GithubConfigureCodeSamplesRequest
+            ),
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="configureCodeSamples", oauth2_scopes=[], security_source=self.sdk_configuration.security),
-            request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
-        )
-        
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.ConfigureCodeSamplesResponse(github_configure_code_samples_response=utils.unmarshal_json(http_res.text, Optional[shared.GithubConfigureCodeSamplesResponse]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        if utils.match_response(http_res, "default", "application/json"):
-            return operations.ConfigureCodeSamplesResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
 
-    
-    
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="githubConfigureCodeSamples",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "application/json"):
+            return operations.GithubConfigureCodeSamplesResponse(
+                github_configure_code_samples_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GithubConfigureCodeSamplesResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
     def configure_mintlify_repo(
-        self, *,
-        request: Union[shared.GithubConfigureMintlifyRepoRequest, shared.GithubConfigureMintlifyRepoRequestTypedDict],
+        self,
+        *,
+        request: Union[
+            shared.GithubConfigureMintlifyRepoRequest,
+            shared.GithubConfigureMintlifyRepoRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> operations.ConfigureMintlifyRepoResponse:
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GithubConfigureMintlifyRepoResponse:
         r"""
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.GithubConfigureMintlifyRepoRequest)
+            request = utils.unmarshal(
+                request, shared.GithubConfigureMintlifyRepoRequest
+            )
         request = cast(shared.GithubConfigureMintlifyRepoRequest, request)
-        
-        req = self.build_request(
+
+        req = self._build_request(
             method="POST",
             path="/v1/github/configure_mintlify_repo",
             base_url=base_url,
@@ -340,70 +817,92 @@ class Github(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(request, False, False, "json", shared.GithubConfigureMintlifyRepoRequest),
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request, False, False, "json", shared.GithubConfigureMintlifyRepoRequest
+            ),
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
-        http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="configureMintlifyRepo", oauth2_scopes=[], security_source=self.sdk_configuration.security),
-            request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
-        )
-        
-        if utils.match_response(http_res, "200", "*"):
-            return operations.ConfigureMintlifyRepoResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        if utils.match_response(http_res, "default", "application/json"):
-            return operations.ConfigureMintlifyRepoResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
 
-    
-    
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="githubConfigureMintlifyRepo",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "*"):
+            return operations.GithubConfigureMintlifyRepoResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
     async def configure_mintlify_repo_async(
-        self, *,
-        request: Union[shared.GithubConfigureMintlifyRepoRequest, shared.GithubConfigureMintlifyRepoRequestTypedDict],
+        self,
+        *,
+        request: Union[
+            shared.GithubConfigureMintlifyRepoRequest,
+            shared.GithubConfigureMintlifyRepoRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> operations.ConfigureMintlifyRepoResponse:
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GithubConfigureMintlifyRepoResponse:
         r"""
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.GithubConfigureMintlifyRepoRequest)
+            request = utils.unmarshal(
+                request, shared.GithubConfigureMintlifyRepoRequest
+            )
         request = cast(shared.GithubConfigureMintlifyRepoRequest, request)
-        
-        req = self.build_request(
+
+        req = self._build_request_async(
             method="POST",
             path="/v1/github/configure_mintlify_repo",
             base_url=base_url,
@@ -414,70 +913,90 @@ class Github(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(request, False, False, "json", shared.GithubConfigureMintlifyRepoRequest),
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request, False, False, "json", shared.GithubConfigureMintlifyRepoRequest
+            ),
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="configureMintlifyRepo", oauth2_scopes=[], security_source=self.sdk_configuration.security),
-            request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
-        )
-        
-        if utils.match_response(http_res, "200", "*"):
-            return operations.ConfigureMintlifyRepoResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        if utils.match_response(http_res, "default", "application/json"):
-            return operations.ConfigureMintlifyRepoResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
 
-    
-    
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="githubConfigureMintlifyRepo",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "*"):
+            return operations.GithubConfigureMintlifyRepoResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
     def configure_target(
-        self, *,
-        request: Union[shared.GithubConfigureTargetRequest, shared.GithubConfigureTargetRequestTypedDict],
+        self,
+        *,
+        request: Union[
+            shared.GithubConfigureTargetRequest,
+            shared.GithubConfigureTargetRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> operations.ConfigureTargetResponse:
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GithubConfigureTargetResponse:
         r"""
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.GithubConfigureTargetRequest)
         request = cast(shared.GithubConfigureTargetRequest, request)
-        
-        req = self.build_request(
+
+        req = self._build_request(
             method="POST",
             path="/v1/github/configure_target",
             base_url=base_url,
@@ -488,70 +1007,90 @@ class Github(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(request, False, False, "json", shared.GithubConfigureTargetRequest),
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request, False, False, "json", shared.GithubConfigureTargetRequest
+            ),
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
-        http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="configureTarget", oauth2_scopes=[], security_source=self.sdk_configuration.security),
-            request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
-        )
-        
-        if utils.match_response(http_res, "200", "*"):
-            return operations.ConfigureTargetResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        if utils.match_response(http_res, "default", "application/json"):
-            return operations.ConfigureTargetResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
 
-    
-    
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="githubConfigureTarget",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "*"):
+            return operations.GithubConfigureTargetResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
     async def configure_target_async(
-        self, *,
-        request: Union[shared.GithubConfigureTargetRequest, shared.GithubConfigureTargetRequestTypedDict],
+        self,
+        *,
+        request: Union[
+            shared.GithubConfigureTargetRequest,
+            shared.GithubConfigureTargetRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> operations.ConfigureTargetResponse:
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GithubConfigureTargetResponse:
         r"""
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.GithubConfigureTargetRequest)
         request = cast(shared.GithubConfigureTargetRequest, request)
-        
-        req = self.build_request(
+
+        req = self._build_request_async(
             method="POST",
             path="/v1/github/configure_target",
             base_url=base_url,
@@ -562,216 +1101,90 @@ class Github(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(request, False, False, "json", shared.GithubConfigureTargetRequest),
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request, False, False, "json", shared.GithubConfigureTargetRequest
+            ),
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
         http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="configureTarget", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(
+                operation_id="githubConfigureTarget",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
-        if utils.match_response(http_res, "200", "*"):
-            return operations.ConfigureTargetResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        if utils.match_response(http_res, "default", "application/json"):
-            return operations.ConfigureTargetResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "*"):
+            return operations.GithubConfigureTargetResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
         content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
-
-    
-    
-    def fetch_publishing_p_rs(
-        self, *,
-        request: Union[operations.FetchPublishingPRsRequest, operations.FetchPublishingPRsRequestTypedDict],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-    ) -> operations.FetchPublishingPRsResponse:
-        r"""
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-        
-        if server_url is not None:
-            base_url = server_url
-        
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.FetchPublishingPRsRequest)
-        request = cast(operations.FetchPublishingPRsRequest, request)
-        
-        req = self.build_request(
-            method="GET",
-            path="/v1/github/publishing_prs",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
         )
-        
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
 
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
-        http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="fetchPublishingPRs", oauth2_scopes=[], security_source=self.sdk_configuration.security),
-            request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
-        )
-        
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.FetchPublishingPRsResponse(github_publishing_pr_response=utils.unmarshal_json(http_res.text, Optional[shared.GithubPublishingPRResponse]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        if utils.match_response(http_res, "default", "application/json"):
-            return operations.FetchPublishingPRsResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
-
-    
-    
-    async def fetch_publishing_p_rs_async(
-        self, *,
-        request: Union[operations.FetchPublishingPRsRequest, operations.FetchPublishingPRsRequestTypedDict],
-        retries: OptionalNullable[utils.RetryConfig] = UNSET,
-        server_url: Optional[str] = None,
-        timeout_ms: Optional[int] = None,
-    ) -> operations.FetchPublishingPRsResponse:
-        r"""
-        :param request: The request object to send.
-        :param retries: Override the default retry configuration for this method
-        :param server_url: Override the default server URL for this method
-        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
-        """
-        base_url = None
-        url_variables = None
-        if timeout_ms is None:
-            timeout_ms = self.sdk_configuration.timeout_ms
-        
-        if server_url is not None:
-            base_url = server_url
-        
-        if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.FetchPublishingPRsRequest)
-        request = cast(operations.FetchPublishingPRsRequest, request)
-        
-        req = self.build_request(
-            method="GET",
-            path="/v1/github/publishing_prs",
-            base_url=base_url,
-            url_variables=url_variables,
-            request=request,
-            request_body_required=False,
-            request_has_path_params=False,
-            request_has_query_params=True,
-            user_agent_header="user-agent",
-            accept_header_value="application/json",
-            security=self.sdk_configuration.security,
-            timeout_ms=timeout_ms,
-        )
-        
-        if retries == UNSET:
-            if self.sdk_configuration.retry_config is not UNSET:
-                retries = self.sdk_configuration.retry_config
-
-        retry_config = None
-        if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="fetchPublishingPRs", oauth2_scopes=[], security_source=self.sdk_configuration.security),
-            request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
-        )
-        
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.FetchPublishingPRsResponse(github_publishing_pr_response=utils.unmarshal_json(http_res.text, Optional[shared.GithubPublishingPRResponse]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        if utils.match_response(http_res, "default", "application/json"):
-            return operations.FetchPublishingPRsResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
-
-    
-    
     def get_action(
-        self, *,
-        request: Union[operations.GetActionRequest, operations.GetActionRequestTypedDict],
+        self,
+        *,
+        request: Union[
+            operations.GetGitHubActionRequest,
+            operations.GetGitHubActionRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> operations.GetActionResponse:
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetGitHubActionResponse:
         r"""
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GetActionRequest)
-        request = cast(operations.GetActionRequest, request)
-        
-        req = self.build_request(
+            request = utils.unmarshal(request, operations.GetGitHubActionRequest)
+        request = cast(operations.GetGitHubActionRequest, request)
+
+        req = self._build_request(
             method="GET",
             path="/v1/github/action",
             base_url=base_url,
@@ -782,69 +1195,90 @@ class Github(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
-        http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="getAction", oauth2_scopes=[], security_source=self.sdk_configuration.security),
-            request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
-        )
-        
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetActionResponse(github_get_action_response=utils.unmarshal_json(http_res.text, Optional[shared.GithubGetActionResponse]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        if utils.match_response(http_res, "default", "application/json"):
-            return operations.GetActionResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
 
-    
-    
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="getGitHubAction",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "application/json"):
+            return operations.GetGitHubActionResponse(
+                github_get_action_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GithubGetActionResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
     async def get_action_async(
-        self, *,
-        request: Union[operations.GetActionRequest, operations.GetActionRequestTypedDict],
+        self,
+        *,
+        request: Union[
+            operations.GetGitHubActionRequest,
+            operations.GetGitHubActionRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> operations.GetActionResponse:
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetGitHubActionResponse:
         r"""
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GetActionRequest)
-        request = cast(operations.GetActionRequest, request)
-        
-        req = self.build_request(
+            request = utils.unmarshal(request, operations.GetGitHubActionRequest)
+        request = cast(operations.GetGitHubActionRequest, request)
+
+        req = self._build_request_async(
             method="GET",
             path="/v1/github/action",
             base_url=base_url,
@@ -855,71 +1289,92 @@ class Github(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="getAction", oauth2_scopes=[], security_source=self.sdk_configuration.security),
-            request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
-        )
-        
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.GetActionResponse(github_get_action_response=utils.unmarshal_json(http_res.text, Optional[shared.GithubGetActionResponse]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        if utils.match_response(http_res, "default", "application/json"):
-            return operations.GetActionResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
 
-    
-    
-    def github_check_publishing_secrets(
-        self, *,
-        request: Union[operations.GithubCheckPublishingSecretsRequest, operations.GithubCheckPublishingSecretsRequestTypedDict],
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="getGitHubAction",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "application/json"):
+            return operations.GetGitHubActionResponse(
+                github_get_action_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GithubGetActionResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def get_setup(
+        self,
+        *,
+        request: Union[
+            operations.GetGithubSetupStateRequest,
+            operations.GetGithubSetupStateRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> operations.GithubCheckPublishingSecretsResponse:
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetGithubSetupStateResponse:
         r"""
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GithubCheckPublishingSecretsRequest)
-        request = cast(operations.GithubCheckPublishingSecretsRequest, request)
-        
-        req = self.build_request(
+            request = utils.unmarshal(request, operations.GetGithubSetupStateRequest)
+        request = cast(operations.GetGithubSetupStateRequest, request)
+
+        req = self._build_request(
             method="GET",
-            path="/v1/github/publishing_secrets",
+            path="/v1/github/setup",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -928,71 +1383,92 @@ class Github(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="githubCheckPublishingSecrets", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(
+                operation_id="getGithubSetupState",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.GithubCheckPublishingSecretsResponse(github_missing_publishing_secrets_response=utils.unmarshal_json(http_res.text, Optional[shared.GithubMissingPublishingSecretsResponse]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        if utils.match_response(http_res, "default", "application/json"):
-            return operations.GithubCheckPublishingSecretsResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
 
-    
-    
-    async def github_check_publishing_secrets_async(
-        self, *,
-        request: Union[operations.GithubCheckPublishingSecretsRequest, operations.GithubCheckPublishingSecretsRequestTypedDict],
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "application/json"):
+            return operations.GetGithubSetupStateResponse(
+                github_setup_state_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GithubSetupStateResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def get_setup_async(
+        self,
+        *,
+        request: Union[
+            operations.GetGithubSetupStateRequest,
+            operations.GetGithubSetupStateRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> operations.GithubCheckPublishingSecretsResponse:
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetGithubSetupStateResponse:
         r"""
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, operations.GithubCheckPublishingSecretsRequest)
-        request = cast(operations.GithubCheckPublishingSecretsRequest, request)
-        
-        req = self.build_request(
+            request = utils.unmarshal(request, operations.GetGithubSetupStateRequest)
+        request = cast(operations.GetGithubSetupStateRequest, request)
+
+        req = self._build_request_async(
             method="GET",
-            path="/v1/github/publishing_secrets",
+            path="/v1/github/setup",
             base_url=base_url,
             url_variables=url_variables,
             request=request,
@@ -1001,69 +1477,274 @@ class Github(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="githubCheckPublishingSecrets", oauth2_scopes=[], security_source=self.sdk_configuration.security),
-            request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
-        )
-        
-        if utils.match_response(http_res, "200", "application/json"):
-            return operations.GithubCheckPublishingSecretsResponse(github_missing_publishing_secrets_response=utils.unmarshal_json(http_res.text, Optional[shared.GithubMissingPublishingSecretsResponse]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        if utils.match_response(http_res, "default", "application/json"):
-            return operations.GithubCheckPublishingSecretsResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
 
-    
-    
-    def github_store_publishing_secrets(
-        self, *,
-        request: Union[shared.GithubStorePublishingSecretsRequest, shared.GithubStorePublishingSecretsRequestTypedDict],
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="getGithubSetupState",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "application/json"):
+            return operations.GetGithubSetupStateResponse(
+                github_setup_state_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.GithubSetupStateResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def link_github(
+        self,
+        *,
+        request: Union[
+            operations.LinkGithubAccessRequest,
+            operations.LinkGithubAccessRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.LinkGithubAccessResponse:
+        r"""
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.LinkGithubAccessRequest)
+        request = cast(operations.LinkGithubAccessRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/v1/github/link",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="linkGithubAccess",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "*"):
+            return operations.LinkGithubAccessResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def link_github_async(
+        self,
+        *,
+        request: Union[
+            operations.LinkGithubAccessRequest,
+            operations.LinkGithubAccessRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.LinkGithubAccessResponse:
+        r"""
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.LinkGithubAccessRequest)
+        request = cast(operations.LinkGithubAccessRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/v1/github/link",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="linkGithubAccess",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "*"):
+            return operations.LinkGithubAccessResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def store_publishing_secrets(
+        self,
+        *,
+        request: Union[
+            shared.GithubStorePublishingSecretsRequest,
+            shared.GithubStorePublishingSecretsRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.GithubStorePublishingSecretsResponse:
         r"""
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.GithubStorePublishingSecretsRequest)
+            request = utils.unmarshal(
+                request, shared.GithubStorePublishingSecretsRequest
+            )
         request = cast(shared.GithubStorePublishingSecretsRequest, request)
-        
-        req = self.build_request(
+
+        req = self._build_request(
             method="POST",
             path="/v1/github/publishing_secrets",
             base_url=base_url,
@@ -1074,70 +1755,96 @@ class Github(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(request, False, False, "json", shared.GithubStorePublishingSecretsRequest),
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request,
+                False,
+                False,
+                "json",
+                shared.GithubStorePublishingSecretsRequest,
+            ),
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
-        http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="githubStorePublishingSecrets", oauth2_scopes=[], security_source=self.sdk_configuration.security),
-            request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
-        )
-        
-        if utils.match_response(http_res, "200", "*"):
-            return operations.GithubStorePublishingSecretsResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        if utils.match_response(http_res, "default", "application/json"):
-            return operations.GithubStorePublishingSecretsResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
 
-    
-    
-    async def github_store_publishing_secrets_async(
-        self, *,
-        request: Union[shared.GithubStorePublishingSecretsRequest, shared.GithubStorePublishingSecretsRequestTypedDict],
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                operation_id="githubStorePublishingSecrets",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "*"):
+            return operations.GithubStorePublishingSecretsResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def store_publishing_secrets_async(
+        self,
+        *,
+        request: Union[
+            shared.GithubStorePublishingSecretsRequest,
+            shared.GithubStorePublishingSecretsRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.GithubStorePublishingSecretsResponse:
         r"""
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
-            request = utils.unmarshal(request, shared.GithubStorePublishingSecretsRequest)
+            request = utils.unmarshal(
+                request, shared.GithubStorePublishingSecretsRequest
+            )
         request = cast(shared.GithubStorePublishingSecretsRequest, request)
-        
-        req = self.build_request(
+
+        req = self._build_request_async(
             method="POST",
             path="/v1/github/publishing_secrets",
             base_url=base_url,
@@ -1148,70 +1855,94 @@ class Github(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(request, False, False, "json", shared.GithubStorePublishingSecretsRequest),
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request,
+                False,
+                False,
+                "json",
+                shared.GithubStorePublishingSecretsRequest,
+            ),
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="githubStorePublishingSecrets", oauth2_scopes=[], security_source=self.sdk_configuration.security),
-            request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
-        )
-        
-        if utils.match_response(http_res, "200", "*"):
-            return operations.GithubStorePublishingSecretsResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        if utils.match_response(http_res, "default", "application/json"):
-            return operations.GithubStorePublishingSecretsResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
 
-    
-    
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="githubStorePublishingSecrets",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "*"):
+            return operations.GithubStorePublishingSecretsResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
     def trigger_action(
-        self, *,
-        request: Union[shared.GithubTriggerActionRequest, shared.GithubTriggerActionRequestTypedDict],
+        self,
+        *,
+        request: Union[
+            shared.GithubTriggerActionRequest,
+            shared.GithubTriggerActionRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> operations.TriggerActionResponse:
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GithubTriggerActionResponse:
         r"""
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.GithubTriggerActionRequest)
         request = cast(shared.GithubTriggerActionRequest, request)
-        
-        req = self.build_request(
+
+        req = self._build_request(
             method="POST",
             path="/v1/github/trigger_action",
             base_url=base_url,
@@ -1222,70 +1953,90 @@ class Github(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(request, False, False, "json", shared.GithubTriggerActionRequest),
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request, False, False, "json", shared.GithubTriggerActionRequest
+            ),
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
         http_res = self.do_request(
-            hook_ctx=HookContext(operation_id="triggerAction", oauth2_scopes=[], security_source=self.sdk_configuration.security),
+            hook_ctx=HookContext(
+                operation_id="githubTriggerAction",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
             request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
         )
-        
-        if utils.match_response(http_res, "200", "*"):
-            return operations.TriggerActionResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        if utils.match_response(http_res, "default", "application/json"):
-            return operations.TriggerActionResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
 
-    
-    
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "*"):
+            return operations.GithubTriggerActionResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
     async def trigger_action_async(
-        self, *,
-        request: Union[shared.GithubTriggerActionRequest, shared.GithubTriggerActionRequestTypedDict],
+        self,
+        *,
+        request: Union[
+            shared.GithubTriggerActionRequest,
+            shared.GithubTriggerActionRequestTypedDict,
+        ],
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
-    ) -> operations.TriggerActionResponse:
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GithubTriggerActionResponse:
         r"""
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
         """
         base_url = None
         url_variables = None
         if timeout_ms is None:
             timeout_ms = self.sdk_configuration.timeout_ms
-        
+
         if server_url is not None:
             base_url = server_url
-        
+
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.GithubTriggerActionRequest)
         request = cast(shared.GithubTriggerActionRequest, request)
-        
-        req = self.build_request(
+
+        req = self._build_request_async(
             method="POST",
             path="/v1/github/trigger_action",
             base_url=base_url,
@@ -1296,40 +2047,54 @@ class Github(BaseSDK):
             request_has_query_params=True,
             user_agent_header="user-agent",
             accept_header_value="application/json",
+            http_headers=http_headers,
             security=self.sdk_configuration.security,
-            get_serialized_body=lambda: utils.serialize_request_body(request, False, False, "json", shared.GithubTriggerActionRequest),
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request, False, False, "json", shared.GithubTriggerActionRequest
+            ),
             timeout_ms=timeout_ms,
         )
-        
+
         if retries == UNSET:
             if self.sdk_configuration.retry_config is not UNSET:
                 retries = self.sdk_configuration.retry_config
 
         retry_config = None
         if isinstance(retries, utils.RetryConfig):
-            retry_config = (retries, [
-                "429",
-                "500",
-                "502",
-                "503",
-                "504"
-            ])                
-        
-        http_res = await self.do_request_async(
-            hook_ctx=HookContext(operation_id="triggerAction", oauth2_scopes=[], security_source=self.sdk_configuration.security),
-            request=req,
-            error_status_codes=["4XX","5XX"],
-            retry_config=retry_config
-        )
-        
-        if utils.match_response(http_res, "200", "*"):
-            return operations.TriggerActionResponse(status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        if utils.match_response(http_res, ["4XX","5XX"], "*"):
-            raise errors.SDKError("API error occurred", http_res.status_code, http_res.text, http_res)
-        if utils.match_response(http_res, "default", "application/json"):
-            return operations.TriggerActionResponse(error=utils.unmarshal_json(http_res.text, Optional[errors.Error]), status_code=http_res.status_code, content_type=http_res.headers.get("Content-Type") or "", raw_response=http_res)
-        
-        content_type = http_res.headers.get("Content-Type")
-        raise errors.SDKError(f"Unexpected response received (code: {http_res.status_code}, type: {content_type})", http_res.status_code, http_res.text, http_res)
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
 
-    
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                operation_id="githubTriggerAction",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        data: Any = None
+        if utils.match_response(http_res, "2XX", "*"):
+            return operations.GithubTriggerActionResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )

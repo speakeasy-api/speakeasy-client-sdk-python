@@ -1,0 +1,10 @@
+# GetCodeSamplesRequest
+
+
+## Fields
+
+| Field                                                                                                  | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `registry_url`                                                                                         | *str*                                                                                                  | :heavy_check_mark:                                                                                     | The registry URL from which to retrieve the snippets. E.g. https://spec.speakeasy.com/org/ws/my-source |
+| `operation_ids`                                                                                        | List[*str*]                                                                                            | :heavy_minus_sign:                                                                                     | N/A                                                                                                    |
+| `languages`                                                                                            | List[*str*]                                                                                            | :heavy_minus_sign:                                                                                     | N/A                                                                                                    |

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: 7e5374ccd8317cf07089c151d486221b
-  docVersion: 0.4.0 .
-  speakeasyVersion: 1.361.1
-  generationVersion: 2.393.4
-  releaseVersion: 7.0.0-rc.1
-  configChecksum: 352cb880812185e4b20ae9e7ae20962a
+  docChecksum: 6c6e24cc570ee7f26269ffaf57ab867a
+  docVersion: 0.4.0
+  speakeasyVersion: 1.462.2
+  generationVersion: 2.486.1
+  releaseVersion: 7.0.0-rc.2
+  configChecksum: 07992011caf9f99ff590ca4c58d854c1
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -15,56 +15,408 @@ features:
   python:
     acceptHeaders: 3.0.0
     additionalDependencies: 1.0.0
-    core: 5.3.7
+    core: 5.7.4
     defaultEnabledRetries: 0.2.0
-    deprecations: 3.0.0
+    deprecations: 3.0.1
     downloadStreams: 1.0.1
-    envVarSecurityUsage: 0.3.1
-    examples: 3.0.0
+    enumUnions: 0.1.0
+    envVarSecurityUsage: 0.3.2
     globalSecurity: 3.0.2
     globalSecurityCallbacks: 1.0.0
-    globalServerURLs: 3.0.0
+    globalServerURLs: 3.1.0
     globals: 3.0.0
-    inputOutputModels: 3.0.0
     multipartFileContentType: 1.0.0
+    nameOverrides: 3.0.1
     nullables: 1.0.0
     openEnums: 1.0.0
-    responseFormat: 1.0.0
-    retries: 3.0.0
+    responseFormat: 1.0.1
+    retries: 3.0.2
     sdkHooks: 1.0.0
-    serverEventsSentinels: 0.1.0
     serverIDs: 3.0.0
     uploadStreams: 1.0.0
 generatedFiles:
-  - src/speakeasy_client_sdk_python/sdkconfiguration.py
-  - src/speakeasy_client_sdk_python/apis.py
-  - src/speakeasy_client_sdk_python/apiendpoints.py
-  - src/speakeasy_client_sdk_python/metadata.py
-  - src/speakeasy_client_sdk_python/schemas.py
-  - src/speakeasy_client_sdk_python/artifacts.py
-  - src/speakeasy_client_sdk_python/auth.py
-  - src/speakeasy_client_sdk_python/requests.py
-  - src/speakeasy_client_sdk_python/github.py
-  - src/speakeasy_client_sdk_python/organizations.py
-  - src/speakeasy_client_sdk_python/reports.py
-  - src/speakeasy_client_sdk_python/shorturls.py
-  - src/speakeasy_client_sdk_python/suggest.py
-  - src/speakeasy_client_sdk_python/embeds.py
-  - src/speakeasy_client_sdk_python/workspaces.py
-  - src/speakeasy_client_sdk_python/events.py
-  - src/speakeasy_client_sdk_python/sdk.py
+  - .gitattributes
+  - .python-version
   - .vscode/settings.json
+  - CONTRIBUTING.md
+  - USAGE.md
+  - docs/models/errors/error.md
+  - docs/models/internal/globals.md
+  - docs/models/operations/activatesubscriptionnamespacerequest.md
+  - docs/models/operations/activatesubscriptionnamespaceresponse.md
+  - docs/models/operations/checkgithubaccessrequest.md
+  - docs/models/operations/checkgithubaccessresponse.md
+  - docs/models/operations/createfreetrialresponse.md
+  - docs/models/operations/createorganizationresponse.md
+  - docs/models/operations/createremotesourceresponse.md
+  - docs/models/operations/createrequestbody.md
+  - docs/models/operations/createresponse.md
+  - docs/models/operations/createworkspaceresponse.md
+  - docs/models/operations/createworkspacetokenglobals.md
+  - docs/models/operations/createworkspacetokenrequest.md
+  - docs/models/operations/createworkspacetokenresponse.md
+  - docs/models/operations/deleteworkspacetokenglobals.md
+  - docs/models/operations/deleteworkspacetokenrequest.md
+  - docs/models/operations/deleteworkspacetokenresponse.md
+  - docs/models/operations/file.md
+  - docs/models/operations/generatecodesamplepreviewasyncresponse.md
+  - docs/models/operations/generatecodesamplepreviewasyncresponsebody.md
+  - docs/models/operations/generatecodesamplepreviewresponse.md
+  - docs/models/operations/getaccesstokenrequest.md
+  - docs/models/operations/getaccesstokenresponse.md
+  - docs/models/operations/getblobrequest.md
+  - docs/models/operations/getblobresponse.md
+  - docs/models/operations/getchangesreportsignedurlrequest.md
+  - docs/models/operations/getchangesreportsignedurlresponse.md
+  - docs/models/operations/getchangesreportsignedurlsignedaccess.md
+  - docs/models/operations/getcodesamplepreviewasyncrequest.md
+  - docs/models/operations/getcodesamplepreviewasyncresponse.md
+  - docs/models/operations/getcodesamplepreviewasyncresponsebody.md
+  - docs/models/operations/getcodesamplesrequest.md
+  - docs/models/operations/getcodesamplesresponse.md
+  - docs/models/operations/getgithubactionrequest.md
+  - docs/models/operations/getgithubactionresponse.md
+  - docs/models/operations/getgithubsetupstaterequest.md
+  - docs/models/operations/getgithubsetupstateresponse.md
+  - docs/models/operations/getlintingreportsignedurlrequest.md
+  - docs/models/operations/getlintingreportsignedurlresponse.md
+  - docs/models/operations/getlintingreportsignedurlsignedaccess.md
+  - docs/models/operations/getmanifestrequest.md
+  - docs/models/operations/getmanifestresponse.md
+  - docs/models/operations/getnamespacesresponse.md
+  - docs/models/operations/getorganizationrequest.md
+  - docs/models/operations/getorganizationresponse.md
+  - docs/models/operations/getorganizationsresponse.md
+  - docs/models/operations/getorganizationusageresponse.md
+  - docs/models/operations/getrevisionsrequest.md
+  - docs/models/operations/getrevisionsresponse.md
+  - docs/models/operations/gettagsrequest.md
+  - docs/models/operations/gettagsresponse.md
+  - docs/models/operations/getuserresponse.md
+  - docs/models/operations/getworkspaceaccessrequest.md
+  - docs/models/operations/getworkspaceaccessresponse.md
+  - docs/models/operations/getworkspacebycontextresponse.md
+  - docs/models/operations/getworkspaceeventsbytargetglobals.md
+  - docs/models/operations/getworkspaceeventsbytargetrequest.md
+  - docs/models/operations/getworkspaceeventsbytargetresponse.md
+  - docs/models/operations/getworkspacefeatureflagsglobals.md
+  - docs/models/operations/getworkspacefeatureflagsrequest.md
+  - docs/models/operations/getworkspacefeatureflagsresponse.md
+  - docs/models/operations/getworkspaceglobals.md
+  - docs/models/operations/getworkspacerequest.md
+  - docs/models/operations/getworkspaceresponse.md
+  - docs/models/operations/getworkspacesettingsglobals.md
+  - docs/models/operations/getworkspacesettingsrequest.md
+  - docs/models/operations/getworkspacesettingsresponse.md
+  - docs/models/operations/getworkspacesresponse.md
+  - docs/models/operations/getworkspacetargetsdeprecatedglobals.md
+  - docs/models/operations/getworkspacetargetsdeprecatedrequest.md
+  - docs/models/operations/getworkspacetargetsdeprecatedresponse.md
+  - docs/models/operations/getworkspacetargetsrequest.md
+  - docs/models/operations/getworkspacetargetsresponse.md
+  - docs/models/operations/getworkspaceteamglobals.md
+  - docs/models/operations/getworkspaceteamrequest.md
+  - docs/models/operations/getworkspaceteamresponse.md
+  - docs/models/operations/getworkspacetokensglobals.md
+  - docs/models/operations/getworkspacetokensrequest.md
+  - docs/models/operations/getworkspacetokensresponse.md
+  - docs/models/operations/githubcheckpublishingprsrequest.md
+  - docs/models/operations/githubcheckpublishingprsresponse.md
+  - docs/models/operations/githubcheckpublishingsecretsrequest.md
+  - docs/models/operations/githubcheckpublishingsecretsresponse.md
+  - docs/models/operations/githubconfigurecodesamplesresponse.md
+  - docs/models/operations/githubconfiguremintlifyreporesponse.md
+  - docs/models/operations/githubconfiguretargetresponse.md
+  - docs/models/operations/githubstorepublishingsecretsresponse.md
+  - docs/models/operations/githubtriggeractionresponse.md
+  - docs/models/operations/grantuseraccesstoworkspaceglobals.md
+  - docs/models/operations/grantuseraccesstoworkspacerequest.md
+  - docs/models/operations/grantuseraccesstoworkspaceresponse.md
+  - docs/models/operations/ignoresubscriptionnamespacerequest.md
+  - docs/models/operations/ignoresubscriptionnamespaceresponse.md
+  - docs/models/operations/linkgithubaccessrequest.md
+  - docs/models/operations/linkgithubaccessresponse.md
+  - docs/models/operations/listremotesourcesrequest.md
+  - docs/models/operations/listremotesourcesresponse.md
+  - docs/models/operations/posttagsrequest.md
+  - docs/models/operations/posttagsresponse.md
+  - docs/models/operations/postworkspaceeventsglobals.md
+  - docs/models/operations/postworkspaceeventsrequest.md
+  - docs/models/operations/postworkspaceeventsresponse.md
+  - docs/models/operations/preflightresponse.md
+  - docs/models/operations/revokeuseraccesstoworkspaceglobals.md
+  - docs/models/operations/revokeuseraccesstoworkspacerequest.md
+  - docs/models/operations/revokeuseraccesstoworkspaceresponse.md
+  - docs/models/operations/schema.md
+  - docs/models/operations/searchworkspaceeventsglobals.md
+  - docs/models/operations/searchworkspaceeventsrequest.md
+  - docs/models/operations/searchworkspaceeventsresponse.md
+  - docs/models/operations/setvisibilityrequest.md
+  - docs/models/operations/setvisibilityrequestbody.md
+  - docs/models/operations/setvisibilityresponse.md
+  - docs/models/operations/suggestitemsresponse.md
+  - docs/models/operations/suggestopenapiregistryrequest.md
+  - docs/models/operations/suggestopenapiregistryresponse.md
+  - docs/models/operations/suggestopenapirequest.md
+  - docs/models/operations/suggestopenapirequestbody.md
+  - docs/models/operations/suggestopenapiresponse.md
+  - docs/models/operations/suggestrequest.md
+  - docs/models/operations/suggestresponse.md
+  - docs/models/operations/updateworkspacedetailsglobals.md
+  - docs/models/operations/updateworkspacedetailsrequest.md
+  - docs/models/operations/updateworkspacedetailsresponse.md
+  - docs/models/operations/updateworkspacesettingsglobals.md
+  - docs/models/operations/updateworkspacesettingsrequest.md
+  - docs/models/operations/updateworkspacesettingsresponse.md
+  - docs/models/operations/uploadreportrequestbody.md
+  - docs/models/operations/uploadreportresponse.md
+  - docs/models/operations/uploadreportuploadedreport.md
+  - docs/models/operations/validateapikeyresponse.md
+  - docs/models/shared/accessdetails.md
+  - docs/models/shared/accesstoken.md
+  - docs/models/shared/accesstokenuser.md
+  - docs/models/shared/accounttype.md
+  - docs/models/shared/actions.md
+  - docs/models/shared/addtags.md
+  - docs/models/shared/annotations.md
+  - docs/models/shared/apikeydetails.md
+  - docs/models/shared/auth.md
+  - docs/models/shared/claims.md
+  - docs/models/shared/clievent.md
+  - docs/models/shared/codesampleschemainput.md
+  - docs/models/shared/codesamplesjobstatus.md
+  - docs/models/shared/compositespecmetadata.md
+  - docs/models/shared/diagnostic.md
+  - docs/models/shared/featureflag.md
+  - docs/models/shared/generatebumptype.md
+  - docs/models/shared/getnamespacesresponse.md
+  - docs/models/shared/getrevisionsresponse.md
+  - docs/models/shared/gettagsresponse.md
+  - docs/models/shared/githubconfigurecodesamplesrequest.md
+  - docs/models/shared/githubconfigurecodesamplesresponse.md
+  - docs/models/shared/githubconfiguremintlifyreporequest.md
+  - docs/models/shared/githubconfiguretargetrequest.md
+  - docs/models/shared/githubgetactionresponse.md
+  - docs/models/shared/githubmissingpublishingsecretsresponse.md
+  - docs/models/shared/githubpublishingprresponse.md
+  - docs/models/shared/githubsetupstateresponse.md
+  - docs/models/shared/githubstorepublishingsecretsrequest.md
+  - docs/models/shared/githubtriggeractionrequest.md
+  - docs/models/shared/interactiontype.md
+  - docs/models/shared/level.md
+  - docs/models/shared/license.md
+  - docs/models/shared/manifest.md
+  - docs/models/shared/namespace.md
+  - docs/models/shared/oasinfo.md
+  - docs/models/shared/oasoperation.md
+  - docs/models/shared/oassummary.md
+  - docs/models/shared/openapidiffbumptype.md
+  - docs/models/shared/organization.md
+  - docs/models/shared/organizationusage.md
+  - docs/models/shared/organizationusageresponse.md
+  - docs/models/shared/preflightrequest.md
+  - docs/models/shared/preflighttoken.md
+  - docs/models/shared/relationship.md
+  - docs/models/shared/remotedocument.md
+  - docs/models/shared/remotesource.md
+  - docs/models/shared/remotesourcesubscriptionsettings.md
+  - docs/models/shared/report.md
+  - docs/models/shared/revision.md
+  - docs/models/shared/schemafile.md
+  - docs/models/shared/secrets.md
+  - docs/models/shared/security.md
+  - docs/models/shared/shorturl.md
+  - docs/models/shared/ssometadata.md
+  - docs/models/shared/suggestiontype.md
+  - docs/models/shared/suggestitemsrequestbody.md
+  - docs/models/shared/suggestoptsold.md
+  - docs/models/shared/suggestrequestbody.md
+  - docs/models/shared/suggestrequestbodysuggestiontype.md
+  - docs/models/shared/tag.md
+  - docs/models/shared/targetsdk.md
+  - docs/models/shared/type.md
+  - docs/models/shared/usagesnippet.md
+  - docs/models/shared/usagesnippets.md
+  - docs/models/shared/user.md
+  - docs/models/shared/v2descriptor.md
+  - docs/models/shared/workflowdocument.md
+  - docs/models/shared/workspace.md
+  - docs/models/shared/workspaceandorganization.md
+  - docs/models/shared/workspacefeatureflagresponse.md
+  - docs/models/shared/workspaceinviteresponse.md
+  - docs/models/shared/workspaces.md
+  - docs/models/shared/workspacesettings.md
+  - docs/models/shared/workspaceteamresponse.md
+  - docs/models/shared/workspacetoken.md
+  - docs/models/utils/retryconfig.md
+  - docs/sdks/artifacts/README.md
+  - docs/sdks/auth/README.md
+  - docs/sdks/codesamples/README.md
+  - docs/sdks/events/README.md
+  - docs/sdks/github/README.md
+  - docs/sdks/organizations/README.md
+  - docs/sdks/reports/README.md
+  - docs/sdks/shorturls/README.md
+  - docs/sdks/speakeasy/README.md
+  - docs/sdks/subscriptions/README.md
+  - docs/sdks/suggest/README.md
+  - docs/sdks/workspaces/README.md
   - poetry.toml
   - py.typed
   - pylintrc
   - pyproject.toml
-  - scripts/compile.sh
   - scripts/prepare-readme.py
   - scripts/publish.sh
   - src/speakeasy_client_sdk_python/__init__.py
+  - src/speakeasy_client_sdk_python/_hooks/__init__.py
+  - src/speakeasy_client_sdk_python/_hooks/sdkhooks.py
+  - src/speakeasy_client_sdk_python/_hooks/types.py
+  - src/speakeasy_client_sdk_python/_version.py
+  - src/speakeasy_client_sdk_python/artifacts.py
+  - src/speakeasy_client_sdk_python/auth.py
   - src/speakeasy_client_sdk_python/basesdk.py
+  - src/speakeasy_client_sdk_python/codesamples.py
+  - src/speakeasy_client_sdk_python/events.py
+  - src/speakeasy_client_sdk_python/github.py
   - src/speakeasy_client_sdk_python/httpclient.py
+  - src/speakeasy_client_sdk_python/models/errors/__init__.py
+  - src/speakeasy_client_sdk_python/models/errors/error.py
+  - src/speakeasy_client_sdk_python/models/errors/sdkerror.py
+  - src/speakeasy_client_sdk_python/models/internal/__init__.py
+  - src/speakeasy_client_sdk_python/models/internal/globals.py
+  - src/speakeasy_client_sdk_python/models/operations/__init__.py
+  - src/speakeasy_client_sdk_python/models/operations/activatesubscriptionnamespace.py
+  - src/speakeasy_client_sdk_python/models/operations/checkgithubaccess.py
+  - src/speakeasy_client_sdk_python/models/operations/create.py
+  - src/speakeasy_client_sdk_python/models/operations/createfreetrial.py
+  - src/speakeasy_client_sdk_python/models/operations/createorganization.py
+  - src/speakeasy_client_sdk_python/models/operations/createremotesource.py
+  - src/speakeasy_client_sdk_python/models/operations/createworkspace.py
+  - src/speakeasy_client_sdk_python/models/operations/createworkspacetoken.py
+  - src/speakeasy_client_sdk_python/models/operations/deleteworkspacetoken.py
+  - src/speakeasy_client_sdk_python/models/operations/generatecodesamplepreview.py
+  - src/speakeasy_client_sdk_python/models/operations/generatecodesamplepreviewasync.py
+  - src/speakeasy_client_sdk_python/models/operations/getaccesstoken.py
+  - src/speakeasy_client_sdk_python/models/operations/getblob.py
+  - src/speakeasy_client_sdk_python/models/operations/getchangesreportsignedurl.py
+  - src/speakeasy_client_sdk_python/models/operations/getcodesamplepreviewasync.py
+  - src/speakeasy_client_sdk_python/models/operations/getcodesamples.py
+  - src/speakeasy_client_sdk_python/models/operations/getgithubaction.py
+  - src/speakeasy_client_sdk_python/models/operations/getgithubsetupstate.py
+  - src/speakeasy_client_sdk_python/models/operations/getlintingreportsignedurl.py
+  - src/speakeasy_client_sdk_python/models/operations/getmanifest.py
+  - src/speakeasy_client_sdk_python/models/operations/getnamespaces.py
+  - src/speakeasy_client_sdk_python/models/operations/getorganization.py
+  - src/speakeasy_client_sdk_python/models/operations/getorganizations.py
+  - src/speakeasy_client_sdk_python/models/operations/getorganizationusage.py
+  - src/speakeasy_client_sdk_python/models/operations/getrevisions.py
+  - src/speakeasy_client_sdk_python/models/operations/gettags.py
+  - src/speakeasy_client_sdk_python/models/operations/getuser.py
+  - src/speakeasy_client_sdk_python/models/operations/getworkspace.py
+  - src/speakeasy_client_sdk_python/models/operations/getworkspaceaccess.py
+  - src/speakeasy_client_sdk_python/models/operations/getworkspacebycontext.py
+  - src/speakeasy_client_sdk_python/models/operations/getworkspaceeventsbytarget.py
+  - src/speakeasy_client_sdk_python/models/operations/getworkspacefeatureflags.py
+  - src/speakeasy_client_sdk_python/models/operations/getworkspaces.py
+  - src/speakeasy_client_sdk_python/models/operations/getworkspacesettings.py
+  - src/speakeasy_client_sdk_python/models/operations/getworkspacetargets.py
+  - src/speakeasy_client_sdk_python/models/operations/getworkspacetargetsdeprecated.py
+  - src/speakeasy_client_sdk_python/models/operations/getworkspaceteam.py
+  - src/speakeasy_client_sdk_python/models/operations/getworkspacetokens.py
+  - src/speakeasy_client_sdk_python/models/operations/githubcheckpublishingprs.py
+  - src/speakeasy_client_sdk_python/models/operations/githubcheckpublishingsecrets.py
+  - src/speakeasy_client_sdk_python/models/operations/githubconfigurecodesamples.py
+  - src/speakeasy_client_sdk_python/models/operations/githubconfiguremintlifyrepo.py
+  - src/speakeasy_client_sdk_python/models/operations/githubconfiguretarget.py
+  - src/speakeasy_client_sdk_python/models/operations/githubstorepublishingsecrets.py
+  - src/speakeasy_client_sdk_python/models/operations/githubtriggeraction.py
+  - src/speakeasy_client_sdk_python/models/operations/grantuseraccesstoworkspace.py
+  - src/speakeasy_client_sdk_python/models/operations/ignoresubscriptionnamespace.py
+  - src/speakeasy_client_sdk_python/models/operations/linkgithubaccess.py
+  - src/speakeasy_client_sdk_python/models/operations/listremotesources.py
+  - src/speakeasy_client_sdk_python/models/operations/posttags.py
+  - src/speakeasy_client_sdk_python/models/operations/postworkspaceevents.py
+  - src/speakeasy_client_sdk_python/models/operations/preflight.py
+  - src/speakeasy_client_sdk_python/models/operations/revokeuseraccesstoworkspace.py
+  - src/speakeasy_client_sdk_python/models/operations/searchworkspaceevents.py
+  - src/speakeasy_client_sdk_python/models/operations/setvisibility.py
+  - src/speakeasy_client_sdk_python/models/operations/suggest.py
+  - src/speakeasy_client_sdk_python/models/operations/suggestitems.py
+  - src/speakeasy_client_sdk_python/models/operations/suggestopenapi.py
+  - src/speakeasy_client_sdk_python/models/operations/suggestopenapiregistry.py
+  - src/speakeasy_client_sdk_python/models/operations/updateworkspacedetails.py
+  - src/speakeasy_client_sdk_python/models/operations/updateworkspacesettings.py
+  - src/speakeasy_client_sdk_python/models/operations/uploadreport.py
+  - src/speakeasy_client_sdk_python/models/operations/validateapikey.py
+  - src/speakeasy_client_sdk_python/models/shared/__init__.py
+  - src/speakeasy_client_sdk_python/models/shared/accessdetails.py
+  - src/speakeasy_client_sdk_python/models/shared/accesstoken.py
+  - src/speakeasy_client_sdk_python/models/shared/accounttype.py
+  - src/speakeasy_client_sdk_python/models/shared/addtags.py
+  - src/speakeasy_client_sdk_python/models/shared/annotations.py
+  - src/speakeasy_client_sdk_python/models/shared/apikeydetails.py
+  - src/speakeasy_client_sdk_python/models/shared/clievent.py
+  - src/speakeasy_client_sdk_python/models/shared/codesampleschemainput.py
+  - src/speakeasy_client_sdk_python/models/shared/codesamplesjobstatus.py
+  - src/speakeasy_client_sdk_python/models/shared/diagnostic.py
+  - src/speakeasy_client_sdk_python/models/shared/featureflag.py
+  - src/speakeasy_client_sdk_python/models/shared/getnamespacesresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/getrevisionsresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/gettagsresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/githubconfigurecodesamplesrequest.py
+  - src/speakeasy_client_sdk_python/models/shared/githubconfigurecodesamplesresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/githubconfiguremintlifyreporequest.py
+  - src/speakeasy_client_sdk_python/models/shared/githubconfiguretargetrequest.py
+  - src/speakeasy_client_sdk_python/models/shared/githubgetactionresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/githubmissingpublishingsecretsresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/githubpublishingprresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/githubsetupstateresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/githubstorepublishingsecretsrequest.py
+  - src/speakeasy_client_sdk_python/models/shared/githubtriggeractionrequest.py
+  - src/speakeasy_client_sdk_python/models/shared/interactiontype.py
+  - src/speakeasy_client_sdk_python/models/shared/manifest.py
+  - src/speakeasy_client_sdk_python/models/shared/namespace.py
+  - src/speakeasy_client_sdk_python/models/shared/oasinfo.py
+  - src/speakeasy_client_sdk_python/models/shared/oasoperation.py
+  - src/speakeasy_client_sdk_python/models/shared/oassummary.py
+  - src/speakeasy_client_sdk_python/models/shared/organization.py
+  - src/speakeasy_client_sdk_python/models/shared/organizationusage.py
+  - src/speakeasy_client_sdk_python/models/shared/organizationusageresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/preflightrequest.py
+  - src/speakeasy_client_sdk_python/models/shared/preflighttoken.py
+  - src/speakeasy_client_sdk_python/models/shared/remotedocument.py
+  - src/speakeasy_client_sdk_python/models/shared/remotesource.py
+  - src/speakeasy_client_sdk_python/models/shared/remotesourcesubscriptionsettings.py
+  - src/speakeasy_client_sdk_python/models/shared/report.py
+  - src/speakeasy_client_sdk_python/models/shared/revision.py
+  - src/speakeasy_client_sdk_python/models/shared/security.py
+  - src/speakeasy_client_sdk_python/models/shared/shorturl.py
+  - src/speakeasy_client_sdk_python/models/shared/ssometadata.py
+  - src/speakeasy_client_sdk_python/models/shared/suggestitemsrequestbody.py
+  - src/speakeasy_client_sdk_python/models/shared/suggestoptsold.py
+  - src/speakeasy_client_sdk_python/models/shared/suggestrequestbody.py
+  - src/speakeasy_client_sdk_python/models/shared/tag.py
+  - src/speakeasy_client_sdk_python/models/shared/targetsdk.py
+  - src/speakeasy_client_sdk_python/models/shared/usagesnippet.py
+  - src/speakeasy_client_sdk_python/models/shared/usagesnippets.py
+  - src/speakeasy_client_sdk_python/models/shared/user.py
+  - src/speakeasy_client_sdk_python/models/shared/v2descriptor.py
+  - src/speakeasy_client_sdk_python/models/shared/workflowdocument.py
+  - src/speakeasy_client_sdk_python/models/shared/workspace.py
+  - src/speakeasy_client_sdk_python/models/shared/workspaceandorganization.py
+  - src/speakeasy_client_sdk_python/models/shared/workspacefeatureflagresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/workspaceinviteresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/workspacesettings.py
+  - src/speakeasy_client_sdk_python/models/shared/workspaceteamresponse.py
+  - src/speakeasy_client_sdk_python/models/shared/workspacetoken.py
+  - src/speakeasy_client_sdk_python/organizations.py
   - src/speakeasy_client_sdk_python/py.typed
+  - src/speakeasy_client_sdk_python/reports.py
+  - src/speakeasy_client_sdk_python/sdk.py
+  - src/speakeasy_client_sdk_python/sdkconfiguration.py
+  - src/speakeasy_client_sdk_python/shorturls.py
+  - src/speakeasy_client_sdk_python/subscriptions.py
+  - src/speakeasy_client_sdk_python/suggest.py
   - src/speakeasy_client_sdk_python/types/__init__.py
   - src/speakeasy_client_sdk_python/types/basemodel.py
   - src/speakeasy_client_sdk_python/utils/__init__.py
@@ -82,372 +434,555 @@ generatedFiles:
   - src/speakeasy_client_sdk_python/utils/serializers.py
   - src/speakeasy_client_sdk_python/utils/url.py
   - src/speakeasy_client_sdk_python/utils/values.py
-  - src/speakeasy_client_sdk_python/models/errors/sdkerror.py
-  - src/speakeasy_client_sdk_python/models/operations/deleteapi.py
-  - src/speakeasy_client_sdk_python/models/operations/generateopenapispec.py
-  - src/speakeasy_client_sdk_python/models/operations/generatepostmancollection.py
-  - src/speakeasy_client_sdk_python/models/operations/getallapiversions.py
-  - src/speakeasy_client_sdk_python/models/operations/getapis.py
-  - src/speakeasy_client_sdk_python/models/operations/upsertapi.py
-  - src/speakeasy_client_sdk_python/models/operations/deleteapiendpoint.py
-  - src/speakeasy_client_sdk_python/models/operations/findapiendpoint.py
-  - src/speakeasy_client_sdk_python/models/operations/generateopenapispecforapiendpoint.py
-  - src/speakeasy_client_sdk_python/models/operations/generatepostmancollectionforapiendpoint.py
-  - src/speakeasy_client_sdk_python/models/operations/getallapiendpoints.py
-  - src/speakeasy_client_sdk_python/models/operations/getallforversionapiendpoints.py
-  - src/speakeasy_client_sdk_python/models/operations/getapiendpoint.py
-  - src/speakeasy_client_sdk_python/models/operations/upsertapiendpoint.py
-  - src/speakeasy_client_sdk_python/models/operations/deleteversionmetadata.py
-  - src/speakeasy_client_sdk_python/models/operations/getversionmetadata.py
-  - src/speakeasy_client_sdk_python/models/operations/insertversionmetadata.py
-  - src/speakeasy_client_sdk_python/models/operations/deleteschema.py
-  - src/speakeasy_client_sdk_python/models/operations/downloadschema.py
-  - src/speakeasy_client_sdk_python/models/operations/downloadschemarevision.py
-  - src/speakeasy_client_sdk_python/models/operations/getschema.py
-  - src/speakeasy_client_sdk_python/models/operations/getschemadiff.py
-  - src/speakeasy_client_sdk_python/models/operations/getschemarevision.py
-  - src/speakeasy_client_sdk_python/models/operations/getschemas.py
-  - src/speakeasy_client_sdk_python/models/operations/registerschema.py
-  - src/speakeasy_client_sdk_python/models/operations/getblob.py
-  - src/speakeasy_client_sdk_python/models/operations/getmanifest.py
-  - src/speakeasy_client_sdk_python/models/operations/getnamespaces.py
-  - src/speakeasy_client_sdk_python/models/operations/getoassummary.py
-  - src/speakeasy_client_sdk_python/models/operations/getrevisions.py
-  - src/speakeasy_client_sdk_python/models/operations/gettags.py
-  - src/speakeasy_client_sdk_python/models/operations/posttags.py
-  - src/speakeasy_client_sdk_python/models/operations/preflight.py
-  - src/speakeasy_client_sdk_python/models/operations/getaccesstoken.py
-  - src/speakeasy_client_sdk_python/models/operations/getuser.py
-  - src/speakeasy_client_sdk_python/models/operations/getworkspaceaccess.py
-  - src/speakeasy_client_sdk_python/models/operations/validateapikey.py
-  - src/speakeasy_client_sdk_python/models/operations/generaterequestpostmancollection.py
-  - src/speakeasy_client_sdk_python/models/operations/getrequestfromeventlog.py
-  - src/speakeasy_client_sdk_python/models/operations/queryeventlog.py
-  - src/speakeasy_client_sdk_python/models/operations/checkaccess.py
-  - src/speakeasy_client_sdk_python/models/operations/configurecodesamples.py
-  - src/speakeasy_client_sdk_python/models/operations/configuremintlifyrepo.py
-  - src/speakeasy_client_sdk_python/models/operations/configuretarget.py
-  - src/speakeasy_client_sdk_python/models/operations/fetchpublishingprs.py
-  - src/speakeasy_client_sdk_python/models/operations/getaction.py
-  - src/speakeasy_client_sdk_python/models/operations/githubcheckpublishingsecrets.py
-  - src/speakeasy_client_sdk_python/models/operations/githubstorepublishingsecrets.py
-  - src/speakeasy_client_sdk_python/models/operations/triggeraction.py
-  - src/speakeasy_client_sdk_python/models/operations/createfreetrial.py
-  - src/speakeasy_client_sdk_python/models/operations/getorganization.py
-  - src/speakeasy_client_sdk_python/models/operations/getorganizationusage.py
-  - src/speakeasy_client_sdk_python/models/operations/getorganizations.py
-  - src/speakeasy_client_sdk_python/models/operations/getchangesreportsignedurl.py
-  - src/speakeasy_client_sdk_python/models/operations/getlintingreportsignedurl.py
-  - src/speakeasy_client_sdk_python/models/operations/uploadreport.py
-  - src/speakeasy_client_sdk_python/models/operations/create.py
-  - src/speakeasy_client_sdk_python/models/operations/applyoperationids.py
-  - src/speakeasy_client_sdk_python/models/operations/suggestoperationids.py
-  - src/speakeasy_client_sdk_python/models/operations/suggestoperationidsregistry.py
-  - src/speakeasy_client_sdk_python/models/operations/getembedaccesstoken.py
-  - src/speakeasy_client_sdk_python/models/operations/getvalidembedaccesstokens.py
-  - src/speakeasy_client_sdk_python/models/operations/revokeembedaccesstoken.py
-  - src/speakeasy_client_sdk_python/models/operations/getworkspace.py
-  - src/speakeasy_client_sdk_python/models/operations/getworkspaceeventsbytarget.py
-  - src/speakeasy_client_sdk_python/models/operations/getworkspacetargets.py
-  - src/speakeasy_client_sdk_python/models/operations/postworkspaceevents.py
-  - src/speakeasy_client_sdk_python/models/operations/searchworkspaceevents.py
-  - src/speakeasy_client_sdk_python/models/operations/__init__.py
-  - src/speakeasy_client_sdk_python/models/errors/error.py
-  - src/speakeasy_client_sdk_python/models/errors/__init__.py
-  - src/speakeasy_client_sdk_python/models/shared/generateopenapispecdiff.py
-  - src/speakeasy_client_sdk_python/models/shared/api.py
-  - src/speakeasy_client_sdk_python/models/shared/api_input.py
-  - src/speakeasy_client_sdk_python/models/shared/apiendpoint.py
-  - src/speakeasy_client_sdk_python/models/shared/apiendpoint_input.py
-  - src/speakeasy_client_sdk_python/models/shared/versionmetadata.py
-  - src/speakeasy_client_sdk_python/models/shared/versionmetadata_input.py
-  - src/speakeasy_client_sdk_python/models/shared/schema.py
-  - src/speakeasy_client_sdk_python/models/shared/schemadiff.py
-  - src/speakeasy_client_sdk_python/models/shared/manifest.py
-  - src/speakeasy_client_sdk_python/models/shared/v2descriptor.py
-  - src/speakeasy_client_sdk_python/models/shared/annotations.py
-  - src/speakeasy_client_sdk_python/models/shared/getnamespacesresponse.py
-  - src/speakeasy_client_sdk_python/models/shared/namespace.py
-  - src/speakeasy_client_sdk_python/models/shared/oassummary.py
-  - src/speakeasy_client_sdk_python/models/shared/oasoperation.py
-  - src/speakeasy_client_sdk_python/models/shared/oasinfo.py
-  - src/speakeasy_client_sdk_python/models/shared/getrevisionsresponse.py
-  - src/speakeasy_client_sdk_python/models/shared/revision.py
-  - src/speakeasy_client_sdk_python/models/shared/gettagsresponse.py
-  - src/speakeasy_client_sdk_python/models/shared/tag.py
-  - src/speakeasy_client_sdk_python/models/shared/addtags.py
-  - src/speakeasy_client_sdk_python/models/shared/preflighttoken.py
-  - src/speakeasy_client_sdk_python/models/shared/preflightrequest.py
-  - src/speakeasy_client_sdk_python/models/shared/accesstoken.py
-  - src/speakeasy_client_sdk_python/models/shared/accounttype.py
-  - src/speakeasy_client_sdk_python/models/shared/featureflag.py
-  - src/speakeasy_client_sdk_python/models/shared/user.py
-  - src/speakeasy_client_sdk_python/models/shared/accessdetails.py
-  - src/speakeasy_client_sdk_python/models/shared/apikeydetails.py
-  - src/speakeasy_client_sdk_python/models/shared/unboundedrequest.py
-  - src/speakeasy_client_sdk_python/models/shared/boundedrequest.py
-  - src/speakeasy_client_sdk_python/models/shared/requestmetadata.py
-  - src/speakeasy_client_sdk_python/models/shared/filters.py
-  - src/speakeasy_client_sdk_python/models/shared/filter_.py
-  - src/speakeasy_client_sdk_python/models/shared/githubconfigurecodesamplesresponse.py
-  - src/speakeasy_client_sdk_python/models/shared/workflowdocument.py
-  - src/speakeasy_client_sdk_python/models/shared/githubconfigurecodesamplesrequest.py
-  - src/speakeasy_client_sdk_python/models/shared/githubconfiguremintlifyreporequest.py
-  - src/speakeasy_client_sdk_python/models/shared/githubconfiguretargetrequest.py
-  - src/speakeasy_client_sdk_python/models/shared/githubpublishingprresponse.py
-  - src/speakeasy_client_sdk_python/models/shared/githubgetactionresponse.py
-  - src/speakeasy_client_sdk_python/models/shared/githubmissingpublishingsecretsresponse.py
-  - src/speakeasy_client_sdk_python/models/shared/githubstorepublishingsecretsrequest.py
-  - src/speakeasy_client_sdk_python/models/shared/githubtriggeractionrequest.py
-  - src/speakeasy_client_sdk_python/models/shared/organization.py
-  - src/speakeasy_client_sdk_python/models/shared/organizationusageresponse.py
-  - src/speakeasy_client_sdk_python/models/shared/organizationusage.py
-  - src/speakeasy_client_sdk_python/models/shared/report.py
-  - src/speakeasy_client_sdk_python/models/shared/shorturl.py
-  - src/speakeasy_client_sdk_python/models/shared/suggestedoperationids.py
-  - src/speakeasy_client_sdk_python/models/shared/suggestoperationidsopts.py
-  - src/speakeasy_client_sdk_python/models/shared/embedaccesstokenresponse.py
-  - src/speakeasy_client_sdk_python/models/shared/embedtoken.py
-  - src/speakeasy_client_sdk_python/models/shared/workspace.py
-  - src/speakeasy_client_sdk_python/models/shared/clievent.py
-  - src/speakeasy_client_sdk_python/models/shared/interactiontype.py
-  - src/speakeasy_client_sdk_python/models/shared/targetsdk.py
-  - src/speakeasy_client_sdk_python/models/shared/security.py
-  - src/speakeasy_client_sdk_python/models/shared/__init__.py
-  - src/speakeasy_client_sdk_python/models/internal/globals.py
-  - src/speakeasy_client_sdk_python/models/internal/__init__.py
-  - docs/models/operations/deleteapirequest.md
-  - docs/models/operations/deleteapiresponse.md
-  - docs/models/operations/generateopenapispecrequest.md
-  - docs/models/operations/generateopenapispecresponse.md
-  - docs/models/operations/generatepostmancollectionrequest.md
-  - docs/models/operations/generatepostmancollectionresponse.md
-  - docs/models/operations/op.md
-  - docs/models/operations/getallapiversionsrequest.md
-  - docs/models/operations/getallapiversionsresponse.md
-  - docs/models/operations/queryparamop.md
-  - docs/models/operations/getapisrequest.md
-  - docs/models/operations/getapisresponse.md
-  - docs/models/operations/upsertapirequest.md
-  - docs/models/operations/upsertapiresponse.md
-  - docs/models/operations/deleteapiendpointrequest.md
-  - docs/models/operations/deleteapiendpointresponse.md
-  - docs/models/operations/findapiendpointrequest.md
-  - docs/models/operations/findapiendpointresponse.md
-  - docs/models/operations/generateopenapispecforapiendpointrequest.md
-  - docs/models/operations/generateopenapispecforapiendpointresponse.md
-  - docs/models/operations/generatepostmancollectionforapiendpointrequest.md
-  - docs/models/operations/generatepostmancollectionforapiendpointresponse.md
-  - docs/models/operations/getallapiendpointsrequest.md
-  - docs/models/operations/getallapiendpointsresponse.md
-  - docs/models/operations/getallforversionapiendpointsrequest.md
-  - docs/models/operations/getallforversionapiendpointsresponse.md
-  - docs/models/operations/getapiendpointrequest.md
-  - docs/models/operations/getapiendpointresponse.md
-  - docs/models/operations/upsertapiendpointrequest.md
-  - docs/models/operations/upsertapiendpointresponse.md
-  - docs/models/operations/deleteversionmetadatarequest.md
-  - docs/models/operations/deleteversionmetadataresponse.md
-  - docs/models/operations/getversionmetadatarequest.md
-  - docs/models/operations/getversionmetadataresponse.md
-  - docs/models/operations/insertversionmetadatarequest.md
-  - docs/models/operations/insertversionmetadataresponse.md
-  - docs/models/operations/deleteschemarequest.md
-  - docs/models/operations/deleteschemaresponse.md
-  - docs/models/operations/downloadschemarequest.md
-  - docs/models/operations/downloadschemaresponse.md
-  - docs/models/operations/downloadschemarevisionrequest.md
-  - docs/models/operations/downloadschemarevisionresponse.md
-  - docs/models/operations/getschemarequest.md
-  - docs/models/operations/getschemaresponse.md
-  - docs/models/operations/getschemadiffrequest.md
-  - docs/models/operations/getschemadiffresponse.md
-  - docs/models/operations/getschemarevisionrequest.md
-  - docs/models/operations/getschemarevisionresponse.md
-  - docs/models/operations/getschemasrequest.md
-  - docs/models/operations/getschemasresponse.md
-  - docs/models/operations/registerschemafile.md
-  - docs/models/operations/registerschemarequestbody.md
-  - docs/models/operations/registerschemarequest.md
-  - docs/models/operations/registerschemaresponse.md
-  - docs/models/operations/getblobrequest.md
-  - docs/models/operations/getblobresponse.md
-  - docs/models/operations/getmanifestrequest.md
-  - docs/models/operations/getmanifestresponse.md
-  - docs/models/operations/getnamespacesresponse.md
-  - docs/models/operations/getoassummaryrequest.md
-  - docs/models/operations/getoassummaryresponse.md
-  - docs/models/operations/getrevisionsrequest.md
-  - docs/models/operations/getrevisionsresponse.md
-  - docs/models/operations/gettagsrequest.md
-  - docs/models/operations/gettagsresponse.md
-  - docs/models/operations/posttagsrequest.md
-  - docs/models/operations/posttagsresponse.md
-  - docs/models/operations/preflightresponse.md
-  - docs/models/operations/getaccesstokenrequest.md
-  - docs/models/operations/getaccesstokenresponse.md
-  - docs/models/operations/getuserresponse.md
-  - docs/models/operations/getworkspaceaccessrequest.md
-  - docs/models/operations/getworkspaceaccessresponse.md
-  - docs/models/operations/validateapikeyresponse.md
-  - docs/models/operations/generaterequestpostmancollectionrequest.md
-  - docs/models/operations/generaterequestpostmancollectionresponse.md
-  - docs/models/operations/getrequestfromeventlogrequest.md
-  - docs/models/operations/getrequestfromeventlogresponse.md
-  - docs/models/operations/queryeventlogrequest.md
-  - docs/models/operations/queryeventlogresponse.md
-  - docs/models/operations/checkaccessrequest.md
-  - docs/models/operations/checkaccessresponse.md
-  - docs/models/operations/configurecodesamplesresponse.md
-  - docs/models/operations/configuremintlifyreporesponse.md
-  - docs/models/operations/configuretargetresponse.md
-  - docs/models/operations/fetchpublishingprsrequest.md
-  - docs/models/operations/fetchpublishingprsresponse.md
-  - docs/models/operations/getactionrequest.md
-  - docs/models/operations/getactionresponse.md
-  - docs/models/operations/githubcheckpublishingsecretsrequest.md
-  - docs/models/operations/githubcheckpublishingsecretsresponse.md
-  - docs/models/operations/githubstorepublishingsecretsresponse.md
-  - docs/models/operations/triggeractionresponse.md
-  - docs/models/operations/createfreetrialresponse.md
-  - docs/models/operations/getorganizationrequest.md
-  - docs/models/operations/getorganizationresponse.md
-  - docs/models/operations/getorganizationusageresponse.md
-  - docs/models/operations/getorganizationsresponse.md
-  - docs/models/operations/getchangesreportsignedurlrequest.md
-  - docs/models/operations/getchangesreportsignedurlsignedaccess.md
-  - docs/models/operations/getchangesreportsignedurlresponse.md
-  - docs/models/operations/getlintingreportsignedurlrequest.md
-  - docs/models/operations/getlintingreportsignedurlsignedaccess.md
-  - docs/models/operations/getlintingreportsignedurlresponse.md
-  - docs/models/operations/file.md
-  - docs/models/operations/uploadreportrequestbody.md
-  - docs/models/operations/uploadreportuploadedreport.md
-  - docs/models/operations/uploadreportresponse.md
-  - docs/models/operations/createrequestbody.md
-  - docs/models/operations/createresponse.md
-  - docs/models/operations/applyoperationidsrequestbody.md
-  - docs/models/operations/applyoperationidsrequest.md
-  - docs/models/operations/applyoperationidsresponse.md
-  - docs/models/operations/schema.md
-  - docs/models/operations/suggestoperationidsrequestbody.md
-  - docs/models/operations/suggestoperationidsrequest.md
-  - docs/models/operations/suggestoperationidsresponse.md
-  - docs/models/operations/suggestoperationidsregistryrequest.md
-  - docs/models/operations/suggestoperationidsregistryresponse.md
-  - docs/models/operations/getembedaccesstokenrequest.md
-  - docs/models/operations/getembedaccesstokenresponse.md
-  - docs/models/operations/getvalidembedaccesstokensresponse.md
-  - docs/models/operations/revokeembedaccesstokenrequest.md
-  - docs/models/operations/revokeembedaccesstokenresponse.md
-  - docs/models/operations/getworkspaceglobals.md
-  - docs/models/operations/getworkspacerequest.md
-  - docs/models/operations/getworkspaceresponse.md
-  - docs/models/operations/getworkspaceeventsbytargetglobals.md
-  - docs/models/operations/getworkspaceeventsbytargetrequest.md
-  - docs/models/operations/getworkspaceeventsbytargetresponse.md
-  - docs/models/operations/getworkspacetargetsglobals.md
-  - docs/models/operations/getworkspacetargetsrequest.md
-  - docs/models/operations/getworkspacetargetsresponse.md
-  - docs/models/operations/postworkspaceeventsglobals.md
-  - docs/models/operations/postworkspaceeventsrequest.md
-  - docs/models/operations/postworkspaceeventsresponse.md
-  - docs/models/operations/searchworkspaceeventsglobals.md
-  - docs/models/operations/searchworkspaceeventsrequest.md
-  - docs/models/operations/searchworkspaceeventsresponse.md
-  - docs/models/errors/error.md
-  - docs/models/shared/generateopenapispecdiff.md
-  - docs/models/shared/api.md
-  - docs/models/shared/apiinput.md
-  - docs/models/shared/apiendpoint.md
-  - docs/models/shared/apiendpointinput.md
-  - docs/models/shared/versionmetadata.md
-  - docs/models/shared/versionmetadatainput.md
-  - docs/models/shared/schema.md
-  - docs/models/shared/valuechange.md
-  - docs/models/shared/schemadiff.md
-  - docs/models/shared/manifest.md
-  - docs/models/shared/v2descriptor.md
-  - docs/models/shared/annotations.md
-  - docs/models/shared/getnamespacesresponse.md
-  - docs/models/shared/namespace.md
-  - docs/models/shared/oassummary.md
-  - docs/models/shared/oasoperation.md
-  - docs/models/shared/license.md
-  - docs/models/shared/oasinfo.md
-  - docs/models/shared/getrevisionsresponse.md
-  - docs/models/shared/revision.md
-  - docs/models/shared/gettagsresponse.md
-  - docs/models/shared/tag.md
-  - docs/models/shared/addtags.md
-  - docs/models/shared/preflighttoken.md
-  - docs/models/shared/preflightrequest.md
-  - docs/models/shared/claims.md
-  - docs/models/shared/accesstokenuser.md
-  - docs/models/shared/workspaces.md
-  - docs/models/shared/accesstoken.md
-  - docs/models/shared/accounttype.md
-  - docs/models/shared/featureflag.md
-  - docs/models/shared/user.md
-  - docs/models/shared/level.md
-  - docs/models/shared/accessdetails.md
-  - docs/models/shared/apikeydetails.md
-  - docs/models/shared/unboundedrequest.md
-  - docs/models/shared/boundedrequest.md
-  - docs/models/shared/requestmetadata.md
-  - docs/models/shared/filters.md
-  - docs/models/shared/filter_.md
-  - docs/models/shared/githubconfigurecodesamplesresponse.md
-  - docs/models/shared/auth.md
-  - docs/models/shared/workflowdocument.md
-  - docs/models/shared/githubconfigurecodesamplesrequest.md
-  - docs/models/shared/githubconfiguremintlifyreporequest.md
-  - docs/models/shared/githubconfiguretargetrequest.md
-  - docs/models/shared/githubpublishingprresponse.md
-  - docs/models/shared/githubgetactionresponse.md
-  - docs/models/shared/githubmissingpublishingsecretsresponse.md
-  - docs/models/shared/githubstorepublishingsecretsrequest.md
-  - docs/models/shared/githubtriggeractionrequest.md
-  - docs/models/shared/organization.md
-  - docs/models/shared/organizationusageresponse.md
-  - docs/models/shared/organizationusage.md
-  - docs/models/shared/type.md
-  - docs/models/shared/report.md
-  - docs/models/shared/shorturl.md
-  - docs/models/shared/suggestedoperationids.md
-  - docs/models/shared/depthstyle.md
-  - docs/models/shared/style.md
-  - docs/models/shared/suggestoperationidsopts.md
-  - docs/models/shared/embedaccesstokenresponse.md
-  - docs/models/shared/embedtoken.md
-  - docs/models/shared/workspace.md
-  - docs/models/shared/generatebumptype.md
-  - docs/models/shared/openapidiffbumptype.md
-  - docs/models/shared/clievent.md
-  - docs/models/shared/interactiontype.md
-  - docs/models/shared/targetsdk.md
-  - docs/models/shared/security.md
-  - docs/models/internal/globals.md
-  - docs/sdks/speakeasy/README.md
-  - docs/models/utils/retryconfig.md
-  - docs/sdks/apis/README.md
-  - docs/sdks/apiendpoints/README.md
-  - docs/sdks/metadata/README.md
-  - docs/sdks/schemas/README.md
-  - docs/sdks/artifacts/README.md
-  - docs/sdks/auth/README.md
-  - docs/sdks/requests/README.md
-  - docs/sdks/github/README.md
-  - docs/sdks/organizations/README.md
-  - docs/sdks/reports/README.md
-  - docs/sdks/shorturls/README.md
-  - docs/sdks/suggest/README.md
-  - docs/sdks/embeds/README.md
-  - docs/sdks/workspaces/README.md
-  - docs/sdks/events/README.md
-  - USAGE.md
-  - .gitattributes
-  - src/speakeasy_client_sdk_python/_hooks/sdkhooks.py
-  - src/speakeasy_client_sdk_python/_hooks/types.py
-  - src/speakeasy_client_sdk_python/_hooks/__init__.py
-  - CONTRIBUTING.md
+  - src/speakeasy_client_sdk_python/workspaces.py
+examples:
+  createRemoteSource:
+    speakeasy-default-create-remote-source:
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 580557}
+  getBlob:
+    speakeasy-default-get-blob:
+      parameters:
+        path:
+          organization_slug: "<value>"
+          workspace_slug: "<value>"
+          namespace_name: "<value>"
+          digest: "<value>"
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 115307}
+  getManifest:
+    speakeasy-default-get-manifest:
+      parameters:
+        path:
+          organization_slug: "<value>"
+          workspace_slug: "<value>"
+          namespace_name: "<value>"
+          revision_reference: "<value>"
+      responses:
+        2XX:
+          application/vnd.oci.image.manifest.v1+json: {"layers": [{"digest": "sha256:5d20c808ce198565ff70b3ed23a991dd49afac45dece63474b27ce6ed036adc6", "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip", "size": 2107098}], "mediaType": "application/vnd.docker.distribution.manifest.v2+json", "schemaVersion": 2}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 707258}
+  getNamespaces:
+    speakeasy-default-get-namespaces:
+      responses:
+        2XX:
+          application/json: {"items": [{"created_at": "2025-01-19T10:11:46.428Z", "id": "<id>", "name": "<value>", "updated_at": "2023-01-07T04:43:36.873Z"}, {"created_at": "2024-07-05T07:26:30.970Z", "id": "<id>", "name": "<value>", "updated_at": "2025-01-30T11:34:19.590Z"}, {"created_at": "2023-08-10T13:43:30.983Z", "id": "<id>", "name": "<value>", "updated_at": "2023-07-15T08:41:36.371Z"}]}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 305198}
+  getRevisions:
+    speakeasy-default-get-revisions:
+      parameters:
+        path:
+          namespace_name: "<value>"
+        query: {}
+      responses:
+        2XX:
+          application/json: {"items": [{"created_at": "2025-09-16T19:17:04.361Z", "digest": "sha256:6d1ef012b5674ad8a127ecfa9b5e6f5178d171b90ee462846974177fd9bdd39f", "id": "<id>", "namespace_name": "<value>", "tags": ["<value>"], "updated_at": "2024-12-05T05:58:38.953Z"}], "next_page_token": "<value>"}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 414389}
+  getTags:
+    speakeasy-default-get-tags:
+      parameters:
+        path:
+          namespace_name: "<value>"
+      responses:
+        2XX:
+          application/json: {"items": []}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 50428}
+  listRemoteSources:
+    speakeasy-default-list-remote-sources:
+      parameters:
+        query:
+          namespace_name: "<value>"
+      responses:
+        2XX:
+          application/json: {"inputs": [{"registry_url": "https://well-lit-cap.net"}, {"registry_url": "https://vibrant-labourer.net"}], "output": {"registry_url": "https://unfit-minor.biz"}}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 754391}
+  postTags:
+    speakeasy-default-post-tags:
+      parameters:
+        path:
+          namespace_name: "<value>"
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 581484}
+  preflight:
+    speakeasy-default-preflight:
+      responses:
+        2XX:
+          application/json: {}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 820828}
+  setVisibility:
+    speakeasy-default-set-visibility:
+      parameters:
+        path:
+          namespace_name: "<value>"
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 651364}
+  getWorkspaceAccess:
+    speakeasy-default-get-workspace-access:
+      responses:
+        2XX:
+          application/json: {"generation_allowed": true, "message": "<value>"}
+  getAccessToken:
+    speakeasy-default-get-access-token:
+      parameters:
+        query:
+          workspace_id: "<id>"
+      responses:
+        2XX:
+          application/json: {"access_token": "<value>"}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 299050}
+  getUser:
+    speakeasy-default-get-user:
+      responses:
+        2XX:
+          application/json: {"admin": false, "confirmed": true, "created_at": "2025-09-05T08:59:40.988Z", "display_name": "Tianna_Prohaska", "email": "Morton82@gmail.com", "email_verified": false, "id": "<id>", "updated_at": "2023-08-28T03:26:52.335Z", "whitelisted": true}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 237845}
+  validateApiKey:
+    speakeasy-default-validate-api-key:
+      responses:
+        2XX:
+          application/json: {"account_type_v2": "enterprise", "enabled_features": ["<value>", "<value>", "<value>"], "org_slug": "<value>", "telemetry_disabled": true, "workspace_created_at": "2024-02-05T22:57:49.657Z", "workspace_id": "<id>", "workspace_slug": "<value>"}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 150892}
+  generateCodeSamplePreview:
+    speakeasy-default-generate-code-sample-preview:
+      requestBody:
+        multipart/form-data: {"languages": ["<value>", "<value>"], "schema_file": {"": "example.file"}}
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 140843}
+  generateCodeSamplePreviewAsync:
+    speakeasy-default-generate-code-sample-preview-async:
+      requestBody:
+        multipart/form-data: {"languages": ["<value>", "<value>"], "schema_file": {"": "example.file"}}
+      responses:
+        "202":
+          application/json: {"job_id": "<id>", "status": "pending"}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 282243}
+  getCodeSamples:
+    speakeasy-default-get-code-samples:
+      parameters:
+        query:
+          registry_url: "https://normal-making.name"
+      responses:
+        2XX:
+          application/json: {"snippets": [{"code": "<value>", "language": "<value>", "operationId": "<id>"}, {"code": "<value>", "language": "<value>", "operationId": "<id>"}, {"code": "<value>", "language": "<value>", "operationId": "<id>"}]}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 458049}
+  getCodeSamplePreviewAsync:
+    speakeasy-default-get-code-sample-preview-async:
+      parameters:
+        path:
+          jobID: "<id>"
+      responses:
+        "202":
+          application/json: {"status": "pending"}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 44984}
+  checkGithubAccess:
+    speakeasy-default-check-github-access:
+      parameters:
+        query:
+          org: "<value>"
+          repo: "<value>"
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 74604}
+  githubCheckPublishingPRs:
+    speakeasy-default-github-check-publishing-P-rs:
+      parameters:
+        query:
+          generate_gen_lock_id: "<id>"
+          org: "<value>"
+          repo: "<value>"
+      responses:
+        2XX:
+          application/json: {}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 670562}
+  githubCheckPublishingSecrets:
+    speakeasy-default-github-check-publishing-secrets:
+      parameters:
+        query:
+          generate_gen_lock_id: "<id>"
+      responses:
+        2XX:
+          application/json: {}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 749379}
+  githubConfigureCodeSamples:
+    speakeasy-default-github-configure-code-samples:
+      requestBody:
+        application/json: {"org": "<value>", "repo": "<value>", "targetName": "<value>"}
+      responses:
+        2XX:
+          application/json: {"codeSampleOverlayRegistryURL": "https://giving-handover.net", "source": {"location": "<value>"}}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 628169}
+  githubConfigureMintlifyRepo:
+    speakeasy-default-github-configure-mintlify-repo:
+      requestBody:
+        application/json: {"input": "<value>", "org": "<value>", "overlays": ["<value>"], "repo": "<value>"}
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 529873}
+  githubConfigureTarget:
+    speakeasy-default-github-configure-target:
+      requestBody:
+        application/json: {"org": "<value>", "repo_name": "<value>"}
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 210299}
+  getGitHubAction:
+    speakeasy-default-get-git-hub-action:
+      parameters:
+        query:
+          org: "<value>"
+          repo: "<value>"
+      responses:
+        2XX:
+          application/json: {}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 252330}
+  getGithubSetupState:
+    speakeasy-default-get-github-setup-state:
+      parameters:
+        query:
+          org: "<value>"
+          repo: "<value>"
+          generate_gen_lock_id: "<id>"
+      responses:
+        2XX:
+          application/json: {"actions": {"generation_action_configured": false, "publish_action_configured": false}, "app_installed": false, "secrets": {"api_key_configured": true, "publishing_secrets_configured": true}}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 743106}
+  linkGithubAccess:
+    speakeasy-default-link-github-access:
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 774553}
+  githubStorePublishingSecrets:
+    speakeasy-default-github-store-publishing-secrets:
+      requestBody:
+        application/json: {"generate_gen_lock_id": "<id>"}
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 444361}
+  githubTriggerAction:
+    speakeasy-default-github-trigger-action:
+      requestBody:
+        application/json: {"gen_lock_id": "<id>", "org": "<value>", "repo_name": "<value>"}
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 689611}
+  createOrganization:
+    speakeasy-default-create-organization:
+      requestBody:
+        application/json: {"account_type": "scale-up", "created_at": "2024-11-30T17:06:07.804Z", "id": "<id>", "name": "<value>", "slug": "<value>", "sso_activated": true, "telemetry_disabled": true, "updated_at": "2023-03-17T15:39:20.911Z"}
+      responses:
+        2XX:
+          application/json: {"account_type": "enterprise", "created_at": "2025-11-08T08:43:39.394Z", "id": "<id>", "name": "<value>", "slug": "<value>", "sso_activated": true, "telemetry_disabled": true, "updated_at": "2023-04-09T14:25:29.356Z"}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 792620}
+  createFreeTrial:
+    speakeasy-default-create-free-trial:
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 728627}
+  getOrganization:
+    speakeasy-default-get-organization:
+      parameters:
+        path:
+          organizationID: "<id>"
+      responses:
+        2XX:
+          application/json: {"account_type": "business", "created_at": "2024-09-04T11:33:52.011Z", "id": "<id>", "name": "<value>", "slug": "<value>", "sso_activated": false, "telemetry_disabled": false, "updated_at": "2025-11-29T01:50:48.954Z"}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 458049}
+  getOrganizations:
+    speakeasy-default-get-organizations:
+      responses:
+        2XX:
+          application/json: [{"account_type": "free", "created_at": "2024-10-17T22:25:06.537Z", "id": "<id>", "name": "<value>", "slug": "<value>", "sso_activated": false, "telemetry_disabled": true, "updated_at": "2024-05-22T13:01:16.115Z"}]
+        4XX:
+          application/json: {"message": "<value>", "status_code": 621425}
+  getOrganizationUsage:
+    speakeasy-default-get-organization-usage:
+      responses:
+        2XX:
+          application/json: {"allowed_languages": [], "total_allowed_languages": 863126, "usage": [{"accessible": false, "accessible_features": ["<value>"], "gen_lock_ids": ["<value>", "<value>", "<value>"], "language": "<value>", "max_operations": 939867, "number_of_operations": 881790, "used_features": ["<value>"], "workspaces": ["<value>", "<value>"]}, {"accessible": true, "accessible_features": ["<value>", "<value>", "<value>"], "gen_lock_ids": ["<value>"], "language": "<value>", "max_operations": 593645, "number_of_operations": 369818, "used_features": ["<value>"], "workspaces": []}]}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 804495}
+  getChangesReportSignedUrl:
+    speakeasy-default-get-changes-report-signed-url:
+      parameters:
+        path:
+          documentChecksum: "<value>"
+      responses:
+        2XX:
+          application/json: {"url": "https://rosy-masterpiece.biz/"}
+  getLintingReportSignedUrl:
+    speakeasy-default-get-linting-report-signed-url:
+      parameters:
+        path:
+          documentChecksum: "<value>"
+      responses:
+        2XX:
+          application/json: {"url": "https://negligible-merit.info"}
+  uploadReport:
+    speakeasy-default-upload-report:
+      requestBody:
+        multipart/form-data: {"file": {"": "example.file"}}
+      responses:
+        2XX:
+          application/json: {"url": "https://cluttered-stall.info"}
+  create:
+    speakeasy-default-create:
+      requestBody:
+        application/json: {"url": "https://probable-heating.com/"}
+      responses:
+        2XX:
+          application/json: {"full_url": "https://standard-utilization.com/", "short_url": "https://brisk-seafood.net/"}
+  activateSubscriptionNamespace:
+    speakeasy-default-activate-subscription-namespace:
+      parameters:
+        path:
+          subscriptionID: "<id>"
+          namespaceName: "<value>"
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 566510}
+  ignoreSubscriptionNamespace:
+    speakeasy-default-ignore-subscription-namespace:
+      parameters:
+        path:
+          subscriptionID: "<id>"
+          namespaceName: "<value>"
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 844164}
+  suggest:
+    speakeasy-default-suggest:
+      parameters:
+        header:
+          x-session-id: "<id>"
+      requestBody:
+        application/json: {"diagnostics": [{"message": "<value>", "path": ["/opt/include", "/opt/share"], "type": "<value>"}, {"message": "<value>", "path": [], "type": "<value>"}], "oas_summary": {"info": {"description": "amid traffic the unfortunately underneath what father lovely out", "summary": "<value>", "title": "<value>", "version": "<value>"}, "operations": [{"description": "times dull than except", "method": "<value>", "operation_id": "<id>", "path": "/mnt", "tags": ["<value>", "<value>"]}]}, "suggestion_type": "diagnostics-only"}
+  suggestItems:
+    speakeasy-default-suggest-items:
+      requestBody:
+        application/json: {"items": [], "prompt": "<value>"}
+      responses:
+        2XX:
+          application/json: ["<value>", "<value>"]
+  suggestOpenAPI:
+    speakeasy-default-suggest-open-API:
+      parameters:
+        header:
+          x-session-id: "<id>"
+      requestBody:
+        multipart/form-data: {"schema": {"": "example.file"}}
+  suggestOpenAPIRegistry:
+    speakeasy-default-suggest-open-API-registry:
+      parameters:
+        path:
+          namespace_name: "<value>"
+          revision_reference: "<value>"
+        header:
+          x-session-id: "<id>"
+  createWorkspace:
+    speakeasy-default-create-workspace:
+      requestBody:
+        application/json: {"created_at": "2024-06-17T07:14:55.338Z", "id": "<id>", "name": "<value>", "organization_id": "<id>", "slug": "<value>", "updated_at": "2024-11-30T17:06:07.804Z", "verified": true}
+      responses:
+        2XX:
+          application/json: {"created_at": "2023-05-28T06:20:22.766Z", "id": "<id>", "name": "<value>", "organization_id": "<id>", "slug": "<value>", "updated_at": "2023-03-17T15:39:20.911Z", "verified": false}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 951062}
+  createWorkspaceToken:
+    speakeasy-default-create-workspace-token:
+      parameters:
+        path:
+          workspace_id: "<id>"
+      requestBody:
+        application/json: {"alg": "<value>", "created_at": "2023-08-16T02:33:00.784Z", "id": "<id>", "key": "<key>", "name": "<value>", "workspace_id": "<id>"}
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 966454}
+  deleteWorkspaceToken:
+    speakeasy-default-delete-workspace-token:
+      parameters:
+        path:
+          workspace_id: "<id>"
+          tokenID: "<id>"
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 120260}
+  getWorkspaceByContext:
+    speakeasy-default-get-workspace-by-context:
+      responses:
+        2XX:
+          application/json: {"organization": {"account_type": "business", "created_at": "2024-09-04T11:33:52.011Z", "id": "<id>", "name": "<value>", "slug": "<value>", "sso_activated": false, "telemetry_disabled": false, "updated_at": "2025-11-29T01:50:48.954Z"}, "workspace": {"created_at": "2024-05-17T00:32:02.244Z", "id": "<id>", "name": "<value>", "organization_id": "<id>", "slug": "<value>", "updated_at": "2024-05-09T02:28:23.533Z", "verified": true}}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 213457}
+  getWorkspaces:
+    speakeasy-default-get-workspaces:
+      responses:
+        2XX:
+          application/json: [{"created_at": "2023-03-06T21:36:22.528Z", "id": "<id>", "name": "<value>", "organization_id": "<id>", "slug": "<value>", "updated_at": "2024-10-17T22:25:06.537Z", "verified": false}]
+        4XX:
+          application/json: {"message": "<value>", "status_code": 16308}
+  getWorkspace:
+    speakeasy-default-get-workspace:
+      parameters:
+        path:
+          workspace_id: "<id>"
+      responses:
+        2XX:
+          application/json: {"created_at": "2025-11-17T10:14:22.985Z", "id": "<id>", "name": "<value>", "organization_id": "<id>", "slug": "<value>", "updated_at": "2025-07-28T15:04:25.117Z", "verified": false}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 868924}
+  getWorkspaceFeatureFlags:
+    speakeasy-default-get-workspace-feature-flags:
+      parameters:
+        path:
+          workspace_id: "<id>"
+      responses:
+        "200":
+          application/json: {}
+        5XX:
+          application/json: {"message": "<value>", "status_code": 104495}
+  getWorkspaceSettings:
+    speakeasy-default-get-workspace-settings:
+      parameters:
+        path:
+          workspace_id: "<id>"
+      responses:
+        2XX:
+          application/json: {"created_at": "2025-05-29T22:34:47.605Z", "updated_at": "2024-02-24T21:50:01.663Z", "webhook_url": "https://different-amendment.com/", "workspace_id": "<id>"}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 864485}
+  getWorkspaceTeam:
+    speakeasy-default-get-workspace-team:
+      parameters:
+        path:
+          workspace_id: "<id>"
+      responses:
+        2XX:
+          application/json: {"users": []}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 194974}
+  getWorkspaceTokens:
+    speakeasy-default-get-workspace-tokens:
+      parameters:
+        path:
+          workspace_id: "<id>"
+      responses:
+        2XX:
+          application/json: [{"alg": "<value>", "created_at": "2024-06-30T03:05:24.969Z", "id": "<id>", "key": "<key>", "name": "<value>", "workspace_id": "<id>"}, {"alg": "<value>", "created_at": "2024-11-09T11:33:52.654Z", "id": "<id>", "key": "<key>", "name": "<value>", "workspace_id": "<id>"}, {"alg": "<value>", "created_at": "2024-11-05T09:03:46.133Z", "id": "<id>", "key": "<key>", "name": "<value>", "workspace_id": "<id>"}]
+        4XX:
+          application/json: {"message": "<value>", "status_code": 858647}
+  grantUserAccessToWorkspace:
+    speakeasy-default-grant-user-access-to-workspace:
+      parameters:
+        path:
+          workspace_id: "<id>"
+          email: "Lucinda.Batz8@hotmail.com"
+      responses:
+        "200":
+          application/json: {"relationship": {"user_id": "<id>", "workspace_id": "<id>"}}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 621540}
+  revokeUserAccessToWorkspace:
+    speakeasy-default-revoke-user-access-to-workspace:
+      parameters:
+        path:
+          workspace_id: "<id>"
+          userId: "<id>"
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 243814}
+  updateWorkspaceDetails:
+    speakeasy-default-update-workspace-details:
+      parameters:
+        path:
+          workspace_id: "<id>"
+      requestBody:
+        application/json: {"created_at": "2025-07-28T19:04:48.565Z", "id": "<id>", "name": "<value>", "organization_id": "<id>", "slug": "<value>", "updated_at": "2024-10-16T10:52:42.015Z", "verified": true}
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 991464}
+  updateWorkspaceSettings:
+    speakeasy-default-update-workspace-settings:
+      parameters:
+        path:
+          workspace_id: "<id>"
+      requestBody:
+        application/json: {"created_at": "2023-07-05T11:43:28.305Z", "updated_at": "2024-05-14T05:39:21.874Z", "webhook_url": "https://grown-pharmacopoeia.net", "workspace_id": "<id>"}
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 54657}
+  getWorkspaceEventsByTarget:
+    speakeasy-default-get-workspace-events-by-target:
+      parameters:
+        path:
+          workspace_id: "<id>"
+          target_id: "<id>"
+        query: {}
+      responses:
+        "200":
+          application/json: []
+        5XX:
+          application/json: {"message": "<value>", "status_code": 296981}
+  getWorkspaceTargets:
+    speakeasy-default-get-workspace-targets:
+      responses:
+        "200":
+          application/json: [{"generate_gen_lock_id": "<id>", "generate_target": "<value>", "id": "<id>", "last_event_created_at": "2025-12-14T05:15:52.449Z", "last_event_id": "<id>", "last_event_interaction_type": "TARGET_GENERATE"}, {"generate_gen_lock_id": "<id>", "generate_target": "<value>", "id": "<id>", "last_event_created_at": "2023-05-31T08:33:28.499Z", "last_event_id": "<id>", "last_event_interaction_type": "CLI_EXEC"}]
+        5XX:
+          application/json: {"message": "<value>", "status_code": 801192}
+  getWorkspaceTargetsDeprecated:
+    speakeasy-default-get-workspace-targets-deprecated:
+      parameters:
+        path:
+          workspace_id: "<id>"
+        query: {}
+      responses:
+        "200":
+          application/json: []
+        5XX:
+          application/json: {"message": "<value>", "status_code": 255923}
+  postWorkspaceEvents:
+    speakeasy-default-post-workspace-events:
+      parameters:
+        path:
+          workspace_id: "<id>"
+      requestBody:
+        application/json: [{"created_at": "2025-03-02T10:07:28.113Z", "execution_id": "<id>", "id": "<id>", "interaction_type": "AUTHENTICATE", "local_started_at": "2025-08-12T17:54:17.538Z", "speakeasy_api_key_name": "<value>", "speakeasy_version": "<value>", "success": true, "workspace_id": "<id>"}]
+      responses:
+        5XX:
+          application/json: {"message": "<value>", "status_code": 630719}
+  searchWorkspaceEvents:
+    speakeasy-default-search-workspace-events:
+      parameters:
+        path:
+          workspace_id: "<id>"
+        query: {}
+      responses:
+        "200":
+          application/json: [{"created_at": "2024-01-24T23:49:11.608Z", "execution_id": "<id>", "id": "<id>", "interaction_type": "LINT", "local_started_at": "2023-03-09T07:00:10.489Z", "speakeasy_api_key_name": "<value>", "speakeasy_version": "<value>", "success": true, "workspace_id": "<id>"}]
+        5XX:
+          application/json: {"message": "<value>", "status_code": 238575}
+generatedTests: {}

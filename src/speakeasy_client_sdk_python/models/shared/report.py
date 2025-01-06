@@ -3,18 +3,18 @@
 from __future__ import annotations
 from enum import Enum
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import Optional, TypedDict
-from typing_extensions import NotRequired
+from typing import Optional
+from typing_extensions import NotRequired, TypedDict
 
 
 class Type(str, Enum):
     LINTING = "linting"
     CHANGES = "changes"
 
+
 class ReportTypedDict(TypedDict):
     type: NotRequired[Type]
-    
+
 
 class Report(BaseModel):
     type: Optional[Type] = None
-    

@@ -3,15 +3,16 @@
 from __future__ import annotations
 from .revision import Revision, RevisionTypedDict
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import List, TypedDict
+from typing import List
+from typing_extensions import TypedDict
 
 
 class GetRevisionsResponseTypedDict(TypedDict):
     items: List[RevisionTypedDict]
     next_page_token: str
-    
+
 
 class GetRevisionsResponse(BaseModel):
     items: List[Revision]
+
     next_page_token: str
-    

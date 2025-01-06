@@ -2,17 +2,17 @@
 
 from __future__ import annotations
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import Optional, TypedDict
-from typing_extensions import NotRequired
+from typing import Optional
+from typing_extensions import NotRequired, TypedDict
 
 
 class LicenseTypedDict(TypedDict):
     identifier: NotRequired[str]
-    
+
 
 class License(BaseModel):
     identifier: Optional[str] = None
-    
+
 
 class OASInfoTypedDict(TypedDict):
     description: str
@@ -20,12 +20,15 @@ class OASInfoTypedDict(TypedDict):
     summary: str
     title: str
     version: str
-    
+
 
 class OASInfo(BaseModel):
     description: str
+
     license: License
+
     summary: str
+
     title: str
+
     version: str
-    

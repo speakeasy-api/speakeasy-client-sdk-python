@@ -1,3 +1,4 @@
+.speakeasy/reports
 .venv/
 README-PYPI.md
 pyrightconfig.json

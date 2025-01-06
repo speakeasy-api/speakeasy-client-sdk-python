@@ -2,11 +2,12 @@
 
 from __future__ import annotations
 import httpx
-from speakeasy_client_sdk_python.models.errors import error as errors_error
-from speakeasy_client_sdk_python.models.shared import getnamespacesresponse as shared_getnamespacesresponse
+from speakeasy_client_sdk_python.models.shared import (
+    getnamespacesresponse as shared_getnamespacesresponse,
+)
 from speakeasy_client_sdk_python.types import BaseModel
-from typing import Optional, TypedDict
-from typing_extensions import NotRequired
+from typing import Optional
+from typing_extensions import NotRequired, TypedDict
 
 
 class GetNamespacesResponseTypedDict(TypedDict):
@@ -16,21 +17,23 @@ class GetNamespacesResponseTypedDict(TypedDict):
     r"""HTTP response status code for this operation"""
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
-    error: NotRequired[errors_error.Error]
-    r"""Default error response"""
-    get_namespaces_response: NotRequired[shared_getnamespacesresponse.GetNamespacesResponseTypedDict]
+    get_namespaces_response: NotRequired[
+        shared_getnamespacesresponse.GetNamespacesResponseTypedDict
+    ]
     r"""OK"""
-    
+
 
 class GetNamespacesResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
+
     status_code: int
     r"""HTTP response status code for this operation"""
+
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
-    error: Optional[errors_error.Error] = None
-    r"""Default error response"""
-    get_namespaces_response: Optional[shared_getnamespacesresponse.GetNamespacesResponse] = None
+
+    get_namespaces_response: Optional[
+        shared_getnamespacesresponse.GetNamespacesResponse
+    ] = None
     r"""OK"""
-    

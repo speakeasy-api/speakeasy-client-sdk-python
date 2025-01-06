@@ -1,0 +1,8 @@
+overlay: 1.0.0
+info:
+  title: Fix generateCodeSamplePreviewAsync method name
+  version: 0.0.1
+actions:
+  - target: $.paths.*.*[?(@.operationId == 'generateCodeSamplePreviewAsync')]
+    update:
+      x-speakeasy-name-override: generateCodeSamplePreviewAsynchronous

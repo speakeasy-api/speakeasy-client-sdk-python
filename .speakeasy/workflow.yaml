@@ -4,6 +4,8 @@ sources:
     speakeasy-openapi:
         inputs:
             - location: https://speakeasy.com/openapi.yaml
+        overlays:
+            - location: ./overlay.yaml
         registry:
             location: registry.speakeasyapi.dev/speakeasy-self/speakeasy-self/speakeasy-openapi
 targets:

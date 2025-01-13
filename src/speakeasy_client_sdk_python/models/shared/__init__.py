@@ -55,6 +55,8 @@ from .githubmissingpublishingsecretsresponse import (
 from .githubpublishingprresponse import (
     GithubPublishingPRResponse,
     GithubPublishingPRResponseTypedDict,
+    PullRequestMetadata,
+    PullRequestMetadataTypedDict,
 )
 from .githubsetupstateresponse import (
     Actions,
@@ -128,6 +130,11 @@ from .workspace import Workspace, WorkspaceTypedDict
 from .workspaceandorganization import (
     WorkspaceAndOrganization,
     WorkspaceAndOrganizationTypedDict,
+)
+from .workspacefeatureflag import WorkspaceFeatureFlag
+from .workspacefeatureflagrequest import (
+    WorkspaceFeatureFlagRequest,
+    WorkspaceFeatureFlagRequestTypedDict,
 )
 from .workspacefeatureflagresponse import (
     WorkspaceFeatureFlagResponse,
@@ -226,6 +233,8 @@ __all__ = [
     "PreflightRequestTypedDict",
     "PreflightToken",
     "PreflightTokenTypedDict",
+    "PullRequestMetadata",
+    "PullRequestMetadataTypedDict",
     "Relationship",
     "RelationshipTypedDict",
     "RemoteDocument",
@@ -274,6 +283,9 @@ __all__ = [
     "Workspace",
     "WorkspaceAndOrganization",
     "WorkspaceAndOrganizationTypedDict",
+    "WorkspaceFeatureFlag",
+    "WorkspaceFeatureFlagRequest",
+    "WorkspaceFeatureFlagRequestTypedDict",
     "WorkspaceFeatureFlagResponse",
     "WorkspaceFeatureFlagResponseTypedDict",
     "WorkspaceInviteResponse",

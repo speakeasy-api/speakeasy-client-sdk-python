@@ -1155,6 +1155,32 @@ actions:
 
                 # Handle response
                 print(res.target_sdk_list)
+  - target: $["paths"]["/v1/workspace/feature_flags"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: setWorkspaceFeatureFlags
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            with Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            ) as speakeasy:
+
+                res = speakeasy.workspaces.set_feature_flags(request={
+                    "feature_flags": [
+                        shared.WorkspaceFeatureFlag.SKIP_SCHEMA_REGISTRY,
+                        shared.WorkspaceFeatureFlag.WEBHOOKS,
+                    ],
+                })
+
+                assert res.workspace_feature_flag_response is not None
+
+                # Handle response
+                print(res.workspace_feature_flag_response)
   - target: $["paths"]["/v1/workspace/{workspace_id}"]["get"]
     update:
       x-codeSamples:

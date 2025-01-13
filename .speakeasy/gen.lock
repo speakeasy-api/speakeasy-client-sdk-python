@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: b0b519b1-d1d3-43b2-82dd-b4292eadd4b0
 management:
-  docChecksum: 6c6e24cc570ee7f26269ffaf57ab867a
+  docChecksum: bc0f7c6355b315ff4ea62161f66c34a0
   docVersion: 0.4.0
-  speakeasyVersion: 1.462.2
-  generationVersion: 2.486.1
-  releaseVersion: 7.0.0-rc.2
-  configChecksum: 07992011caf9f99ff590ca4c58d854c1
+  speakeasyVersion: 1.468.2
+  generationVersion: 2.493.4
+  releaseVersion: 7.0.0-rc.3
+  configChecksum: c8eb698802c7790c2474a59a77ae1453
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
   repoSubDirectory: .
   installationURL: https://github.com/speakeasy-api/speakeasy-client-sdk-python.git
@@ -15,9 +15,9 @@ features:
   python:
     acceptHeaders: 3.0.0
     additionalDependencies: 1.0.0
-    core: 5.7.4
+    core: 5.10.1
     defaultEnabledRetries: 0.2.0
-    deprecations: 3.0.1
+    deprecations: 3.0.2
     downloadStreams: 1.0.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.3.2
@@ -38,7 +38,6 @@ generatedFiles:
   - .gitattributes
   - .python-version
   - .vscode/settings.json
-  - CONTRIBUTING.md
   - USAGE.md
   - docs/models/errors/error.md
   - docs/models/internal/globals.md
@@ -154,6 +153,7 @@ generatedFiles:
   - docs/models/operations/setvisibilityrequest.md
   - docs/models/operations/setvisibilityrequestbody.md
   - docs/models/operations/setvisibilityresponse.md
+  - docs/models/operations/setworkspacefeatureflagsresponse.md
   - docs/models/operations/suggestitemsresponse.md
   - docs/models/operations/suggestopenapiregistryrequest.md
   - docs/models/operations/suggestopenapiregistryresponse.md
@@ -216,6 +216,7 @@ generatedFiles:
   - docs/models/shared/organizationusageresponse.md
   - docs/models/shared/preflightrequest.md
   - docs/models/shared/preflighttoken.md
+  - docs/models/shared/pullrequestmetadata.md
   - docs/models/shared/relationship.md
   - docs/models/shared/remotedocument.md
   - docs/models/shared/remotesource.md
@@ -242,6 +243,8 @@ generatedFiles:
   - docs/models/shared/workflowdocument.md
   - docs/models/shared/workspace.md
   - docs/models/shared/workspaceandorganization.md
+  - docs/models/shared/workspacefeatureflag.md
+  - docs/models/shared/workspacefeatureflagrequest.md
   - docs/models/shared/workspacefeatureflagresponse.md
   - docs/models/shared/workspaceinviteresponse.md
   - docs/models/shared/workspaces.md
@@ -340,6 +343,7 @@ generatedFiles:
   - src/speakeasy_client_sdk_python/models/operations/revokeuseraccesstoworkspace.py
   - src/speakeasy_client_sdk_python/models/operations/searchworkspaceevents.py
   - src/speakeasy_client_sdk_python/models/operations/setvisibility.py
+  - src/speakeasy_client_sdk_python/models/operations/setworkspacefeatureflags.py
   - src/speakeasy_client_sdk_python/models/operations/suggest.py
   - src/speakeasy_client_sdk_python/models/operations/suggestitems.py
   - src/speakeasy_client_sdk_python/models/operations/suggestopenapi.py
@@ -404,6 +408,8 @@ generatedFiles:
   - src/speakeasy_client_sdk_python/models/shared/workflowdocument.py
   - src/speakeasy_client_sdk_python/models/shared/workspace.py
   - src/speakeasy_client_sdk_python/models/shared/workspaceandorganization.py
+  - src/speakeasy_client_sdk_python/models/shared/workspacefeatureflag.py
+  - src/speakeasy_client_sdk_python/models/shared/workspacefeatureflagrequest.py
   - src/speakeasy_client_sdk_python/models/shared/workspacefeatureflagresponse.py
   - src/speakeasy_client_sdk_python/models/shared/workspaceinviteresponse.py
   - src/speakeasy_client_sdk_python/models/shared/workspacesettings.py
@@ -452,6 +458,7 @@ examples:
       responses:
         4XX:
           application/json: {"message": "<value>", "status_code": 115307}
+        2XX: {}
   getManifest:
     speakeasy-default-get-manifest:
       parameters:
@@ -562,6 +569,7 @@ examples:
       responses:
         4XX:
           application/json: {"message": "<value>", "status_code": 140843}
+        "200": {}
   generateCodeSamplePreviewAsync:
     speakeasy-default-generate-code-sample-preview-async:
       requestBody:
@@ -591,6 +599,7 @@ examples:
           application/json: {"status": "pending"}
         4XX:
           application/json: {"message": "<value>", "status_code": 44984}
+        "200": {}
   checkGithubAccess:
     speakeasy-default-check-github-access:
       parameters:
@@ -985,4 +994,13 @@ examples:
           application/json: [{"created_at": "2024-01-24T23:49:11.608Z", "execution_id": "<id>", "id": "<id>", "interaction_type": "LINT", "local_started_at": "2023-03-09T07:00:10.489Z", "speakeasy_api_key_name": "<value>", "speakeasy_version": "<value>", "success": true, "workspace_id": "<id>"}]
         5XX:
           application/json: {"message": "<value>", "status_code": 238575}
+  setWorkspaceFeatureFlags:
+    speakeasy-default-set-workspace-feature-flags:
+      requestBody:
+        application/json: {"feature_flags": ["skip_schema_registry", "webhooks"]}
+      responses:
+        "200":
+          application/json: {}
+        5XX:
+          application/json: {"message": "<value>", "status_code": 264889}
 generatedTests: {}

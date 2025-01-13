@@ -3,4 +3,8 @@
 from .error import Error, ErrorData
 from .sdkerror import SDKError
 
-__all__ = ["Error", "ErrorData", "SDKError"]
+__all__ = [
+    "Error",
+    "ErrorData",
+    "SDKError",
+]

@@ -312,6 +312,10 @@ from .setvisibility import (
     SetVisibilityResponse,
     SetVisibilityResponseTypedDict,
 )
+from .setworkspacefeatureflags import (
+    SetWorkspaceFeatureFlagsResponse,
+    SetWorkspaceFeatureFlagsResponseTypedDict,
+)
 from .suggest import (
     SuggestRequest,
     SuggestRequestTypedDict,
@@ -588,6 +592,8 @@ __all__ = [
     "SetVisibilityRequestTypedDict",
     "SetVisibilityResponse",
     "SetVisibilityResponseTypedDict",
+    "SetWorkspaceFeatureFlagsResponse",
+    "SetWorkspaceFeatureFlagsResponseTypedDict",
     "SuggestItemsResponse",
     "SuggestItemsResponseTypedDict",
     "SuggestOpenAPIRegistryRequest",

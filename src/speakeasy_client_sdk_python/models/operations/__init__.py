@@ -87,6 +87,8 @@ from .getcodesamples import (
     GetCodeSamplesRequestTypedDict,
     GetCodeSamplesResponse,
     GetCodeSamplesResponseTypedDict,
+    MethodPaths,
+    MethodPathsTypedDict,
 )
 from .getgithubaction import (
     GetGitHubActionRequest,
@@ -312,6 +314,10 @@ from .setvisibility import (
     SetVisibilityResponse,
     SetVisibilityResponseTypedDict,
 )
+from .setworkspacefeatureflags import (
+    SetWorkspaceFeatureFlagsResponse,
+    SetWorkspaceFeatureFlagsResponseTypedDict,
+)
 from .suggest import (
     SuggestRequest,
     SuggestRequestTypedDict,
@@ -362,6 +368,7 @@ from .uploadreport import (
     UploadReportUploadedReportTypedDict,
 )
 from .validateapikey import ValidateAPIKeyResponse, ValidateAPIKeyResponseTypedDict
+
 
 __all__ = [
     "ActivateSubscriptionNamespaceRequest",
@@ -556,6 +563,8 @@ __all__ = [
     "ListRemoteSourcesRequestTypedDict",
     "ListRemoteSourcesResponse",
     "ListRemoteSourcesResponseTypedDict",
+    "MethodPaths",
+    "MethodPathsTypedDict",
     "PostTagsRequest",
     "PostTagsRequestTypedDict",
     "PostTagsResponse",
@@ -588,6 +597,8 @@ __all__ = [
     "SetVisibilityRequestTypedDict",
     "SetVisibilityResponse",
     "SetVisibilityResponseTypedDict",
+    "SetWorkspaceFeatureFlagsResponse",
+    "SetWorkspaceFeatureFlagsResponseTypedDict",
     "SuggestItemsResponse",
     "SuggestItemsResponseTypedDict",
     "SuggestOpenAPIRegistryRequest",

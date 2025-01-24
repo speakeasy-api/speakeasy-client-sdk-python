@@ -236,7 +236,20 @@ actions:
             ) as speakeasy:
 
                 res = speakeasy.code_samples.get(request={
-                    "registry_url": "https://normal-making.name",
+                    "registry_url": "https://spec.speakeasy.com/my-org/my-workspace/my-source",
+                    "operation_ids": [
+                        "getPets",
+                    ],
+                    "method_paths": [
+                        {
+                            "method": shared.HTTPMethod.GET,
+                            "path": "/pets",
+                        },
+                    ],
+                    "languages": [
+                        "python",
+                        "javascript",
+                    ],
                 })
 
                 assert res.usage_snippets is not None
@@ -924,7 +937,7 @@ actions:
                 res = speakeasy.suggest.suggest_items(request={
                     "prompt": "<value>",
                     "items": [
-                        "<value>",
+
                     ],
                 })
 
@@ -1013,26 +1026,12 @@ actions:
                                 "license": {},
                             },
                             "operations": [
-                                {
-                                    "method": "<value>",
-                                    "path": "/rescue",
-                                    "operation_id": "<id>",
-                                    "description": "kielbasa psst stitcher cannon devoted blindly apropos low",
-                                    "tags": [
-                                        "<value>",
-                                    ],
-                                },
+
                             ],
                         },
                         "suggestion_type": shared.SuggestRequestBodySuggestionType.DIAGNOSTICS_ONLY,
                         "diagnostics": [
-                            {
-                                "message": "<value>",
-                                "path": [
-                                    "/opt/share",
-                                ],
-                                "type": "<value>",
-                            },
+
                         ],
                     },
                 })
@@ -1155,6 +1154,32 @@ actions:
 
                 # Handle response
                 print(res.target_sdk_list)
+  - target: $["paths"]["/v1/workspace/feature_flags"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: setWorkspaceFeatureFlags
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            with Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            ) as speakeasy:
+
+                res = speakeasy.workspaces.set_feature_flags(request={
+                    "feature_flags": [
+                        shared.WorkspaceFeatureFlag.SKIP_SCHEMA_REGISTRY,
+                        shared.WorkspaceFeatureFlag.WEBHOOKS,
+                    ],
+                })
+
+                assert res.workspace_feature_flag_response is not None
+
+                # Handle response
+                print(res.workspace_feature_flag_response)
   - target: $["paths"]["/v1/workspace/{workspace_id}"]["get"]
     update:
       x-codeSamples:

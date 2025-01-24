@@ -9,7 +9,7 @@ REST APIs for retrieving Code Samples
 
 * [generate_code_sample_preview](#generate_code_sample_preview) - Generate Code Sample previews from a file and configuration parameters.
 * [generate_code_sample_preview_asynchronous](#generate_code_sample_preview_asynchronous) - Initiate asynchronous Code Sample preview generation from a file and configuration parameters, receiving an async JobID response for polling.
-* [get](#get) - Retrieve usage snippets from document stored in the registry
+* [get](#get) - Retrieve usage snippets
 * [get_code_sample_preview_async](#get_code_sample_preview_async) - Poll for the result of an asynchronous Code Sample preview generation.
 
 ## generate_code_sample_preview
@@ -61,7 +61,8 @@ with Speakeasy(
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.Error     | 4XX, 5XX         | application/json |
+| errors.Error     | 4XX              | application/json |
+| errors.Error     | 5XX              | application/json |
 
 ## generate_code_sample_preview_asynchronous
 
@@ -112,11 +113,12 @@ with Speakeasy(
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.Error     | 4XX, 5XX         | application/json |
+| errors.Error     | 4XX              | application/json |
+| errors.Error     | 5XX              | application/json |
 
 ## get
 
-Retrieve usage snippets from document stored in the registry. Supports filtering by language and operation ID.
+Retrieve usage snippets from an OpenAPI document stored in the registry. Supports filtering by language and operation ID.
 
 ### Example Usage
 
@@ -131,7 +133,20 @@ with Speakeasy(
 ) as speakeasy:
 
     res = speakeasy.code_samples.get(request={
-        "registry_url": "https://normal-making.name",
+        "registry_url": "https://spec.speakeasy.com/my-org/my-workspace/my-source",
+        "operation_ids": [
+            "getPets",
+        ],
+        "method_paths": [
+            {
+                "method": shared.HTTPMethod.GET,
+                "path": "/pets",
+            },
+        ],
+        "languages": [
+            "python",
+            "javascript",
+        ],
     })
 
     assert res.usage_snippets is not None
@@ -201,4 +216,5 @@ with Speakeasy(
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.Error     | 4XX, 5XX         | application/json |
+| errors.Error     | 4XX              | application/json |
+| errors.Error     | 5XX              | application/json |

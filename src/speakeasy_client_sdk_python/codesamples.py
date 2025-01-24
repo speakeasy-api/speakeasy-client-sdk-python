@@ -113,7 +113,11 @@ class CodeSamples(BaseSDK):
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, ["4XX", "5XX"], "application/json"):
+        if utils.match_response(http_res, "4XX", "application/json"):
+            http_res_text = utils.stream_to_text(http_res)
+            data = utils.unmarshal_json(http_res_text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "application/json"):
             http_res_text = utils.stream_to_text(http_res)
             data = utils.unmarshal_json(http_res_text, errors.ErrorData)
             raise errors.Error(data=data)
@@ -218,7 +222,11 @@ class CodeSamples(BaseSDK):
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, ["4XX", "5XX"], "application/json"):
+        if utils.match_response(http_res, "4XX", "application/json"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            data = utils.unmarshal_json(http_res_text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "application/json"):
             http_res_text = await utils.stream_to_text_async(http_res)
             data = utils.unmarshal_json(http_res_text, errors.ErrorData)
             raise errors.Error(data=data)
@@ -314,7 +322,10 @@ class CodeSamples(BaseSDK):
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, ["4XX", "5XX"], "application/json"):
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "application/json"):
             data = utils.unmarshal_json(http_res.text, errors.ErrorData)
             raise errors.Error(data=data)
 
@@ -409,7 +420,10 @@ class CodeSamples(BaseSDK):
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, ["4XX", "5XX"], "application/json"):
+        if utils.match_response(http_res, "4XX", "application/json"):
+            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "application/json"):
             data = utils.unmarshal_json(http_res.text, errors.ErrorData)
             raise errors.Error(data=data)
 
@@ -433,9 +447,9 @@ class CodeSamples(BaseSDK):
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.GetCodeSamplesResponse:
-        r"""Retrieve usage snippets from document stored in the registry
+        r"""Retrieve usage snippets
 
-        Retrieve usage snippets from document stored in the registry. Supports filtering by language and operation ID.
+        Retrieve usage snippets from an OpenAPI document stored in the registry. Supports filtering by language and operation ID.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -529,9 +543,9 @@ class CodeSamples(BaseSDK):
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
     ) -> operations.GetCodeSamplesResponse:
-        r"""Retrieve usage snippets from document stored in the registry
+        r"""Retrieve usage snippets
 
-        Retrieve usage snippets from document stored in the registry. Supports filtering by language and operation ID.
+        Retrieve usage snippets from an OpenAPI document stored in the registry. Supports filtering by language and operation ID.
 
         :param request: The request object to send.
         :param retries: Override the default retry configuration for this method
@@ -716,7 +730,11 @@ class CodeSamples(BaseSDK):
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, ["4XX", "5XX"], "application/json"):
+        if utils.match_response(http_res, "4XX", "application/json"):
+            http_res_text = utils.stream_to_text(http_res)
+            data = utils.unmarshal_json(http_res_text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "application/json"):
             http_res_text = utils.stream_to_text(http_res)
             data = utils.unmarshal_json(http_res_text, errors.ErrorData)
             raise errors.Error(data=data)
@@ -832,7 +850,11 @@ class CodeSamples(BaseSDK):
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, ["4XX", "5XX"], "application/json"):
+        if utils.match_response(http_res, "4XX", "application/json"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            data = utils.unmarshal_json(http_res_text, errors.ErrorData)
+            raise errors.Error(data=data)
+        if utils.match_response(http_res, "5XX", "application/json"):
             http_res_text = await utils.stream_to_text_async(http_res)
             data = utils.unmarshal_json(http_res_text, errors.ErrorData)
             raise errors.Error(data=data)

@@ -5,6 +5,10 @@ from .remotesourcesubscriptionsettings import (
     RemoteSourceSubscriptionSettings,
     RemoteSourceSubscriptionSettingsTypedDict,
 )
+from .revisioncontentsmetadata import (
+    RevisionContentsMetadata,
+    RevisionContentsMetadataTypedDict,
+)
 from datetime import datetime
 from speakeasy_client_sdk_python.types import BaseModel
 from typing import Optional
@@ -34,6 +38,7 @@ class NamespaceTypedDict(TypedDict):
     r"""A human-readable name for the namespace."""
     updated_at: datetime
     composite_spec_metadata: NotRequired[CompositeSpecMetadataTypedDict]
+    latest_revision_metadata: NotRequired[RevisionContentsMetadataTypedDict]
     public: NotRequired[bool]
     r"""Indicates whether the namespace is publicly accessible"""
 
@@ -52,6 +57,8 @@ class Namespace(BaseModel):
     updated_at: datetime
 
     composite_spec_metadata: Optional[CompositeSpecMetadata] = None
+
+    latest_revision_metadata: Optional[RevisionContentsMetadata] = None
 
     public: Optional[bool] = None
     r"""Indicates whether the namespace is publicly accessible"""

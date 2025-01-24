@@ -11,7 +11,7 @@ generation:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
 python:
-  version: 7.0.0-rc.2
+  version: 7.0.0-rc.3
   additionalDependencies:
     dev: {}
     main: {}
@@ -20,6 +20,7 @@ python:
   clientServerStatusCodesAsErrors: true
   defaultErrorName: SDKError
   description: Speakeasy API Client SDK for Python
+  enableCustomCodeRegions: false
   enumFormat: enum
   fixFlags:
     responseRequiredSep2024: false

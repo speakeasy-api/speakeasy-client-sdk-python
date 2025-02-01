@@ -43,7 +43,7 @@ with Speakeasy(
                 {
                     "message": "<value>",
                     "path": [
-                        "/rescue",
+
                     ],
                     "type": "<value>",
                 },
@@ -115,7 +115,7 @@ with Speakeasy(
 
     res = speakeasy.suggest.suggest_items(request={
         "items": [
-            "<value>",
+
         ],
         "prompt": "<value>",
     })

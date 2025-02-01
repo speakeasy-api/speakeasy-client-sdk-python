@@ -34,10 +34,12 @@ class SchemaFile(BaseModel):
 
 
 class CodeSampleSchemaInputTypedDict(TypedDict):
-    languages: List[str]
-    r"""A list of languages to generate code samples for"""
+    language: str
+    r"""The language to generate code samples for"""
     schema_file: SchemaFileTypedDict
     r"""The OpenAPI file to be uploaded"""
+    operation_ids: NotRequired[List[str]]
+    r"""A list of operations IDs to generate code samples for"""
     package_name: NotRequired[str]
     r"""The name of the package"""
     sdk_class_name: NotRequired[str]
@@ -45,13 +47,16 @@ class CodeSampleSchemaInputTypedDict(TypedDict):
 
 
 class CodeSampleSchemaInput(BaseModel):
-    languages: Annotated[List[str], FieldMetadata(multipart=True)]
-    r"""A list of languages to generate code samples for"""
+    language: Annotated[str, FieldMetadata(multipart=True)]
+    r"""The language to generate code samples for"""
 
     schema_file: Annotated[
         SchemaFile, FieldMetadata(multipart=MultipartFormMetadata(file=True))
     ]
     r"""The OpenAPI file to be uploaded"""
+
+    operation_ids: Annotated[Optional[List[str]], FieldMetadata(multipart=True)] = None
+    r"""A list of operations IDs to generate code samples for"""
 
     package_name: Annotated[Optional[str], FieldMetadata(multipart=True)] = None
     r"""The name of the package"""

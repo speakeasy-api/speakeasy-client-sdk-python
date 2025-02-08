@@ -3,25 +3,27 @@
 from __future__ import annotations
 import httpx
 from speakeasy_client_sdk_python.models.shared import (
-    usagesnippets as shared_usagesnippets,
+    workspacefeatureflagresponse as shared_workspacefeatureflagresponse,
 )
 from speakeasy_client_sdk_python.types import BaseModel
 from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
 
-class GenerateCodeSamplePreviewResponseTypedDict(TypedDict):
+class SetWorkspaceFeatureFlagsResponseTypedDict(TypedDict):
     content_type: str
     r"""HTTP response content type for this operation"""
     status_code: int
     r"""HTTP response status code for this operation"""
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
-    usage_snippets: NotRequired[shared_usagesnippets.UsageSnippetsTypedDict]
-    r"""OK"""
+    workspace_feature_flag_response: NotRequired[
+        shared_workspacefeatureflagresponse.WorkspaceFeatureFlagResponseTypedDict
+    ]
+    r"""Success"""
 
 
-class GenerateCodeSamplePreviewResponse(BaseModel):
+class SetWorkspaceFeatureFlagsResponse(BaseModel):
     content_type: str
     r"""HTTP response content type for this operation"""
 
@@ -31,5 +33,7 @@ class GenerateCodeSamplePreviewResponse(BaseModel):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
 
-    usage_snippets: Optional[shared_usagesnippets.UsageSnippets] = None
-    r"""OK"""
+    workspace_feature_flag_response: Optional[
+        shared_workspacefeatureflagresponse.WorkspaceFeatureFlagResponse
+    ] = None
+    r"""Success"""

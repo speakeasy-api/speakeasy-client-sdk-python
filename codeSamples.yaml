@@ -24,6 +24,29 @@ actions:
 
                 # Handle response
                 print(res.get_namespaces_response)
+  - target: $["paths"]["/v1/artifacts/namespaces/{namespace_name}/archive"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: archiveNamespace
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            with Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            ) as speakeasy:
+
+                res = speakeasy.artifacts.set_archived(request={
+                    "namespace_name": "<value>",
+                })
+
+                assert res is not None
+
+                # Handle response
+                print(res)
   - target: $["paths"]["/v1/artifacts/namespaces/{namespace_name}/revisions"]["get"]
     update:
       x-codeSamples:
@@ -236,7 +259,20 @@ actions:
             ) as speakeasy:
 
                 res = speakeasy.code_samples.get(request={
-                    "registry_url": "https://normal-making.name",
+                    "registry_url": "https://spec.speakeasy.com/my-org/my-workspace/my-source",
+                    "operation_ids": [
+                        "getPets",
+                    ],
+                    "method_paths": [
+                        {
+                            "method": shared.HTTPMethod.GET,
+                            "path": "/pets",
+                        },
+                    ],
+                    "languages": [
+                        "python",
+                        "javascript",
+                    ],
                 })
 
                 assert res.usage_snippets is not None
@@ -259,20 +295,17 @@ actions:
             ) as speakeasy:
 
                 res = speakeasy.code_samples.generate_code_sample_preview(request={
-                    "languages": [
-                        "<value>",
-                        "<value>",
-                    ],
+                    "language": "<value>",
                     "schema_file": {
                         "file_name": "example.file",
                         "content": open("example.file", "rb"),
                     },
                 })
 
-                assert res.two_hundred_application_x_yaml_response_stream is not None
+                assert res.usage_snippets is not None
 
                 # Handle response
-                print(res.two_hundred_application_x_yaml_response_stream)
+                print(res.usage_snippets)
   - target: $["paths"]["/v1/code_sample/preview/async"]["post"]
     update:
       x-codeSamples:
@@ -289,10 +322,7 @@ actions:
             ) as speakeasy:
 
                 res = speakeasy.code_samples.generate_code_sample_preview_asynchronous(request={
-                    "languages": [
-                        "<value>",
-                        "<value>",
-                    ],
+                    "language": "<value>",
                     "schema_file": {
                         "file_name": "example.file",
                         "content": open("example.file", "rb"),
@@ -322,10 +352,10 @@ actions:
                     "job_id": "<id>",
                 })
 
-                assert res.two_hundred_application_x_yaml_response_stream is not None
+                assert res.object is not None
 
                 # Handle response
-                print(res.two_hundred_application_x_yaml_response_stream)
+                print(res.object)
   - target: $["paths"]["/v1/github/action"]["get"]
     update:
       x-codeSamples:
@@ -924,7 +954,7 @@ actions:
                 res = speakeasy.suggest.suggest_items(request={
                     "prompt": "<value>",
                     "items": [
-                        "<value>",
+
                     ],
                 })
 
@@ -1013,26 +1043,12 @@ actions:
                                 "license": {},
                             },
                             "operations": [
-                                {
-                                    "method": "<value>",
-                                    "path": "/rescue",
-                                    "operation_id": "<id>",
-                                    "description": "kielbasa psst stitcher cannon devoted blindly apropos low",
-                                    "tags": [
-                                        "<value>",
-                                    ],
-                                },
+
                             ],
                         },
                         "suggestion_type": shared.SuggestRequestBodySuggestionType.DIAGNOSTICS_ONLY,
                         "diagnostics": [
-                            {
-                                "message": "<value>",
-                                "path": [
-                                    "/opt/share",
-                                ],
-                                "type": "<value>",
-                            },
+
                         ],
                     },
                 })
@@ -1155,6 +1171,32 @@ actions:
 
                 # Handle response
                 print(res.target_sdk_list)
+  - target: $["paths"]["/v1/workspace/feature_flags"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: setWorkspaceFeatureFlags
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+            with Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            ) as speakeasy:
+
+                res = speakeasy.workspaces.set_feature_flags(request={
+                    "feature_flags": [
+                        shared.WorkspaceFeatureFlag.SKIP_SCHEMA_REGISTRY,
+                        shared.WorkspaceFeatureFlag.WEBHOOKS,
+                    ],
+                })
+
+                assert res.workspace_feature_flag_response is not None
+
+                # Handle response
+                print(res.workspace_feature_flag_response)
   - target: $["paths"]["/v1/workspace/{workspace_id}"]["get"]
     update:
       x-codeSamples:
@@ -1258,7 +1300,7 @@ actions:
                             "execution_id": "<id>",
                             "workspace_id": "<id>",
                             "speakeasy_api_key_name": "<value>",
-                            "interaction_type": shared.InteractionType.QUICKSTART,
+                            "interaction_type": shared.InteractionType.RUN,
                             "local_started_at": dateutil.parser.isoparse("2024-09-08T05:59:33.876Z"),
                             "created_at": dateutil.parser.isoparse("2025-08-12T17:54:17.538Z"),
                             "speakeasy_version": "<value>",

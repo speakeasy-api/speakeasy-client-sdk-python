@@ -55,6 +55,8 @@ from .githubmissingpublishingsecretsresponse import (
 from .githubpublishingprresponse import (
     GithubPublishingPRResponse,
     GithubPublishingPRResponseTypedDict,
+    PullRequestMetadata,
+    PullRequestMetadataTypedDict,
 )
 from .githubsetupstateresponse import (
     Actions,
@@ -72,6 +74,7 @@ from .githubtriggeractionrequest import (
     GithubTriggerActionRequest,
     GithubTriggerActionRequestTypedDict,
 )
+from .httpmethod import HTTPMethod
 from .interactiontype import InteractionType
 from .manifest import Manifest, ManifestTypedDict
 from .namespace import (
@@ -99,6 +102,11 @@ from .remotesourcesubscriptionsettings import (
 )
 from .report import Report, ReportTypedDict, Type
 from .revision import Revision, RevisionTypedDict
+from .revisioncontentsmetadata import (
+    RevisionContentsMetadata,
+    RevisionContentsMetadataType,
+    RevisionContentsMetadataTypedDict,
+)
 from .security import Security, SecurityTypedDict
 from .shorturl import ShortURL, ShortURLTypedDict
 from .ssometadata import SSOMetadata, SSOMetadataTypedDict
@@ -129,6 +137,11 @@ from .workspaceandorganization import (
     WorkspaceAndOrganization,
     WorkspaceAndOrganizationTypedDict,
 )
+from .workspacefeatureflag import WorkspaceFeatureFlag
+from .workspacefeatureflagrequest import (
+    WorkspaceFeatureFlagRequest,
+    WorkspaceFeatureFlagRequestTypedDict,
+)
 from .workspacefeatureflagresponse import (
     WorkspaceFeatureFlagResponse,
     WorkspaceFeatureFlagResponseTypedDict,
@@ -142,6 +155,7 @@ from .workspaceinviteresponse import (
 from .workspacesettings import WorkspaceSettings, WorkspaceSettingsTypedDict
 from .workspaceteamresponse import WorkspaceTeamResponse, WorkspaceTeamResponseTypedDict
 from .workspacetoken import WorkspaceToken, WorkspaceTokenTypedDict
+
 
 __all__ = [
     "APIKeyDetails",
@@ -201,6 +215,7 @@ __all__ = [
     "GithubStorePublishingSecretsRequestTypedDict",
     "GithubTriggerActionRequest",
     "GithubTriggerActionRequestTypedDict",
+    "HTTPMethod",
     "InteractionType",
     "Level",
     "License",
@@ -226,6 +241,8 @@ __all__ = [
     "PreflightRequestTypedDict",
     "PreflightToken",
     "PreflightTokenTypedDict",
+    "PullRequestMetadata",
+    "PullRequestMetadataTypedDict",
     "Relationship",
     "RelationshipTypedDict",
     "RemoteDocument",
@@ -237,6 +254,9 @@ __all__ = [
     "Report",
     "ReportTypedDict",
     "Revision",
+    "RevisionContentsMetadata",
+    "RevisionContentsMetadataType",
+    "RevisionContentsMetadataTypedDict",
     "RevisionTypedDict",
     "SSOMetadata",
     "SSOMetadataTypedDict",
@@ -274,6 +294,9 @@ __all__ = [
     "Workspace",
     "WorkspaceAndOrganization",
     "WorkspaceAndOrganizationTypedDict",
+    "WorkspaceFeatureFlag",
+    "WorkspaceFeatureFlagRequest",
+    "WorkspaceFeatureFlagRequestTypedDict",
     "WorkspaceFeatureFlagResponse",
     "WorkspaceFeatureFlagResponseTypedDict",
     "WorkspaceInviteResponse",

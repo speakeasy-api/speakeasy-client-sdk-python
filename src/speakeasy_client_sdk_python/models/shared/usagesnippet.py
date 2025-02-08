@@ -3,6 +3,7 @@
 from __future__ import annotations
 import pydantic
 from speakeasy_client_sdk_python.types import BaseModel
+from typing import Any
 from typing_extensions import Annotated, TypedDict
 
 
@@ -11,8 +12,12 @@ class UsageSnippetTypedDict(TypedDict):
     r"""The code snippet"""
     language: str
     r"""The language of the snippet"""
+    method: Any
+    r"""The HTTP method of the operation"""
     operation_id: str
     r"""The operation ID for the snippet"""
+    path: str
+    r"""The path of the operation"""
 
 
 class UsageSnippet(BaseModel):
@@ -22,5 +27,11 @@ class UsageSnippet(BaseModel):
     language: str
     r"""The language of the snippet"""
 
+    method: Any
+    r"""The HTTP method of the operation"""
+
     operation_id: Annotated[str, pydantic.Field(alias="operationId")]
     r"""The operation ID for the snippet"""
+
+    path: str
+    r"""The path of the operation"""

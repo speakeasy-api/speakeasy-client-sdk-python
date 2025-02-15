@@ -37,12 +37,16 @@ class UserTypedDict(TypedDict):
     r"""Identifier of the default workspace."""
     github_handle: NotRequired[Nullable[str]]
     r"""GitHub handle of the user."""
+    has_created_api_key: NotRequired[bool]
+    r"""Indicates whether the user has created an API key. Not always populated"""
     internal: NotRequired[bool]
     r"""Indicates whether the user is internal."""
     last_login_at: NotRequired[Nullable[datetime]]
     r"""Timestamp of the last login."""
     photo_url: NotRequired[Nullable[str]]
     r"""URL of the user's photo."""
+    pylon_identity_hash: NotRequired[str]
+    r"""Hash used for pylon identity verification returned on v1/user."""
 
 
 class User(BaseModel):
@@ -79,6 +83,9 @@ class User(BaseModel):
     github_handle: OptionalNullable[str] = UNSET
     r"""GitHub handle of the user."""
 
+    has_created_api_key: Optional[bool] = None
+    r"""Indicates whether the user has created an API key. Not always populated"""
+
     internal: Optional[bool] = None
     r"""Indicates whether the user is internal."""
 
@@ -88,14 +95,19 @@ class User(BaseModel):
     photo_url: OptionalNullable[str] = UNSET
     r"""URL of the user's photo."""
 
+    pylon_identity_hash: Optional[str] = None
+    r"""Hash used for pylon identity verification returned on v1/user."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = [
             "default_workspace_id",
             "github_handle",
+            "has_created_api_key",
             "internal",
             "last_login_at",
             "photo_url",
+            "pylon_identity_hash",
         ]
         nullable_fields = [
             "default_workspace_id",

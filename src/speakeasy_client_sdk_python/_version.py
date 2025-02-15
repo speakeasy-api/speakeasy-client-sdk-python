@@ -3,7 +3,12 @@
 import importlib.metadata
 
 __title__: str = "speakeasy-client-sdk-python"
-__version__: str = "7.0.0-rc.2"
+__version__: str = "7.0.0-rc.3"
+__openapi_doc_version__: str = "0.4.0"
+__gen_version__: str = "2.512.4"
+__user_agent__: str = (
+    "speakeasy-sdk/python 7.0.0-rc.3 2.512.4 0.4.0 speakeasy-client-sdk-python"
+)
 
 try:
     if __package__ is not None:

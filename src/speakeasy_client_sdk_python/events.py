@@ -74,6 +74,7 @@ class Events(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspaceEventsByTarget",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -83,7 +84,7 @@ class Events(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWorkspaceEventsByTargetResponse(
                 cli_event_batch=utils.unmarshal_json(
@@ -99,8 +100,8 @@ class Events(BaseSDK):
                 "API error occurred", http_res.status_code, http_res_text, http_res
             )
         if utils.match_response(http_res, "5XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -174,6 +175,7 @@ class Events(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspaceEventsByTarget",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -183,7 +185,7 @@ class Events(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWorkspaceEventsByTargetResponse(
                 cli_event_batch=utils.unmarshal_json(
@@ -199,8 +201,8 @@ class Events(BaseSDK):
                 "API error occurred", http_res.status_code, http_res_text, http_res
             )
         if utils.match_response(http_res, "5XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -269,6 +271,7 @@ class Events(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspaceTargets",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -278,7 +281,7 @@ class Events(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWorkspaceTargetsResponse(
                 target_sdk_list=utils.unmarshal_json(
@@ -294,8 +297,8 @@ class Events(BaseSDK):
                 "API error occurred", http_res.status_code, http_res_text, http_res
             )
         if utils.match_response(http_res, "5XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -364,6 +367,7 @@ class Events(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspaceTargets",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -373,7 +377,7 @@ class Events(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWorkspaceTargetsResponse(
                 target_sdk_list=utils.unmarshal_json(
@@ -389,8 +393,8 @@ class Events(BaseSDK):
                 "API error occurred", http_res.status_code, http_res_text, http_res
             )
         if utils.match_response(http_res, "5XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -464,6 +468,7 @@ class Events(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspaceTargetsDeprecated",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -473,7 +478,7 @@ class Events(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWorkspaceTargetsDeprecatedResponse(
                 target_sdk_list=utils.unmarshal_json(
@@ -489,8 +494,8 @@ class Events(BaseSDK):
                 "API error occurred", http_res.status_code, http_res_text, http_res
             )
         if utils.match_response(http_res, "5XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -564,6 +569,7 @@ class Events(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspaceTargetsDeprecated",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -573,7 +579,7 @@ class Events(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWorkspaceTargetsDeprecatedResponse(
                 target_sdk_list=utils.unmarshal_json(
@@ -589,8 +595,8 @@ class Events(BaseSDK):
                 "API error occurred", http_res.status_code, http_res_text, http_res
             )
         if utils.match_response(http_res, "5XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -671,6 +677,7 @@ class Events(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="postWorkspaceEvents",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -680,7 +687,7 @@ class Events(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.PostWorkspaceEventsResponse(
                 status_code=http_res.status_code,
@@ -693,8 +700,8 @@ class Events(BaseSDK):
                 "API error occurred", http_res.status_code, http_res_text, http_res
             )
         if utils.match_response(http_res, "5XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -775,6 +782,7 @@ class Events(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="postWorkspaceEvents",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -784,7 +792,7 @@ class Events(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.PostWorkspaceEventsResponse(
                 status_code=http_res.status_code,
@@ -797,8 +805,8 @@ class Events(BaseSDK):
                 "API error occurred", http_res.status_code, http_res_text, http_res
             )
         if utils.match_response(http_res, "5XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -870,6 +878,7 @@ class Events(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="searchWorkspaceEvents",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -879,7 +888,7 @@ class Events(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.SearchWorkspaceEventsResponse(
                 cli_event_batch=utils.unmarshal_json(
@@ -895,8 +904,8 @@ class Events(BaseSDK):
                 "API error occurred", http_res.status_code, http_res_text, http_res
             )
         if utils.match_response(http_res, "5XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -968,6 +977,7 @@ class Events(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="searchWorkspaceEvents",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -977,7 +987,7 @@ class Events(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.SearchWorkspaceEventsResponse(
                 cli_event_batch=utils.unmarshal_json(
@@ -993,8 +1003,8 @@ class Events(BaseSDK):
                 "API error occurred", http_res.status_code, http_res_text, http_res
             )
         if utils.match_response(http_res, "5XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)

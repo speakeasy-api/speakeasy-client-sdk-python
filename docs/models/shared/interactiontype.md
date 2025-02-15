@@ -18,3 +18,4 @@ Type of interaction.
 | `RUN`             | RUN               |
 | `CONFIGURE`       | CONFIGURE         |
 | `PUBLISH`         | PUBLISH           |
+| `TEST`            | TEST              |

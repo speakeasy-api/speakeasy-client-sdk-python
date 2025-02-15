@@ -6,6 +6,14 @@ from .activatesubscriptionnamespace import (
     ActivateSubscriptionNamespaceResponse,
     ActivateSubscriptionNamespaceResponseTypedDict,
 )
+from .archivenamespace import (
+    ArchiveNamespaceRequest,
+    ArchiveNamespaceRequestBody,
+    ArchiveNamespaceRequestBodyTypedDict,
+    ArchiveNamespaceRequestTypedDict,
+    ArchiveNamespaceResponse,
+    ArchiveNamespaceResponseTypedDict,
+)
 from .checkgithubaccess import (
     CheckGithubAccessRequest,
     CheckGithubAccessRequestTypedDict,
@@ -87,6 +95,8 @@ from .getcodesamples import (
     GetCodeSamplesRequestTypedDict,
     GetCodeSamplesResponse,
     GetCodeSamplesResponseTypedDict,
+    MethodPaths,
+    MethodPathsTypedDict,
 )
 from .getgithubaction import (
     GetGitHubActionRequest,
@@ -312,6 +322,10 @@ from .setvisibility import (
     SetVisibilityResponse,
     SetVisibilityResponseTypedDict,
 )
+from .setworkspacefeatureflags import (
+    SetWorkspaceFeatureFlagsResponse,
+    SetWorkspaceFeatureFlagsResponseTypedDict,
+)
 from .suggest import (
     SuggestRequest,
     SuggestRequestTypedDict,
@@ -363,11 +377,18 @@ from .uploadreport import (
 )
 from .validateapikey import ValidateAPIKeyResponse, ValidateAPIKeyResponseTypedDict
 
+
 __all__ = [
     "ActivateSubscriptionNamespaceRequest",
     "ActivateSubscriptionNamespaceRequestTypedDict",
     "ActivateSubscriptionNamespaceResponse",
     "ActivateSubscriptionNamespaceResponseTypedDict",
+    "ArchiveNamespaceRequest",
+    "ArchiveNamespaceRequestBody",
+    "ArchiveNamespaceRequestBodyTypedDict",
+    "ArchiveNamespaceRequestTypedDict",
+    "ArchiveNamespaceResponse",
+    "ArchiveNamespaceResponseTypedDict",
     "CheckGithubAccessRequest",
     "CheckGithubAccessRequestTypedDict",
     "CheckGithubAccessResponse",
@@ -556,6 +577,8 @@ __all__ = [
     "ListRemoteSourcesRequestTypedDict",
     "ListRemoteSourcesResponse",
     "ListRemoteSourcesResponseTypedDict",
+    "MethodPaths",
+    "MethodPathsTypedDict",
     "PostTagsRequest",
     "PostTagsRequestTypedDict",
     "PostTagsResponse",
@@ -588,6 +611,8 @@ __all__ = [
     "SetVisibilityRequestTypedDict",
     "SetVisibilityResponse",
     "SetVisibilityResponseTypedDict",
+    "SetWorkspaceFeatureFlagsResponse",
+    "SetWorkspaceFeatureFlagsResponseTypedDict",
     "SuggestItemsResponse",
     "SuggestItemsResponseTypedDict",
     "SuggestOpenAPIRegistryRequest",

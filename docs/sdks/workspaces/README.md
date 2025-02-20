@@ -19,6 +19,7 @@ REST APIs for managing Workspaces (speakeasy tenancy)
 * [get_tokens](#get_tokens) - Get tokens for a particular workspace
 * [grant_access](#grant_access) - Grant a user access to a particular workspace
 * [revoke_access](#revoke_access) - Revoke a user's access to a particular workspace
+* [set_feature_flags](#set_feature_flags) - Set workspace feature flags
 * [update](#update) - Update workspace details
 * [update_settings](#update_settings) - Update workspace settings
 
@@ -574,6 +575,54 @@ with Speakeasy(
 | ---------------- | ---------------- | ---------------- |
 | errors.Error     | 4XX              | application/json |
 | errors.SDKError  | 5XX              | \*/\*            |
+
+## set_feature_flags
+
+Set workspace feature flags
+
+### Example Usage
+
+```python
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
+
+with Speakeasy(
+    security=shared.Security(
+        api_key="<YOUR_API_KEY_HERE>",
+    ),
+) as speakeasy:
+
+    res = speakeasy.workspaces.set_feature_flags(request={
+        "feature_flags": [
+            shared.WorkspaceFeatureFlag.SKIP_SCHEMA_REGISTRY,
+            shared.WorkspaceFeatureFlag.WEBHOOKS,
+        ],
+    })
+
+    assert res.workspace_feature_flag_response is not None
+
+    # Handle response
+    print(res.workspace_feature_flag_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [shared.WorkspaceFeatureFlagRequest](../../models/shared/workspacefeatureflagrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+
+### Response
+
+**[operations.SetWorkspaceFeatureFlagsResponse](../../models/operations/setworkspacefeatureflagsresponse.md)**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 5XX              | application/json |
+| errors.SDKError  | 4XX              | \*/\*            |
 
 ## update
 

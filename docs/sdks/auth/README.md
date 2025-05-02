@@ -22,6 +22,7 @@ Checks if generation is permitted for a particular run of the CLI
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
@@ -62,6 +63,7 @@ Get or refresh an access token for the current workspace.
 
 ```python
 from speakeasy_client_sdk_python import Speakeasy
+
 
 with Speakeasy() as speakeasy:
 
@@ -104,6 +106,7 @@ Get information about the current user.
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
@@ -145,6 +148,7 @@ Validate the current api key.
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(

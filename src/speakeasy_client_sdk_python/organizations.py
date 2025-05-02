@@ -37,6 +37,8 @@ class Organizations(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.Organization)
@@ -71,6 +73,7 @@ class Organizations(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createOrganization",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -80,7 +83,7 @@ class Organizations(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.CreateOrganizationResponse(
                 organization=utils.unmarshal_json(
@@ -91,8 +94,8 @@ class Organizations(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -134,6 +137,8 @@ class Organizations(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.Organization)
@@ -168,6 +173,7 @@ class Organizations(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createOrganization",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -177,7 +183,7 @@ class Organizations(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.CreateOrganizationResponse(
                 organization=utils.unmarshal_json(
@@ -188,13 +194,215 @@ class Organizations(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
                 "API error occurred", http_res.status_code, http_res_text, http_res
             )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def create_billing_add_ons(
+        self,
+        *,
+        request: Union[
+            shared.OrganizationBillingAddOnRequest,
+            shared.OrganizationBillingAddOnRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.CreateBillingAddOnsResponse:
+        r"""Create billing add ons
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, shared.OrganizationBillingAddOnRequest)
+        request = cast(shared.OrganizationBillingAddOnRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/v1/organization/add_ons",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request, False, False, "json", shared.OrganizationBillingAddOnRequest
+            ),
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                base_url=base_url or "",
+                operation_id="createBillingAddOns",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.CreateBillingAddOnsResponse(
+                organization_billing_add_on_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.OrganizationBillingAddOnResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+        if utils.match_response(http_res, "5XX", "application/json"):
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def create_billing_add_ons_async(
+        self,
+        *,
+        request: Union[
+            shared.OrganizationBillingAddOnRequest,
+            shared.OrganizationBillingAddOnRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.CreateBillingAddOnsResponse:
+        r"""Create billing add ons
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, shared.OrganizationBillingAddOnRequest)
+        request = cast(shared.OrganizationBillingAddOnRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/v1/organization/add_ons",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request, False, False, "json", shared.OrganizationBillingAddOnRequest
+            ),
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                base_url=base_url or "",
+                operation_id="createBillingAddOns",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.CreateBillingAddOnsResponse(
+                organization_billing_add_on_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.OrganizationBillingAddOnResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+        if utils.match_response(http_res, "5XX", "application/json"):
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -229,6 +437,8 @@ class Organizations(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="POST",
             path="/v1/organization/free_trial",
@@ -255,6 +465,7 @@ class Organizations(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createFreeTrial",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -264,7 +475,7 @@ class Organizations(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.CreateFreeTrialResponse(
                 status_code=http_res.status_code,
@@ -272,8 +483,8 @@ class Organizations(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -313,6 +524,8 @@ class Organizations(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="POST",
             path="/v1/organization/free_trial",
@@ -339,6 +552,7 @@ class Organizations(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createFreeTrial",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -348,7 +562,7 @@ class Organizations(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.CreateFreeTrialResponse(
                 status_code=http_res.status_code,
@@ -356,13 +570,203 @@ class Organizations(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
                 "API error occurred", http_res.status_code, http_res_text, http_res
             )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def delete_billing_add_on(
+        self,
+        *,
+        request: Union[
+            operations.DeleteBillingAddOnRequest,
+            operations.DeleteBillingAddOnRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.DeleteBillingAddOnResponse:
+        r"""Delete billing add ons
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.DeleteBillingAddOnRequest)
+        request = cast(operations.DeleteBillingAddOnRequest, request)
+
+        req = self._build_request(
+            method="DELETE",
+            path="/v1/organization/add_ons/{add_on}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                base_url=base_url or "",
+                operation_id="deleteBillingAddOn",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "*"):
+            return operations.DeleteBillingAddOnResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+        if utils.match_response(http_res, "5XX", "application/json"):
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def delete_billing_add_on_async(
+        self,
+        *,
+        request: Union[
+            operations.DeleteBillingAddOnRequest,
+            operations.DeleteBillingAddOnRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.DeleteBillingAddOnResponse:
+        r"""Delete billing add ons
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, operations.DeleteBillingAddOnRequest)
+        request = cast(operations.DeleteBillingAddOnRequest, request)
+
+        req = self._build_request_async(
+            method="DELETE",
+            path="/v1/organization/add_ons/{add_on}",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=False,
+            request_has_path_params=True,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                base_url=base_url or "",
+                operation_id="deleteBillingAddOn",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "*"):
+            return operations.DeleteBillingAddOnResponse(
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+        if utils.match_response(http_res, "5XX", "application/json"):
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -402,6 +806,8 @@ class Organizations(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetOrganizationRequest)
@@ -433,6 +839,7 @@ class Organizations(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getOrganization",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -442,7 +849,7 @@ class Organizations(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetOrganizationResponse(
                 organization=utils.unmarshal_json(
@@ -453,8 +860,8 @@ class Organizations(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -499,6 +906,8 @@ class Organizations(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetOrganizationRequest)
@@ -530,6 +939,7 @@ class Organizations(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getOrganization",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -539,7 +949,7 @@ class Organizations(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetOrganizationResponse(
                 organization=utils.unmarshal_json(
@@ -550,8 +960,8 @@ class Organizations(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -591,6 +1001,8 @@ class Organizations(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/v1/organizations",
@@ -617,6 +1029,7 @@ class Organizations(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getOrganizations",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -626,7 +1039,7 @@ class Organizations(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetOrganizationsResponse(
                 organizations=utils.unmarshal_json(
@@ -637,8 +1050,8 @@ class Organizations(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -678,6 +1091,8 @@ class Organizations(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/v1/organizations",
@@ -704,6 +1119,7 @@ class Organizations(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getOrganizations",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -713,7 +1129,7 @@ class Organizations(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetOrganizationsResponse(
                 organizations=utils.unmarshal_json(
@@ -724,13 +1140,189 @@ class Organizations(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
                 "API error occurred", http_res.status_code, http_res_text, http_res
             )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def get_billing_add_ons(
+        self,
+        *,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetBillingAddOnsResponse:
+        r"""Get billing add ons
+
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+        req = self._build_request(
+            method="GET",
+            path="/v1/organization/add_ons",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=None,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                base_url=base_url or "",
+                operation_id="getBillingAddOns",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetBillingAddOnsResponse(
+                organization_billing_add_on_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.OrganizationBillingAddOnResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+        if utils.match_response(http_res, "5XX", "application/json"):
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def get_billing_add_ons_async(
+        self,
+        *,
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.GetBillingAddOnsResponse:
+        r"""Get billing add ons
+
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+        req = self._build_request_async(
+            method="GET",
+            path="/v1/organization/add_ons",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=None,
+            request_body_required=False,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                base_url=base_url or "",
+                operation_id="getBillingAddOns",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.GetBillingAddOnsResponse(
+                organization_billing_add_on_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.OrganizationBillingAddOnResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+        if utils.match_response(http_res, "5XX", "application/json"):
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -765,6 +1357,8 @@ class Organizations(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/v1/organization/usage",
@@ -791,6 +1385,7 @@ class Organizations(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getOrganizationUsage",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -800,7 +1395,7 @@ class Organizations(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetOrganizationUsageResponse(
                 organization_usage_response=utils.unmarshal_json(
@@ -811,8 +1406,8 @@ class Organizations(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -852,6 +1447,8 @@ class Organizations(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/v1/organization/usage",
@@ -878,6 +1475,7 @@ class Organizations(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getOrganizationUsage",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -887,7 +1485,7 @@ class Organizations(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetOrganizationUsageResponse(
                 organization_usage_response=utils.unmarshal_json(
@@ -898,8 +1496,8 @@ class Organizations(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(

@@ -6,6 +6,14 @@ from .activatesubscriptionnamespace import (
     ActivateSubscriptionNamespaceResponse,
     ActivateSubscriptionNamespaceResponseTypedDict,
 )
+from .archivenamespace import (
+    ArchiveNamespaceRequest,
+    ArchiveNamespaceRequestBody,
+    ArchiveNamespaceRequestBodyTypedDict,
+    ArchiveNamespaceRequestTypedDict,
+    ArchiveNamespaceResponse,
+    ArchiveNamespaceResponseTypedDict,
+)
 from .checkgithubaccess import (
     CheckGithubAccessRequest,
     CheckGithubAccessRequestTypedDict,
@@ -18,14 +26,31 @@ from .create import (
     CreateResponse,
     CreateResponseTypedDict,
 )
+from .createbillingaddons import (
+    CreateBillingAddOnsResponse,
+    CreateBillingAddOnsResponseTypedDict,
+)
 from .createfreetrial import CreateFreeTrialResponse, CreateFreeTrialResponseTypedDict
 from .createorganization import (
     CreateOrganizationResponse,
     CreateOrganizationResponseTypedDict,
 )
+from .createpublishingtoken import (
+    CreatePublishingTokenRequestBody,
+    CreatePublishingTokenRequestBodyTypedDict,
+    CreatePublishingTokenResponse,
+    CreatePublishingTokenResponseTypedDict,
+)
 from .createremotesource import (
     CreateRemoteSourceResponse,
     CreateRemoteSourceResponseTypedDict,
+)
+from .createschemastoreitem import (
+    CreateSchemaStoreItemRequestBody,
+    CreateSchemaStoreItemRequestBodyTypedDict,
+    CreateSchemaStoreItemResponse,
+    CreateSchemaStoreItemResponseTypedDict,
+    Format,
 )
 from .createworkspace import CreateWorkspaceResponse, CreateWorkspaceResponseTypedDict
 from .createworkspacetoken import (
@@ -35,6 +60,18 @@ from .createworkspacetoken import (
     CreateWorkspaceTokenRequestTypedDict,
     CreateWorkspaceTokenResponse,
     CreateWorkspaceTokenResponseTypedDict,
+)
+from .deletebillingaddon import (
+    DeleteBillingAddOnRequest,
+    DeleteBillingAddOnRequestTypedDict,
+    DeleteBillingAddOnResponse,
+    DeleteBillingAddOnResponseTypedDict,
+)
+from .deletepublishingtoken import (
+    DeletePublishingTokenRequest,
+    DeletePublishingTokenRequestTypedDict,
+    DeletePublishingTokenResponse,
+    DeletePublishingTokenResponseTypedDict,
 )
 from .deleteworkspacetoken import (
     DeleteWorkspaceTokenGlobals,
@@ -59,6 +96,10 @@ from .getaccesstoken import (
     GetAccessTokenRequestTypedDict,
     GetAccessTokenResponse,
     GetAccessTokenResponseTypedDict,
+)
+from .getbillingaddons import (
+    GetBillingAddOnsResponse,
+    GetBillingAddOnsResponseTypedDict,
 )
 from .getblob import (
     GetBlobRequest,
@@ -87,6 +128,8 @@ from .getcodesamples import (
     GetCodeSamplesRequestTypedDict,
     GetCodeSamplesResponse,
     GetCodeSamplesResponseTypedDict,
+    MethodPaths,
+    MethodPathsTypedDict,
 )
 from .getgithubaction import (
     GetGitHubActionRequest,
@@ -129,11 +172,41 @@ from .getorganizationusage import (
     GetOrganizationUsageResponse,
     GetOrganizationUsageResponseTypedDict,
 )
+from .getpublishingtoken import (
+    GetPublishingTokenResponse,
+    GetPublishingTokenResponseTypedDict,
+)
+from .getpublishingtokenbyid import (
+    GetPublishingTokenByIDRequest,
+    GetPublishingTokenByIDRequestTypedDict,
+    GetPublishingTokenByIDResponse,
+    GetPublishingTokenByIDResponseTypedDict,
+)
+from .getpublishingtokenpublicmetadata import (
+    GetPublishingTokenPublicMetadataRequest,
+    GetPublishingTokenPublicMetadataRequestTypedDict,
+    GetPublishingTokenPublicMetadataResponse,
+    GetPublishingTokenPublicMetadataResponseBody,
+    GetPublishingTokenPublicMetadataResponseBodyTypedDict,
+    GetPublishingTokenPublicMetadataResponseTypedDict,
+)
+from .getpublishingtokentargetbyid import (
+    GetPublishingTokenTargetByIDRequest,
+    GetPublishingTokenTargetByIDRequestTypedDict,
+    GetPublishingTokenTargetByIDResponse,
+    GetPublishingTokenTargetByIDResponseTypedDict,
+)
 from .getrevisions import (
     GetRevisionsRequest,
     GetRevisionsRequestTypedDict,
     GetRevisionsResponse,
     GetRevisionsResponseTypedDict,
+)
+from .getschemastoreitem import (
+    GetSchemaStoreItemRequestBody,
+    GetSchemaStoreItemRequestBodyTypedDict,
+    GetSchemaStoreItemResponse,
+    GetSchemaStoreItemResponseTypedDict,
 )
 from .gettags import (
     GetTagsRequest,
@@ -312,6 +385,10 @@ from .setvisibility import (
     SetVisibilityResponse,
     SetVisibilityResponseTypedDict,
 )
+from .setworkspacefeatureflags import (
+    SetWorkspaceFeatureFlagsResponse,
+    SetWorkspaceFeatureFlagsResponseTypedDict,
+)
 from .suggest import (
     SuggestRequest,
     SuggestRequestTypedDict,
@@ -334,6 +411,14 @@ from .suggestopenapiregistry import (
     SuggestOpenAPIRegistryRequestTypedDict,
     SuggestOpenAPIRegistryResponse,
     SuggestOpenAPIRegistryResponseTypedDict,
+)
+from .updatepublishingtokenexpiration import (
+    UpdatePublishingTokenExpirationRequest,
+    UpdatePublishingTokenExpirationRequestBody,
+    UpdatePublishingTokenExpirationRequestBodyTypedDict,
+    UpdatePublishingTokenExpirationRequestTypedDict,
+    UpdatePublishingTokenExpirationResponse,
+    UpdatePublishingTokenExpirationResponseTypedDict,
 )
 from .updateworkspacedetails import (
     UpdateWorkspaceDetailsGlobals,
@@ -363,25 +448,42 @@ from .uploadreport import (
 )
 from .validateapikey import ValidateAPIKeyResponse, ValidateAPIKeyResponseTypedDict
 
+
 __all__ = [
     "ActivateSubscriptionNamespaceRequest",
     "ActivateSubscriptionNamespaceRequestTypedDict",
     "ActivateSubscriptionNamespaceResponse",
     "ActivateSubscriptionNamespaceResponseTypedDict",
+    "ArchiveNamespaceRequest",
+    "ArchiveNamespaceRequestBody",
+    "ArchiveNamespaceRequestBodyTypedDict",
+    "ArchiveNamespaceRequestTypedDict",
+    "ArchiveNamespaceResponse",
+    "ArchiveNamespaceResponseTypedDict",
     "CheckGithubAccessRequest",
     "CheckGithubAccessRequestTypedDict",
     "CheckGithubAccessResponse",
     "CheckGithubAccessResponseTypedDict",
+    "CreateBillingAddOnsResponse",
+    "CreateBillingAddOnsResponseTypedDict",
     "CreateFreeTrialResponse",
     "CreateFreeTrialResponseTypedDict",
     "CreateOrganizationResponse",
     "CreateOrganizationResponseTypedDict",
+    "CreatePublishingTokenRequestBody",
+    "CreatePublishingTokenRequestBodyTypedDict",
+    "CreatePublishingTokenResponse",
+    "CreatePublishingTokenResponseTypedDict",
     "CreateRemoteSourceResponse",
     "CreateRemoteSourceResponseTypedDict",
     "CreateRequestBody",
     "CreateRequestBodyTypedDict",
     "CreateResponse",
     "CreateResponseTypedDict",
+    "CreateSchemaStoreItemRequestBody",
+    "CreateSchemaStoreItemRequestBodyTypedDict",
+    "CreateSchemaStoreItemResponse",
+    "CreateSchemaStoreItemResponseTypedDict",
     "CreateWorkspaceResponse",
     "CreateWorkspaceResponseTypedDict",
     "CreateWorkspaceTokenGlobals",
@@ -390,6 +492,14 @@ __all__ = [
     "CreateWorkspaceTokenRequestTypedDict",
     "CreateWorkspaceTokenResponse",
     "CreateWorkspaceTokenResponseTypedDict",
+    "DeleteBillingAddOnRequest",
+    "DeleteBillingAddOnRequestTypedDict",
+    "DeleteBillingAddOnResponse",
+    "DeleteBillingAddOnResponseTypedDict",
+    "DeletePublishingTokenRequest",
+    "DeletePublishingTokenRequestTypedDict",
+    "DeletePublishingTokenResponse",
+    "DeletePublishingTokenResponseTypedDict",
     "DeleteWorkspaceTokenGlobals",
     "DeleteWorkspaceTokenGlobalsTypedDict",
     "DeleteWorkspaceTokenRequest",
@@ -398,6 +508,7 @@ __all__ = [
     "DeleteWorkspaceTokenResponseTypedDict",
     "File",
     "FileTypedDict",
+    "Format",
     "GenerateCodeSamplePreviewAsyncResponse",
     "GenerateCodeSamplePreviewAsyncResponseBody",
     "GenerateCodeSamplePreviewAsyncResponseBodyTypedDict",
@@ -408,6 +519,8 @@ __all__ = [
     "GetAccessTokenRequestTypedDict",
     "GetAccessTokenResponse",
     "GetAccessTokenResponseTypedDict",
+    "GetBillingAddOnsResponse",
+    "GetBillingAddOnsResponseTypedDict",
     "GetBlobRequest",
     "GetBlobRequestTypedDict",
     "GetBlobResponse",
@@ -456,10 +569,30 @@ __all__ = [
     "GetOrganizationUsageResponseTypedDict",
     "GetOrganizationsResponse",
     "GetOrganizationsResponseTypedDict",
+    "GetPublishingTokenByIDRequest",
+    "GetPublishingTokenByIDRequestTypedDict",
+    "GetPublishingTokenByIDResponse",
+    "GetPublishingTokenByIDResponseTypedDict",
+    "GetPublishingTokenPublicMetadataRequest",
+    "GetPublishingTokenPublicMetadataRequestTypedDict",
+    "GetPublishingTokenPublicMetadataResponse",
+    "GetPublishingTokenPublicMetadataResponseBody",
+    "GetPublishingTokenPublicMetadataResponseBodyTypedDict",
+    "GetPublishingTokenPublicMetadataResponseTypedDict",
+    "GetPublishingTokenResponse",
+    "GetPublishingTokenResponseTypedDict",
+    "GetPublishingTokenTargetByIDRequest",
+    "GetPublishingTokenTargetByIDRequestTypedDict",
+    "GetPublishingTokenTargetByIDResponse",
+    "GetPublishingTokenTargetByIDResponseTypedDict",
     "GetRevisionsRequest",
     "GetRevisionsRequestTypedDict",
     "GetRevisionsResponse",
     "GetRevisionsResponseTypedDict",
+    "GetSchemaStoreItemRequestBody",
+    "GetSchemaStoreItemRequestBodyTypedDict",
+    "GetSchemaStoreItemResponse",
+    "GetSchemaStoreItemResponseTypedDict",
     "GetTagsRequest",
     "GetTagsRequestTypedDict",
     "GetTagsResponse",
@@ -556,6 +689,8 @@ __all__ = [
     "ListRemoteSourcesRequestTypedDict",
     "ListRemoteSourcesResponse",
     "ListRemoteSourcesResponseTypedDict",
+    "MethodPaths",
+    "MethodPathsTypedDict",
     "PostTagsRequest",
     "PostTagsRequestTypedDict",
     "PostTagsResponse",
@@ -588,6 +723,8 @@ __all__ = [
     "SetVisibilityRequestTypedDict",
     "SetVisibilityResponse",
     "SetVisibilityResponseTypedDict",
+    "SetWorkspaceFeatureFlagsResponse",
+    "SetWorkspaceFeatureFlagsResponseTypedDict",
     "SuggestItemsResponse",
     "SuggestItemsResponseTypedDict",
     "SuggestOpenAPIRegistryRequest",
@@ -604,6 +741,12 @@ __all__ = [
     "SuggestRequestTypedDict",
     "SuggestResponse",
     "SuggestResponseTypedDict",
+    "UpdatePublishingTokenExpirationRequest",
+    "UpdatePublishingTokenExpirationRequestBody",
+    "UpdatePublishingTokenExpirationRequestBodyTypedDict",
+    "UpdatePublishingTokenExpirationRequestTypedDict",
+    "UpdatePublishingTokenExpirationResponse",
+    "UpdatePublishingTokenExpirationResponseTypedDict",
     "UpdateWorkspaceDetailsGlobals",
     "UpdateWorkspaceDetailsGlobalsTypedDict",
     "UpdateWorkspaceDetailsRequest",

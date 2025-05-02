@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 from .accounttype import AccountType
+from .billingaddon import BillingAddOn
 from datetime import datetime
 import pydantic
 from pydantic.functional_validators import PlainValidator
@@ -13,6 +14,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class APIKeyDetailsTypedDict(TypedDict):
     account_type_v2: AccountType
+    billing_add_ons: List[BillingAddOn]
     enabled_features: List[str]
     org_slug: str
     telemetry_disabled: bool
@@ -26,6 +28,10 @@ class APIKeyDetailsTypedDict(TypedDict):
 
 class APIKeyDetails(BaseModel):
     account_type_v2: Annotated[AccountType, PlainValidator(validate_open_enum(False))]
+
+    billing_add_ons: List[
+        Annotated[BillingAddOn, PlainValidator(validate_open_enum(False))]
+    ]
 
     enabled_features: List[str]
 

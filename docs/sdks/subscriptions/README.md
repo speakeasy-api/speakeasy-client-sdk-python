@@ -20,6 +20,7 @@ Activate an ignored namespace for a subscription
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
@@ -65,6 +66,7 @@ Ignored a namespace for a subscription
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(

@@ -21,6 +21,7 @@ Get the signed access url for the change reports for a particular document.
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
@@ -65,6 +66,7 @@ Get the signed access url for the linting reports for a particular document.
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
@@ -108,6 +110,7 @@ Upload a report.
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(

@@ -37,6 +37,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CheckGithubAccessRequest)
@@ -68,6 +70,7 @@ class Github(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="checkGithubAccess",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -77,7 +80,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.CheckGithubAccessResponse(
                 status_code=http_res.status_code,
@@ -85,8 +88,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -128,6 +131,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CheckGithubAccessRequest)
@@ -159,6 +164,7 @@ class Github(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="checkGithubAccess",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -168,7 +174,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.CheckGithubAccessResponse(
                 status_code=http_res.status_code,
@@ -176,8 +182,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -219,6 +225,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -252,6 +260,7 @@ class Github(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="githubCheckPublishingPRs",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -261,7 +270,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GithubCheckPublishingPRsResponse(
                 github_publishing_pr_response=utils.unmarshal_json(
@@ -272,8 +281,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -315,6 +324,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -348,6 +359,7 @@ class Github(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="githubCheckPublishingPRs",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -357,7 +369,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GithubCheckPublishingPRsResponse(
                 github_publishing_pr_response=utils.unmarshal_json(
@@ -368,8 +380,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -411,6 +423,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -444,6 +458,7 @@ class Github(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="githubCheckPublishingSecrets",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -453,7 +468,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GithubCheckPublishingSecretsResponse(
                 github_missing_publishing_secrets_response=utils.unmarshal_json(
@@ -465,8 +480,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -508,6 +523,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -541,6 +558,7 @@ class Github(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="githubCheckPublishingSecrets",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -550,7 +568,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GithubCheckPublishingSecretsResponse(
                 github_missing_publishing_secrets_response=utils.unmarshal_json(
@@ -562,8 +580,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -605,6 +623,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.GithubConfigureCodeSamplesRequest)
@@ -639,6 +659,7 @@ class Github(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="githubConfigureCodeSamples",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -648,7 +669,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GithubConfigureCodeSamplesResponse(
                 github_configure_code_samples_response=utils.unmarshal_json(
@@ -659,8 +680,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -702,6 +723,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.GithubConfigureCodeSamplesRequest)
@@ -736,6 +759,7 @@ class Github(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="githubConfigureCodeSamples",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -745,7 +769,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GithubConfigureCodeSamplesResponse(
                 github_configure_code_samples_response=utils.unmarshal_json(
@@ -756,8 +780,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -799,6 +823,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -835,6 +861,7 @@ class Github(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="githubConfigureMintlifyRepo",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -844,7 +871,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.GithubConfigureMintlifyRepoResponse(
                 status_code=http_res.status_code,
@@ -852,8 +879,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -895,6 +922,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -931,6 +960,7 @@ class Github(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="githubConfigureMintlifyRepo",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -940,7 +970,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.GithubConfigureMintlifyRepoResponse(
                 status_code=http_res.status_code,
@@ -948,8 +978,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -991,6 +1021,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.GithubConfigureTargetRequest)
@@ -1025,6 +1057,7 @@ class Github(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="githubConfigureTarget",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1034,7 +1067,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.GithubConfigureTargetResponse(
                 status_code=http_res.status_code,
@@ -1042,8 +1075,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -1085,6 +1118,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.GithubConfigureTargetRequest)
@@ -1119,6 +1154,7 @@ class Github(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="githubConfigureTarget",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1128,7 +1164,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.GithubConfigureTargetResponse(
                 status_code=http_res.status_code,
@@ -1136,8 +1172,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -1179,6 +1215,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetGitHubActionRequest)
@@ -1210,6 +1248,7 @@ class Github(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getGitHubAction",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1219,7 +1258,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetGitHubActionResponse(
                 github_get_action_response=utils.unmarshal_json(
@@ -1230,8 +1269,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -1273,6 +1312,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetGitHubActionRequest)
@@ -1304,6 +1345,7 @@ class Github(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getGitHubAction",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1313,7 +1355,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetGitHubActionResponse(
                 github_get_action_response=utils.unmarshal_json(
@@ -1324,8 +1366,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -1367,6 +1409,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetGithubSetupStateRequest)
@@ -1398,6 +1442,7 @@ class Github(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getGithubSetupState",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1407,7 +1452,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetGithubSetupStateResponse(
                 github_setup_state_response=utils.unmarshal_json(
@@ -1418,8 +1463,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -1461,6 +1506,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetGithubSetupStateRequest)
@@ -1492,6 +1539,7 @@ class Github(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getGithubSetupState",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1501,7 +1549,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetGithubSetupStateResponse(
                 github_setup_state_response=utils.unmarshal_json(
@@ -1512,8 +1560,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -1555,6 +1603,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.LinkGithubAccessRequest)
@@ -1586,6 +1636,7 @@ class Github(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="linkGithubAccess",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1595,7 +1646,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.LinkGithubAccessResponse(
                 status_code=http_res.status_code,
@@ -1603,8 +1654,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -1646,6 +1697,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.LinkGithubAccessRequest)
@@ -1677,6 +1730,7 @@ class Github(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="linkGithubAccess",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1686,7 +1740,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.LinkGithubAccessResponse(
                 status_code=http_res.status_code,
@@ -1694,8 +1748,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -1737,6 +1791,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1777,6 +1833,7 @@ class Github(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="githubStorePublishingSecrets",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1786,7 +1843,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.GithubStorePublishingSecretsResponse(
                 status_code=http_res.status_code,
@@ -1794,8 +1851,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -1837,6 +1894,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1877,6 +1936,7 @@ class Github(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="githubStorePublishingSecrets",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1886,7 +1946,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.GithubStorePublishingSecretsResponse(
                 status_code=http_res.status_code,
@@ -1894,8 +1954,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -1937,6 +1997,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.GithubTriggerActionRequest)
@@ -1971,6 +2033,7 @@ class Github(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="githubTriggerAction",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1980,7 +2043,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.GithubTriggerActionResponse(
                 status_code=http_res.status_code,
@@ -1988,8 +2051,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -2031,6 +2094,8 @@ class Github(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.GithubTriggerActionRequest)
@@ -2065,6 +2130,7 @@ class Github(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="githubTriggerAction",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -2074,7 +2140,7 @@ class Github(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.GithubTriggerActionResponse(
                 status_code=http_res.status_code,
@@ -2082,8 +2148,8 @@ class Github(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(

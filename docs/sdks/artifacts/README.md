@@ -16,6 +16,7 @@ REST APIs for working with Registry artifacts
 * [list_remote_sources](#list_remote_sources) - Get remote sources attached to a particular namespace
 * [post_tags](#post_tags) - Add tags to an existing revision
 * [preflight](#preflight) - Get access token for communicating with OCI distribution endpoints
+* [set_archived](#set_archived) - Set whether a namespace is archived
 * [set_visibility](#set_visibility) - Set visibility of a namespace with an existing metadata entry
 
 ## create_remote_source
@@ -27,6 +28,7 @@ Configure a new remote source
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -70,6 +72,7 @@ Get blob for a particular digest
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -119,6 +122,7 @@ Get manifest for a particular reference
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
@@ -167,6 +171,7 @@ Each namespace contains many revisions.
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
@@ -206,6 +211,7 @@ with Speakeasy(
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -249,6 +255,7 @@ with Speakeasy(
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -295,6 +302,7 @@ Get remote sources attached to a particular namespace
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
@@ -339,6 +347,7 @@ Add tags to an existing revision
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -385,6 +394,7 @@ Get access token for communicating with OCI distribution endpoints
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
@@ -418,6 +428,52 @@ with Speakeasy(
 | errors.Error     | 4XX              | application/json |
 | errors.SDKError  | 5XX              | \*/\*            |
 
+## set_archived
+
+Set whether a namespace is archived
+
+### Example Usage
+
+```python
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
+
+
+with Speakeasy(
+    security=shared.Security(
+        api_key="<YOUR_API_KEY_HERE>",
+    ),
+) as speakeasy:
+
+    res = speakeasy.artifacts.set_archived(request={
+        "namespace_name": "<value>",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [operations.ArchiveNamespaceRequest](../../models/operations/archivenamespacerequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+
+### Response
+
+**[operations.ArchiveNamespaceResponse](../../models/operations/archivenamespaceresponse.md)**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 4XX              | application/json |
+| errors.SDKError  | 5XX              | \*/\*            |
+
 ## set_visibility
 
 Set visibility of a namespace with an existing metadata entry
@@ -427,6 +483,7 @@ Set visibility of a namespace with an existing metadata entry
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(

@@ -22,6 +22,7 @@ Get suggestions from an LLM model for improving an OpenAPI document.
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
@@ -42,9 +43,7 @@ with Speakeasy(
                 },
                 {
                     "message": "<value>",
-                    "path": [
-                        "/rescue",
-                    ],
+                    "path": [],
                     "type": "<value>",
                 },
             ],
@@ -107,6 +106,7 @@ Generate generic suggestions for a list of items.
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
@@ -114,9 +114,7 @@ with Speakeasy(
 ) as speakeasy:
 
     res = speakeasy.suggest.suggest_items(request={
-        "items": [
-            "<value>",
-        ],
+        "items": [],
         "prompt": "<value>",
     })
 
@@ -153,6 +151,7 @@ Get suggestions from an LLM model for improving an OpenAPI document.
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -203,6 +202,7 @@ Get suggestions from an LLM model for improving an OpenAPI document stored in th
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(

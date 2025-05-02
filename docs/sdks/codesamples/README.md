@@ -9,7 +9,7 @@ REST APIs for retrieving Code Samples
 
 * [generate_code_sample_preview](#generate_code_sample_preview) - Generate Code Sample previews from a file and configuration parameters.
 * [generate_code_sample_preview_asynchronous](#generate_code_sample_preview_asynchronous) - Initiate asynchronous Code Sample preview generation from a file and configuration parameters, receiving an async JobID response for polling.
-* [get](#get) - Retrieve usage snippets from document stored in the registry
+* [get](#get) - Retrieve usage snippets
 * [get_code_sample_preview_async](#get_code_sample_preview_async) - Poll for the result of an asynchronous Code Sample preview generation.
 
 ## generate_code_sample_preview
@@ -22,6 +22,7 @@ This endpoint generates Code Sample previews from a file and configuration param
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
@@ -29,20 +30,17 @@ with Speakeasy(
 ) as speakeasy:
 
     res = speakeasy.code_samples.generate_code_sample_preview(request={
-        "languages": [
-            "<value>",
-            "<value>",
-        ],
+        "language": "<value>",
         "schema_file": {
             "content": open("example.file", "rb"),
             "file_name": "example.file",
         },
     })
 
-    assert res.two_hundred_application_json_response_stream is not None
+    assert res.usage_snippets is not None
 
     # Handle response
-    print(res.two_hundred_application_json_response_stream)
+    print(res.usage_snippets)
 
 ```
 
@@ -61,7 +59,8 @@ with Speakeasy(
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.Error     | 4XX, 5XX         | application/json |
+| errors.Error     | 4XX              | application/json |
+| errors.Error     | 5XX              | application/json |
 
 ## generate_code_sample_preview_asynchronous
 
@@ -73,6 +72,7 @@ This endpoint generates Code Sample previews from a file and configuration param
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
@@ -80,10 +80,7 @@ with Speakeasy(
 ) as speakeasy:
 
     res = speakeasy.code_samples.generate_code_sample_preview_asynchronous(request={
-        "languages": [
-            "<value>",
-            "<value>",
-        ],
+        "language": "<value>",
         "schema_file": {
             "content": open("example.file", "rb"),
             "file_name": "example.file",
@@ -112,17 +109,19 @@ with Speakeasy(
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.Error     | 4XX, 5XX         | application/json |
+| errors.Error     | 4XX              | application/json |
+| errors.Error     | 5XX              | application/json |
 
 ## get
 
-Retrieve usage snippets from document stored in the registry. Supports filtering by language and operation ID.
+Retrieve usage snippets from an OpenAPI document stored in the registry. Supports filtering by language and operation ID.
 
 ### Example Usage
 
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -131,7 +130,20 @@ with Speakeasy(
 ) as speakeasy:
 
     res = speakeasy.code_samples.get(request={
-        "registry_url": "https://normal-making.name",
+        "registry_url": "https://spec.speakeasy.com/my-org/my-workspace/my-source",
+        "operation_ids": [
+            "getPets",
+        ],
+        "method_paths": [
+            {
+                "method": shared.HTTPMethod.GET,
+                "path": "/pets",
+            },
+        ],
+        "languages": [
+            "python",
+            "javascript",
+        ],
     })
 
     assert res.usage_snippets is not None
@@ -169,6 +181,7 @@ Poll for the result of an asynchronous Code Sample preview generation.
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
@@ -179,10 +192,10 @@ with Speakeasy(
         "job_id": "<id>",
     })
 
-    assert res.two_hundred_application_json_response_stream is not None
+    assert res.object is not None
 
     # Handle response
-    print(res.two_hundred_application_json_response_stream)
+    print(res.object)
 
 ```
 
@@ -201,4 +214,5 @@ with Speakeasy(
 
 | Error Type       | Status Code      | Content Type     |
 | ---------------- | ---------------- | ---------------- |
-| errors.Error     | 4XX, 5XX         | application/json |
+| errors.Error     | 4XX              | application/json |
+| errors.Error     | 5XX              | application/json |

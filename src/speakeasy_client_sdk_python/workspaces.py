@@ -37,6 +37,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.Workspace)
@@ -71,6 +73,7 @@ class Workspaces(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createWorkspace",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -80,7 +83,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.CreateWorkspaceResponse(
                 workspace=utils.unmarshal_json(
@@ -91,8 +94,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -134,6 +137,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, shared.Workspace)
@@ -168,6 +173,7 @@ class Workspaces(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createWorkspace",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -177,7 +183,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.CreateWorkspaceResponse(
                 workspace=utils.unmarshal_json(
@@ -188,8 +194,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -232,6 +238,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateWorkspaceTokenRequest)
@@ -269,6 +277,7 @@ class Workspaces(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createWorkspaceToken",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -278,7 +287,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.CreateWorkspaceTokenResponse(
                 status_code=http_res.status_code,
@@ -286,8 +295,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -330,6 +339,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.CreateWorkspaceTokenRequest)
@@ -367,6 +378,7 @@ class Workspaces(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="createWorkspaceToken",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -376,7 +388,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.CreateWorkspaceTokenResponse(
                 status_code=http_res.status_code,
@@ -384,8 +396,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -428,6 +440,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteWorkspaceTokenRequest)
@@ -462,6 +476,7 @@ class Workspaces(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deleteWorkspaceToken",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -471,7 +486,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.DeleteWorkspaceTokenResponse(
                 status_code=http_res.status_code,
@@ -479,8 +494,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -523,6 +538,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.DeleteWorkspaceTokenRequest)
@@ -557,6 +574,7 @@ class Workspaces(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="deleteWorkspaceToken",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -566,7 +584,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.DeleteWorkspaceTokenResponse(
                 status_code=http_res.status_code,
@@ -574,8 +592,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -615,6 +633,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/v1/workspace",
@@ -641,6 +661,7 @@ class Workspaces(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspaceByContext",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -650,7 +671,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetWorkspaceByContextResponse(
                 workspace_and_organization=utils.unmarshal_json(
@@ -661,8 +682,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -702,6 +723,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/v1/workspace",
@@ -728,6 +751,7 @@ class Workspaces(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspaceByContext",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -737,7 +761,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetWorkspaceByContextResponse(
                 workspace_and_organization=utils.unmarshal_json(
@@ -748,8 +772,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -789,6 +813,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/v1/workspaces",
@@ -815,6 +841,7 @@ class Workspaces(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspaces",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -824,7 +851,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetWorkspacesResponse(
                 workspaces=utils.unmarshal_json(
@@ -835,8 +862,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -876,6 +903,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/v1/workspaces",
@@ -902,6 +931,7 @@ class Workspaces(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspaces",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -911,7 +941,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetWorkspacesResponse(
                 workspaces=utils.unmarshal_json(
@@ -922,8 +952,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -967,6 +997,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWorkspaceRequest)
@@ -1001,6 +1033,7 @@ class Workspaces(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspace",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1010,7 +1043,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetWorkspaceResponse(
                 workspace=utils.unmarshal_json(
@@ -1021,8 +1054,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -1066,6 +1099,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWorkspaceRequest)
@@ -1100,6 +1135,7 @@ class Workspaces(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspace",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1109,7 +1145,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetWorkspaceResponse(
                 workspace=utils.unmarshal_json(
@@ -1120,8 +1156,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -1164,6 +1200,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1200,6 +1238,7 @@ class Workspaces(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspaceFeatureFlags",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1209,7 +1248,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWorkspaceFeatureFlagsResponse(
                 workspace_feature_flag_response=utils.unmarshal_json(
@@ -1225,8 +1264,8 @@ class Workspaces(BaseSDK):
                 "API error occurred", http_res.status_code, http_res_text, http_res
             )
         if utils.match_response(http_res, "5XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = utils.stream_to_text(http_res)
@@ -1264,6 +1303,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1300,6 +1341,7 @@ class Workspaces(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspaceFeatureFlags",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1309,7 +1351,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GetWorkspaceFeatureFlagsResponse(
                 workspace_feature_flag_response=utils.unmarshal_json(
@@ -1325,8 +1367,8 @@ class Workspaces(BaseSDK):
                 "API error occurred", http_res.status_code, http_res_text, http_res
             )
         if utils.match_response(http_res, "5XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -1366,6 +1408,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWorkspaceSettingsRequest)
@@ -1400,6 +1444,7 @@ class Workspaces(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspaceSettings",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1409,7 +1454,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetWorkspaceSettingsResponse(
                 workspace_settings=utils.unmarshal_json(
@@ -1420,8 +1465,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -1466,6 +1511,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWorkspaceSettingsRequest)
@@ -1500,6 +1547,7 @@ class Workspaces(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspaceSettings",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1509,7 +1557,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetWorkspaceSettingsResponse(
                 workspace_settings=utils.unmarshal_json(
@@ -1520,8 +1568,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -1564,6 +1612,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWorkspaceTeamRequest)
@@ -1598,6 +1648,7 @@ class Workspaces(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspaceTeam",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1607,7 +1658,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetWorkspaceTeamResponse(
                 workspace_team_response=utils.unmarshal_json(
@@ -1618,8 +1669,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -1662,6 +1713,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWorkspaceTeamRequest)
@@ -1696,6 +1749,7 @@ class Workspaces(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspaceTeam",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1705,7 +1759,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetWorkspaceTeamResponse(
                 workspace_team_response=utils.unmarshal_json(
@@ -1716,8 +1770,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -1760,6 +1814,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWorkspaceTokensRequest)
@@ -1794,6 +1850,7 @@ class Workspaces(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspaceTokens",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1803,7 +1860,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetWorkspaceTokensResponse(
                 classes=utils.unmarshal_json(
@@ -1814,8 +1871,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -1858,6 +1915,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWorkspaceTokensRequest)
@@ -1892,6 +1951,7 @@ class Workspaces(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="getWorkspaceTokens",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -1901,7 +1961,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetWorkspaceTokensResponse(
                 classes=utils.unmarshal_json(
@@ -1912,8 +1972,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -1956,6 +2016,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -1992,6 +2054,7 @@ class Workspaces(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="grantUserAccessToWorkspace",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -2001,7 +2064,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GrantUserAccessToWorkspaceResponse(
                 workspace_invite_response=utils.unmarshal_json(
@@ -2012,8 +2075,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -2056,6 +2119,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -2092,6 +2157,7 @@ class Workspaces(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="grantUserAccessToWorkspace",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -2101,7 +2167,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "200", "application/json"):
             return operations.GrantUserAccessToWorkspaceResponse(
                 workspace_invite_response=utils.unmarshal_json(
@@ -2112,8 +2178,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -2156,6 +2222,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -2192,6 +2260,7 @@ class Workspaces(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="revokeUserAccessToWorkspace",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -2201,7 +2270,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.RevokeUserAccessToWorkspaceResponse(
                 status_code=http_res.status_code,
@@ -2209,8 +2278,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -2253,6 +2322,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -2289,6 +2360,7 @@ class Workspaces(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="revokeUserAccessToWorkspace",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -2298,7 +2370,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.RevokeUserAccessToWorkspaceResponse(
                 status_code=http_res.status_code,
@@ -2306,13 +2378,215 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
                 "API error occurred", http_res.status_code, http_res_text, http_res
             )
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = await utils.stream_to_text_async(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    def set_feature_flags(
+        self,
+        *,
+        request: Union[
+            shared.WorkspaceFeatureFlagRequest,
+            shared.WorkspaceFeatureFlagRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.SetWorkspaceFeatureFlagsResponse:
+        r"""Set workspace feature flags
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, shared.WorkspaceFeatureFlagRequest)
+        request = cast(shared.WorkspaceFeatureFlagRequest, request)
+
+        req = self._build_request(
+            method="POST",
+            path="/v1/workspace/feature_flags",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request, False, False, "json", shared.WorkspaceFeatureFlagRequest
+            ),
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = self.do_request(
+            hook_ctx=HookContext(
+                base_url=base_url or "",
+                operation_id="setWorkspaceFeatureFlags",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.SetWorkspaceFeatureFlagsResponse(
+                workspace_feature_flag_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.WorkspaceFeatureFlagResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+        if utils.match_response(http_res, "5XX", "application/json"):
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
+
+        content_type = http_res.headers.get("Content-Type")
+        http_res_text = utils.stream_to_text(http_res)
+        raise errors.SDKError(
+            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
+            http_res.status_code,
+            http_res_text,
+            http_res,
+        )
+
+    async def set_feature_flags_async(
+        self,
+        *,
+        request: Union[
+            shared.WorkspaceFeatureFlagRequest,
+            shared.WorkspaceFeatureFlagRequestTypedDict,
+        ],
+        retries: OptionalNullable[utils.RetryConfig] = UNSET,
+        server_url: Optional[str] = None,
+        timeout_ms: Optional[int] = None,
+        http_headers: Optional[Mapping[str, str]] = None,
+    ) -> operations.SetWorkspaceFeatureFlagsResponse:
+        r"""Set workspace feature flags
+
+        :param request: The request object to send.
+        :param retries: Override the default retry configuration for this method
+        :param server_url: Override the default server URL for this method
+        :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
+        :param http_headers: Additional headers to set or replace on requests.
+        """
+        base_url = None
+        url_variables = None
+        if timeout_ms is None:
+            timeout_ms = self.sdk_configuration.timeout_ms
+
+        if server_url is not None:
+            base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
+
+        if not isinstance(request, BaseModel):
+            request = utils.unmarshal(request, shared.WorkspaceFeatureFlagRequest)
+        request = cast(shared.WorkspaceFeatureFlagRequest, request)
+
+        req = self._build_request_async(
+            method="POST",
+            path="/v1/workspace/feature_flags",
+            base_url=base_url,
+            url_variables=url_variables,
+            request=request,
+            request_body_required=True,
+            request_has_path_params=False,
+            request_has_query_params=True,
+            user_agent_header="user-agent",
+            accept_header_value="application/json",
+            http_headers=http_headers,
+            security=self.sdk_configuration.security,
+            get_serialized_body=lambda: utils.serialize_request_body(
+                request, False, False, "json", shared.WorkspaceFeatureFlagRequest
+            ),
+            timeout_ms=timeout_ms,
+        )
+
+        if retries == UNSET:
+            if self.sdk_configuration.retry_config is not UNSET:
+                retries = self.sdk_configuration.retry_config
+
+        retry_config = None
+        if isinstance(retries, utils.RetryConfig):
+            retry_config = (retries, ["429", "500", "502", "503", "504"])
+
+        http_res = await self.do_request_async(
+            hook_ctx=HookContext(
+                base_url=base_url or "",
+                operation_id="setWorkspaceFeatureFlags",
+                oauth2_scopes=[],
+                security_source=self.sdk_configuration.security,
+            ),
+            request=req,
+            error_status_codes=["4XX", "5XX"],
+            retry_config=retry_config,
+        )
+
+        response_data: Any = None
+        if utils.match_response(http_res, "200", "application/json"):
+            return operations.SetWorkspaceFeatureFlagsResponse(
+                workspace_feature_flag_response=utils.unmarshal_json(
+                    http_res.text, Optional[shared.WorkspaceFeatureFlagResponse]
+                ),
+                status_code=http_res.status_code,
+                content_type=http_res.headers.get("Content-Type") or "",
+                raw_response=http_res,
+            )
+        if utils.match_response(http_res, "4XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError(
+                "API error occurred", http_res.status_code, http_res_text, http_res
+            )
+        if utils.match_response(http_res, "5XX", "application/json"):
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
 
         content_type = http_res.headers.get("Content-Type")
         http_res_text = await utils.stream_to_text_async(http_res)
@@ -2352,6 +2626,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateWorkspaceDetailsRequest)
@@ -2389,6 +2665,7 @@ class Workspaces(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="updateWorkspaceDetails",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -2398,7 +2675,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.UpdateWorkspaceDetailsResponse(
                 status_code=http_res.status_code,
@@ -2406,8 +2683,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -2452,6 +2729,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.UpdateWorkspaceDetailsRequest)
@@ -2489,6 +2768,7 @@ class Workspaces(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="updateWorkspaceDetails",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -2498,7 +2778,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.UpdateWorkspaceDetailsResponse(
                 status_code=http_res.status_code,
@@ -2506,8 +2786,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(
@@ -2552,6 +2832,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -2595,6 +2877,7 @@ class Workspaces(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="updateWorkspaceSettings",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -2604,7 +2887,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.UpdateWorkspaceSettingsResponse(
                 status_code=http_res.status_code,
@@ -2612,8 +2895,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
             raise errors.SDKError(
@@ -2658,6 +2941,8 @@ class Workspaces(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(
@@ -2701,6 +2986,7 @@ class Workspaces(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                base_url=base_url or "",
                 operation_id="updateWorkspaceSettings",
                 oauth2_scopes=[],
                 security_source=self.sdk_configuration.security,
@@ -2710,7 +2996,7 @@ class Workspaces(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "*"):
             return operations.UpdateWorkspaceSettingsResponse(
                 status_code=http_res.status_code,
@@ -2718,8 +3004,8 @@ class Workspaces(BaseSDK):
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = utils.unmarshal_json(http_res.text, errors.ErrorData)
+            raise errors.Error(data=response_data)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
             raise errors.SDKError(

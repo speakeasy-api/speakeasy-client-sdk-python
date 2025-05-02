@@ -15,6 +15,7 @@ from .accounttype import AccountType
 from .addtags import AddTags, AddTagsTypedDict
 from .annotations import Annotations, AnnotationsTypedDict
 from .apikeydetails import APIKeyDetails, APIKeyDetailsTypedDict
+from .billingaddon import BillingAddOn
 from .clievent import CliEvent, CliEventTypedDict, GenerateBumpType, OpenapiDiffBumpType
 from .codesampleschemainput import (
     CodeSampleSchemaInput,
@@ -55,6 +56,8 @@ from .githubmissingpublishingsecretsresponse import (
 from .githubpublishingprresponse import (
     GithubPublishingPRResponse,
     GithubPublishingPRResponseTypedDict,
+    PullRequestMetadata,
+    PullRequestMetadataTypedDict,
 )
 from .githubsetupstateresponse import (
     Actions,
@@ -72,6 +75,7 @@ from .githubtriggeractionrequest import (
     GithubTriggerActionRequest,
     GithubTriggerActionRequestTypedDict,
 )
+from .httpmethod import HTTPMethod
 from .interactiontype import InteractionType
 from .manifest import Manifest, ManifestTypedDict
 from .namespace import (
@@ -84,6 +88,14 @@ from .oasinfo import License, LicenseTypedDict, OASInfo, OASInfoTypedDict
 from .oasoperation import OASOperation, OASOperationTypedDict
 from .oassummary import OASSummary, OASSummaryTypedDict
 from .organization import Organization, OrganizationTypedDict
+from .organizationbillingaddonrequest import (
+    OrganizationBillingAddOnRequest,
+    OrganizationBillingAddOnRequestTypedDict,
+)
+from .organizationbillingaddonresponse import (
+    OrganizationBillingAddOnResponse,
+    OrganizationBillingAddOnResponseTypedDict,
+)
 from .organizationusage import OrganizationUsage, OrganizationUsageTypedDict
 from .organizationusageresponse import (
     OrganizationUsageResponse,
@@ -91,6 +103,7 @@ from .organizationusageresponse import (
 )
 from .preflightrequest import PreflightRequest, PreflightRequestTypedDict
 from .preflighttoken import PreflightToken, PreflightTokenTypedDict
+from .publishingtoken import PublishingToken, PublishingTokenTypedDict, TargetResource
 from .remotedocument import RemoteDocument, RemoteDocumentTypedDict
 from .remotesource import RemoteSource, RemoteSourceTypedDict
 from .remotesourcesubscriptionsettings import (
@@ -99,6 +112,12 @@ from .remotesourcesubscriptionsettings import (
 )
 from .report import Report, ReportTypedDict, Type
 from .revision import Revision, RevisionTypedDict
+from .revisioncontentsmetadata import (
+    RevisionContentsMetadata,
+    RevisionContentsMetadataType,
+    RevisionContentsMetadataTypedDict,
+)
+from .schemastoreitem import Format, SchemaStoreItem, SchemaStoreItemTypedDict
 from .security import Security, SecurityTypedDict
 from .shorturl import ShortURL, ShortURLTypedDict
 from .ssometadata import SSOMetadata, SSOMetadataTypedDict
@@ -129,6 +148,11 @@ from .workspaceandorganization import (
     WorkspaceAndOrganization,
     WorkspaceAndOrganizationTypedDict,
 )
+from .workspacefeatureflag import WorkspaceFeatureFlag
+from .workspacefeatureflagrequest import (
+    WorkspaceFeatureFlagRequest,
+    WorkspaceFeatureFlagRequestTypedDict,
+)
 from .workspacefeatureflagresponse import (
     WorkspaceFeatureFlagResponse,
     WorkspaceFeatureFlagResponseTypedDict,
@@ -142,6 +166,7 @@ from .workspaceinviteresponse import (
 from .workspacesettings import WorkspaceSettings, WorkspaceSettingsTypedDict
 from .workspaceteamresponse import WorkspaceTeamResponse, WorkspaceTeamResponseTypedDict
 from .workspacetoken import WorkspaceToken, WorkspaceTokenTypedDict
+
 
 __all__ = [
     "APIKeyDetails",
@@ -161,6 +186,7 @@ __all__ = [
     "AnnotationsTypedDict",
     "Auth",
     "AuthTypedDict",
+    "BillingAddOn",
     "Claims",
     "ClaimsTypedDict",
     "CliEvent",
@@ -174,6 +200,7 @@ __all__ = [
     "DiagnosticTypedDict",
     "FeatureFlag",
     "FeatureFlagTypedDict",
+    "Format",
     "GenerateBumpType",
     "GetNamespacesResponse",
     "GetNamespacesResponseTypedDict",
@@ -201,6 +228,7 @@ __all__ = [
     "GithubStorePublishingSecretsRequestTypedDict",
     "GithubTriggerActionRequest",
     "GithubTriggerActionRequestTypedDict",
+    "HTTPMethod",
     "InteractionType",
     "Level",
     "License",
@@ -217,6 +245,10 @@ __all__ = [
     "OASSummaryTypedDict",
     "OpenapiDiffBumpType",
     "Organization",
+    "OrganizationBillingAddOnRequest",
+    "OrganizationBillingAddOnRequestTypedDict",
+    "OrganizationBillingAddOnResponse",
+    "OrganizationBillingAddOnResponseTypedDict",
     "OrganizationTypedDict",
     "OrganizationUsage",
     "OrganizationUsageResponse",
@@ -226,6 +258,10 @@ __all__ = [
     "PreflightRequestTypedDict",
     "PreflightToken",
     "PreflightTokenTypedDict",
+    "PublishingToken",
+    "PublishingTokenTypedDict",
+    "PullRequestMetadata",
+    "PullRequestMetadataTypedDict",
     "Relationship",
     "RelationshipTypedDict",
     "RemoteDocument",
@@ -237,11 +273,16 @@ __all__ = [
     "Report",
     "ReportTypedDict",
     "Revision",
+    "RevisionContentsMetadata",
+    "RevisionContentsMetadataType",
+    "RevisionContentsMetadataTypedDict",
     "RevisionTypedDict",
     "SSOMetadata",
     "SSOMetadataTypedDict",
     "SchemaFile",
     "SchemaFileTypedDict",
+    "SchemaStoreItem",
+    "SchemaStoreItemTypedDict",
     "Secrets",
     "SecretsTypedDict",
     "Security",
@@ -258,6 +299,7 @@ __all__ = [
     "SuggestionType",
     "Tag",
     "TagTypedDict",
+    "TargetResource",
     "TargetSDK",
     "TargetSDKTypedDict",
     "Type",
@@ -274,6 +316,9 @@ __all__ = [
     "Workspace",
     "WorkspaceAndOrganization",
     "WorkspaceAndOrganizationTypedDict",
+    "WorkspaceFeatureFlag",
+    "WorkspaceFeatureFlagRequest",
+    "WorkspaceFeatureFlagRequestTypedDict",
     "WorkspaceFeatureFlagResponse",
     "WorkspaceFeatureFlagResponseTypedDict",
     "WorkspaceInviteResponse",

@@ -16,9 +16,11 @@ Activate an ignored namespace for a subscription
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="activateSubscriptionNamespace" method="post" path="/v1/subscriptions/{subscriptionID}/{namespaceName}/activate" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -62,9 +64,11 @@ Ignored a namespace for a subscription
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="ignoreSubscriptionNamespace" method="post" path="/v1/subscriptions/{subscriptionID}/{namespaceName}/ignore" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(

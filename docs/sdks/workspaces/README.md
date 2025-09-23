@@ -19,6 +19,7 @@ REST APIs for managing Workspaces (speakeasy tenancy)
 * [get_tokens](#get_tokens) - Get tokens for a particular workspace
 * [grant_access](#grant_access) - Grant a user access to a particular workspace
 * [revoke_access](#revoke_access) - Revoke a user's access to a particular workspace
+* [set_feature_flags](#set_feature_flags) - Set workspace feature flags
 * [update](#update) - Update workspace details
 * [update_settings](#update_settings) - Update workspace settings
 
@@ -28,10 +29,12 @@ Creates a workspace
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="createWorkspace" method="post" path="/v1/workspace" -->
 ```python
-import dateutil.parser
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+from speakeasy_client_sdk_python.utils import parse_datetime
+
 
 with Speakeasy(
     security=shared.Security(
@@ -40,12 +43,12 @@ with Speakeasy(
 ) as speakeasy:
 
     res = speakeasy.workspaces.create(request={
-        "created_at": dateutil.parser.isoparse("2024-06-17T07:14:55.338Z"),
+        "created_at": parse_datetime("2023-11-18T13:41:10.525Z"),
         "id": "<id>",
         "name": "<value>",
         "organization_id": "<id>",
         "slug": "<value>",
-        "updated_at": dateutil.parser.isoparse("2024-11-30T17:06:07.804Z"),
+        "updated_at": parse_datetime("2024-11-21T08:36:32.740Z"),
         "verified": True,
     })
 
@@ -80,12 +83,15 @@ Create a token for a particular workspace
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="createWorkspaceToken" method="post" path="/v1/workspace/{workspace_id}/tokens" -->
 ```python
-import dateutil.parser
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+from speakeasy_client_sdk_python.utils import parse_datetime
+
 
 with Speakeasy(
+    workspace_id="<id>",
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
@@ -94,13 +100,12 @@ with Speakeasy(
     res = speakeasy.workspaces.create_token(request={
         "workspace_token": {
             "alg": "<value>",
-            "created_at": dateutil.parser.isoparse("2023-08-16T02:33:00.784Z"),
+            "created_at": parse_datetime("2024-10-04T10:23:04.522Z"),
             "id": "<id>",
             "key": "<key>",
             "name": "<value>",
             "workspace_id": "<id>",
         },
-        "workspace_id": "<id>",
     })
 
     assert res is not None
@@ -134,11 +139,14 @@ Delete a token for a particular workspace
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="deleteWorkspaceToken" method="delete" path="/v1/workspace/{workspace_id}/tokens/{tokenID}" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
+    workspace_id="<id>",
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
@@ -146,7 +154,6 @@ with Speakeasy(
 
     res = speakeasy.workspaces.delete_token(request={
         "token_id": "<id>",
-        "workspace_id": "<id>",
     })
 
     assert res is not None
@@ -180,9 +187,11 @@ Get information about a particular workspace by context.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getWorkspaceByContext" method="get" path="/v1/workspace" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -222,9 +231,11 @@ Returns a list of workspaces a user has access too
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getWorkspaces" method="get" path="/v1/workspaces" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -264,19 +275,20 @@ Get information about a particular workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getWorkspace" method="get" path="/v1/workspace/{workspace_id}" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
+    workspace_id="<id>",
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 ) as speakeasy:
 
-    res = speakeasy.workspaces.get_by_id(request={
-        "workspace_id": "<id>",
-    })
+    res = speakeasy.workspaces.get_by_id(request={})
 
     assert res.workspace is not None
 
@@ -309,19 +321,20 @@ Get workspace feature flags
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getWorkspaceFeatureFlags" method="get" path="/v1/workspace/{workspace_id}/feature_flags" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
+    workspace_id="<id>",
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 ) as speakeasy:
 
-    res = speakeasy.workspaces.get_feature_flags(request={
-        "workspace_id": "<id>",
-    })
+    res = speakeasy.workspaces.get_feature_flags(request={})
 
     assert res.workspace_feature_flag_response is not None
 
@@ -354,19 +367,20 @@ Get settings about a particular workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getWorkspaceSettings" method="get" path="/v1/workspace/{workspace_id}/settings" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
+    workspace_id="<id>",
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 ) as speakeasy:
 
-    res = speakeasy.workspaces.get_settings(request={
-        "workspace_id": "<id>",
-    })
+    res = speakeasy.workspaces.get_settings(request={})
 
     assert res.workspace_settings is not None
 
@@ -399,19 +413,20 @@ Get team members for a particular workspace
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getWorkspaceTeam" method="get" path="/v1/workspace/{workspace_id}/team" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
+    workspace_id="<id>",
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 ) as speakeasy:
 
-    res = speakeasy.workspaces.get_team(request={
-        "workspace_id": "<id>",
-    })
+    res = speakeasy.workspaces.get_team(request={})
 
     assert res.workspace_team_response is not None
 
@@ -444,19 +459,20 @@ Get tokens for a particular workspace
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getWorkspaceTokens" method="get" path="/v1/workspace/{workspace_id}/tokens" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
+    workspace_id="<id>",
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 ) as speakeasy:
 
-    res = speakeasy.workspaces.get_tokens(request={
-        "workspace_id": "<id>",
-    })
+    res = speakeasy.workspaces.get_tokens(request={})
 
     assert res.classes is not None
 
@@ -489,19 +505,21 @@ Grant a user access to a particular workspace
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="grantUserAccessToWorkspace" method="put" path="/v1/workspace/{workspace_id}/team/email/{email}" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
+    workspace_id="<id>",
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 ) as speakeasy:
 
     res = speakeasy.workspaces.grant_access(request={
-        "email": "Lucinda.Batz8@hotmail.com",
-        "workspace_id": "<id>",
+        "email": "Idella24@gmail.com",
     })
 
     assert res.workspace_invite_response is not None
@@ -535,11 +553,14 @@ Revoke a user's access to a particular workspace
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="revokeUserAccessToWorkspace" method="delete" path="/v1/workspace/{workspace_id}/team/{userId}" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
+    workspace_id="<id>",
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
@@ -547,7 +568,6 @@ with Speakeasy(
 
     res = speakeasy.workspaces.revoke_access(request={
         "user_id": "<id>",
-        "workspace_id": "<id>",
     })
 
     assert res is not None
@@ -575,16 +595,17 @@ with Speakeasy(
 | errors.Error     | 4XX              | application/json |
 | errors.SDKError  | 5XX              | \*/\*            |
 
-## update
+## set_feature_flags
 
-Update information about a particular workspace.
+Set workspace feature flags
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="setWorkspaceFeatureFlags" method="post" path="/v1/workspace/feature_flags" -->
 ```python
-import dateutil.parser
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -592,17 +613,65 @@ with Speakeasy(
     ),
 ) as speakeasy:
 
+    res = speakeasy.workspaces.set_feature_flags(request={
+        "feature_flags": [],
+    })
+
+    assert res.workspace_feature_flag_response is not None
+
+    # Handle response
+    print(res.workspace_feature_flag_response)
+
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [shared.WorkspaceFeatureFlagRequest](../../models/shared/workspacefeatureflagrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+
+### Response
+
+**[operations.SetWorkspaceFeatureFlagsResponse](../../models/operations/setworkspacefeatureflagsresponse.md)**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 5XX              | application/json |
+| errors.SDKError  | 4XX              | \*/\*            |
+
+## update
+
+Update information about a particular workspace.
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="updateWorkspaceDetails" method="post" path="/v1/workspace/{workspace_id}/details" -->
+```python
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
+from speakeasy_client_sdk_python.utils import parse_datetime
+
+
+with Speakeasy(
+    workspace_id="<id>",
+    security=shared.Security(
+        api_key="<YOUR_API_KEY_HERE>",
+    ),
+) as speakeasy:
+
     res = speakeasy.workspaces.update(request={
         "workspace": {
-            "created_at": dateutil.parser.isoparse("2025-07-28T19:04:48.565Z"),
+            "created_at": parse_datetime("2023-08-02T22:30:24.264Z"),
             "id": "<id>",
             "name": "<value>",
             "organization_id": "<id>",
             "slug": "<value>",
-            "updated_at": dateutil.parser.isoparse("2024-10-16T10:52:42.015Z"),
+            "updated_at": parse_datetime("2025-01-24T03:53:13.581Z"),
             "verified": True,
         },
-        "workspace_id": "<id>",
     })
 
     assert res is not None
@@ -636,12 +705,15 @@ Update settings about a particular workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="updateWorkspaceSettings" method="put" path="/v1/workspace/{workspace_id}/settings" -->
 ```python
-import dateutil.parser
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+from speakeasy_client_sdk_python.utils import parse_datetime
+
 
 with Speakeasy(
+    workspace_id="<id>",
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
@@ -649,12 +721,11 @@ with Speakeasy(
 
     res = speakeasy.workspaces.update_settings(request={
         "workspace_settings": {
-            "created_at": dateutil.parser.isoparse("2023-07-05T11:43:28.305Z"),
-            "updated_at": dateutil.parser.isoparse("2024-05-14T05:39:21.874Z"),
-            "webhook_url": "https://grown-pharmacopoeia.net",
+            "created_at": parse_datetime("2025-03-09T15:48:09.330Z"),
+            "updated_at": parse_datetime("2025-11-24T16:37:53.492Z"),
+            "webhook_url": "https://wobbly-lid.org",
             "workspace_id": "<id>",
         },
-        "workspace_id": "<id>",
     })
 
     assert res is not None

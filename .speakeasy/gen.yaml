@@ -3,23 +3,37 @@ generation:
   sdkClassName: speakeasy
   usageSnippets:
     optionalPropertyRendering: withExample
+    sdkInitStyle: constructor
   fixes:
     nameResolutionDec2023: true
+    nameResolutionFeb2025: false
     parameterOrderingFeb2024: true
     requestResponseComponentNamesFeb2024: true
+    securityFeb2025: false
+    sharedErrorComponentsApr2025: false
   auth:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
+    hoistGlobalSecurity: true
+  tests:
+    generateTests: true
+    generateNewTests: false
+    skipResponseBodyAssertions: false
 python:
-  version: 7.0.0-rc.2
+  version: 7.0.0-rc.3
   additionalDependencies:
     dev: {}
     main: {}
+  allowedRedefinedBuiltins:
+    - id
+    - object
   authors:
     - Speakeasy
+  baseErrorName: SpeakeasyError
   clientServerStatusCodesAsErrors: true
   defaultErrorName: SDKError
   description: Speakeasy API Client SDK for Python
+  enableCustomCodeRegions: false
   enumFormat: enum
   fixFlags:
     responseRequiredSep2024: false
@@ -37,8 +51,13 @@ python:
   inputModelSuffix: input
   maxMethodParams: 0
   methodArguments: require-security-and-request
+  moduleName: ""
   outputModelSuffix: output
+  packageManager: poetry
   packageName: speakeasy-client-sdk-python
   projectUrls: {}
+  pytestFilterWarnings: []
+  pytestTimeout: 0
   responseFormat: envelope
+  sseFlatResponse: false
   templateVersion: v2

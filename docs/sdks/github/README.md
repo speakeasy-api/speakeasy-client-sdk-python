@@ -23,9 +23,11 @@ REST APIs for managing the github integration
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="checkGithubAccess" method="get" path="/v1/github/check_access" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -67,9 +69,11 @@ with Speakeasy(
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="githubCheckPublishingPRs" method="get" path="/v1/github/publishing_prs" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -112,9 +116,11 @@ with Speakeasy(
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="githubCheckPublishingSecrets" method="get" path="/v1/github/publishing_secrets" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -155,9 +161,11 @@ with Speakeasy(
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="githubConfigureCodeSamples" method="post" path="/v1/github/configure_code_samples" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -200,9 +208,11 @@ with Speakeasy(
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="githubConfigureMintlifyRepo" method="post" path="/v1/github/configure_mintlify_repo" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -214,7 +224,7 @@ with Speakeasy(
         "input": "<value>",
         "org": "<value>",
         "overlays": [
-            "<value>",
+            "<value 1>",
         ],
         "repo": "<value>",
     })
@@ -248,9 +258,11 @@ with Speakeasy(
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="githubConfigureTarget" method="post" path="/v1/github/configure_target" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -292,9 +304,11 @@ with Speakeasy(
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getGitHubAction" method="get" path="/v1/github/action" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -336,9 +350,11 @@ with Speakeasy(
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getGithubSetupState" method="get" path="/v1/github/setup" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -381,9 +397,11 @@ with Speakeasy(
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="linkGithubAccess" method="post" path="/v1/github/link" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -422,9 +440,11 @@ with Speakeasy(
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="githubStorePublishingSecrets" method="post" path="/v1/github/publishing_secrets" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -465,9 +485,11 @@ with Speakeasy(
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="githubTriggerAction" method="post" path="/v1/github/trigger_action" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(

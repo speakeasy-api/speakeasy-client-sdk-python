@@ -18,9 +18,11 @@ Checks if generation is permitted for a particular run of the CLI
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getWorkspaceAccess" method="get" path="/v1/workspace/access" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -60,8 +62,10 @@ Get or refresh an access token for the current workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getAccessToken" method="get" path="/v1/auth/access_token" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
+
 
 with Speakeasy() as speakeasy:
 
@@ -100,9 +104,11 @@ Get information about the current user.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getUser" method="get" path="/v1/user" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -142,9 +148,11 @@ Validate the current api key.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="validateApiKey" method="get" path="/v1/auth/validate" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(

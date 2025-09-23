@@ -23,6 +23,8 @@ class WorkspaceTokenTypedDict(TypedDict):
     name: str
     workspace_id: str
     created_by: NotRequired[Nullable[str]]
+    created_by_name: NotRequired[Nullable[str]]
+    created_by_photo_url: NotRequired[Nullable[str]]
     email: NotRequired[Nullable[str]]
     last_used: NotRequired[Nullable[datetime]]
 
@@ -44,21 +46,37 @@ class WorkspaceToken(BaseModel):
 
     created_by: OptionalNullable[str] = UNSET
 
+    created_by_name: OptionalNullable[str] = UNSET
+
+    created_by_photo_url: OptionalNullable[str] = UNSET
+
     email: OptionalNullable[str] = UNSET
 
     last_used: OptionalNullable[datetime] = UNSET
 
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = ["created_by", "email", "last_used"]
-        nullable_fields = ["created_by", "email", "last_used"]
+        optional_fields = [
+            "created_by",
+            "created_by_name",
+            "created_by_photo_url",
+            "email",
+            "last_used",
+        ]
+        nullable_fields = [
+            "created_by",
+            "created_by_name",
+            "created_by_photo_url",
+            "email",
+            "last_used",
+        ]
         null_default_fields = []
 
         serialized = handler(self)
 
         m = {}
 
-        for n, f in self.model_fields.items():
+        for n, f in type(self).model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
             serialized.pop(k, None)

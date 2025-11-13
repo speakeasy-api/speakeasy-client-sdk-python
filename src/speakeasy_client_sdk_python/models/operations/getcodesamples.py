@@ -3,6 +3,7 @@
 from __future__ import annotations
 import httpx
 from speakeasy_client_sdk_python.models.shared import (
+    httpmethod as shared_httpmethod,
     usagesnippets as shared_usagesnippets,
 )
 from speakeasy_client_sdk_python.types import BaseModel
@@ -11,28 +12,51 @@ from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
+class MethodPathsTypedDict(TypedDict):
+    method: shared_httpmethod.HTTPMethod
+    path: str
+
+
+class MethodPaths(BaseModel):
+    method: Annotated[shared_httpmethod.HTTPMethod, FieldMetadata(query=True)]
+
+    path: Annotated[str, FieldMetadata(query=True)]
+
+
 class GetCodeSamplesRequestTypedDict(TypedDict):
     registry_url: str
-    r"""The registry URL from which to retrieve the snippets. E.g. https://spec.speakeasy.com/org/ws/my-source"""
+    r"""The registry URL from which to retrieve the snippets."""
     operation_ids: NotRequired[List[str]]
+    r"""The operation IDs to retrieve snippets for."""
+    method_paths: NotRequired[List[MethodPathsTypedDict]]
+    r"""The method paths to retrieve snippets for."""
     languages: NotRequired[List[str]]
+    r"""The languages to retrieve snippets for."""
 
 
 class GetCodeSamplesRequest(BaseModel):
     registry_url: Annotated[
         str, FieldMetadata(query=QueryParamMetadata(style="form", explode=True))
     ]
-    r"""The registry URL from which to retrieve the snippets. E.g. https://spec.speakeasy.com/org/ws/my-source"""
+    r"""The registry URL from which to retrieve the snippets."""
 
     operation_ids: Annotated[
         Optional[List[str]],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
+    r"""The operation IDs to retrieve snippets for."""
+
+    method_paths: Annotated[
+        Optional[List[MethodPaths]],
+        FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
+    ] = None
+    r"""The method paths to retrieve snippets for."""
 
     languages: Annotated[
         Optional[List[str]],
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
+    r"""The languages to retrieve snippets for."""
 
 
 class GetCodeSamplesResponseTypedDict(TypedDict):

@@ -4,7 +4,9 @@ from __future__ import annotations
 from .accounttype import AccountType
 from .featureflag import FeatureFlag, FeatureFlagTypedDict
 from datetime import datetime
+from pydantic import field_serializer
 from pydantic.functional_validators import PlainValidator
+from speakeasy_client_sdk_python.models import shared
 from speakeasy_client_sdk_python.types import BaseModel
 from speakeasy_client_sdk_python.utils import validate_open_enum
 from typing import List, Optional
@@ -59,6 +61,15 @@ class Workspaces(BaseModel):
     name: Optional[str] = None
 
     updated_at: Optional[datetime] = None
+
+    @field_serializer("account_type")
+    def serialize_account_type(self, value):
+        if isinstance(value, str):
+            try:
+                return shared.AccountType(value)
+            except ValueError:
+                return value
+        return value
 
 
 class AccessTokenTypedDict(TypedDict):

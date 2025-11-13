@@ -185,6 +185,8 @@ class CliEventTypedDict(TypedDict):
     r"""The namespace name of the source."""
     source_revision_digest: NotRequired[str]
     r"""The revision digest of the source."""
+    test_report_raw: NotRequired[str]
+    r"""The raw test report xml"""
     workflow_lock_post_raw: NotRequired[str]
     r"""Workflow lock file (post execution)"""
     workflow_lock_pre_raw: NotRequired[str]
@@ -426,6 +428,9 @@ class CliEvent(BaseModel):
 
     source_revision_digest: Optional[str] = None
     r"""The revision digest of the source."""
+
+    test_report_raw: Optional[str] = None
+    r"""The raw test report xml"""
 
     workflow_lock_post_raw: Optional[str] = None
     r"""Workflow lock file (post execution)"""

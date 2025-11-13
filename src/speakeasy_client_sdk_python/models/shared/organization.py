@@ -3,8 +3,9 @@
 from __future__ import annotations
 from .accounttype import AccountType
 from datetime import datetime
-from pydantic import model_serializer
+from pydantic import field_serializer, model_serializer
 from pydantic.functional_validators import PlainValidator
+from speakeasy_client_sdk_python.models import shared
 from speakeasy_client_sdk_python.types import (
     BaseModel,
     Nullable,
@@ -58,6 +59,15 @@ class Organization(BaseModel):
 
     sso_connection_id: OptionalNullable[str] = UNSET
 
+    @field_serializer("account_type")
+    def serialize_account_type(self, value):
+        if isinstance(value, str):
+            try:
+                return shared.AccountType(value)
+            except ValueError:
+                return value
+        return value
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = ["free_trial_expiry", "internal", "sso_connection_id"]
@@ -68,7 +78,7 @@ class Organization(BaseModel):
 
         m = {}
 
-        for n, f in self.model_fields.items():
+        for n, f in type(self).model_fields.items():
             k = f.alias or n
             val = serialized.get(k)
             serialized.pop(k, None)

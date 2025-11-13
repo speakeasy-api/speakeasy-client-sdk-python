@@ -2,9 +2,12 @@
 
 from __future__ import annotations
 from .accounttype import AccountType
+from .billingaddon import BillingAddOn
 from datetime import datetime
 import pydantic
+from pydantic import field_serializer
 from pydantic.functional_validators import PlainValidator
+from speakeasy_client_sdk_python.models import shared
 from speakeasy_client_sdk_python.types import BaseModel
 from speakeasy_client_sdk_python.utils import validate_open_enum
 from typing import List, Optional
@@ -13,6 +16,7 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class APIKeyDetailsTypedDict(TypedDict):
     account_type_v2: AccountType
+    billing_add_ons: List[BillingAddOn]
     enabled_features: List[str]
     org_slug: str
     telemetry_disabled: bool
@@ -26,6 +30,10 @@ class APIKeyDetailsTypedDict(TypedDict):
 
 class APIKeyDetails(BaseModel):
     account_type_v2: Annotated[AccountType, PlainValidator(validate_open_enum(False))]
+
+    billing_add_ons: List[
+        Annotated[BillingAddOn, PlainValidator(validate_open_enum(False))]
+    ]
 
     enabled_features: List[str]
 
@@ -48,3 +56,12 @@ class APIKeyDetails(BaseModel):
     ] = None
 
     generation_access_unlimited: Optional[bool] = None
+
+    @field_serializer("account_type_v2")
+    def serialize_account_type_v2(self, value):
+        if isinstance(value, str):
+            try:
+                return shared.AccountType(value)
+            except ValueError:
+                return value
+        return value

@@ -5,6 +5,9 @@ from speakeasy_client_sdk_python import utils
 from speakeasy_client_sdk_python._hooks import HookContext
 from speakeasy_client_sdk_python.models import errors, operations, shared
 from speakeasy_client_sdk_python.types import BaseModel, OptionalNullable, UNSET
+from speakeasy_client_sdk_python.utils.unmarshal_json_response import (
+    unmarshal_json_response,
+)
 from typing import Any, Mapping, Optional, Union, cast
 
 
@@ -40,6 +43,8 @@ class Auth(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWorkspaceAccessRequest)
@@ -75,8 +80,10 @@ class Auth(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
                 operation_id="getWorkspaceAccess",
-                oauth2_scopes=[],
+                oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -86,27 +93,21 @@ class Auth(BaseSDK):
 
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetWorkspaceAccessResponse(
-                access_details=utils.unmarshal_json(
-                    http_res.text, Optional[shared.AccessDetails]
+                access_details=unmarshal_json_response(
+                    Optional[shared.AccessDetails], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, ["4XX", "5XX"], "*"):
+        if utils.match_response(http_res, "4XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = utils.stream_to_text(http_res)
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_access_async(
         self,
@@ -137,6 +138,8 @@ class Auth(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetWorkspaceAccessRequest)
@@ -172,8 +175,10 @@ class Auth(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
                 operation_id="getWorkspaceAccess",
-                oauth2_scopes=[],
+                oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -183,27 +188,21 @@ class Auth(BaseSDK):
 
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetWorkspaceAccessResponse(
-                access_details=utils.unmarshal_json(
-                    http_res.text, Optional[shared.AccessDetails]
+                access_details=unmarshal_json_response(
+                    Optional[shared.AccessDetails], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
-        if utils.match_response(http_res, ["4XX", "5XX"], "*"):
+        if utils.match_response(http_res, "4XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
+        if utils.match_response(http_res, "5XX", "*"):
+            http_res_text = await utils.stream_to_text_async(http_res)
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_access_token(
         self,
@@ -231,6 +230,8 @@ class Auth(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetAccessTokenRequest)
@@ -261,40 +262,35 @@ class Auth(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
-                operation_id="getAccessToken", oauth2_scopes=[], security_source=None
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getAccessToken",
+                oauth2_scopes=None,
+                security_source=None,
             ),
             request=req,
             error_status_codes=["4XX", "5XX"],
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetAccessTokenResponse(
-                access_token=utils.unmarshal_json(
-                    http_res.text, Optional[shared.AccessToken]
+                access_token=unmarshal_json_response(
+                    Optional[shared.AccessToken], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_access_token_async(
         self,
@@ -322,6 +318,8 @@ class Auth(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
 
         if not isinstance(request, BaseModel):
             request = utils.unmarshal(request, operations.GetAccessTokenRequest)
@@ -352,40 +350,35 @@ class Auth(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
-                operation_id="getAccessToken", oauth2_scopes=[], security_source=None
+                config=self.sdk_configuration,
+                base_url=base_url or "",
+                operation_id="getAccessToken",
+                oauth2_scopes=None,
+                security_source=None,
             ),
             request=req,
             error_status_codes=["4XX", "5XX"],
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetAccessTokenResponse(
-                access_token=utils.unmarshal_json(
-                    http_res.text, Optional[shared.AccessToken]
+                access_token=unmarshal_json_response(
+                    Optional[shared.AccessToken], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def get_user(
         self,
@@ -409,6 +402,8 @@ class Auth(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/v1/user",
@@ -435,8 +430,10 @@ class Auth(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
                 operation_id="getUser",
-                oauth2_scopes=[],
+                oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -444,31 +441,22 @@ class Auth(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetUserResponse(
-                user=utils.unmarshal_json(http_res.text, Optional[shared.User]),
+                user=unmarshal_json_response(Optional[shared.User], http_res),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def get_user_async(
         self,
@@ -492,6 +480,8 @@ class Auth(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/v1/user",
@@ -518,8 +508,10 @@ class Auth(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
                 operation_id="getUser",
-                oauth2_scopes=[],
+                oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -527,31 +519,22 @@ class Auth(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.GetUserResponse(
-                user=utils.unmarshal_json(http_res.text, Optional[shared.User]),
+                user=unmarshal_json_response(Optional[shared.User], http_res),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     def validate_api_key(
         self,
@@ -575,6 +558,8 @@ class Auth(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request(
             method="GET",
             path="/v1/auth/validate",
@@ -601,8 +586,10 @@ class Auth(BaseSDK):
 
         http_res = self.do_request(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
                 operation_id="validateApiKey",
-                oauth2_scopes=[],
+                oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -610,33 +597,24 @@ class Auth(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.ValidateAPIKeyResponse(
-                api_key_details=utils.unmarshal_json(
-                    http_res.text, Optional[shared.APIKeyDetails]
+                api_key_details=unmarshal_json_response(
+                    Optional[shared.APIKeyDetails], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = utils.stream_to_text(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = utils.stream_to_text(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)
 
     async def validate_api_key_async(
         self,
@@ -660,6 +638,8 @@ class Auth(BaseSDK):
 
         if server_url is not None:
             base_url = server_url
+        else:
+            base_url = self._get_url(base_url, url_variables)
         req = self._build_request_async(
             method="GET",
             path="/v1/auth/validate",
@@ -686,8 +666,10 @@ class Auth(BaseSDK):
 
         http_res = await self.do_request_async(
             hook_ctx=HookContext(
+                config=self.sdk_configuration,
+                base_url=base_url or "",
                 operation_id="validateApiKey",
-                oauth2_scopes=[],
+                oauth2_scopes=None,
                 security_source=self.sdk_configuration.security,
             ),
             request=req,
@@ -695,30 +677,21 @@ class Auth(BaseSDK):
             retry_config=retry_config,
         )
 
-        data: Any = None
+        response_data: Any = None
         if utils.match_response(http_res, "2XX", "application/json"):
             return operations.ValidateAPIKeyResponse(
-                api_key_details=utils.unmarshal_json(
-                    http_res.text, Optional[shared.APIKeyDetails]
+                api_key_details=unmarshal_json_response(
+                    Optional[shared.APIKeyDetails], http_res
                 ),
                 status_code=http_res.status_code,
                 content_type=http_res.headers.get("Content-Type") or "",
                 raw_response=http_res,
             )
         if utils.match_response(http_res, "4XX", "application/json"):
-            data = utils.unmarshal_json(http_res.text, errors.ErrorData)
-            raise errors.Error(data=data)
+            response_data = unmarshal_json_response(errors.ErrorData, http_res)
+            raise errors.Error(response_data, http_res)
         if utils.match_response(http_res, "5XX", "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
-            raise errors.SDKError(
-                "API error occurred", http_res.status_code, http_res_text, http_res
-            )
+            raise errors.SDKError("API error occurred", http_res, http_res_text)
 
-        content_type = http_res.headers.get("Content-Type")
-        http_res_text = await utils.stream_to_text_async(http_res)
-        raise errors.SDKError(
-            f"Unexpected response received (code: {http_res.status_code}, type: {content_type})",
-            http_res.status_code,
-            http_res_text,
-            http_res,
-        )
+        raise errors.SDKError("Unexpected response received", http_res)

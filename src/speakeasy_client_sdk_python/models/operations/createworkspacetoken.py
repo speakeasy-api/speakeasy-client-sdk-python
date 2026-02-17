@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 import httpx
+from pydantic import model_serializer
 from speakeasy_client_sdk_python.models.shared import (
     workspacetoken as shared_workspacetoken,
 )
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import BaseModel, UNSET_SENTINEL
 from speakeasy_client_sdk_python.utils import (
     FieldMetadata,
     PathParamMetadata,
@@ -25,6 +26,22 @@ class CreateWorkspaceTokenGlobals(BaseModel):
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
     ] = None
 
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["workspace_id"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class CreateWorkspaceTokenRequestTypedDict(TypedDict):
     workspace_token: shared_workspacetoken.WorkspaceTokenTypedDict
@@ -43,6 +60,22 @@ class CreateWorkspaceTokenRequest(BaseModel):
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
     ] = None
     r"""Unique identifier of the workspace."""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["workspace_id"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class CreateWorkspaceTokenResponseTypedDict(TypedDict):

@@ -4,7 +4,8 @@ from __future__ import annotations
 from .annotations import Annotations, AnnotationsTypedDict
 from .v2descriptor import V2Descriptor, V2DescriptorTypedDict
 import pydantic
-from speakeasy_client_sdk_python.types import BaseModel
+from pydantic import model_serializer
+from speakeasy_client_sdk_python.types import BaseModel, UNSET_SENTINEL
 from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
@@ -43,3 +44,27 @@ class Manifest(BaseModel):
         None
     )
     r"""Schema version"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(
+            ["annotations", "artifactType", "layers", "mediaType", "schemaVersion"]
+        )
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
+
+try:
+    Manifest.model_rebuild()
+except NameError:
+    pass

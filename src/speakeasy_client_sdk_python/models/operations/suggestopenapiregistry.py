@@ -3,10 +3,11 @@
 from __future__ import annotations
 import httpx
 import pydantic
+from pydantic import model_serializer
 from speakeasy_client_sdk_python.models.shared import (
     suggestrequestbody as shared_suggestrequestbody,
 )
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import BaseModel, UNSET_SENTINEL
 from speakeasy_client_sdk_python.utils import (
     FieldMetadata,
     HeaderMetadata,
@@ -50,6 +51,22 @@ class SuggestOpenAPIRegistryRequest(BaseModel):
     ] = None
     r"""Suggest options"""
 
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["SuggestRequestBody"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class SuggestOpenAPIRegistryResponseTypedDict(TypedDict):
     content_type: str
@@ -74,3 +91,19 @@ class SuggestOpenAPIRegistryResponse(BaseModel):
 
     schema_: Optional[httpx.Response] = None
     r"""An overlay containing the suggested spec modifications."""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["Schema"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

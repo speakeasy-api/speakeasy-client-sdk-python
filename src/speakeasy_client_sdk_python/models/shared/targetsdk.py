@@ -3,7 +3,8 @@
 from __future__ import annotations
 from .interactiontype import InteractionType
 from datetime import datetime
-from speakeasy_client_sdk_python.types import BaseModel
+from pydantic import model_serializer
+from speakeasy_client_sdk_python.types import BaseModel, UNSET_SENTINEL
 from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
@@ -236,3 +237,61 @@ class TargetSDK(BaseModel):
 
     workflow_pre_raw: Optional[str] = None
     r"""Workflow file (prior to execution)"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(
+            [
+                "commit_head",
+                "continuous_integration_environment",
+                "error",
+                "generate_config_post_version",
+                "generate_eligible_features",
+                "generate_gen_lock_pre_features",
+                "generate_gen_lock_pre_version",
+                "generate_number_of_operations_ignored",
+                "generate_number_of_operations_used",
+                "generate_number_of_terraform_resources",
+                "generate_published",
+                "generate_target_name",
+                "generate_target_version",
+                "gh_action_organization",
+                "gh_action_ref",
+                "gh_action_repository",
+                "gh_action_run_link",
+                "gh_action_version",
+                "git_relative_cwd",
+                "git_remote_default_owner",
+                "git_remote_default_repo",
+                "git_user_email",
+                "git_user_name",
+                "hostname",
+                "last_publish_created_at",
+                "last_publish_gh_action_run_link",
+                "publish_package_name",
+                "publish_package_registry_name",
+                "publish_package_url",
+                "publish_package_version",
+                "repo_label",
+                "source_blob_digest",
+                "source_namespace_name",
+                "source_revision_digest",
+                "success",
+                "workflow_lock_post_raw",
+                "workflow_lock_pre_raw",
+                "workflow_post_raw",
+                "workflow_pre_raw",
+            ]
+        )
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

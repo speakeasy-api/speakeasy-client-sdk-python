@@ -4,11 +4,11 @@ from __future__ import annotations
 from .accounttype import AccountType
 from .featureflag import FeatureFlag, FeatureFlagTypedDict
 from datetime import datetime
-from pydantic.functional_validators import PlainValidator
-from speakeasy_client_sdk_python.types import BaseModel
-from speakeasy_client_sdk_python.utils import validate_open_enum
+from pydantic import field_serializer, model_serializer
+from speakeasy_client_sdk_python.models import shared
+from speakeasy_client_sdk_python.types import BaseModel, UNSET_SENTINEL
 from typing import List, Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class ClaimsTypedDict(TypedDict):
@@ -41,6 +41,24 @@ class AccessTokenUser(BaseModel):
 
     id: Optional[str] = None
 
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(
+            ["admin", "created_at", "display_name", "email", "email_verified", "id"]
+        )
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class WorkspacesTypedDict(TypedDict):
     account_type: NotRequired[AccountType]
@@ -50,15 +68,38 @@ class WorkspacesTypedDict(TypedDict):
 
 
 class Workspaces(BaseModel):
-    account_type: Annotated[
-        Optional[AccountType], PlainValidator(validate_open_enum(False))
-    ] = None
+    account_type: Optional[AccountType] = None
 
     id: Optional[str] = None
 
     name: Optional[str] = None
 
     updated_at: Optional[datetime] = None
+
+    @field_serializer("account_type")
+    def serialize_account_type(self, value):
+        if isinstance(value, str):
+            try:
+                return shared.AccountType(value)
+            except ValueError:
+                return value
+        return value
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["account_type", "id", "name", "updated_at"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class AccessTokenTypedDict(TypedDict):
@@ -83,3 +124,19 @@ class AccessToken(BaseModel):
     feature_flags: Optional[List[FeatureFlag]] = None
 
     workspaces: Optional[List[Workspaces]] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["feature_flags", "workspaces"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

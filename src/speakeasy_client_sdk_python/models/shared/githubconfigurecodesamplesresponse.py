@@ -3,7 +3,8 @@
 from __future__ import annotations
 from .workflowdocument import WorkflowDocument, WorkflowDocumentTypedDict
 import pydantic
-from speakeasy_client_sdk_python.types import BaseModel
+from pydantic import model_serializer
+from speakeasy_client_sdk_python.types import BaseModel, UNSET_SENTINEL
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
@@ -32,3 +33,25 @@ class GithubConfigureCodeSamplesResponse(BaseModel):
 
     gh_action_id: Annotated[Optional[str], pydantic.Field(alias="ghActionID")] = None
     r"""The ID of the GitHub action that was dispatched"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["ghActionID"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
+
+try:
+    GithubConfigureCodeSamplesResponse.model_rebuild()
+except NameError:
+    pass

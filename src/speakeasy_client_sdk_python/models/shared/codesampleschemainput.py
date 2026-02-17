@@ -3,7 +3,8 @@
 from __future__ import annotations
 import io
 import pydantic
-from speakeasy_client_sdk_python.types import BaseModel
+from pydantic import model_serializer
+from speakeasy_client_sdk_python.types import BaseModel, UNSET_SENTINEL
 from speakeasy_client_sdk_python.utils import FieldMetadata, MultipartFormMetadata
 from typing import IO, List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypedDict
@@ -32,12 +33,30 @@ class SchemaFile(BaseModel):
         FieldMetadata(multipart=True),
     ] = None
 
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["contentType"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class CodeSampleSchemaInputTypedDict(TypedDict):
-    languages: List[str]
-    r"""A list of languages to generate code samples for"""
+    language: str
+    r"""The language to generate code samples for"""
     schema_file: SchemaFileTypedDict
     r"""The OpenAPI file to be uploaded"""
+    operation_ids: NotRequired[List[str]]
+    r"""A list of operations IDs to generate code samples for"""
     package_name: NotRequired[str]
     r"""The name of the package"""
     sdk_class_name: NotRequired[str]
@@ -45,16 +64,35 @@ class CodeSampleSchemaInputTypedDict(TypedDict):
 
 
 class CodeSampleSchemaInput(BaseModel):
-    languages: Annotated[List[str], FieldMetadata(multipart=True)]
-    r"""A list of languages to generate code samples for"""
+    language: Annotated[str, FieldMetadata(multipart=True)]
+    r"""The language to generate code samples for"""
 
     schema_file: Annotated[
         SchemaFile, FieldMetadata(multipart=MultipartFormMetadata(file=True))
     ]
     r"""The OpenAPI file to be uploaded"""
 
+    operation_ids: Annotated[Optional[List[str]], FieldMetadata(multipart=True)] = None
+    r"""A list of operations IDs to generate code samples for"""
+
     package_name: Annotated[Optional[str], FieldMetadata(multipart=True)] = None
     r"""The name of the package"""
 
     sdk_class_name: Annotated[Optional[str], FieldMetadata(multipart=True)] = None
     r"""The SDK class name"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["operation_ids", "package_name", "sdk_class_name"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

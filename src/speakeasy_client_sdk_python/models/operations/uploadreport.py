@@ -4,8 +4,9 @@ from __future__ import annotations
 import httpx
 import io
 import pydantic
+from pydantic import model_serializer
 from speakeasy_client_sdk_python.models.shared import report as shared_report
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import BaseModel, UNSET_SENTINEL
 from speakeasy_client_sdk_python.utils import FieldMetadata, MultipartFormMetadata
 from typing import IO, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypedDict
@@ -33,6 +34,22 @@ class File(BaseModel):
         pydantic.Field(alias="Content-Type"),
         FieldMetadata(multipart=True),
     ] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["contentType"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class UploadReportRequestBodyTypedDict(TypedDict):
@@ -87,3 +104,19 @@ class UploadReportResponse(BaseModel):
 
     uploaded_report: Optional[UploadReportUploadedReport] = None
     r"""OK"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["uploadedReport"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

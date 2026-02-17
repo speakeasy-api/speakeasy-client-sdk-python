@@ -3,8 +3,9 @@
 from __future__ import annotations
 from datetime import datetime
 import httpx
+from pydantic import model_serializer
 from speakeasy_client_sdk_python.models.shared import clievent as shared_clievent
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import BaseModel, UNSET_SENTINEL
 from speakeasy_client_sdk_python.utils import (
     FieldMetadata,
     PathParamMetadata,
@@ -23,6 +24,22 @@ class GetWorkspaceEventsByTargetGlobals(BaseModel):
         Optional[str],
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
     ] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["workspace_id"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class GetWorkspaceEventsByTargetRequestTypedDict(TypedDict):
@@ -52,6 +69,22 @@ class GetWorkspaceEventsByTargetRequest(BaseModel):
     ] = None
     r"""Filter to only return events created after this timestamp"""
 
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["workspace_id", "after_created_at"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class GetWorkspaceEventsByTargetResponseTypedDict(TypedDict):
     content_type: str
@@ -76,3 +109,19 @@ class GetWorkspaceEventsByTargetResponse(BaseModel):
 
     cli_event_batch: Optional[List[shared_clievent.CliEvent]] = None
     r"""Success"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["CliEventBatch"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

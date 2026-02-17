@@ -4,10 +4,11 @@ from __future__ import annotations
 import httpx
 import io
 import pydantic
+from pydantic import model_serializer
 from speakeasy_client_sdk_python.models.shared import (
     suggestoptsold as shared_suggestoptsold,
 )
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import BaseModel, UNSET_SENTINEL
 from speakeasy_client_sdk_python.utils import (
     FieldMetadata,
     HeaderMetadata,
@@ -41,6 +42,22 @@ class Schema(BaseModel):
         FieldMetadata(multipart=True),
     ] = None
 
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["contentType"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class SuggestOpenAPIRequestBodyTypedDict(TypedDict):
     r"""The schema file to upload provided as a multipart/form-data file segment."""
@@ -62,6 +79,22 @@ class SuggestOpenAPIRequestBody(BaseModel):
         Optional[shared_suggestoptsold.SuggestOptsOld],
         FieldMetadata(multipart=MultipartFormMetadata(json=True)),
     ] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["opts"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class SuggestOpenAPIRequestTypedDict(TypedDict):
@@ -107,3 +140,19 @@ class SuggestOpenAPIResponse(BaseModel):
 
     schema_: Optional[httpx.Response] = None
     r"""An overlay containing the suggested spec modifications."""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["Schema"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k)
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

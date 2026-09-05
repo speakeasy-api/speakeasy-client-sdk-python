@@ -28,3 +28,9 @@ class GithubConfigureCodeSamplesRequest(BaseModel):
 
     target_name: Annotated[str, pydantic.Field(alias="targetName")]
     r"""The target name for the code samples"""
+
+
+try:
+    GithubConfigureCodeSamplesRequest.model_rebuild()
+except NameError:
+    pass

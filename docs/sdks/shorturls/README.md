@@ -1,5 +1,4 @@
 # ShortURLs
-(*short_ur_ls*)
 
 ## Overview
 
@@ -15,9 +14,11 @@ Shorten a URL.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="create" method="post" path="/v1/short_urls" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -26,7 +27,7 @@ with Speakeasy(
 ) as speakeasy:
 
     res = speakeasy.short_ur_ls.create(request={
-        "url": "https://probable-heating.com/",
+        "url": "https://exalted-heroine.org/",
     })
 
     assert res.short_url is not None

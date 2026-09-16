@@ -37,12 +37,16 @@ class UserTypedDict(TypedDict):
     r"""Identifier of the default workspace."""
     github_handle: NotRequired[Nullable[str]]
     r"""GitHub handle of the user."""
+    has_created_api_key: NotRequired[bool]
+    r"""Indicates whether the user has created an API key. Not always populated"""
     internal: NotRequired[bool]
     r"""Indicates whether the user is internal."""
     last_login_at: NotRequired[Nullable[datetime]]
     r"""Timestamp of the last login."""
     photo_url: NotRequired[Nullable[str]]
     r"""URL of the user's photo."""
+    pylon_identity_hash: NotRequired[str]
+    r"""Hash used for pylon identity verification returned on v1/user."""
 
 
 class User(BaseModel):
@@ -79,6 +83,9 @@ class User(BaseModel):
     github_handle: OptionalNullable[str] = UNSET
     r"""GitHub handle of the user."""
 
+    has_created_api_key: Optional[bool] = None
+    r"""Indicates whether the user has created an API key. Not always populated"""
+
     internal: Optional[bool] = None
     r"""Indicates whether the user is internal."""
 
@@ -88,43 +95,42 @@ class User(BaseModel):
     photo_url: OptionalNullable[str] = UNSET
     r"""URL of the user's photo."""
 
+    pylon_identity_hash: Optional[str] = None
+    r"""Hash used for pylon identity verification returned on v1/user."""
+
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
-        optional_fields = [
-            "default_workspace_id",
-            "github_handle",
-            "internal",
-            "last_login_at",
-            "photo_url",
-        ]
-        nullable_fields = [
-            "default_workspace_id",
-            "github_handle",
-            "last_login_at",
-            "photo_url",
-        ]
-        null_default_fields = []
-
+        optional_fields = set(
+            [
+                "default_workspace_id",
+                "github_handle",
+                "has_created_api_key",
+                "internal",
+                "last_login_at",
+                "photo_url",
+                "pylon_identity_hash",
+            ]
+        )
+        nullable_fields = set(
+            ["default_workspace_id", "github_handle", "last_login_at", "photo_url"]
+        )
         serialized = handler(self)
-
         m = {}
 
-        for n, f in self.model_fields.items():
+        for n, f in type(self).model_fields.items():
             k = f.alias or n
-            val = serialized.get(k)
-            serialized.pop(k, None)
+            val = serialized.get(k, serialized.get(n))
+            is_nullable_and_explicitly_set = (
+                k in nullable_fields
+                and (self.__pydantic_fields_set__.intersection({n}))  # pylint: disable=no-member
+            )
 
-            optional_nullable = k in optional_fields and k in nullable_fields
-            is_set = (
-                self.__pydantic_fields_set__.intersection({n})
-                or k in null_default_fields
-            )  # pylint: disable=no-member
-
-            if val is not None and val != UNSET_SENTINEL:
-                m[k] = val
-            elif val != UNSET_SENTINEL and (
-                not k in optional_fields or (optional_nullable and is_set)
-            ):
-                m[k] = val
+            if val != UNSET_SENTINEL:
+                if (
+                    val is not None
+                    or k not in optional_fields
+                    or is_nullable_and_explicitly_set
+                ):
+                    m[k] = val
 
         return m

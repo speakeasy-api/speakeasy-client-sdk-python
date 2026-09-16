@@ -12,6 +12,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -24,6 +25,30 @@ actions:
 
                 # Handle response
                 print(res.get_namespaces_response)
+  - target: $["paths"]["/v1/artifacts/namespaces/{namespace_name}/archive"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: archiveNamespace
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+
+            with Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            ) as speakeasy:
+
+                res = speakeasy.artifacts.set_archived(request={
+                    "namespace_name": "<value>",
+                })
+
+                assert res is not None
+
+                # Handle response
+                print(res)
   - target: $["paths"]["/v1/artifacts/namespaces/{namespace_name}/revisions"]["get"]
     update:
       x-codeSamples:
@@ -32,6 +57,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -56,6 +82,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -78,6 +105,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -102,6 +130,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -125,6 +154,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -145,6 +175,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -169,6 +200,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -189,6 +221,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
 
+
             with Speakeasy() as speakeasy:
 
                 res = speakeasy.auth.get_access_token(request={
@@ -207,6 +240,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -229,6 +263,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -236,7 +271,26 @@ actions:
             ) as speakeasy:
 
                 res = speakeasy.code_samples.get(request={
-                    "registry_url": "https://normal-making.name",
+                    "registry_url": "https://spec.speakeasy.com/my-org/my-workspace/my-source",
+                    "operation_ids": [
+                        "g",
+                        "e",
+                        "t",
+                        "P",
+                        "e",
+                        "t",
+                        "s",
+                    ],
+                    "method_paths": [
+                        {
+                            "method": shared.HTTPMethod.GET,
+                            "path": "/pets",
+                        },
+                    ],
+                    "languages": [
+                        "python",
+                        "javascript",
+                    ],
                 })
 
                 assert res.usage_snippets is not None
@@ -252,6 +306,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -259,20 +314,17 @@ actions:
             ) as speakeasy:
 
                 res = speakeasy.code_samples.generate_code_sample_preview(request={
-                    "languages": [
-                        "<value>",
-                        "<value>",
-                    ],
+                    "language": "<value>",
                     "schema_file": {
-                        "file_name": "example.file",
                         "content": open("example.file", "rb"),
+                        "file_name": "example.file",
                     },
                 })
 
-                assert res.two_hundred_application_x_yaml_response_stream is not None
+                assert res.usage_snippets is not None
 
                 # Handle response
-                print(res.two_hundred_application_x_yaml_response_stream)
+                print(res.usage_snippets)
   - target: $["paths"]["/v1/code_sample/preview/async"]["post"]
     update:
       x-codeSamples:
@@ -282,6 +334,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -289,13 +342,10 @@ actions:
             ) as speakeasy:
 
                 res = speakeasy.code_samples.generate_code_sample_preview_asynchronous(request={
-                    "languages": [
-                        "<value>",
-                        "<value>",
-                    ],
+                    "language": "<value>",
                     "schema_file": {
-                        "file_name": "example.file",
                         "content": open("example.file", "rb"),
+                        "file_name": "example.file",
                     },
                 })
 
@@ -312,6 +362,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -322,10 +373,10 @@ actions:
                     "job_id": "<id>",
                 })
 
-                assert res.two_hundred_application_x_yaml_response_stream is not None
+                assert res.object is not None
 
                 # Handle response
-                print(res.two_hundred_application_x_yaml_response_stream)
+                print(res.object)
   - target: $["paths"]["/v1/github/action"]["get"]
     update:
       x-codeSamples:
@@ -334,6 +385,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -359,6 +411,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -382,6 +435,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -408,6 +462,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -415,12 +470,12 @@ actions:
             ) as speakeasy:
 
                 res = speakeasy.github.configure_mintlify_repo(request={
-                    "org": "<value>",
-                    "repo": "<value>",
                     "input": "<value>",
+                    "org": "<value>",
                     "overlays": [
-                        "<value>",
+                        "<value 1>",
                     ],
+                    "repo": "<value>",
                 })
 
                 assert res is not None
@@ -435,6 +490,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -460,6 +516,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -480,6 +537,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -506,6 +564,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -529,6 +588,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -551,6 +611,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -577,6 +638,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -584,9 +646,9 @@ actions:
             ) as speakeasy:
 
                 res = speakeasy.github.trigger_action(request={
+                    "gen_lock_id": "<id>",
                     "org": "<value>",
                     "repo_name": "<value>",
-                    "gen_lock_id": "<id>",
                 })
 
                 assert res is not None
@@ -601,6 +663,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -628,6 +691,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -651,9 +715,10 @@ actions:
         - lang: python
           label: createOrganization
           source: |-
-            import dateutil.parser
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+            from speakeasy_client_sdk_python.utils import parse_datetime
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -662,20 +727,92 @@ actions:
             ) as speakeasy:
 
                 res = speakeasy.organizations.create(request={
+                    "account_type": shared.AccountType.SCALE_UP,
+                    "created_at": parse_datetime("2026-10-26T09:05:00.560Z"),
                     "id": "<id>",
                     "name": "<value>",
                     "slug": "<value>",
-                    "account_type": shared.AccountType.SCALE_UP,
+                    "sso_activated": False,
                     "telemetry_disabled": False,
-                    "created_at": dateutil.parser.isoparse("2024-04-02T12:48:32.253Z"),
-                    "updated_at": dateutil.parser.isoparse("2023-05-28T06:20:22.766Z"),
-                    "sso_activated": True,
+                    "updated_at": parse_datetime("2024-12-22T08:00:51.380Z"),
                 })
 
                 assert res.organization is not None
 
                 # Handle response
                 print(res.organization)
+  - target: $["paths"]["/v1/organization/add_ons"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getBillingAddOns
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+
+            with Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            ) as speakeasy:
+
+                res = speakeasy.organizations.get_billing_add_ons()
+
+                assert res.organization_billing_add_on_response is not None
+
+                # Handle response
+                print(res.organization_billing_add_on_response)
+  - target: $["paths"]["/v1/organization/add_ons"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createBillingAddOns
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+
+            with Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            ) as speakeasy:
+
+                res = speakeasy.organizations.create_billing_add_ons(request={
+                    "add_ons": [
+                        shared.BillingAddOn.CUSTOM_CODE_REGIONS,
+                    ],
+                })
+
+                assert res.organization_billing_add_on_response is not None
+
+                # Handle response
+                print(res.organization_billing_add_on_response)
+  - target: $["paths"]["/v1/organization/add_ons/{add_on}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: deleteBillingAddOn
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+
+            with Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            ) as speakeasy:
+
+                res = speakeasy.organizations.delete_billing_add_on(request={
+                    "add_on": shared.BillingAddOn.SDK_TESTING,
+                })
+
+                assert res is not None
+
+                # Handle response
+                print(res)
   - target: $["paths"]["/v1/organization/free_trial"]["post"]
     update:
       x-codeSamples:
@@ -684,6 +821,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -706,6 +844,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -726,6 +865,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -750,6 +890,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -762,6 +903,170 @@ actions:
 
                 # Handle response
                 print(res.organizations)
+  - target: $["paths"]["/v1/publishing-tokens"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getPublishingToken
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+
+            with Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            ) as speakeasy:
+
+                res = speakeasy.publishing_tokens.list()
+
+                assert res.classes is not None
+
+                # Handle response
+                print(res.classes)
+  - target: $["paths"]["/v1/publishing-tokens"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createPublishingToken
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+
+            with Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            ) as speakeasy:
+
+                res = speakeasy.publishing_tokens.create()
+
+                assert res.publishing_token is not None
+
+                # Handle response
+                print(res.publishing_token)
+  - target: $["paths"]["/v1/publishing-tokens/{tokenID}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: deletePublishingToken
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+
+            with Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            ) as speakeasy:
+
+                res = speakeasy.publishing_tokens.delete(request={
+                    "token_id": "<id>",
+                })
+
+                assert res is not None
+
+                # Handle response
+                print(res)
+  - target: $["paths"]["/v1/publishing-tokens/{tokenID}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getPublishingTokenByID
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+
+            with Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            ) as speakeasy:
+
+                res = speakeasy.publishing_tokens.get(request={
+                    "token_id": "<id>",
+                })
+
+                assert res.publishing_token is not None
+
+                # Handle response
+                print(res.publishing_token)
+  - target: $["paths"]["/v1/publishing-tokens/{tokenID}"]["put"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: updatePublishingTokenExpiration
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+
+            with Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            ) as speakeasy:
+
+                res = speakeasy.publishing_tokens.update(request={
+                    "token_id": "<id>",
+                })
+
+                assert res is not None
+
+                # Handle response
+                print(res)
+  - target: $["paths"]["/v1/publishing-tokens/{tokenID}/metadata"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getPublishingTokenPublicMetadata
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+
+            with Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            ) as speakeasy:
+
+                res = speakeasy.publishing_tokens.resolve_metadata(request={
+                    "token_id": "<id>",
+                })
+
+                assert res.object is not None
+
+                # Handle response
+                print(res.object)
+  - target: $["paths"]["/v1/publishing-tokens/{tokenID}/target"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getPublishingTokenTargetByID
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+
+            with Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            ) as speakeasy:
+
+                res = speakeasy.publishing_tokens.resolve_target(request={
+                    "token_id": "<id>",
+                })
+
+                assert res.res is not None
+
+                # Handle response
+                print(res.res)
   - target: $["paths"]["/v1/reports"]["post"]
     update:
       x-codeSamples:
@@ -770,6 +1075,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -780,8 +1086,8 @@ actions:
                 res = speakeasy.reports.upload_report(request={
                     "data": {},
                     "file": {
-                        "file_name": "example.file",
                         "content": open("example.file", "rb"),
+                        "file_name": "example.file",
                     },
                 })
 
@@ -797,6 +1103,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -821,6 +1128,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -835,6 +1143,55 @@ actions:
 
                 # Handle response
                 print(res.signed_access)
+  - target: $["paths"]["/v1/schema_store"]["get"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: getSchemaStoreItem
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+
+            with Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            ) as speakeasy:
+
+                res = speakeasy.schema_store.get_schema_store_item()
+
+                assert res.schema_store_item is not None
+
+                # Handle response
+                print(res.schema_store_item)
+  - target: $["paths"]["/v1/schema_store"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: createSchemaStoreItem
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import operations, shared
+
+
+            with Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            ) as speakeasy:
+
+                res = speakeasy.schema_store.create_schema_store_item(request={
+                    "format_": operations.Format.YAML,
+                    "package_name": "<value>",
+                    "sdk_classname": "<value>",
+                    "spec": "<value>",
+                })
+
+                assert res.schema_store_item is not None
+
+                # Handle response
+                print(res.schema_store_item)
   - target: $["paths"]["/v1/short_urls"]["post"]
     update:
       x-codeSamples:
@@ -844,6 +1201,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -851,7 +1209,7 @@ actions:
             ) as speakeasy:
 
                 res = speakeasy.short_ur_ls.create(request={
-                    "url": "https://probable-heating.com/",
+                    "url": "https://exalted-heroine.org/",
                 })
 
                 assert res.short_url is not None
@@ -866,6 +1224,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -891,6 +1250,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -915,6 +1275,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -922,10 +1283,10 @@ actions:
             ) as speakeasy:
 
                 res = speakeasy.suggest.suggest_items(request={
-                    "prompt": "<value>",
                     "items": [
-                        "<value>",
+                        "<value 1>",
                     ],
+                    "prompt": "<value>",
                 })
 
                 assert res.strings is not None
@@ -941,6 +1302,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -951,8 +1313,8 @@ actions:
                     "x_session_id": "<id>",
                     "request_body": {
                         "schema_": {
-                            "file_name": "example.file",
                             "content": open("example.file", "rb"),
+                            "file_name": "example.file",
                         },
                     },
                 })
@@ -969,6 +1331,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -995,6 +1358,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -1004,36 +1368,37 @@ actions:
                 res = speakeasy.suggest.suggest(request={
                     "x_session_id": "<id>",
                     "suggest_request_body": {
-                        "oas_summary": {
-                            "info": {
-                                "title": "<value>",
-                                "summary": "<value>",
-                                "description": "ugh which garrote ashamed sarong fiddle really",
-                                "version": "<value>",
-                                "license": {},
-                            },
-                            "operations": [
-                                {
-                                    "method": "<value>",
-                                    "path": "/rescue",
-                                    "operation_id": "<id>",
-                                    "description": "kielbasa psst stitcher cannon devoted blindly apropos low",
-                                    "tags": [
-                                        "<value>",
-                                    ],
-                                },
-                            ],
-                        },
-                        "suggestion_type": shared.SuggestRequestBodySuggestionType.DIAGNOSTICS_ONLY,
                         "diagnostics": [
                             {
                                 "message": "<value>",
                                 "path": [
-                                    "/opt/share",
+                                    "/usr/src",
                                 ],
                                 "type": "<value>",
                             },
                         ],
+                        "oas_summary": {
+                            "info": {
+                                "description": "prioritize bell vainly",
+                                "license": {},
+                                "summary": "<value>",
+                                "title": "<value>",
+                                "version": "<value>",
+                            },
+                            "operations": [
+                                {
+                                    "description": "though since instead accurate safe unnaturally charming",
+                                    "method": "<value>",
+                                    "operation_id": "<id>",
+                                    "path": "/usr/local/bin",
+                                    "tags": [
+                                        "<value 1>",
+                                        "<value 2>",
+                                    ],
+                                },
+                            ],
+                        },
+                        "suggestion_type": shared.SuggestRequestBodySuggestionType.METHOD_NAMES,
                     },
                 })
 
@@ -1049,6 +1414,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -1071,6 +1437,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -1089,9 +1456,10 @@ actions:
         - lang: python
           label: createWorkspace
           source: |-
-            import dateutil.parser
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+            from speakeasy_client_sdk_python.utils import parse_datetime
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -1100,12 +1468,12 @@ actions:
             ) as speakeasy:
 
                 res = speakeasy.workspaces.create(request={
-                    "created_at": dateutil.parser.isoparse("2024-06-17T07:14:55.338Z"),
+                    "created_at": parse_datetime("2024-11-17T13:41:10.525Z"),
                     "id": "<id>",
                     "name": "<value>",
                     "organization_id": "<id>",
                     "slug": "<value>",
-                    "updated_at": dateutil.parser.isoparse("2024-11-30T17:06:07.804Z"),
+                    "updated_at": parse_datetime("2025-11-21T08:36:32.740Z"),
                     "verified": True,
                 })
 
@@ -1121,6 +1489,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(
@@ -1143,6 +1512,7 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
@@ -1155,6 +1525,30 @@ actions:
 
                 # Handle response
                 print(res.target_sdk_list)
+  - target: $["paths"]["/v1/workspace/feature_flags"]["post"]
+    update:
+      x-codeSamples:
+        - lang: python
+          label: setWorkspaceFeatureFlags
+          source: |-
+            from speakeasy_client_sdk_python import Speakeasy
+            from speakeasy_client_sdk_python.models import shared
+
+
+            with Speakeasy(
+                security=shared.Security(
+                    api_key="<YOUR_API_KEY_HERE>",
+                ),
+            ) as speakeasy:
+
+                res = speakeasy.workspaces.set_feature_flags(request={
+                    "feature_flags": [],
+                })
+
+                assert res.workspace_feature_flag_response is not None
+
+                # Handle response
+                print(res.workspace_feature_flag_response)
   - target: $["paths"]["/v1/workspace/{workspace_id}"]["get"]
     update:
       x-codeSamples:
@@ -1164,15 +1558,15 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
+                workspace_id="<id>",
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
                 ),
             ) as speakeasy:
 
-                res = speakeasy.workspaces.get_by_id(request={
-                    "workspace_id": "<id>",
-                })
+                res = speakeasy.workspaces.get_by_id(request={})
 
                 assert res.workspace is not None
 
@@ -1184,25 +1578,26 @@ actions:
         - lang: python
           label: updateWorkspaceDetails
           source: |-
-            import dateutil.parser
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+            from speakeasy_client_sdk_python.utils import parse_datetime
+
 
             with Speakeasy(
+                workspace_id="<id>",
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
                 ),
             ) as speakeasy:
 
                 res = speakeasy.workspaces.update(request={
-                    "workspace_id": "<id>",
                     "workspace": {
-                        "created_at": dateutil.parser.isoparse("2025-07-28T19:04:48.565Z"),
+                        "created_at": parse_datetime("2024-08-01T22:30:24.264Z"),
                         "id": "<id>",
                         "name": "<value>",
                         "organization_id": "<id>",
                         "slug": "<value>",
-                        "updated_at": dateutil.parser.isoparse("2024-10-16T10:52:42.015Z"),
+                        "updated_at": parse_datetime("2026-01-24T03:53:13.581Z"),
                         "verified": True,
                     },
                 })
@@ -1220,15 +1615,15 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
+                workspace_id="<id>",
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
                 ),
             ) as speakeasy:
 
-                res = speakeasy.events.search(request={
-                    "workspace_id": "<id>",
-                })
+                res = speakeasy.events.search(request={})
 
                 assert res.cli_event_batch is not None
 
@@ -1240,29 +1635,30 @@ actions:
         - lang: python
           label: postWorkspaceEvents
           source: |-
-            import dateutil.parser
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+            from speakeasy_client_sdk_python.utils import parse_datetime
+
 
             with Speakeasy(
+                workspace_id="<id>",
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
                 ),
             ) as speakeasy:
 
                 res = speakeasy.events.post(request={
-                    "workspace_id": "<id>",
                     "request_body": [
                         {
-                            "id": "<id>",
+                            "created_at": parse_datetime("2024-02-16T09:12:42.397Z"),
                             "execution_id": "<id>",
-                            "workspace_id": "<id>",
-                            "speakeasy_api_key_name": "<value>",
+                            "id": "<id>",
                             "interaction_type": shared.InteractionType.QUICKSTART,
-                            "local_started_at": dateutil.parser.isoparse("2024-09-08T05:59:33.876Z"),
-                            "created_at": dateutil.parser.isoparse("2025-08-12T17:54:17.538Z"),
+                            "local_started_at": parse_datetime("2025-01-23T01:13:51.002Z"),
+                            "speakeasy_api_key_name": "<value>",
                             "speakeasy_version": "<value>",
                             "success": True,
+                            "workspace_id": "<id>",
                         },
                     ],
                 })
@@ -1280,15 +1676,15 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
+                workspace_id="<id>",
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
                 ),
             ) as speakeasy:
 
-                res = speakeasy.events.get_targets_deprecated(request={
-                    "workspace_id": "<id>",
-                })
+                res = speakeasy.events.get_targets_deprecated(request={})
 
                 assert res.target_sdk_list is not None
 
@@ -1303,14 +1699,15 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
+                workspace_id="<id>",
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
                 ),
             ) as speakeasy:
 
                 res = speakeasy.events.get_events_by_target(request={
-                    "workspace_id": "<id>",
                     "target_id": "<id>",
                 })
 
@@ -1327,15 +1724,15 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
+                workspace_id="<id>",
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
                 ),
             ) as speakeasy:
 
-                res = speakeasy.workspaces.get_feature_flags(request={
-                    "workspace_id": "<id>",
-                })
+                res = speakeasy.workspaces.get_feature_flags(request={})
 
                 assert res.workspace_feature_flag_response is not None
 
@@ -1350,15 +1747,15 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
+                workspace_id="<id>",
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
                 ),
             ) as speakeasy:
 
-                res = speakeasy.workspaces.get_settings(request={
-                    "workspace_id": "<id>",
-                })
+                res = speakeasy.workspaces.get_settings(request={})
 
                 assert res.workspace_settings is not None
 
@@ -1370,23 +1767,24 @@ actions:
         - lang: python
           label: updateWorkspaceSettings
           source: |-
-            import dateutil.parser
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+            from speakeasy_client_sdk_python.utils import parse_datetime
+
 
             with Speakeasy(
+                workspace_id="<id>",
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
                 ),
             ) as speakeasy:
 
                 res = speakeasy.workspaces.update_settings(request={
-                    "workspace_id": "<id>",
                     "workspace_settings": {
+                        "created_at": parse_datetime("2026-03-09T15:48:09.330Z"),
+                        "updated_at": parse_datetime("2026-11-24T16:37:53.492Z"),
+                        "webhook_url": "https://wobbly-lid.org",
                         "workspace_id": "<id>",
-                        "webhook_url": "https://last-suspension.info/",
-                        "created_at": dateutil.parser.isoparse("2024-12-28T06:46:35.807Z"),
-                        "updated_at": dateutil.parser.isoparse("2025-02-03T10:37:56.725Z"),
                     },
                 })
 
@@ -1403,15 +1801,15 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
+                workspace_id="<id>",
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
                 ),
             ) as speakeasy:
 
-                res = speakeasy.workspaces.get_team(request={
-                    "workspace_id": "<id>",
-                })
+                res = speakeasy.workspaces.get_team(request={})
 
                 assert res.workspace_team_response is not None
 
@@ -1426,15 +1824,16 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
+                workspace_id="<id>",
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
                 ),
             ) as speakeasy:
 
                 res = speakeasy.workspaces.grant_access(request={
-                    "workspace_id": "<id>",
-                    "email": "Lucinda.Batz8@hotmail.com",
+                    "email": "Idella24@gmail.com",
                 })
 
                 assert res.workspace_invite_response is not None
@@ -1450,14 +1849,15 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
+                workspace_id="<id>",
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
                 ),
             ) as speakeasy:
 
                 res = speakeasy.workspaces.revoke_access(request={
-                    "workspace_id": "<id>",
                     "user_id": "<id>",
                 })
 
@@ -1474,45 +1874,46 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
+                workspace_id="<id>",
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
                 ),
             ) as speakeasy:
 
-                res = speakeasy.workspaces.get_tokens(request={
-                    "workspace_id": "<id>",
-                })
+                res = speakeasy.workspaces.get_tokens(request={})
 
-                assert res.workspace_tokens is not None
+                assert res.classes is not None
 
                 # Handle response
-                print(res.workspace_tokens)
+                print(res.classes)
   - target: $["paths"]["/v1/workspace/{workspace_id}/tokens"]["post"]
     update:
       x-codeSamples:
         - lang: python
           label: createWorkspaceToken
           source: |-
-            import dateutil.parser
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+            from speakeasy_client_sdk_python.utils import parse_datetime
+
 
             with Speakeasy(
+                workspace_id="<id>",
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
                 ),
             ) as speakeasy:
 
                 res = speakeasy.workspaces.create_token(request={
-                    "workspace_id": "<id>",
                     "workspace_token": {
+                        "alg": "<value>",
+                        "created_at": parse_datetime("2025-10-04T10:23:04.522Z"),
                         "id": "<id>",
+                        "key": "<key>",
                         "name": "<value>",
                         "workspace_id": "<id>",
-                        "alg": "<value>",
-                        "key": "<key>",
-                        "created_at": dateutil.parser.isoparse("2023-08-16T02:33:00.784Z"),
                     },
                 })
 
@@ -1529,14 +1930,15 @@ actions:
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
 
+
             with Speakeasy(
+                workspace_id="<id>",
                 security=shared.Security(
                     api_key="<YOUR_API_KEY_HERE>",
                 ),
             ) as speakeasy:
 
                 res = speakeasy.workspaces.delete_token(request={
-                    "workspace_id": "<id>",
                     "token_id": "<id>",
                 })
 
@@ -1552,6 +1954,7 @@ actions:
           source: |-
             from speakeasy_client_sdk_python import Speakeasy
             from speakeasy_client_sdk_python.models import shared
+
 
             with Speakeasy(
                 security=shared.Security(

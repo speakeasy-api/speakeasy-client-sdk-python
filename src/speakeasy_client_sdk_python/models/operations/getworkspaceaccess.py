@@ -3,10 +3,11 @@
 from __future__ import annotations
 import httpx
 import pydantic
+from pydantic import model_serializer
 from speakeasy_client_sdk_python.models.shared import (
     accessdetails as shared_accessdetails,
 )
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import BaseModel, UNSET_SENTINEL
 from speakeasy_client_sdk_python.utils import FieldMetadata, QueryParamMetadata
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
@@ -42,6 +43,22 @@ class GetWorkspaceAccessRequest(BaseModel):
     ] = None
     r"""Skip side-effects like incrementing metrics."""
 
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["genLockId", "targetType", "passive"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class GetWorkspaceAccessResponseTypedDict(TypedDict):
     content_type: str
@@ -66,3 +83,19 @@ class GetWorkspaceAccessResponse(BaseModel):
 
     access_details: Optional[shared_accessdetails.AccessDetails] = None
     r"""OK"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["AccessDetails"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

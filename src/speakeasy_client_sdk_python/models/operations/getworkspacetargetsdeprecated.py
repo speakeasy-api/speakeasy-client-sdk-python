@@ -3,8 +3,9 @@
 from __future__ import annotations
 from datetime import datetime
 import httpx
+from pydantic import model_serializer
 from speakeasy_client_sdk_python.models.shared import targetsdk as shared_targetsdk
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import BaseModel, UNSET_SENTINEL
 from speakeasy_client_sdk_python.utils import (
     FieldMetadata,
     PathParamMetadata,
@@ -23,6 +24,22 @@ class GetWorkspaceTargetsDeprecatedGlobals(BaseModel):
         Optional[str],
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
     ] = None
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["workspace_id"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class GetWorkspaceTargetsDeprecatedRequestTypedDict(TypedDict):
@@ -44,6 +61,22 @@ class GetWorkspaceTargetsDeprecatedRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
     r"""Filter to only return targets with events created after this timestamp"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["workspace_id", "after_last_event_created_at"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class GetWorkspaceTargetsDeprecatedResponseTypedDict(TypedDict):
@@ -69,3 +102,19 @@ class GetWorkspaceTargetsDeprecatedResponse(BaseModel):
 
     target_sdk_list: Optional[List[shared_targetsdk.TargetSDK]] = None
     r"""Success"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(["TargetSDKList"])
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

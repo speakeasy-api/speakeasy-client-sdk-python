@@ -1,0 +1,21 @@
+# PublishingToken
+
+A token used to publish to a target
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `created_at`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | N/A                                                                  |
+| `created_by`                                                         | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `id`                                                                 | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `organization_id`                                                    | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `target_id`                                                          | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `target_resource`                                                    | [shared.TargetResource](../../models/shared/targetresource.md)       | :heavy_check_mark:                                                   | N/A                                                                  |
+| `token`                                                              | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `token_name`                                                         | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `updated_at`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `updated_by`                                                         | *Optional[str]*                                                      | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `valid_until`                                                        | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | N/A                                                                  |
+| `workspace_id`                                                       | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |

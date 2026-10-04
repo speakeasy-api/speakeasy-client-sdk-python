@@ -18,3 +18,4 @@ class InteractionType(str, Enum):
     RUN = "RUN"
     CONFIGURE = "CONFIGURE"
     PUBLISH = "PUBLISH"
+    TEST = "TEST"

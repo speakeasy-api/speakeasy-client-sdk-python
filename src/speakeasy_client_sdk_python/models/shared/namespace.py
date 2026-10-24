@@ -5,8 +5,13 @@ from .remotesourcesubscriptionsettings import (
     RemoteSourceSubscriptionSettings,
     RemoteSourceSubscriptionSettingsTypedDict,
 )
+from .revisioncontentsmetadata import (
+    RevisionContentsMetadata,
+    RevisionContentsMetadataTypedDict,
+)
 from datetime import datetime
-from speakeasy_client_sdk_python.types import BaseModel
+from pydantic import model_serializer
+from speakeasy_client_sdk_python.types import BaseModel, UNSET_SENTINEL
 from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
@@ -33,7 +38,9 @@ class NamespaceTypedDict(TypedDict):
     name: str
     r"""A human-readable name for the namespace."""
     updated_at: datetime
+    archived_at: NotRequired[datetime]
     composite_spec_metadata: NotRequired[CompositeSpecMetadataTypedDict]
+    latest_revision_metadata: NotRequired[RevisionContentsMetadataTypedDict]
     public: NotRequired[bool]
     r"""Indicates whether the namespace is publicly accessible"""
 
@@ -51,7 +58,34 @@ class Namespace(BaseModel):
 
     updated_at: datetime
 
+    archived_at: Optional[datetime] = None
+
     composite_spec_metadata: Optional[CompositeSpecMetadata] = None
+
+    latest_revision_metadata: Optional[RevisionContentsMetadata] = None
 
     public: Optional[bool] = None
     r"""Indicates whether the namespace is publicly accessible"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(
+            [
+                "archived_at",
+                "composite_spec_metadata",
+                "latest_revision_metadata",
+                "public",
+            ]
+        )
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

@@ -1,5 +1,4 @@
 # Reports
-(*reports*)
 
 ## Overview
 
@@ -17,9 +16,11 @@ Get the signed access url for the change reports for a particular document.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getChangesReportSignedUrl" method="get" path="/v1/reports/changes/{documentChecksum}" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -61,9 +62,11 @@ Get the signed access url for the linting reports for a particular document.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getLintingReportSignedUrl" method="get" path="/v1/reports/linting/{documentChecksum}" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -105,9 +108,11 @@ Upload a report.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="uploadReport" method="post" path="/v1/reports" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(

@@ -4,7 +4,8 @@ from __future__ import annotations
 from .interactiontype import InteractionType
 from datetime import datetime
 from enum import Enum
-from speakeasy_client_sdk_python.types import BaseModel
+from pydantic import model_serializer
+from speakeasy_client_sdk_python.types import BaseModel, UNSET_SENTINEL
 from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
@@ -185,6 +186,8 @@ class CliEventTypedDict(TypedDict):
     r"""The namespace name of the source."""
     source_revision_digest: NotRequired[str]
     r"""The revision digest of the source."""
+    test_report_raw: NotRequired[str]
+    r"""The raw test report xml"""
     workflow_lock_post_raw: NotRequired[str]
     r"""Workflow lock file (post execution)"""
     workflow_lock_pre_raw: NotRequired[str]
@@ -427,6 +430,9 @@ class CliEvent(BaseModel):
     source_revision_digest: Optional[str] = None
     r"""The revision digest of the source."""
 
+    test_report_raw: Optional[str] = None
+    r"""The raw test report xml"""
+
     workflow_lock_post_raw: Optional[str] = None
     r"""Workflow lock file (post execution)"""
 
@@ -438,3 +444,95 @@ class CliEvent(BaseModel):
 
     workflow_pre_raw: Optional[str] = None
     r"""Workflow file (prior to execution)"""
+
+    @model_serializer(mode="wrap")
+    def serialize_model(self, handler):
+        optional_fields = set(
+            [
+                "commit_head",
+                "continuous_integration_environment",
+                "duration_ms",
+                "error",
+                "generate_bump_type",
+                "generate_config_post_checksum",
+                "generate_config_post_raw",
+                "generate_config_post_version",
+                "generate_config_pre_checksum",
+                "generate_config_pre_raw",
+                "generate_config_pre_version",
+                "generate_eligible_features",
+                "generate_gen_lock_id",
+                "generate_gen_lock_post_features",
+                "generate_gen_lock_pre_blob_digest",
+                "generate_gen_lock_pre_doc_checksum",
+                "generate_gen_lock_pre_doc_version",
+                "generate_gen_lock_pre_features",
+                "generate_gen_lock_pre_namespace_name",
+                "generate_gen_lock_pre_revision_digest",
+                "generate_gen_lock_pre_version",
+                "generate_number_of_operations_ignored",
+                "generate_number_of_operations_used",
+                "generate_number_of_terraform_resources",
+                "generate_output_tests",
+                "generate_published",
+                "generate_repo_url",
+                "generate_target",
+                "generate_target_name",
+                "generate_target_version",
+                "generate_version",
+                "gh_action_organization",
+                "gh_action_ref",
+                "gh_action_repository",
+                "gh_action_run_link",
+                "gh_action_version",
+                "gh_changes_committed",
+                "gh_pull_request",
+                "git_relative_cwd",
+                "git_remote_default_owner",
+                "git_remote_default_repo",
+                "git_user_email",
+                "git_user_name",
+                "hostname",
+                "last_step",
+                "lint_report_digest",
+                "lint_report_error_count",
+                "lint_report_info_count",
+                "lint_report_warning_count",
+                "local_completed_at",
+                "management_doc_checksum",
+                "management_doc_version",
+                "mermaid_diagram",
+                "openapi_diff_base_source_blob_digest",
+                "openapi_diff_base_source_namespace_name",
+                "openapi_diff_base_source_revision_digest",
+                "openapi_diff_breaking_changes_count",
+                "openapi_diff_bump_type",
+                "openapi_diff_report_digest",
+                "publish_package_name",
+                "publish_package_registry_name",
+                "publish_package_url",
+                "publish_package_version",
+                "raw_command",
+                "repo_label",
+                "source_blob_digest",
+                "source_namespace_name",
+                "source_revision_digest",
+                "test_report_raw",
+                "workflow_lock_post_raw",
+                "workflow_lock_pre_raw",
+                "workflow_post_raw",
+                "workflow_pre_raw",
+            ]
+        )
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias or n
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

@@ -2,6 +2,14 @@
 
 Type of interaction.
 
+## Example Usage
+
+```python
+from speakeasy_client_sdk_python.models.shared import InteractionType
+
+value = InteractionType.CI_EXEC
+```
+
 
 ## Values
 
@@ -18,3 +26,4 @@ Type of interaction.
 | `RUN`             | RUN               |
 | `CONFIGURE`       | CONFIGURE         |
 | `PUBLISH`         | PUBLISH           |
+| `TEST`            | TEST              |

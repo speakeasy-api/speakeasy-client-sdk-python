@@ -2,8 +2,14 @@
 
 from __future__ import annotations
 import httpx
+from pydantic import model_serializer
 from speakeasy_client_sdk_python.models.shared import shorturl as shared_shorturl
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import (
+    BaseModel,
+    UNSET_SENTINEL,
+    current_exclude_none,
+    serialize_with_info,
+)
 from typing import Optional
 from typing_extensions import NotRequired, TypedDict
 
@@ -41,3 +47,25 @@ class CreateResponse(BaseModel):
 
     short_url: Optional[shared_shorturl.ShortURL] = None
     r"""OK"""
+
+    @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
+    def serialize_model(self, handler):
+        optional_fields = set(["ShortURL"])
+        exclude_none = current_exclude_none()
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and exclude_none is False:
+                continue
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

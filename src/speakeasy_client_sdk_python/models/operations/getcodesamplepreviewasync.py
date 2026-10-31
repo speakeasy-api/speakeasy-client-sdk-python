@@ -3,10 +3,17 @@
 from __future__ import annotations
 import httpx
 import pydantic
+from pydantic import model_serializer
 from speakeasy_client_sdk_python.models.shared import (
     codesamplesjobstatus as shared_codesamplesjobstatus,
+    usagesnippets as shared_usagesnippets,
 )
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import (
+    BaseModel,
+    UNSET_SENTINEL,
+    current_exclude_none,
+    serialize_with_info,
+)
 from speakeasy_client_sdk_python.utils import FieldMetadata, PathParamMetadata
 from typing import Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
@@ -47,13 +54,9 @@ class GetCodeSamplePreviewAsyncResponseTypedDict(TypedDict):
     r"""HTTP response status code for this operation"""
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
-    two_hundred_application_json_response_stream: NotRequired[httpx.Response]
-    r"""Successfully returned codeSample overlay file"""
-    two_hundred_application_x_yaml_response_stream: NotRequired[httpx.Response]
-    r"""Successfully returned codeSample overlay file"""
-    two_hundred_and_two_application_json_object: NotRequired[
-        GetCodeSamplePreviewAsyncResponseBodyTypedDict
-    ]
+    usage_snippets: NotRequired[shared_usagesnippets.UsageSnippetsTypedDict]
+    r"""OK"""
+    object: NotRequired[GetCodeSamplePreviewAsyncResponseBodyTypedDict]
     r"""Job is still in progress"""
 
 
@@ -67,13 +70,30 @@ class GetCodeSamplePreviewAsyncResponse(BaseModel):
     raw_response: httpx.Response
     r"""Raw HTTP response; suitable for custom response parsing"""
 
-    two_hundred_application_json_response_stream: Optional[httpx.Response] = None
-    r"""Successfully returned codeSample overlay file"""
+    usage_snippets: Optional[shared_usagesnippets.UsageSnippets] = None
+    r"""OK"""
 
-    two_hundred_application_x_yaml_response_stream: Optional[httpx.Response] = None
-    r"""Successfully returned codeSample overlay file"""
-
-    two_hundred_and_two_application_json_object: Optional[
-        GetCodeSamplePreviewAsyncResponseBody
-    ] = None
+    object: Optional[GetCodeSamplePreviewAsyncResponseBody] = None
     r"""Job is still in progress"""
+
+    @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
+    def serialize_model(self, handler):
+        optional_fields = set(["UsageSnippets", "object"])
+        exclude_none = current_exclude_none()
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and exclude_none is False:
+                continue
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

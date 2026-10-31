@@ -4,10 +4,16 @@ from __future__ import annotations
 import httpx
 import io
 import pydantic
+from pydantic import model_serializer
 from speakeasy_client_sdk_python.models.shared import (
     suggestoptsold as shared_suggestoptsold,
 )
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import (
+    BaseModel,
+    UNSET_SENTINEL,
+    current_exclude_none,
+    serialize_with_info,
+)
 from speakeasy_client_sdk_python.utils import (
     FieldMetadata,
     HeaderMetadata,
@@ -19,14 +25,14 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class SchemaTypedDict(TypedDict):
-    content: Union[bytes, IO[bytes], io.BufferedReader]
+    content: Union[bytes, IO[bytes], io.IOBase]
     file_name: str
     content_type: NotRequired[str]
 
 
 class Schema(BaseModel):
     content: Annotated[
-        Union[bytes, IO[bytes], io.BufferedReader],
+        Union[bytes, IO[bytes], io.IOBase],
         pydantic.Field(alias=""),
         FieldMetadata(multipart=MultipartFormMetadata(content=True)),
     ]
@@ -40,6 +46,28 @@ class Schema(BaseModel):
         pydantic.Field(alias="Content-Type"),
         FieldMetadata(multipart=True),
     ] = None
+
+    @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
+    def serialize_model(self, handler):
+        optional_fields = set(["contentType"])
+        exclude_none = current_exclude_none()
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and exclude_none is False:
+                continue
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class SuggestOpenAPIRequestBodyTypedDict(TypedDict):
@@ -62,6 +90,28 @@ class SuggestOpenAPIRequestBody(BaseModel):
         Optional[shared_suggestoptsold.SuggestOptsOld],
         FieldMetadata(multipart=MultipartFormMetadata(json=True)),
     ] = None
+
+    @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
+    def serialize_model(self, handler):
+        optional_fields = set(["opts"])
+        exclude_none = current_exclude_none()
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and exclude_none is False:
+                continue
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class SuggestOpenAPIRequestTypedDict(TypedDict):
@@ -107,3 +157,25 @@ class SuggestOpenAPIResponse(BaseModel):
 
     schema_: Optional[httpx.Response] = None
     r"""An overlay containing the suggested spec modifications."""
+
+    @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
+    def serialize_model(self, handler):
+        optional_fields = set(["Schema"])
+        exclude_none = current_exclude_none()
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and exclude_none is False:
+                continue
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

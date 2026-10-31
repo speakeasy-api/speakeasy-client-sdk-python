@@ -3,21 +3,27 @@
 from __future__ import annotations
 import io
 import pydantic
-from speakeasy_client_sdk_python.types import BaseModel
+from pydantic import model_serializer
+from speakeasy_client_sdk_python.types import (
+    BaseModel,
+    UNSET_SENTINEL,
+    current_exclude_none,
+    serialize_with_info,
+)
 from speakeasy_client_sdk_python.utils import FieldMetadata, MultipartFormMetadata
 from typing import IO, List, Optional, Union
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class SchemaFileTypedDict(TypedDict):
-    content: Union[bytes, IO[bytes], io.BufferedReader]
+    content: Union[bytes, IO[bytes], io.IOBase]
     file_name: str
     content_type: NotRequired[str]
 
 
 class SchemaFile(BaseModel):
     content: Annotated[
-        Union[bytes, IO[bytes], io.BufferedReader],
+        Union[bytes, IO[bytes], io.IOBase],
         pydantic.Field(alias=""),
         FieldMetadata(multipart=MultipartFormMetadata(content=True)),
     ]
@@ -32,12 +38,36 @@ class SchemaFile(BaseModel):
         FieldMetadata(multipart=True),
     ] = None
 
+    @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
+    def serialize_model(self, handler):
+        optional_fields = set(["contentType"])
+        exclude_none = current_exclude_none()
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and exclude_none is False:
+                continue
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class CodeSampleSchemaInputTypedDict(TypedDict):
-    languages: List[str]
-    r"""A list of languages to generate code samples for"""
+    language: str
+    r"""The language to generate code samples for"""
     schema_file: SchemaFileTypedDict
     r"""The OpenAPI file to be uploaded"""
+    operation_ids: NotRequired[List[str]]
+    r"""A list of operations IDs to generate code samples for"""
     package_name: NotRequired[str]
     r"""The name of the package"""
     sdk_class_name: NotRequired[str]
@@ -45,16 +75,41 @@ class CodeSampleSchemaInputTypedDict(TypedDict):
 
 
 class CodeSampleSchemaInput(BaseModel):
-    languages: Annotated[List[str], FieldMetadata(multipart=True)]
-    r"""A list of languages to generate code samples for"""
+    language: Annotated[str, FieldMetadata(multipart=True)]
+    r"""The language to generate code samples for"""
 
     schema_file: Annotated[
         SchemaFile, FieldMetadata(multipart=MultipartFormMetadata(file=True))
     ]
     r"""The OpenAPI file to be uploaded"""
 
+    operation_ids: Annotated[Optional[List[str]], FieldMetadata(multipart=True)] = None
+    r"""A list of operations IDs to generate code samples for"""
+
     package_name: Annotated[Optional[str], FieldMetadata(multipart=True)] = None
     r"""The name of the package"""
 
     sdk_class_name: Annotated[Optional[str], FieldMetadata(multipart=True)] = None
     r"""The SDK class name"""
+
+    @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
+    def serialize_model(self, handler):
+        optional_fields = set(["operation_ids", "package_name", "sdk_class_name"])
+        exclude_none = current_exclude_none()
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and exclude_none is False:
+                continue
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

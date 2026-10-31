@@ -2,8 +2,14 @@
 
 from __future__ import annotations
 import httpx
+from pydantic import model_serializer
 from speakeasy_client_sdk_python.models.shared import addtags as shared_addtags
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import (
+    BaseModel,
+    UNSET_SENTINEL,
+    current_exclude_none,
+    serialize_with_info,
+)
 from speakeasy_client_sdk_python.utils import (
     FieldMetadata,
     PathParamMetadata,
@@ -29,6 +35,28 @@ class PostTagsRequest(BaseModel):
         FieldMetadata(request=RequestMetadata(media_type="application/json")),
     ] = None
     r"""A JSON representation of the tags to add"""
+
+    @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
+    def serialize_model(self, handler):
+        optional_fields = set(["AddTags"])
+        exclude_none = current_exclude_none()
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and exclude_none is False:
+                continue
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class PostTagsResponseTypedDict(TypedDict):

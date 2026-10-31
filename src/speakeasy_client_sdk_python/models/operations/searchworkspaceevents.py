@@ -2,11 +2,17 @@
 
 from __future__ import annotations
 import httpx
+from pydantic import model_serializer
 from speakeasy_client_sdk_python.models.shared import (
     clievent as shared_clievent,
     interactiontype as shared_interactiontype,
 )
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import (
+    BaseModel,
+    UNSET_SENTINEL,
+    current_exclude_none,
+    serialize_with_info,
+)
 from speakeasy_client_sdk_python.utils import (
     FieldMetadata,
     PathParamMetadata,
@@ -25,6 +31,28 @@ class SearchWorkspaceEventsGlobals(BaseModel):
         Optional[str],
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
     ] = None
+
+    @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
+    def serialize_model(self, handler):
+        optional_fields = set(["workspace_id"])
+        exclude_none = current_exclude_none()
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and exclude_none is False:
+                continue
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class SearchWorkspaceEventsRequestTypedDict(TypedDict):
@@ -103,6 +131,40 @@ class SearchWorkspaceEventsRequest(BaseModel):
     ] = None
     r"""Number of results to return."""
 
+    @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
+    def serialize_model(self, handler):
+        optional_fields = set(
+            [
+                "workspace_id",
+                "source_revision_digest",
+                "lint_report_digest",
+                "openapi_diff_report_digest",
+                "interaction_type",
+                "generate_gen_lock_id",
+                "execution_id",
+                "success",
+                "limit",
+            ]
+        )
+        exclude_none = current_exclude_none()
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and exclude_none is False:
+                continue
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class SearchWorkspaceEventsResponseTypedDict(TypedDict):
     content_type: str
@@ -127,3 +189,25 @@ class SearchWorkspaceEventsResponse(BaseModel):
 
     cli_event_batch: Optional[List[shared_clievent.CliEvent]] = None
     r"""Success"""
+
+    @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
+    def serialize_model(self, handler):
+        optional_fields = set(["CliEventBatch"])
+        exclude_none = current_exclude_none()
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and exclude_none is False:
+                continue
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

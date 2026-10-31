@@ -2,17 +2,24 @@
 
 from __future__ import annotations
 from .accounttype import AccountType
+from .billingaddon import BillingAddOn
 from datetime import datetime
 import pydantic
-from pydantic.functional_validators import PlainValidator
-from speakeasy_client_sdk_python.types import BaseModel
-from speakeasy_client_sdk_python.utils import validate_open_enum
+from pydantic import field_serializer, model_serializer
+from speakeasy_client_sdk_python.models import shared
+from speakeasy_client_sdk_python.types import (
+    BaseModel,
+    UNSET_SENTINEL,
+    current_exclude_none,
+    serialize_with_info,
+)
 from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class APIKeyDetailsTypedDict(TypedDict):
     account_type_v2: AccountType
+    billing_add_ons: List[BillingAddOn]
     enabled_features: List[str]
     org_slug: str
     telemetry_disabled: bool
@@ -25,7 +32,9 @@ class APIKeyDetailsTypedDict(TypedDict):
 
 
 class APIKeyDetails(BaseModel):
-    account_type_v2: Annotated[AccountType, PlainValidator(validate_open_enum(False))]
+    account_type_v2: AccountType
+
+    billing_add_ons: List[BillingAddOn]
 
     enabled_features: List[str]
 
@@ -48,3 +57,34 @@ class APIKeyDetails(BaseModel):
     ] = None
 
     generation_access_unlimited: Optional[bool] = None
+
+    @field_serializer("account_type_v2")
+    def serialize_account_type_v2(self, value):
+        if isinstance(value, str):
+            try:
+                return shared.AccountType(value)
+            except ValueError:
+                return value
+        return value
+
+    @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
+    def serialize_model(self, handler):
+        optional_fields = set(["feature_flags", "generation_access_unlimited"])
+        exclude_none = current_exclude_none()
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and exclude_none is False:
+                continue
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

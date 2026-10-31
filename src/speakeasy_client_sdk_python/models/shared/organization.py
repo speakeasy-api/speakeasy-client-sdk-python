@@ -3,18 +3,19 @@
 from __future__ import annotations
 from .accounttype import AccountType
 from datetime import datetime
-from pydantic import model_serializer
-from pydantic.functional_validators import PlainValidator
+from pydantic import field_serializer, model_serializer
+from speakeasy_client_sdk_python.models import shared
 from speakeasy_client_sdk_python.types import (
     BaseModel,
     Nullable,
     OptionalNullable,
     UNSET,
     UNSET_SENTINEL,
+    current_exclude_none,
+    serialize_with_info,
 )
-from speakeasy_client_sdk_python.utils import validate_open_enum
 from typing import Optional
-from typing_extensions import Annotated, NotRequired, TypedDict
+from typing_extensions import NotRequired, TypedDict
 
 
 class OrganizationTypedDict(TypedDict):
@@ -36,7 +37,7 @@ class OrganizationTypedDict(TypedDict):
 class Organization(BaseModel):
     r"""A speakeasy organization"""
 
-    account_type: Annotated[AccountType, PlainValidator(validate_open_enum(False))]
+    account_type: AccountType
 
     created_at: datetime
 
@@ -58,32 +59,42 @@ class Organization(BaseModel):
 
     sso_connection_id: OptionalNullable[str] = UNSET
 
+    @field_serializer("account_type")
+    def serialize_account_type(self, value):
+        if isinstance(value, str):
+            try:
+                return shared.AccountType(value)
+            except ValueError:
+                return value
+        return value
+
     @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
     def serialize_model(self, handler):
-        optional_fields = ["free_trial_expiry", "internal", "sso_connection_id"]
-        nullable_fields = ["free_trial_expiry", "sso_connection_id"]
-        null_default_fields = []
-
+        optional_fields = set(["free_trial_expiry", "internal", "sso_connection_id"])
+        nullable_fields = set(["free_trial_expiry", "sso_connection_id"])
+        exclude_none = current_exclude_none()
         serialized = handler(self)
-
         m = {}
 
-        for n, f in self.model_fields.items():
-            k = f.alias or n
-            val = serialized.get(k)
-            serialized.pop(k, None)
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and exclude_none is False:
+                continue
+            val = serialized.get(k, serialized.get(n))
+            is_nullable_and_explicitly_set = (
+                k in nullable_fields
+                and (self.__pydantic_fields_set__.intersection({n}))  # pylint: disable=no-member
+            )
 
-            optional_nullable = k in optional_fields and k in nullable_fields
-            is_set = (
-                self.__pydantic_fields_set__.intersection({n})
-                or k in null_default_fields
-            )  # pylint: disable=no-member
-
-            if val is not None and val != UNSET_SENTINEL:
-                m[k] = val
-            elif val != UNSET_SENTINEL and (
-                not k in optional_fields or (optional_nullable and is_set)
-            ):
-                m[k] = val
+            if val != UNSET_SENTINEL:
+                if (
+                    val is not None
+                    or k not in optional_fields
+                    or is_nullable_and_explicitly_set
+                ):
+                    m[k] = val
 
         return m

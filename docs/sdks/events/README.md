@@ -1,5 +1,4 @@
 # Events
-(*events*)
 
 ## Overview
 
@@ -19,11 +18,14 @@ Load recent events for a particular workspace
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getWorkspaceEventsByTarget" method="get" path="/v1/workspace/{workspace_id}/events/targets/{target_id}/events" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
+    workspace_id="<id>",
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
@@ -31,7 +33,6 @@ with Speakeasy(
 
     res = speakeasy.events.get_events_by_target(request={
         "target_id": "<id>",
-        "workspace_id": "<id>",
     })
 
     assert res.cli_event_batch is not None
@@ -65,9 +66,11 @@ Load targets for a particular workspace
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getWorkspaceTargets" method="get" path="/v1/workspace/events/targets" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -108,19 +111,20 @@ Load targets for a particular workspace
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getWorkspaceTargetsDeprecated" method="get" path="/v1/workspace/{workspace_id}/events/targets" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
+    workspace_id="<id>",
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 ) as speakeasy:
 
-    res = speakeasy.events.get_targets_deprecated(request={
-        "workspace_id": "<id>",
-    })
+    res = speakeasy.events.get_targets_deprecated(request={})
 
     assert res.target_sdk_list is not None
 
@@ -153,12 +157,15 @@ Sends an array of events to be stored for a particular workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="postWorkspaceEvents" method="post" path="/v1/workspace/{workspace_id}/events" -->
 ```python
-import dateutil.parser
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+from speakeasy_client_sdk_python.utils import parse_datetime
+
 
 with Speakeasy(
+    workspace_id="<id>",
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
@@ -167,18 +174,17 @@ with Speakeasy(
     res = speakeasy.events.post(request={
         "request_body": [
             {
-                "created_at": dateutil.parser.isoparse("2025-03-02T10:07:28.113Z"),
+                "created_at": parse_datetime("2024-02-16T09:12:42.397Z"),
                 "execution_id": "<id>",
                 "id": "<id>",
-                "interaction_type": shared.InteractionType.AUTHENTICATE,
-                "local_started_at": dateutil.parser.isoparse("2025-08-12T17:54:17.538Z"),
+                "interaction_type": shared.InteractionType.QUICKSTART,
+                "local_started_at": parse_datetime("2025-01-23T01:13:51.002Z"),
                 "speakeasy_api_key_name": "<value>",
                 "speakeasy_version": "<value>",
                 "success": True,
                 "workspace_id": "<id>",
             },
         ],
-        "workspace_id": "<id>",
     })
 
     assert res is not None
@@ -212,19 +218,20 @@ Search events for a particular workspace by any field
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="searchWorkspaceEvents" method="get" path="/v1/workspace/{workspace_id}/events" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
 
+
 with Speakeasy(
+    workspace_id="<id>",
     security=shared.Security(
         api_key="<YOUR_API_KEY_HERE>",
     ),
 ) as speakeasy:
 
-    res = speakeasy.events.search(request={
-        "workspace_id": "<id>",
-    })
+    res = speakeasy.events.search(request={})
 
     assert res.cli_event_batch is not None
 

@@ -3,7 +3,14 @@
 from __future__ import annotations
 from .ssometadata import SSOMetadata, SSOMetadataTypedDict
 from .user import User, UserTypedDict
-from speakeasy_client_sdk_python.types import BaseModel
+from pydantic import model_serializer
+from speakeasy_client_sdk_python.types import (
+    BaseModel,
+    UNSET_SENTINEL,
+    current_exclude_none,
+    serialize_with_info,
+)
+from speakeasy_client_sdk_python.types.basemodel import current_filtered_dump
 from typing import List, Optional
 from typing_extensions import NotRequired, TypedDict
 
@@ -23,3 +30,26 @@ class WorkspaceTeamResponse(BaseModel):
 
     sso_metadata: Optional[SSOMetadata] = None
     r"""SSO metadata for a workspace"""
+
+    @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
+    def serialize_model(self, handler):
+        optional_fields = set(["sso_metadata"])
+        exclude_none = current_exclude_none()
+        skip_filtered = exclude_none is False or current_filtered_dump()
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and skip_filtered:
+                continue
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

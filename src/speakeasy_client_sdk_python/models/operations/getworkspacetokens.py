@@ -2,10 +2,17 @@
 
 from __future__ import annotations
 import httpx
+from pydantic import model_serializer
 from speakeasy_client_sdk_python.models.shared import (
     workspacetoken as shared_workspacetoken,
 )
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import (
+    BaseModel,
+    UNSET_SENTINEL,
+    current_exclude_none,
+    serialize_with_info,
+)
+from speakeasy_client_sdk_python.types.basemodel import current_filtered_dump
 from speakeasy_client_sdk_python.utils import FieldMetadata, PathParamMetadata
 from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
@@ -21,6 +28,29 @@ class GetWorkspaceTokensGlobals(BaseModel):
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
     ] = None
 
+    @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
+    def serialize_model(self, handler):
+        optional_fields = set(["workspace_id"])
+        exclude_none = current_exclude_none()
+        skip_filtered = exclude_none is False or current_filtered_dump()
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and skip_filtered:
+                continue
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
+
 
 class GetWorkspaceTokensRequestTypedDict(TypedDict):
     workspace_id: NotRequired[str]
@@ -33,6 +63,29 @@ class GetWorkspaceTokensRequest(BaseModel):
         FieldMetadata(path=PathParamMetadata(style="simple", explode=False)),
     ] = None
     r"""Unique identifier of the workspace."""
+
+    @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
+    def serialize_model(self, handler):
+        optional_fields = set(["workspace_id"])
+        exclude_none = current_exclude_none()
+        skip_filtered = exclude_none is False or current_filtered_dump()
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and skip_filtered:
+                continue
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class GetWorkspaceTokensResponseTypedDict(TypedDict):
@@ -58,3 +111,26 @@ class GetWorkspaceTokensResponse(BaseModel):
 
     classes: Optional[List[shared_workspacetoken.WorkspaceToken]] = None
     r"""OK"""
+
+    @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
+    def serialize_model(self, handler):
+        optional_fields = set(["classes"])
+        exclude_none = current_exclude_none()
+        skip_filtered = exclude_none is False or current_filtered_dump()
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and skip_filtered:
+                continue
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

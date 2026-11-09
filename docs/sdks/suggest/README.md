@@ -1,5 +1,4 @@
 # Suggest
-(*suggest*)
 
 ## Overview
 
@@ -18,9 +17,11 @@ Get suggestions from an LLM model for improving an OpenAPI document.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="suggest" method="post" path="/v1/suggest/openapi_from_summary" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -35,22 +36,14 @@ with Speakeasy(
                 {
                     "message": "<value>",
                     "path": [
-                        "/opt/include",
-                        "/opt/share",
-                    ],
-                    "type": "<value>",
-                },
-                {
-                    "message": "<value>",
-                    "path": [
-                        "/rescue",
+                        "/usr/src",
                     ],
                     "type": "<value>",
                 },
             ],
             "oas_summary": {
                 "info": {
-                    "description": "amid traffic the unfortunately underneath what father lovely out",
+                    "description": "prioritize bell vainly",
                     "license": {},
                     "summary": "<value>",
                     "title": "<value>",
@@ -58,18 +51,18 @@ with Speakeasy(
                 },
                 "operations": [
                     {
-                        "description": "times dull than except",
+                        "description": "though since instead accurate safe unnaturally charming",
                         "method": "<value>",
                         "operation_id": "<id>",
-                        "path": "/mnt",
+                        "path": "/usr/local/bin",
                         "tags": [
-                            "<value>",
-                            "<value>",
+                            "<value 1>",
+                            "<value 2>",
                         ],
                     },
                 ],
             },
-            "suggestion_type": shared.SuggestRequestBodySuggestionType.DIAGNOSTICS_ONLY,
+            "suggestion_type": shared.SuggestRequestBodySuggestionType.METHOD_NAMES,
         },
     })
 
@@ -103,9 +96,11 @@ Generate generic suggestions for a list of items.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="suggestItems" method="post" path="/v1/suggest/items" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -115,7 +110,7 @@ with Speakeasy(
 
     res = speakeasy.suggest.suggest_items(request={
         "items": [
-            "<value>",
+            "<value 1>",
         ],
         "prompt": "<value>",
     })
@@ -150,9 +145,11 @@ Get suggestions from an LLM model for improving an OpenAPI document.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="suggestOpenAPI" method="post" path="/v1/suggest/openapi" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -200,9 +197,11 @@ Get suggestions from an LLM model for improving an OpenAPI document stored in th
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="suggestOpenAPIRegistry" method="post" path="/v1/suggest/openapi/{namespace_name}/{revision_reference}" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(

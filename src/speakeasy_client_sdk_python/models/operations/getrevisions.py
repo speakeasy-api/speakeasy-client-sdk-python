@@ -2,10 +2,17 @@
 
 from __future__ import annotations
 import httpx
+from pydantic import model_serializer
 from speakeasy_client_sdk_python.models.shared import (
     getrevisionsresponse as shared_getrevisionsresponse,
 )
-from speakeasy_client_sdk_python.types import BaseModel
+from speakeasy_client_sdk_python.types import (
+    BaseModel,
+    UNSET_SENTINEL,
+    current_exclude_none,
+    serialize_with_info,
+)
+from speakeasy_client_sdk_python.types.basemodel import current_filtered_dump
 from speakeasy_client_sdk_python.utils import (
     FieldMetadata,
     PathParamMetadata,
@@ -31,6 +38,29 @@ class GetRevisionsRequest(BaseModel):
         FieldMetadata(query=QueryParamMetadata(style="form", explode=True)),
     ] = None
     r"""Token to retrieve the next page of results"""
+
+    @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
+    def serialize_model(self, handler):
+        optional_fields = set(["next_page_token"])
+        exclude_none = current_exclude_none()
+        skip_filtered = exclude_none is False or current_filtered_dump()
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and skip_filtered:
+                continue
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m
 
 
 class GetRevisionsResponseTypedDict(TypedDict):
@@ -60,3 +90,26 @@ class GetRevisionsResponse(BaseModel):
         shared_getrevisionsresponse.GetRevisionsResponse
     ] = None
     r"""OK"""
+
+    @model_serializer(mode="wrap")
+    def _serialize_model_with_info(self, handler, info):
+        return serialize_with_info(self.serialize_model, handler, info)
+
+    def serialize_model(self, handler):
+        optional_fields = set(["GetRevisionsResponse"])
+        exclude_none = current_exclude_none()
+        skip_filtered = exclude_none is False or current_filtered_dump()
+        serialized = handler(self)
+        m = {}
+
+        for n, f in type(self).model_fields.items():
+            k = f.alias if f.alias is not None else n
+            if k not in serialized and n not in serialized and skip_filtered:
+                continue
+            val = serialized.get(k, serialized.get(n))
+
+            if val != UNSET_SENTINEL:
+                if val is not None or k not in optional_fields:
+                    m[k] = val
+
+        return m

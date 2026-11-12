@@ -1,5 +1,4 @@
 # Artifacts
-(*artifacts*)
 
 ## Overview
 
@@ -16,6 +15,7 @@ REST APIs for working with Registry artifacts
 * [list_remote_sources](#list_remote_sources) - Get remote sources attached to a particular namespace
 * [post_tags](#post_tags) - Add tags to an existing revision
 * [preflight](#preflight) - Get access token for communicating with OCI distribution endpoints
+* [set_archived](#set_archived) - Set whether a namespace is archived
 * [set_visibility](#set_visibility) - Set visibility of a namespace with an existing metadata entry
 
 ## create_remote_source
@@ -24,9 +24,11 @@ Configure a new remote source
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="createRemoteSource" method="post" path="/v1/artifacts/remote_sources" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -67,9 +69,11 @@ Get blob for a particular digest
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getBlob" method="get" path="/v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/blobs/{digest}" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -115,9 +119,11 @@ Get manifest for a particular reference
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getManifest" method="get" path="/v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/manifests/{revision_reference}" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -163,9 +169,11 @@ Each namespace contains many revisions.
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getNamespaces" method="get" path="/v1/artifacts/namespaces" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -203,9 +211,11 @@ with Speakeasy(
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getRevisions" method="get" path="/v1/artifacts/namespaces/{namespace_name}/revisions" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -246,9 +256,11 @@ with Speakeasy(
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="getTags" method="get" path="/v1/artifacts/namespaces/{namespace_name}/tags" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -291,9 +303,11 @@ Get remote sources attached to a particular namespace
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="listRemoteSources" method="get" path="/v1/artifacts/remote_sources" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -336,9 +350,11 @@ Add tags to an existing revision
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="postTags" method="post" path="/v1/artifacts/namespaces/{namespace_name}/tags" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -381,9 +397,11 @@ Get access token for communicating with OCI distribution endpoints
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="preflight" method="post" path="/v1/artifacts/preflight" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
@@ -418,15 +436,64 @@ with Speakeasy(
 | errors.Error     | 4XX              | application/json |
 | errors.SDKError  | 5XX              | \*/\*            |
 
+## set_archived
+
+Set whether a namespace is archived
+
+### Example Usage
+
+<!-- UsageSnippet language="python" operationID="archiveNamespace" method="post" path="/v1/artifacts/namespaces/{namespace_name}/archive" -->
+```python
+from speakeasy_client_sdk_python import Speakeasy
+from speakeasy_client_sdk_python.models import shared
+
+
+with Speakeasy(
+    security=shared.Security(
+        api_key="<YOUR_API_KEY_HERE>",
+    ),
+) as speakeasy:
+
+    res = speakeasy.artifacts.set_archived(request={
+        "namespace_name": "<value>",
+    })
+
+    assert res is not None
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `request`                                                                                | [operations.ArchiveNamespaceRequest](../../models/operations/archivenamespacerequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `retries`                                                                                | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)                         | :heavy_minus_sign:                                                                       | Configuration to override the default retry behavior of the client.                      |
+
+### Response
+
+**[operations.ArchiveNamespaceResponse](../../models/operations/archivenamespaceresponse.md)**
+
+### Errors
+
+| Error Type       | Status Code      | Content Type     |
+| ---------------- | ---------------- | ---------------- |
+| errors.Error     | 4XX              | application/json |
+| errors.SDKError  | 5XX              | \*/\*            |
+
 ## set_visibility
 
 Set visibility of a namespace with an existing metadata entry
 
 ### Example Usage
 
+<!-- UsageSnippet language="python" operationID="setVisibility" method="post" path="/v1/artifacts/namespaces/{namespace_name}/visibility" -->
 ```python
 from speakeasy_client_sdk_python import Speakeasy
 from speakeasy_client_sdk_python.models import shared
+
 
 with Speakeasy(
     security=shared.Security(
